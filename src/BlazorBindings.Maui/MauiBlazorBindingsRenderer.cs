@@ -32,11 +32,6 @@ namespace BlazorBindings.Maui
             return AddComponent<TComponent>(handler, parameters);
         }
 
-        protected override void HandleException(Exception exception)
-        {
-            ErrorPageHelper.ShowExceptionPage(exception);
-        }
-
         protected override ElementManager CreateNativeControlManager()
         {
             return new MauiBlazorBindingsElementManager();
