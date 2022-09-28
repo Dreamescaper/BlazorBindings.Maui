@@ -19,15 +19,15 @@
             </EmptyView>
 
             <ItemTemplate>
-                <Item Value="@context.Value" />
+                <Item Value="@context" />
             </ItemTemplate>
         </CollectionView>
     </Grid>
 </ContentPage>
 
 @code {
-    ObservableCollection<int?> _intItems = new ObservableCollection<int?>(Enumerable.Range(1, 100).Cast<int?>());
-    int? _selectedItem;
+    ObservableCollection<int> _intItems = new ObservableCollection<int>(Enumerable.Range(1, 100));
+    int _selectedItem;
 
     void Add()
     {
