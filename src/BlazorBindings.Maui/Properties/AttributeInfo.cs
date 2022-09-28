@@ -15,9 +15,10 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(BoxView))]
 [assembly: GenerateComponent(typeof(Brush))]
 [assembly: GenerateComponent(typeof(Button))]
-//[assembly: GenerateComponent(typeof(CarouselView))] // Manually written to use custom logic for generics and binding
+[assembly: GenerateComponent(typeof(CarouselView),
+    GenericProperties = new[] { nameof(CarouselView.CurrentItem) })]
 [assembly: GenerateComponent(typeof(CheckBox))]
-//[assembly: GenerateComponent(typeof(CollectionView))] // Manually written to use custom logic for generics and binding
+[assembly: GenerateComponent(typeof(CollectionView))]
 [assembly: GenerateComponent(typeof(ContentPage))]
 [assembly: GenerateComponent(typeof(ContentView))]
 [assembly: GenerateComponent(typeof(DatePicker),
@@ -26,19 +27,22 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(Entry))]
 [assembly: GenerateComponent(typeof(FlexLayout))]
 [assembly: GenerateComponent(typeof(FlyoutItem))]
-[assembly: GenerateComponent(typeof(FlyoutPage))]
+[assembly: GenerateComponent(typeof(FlyoutPage), Aliases = new[] { "Detail:Detail" })]
 [assembly: GenerateComponent(typeof(Frame))]
 [assembly: GenerateComponent(typeof(GestureElement))]
 [assembly: GenerateComponent(typeof(GradientBrush))]
 [assembly: GenerateComponent(typeof(GradientStop))]
 [assembly: GenerateComponent(typeof(GraphicsView))]
 [assembly: GenerateComponent(typeof(Grid))]
-//[assembly: GenerateComponent(typeof(GroupableItemsView))] // Manually written to use custom logic for generics and binding
+[assembly: GenerateComponent(typeof(GroupableItemsView),
+    Exclude = new[] { nameof(GroupableItemsView.GroupFooterTemplate), nameof(GroupableItemsView.GroupHeaderTemplate), nameof(GroupableItemsView.IsGrouped) })]
 [assembly: GenerateComponent(typeof(HorizontalStackLayout))]
 [assembly: GenerateComponent(typeof(Image))]
 [assembly: GenerateComponent(typeof(ImageButton))]
 [assembly: GenerateComponent(typeof(InputView))]
-//[assembly: GenerateComponent(typeof(ItemsView))] // Manually written to use custom logic for generics and binding
+[assembly: GenerateComponent(typeof(ItemsView),
+    GenericProperties = new[] { nameof(ItemsView.ItemsSource), nameof(ItemsView.ItemTemplate) },
+    Aliases = new[] { "EmptyViewTemplate:EmptyView" })]
 [assembly: GenerateComponent(typeof(Label))]
 [assembly: GenerateComponent(typeof(Layout))]
 [assembly: GenerateComponent(typeof(LinearGradientBrush))]
@@ -51,7 +55,11 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(RefreshView),
     Exclude = new[] { nameof(RefreshView.Refreshing) },
     PropertyChangedEvents = new[] { nameof(RefreshView.IsRefreshing) })]
+[assembly: GenerateComponent(typeof(ReorderableItemsView), Exclude = new[] { nameof(ReorderableItemsView.CanMixGroups) })]
 [assembly: GenerateComponent(typeof(ScrollView))]
+[assembly: GenerateComponent(typeof(SelectableItemsView),
+    GenericProperties = new[] { nameof(SelectableItemsView.SelectedItem) },
+    PropertyChangedEvents = new[] { nameof(SelectableItemsView.SelectedItem), nameof(SelectableItemsView.SelectedItems) })]
 [assembly: GenerateComponent(typeof(Shadow))]
 [assembly: GenerateComponent(typeof(Shell),
     Exclude = new[] { nameof(Shell.ItemTemplate), nameof(Shell.MenuItemTemplate), nameof(Shell.FlyoutContentTemplate), nameof(Shell.FlyoutFooterTemplate), nameof(Shell.FlyoutHeaderTemplate) })]
@@ -65,6 +73,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(Span))]
 [assembly: GenerateComponent(typeof(StackBase))]
 [assembly: GenerateComponent(typeof(StackLayout))]
+[assembly: GenerateComponent(typeof(StructuredItemsView),
+    Aliases = new[] { "HeaderTemplate:Header", "FooterTemplate:Footer" })]
 [assembly: GenerateComponent(typeof(Stepper))]
 [assembly: GenerateComponent(typeof(Switch))]
 [assembly: GenerateComponent(typeof(Tab))]

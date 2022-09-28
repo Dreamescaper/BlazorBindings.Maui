@@ -82,7 +82,7 @@ namespace BlazorBindings.Maui.Elements
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(ScrollView), ChildContent);;
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(ScrollView), ChildContent);
         }
 
         static partial void RegisterAdditionalHandlers();

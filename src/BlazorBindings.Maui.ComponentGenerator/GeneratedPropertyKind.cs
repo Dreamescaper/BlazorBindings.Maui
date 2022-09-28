@@ -1,4 +1,4 @@
-﻿namespace ComponentWrapperGenerator
+﻿namespace BlazorBindings.Maui.ComponentGenerator
 {
     public enum GeneratedPropertyKind
     {

@@ -1,10 +1,9 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace ComponentWrapperGenerator
+namespace BlazorBindings.Maui.ComponentGenerator
 {
     public partial class GeneratedPropertyInfo
     {
@@ -23,7 +22,7 @@ namespace ComponentWrapperGenerator
         public string GetHandleContentProperty()
         {
             return $@"                case nameof({ComponentPropertyName}):
-                    {ComponentPropertyName} = (RenderFragment)value;
+                    {ComponentPropertyName} = ({ComponentType})value;
                     break;
 ";
         }
@@ -35,8 +34,10 @@ namespace ComponentWrapperGenerator
 
             var contentHandler = GetContentHandler();
 
+            var genericArgument = ContainingType.IsGeneric ? $"{ComponentName}<T>" : ComponentName;
+
             return @$"
-            ElementHandlerRegistry.RegisterPropertyContentHandler<{ComponentName}>(nameof({ComponentPropertyName}),
+            ElementHandlerRegistry.RegisterPropertyContentHandler<{genericArgument}>(nameof({ComponentPropertyName}),
                 (renderer, parent, component) => {contentHandler});";
         }
 
@@ -50,11 +51,17 @@ namespace ComponentWrapperGenerator
                 var controlTemplateHandlerName = GetTypeNameAndAddNamespace("BlazorBindings.Maui.Elements.Handlers", "ControlTemplatePropertyHandler");
                 return $"new {controlTemplateHandlerName}<{MauiContainingTypeName}>(component,\r\n                    (x, controlTemplate) => x.{_propertyInfo.Name} = controlTemplate)";
             }
-            else if (IsDataTemplate)
+            else if (IsDataTemplate && !IsGeneric)
             {
-                // new DataTemplatePropertyHandler<MC.ItemsView>(component, (view, valueElement) => view.dataTemplate = dataTemplate)
+                // new DataTemplatePropertyHandler<MC.ItemsView>(component, (view, valueElement) => view.EmptyViewTemplate = dataTemplate)
                 var dataTemplateHandlerName = GetTypeNameAndAddNamespace("BlazorBindings.Maui.Elements.Handlers", "DataTemplatePropertyHandler");
                 return $"new {dataTemplateHandlerName}<{MauiContainingTypeName}>(component,\r\n                    (x, dataTemplate) => x.{_propertyInfo.Name} = dataTemplate)";
+            }
+            else if (IsDataTemplate && IsGeneric)
+            {
+                // new DataTemplatePropertyHandler<MC.ItemsView, T>(component, (view, dataTemplate) => view.ItemTemplate = dataTemplate)
+                var dataTemplateHandlerName = GetTypeNameAndAddNamespace("BlazorBindings.Maui.Elements.Handlers", "DataTemplatePropertyHandler");
+                return $"new {dataTemplateHandlerName}<{MauiContainingTypeName}, T>(component,\r\n                    (x, dataTemplate) => x.{_propertyInfo.Name} = dataTemplate)";
             }
             else if (type.IsGenericType && type.ConstructedFrom.SpecialType == SpecialType.System_Collections_Generic_IList_T)
             {
@@ -74,32 +81,39 @@ namespace ComponentWrapperGenerator
 
         public string RenderContentProperty()
         {
+            var componentTypeOf = ContainingType.IsGeneric ? $"{ComponentName}<T>" : ComponentName;
+
             if (IsControlTemplate)
             {
                 // RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof(TemplatedView), ControlTemplate);
-                return $"\r\n            RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof({ComponentName}), {ComponentPropertyName});";
+                return $"\r\n            RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof({componentTypeOf}), {ComponentPropertyName});";
             }
             else if (IsDataTemplate)
             {
                 // RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(ItemsView<T>), ItemTemplate);
-                return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof({ComponentName}), {ComponentPropertyName});";
+                return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof({componentTypeOf}), {ComponentPropertyName});";
             }
             else
             {
                 // RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(ContentPage), ChildContent);
-                return $"\r\n            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof({ComponentName}), {ComponentPropertyName});";
+                return $"\r\n            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof({componentTypeOf}), {ComponentPropertyName});";
             }
         }
 
-        internal static GeneratedPropertyInfo[] GetContentProperties(Compilation compilation, GeneratedComponentInfo componentInfo, IList<UsingStatement> usings)
+        internal static GeneratedPropertyInfo[] GetContentProperties(GeneratedTypeInfo containingType)
         {
+            var componentInfo = containingType.Settings;
             var propInfos = componentInfo.TypeSymbol.GetMembers().OfType<IPropertySymbol>()
                 .Where(e => !componentInfo.Exclude.Contains(e.Name))
                 .Where(IsPublicProperty)
-                .Where(prop => IsRenderFragmentPropertySymbol(compilation, prop))
+                .Where(prop => IsRenderFragmentPropertySymbol(containingType.Compilation, prop))
                 .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
-            return propInfos.Select(prop => new GeneratedPropertyInfo(compilation, prop, GeneratedPropertyKind.RenderFragment, usings)).ToArray();
+            return propInfos.Select(prop =>
+            {
+                var isGeneric = componentInfo.GenericProperties?.Any(propName => propName == prop.Name) == true;
+                return new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment, isGeneric);
+            }).ToArray();
         }
 
         private static bool IsRenderFragmentPropertySymbol(Compilation compilation, IPropertySymbol prop)

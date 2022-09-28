@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-namespace ComponentWrapperGenerator
+namespace BlazorBindings.Maui.ComponentGenerator
 {
-    internal sealed class UsingStatement
+    public sealed class UsingStatement
     {
         public string Alias { get; set; }
         public string Namespace { get; set; }

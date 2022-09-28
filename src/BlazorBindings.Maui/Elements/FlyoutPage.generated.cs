@@ -89,7 +89,7 @@ namespace BlazorBindings.Maui.Elements
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(FlyoutPage), Detail);
-            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(FlyoutPage), Flyout);;
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(FlyoutPage), Flyout);
         }
 
         static partial void RegisterAdditionalHandlers();

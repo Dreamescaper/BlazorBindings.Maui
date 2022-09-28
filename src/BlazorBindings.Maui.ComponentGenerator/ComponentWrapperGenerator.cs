@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using ComponentWrapperGenerator.Extensions;
+using BlazorBindings.Maui.ComponentGenerator.Extensions;
 using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
@@ -9,20 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace ComponentWrapperGenerator
+namespace BlazorBindings.Maui.ComponentGenerator
 {
     public partial class ComponentWrapperGenerator
     {
         const string MauiComponentsNamespace = "BlazorBindings.Maui.Elements";
 
-        private GeneratorSettings Settings { get; }
-
-        public ComponentWrapperGenerator(GeneratorSettings settings)
-        {
-            Settings = settings ?? throw new ArgumentNullException(nameof(settings));
-        }
-
-        public (string GroupName, string Name, string Source) GenerateComponentFile(Compilation compilation, GeneratedComponentInfo generatedInfo)
+        public (string GroupName, string Name, string Source) GenerateComponentFile(Compilation compilation, GenerateComponentSettings generatedInfo)
         {
             //if (!System.Diagnostics.Debugger.IsAttached)
             //{
@@ -39,36 +32,17 @@ namespace ComponentWrapperGenerator
                 : $"{GetComponentNamespace(baseType)}.{baseType.Name}";
 
             // header
-            var headerText = Settings.FileHeader;
+            var headerText = generatedInfo.FileHeader;
 
             // usings
-            var usings = new List<UsingStatement>
-            {
-                new UsingStatement { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
-                new UsingStatement { Namespace = "BlazorBindings.Core", IsUsed = true, },
-                new UsingStatement { Namespace = "System.Threading.Tasks", IsUsed = true, },
-                new UsingStatement { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
-                new UsingStatement { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
-            };
-
-            var typeNamespace = typeToGenerate.ContainingNamespace.GetFullName();
-            if (typeNamespace != "Microsoft.Maui.Controls")
-            {
-                var typeNamespaceAlias = GetNamespaceAlias(typeToGenerate.ContainingNamespace);
-                usings.Add(new UsingStatement { Namespace = typeNamespace, Alias = typeNamespaceAlias, IsUsed = true });
-            }
-
-            if (componentNamespace != MauiComponentsNamespace)
-            {
-                usings.Add(new UsingStatement { Namespace = MauiComponentsNamespace, IsUsed = true });
-            }
-
+            var usings = GetDefaultUsings(typeToGenerate, componentNamespace);
             var componentNamespacePrefix = GetNamespacePrefix(typeToGenerate, usings);
+            var generatedType = new GeneratedTypeInfo(compilation, generatedInfo, componentName, componentBaseName, typeToGenerate, usings);
 
             // props
-            var valueProperties = GeneratedPropertyInfo.GetValueProperties(compilation, generatedInfo, usings);
-            var contentProperties = GeneratedPropertyInfo.GetContentProperties(compilation, generatedInfo, usings);
-            var eventCallbackProperties = GeneratedPropertyInfo.GetEventCallbackProperties(compilation, generatedInfo, usings);
+            var valueProperties = GeneratedPropertyInfo.GetValueProperties(generatedType);
+            var contentProperties = GeneratedPropertyInfo.GetContentProperties(generatedType);
+            var eventCallbackProperties = GeneratedPropertyInfo.GetEventCallbackProperties(generatedType);
             var allProperties = valueProperties.Concat(contentProperties).Concat(eventCallbackProperties);
             var propertyDeclarationBuilder = new StringBuilder();
             if (allProperties.Any())
@@ -111,7 +85,7 @@ namespace ComponentWrapperGenerator
             staticConstructorBody += "\r\n            RegisterAdditionalHandlers();";
 
             var createNativeElement = isComponentAbstract ? "" : $@"
-        protected override MC.Element CreateNativeElement() => new {GetTypeNameAndAddNamespace(typeToGenerate, usings)}();";
+        protected override MC.Element CreateNativeElement() => new {generatedType.GetTypeNameAndAddNamespace(typeToGenerate)}();";
 
             var handleParameter = !allProperties.Any() ? "" : $@"
         protected override void HandleParameter(string name, object value)
@@ -128,9 +102,9 @@ namespace ComponentWrapperGenerator
 
             var renderAdditionalElementContent = !contentProperties.Any() ? "" : $@"
 
-        protected override void RenderAdditionalElementContent({GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder", usings)} builder, ref int sequence)
+        protected override void RenderAdditionalElementContent({generatedType.GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder")} builder, ref int sequence)
         {{
-            base.RenderAdditionalElementContent(builder, ref sequence);{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))};
+            base.RenderAdditionalElementContent(builder, ref sequence);{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))}
         }}";
 
 
@@ -143,13 +117,16 @@ namespace ComponentWrapperGenerator
                     .OrderBy(u => u.ComparableString)
                     .Select(u => u.UsingText));
 
+            var genericModifier = generatedInfo.IsGeneric ? "<T>" : "";
+            var baseGenericModifier = generatedInfo.IsBaseTypeGeneric ? "<T>" : "";
+
             var outputBuilder = new StringBuilder();
             outputBuilder.Append($@"{headerText}
 {usingsText}
 
 namespace {componentNamespace}
 {{
-    public {classModifiers}partial class {componentName} : {componentBaseName}
+    public {classModifiers}partial class {componentName}{genericModifier} : {componentBaseName}{baseGenericModifier}
     {{
         static {componentName}()
         {{
@@ -166,6 +143,32 @@ namespace {componentNamespace}
 ");
 
             return (GetComponentGroup(typeToGenerate), componentName, outputBuilder.ToString());
+        }
+
+        private static List<UsingStatement> GetDefaultUsings(INamedTypeSymbol typeToGenerate, string componentNamespace)
+        {
+            var usings = new List<UsingStatement>
+            {
+                new UsingStatement { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
+                new UsingStatement { Namespace = "BlazorBindings.Core", IsUsed = true, },
+                new UsingStatement { Namespace = "System.Threading.Tasks", IsUsed = true, },
+                new UsingStatement { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
+                new UsingStatement { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
+            };
+
+            var typeNamespace = typeToGenerate.ContainingNamespace.GetFullName();
+            if (typeNamespace != "Microsoft.Maui.Controls")
+            {
+                var typeNamespaceAlias = GetNamespaceAlias(typeToGenerate.ContainingNamespace);
+                usings.Add(new UsingStatement { Namespace = typeNamespace, Alias = typeNamespaceAlias, IsUsed = true });
+            }
+
+            if (componentNamespace != MauiComponentsNamespace)
+            {
+                usings.Add(new UsingStatement { Namespace = MauiComponentsNamespace, IsUsed = true });
+            }
+
+            return usings;
         }
 
         private static string GetNamespacePrefix(INamedTypeSymbol type, List<UsingStatement> usings)
@@ -244,104 +247,6 @@ namespace {componentNamespace}
                 allText = allText.Replace("To be added.", string.Empty);
                 return string.IsNullOrWhiteSpace(allText) ? null : allText;
             }
-        }
-
-        internal static string GetTypeNameAndAddNamespace(string @namespace, string typeName, IList<UsingStatement> usings)
-        {
-            var @using = usings.FirstOrDefault(u => u.Namespace == @namespace);
-            if (@using == null)
-            {
-                @using = new UsingStatement { Namespace = @namespace, IsUsed = true };
-                usings.Add(@using);
-            }
-            else
-            {
-                @using.IsUsed = true;
-            }
-
-            return @using.Alias == null ? typeName : $"{@using.Alias}.{typeName}";
-        }
-
-        internal static string GetTypeNameAndAddNamespace(ITypeSymbol type, IList<UsingStatement> usings)
-        {
-            var typeName = GetCSharpType(type);
-            if (typeName != null)
-            {
-                return typeName;
-            }
-
-            if (type.ContainingType != null)
-            {
-                return $"{GetTypeNameAndAddNamespace(type.ContainingType, usings)}.{FormatTypeName(type, usings)}";
-            }
-
-            // Check if there's a 'using' already. If so, check if it has an alias. If not, add a new 'using'.
-            var namespaceAlias = string.Empty;
-
-            var nsName = type.ContainingNamespace.GetFullName();
-            var existingUsing = usings.FirstOrDefault(u => u.Namespace == nsName);
-            if (existingUsing == null)
-            {
-                usings.Add(new UsingStatement { Namespace = nsName, IsUsed = true, });
-            }
-            else
-            {
-                existingUsing.IsUsed = true;
-                if (existingUsing.Alias != null)
-                {
-                    namespaceAlias = existingUsing.Alias + ".";
-                }
-            }
-            typeName = namespaceAlias + FormatTypeName(type, usings);
-            return typeName;
-        }
-
-        private static string FormatTypeName(ITypeSymbol type, IList<UsingStatement> usings)
-        {
-            if (type is not INamedTypeSymbol namedType || !namedType.IsGenericType)
-            {
-                return type.Name;
-            }
-            var typeNameBuilder = new StringBuilder();
-            typeNameBuilder.Append(type.Name);
-            typeNameBuilder.Append('<');
-            var genericArgs = namedType.TypeArguments;
-            for (var i = 0; i < genericArgs.Length; i++)
-            {
-                if (i > 0)
-                {
-                    typeNameBuilder.Append(", ");
-                }
-                typeNameBuilder.Append(GetTypeNameAndAddNamespace(genericArgs[i], usings));
-
-            }
-            typeNameBuilder.Append('>');
-            return typeNameBuilder.ToString();
-        }
-
-
-        private static readonly Dictionary<SpecialType, string> TypeToCSharpName = new()
-        {
-            { SpecialType.System_Boolean, "bool" },
-            { SpecialType.System_Byte, "byte" },
-            { SpecialType.System_SByte, "sbyte" },
-            { SpecialType.System_Char, "char" },
-            { SpecialType.System_Decimal, "decimal" },
-            { SpecialType.System_Double, "double" },
-            { SpecialType.System_Single, "float" },
-            { SpecialType.System_Int32, "int" },
-            { SpecialType.System_UInt32, "uint" },
-            { SpecialType.System_Int64, "long" },
-            { SpecialType.System_UInt64, "ulong" },
-            { SpecialType.System_Object, "object" },
-            { SpecialType.System_Int16, "short" },
-            { SpecialType.System_UInt16, "ushort" },
-            { SpecialType.System_String, "string" },
-        };
-
-        private static string GetCSharpType(ITypeSymbol propertyType)
-        {
-            return TypeToCSharpName.TryGetValue(propertyType.SpecialType, out var typeName) ? typeName : null;
         }
 
         /// <summary>

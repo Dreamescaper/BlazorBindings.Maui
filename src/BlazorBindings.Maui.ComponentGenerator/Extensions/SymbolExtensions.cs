@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ComponentWrapperGenerator.Extensions
+namespace BlazorBindings.Maui.ComponentGenerator.Extensions
 {
     internal static class SymbolExtensions
     {
@@ -90,6 +90,31 @@ namespace ComponentWrapperGenerator.Extensions
         public static bool IsNullableStruct(this INamedTypeSymbol symbol)
         {
             return symbol.IsGenericType && symbol.ConstructedFrom.SpecialType == SpecialType.System_Nullable_T;
+        }
+
+
+        private static readonly Dictionary<SpecialType, string> TypeToCSharpName = new()
+        {
+            { SpecialType.System_Boolean, "bool" },
+            { SpecialType.System_Byte, "byte" },
+            { SpecialType.System_SByte, "sbyte" },
+            { SpecialType.System_Char, "char" },
+            { SpecialType.System_Decimal, "decimal" },
+            { SpecialType.System_Double, "double" },
+            { SpecialType.System_Single, "float" },
+            { SpecialType.System_Int32, "int" },
+            { SpecialType.System_UInt32, "uint" },
+            { SpecialType.System_Int64, "long" },
+            { SpecialType.System_UInt64, "ulong" },
+            { SpecialType.System_Object, "object" },
+            { SpecialType.System_Int16, "short" },
+            { SpecialType.System_UInt16, "ushort" },
+            { SpecialType.System_String, "string" },
+        };
+
+        public static string GetCSharpTypeName(this ITypeSymbol typeSymbol)
+        {
+            return TypeToCSharpName.TryGetValue(typeSymbol.SpecialType, out var typeName) ? typeName : null;
         }
     }
 }
