@@ -124,7 +124,7 @@ namespace BlazorBindings.Maui.Elements.XCalendar
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof(CalendarView), DayNamesTemplate);
             RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof(CalendarView), DaysViewTemplate);
-            RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof(CalendarView), NavigationTemplate);;
+            RenderTreeBuilderHelper.AddControlTemplateProperty(builder, sequence++, typeof(CalendarView), NavigationTemplate);
         }
 
         static partial void RegisterAdditionalHandlers();

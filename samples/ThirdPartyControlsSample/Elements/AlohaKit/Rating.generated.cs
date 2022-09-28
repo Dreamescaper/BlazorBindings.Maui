@@ -115,7 +115,12 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                 case nameof(ValueChanged):
                     if (!Equals(ValueChanged, value))
                     {
-                        void NativeControlValueChanged(object sender, AC.RatingValueChangedEventArgs e) => ValueChanged.InvokeAsync(NativeControl.Value);
+                        void NativeControlValueChanged(object sender, AC.RatingValueChangedEventArgs e)
+                        {
+                            var value = NativeControl.Value;
+                            Value = value;
+                            ValueChanged.InvokeAsync(value);
+                        }
 
                         ValueChanged = (EventCallback<int>)value;
                         NativeControl.ValueChanged -= NativeControlValueChanged;
