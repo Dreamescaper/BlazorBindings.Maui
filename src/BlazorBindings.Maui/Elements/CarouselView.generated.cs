@@ -98,7 +98,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CurrentItemChanged):
                     if (!Equals(CurrentItemChanged, value))
                     {
-                        void NativeControlCurrentItemChanged(object sender, MC.CurrentItemChangedEventArgs e) => CurrentItemChanged.InvokeAsync((T)NativeControl.CurrentItem);
+                        void NativeControlCurrentItemChanged(object sender, MC.CurrentItemChangedEventArgs e)
+                        {
+                            var value = (T)NativeControl.CurrentItem;
+                            CurrentItem = value;
+                            CurrentItemChanged.InvokeAsync(value);
+                        }
 
                         CurrentItemChanged = (EventCallback<T>)value;
                         NativeControl.CurrentItemChanged -= NativeControlCurrentItemChanged;
@@ -108,7 +113,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(PositionChanged):
                     if (!Equals(PositionChanged, value))
                     {
-                        void NativeControlPositionChanged(object sender, MC.PositionChangedEventArgs e) => PositionChanged.InvokeAsync(NativeControl.Position);
+                        void NativeControlPositionChanged(object sender, MC.PositionChangedEventArgs e)
+                        {
+                            var value = NativeControl.Position;
+                            Position = value;
+                            PositionChanged.InvokeAsync(value);
+                        }
 
                         PositionChanged = (EventCallback<int>)value;
                         NativeControl.PositionChanged -= NativeControlPositionChanged;

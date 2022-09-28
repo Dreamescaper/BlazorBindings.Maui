@@ -71,7 +71,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IsPresentedChanged):
                     if (!Equals(IsPresentedChanged, value))
                     {
-                        void NativeControlIsPresentedChanged(object sender, EventArgs e) => IsPresentedChanged.InvokeAsync(NativeControl.IsPresented);
+                        void NativeControlIsPresentedChanged(object sender, EventArgs e)
+                        {
+                            var value = NativeControl.IsPresented;
+                            IsPresented = value;
+                            IsPresentedChanged.InvokeAsync(value);
+                        }
 
                         IsPresentedChanged = (EventCallback<bool>)value;
                         NativeControl.IsPresentedChanged -= NativeControlIsPresentedChanged;

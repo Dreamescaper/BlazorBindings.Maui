@@ -38,7 +38,9 @@ namespace BlazorBindings.Maui.Elements
                         {
                             if (e.PropertyName == nameof(NativeControl.Time))
                             {
-                                TimeChanged.InvokeAsync(TimeOnly.FromTimeSpan(NativeControl.Time));
+                                var value = TimeOnly.FromTimeSpan(NativeControl.Time);
+                                Time = value;
+                                TimeChanged.InvokeAsync(value);
                             }
                         }
 

@@ -57,7 +57,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IsToggledChanged):
                     if (!Equals(IsToggledChanged, value))
                     {
-                        void NativeControlToggled(object sender, MC.ToggledEventArgs e) => IsToggledChanged.InvokeAsync(NativeControl.IsToggled);
+                        void NativeControlToggled(object sender, MC.ToggledEventArgs e)
+                        {
+                            var value = NativeControl.IsToggled;
+                            IsToggled = value;
+                            IsToggledChanged.InvokeAsync(value);
+                        }
 
                         IsToggledChanged = (EventCallback<bool>)value;
                         NativeControl.Toggled -= NativeControlToggled;

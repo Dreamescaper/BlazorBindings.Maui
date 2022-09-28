@@ -39,7 +39,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(DateChanged):
                     if (!Equals(DateChanged, value))
                     {
-                        void NativeControlDateSelected(object sender, MC.DateChangedEventArgs e) => DateChanged.InvokeAsync(DateOnly.FromDateTime(NativeControl.Date));
+                        void NativeControlDateSelected(object sender, MC.DateChangedEventArgs e)
+                        {
+                            var value = DateOnly.FromDateTime(NativeControl.Date);
+                            Date = value;
+                            DateChanged.InvokeAsync(value);
+                        }
 
                         DateChanged = (EventCallback<DateOnly>)value;
                         NativeControl.DateSelected -= NativeControlDateSelected;

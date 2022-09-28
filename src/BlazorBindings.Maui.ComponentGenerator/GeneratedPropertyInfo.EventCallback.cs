@@ -30,6 +30,26 @@ namespace BlazorBindings.Maui.ComponentGenerator
                     return true; */
 
             var eventName = MauiPropertyName;
+
+            var localFunctionName = $"NativeControl{eventName}";
+
+            var localFunctionBody = GetLocalHandlerFunctionBody();
+
+            return $@"                case nameof({ComponentPropertyName}):
+                    if (!Equals({ComponentPropertyName}, value))
+                    {{
+                        void {localFunctionName}(object sender, {GetTypeNameAndAddNamespace(EventArgsType)} e){localFunctionBody}
+
+                        {ComponentPropertyName} = ({ComponentType})value;
+                        NativeControl.{eventName} -= {localFunctionName};
+                        NativeControl.{eventName} += {localFunctionName};
+                    }}
+                    break;
+";
+        }
+
+        private string GetLocalHandlerFunctionBody()
+        {
             string argument;
 
             if (_bindedProperty != null)
@@ -45,29 +65,30 @@ namespace BlazorBindings.Maui.ComponentGenerator
                 argument = _eventHandlerType.IsGenericType ? "e" : "";
             }
 
-            var localFunctionName = $"NativeControl{eventName}";
-
-            var localFunctionBody = _bindedProperty != null && IsPropertyChangedEvent
-                ? $@"
+            if (_bindedProperty != null && IsPropertyChangedEvent)
+            {
+                return $@"
                         {{
                             if (e.PropertyName == nameof(NativeControl.{_bindedProperty.Name}))
                             {{
-                                {ComponentPropertyName}.InvokeAsync({argument});
+                                var value = {argument};
+                                {_bindedProperty.Name} = value;
+                                {ComponentPropertyName}.InvokeAsync(value);
                             }}
-                        }}"
-                : $" => {ComponentPropertyName}.InvokeAsync({argument});";
+                        }}";
+            }
 
-            return $@"                case nameof({ComponentPropertyName}):
-                    if (!Equals({ComponentPropertyName}, value))
-                    {{
-                        void {localFunctionName}(object sender, {GetTypeNameAndAddNamespace(EventArgsType)} e){localFunctionBody}
+            if (_bindedProperty != null)
+            {
+                return $@"
+                        {{
+                            var value = {argument};
+                            {_bindedProperty.Name} = value;
+                            {ComponentPropertyName}.InvokeAsync(value);
+                        }}";
+            }
 
-                        {ComponentPropertyName} = ({ComponentType})value;
-                        NativeControl.{eventName} -= {localFunctionName};
-                        NativeControl.{eventName} += {localFunctionName};
-                    }}
-                    break;
-";
+            return $" => {ComponentPropertyName}.InvokeAsync({argument});";
         }
 
         internal static GeneratedPropertyInfo[] GetEventCallbackProperties(GeneratedTypeInfo containingType)

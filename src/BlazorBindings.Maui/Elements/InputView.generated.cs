@@ -113,7 +113,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(TextChanged):
                     if (!Equals(TextChanged, value))
                     {
-                        void NativeControlTextChanged(object sender, MC.TextChangedEventArgs e) => TextChanged.InvokeAsync(NativeControl.Text);
+                        void NativeControlTextChanged(object sender, MC.TextChangedEventArgs e)
+                        {
+                            var value = NativeControl.Text;
+                            Text = value;
+                            TextChanged.InvokeAsync(value);
+                        }
 
                         TextChanged = (EventCallback<string>)value;
                         NativeControl.TextChanged -= NativeControlTextChanged;

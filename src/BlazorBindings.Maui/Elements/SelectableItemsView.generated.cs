@@ -64,7 +64,9 @@ namespace BlazorBindings.Maui.Elements
                         {
                             if (e.PropertyName == nameof(NativeControl.SelectedItem))
                             {
-                                SelectedItemChanged.InvokeAsync((T)NativeControl.SelectedItem);
+                                var value = (T)NativeControl.SelectedItem;
+                                SelectedItem = value;
+                                SelectedItemChanged.InvokeAsync(value);
                             }
                         }
 
@@ -80,7 +82,9 @@ namespace BlazorBindings.Maui.Elements
                         {
                             if (e.PropertyName == nameof(NativeControl.SelectedItems))
                             {
-                                SelectedItemsChanged.InvokeAsync(NativeControl.SelectedItems);
+                                var value = NativeControl.SelectedItems;
+                                SelectedItems = value;
+                                SelectedItemsChanged.InvokeAsync(value);
                             }
                         }
 
