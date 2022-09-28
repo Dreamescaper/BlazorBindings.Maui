@@ -173,6 +173,10 @@ namespace BlazorBindings.Maui.ComponentGenerator
             {
                 return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", "IEnumerable<T>");
             }
+            else if (namedTypeSymbol.GetFullName() == "System.Collections.IList" && isGeneric)
+            {
+                return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", "List<T>");
+            }
             else if (namedTypeSymbol.SpecialType == SpecialType.System_Object && isGeneric)
             {
                 return "T";

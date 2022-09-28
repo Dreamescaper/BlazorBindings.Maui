@@ -49,6 +49,10 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(MenuItem))]
 [assembly: GenerateComponent(typeof(NavigableElement))]
 [assembly: GenerateComponent(typeof(Page))]
+[assembly: GenerateComponent(typeof(Picker),
+    GenericProperties = new[] { nameof(Picker.ItemsSource), nameof(Picker.SelectedItem) },
+    PropertyChangedEvents = new[] { nameof(Picker.SelectedItem) },
+    Exclude = new[] { nameof(Picker.ItemDisplayBinding) })]
 [assembly: GenerateComponent(typeof(ProgressBar))]
 [assembly: GenerateComponent(typeof(RadialGradientBrush))]
 [assembly: GenerateComponent(typeof(RadioButton))]
