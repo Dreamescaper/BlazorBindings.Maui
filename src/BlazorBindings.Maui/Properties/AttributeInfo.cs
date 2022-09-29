@@ -66,7 +66,15 @@ using System.Runtime.CompilerServices;
     PropertyChangedEvents = new[] { nameof(SelectableItemsView.SelectedItem), nameof(SelectableItemsView.SelectedItems) })]
 [assembly: GenerateComponent(typeof(Shadow))]
 [assembly: GenerateComponent(typeof(Shell),
-    Exclude = new[] { nameof(Shell.ItemTemplate), nameof(Shell.MenuItemTemplate), nameof(Shell.FlyoutContentTemplate), nameof(Shell.FlyoutFooterTemplate), nameof(Shell.FlyoutHeaderTemplate) })]
+    GenericProperties = new[] {
+        $"{nameof(Shell.ItemTemplate)}:Microsoft.Maui.Controls.BaseShellItem",
+        $"{nameof(Shell.MenuItemTemplate)}:Microsoft.Maui.Controls.BaseShellItem"
+    },
+    Aliases = new[] {
+        $"{nameof(Shell.FlyoutHeaderTemplate)}:FlyoutHeader",
+        $"{nameof(Shell.FlyoutFooterTemplate)}:FlyoutFooter",
+        $"{nameof(Shell.FlyoutContentTemplate)}:FlyoutContent",
+    })]
 [assembly: GenerateComponent(typeof(ShellContent),
     Exclude = new[] { nameof(ShellContent.ContentTemplate) })]
 [assembly: GenerateComponent(typeof(ShellGroupItem))]

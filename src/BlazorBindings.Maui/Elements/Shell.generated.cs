@@ -6,8 +6,10 @@
 // </auto-generated>
 
 using BlazorBindings.Core;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
@@ -18,6 +20,21 @@ namespace BlazorBindings.Maui.Elements
     {
         static Shell()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutContent),
+                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.Shell>(component,
+                    (x, dataTemplate) => x.FlyoutContentTemplate = dataTemplate));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutFooter),
+                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.Shell>(component,
+                    (x, dataTemplate) => x.FlyoutFooterTemplate = dataTemplate));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutHeader),
+                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.Shell>(component,
+                    (x, dataTemplate) => x.FlyoutHeaderTemplate = dataTemplate));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(ItemTemplate),
+                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.Shell, MC.BaseShellItem>(component,
+                    (x, dataTemplate) => x.ItemTemplate = dataTemplate));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(MenuItemTemplate),
+                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.Shell, MC.BaseShellItem>(component,
+                    (x, dataTemplate) => x.MenuItemTemplate = dataTemplate));
             RegisterAdditionalHandlers();
         }
 
@@ -31,6 +48,11 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public bool? FlyoutIsPresented { get; set; }
         [Parameter] public MC.ScrollMode? FlyoutVerticalScrollMode { get; set; }
         [Parameter] public double? FlyoutWidth { get; set; }
+        [Parameter] public RenderFragment FlyoutContent { get; set; }
+        [Parameter] public RenderFragment FlyoutFooter { get; set; }
+        [Parameter] public RenderFragment FlyoutHeader { get; set; }
+        [Parameter] public RenderFragment<MC.BaseShellItem> ItemTemplate { get; set; }
+        [Parameter] public RenderFragment<MC.BaseShellItem> MenuItemTemplate { get; set; }
         [Parameter] public EventCallback<MC.ShellNavigatedEventArgs> OnNavigated { get; set; }
         [Parameter] public EventCallback<MC.ShellNavigatingEventArgs> OnNavigating { get; set; }
 
@@ -112,6 +134,21 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.FlyoutWidth = FlyoutWidth ?? (double)MC.Shell.FlyoutWidthProperty.DefaultValue;
                     }
                     break;
+                case nameof(FlyoutContent):
+                    FlyoutContent = (RenderFragment)value;
+                    break;
+                case nameof(FlyoutFooter):
+                    FlyoutFooter = (RenderFragment)value;
+                    break;
+                case nameof(FlyoutHeader):
+                    FlyoutHeader = (RenderFragment)value;
+                    break;
+                case nameof(ItemTemplate):
+                    ItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
+                    break;
+                case nameof(MenuItemTemplate):
+                    MenuItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
+                    break;
                 case nameof(OnNavigated):
                     if (!Equals(OnNavigated, value))
                     {
@@ -137,6 +174,16 @@ namespace BlazorBindings.Maui.Elements
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), FlyoutContent);
+            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), FlyoutFooter);
+            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), FlyoutHeader);
+            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), ItemTemplate);
+            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), MenuItemTemplate);
         }
 
         static partial void RegisterAdditionalHandlers();

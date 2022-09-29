@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorBindings.Maui.ComponentGenerator
 {
@@ -10,10 +11,10 @@ namespace BlazorBindings.Maui.ComponentGenerator
         public HashSet<string> Exclude { get; set; }
         public HashSet<string> Include { get; set; }
         public string[] PropertyChangedEvents { get; set; }
-        public string[] GenericProperties { get; set; }
+        public Dictionary<string, INamedTypeSymbol> GenericProperties { get; set; }
         public Dictionary<string, string> Aliases { get; set; }
         public GenerateComponentSettings BaseTypeInfo { get; set; }
         public bool IsBaseTypeGeneric => BaseTypeInfo?.IsGeneric ?? false;
-        public bool IsGeneric => GenericProperties?.Length > 0 || IsBaseTypeGeneric;
+        public bool IsGeneric => GenericProperties.Any(p => p.Value == null) || IsBaseTypeGeneric;
     }
 }

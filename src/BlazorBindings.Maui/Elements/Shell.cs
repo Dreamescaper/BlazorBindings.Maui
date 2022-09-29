@@ -1,10 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using BlazorBindings.Core;
-using BlazorBindings.Maui.Elements.Handlers;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -55,24 +52,9 @@ namespace BlazorBindings.Maui.Elements
 
             AttachedPropertyRegistry.RegisterAttachedPropertyHandler("Shell.UnselectedColor",
                 (element, value) => MC.Shell.SetUnselectedColor(element, AttributeHelper.GetString(value)));
-
-            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutHeader),
-                renderer => new ContentPropertyHandler<MC.Shell>(
-                    (shell, valueElement) => shell.FlyoutHeader = valueElement));
-
-            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(ItemTemplate),
-                (renderer, _, component) => new DataTemplatePropertyHandler<MC.Shell, MC.BaseShellItem>(component,
-                    (shell, dataTemplate) => MC.Shell.SetItemTemplate(shell, dataTemplate)));
-
-            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(MenuItemTemplate),
-                (renderer, _, component) => new DataTemplatePropertyHandler<MC.Shell, MC.BaseShellItem>(component,
-                    (shell, dataTemplate) => MC.Shell.SetMenuItemTemplate(shell, dataTemplate)));
         }
 
         [Parameter] public RenderFragment ChildContent { get; set; }
-        [Parameter] public RenderFragment FlyoutHeader { get; set; }
-        [Parameter] public RenderFragment<MC.BaseShellItem> ItemTemplate { get; set; }
-        [Parameter] public RenderFragment<MC.BaseShellItem> MenuItemTemplate { get; set; }
 
         protected override bool HandleAdditionalParameter(string name, object value)
         {
@@ -81,15 +63,6 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
                     return true;
-                case nameof(FlyoutHeader):
-                    FlyoutHeader = (RenderFragment)value;
-                    return true;
-                case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
-                    return true;
-                case nameof(MenuItemTemplate):
-                    MenuItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
-                    return true;
 
                 default:
                     return base.HandleAdditionalParameter(name, value);
@@ -97,14 +70,6 @@ namespace BlazorBindings.Maui.Elements
         }
 
         protected override RenderFragment GetChildContent() => ChildContent;
-
-        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
-        {
-            base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(Shell), FlyoutHeader);
-            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), ItemTemplate);
-            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), MenuItemTemplate);
-        }
 
         void IMauiContainerElementHandler.AddChild(MC.Element child, int physicalSiblingIndex)
         {

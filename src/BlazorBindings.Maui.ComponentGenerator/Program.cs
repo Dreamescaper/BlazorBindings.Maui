@@ -79,7 +79,8 @@ namespace BlazorBindings.Maui.ComponentGenerator
                         Exclude = GetNamedArgumentValues(a, "Exclude").ToHashSet(),
                         Include = GetNamedArgumentValues(a, "Include").ToHashSet(),
                         PropertyChangedEvents = GetNamedArgumentValues(a, "PropertyChangedEvents"),
-                        GenericProperties = GetNamedArgumentValues(a, "GenericProperties"),
+                        GenericProperties = GetNamedArgumentValues(a, "GenericProperties").Select(v => v.Split(':')).ToDictionary(v => v[0],
+                            v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
                         Aliases = GetNamedArgumentValues(a, "Aliases").Select(v => v.Split(':')).ToDictionary(v => v[0], v => v[1])
                     };
                 })

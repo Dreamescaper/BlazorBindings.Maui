@@ -60,8 +60,9 @@ namespace BlazorBindings.Maui.ComponentGenerator
             else if (IsDataTemplate && IsGeneric)
             {
                 // new DataTemplatePropertyHandler<MC.ItemsView, T>(component, (view, dataTemplate) => view.ItemTemplate = dataTemplate)
+                var typeArgumentName = GenericTypeArgument is null ? "T" : GetTypeNameAndAddNamespace(GenericTypeArgument);
                 var dataTemplateHandlerName = GetTypeNameAndAddNamespace("BlazorBindings.Maui.Elements.Handlers", "DataTemplatePropertyHandler");
-                return $"new {dataTemplateHandlerName}<{MauiContainingTypeName}, T>(component,\r\n                    (x, dataTemplate) => x.{_propertyInfo.Name} = dataTemplate)";
+                return $"new {dataTemplateHandlerName}<{MauiContainingTypeName}, {typeArgumentName}>(component,\r\n                    (x, dataTemplate) => x.{_propertyInfo.Name} = dataTemplate)";
             }
             else if (type.IsGenericType && type.ConstructedFrom.SpecialType == SpecialType.System_Collections_Generic_IList_T)
             {
@@ -109,11 +110,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
                 .Where(prop => IsRenderFragmentPropertySymbol(containingType.Compilation, prop))
                 .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
-            return propInfos.Select(prop =>
-            {
-                var isGeneric = componentInfo.GenericProperties?.Any(propName => propName == prop.Name) == true;
-                return new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment, isGeneric);
-            }).ToArray();
+            return propInfos.Select(prop => new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment)).ToArray();
         }
 
         private static bool IsRenderFragmentPropertySymbol(Compilation compilation, IPropertySymbol prop)

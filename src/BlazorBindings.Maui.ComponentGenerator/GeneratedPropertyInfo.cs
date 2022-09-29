@@ -20,6 +20,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
         public string ComponentName { get; }
         public Compilation Compilation { get; }
         public bool IsGeneric { get; }
+        public INamedTypeSymbol GenericTypeArgument { get; }
         public string ComponentPropertyName => _componentPropertyNameLazy.Value;
         public string ComponentType => _componentTypeLazy.Value;
 
@@ -40,7 +41,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
             _componentPropertyNameLazy = new Lazy<string>(() => componentPropertyName);
         }
 
-        private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo, IPropertySymbol propertyInfo, GeneratedPropertyKind kind, bool isGeneric)
+        private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo, IPropertySymbol propertyInfo, GeneratedPropertyKind kind)
         {
             _propertyInfo = propertyInfo;
             Kind = kind;
@@ -49,7 +50,8 @@ namespace BlazorBindings.Maui.ComponentGenerator
             Compilation = typeInfo.Compilation;
             ComponentName = typeInfo.TypeName;
             MauiPropertyName = propertyInfo.Name;
-            IsGeneric = isGeneric;
+            IsGeneric = typeInfo.Settings.GenericProperties.TryGetValue(propertyInfo.Name, out var genericTypeArgument);
+            GenericTypeArgument = genericTypeArgument;
             MauiContainingTypeName = GetTypeNameAndAddNamespace(propertyInfo.ContainingType);
 
             ComponentName = ComponentWrapperGenerator.GetIdentifierName(_propertyInfo.ContainingType.Name);
@@ -139,8 +141,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
 
             return props.Select(prop =>
             {
-                var isGeneric = componentInfo.GenericProperties?.Any(propName => propName == prop.Name) == true;
-                return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value, isGeneric);
+                return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value);
             }).ToArray();
         }
 
@@ -148,7 +149,8 @@ namespace BlazorBindings.Maui.ComponentGenerator
         private static string GetComponentPropertyTypeName(IPropertySymbol propertySymbol, GeneratedTypeInfo containingType, bool isRenderFragmentProperty = false, bool makeNullable = false)
         {
             var typeSymbol = propertySymbol.Type;
-            var isGeneric = containingType.Settings.GenericProperties.Contains(propertySymbol.Name);
+            var isGeneric = containingType.Settings.GenericProperties.TryGetValue(propertySymbol.Name, out var typeArgument);
+            var typeArgumentName = typeArgument is null ? "T" : containingType.GetTypeNameAndAddNamespace(typeArgument);
 
             if (typeSymbol is not INamedTypeSymbol namedTypeSymbol)
             {
@@ -163,7 +165,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
             }
             else if (isRenderFragmentProperty)
             {
-                return isGeneric ? "RenderFragment<T>" : "RenderFragment";
+                return isGeneric ? $"RenderFragment<{typeArgumentName}>" : "RenderFragment";
             }
             else if (makeNullable && namedTypeSymbol.IsValueType && !namedTypeSymbol.IsNullableStruct())
             {
@@ -171,15 +173,15 @@ namespace BlazorBindings.Maui.ComponentGenerator
             }
             else if (namedTypeSymbol.SpecialType == SpecialType.System_Collections_IEnumerable && isGeneric)
             {
-                return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", "IEnumerable<T>");
+                return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", $"IEnumerable<{typeArgumentName}>");
             }
             else if (namedTypeSymbol.GetFullName() == "System.Collections.IList" && isGeneric)
             {
-                return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", "List<T>");
+                return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", $"List<{typeArgumentName}>");
             }
             else if (namedTypeSymbol.SpecialType == SpecialType.System_Object && isGeneric)
             {
-                return "T";
+                return typeArgumentName;
             }
             else
             {
@@ -190,7 +192,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
         private static bool IsExplicitlyAllowed(IPropertySymbol propertyInfo, GeneratedTypeInfo generatedType)
         {
             return generatedType.Settings.Include.Contains(propertyInfo.Name)
-                || propertyInfo.Type.SpecialType == SpecialType.System_Object && generatedType.Settings.GenericProperties.Contains(propertyInfo.Name);
+                || propertyInfo.Type.SpecialType == SpecialType.System_Object && generatedType.Settings.GenericProperties.ContainsKey(propertyInfo.Name);
         }
 
         private static bool IsPublicProperty(IPropertySymbol propertyInfo)
