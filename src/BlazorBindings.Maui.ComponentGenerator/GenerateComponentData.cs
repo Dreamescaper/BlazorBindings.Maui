@@ -10,6 +10,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
         public INamedTypeSymbol TypeSymbol { get; set; }
         public HashSet<string> Exclude { get; set; }
         public HashSet<string> Include { get; set; }
+        public HashSet<string> ContentProperties { get; set; }
         public string[] PropertyChangedEvents { get; set; }
         public Dictionary<string, INamedTypeSymbol> GenericProperties { get; set; }
         public Dictionary<string, string> Aliases { get; set; }

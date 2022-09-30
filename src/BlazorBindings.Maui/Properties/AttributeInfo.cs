@@ -42,7 +42,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(InputView))]
 [assembly: GenerateComponent(typeof(ItemsView),
     GenericProperties = new[] { nameof(ItemsView.ItemsSource), nameof(ItemsView.ItemTemplate) },
-    Aliases = new[] { "EmptyViewTemplate:EmptyView" })]
+    ContentProperties = new[] { nameof(ItemsView.EmptyView) },
+    Exclude = new[] { nameof(ItemsView.EmptyViewTemplate) })]
 [assembly: GenerateComponent(typeof(Label))]
 [assembly: GenerateComponent(typeof(Layout))]
 [assembly: GenerateComponent(typeof(LinearGradientBrush))]
@@ -86,7 +87,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(StackBase))]
 [assembly: GenerateComponent(typeof(StackLayout))]
 [assembly: GenerateComponent(typeof(StructuredItemsView),
-    Aliases = new[] { "HeaderTemplate:Header", "FooterTemplate:Footer" })]
+    ContentProperties = new[] { nameof(StructuredItemsView.Header), nameof(StructuredItemsView.Footer) },
+    Exclude = new[] { nameof(StructuredItemsView.HeaderTemplate), nameof(StructuredItemsView.FooterTemplate) })]
 [assembly: GenerateComponent(typeof(Stepper))]
 [assembly: GenerateComponent(typeof(Switch))]
 [assembly: GenerateComponent(typeof(Tab))]

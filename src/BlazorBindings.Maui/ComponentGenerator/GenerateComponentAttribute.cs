@@ -30,6 +30,11 @@ namespace BlazorBindings.Maui.ComponentGenerator
         public string[] GenericProperties { get; set; }
 
         /// <summary>
+        /// Generates property as RenderFragment.
+        /// </summary>
+        public string[] ContentProperties { get; set; }
+
+        /// <summary>
         /// Generate parameters with different name. Format: "{MauiName}:{GeneratedName}".
         /// </summary>
         public string[] Aliases { get; set; }

@@ -107,14 +107,17 @@ namespace BlazorBindings.Maui.ComponentGenerator
             var propInfos = componentInfo.TypeSymbol.GetMembers().OfType<IPropertySymbol>()
                 .Where(e => !componentInfo.Exclude.Contains(e.Name))
                 .Where(IsPublicProperty)
-                .Where(prop => IsRenderFragmentPropertySymbol(containingType.Compilation, prop))
+                .Where(prop => IsRenderFragmentPropertySymbol(containingType, prop))
                 .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
             return propInfos.Select(prop => new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment)).ToArray();
         }
 
-        private static bool IsRenderFragmentPropertySymbol(Compilation compilation, IPropertySymbol prop)
+        private static bool IsRenderFragmentPropertySymbol(GeneratedTypeInfo containingType, IPropertySymbol prop)
         {
+            if (containingType.Settings.ContentProperties.Contains(prop.Name))
+                return true;
+
             var type = prop.Type;
             if (IsContent(type) && HasPublicSetter(prop))
                 return true;
@@ -131,6 +134,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
 
             bool IsContent(ITypeSymbol type) => ContentTypes.Any(t =>
             {
+                var compilation = containingType.Compilation;
                 var contentTypeSymbol = compilation.GetTypeByMetadataName(t);
                 return compilation.ClassifyConversion(type, contentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
             });

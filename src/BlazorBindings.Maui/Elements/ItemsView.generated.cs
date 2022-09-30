@@ -22,8 +22,7 @@ namespace BlazorBindings.Maui.Elements
         static ItemsView()
         {
             ElementHandlerRegistry.RegisterPropertyContentHandler<ItemsView<T>>(nameof(EmptyView),
-                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.ItemsView>(component,
-                    (x, dataTemplate) => x.EmptyViewTemplate = dataTemplate));
+                (renderer, parent, component) => new ContentPropertyHandler<MC.ItemsView>((x, value) => x.EmptyView = (object)value));
             ElementHandlerRegistry.RegisterPropertyContentHandler<ItemsView<T>>(nameof(ItemTemplate),
                 (renderer, parent, component) => new DataTemplatePropertyHandler<MC.ItemsView, T>(component,
                     (x, dataTemplate) => x.ItemTemplate = dataTemplate));
@@ -129,7 +128,7 @@ namespace BlazorBindings.Maui.Elements
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(ItemsView<T>), EmptyView);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(ItemsView<T>), EmptyView);
             RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(ItemsView<T>), ItemTemplate);
         }
 

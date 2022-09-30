@@ -19,11 +19,9 @@ namespace BlazorBindings.Maui.Elements
         static StructuredItemsView()
         {
             ElementHandlerRegistry.RegisterPropertyContentHandler<StructuredItemsView<T>>(nameof(Footer),
-                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.StructuredItemsView>(component,
-                    (x, dataTemplate) => x.FooterTemplate = dataTemplate));
+                (renderer, parent, component) => new ContentPropertyHandler<MC.StructuredItemsView>((x, value) => x.Footer = (object)value));
             ElementHandlerRegistry.RegisterPropertyContentHandler<StructuredItemsView<T>>(nameof(Header),
-                (renderer, parent, component) => new DataTemplatePropertyHandler<MC.StructuredItemsView>(component,
-                    (x, dataTemplate) => x.HeaderTemplate = dataTemplate));
+                (renderer, parent, component) => new ContentPropertyHandler<MC.StructuredItemsView>((x, value) => x.Header = (object)value));
             RegisterAdditionalHandlers();
         }
 
@@ -70,8 +68,8 @@ namespace BlazorBindings.Maui.Elements
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(StructuredItemsView<T>), Footer);
-            RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(StructuredItemsView<T>), Header);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(StructuredItemsView<T>), Footer);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(StructuredItemsView<T>), Header);
         }
 
         static partial void RegisterAdditionalHandlers();
