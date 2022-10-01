@@ -6,8 +6,10 @@
 // </auto-generated>
 
 using BlazorBindings.Core;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using System;
@@ -19,6 +21,10 @@ namespace BlazorBindings.Maui.Elements
     {
         static VisualElement()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<VisualElement>(nameof(Background),
+                (renderer, parent, component) => new ContentPropertyHandler<MC.VisualElement>((x, value) => x.Background = (MC.Brush)value));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<VisualElement>(nameof(Shadow),
+                (renderer, parent, component) => new ContentPropertyHandler<MC.VisualElement>((x, value) => x.Shadow = (MC.Shadow)value));
             RegisterAdditionalHandlers();
         }
 
@@ -46,6 +52,8 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public double? TranslationY { get; set; }
         [Parameter] public double? WidthRequest { get; set; }
         [Parameter] public int? ZIndex { get; set; }
+        [Parameter] public RenderFragment Background { get; set; }
+        [Parameter] public RenderFragment Shadow { get; set; }
         [Parameter] public EventCallback OnLoaded { get; set; }
         [Parameter] public EventCallback OnUnloaded { get; set; }
         [Parameter] public EventCallback OnChildrenReordered { get; set; }
@@ -229,6 +237,12 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.ZIndex = ZIndex ?? default;
                     }
                     break;
+                case nameof(Background):
+                    Background = (RenderFragment)value;
+                    break;
+                case nameof(Shadow):
+                    Shadow = (RenderFragment)value;
+                    break;
                 case nameof(OnLoaded):
                     if (!Equals(OnLoaded, value))
                     {
@@ -304,6 +318,13 @@ namespace BlazorBindings.Maui.Elements
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(VisualElement), Background);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(VisualElement), Shadow);
         }
 
         static partial void RegisterAdditionalHandlers();

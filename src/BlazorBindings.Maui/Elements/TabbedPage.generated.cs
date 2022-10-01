@@ -6,8 +6,10 @@
 // </auto-generated>
 
 using BlazorBindings.Core;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
@@ -17,6 +19,8 @@ namespace BlazorBindings.Maui.Elements
     {
         static TabbedPage()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<TabbedPage>(nameof(BarBackground),
+                (renderer, parent, component) => new ContentPropertyHandler<MC.TabbedPage>((x, value) => x.BarBackground = (MC.Brush)value));
             RegisterAdditionalHandlers();
         }
 
@@ -24,6 +28,7 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public Color BarTextColor { get; set; }
         [Parameter] public Color SelectedTabColor { get; set; }
         [Parameter] public Color UnselectedTabColor { get; set; }
+        [Parameter] public RenderFragment BarBackground { get; set; }
 
         public new MC.TabbedPage NativeControl => (MC.TabbedPage)((Element)this).NativeControl;
 
@@ -61,11 +66,20 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.UnselectedTabColor = UnselectedTabColor;
                     }
                     break;
+                case nameof(BarBackground):
+                    BarBackground = (RenderFragment)value;
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(TabbedPage), BarBackground);
         }
 
         static partial void RegisterAdditionalHandlers();

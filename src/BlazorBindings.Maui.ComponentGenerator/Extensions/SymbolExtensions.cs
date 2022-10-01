@@ -29,9 +29,22 @@ namespace BlazorBindings.Maui.ComponentGenerator.Extensions
             return null;
         }
 
-        public static IPropertySymbol GetProperty(this ITypeSymbol typeSymbol, string propName)
+        public static IPropertySymbol GetProperty(this ITypeSymbol typeSymbol, string propName, bool includeBaseTypes = false)
         {
-            return typeSymbol.GetMembers(propName).FirstOrDefault() as IPropertySymbol;
+            var currentType = typeSymbol;
+
+            while (currentType != null)
+            {
+                var eventSymbol = currentType.GetMembers(propName).FirstOrDefault() as IPropertySymbol;
+
+                if (eventSymbol != null || !includeBaseTypes)
+                    return eventSymbol;
+
+                currentType = currentType.BaseType;
+            }
+
+
+            return null;
         }
 
         public static string GetFullName(this INamespaceOrTypeSymbol namespaceOrType)

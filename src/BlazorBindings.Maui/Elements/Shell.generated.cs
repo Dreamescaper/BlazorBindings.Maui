@@ -20,6 +20,10 @@ namespace BlazorBindings.Maui.Elements
     {
         static Shell()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutBackdrop),
+                (renderer, parent, component) => new ContentPropertyHandler<MC.Shell>((x, value) => x.FlyoutBackdrop = (MC.Brush)value));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutBackground),
+                (renderer, parent, component) => new ContentPropertyHandler<MC.Shell>((x, value) => x.FlyoutBackground = (MC.Brush)value));
             ElementHandlerRegistry.RegisterPropertyContentHandler<Shell>(nameof(FlyoutContent),
                 (renderer, parent, component) => new DataTemplatePropertyHandler<MC.Shell>(component,
                     (x, dataTemplate) => x.FlyoutContentTemplate = dataTemplate));
@@ -38,6 +42,7 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        [Parameter] public Color FlyoutBackdropColor { get; set; }
         [Parameter] public Color FlyoutBackgroundColor { get; set; }
         [Parameter] public MC.ImageSource FlyoutBackgroundImage { get; set; }
         [Parameter] public Aspect? FlyoutBackgroundImageAspect { get; set; }
@@ -48,6 +53,8 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public bool? FlyoutIsPresented { get; set; }
         [Parameter] public MC.ScrollMode? FlyoutVerticalScrollMode { get; set; }
         [Parameter] public double? FlyoutWidth { get; set; }
+        [Parameter] public RenderFragment FlyoutBackdrop { get; set; }
+        [Parameter] public RenderFragment FlyoutBackground { get; set; }
         [Parameter] public RenderFragment FlyoutContent { get; set; }
         [Parameter] public RenderFragment FlyoutFooter { get; set; }
         [Parameter] public RenderFragment FlyoutHeader { get; set; }
@@ -64,6 +71,13 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(FlyoutBackdropColor):
+                    if (!Equals(FlyoutBackdropColor, value))
+                    {
+                        FlyoutBackdropColor = (Color)value;
+                        NativeControl.FlyoutBackdrop = FlyoutBackdropColor;
+                    }
+                    break;
                 case nameof(FlyoutBackgroundColor):
                     if (!Equals(FlyoutBackgroundColor, value))
                     {
@@ -134,6 +148,12 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.FlyoutWidth = FlyoutWidth ?? (double)MC.Shell.FlyoutWidthProperty.DefaultValue;
                     }
                     break;
+                case nameof(FlyoutBackdrop):
+                    FlyoutBackdrop = (RenderFragment)value;
+                    break;
+                case nameof(FlyoutBackground):
+                    FlyoutBackground = (RenderFragment)value;
+                    break;
                 case nameof(FlyoutContent):
                     FlyoutContent = (RenderFragment)value;
                     break;
@@ -179,6 +199,8 @@ namespace BlazorBindings.Maui.Elements
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(Shell), FlyoutBackdrop);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(Shell), FlyoutBackground);
             RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), FlyoutContent);
             RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), FlyoutFooter);
             RenderTreeBuilderHelper.AddDataTemplateProperty(builder, sequence++, typeof(Shell), FlyoutHeader);

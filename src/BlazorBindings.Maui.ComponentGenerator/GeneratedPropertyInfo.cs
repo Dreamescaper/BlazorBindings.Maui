@@ -10,19 +10,28 @@ namespace BlazorBindings.Maui.ComponentGenerator
     public partial class GeneratedPropertyInfo
     {
         private readonly IPropertySymbol _propertyInfo;
-        private readonly Lazy<string> _componentPropertyNameLazy;
-        private readonly Lazy<string> _componentTypeLazy;
+        private Lazy<string> _componentPropertyNameLazy;
+        private Lazy<string> _componentTypeLazy;
 
         public GeneratedTypeInfo ContainingType { get; set; }
         public GeneratedPropertyKind Kind { get; }
-        public string MauiPropertyName { get; }
+        public string MauiPropertyName { get; set; }
         public string MauiContainingTypeName { get; }
         public string ComponentName { get; }
         public Compilation Compilation { get; }
         public bool IsGeneric { get; }
         public INamedTypeSymbol GenericTypeArgument { get; }
-        public string ComponentPropertyName => _componentPropertyNameLazy.Value;
-        public string ComponentType => _componentTypeLazy.Value;
+        public string ComponentPropertyName
+        {
+            get => _componentPropertyNameLazy.Value;
+            set => _componentPropertyNameLazy = new Lazy<string>(value);
+        }
+
+        public string ComponentType
+        {
+            get => _componentTypeLazy.Value;
+            set => _componentTypeLazy = new Lazy<string>(value);
+        }
 
         private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo,
                                       string mauiPropertyName,
@@ -37,8 +46,8 @@ namespace BlazorBindings.Maui.ComponentGenerator
             Kind = kind;
             MauiPropertyName = mauiPropertyName;
             MauiContainingTypeName = mauiContainingTypeName;
-            _componentTypeLazy = new Lazy<string>(() => componentType);
-            _componentPropertyNameLazy = new Lazy<string>(() => componentPropertyName);
+            _componentTypeLazy = new Lazy<string>(componentType);
+            _componentPropertyNameLazy = new Lazy<string>(componentPropertyName);
         }
 
         private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo, IPropertySymbol propertyInfo, GeneratedPropertyKind kind)
@@ -49,7 +58,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
             ContainingType = typeInfo;
             Compilation = typeInfo.Compilation;
             ComponentName = typeInfo.TypeName;
-            MauiPropertyName = propertyInfo.Name;
+            MauiPropertyName = ComponentWrapperGenerator.GetIdentifierName(propertyInfo.Name);
             IsGeneric = typeInfo.Settings.GenericProperties.TryGetValue(propertyInfo.Name, out var genericTypeArgument);
             GenericTypeArgument = genericTypeArgument;
             MauiContainingTypeName = GetTypeNameAndAddNamespace(propertyInfo.ContainingType);
@@ -97,7 +106,7 @@ namespace BlazorBindings.Maui.ComponentGenerator
                     if (!Equals({propName}, value))
                     {{
                         {propName} = ({ComponentType})value;
-                        NativeControl.{propName} = {GetConvertedProperty(_propertyInfo.Type, propName)};
+                        NativeControl.{MauiPropertyName} = {GetConvertedProperty(_propertyInfo.Type, propName)};
                     }}
                     break;
 ";
@@ -140,9 +149,29 @@ namespace BlazorBindings.Maui.ComponentGenerator
                 .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
             return props.Select(prop =>
-            {
-                return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value);
-            }).ToArray();
+                {
+                    if (prop.Type.GetFullName() == "Microsoft.Maui.Controls.Brush")
+                    {
+                        var propName = prop.Name.Replace("Brush", "") + "Color";
+
+                        if (prop.ContainingType.GetProperty(propName, includeBaseTypes: true) != null)
+                        {
+                            return null;
+                        }
+
+                        return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value)
+                        {
+                            ComponentPropertyName = propName,
+                            ComponentType = generatedType.GetTypeNameAndAddNamespace("Microsoft.Maui.Graphics", "Color")
+                        };
+                    }
+                    else
+                    {
+                        return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value);
+                    }
+                })
+                .Where(p => p != null)
+                .ToArray();
         }
 
 
@@ -222,10 +251,8 @@ namespace BlazorBindings.Maui.ComponentGenerator
 
         private static readonly List<string> DisallowedComponentTypes = new()
         {
-            "Microsoft.Maui.Controls.Brush",
             "Microsoft.Maui.Controls.Button.ButtonContentLayout", // TODO: This is temporary; should be possible to add support later
             "Microsoft.Maui.Controls.ColumnDefinitionCollection",
-
             "Microsoft.Maui.Controls.PointCollection",
             "Microsoft.Maui.Controls.DoubleCollection",
             "Microsoft.Maui.Controls.ControlTemplate",

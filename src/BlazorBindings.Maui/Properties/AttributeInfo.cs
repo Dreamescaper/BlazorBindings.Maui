@@ -65,7 +65,7 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(SelectableItemsView),
     GenericProperties = new[] { nameof(SelectableItemsView.SelectedItem) },
     PropertyChangedEvents = new[] { nameof(SelectableItemsView.SelectedItem), nameof(SelectableItemsView.SelectedItems) })]
-[assembly: GenerateComponent(typeof(Shadow))]
+[assembly: GenerateComponent(typeof(Shadow), Exclude = new[] { nameof(Shadow.Brush) })]
 [assembly: GenerateComponent(typeof(Shell),
     GenericProperties = new[] {
         $"{nameof(Shell.ItemTemplate)}:Microsoft.Maui.Controls.BaseShellItem",
