@@ -8,8 +8,11 @@
 using AC = AlohaKit.Controls;
 using BlazorBindings.Core;
 using BlazorBindings.Maui.Elements;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.AlohaKit
@@ -18,11 +21,15 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
     {
         static HorizontalProgressBar()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<HorizontalProgressBar>(nameof(ProgressBrush),
+                (renderer, parent, component) => new ContentPropertyHandler<AC.HorizontalProgressBar>((x, value) => x.ProgressBrush = (MC.Brush)value));
             RegisterAdditionalHandlers();
         }
 
         [Parameter] public double? Progress { get; set; }
         [Parameter] public AC.HorizontalProgressBarDrawable ProgressBarDrawable { get; set; }
+        [Parameter] public Color ProgressColor { get; set; }
+        [Parameter] public RenderFragment ProgressBrush { get; set; }
 
         public new AC.HorizontalProgressBar NativeControl => (AC.HorizontalProgressBar)((Element)this).NativeControl;
 
@@ -46,11 +53,27 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                         NativeControl.ProgressBarDrawable = ProgressBarDrawable;
                     }
                     break;
+                case nameof(ProgressColor):
+                    if (!Equals(ProgressColor, value))
+                    {
+                        ProgressColor = (Color)value;
+                        NativeControl.ProgressBrush = ProgressColor;
+                    }
+                    break;
+                case nameof(ProgressBrush):
+                    ProgressBrush = (RenderFragment)value;
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(HorizontalProgressBar), ProgressBrush);
         }
 
         static partial void RegisterAdditionalHandlers();

@@ -16,9 +16,16 @@
             <BlazorBindings.Maui.Elements.Slider Minimum="0" Maximum="1" @bind-Value="sliderValue" />
 
             <Grid ColumnDefinitions="*,Auto">
-                <VerticalProgressBar Progress="sliderValue" Grid.Column="1" />
+                <VerticalProgressBar Progress="sliderValue" ProgressColor="Colors.Green" Grid.Column="1" />
                 <VerticalStackLayout Spacing="8">
-                    <HorizontalProgressBar Progress="sliderValue" />
+                    <HorizontalProgressBar Progress="sliderValue">
+                        <ProgressBrush>
+                            <LinearGradientBrush EndPoint="new(1,0)">
+                                <GradientStop Offset="0" Color="Colors.Red" />
+                                <GradientStop Offset="1" Color="Colors.Green" />
+                            </LinearGradientBrush>
+                        </ProgressBrush>
+                    </HorizontalProgressBar>
                     <ProgressRadial Minimum="0" Maximum="100" Value="(int)(sliderValue*100)" />
                 </VerticalStackLayout>
             </Grid>

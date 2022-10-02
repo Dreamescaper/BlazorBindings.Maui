@@ -8,8 +8,11 @@
 using AC = AlohaKit.Controls;
 using BlazorBindings.Core;
 using BlazorBindings.Maui.Elements;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.AlohaKit
@@ -18,12 +21,24 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
     {
         static CheckBox()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<CheckBox>(nameof(CheckedBrush),
+                (renderer, parent, component) => new ContentPropertyHandler<AC.CheckBox>((x, value) => x.CheckedBrush = (MC.Brush)value));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<CheckBox>(nameof(Stroke),
+                (renderer, parent, component) => new ContentPropertyHandler<AC.CheckBox>((x, value) => x.Stroke = (MC.Brush)value));
+            ElementHandlerRegistry.RegisterPropertyContentHandler<CheckBox>(nameof(UncheckedBrush),
+                (renderer, parent, component) => new ContentPropertyHandler<AC.CheckBox>((x, value) => x.UncheckedBrush = (MC.Brush)value));
             RegisterAdditionalHandlers();
         }
 
         [Parameter] public AC.CheckBoxDrawable CheckBoxDrawable { get; set; }
+        [Parameter] public Color CheckedColor { get; set; }
         [Parameter] public bool? IsChecked { get; set; }
+        [Parameter] public Color StrokeColor { get; set; }
         [Parameter] public double? StrokeThickness { get; set; }
+        [Parameter] public Color UncheckedColor { get; set; }
+        [Parameter] public RenderFragment CheckedBrush { get; set; }
+        [Parameter] public RenderFragment Stroke { get; set; }
+        [Parameter] public RenderFragment UncheckedBrush { get; set; }
         [Parameter] public EventCallback<bool> IsCheckedChanged { get; set; }
 
         public new AC.CheckBox NativeControl => (AC.CheckBox)((Element)this).NativeControl;
@@ -41,11 +56,25 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                         NativeControl.CheckBoxDrawable = CheckBoxDrawable;
                     }
                     break;
+                case nameof(CheckedColor):
+                    if (!Equals(CheckedColor, value))
+                    {
+                        CheckedColor = (Color)value;
+                        NativeControl.CheckedBrush = CheckedColor;
+                    }
+                    break;
                 case nameof(IsChecked):
                     if (!Equals(IsChecked, value))
                     {
                         IsChecked = (bool?)value;
                         NativeControl.IsChecked = IsChecked ?? (bool)AC.CheckBox.IsCheckedProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(StrokeColor):
+                    if (!Equals(StrokeColor, value))
+                    {
+                        StrokeColor = (Color)value;
+                        NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeThickness):
@@ -54,6 +83,22 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                         StrokeThickness = (double?)value;
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)AC.CheckBox.StrokeThicknessProperty.DefaultValue;
                     }
+                    break;
+                case nameof(UncheckedColor):
+                    if (!Equals(UncheckedColor, value))
+                    {
+                        UncheckedColor = (Color)value;
+                        NativeControl.UncheckedBrush = UncheckedColor;
+                    }
+                    break;
+                case nameof(CheckedBrush):
+                    CheckedBrush = (RenderFragment)value;
+                    break;
+                case nameof(Stroke):
+                    Stroke = (RenderFragment)value;
+                    break;
+                case nameof(UncheckedBrush):
+                    UncheckedBrush = (RenderFragment)value;
                     break;
                 case nameof(IsCheckedChanged):
                     if (!Equals(IsCheckedChanged, value))
@@ -75,6 +120,14 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(CheckBox), CheckedBrush);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(CheckBox), Stroke);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(CheckBox), UncheckedBrush);
         }
 
         static partial void RegisterAdditionalHandlers();

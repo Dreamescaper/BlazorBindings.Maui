@@ -8,8 +8,10 @@
 using AC = AlohaKit.Controls;
 using BlazorBindings.Core;
 using BlazorBindings.Maui.Elements;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
@@ -19,6 +21,8 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
     {
         static Rating()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<Rating>(nameof(Background),
+                (renderer, parent, component) => new ContentPropertyHandler<AC.Rating>((x, value) => x.Background = (MC.Brush)value));
             RegisterAdditionalHandlers();
         }
 
@@ -112,6 +116,9 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                         NativeControl.Value = Value ?? (int)AC.Rating.ValueProperty.DefaultValue;
                     }
                     break;
+                case nameof(Background):
+                    Background = (RenderFragment)value;
+                    break;
                 case nameof(ValueChanged):
                     if (!Equals(ValueChanged, value))
                     {
@@ -132,6 +139,12 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(Rating), Background);
         }
 
         static partial void RegisterAdditionalHandlers();

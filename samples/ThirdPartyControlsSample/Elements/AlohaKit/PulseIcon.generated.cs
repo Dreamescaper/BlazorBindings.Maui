@@ -8,8 +8,10 @@
 using AC = AlohaKit.Controls;
 using BlazorBindings.Core;
 using BlazorBindings.Maui.Elements;
+using BlazorBindings.Maui.Elements.Handlers;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
 using System;
 using System.Threading.Tasks;
@@ -20,6 +22,8 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
     {
         static PulseIcon()
         {
+            ElementHandlerRegistry.RegisterPropertyContentHandler<PulseIcon>(nameof(Background),
+                (renderer, parent, component) => new ContentPropertyHandler<AC.PulseIcon>((x, value) => x.Background = (MC.Brush)value));
             RegisterAdditionalHandlers();
         }
 
@@ -65,6 +69,9 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                         NativeControl.Source = Source;
                     }
                     break;
+                case nameof(Background):
+                    Background = (RenderFragment)value;
+                    break;
                 case nameof(OnClick):
                     if (!Equals(OnClick, value))
                     {
@@ -80,6 +87,12 @@ namespace BlazorBindings.Maui.Elements.AlohaKit
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty(builder, sequence++, typeof(PulseIcon), Background);
         }
 
         static partial void RegisterAdditionalHandlers();
