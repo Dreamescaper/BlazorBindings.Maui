@@ -1,0 +1,33 @@
+﻿@inherits ElementTestBase
+
+@code {
+    [Test]
+    public async Task InvokeOnRefreshingCallback()
+    {
+        int refreshCount = 0;
+        bool refreshInvokeStarted = false;
+        var refreshAction = async () => { refreshInvokeStarted = true; await Task.Delay(20); refreshCount++; };
+        Label labelRef = null;
+
+        var refreshView = await Render<MC.RefreshView>(
+    @<RefreshView OnRefreshing="refreshAction">
+        <ScrollView>
+            <VerticalStackLayout>
+                <Label @ref="labelRef">@refreshCount</Label>
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
+    );
+
+        refreshView.IsRefreshing = true;
+
+        await Task.Delay(5);
+        Assert.That(refreshInvokeStarted, Is.True);
+        Assert.That(refreshView.IsRefreshing, Is.True);
+
+        await Task.Delay(20);
+        Assert.That(refreshCount, Is.EqualTo(1));
+        Assert.That(refreshView.IsRefreshing, Is.False);
+        Assert.That(labelRef.NativeControl.Text, Is.EqualTo("1"));
+    }
+}

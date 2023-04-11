@@ -13,10 +13,16 @@ public partial class RefreshView : ContentView
         {
             if (!Equals(OnRefreshing, value))
             {
-                void NativeControlRefreshing(object sender, EventArgs e)
+                async void NativeControlRefreshing(object sender, EventArgs e)
                 {
-                    InvokeEventCallback(OnRefreshing);
-                    NativeControl.IsRefreshing = false;
+                    try
+                    {
+                        await InvokeEventCallbackAsync(OnRefreshing);
+                    }
+                    finally
+                    {
+                        NativeControl.IsRefreshing = false;
+                    }
                 }
 
                 OnRefreshing = (EventCallback)value;
