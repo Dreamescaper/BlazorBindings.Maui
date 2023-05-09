@@ -25,6 +25,7 @@ namespace BlazorBindings.Maui.Elements
         }
 
         [Parameter] public string @class { get; set; }
+        [Parameter] public MC.Style Style { get; set; }
         [Parameter] public string StyleClass { get; set; }
 
         public new MC.NavigableElement NativeControl => (MC.NavigableElement)((BindableObject)this).NativeControl;
@@ -39,6 +40,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         @class = (string)value;
                         NativeControl.@class = AttributeHelper.GetStringList(@class);
+                    }
+                    break;
+                case nameof(Style):
+                    if (!Equals(Style, value))
+                    {
+                        Style = (MC.Style)value;
+                        NativeControl.Style = Style;
                     }
                     break;
                 case nameof(StyleClass):

@@ -288,7 +288,6 @@ public partial class GeneratedPropertyInfo
         "Microsoft.Maui.Controls.ShellContent",
         "Microsoft.Maui.Controls.ShellItem",
         "Microsoft.Maui.Controls.ShellSection",
-        "Microsoft.Maui.Controls.Style", // TODO: This is temporary; should be possible to add support later
         "Microsoft.Maui.Controls.IVisual",
         "Microsoft.Maui.Controls.View",
         "Microsoft.Maui.Graphics.IShape",

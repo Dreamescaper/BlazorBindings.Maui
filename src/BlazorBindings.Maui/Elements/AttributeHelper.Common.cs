@@ -66,9 +66,9 @@ public static partial class AttributeHelper
     /// </summary>
     /// <param name="attributeValue"></param>
     /// <returns></returns>
-    public static IList<string> GetStringList(object attributeValue)
+    public static IList<string> GetStringList(string attributeValue)
     {
-        return ((string)attributeValue)?.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
+        return attributeValue?.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
     }
 
     public static IList GetIList<T>(IList<T> listT)

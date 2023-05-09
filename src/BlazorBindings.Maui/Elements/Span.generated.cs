@@ -52,6 +52,10 @@ namespace BlazorBindings.Maui.Elements
         /// </value>
         [Parameter] public double? LineHeight { get; set; }
         /// <summary>
+        /// Gets or sets the Style to apply to the span.
+        /// </summary>
+        [Parameter] public MC.Style Style { get; set; }
+        /// <summary>
         /// Gets or sets the text of the span.
         /// </summary>
         [Parameter] public string Text { get; set; }
@@ -120,6 +124,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         LineHeight = (double?)value;
                         NativeControl.LineHeight = LineHeight ?? (double)MC.Span.LineHeightProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(Style):
+                    if (!Equals(Style, value))
+                    {
+                        Style = (MC.Style)value;
+                        NativeControl.Style = Style;
                     }
                     break;
                 case nameof(Text):

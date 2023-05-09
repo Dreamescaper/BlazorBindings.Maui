@@ -1,5 +1,6 @@
 ﻿using BlazorBindings.Maui;
 using CommunityToolkit.Maui;
+using Material.Components.Maui.Extensions;
 
 namespace ThirdPartyControlsSample;
 
@@ -9,9 +10,10 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiApp<BlazorBindingsApplication<AppShell>>()
+            .UseMauiApp<App>()
             .UseMauiBlazorBindings()
             .UseMauiCommunityToolkit()
+            .UseMaterialComponents(new() { "OpenSans-Regular.ttf" })
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

@@ -36,6 +36,7 @@ using XCalendar.Maui.Views;
 
 // Material.Components.Maui
 [assembly: GenerateComponent(typeof(Material.Components.Maui.ProgressIndicator), Aliases = new[] { "ProgressIndicator:MDProgressIndicator" })]
+[assembly: GenerateComponent(typeof(Material.Components.Maui.Button), Aliases = new[] { "Button:MDButton" })]
 [assembly: GenerateComponent(typeof(Material.Components.Maui.NavigationBar), Aliases = new[] { "NavigationBar:MDNavigationBar" })]
 
 [assembly: GenerateComponent(typeof(Material.Components.Maui.SKTouchCanvasView))]
