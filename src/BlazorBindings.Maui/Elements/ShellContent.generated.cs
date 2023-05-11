@@ -8,6 +8,7 @@
 using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using System.Threading.Tasks;
 
 #pragma warning disable CA2252
@@ -24,10 +25,34 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Add <see cref="T:Microsoft.Maui.Controls.MenuItem" /> instances to flyout.
+        /// </summary>
+        [Parameter] public RenderFragment MenuItems { get; set; }
+
         public new MC.ShellContent NativeControl => (MC.ShellContent)((BindableObject)this).NativeControl;
 
         protected override MC.ShellContent CreateNativeElement() => new();
 
+        protected override void HandleParameter(string name, object value)
+        {
+            switch (name)
+            {
+                case nameof(MenuItems):
+                    MenuItems = (RenderFragment)value;
+                    break;
+
+                default:
+                    base.HandleParameter(name, value);
+                    break;
+            }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.ShellContent, MC.MenuItem>(builder, sequence++, MenuItems, x => x.MenuItems);
+        }
 
         static partial void RegisterAdditionalHandlers();
     }

@@ -25,9 +25,8 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         }
 
         [Parameter] public bool? HasLabel { get; set; }
-        [Parameter] public MCM.Core.ItemCollection<MCM.NavigationBarItem> Items { get; set; }
         [Parameter] public int? SelectedIndex { get; set; }
-        [Parameter] public RenderFragment SelectedItem { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MCM.NavigationBar NativeControl => (MCM.NavigationBar)((BindableObject)this).NativeControl;
 
@@ -44,13 +43,6 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                         NativeControl.HasLabel = HasLabel ?? (bool)MCM.NavigationBar.HasLabelProperty.DefaultValue;
                     }
                     break;
-                case nameof(Items):
-                    if (!Equals(Items, value))
-                    {
-                        Items = (MCM.Core.ItemCollection<MCM.NavigationBarItem>)value;
-                        NativeControl.Items = Items;
-                    }
-                    break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
@@ -58,8 +50,8 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)MCM.NavigationBar.SelectedIndexProperty.DefaultValue;
                     }
                     break;
-                case nameof(SelectedItem):
-                    SelectedItem = (RenderFragment)value;
+                case nameof(ChildContent):
+                    ChildContent = (RenderFragment)value;
                     break;
 
                 default:
@@ -71,7 +63,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddContentProperty<MCM.NavigationBar>(builder, sequence++, SelectedItem, (x, value) => x.SelectedItem = (MCM.NavigationBarItem)value);
+            RenderTreeBuilderHelper.AddListContentProperty<MCM.NavigationBar, MCM.NavigationBarItem>(builder, sequence++, ChildContent, x => x.Items);
         }
 
         static partial void RegisterAdditionalHandlers();
