@@ -1,11 +1,78 @@
 ﻿@using BlazorBindings.Maui.Elements.Material.Components
+@using IconPacks.Material;
+@using static MaterialStyles
 
 <ContentPage Title="Material Components">
-    <VerticalStackLayout>
-        <MDButton Text="Elevated" />
+    <VerticalStackLayout Spacing="6" Padding="6">
+        <Label>Buttons:</Label>
+        <MDWrapLayout Spacing="4">
+            <MDButton Text="Elevated" Style="ElevatedButton" OnClick="ElevatedClicked" />
+            <MDButton Text="Filled" Style="FilledButton" OnClick="FilledClicked" />
+            <MDButton Text="FilledTonal" Style="FilledTonalButton" OnClick="FilledTonalClicked" />
+            <MDButton Text="Outlined" Style="OutlinedButton" OnClick="OutlinedClicked" />
+            <MDButton Text="Text" Style="TextButton" OnClick="TextClicked" />
+        </MDWrapLayout>
+
+        <Label>ComboBoxes:</Label>
+
+        <MDComboBox LabelText="Filled" Style="FilledComboBox" ItemsSource="combo1Items" @bind-SelectedIndex="selectedIndex1" />
+
+        <MDComboBox LabelText="Outlined" Style="OutlinedComboBox" @bind-SelectedIndex="selectedIndex2">
+            @foreach (var (text, icon) in combo2Items)
+            {
+                <MDComboBoxItem Text="@text" IconKind="icon" />
+            }
+        </MDComboBox>
+
+        <Label>Cards:</Label>
+        <MDCard Style="FilledCard" Shape="10">
+            <VerticalStackLayout Padding="6">
+                @if (buttonClicked != null)
+                {
+                    <Label>'@buttonClicked' button clicked.</Label>
+                }
+                else
+                {
+                    <Label>Waiting for the button click.</Label>
+                }
+            </VerticalStackLayout>
+        </MDCard>
+
+        <MDCard Style="ElevatedCard" Shape="10">
+            <ContentView Padding="6">
+                <Label>'@(SelectedItem1 ?? "Nothing")' is selected in the first ComboBox.</Label>
+            </ContentView>
+        </MDCard>
+
+        <MDCard Style="OutlinedCard" Shape="10">
+            <ContentView Padding="6">
+                <Label>'@(SelectedItem2 ?? "Nothing")' is selected in the second ComboBox.</Label>
+            </ContentView>
+        </MDCard>
     </VerticalStackLayout>
 </ContentPage>
 
 @code {
+    string buttonClicked;
 
+    void ElevatedClicked() => buttonClicked = "Elevated";
+    void FilledClicked() => buttonClicked = "Filled";
+    void FilledTonalClicked() => buttonClicked = "FilledTonal";
+    void OutlinedClicked() => buttonClicked = "Outlined";
+    void TextClicked() => buttonClicked = "Text";
+
+    string[] combo1Items = new[] { "Item 1", "Item 2", "Item 3", "Item 4", };
+    (string Text, IconKind Icon)[] combo2Items = new[]
+    {
+        ("Item A", IconKind.Airlines),
+        ("Item B", IconKind.Camera),
+        ("Item C", IconKind.Person),
+        ("Item D", IconKind.AutoDelete),
+    };
+
+    int? selectedIndex1;
+    int? selectedIndex2;
+
+    string SelectedItem1 => selectedIndex1 == null ? null : combo1Items[selectedIndex1.Value];
+    string SelectedItem2 => selectedIndex2 == null ? null : combo2Items[selectedIndex2.Value].Text;
 }

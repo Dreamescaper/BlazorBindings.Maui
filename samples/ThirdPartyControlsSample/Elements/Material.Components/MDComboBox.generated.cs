@@ -47,7 +47,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public Color StateLayerColor { get; set; }
         [Parameter] public string Text { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
-        [Parameter] public EventCallback<int> SelectedIndexChanged { get; set; }
+        [Parameter] public EventCallback<int?> SelectedIndexChanged { get; set; }
 
         public new MCM.ComboBox NativeControl => (MCM.ComboBox)((BindableObject)this).NativeControl;
 
@@ -210,7 +210,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(SelectedIndexChanged, value);
                         }
 
-                        SelectedIndexChanged = (EventCallback<int>)value;
+                        SelectedIndexChanged = (EventCallback<int?>)value;
                         NativeControl.SelectedIndexChanged -= NativeControlSelectedIndexChanged;
                         NativeControl.SelectedIndexChanged += NativeControlSelectedIndexChanged;
                     }

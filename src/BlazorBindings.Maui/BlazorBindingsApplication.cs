@@ -6,6 +6,8 @@ public class BlazorBindingsApplication<T> : Application where T : IComponent
 {
     public BlazorBindingsApplication(IServiceProvider services)
     {
+        Configure();
+
         var renderer = services.GetRequiredService<MauiBlazorBindingsRenderer>();
 
         if (WrapperComponentType != null)
@@ -22,6 +24,11 @@ public class BlazorBindingsApplication<T> : Application where T : IComponent
     }
 
     public virtual Type WrapperComponentType { get; }
+
+    /// <summary>
+    /// This method is executed before the rendering. It can be used to set resources, for example.
+    /// </summary>
+    protected virtual void Configure() { }
 
     private (Type ComponentType, Dictionary<string, object> Parameters) GetComponentToRender()
     {
