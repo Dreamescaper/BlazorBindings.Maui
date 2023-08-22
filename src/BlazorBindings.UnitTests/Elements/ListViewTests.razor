@@ -11,10 +11,11 @@
             <TextCell Text="@context.Index.ToString()" Detail="@context.Name" />
         </ItemTemplate>
     </ListView>
-    );
+        );
 
         var templatedItems = listView.TemplatedItems;
 
+        Assert.That(templatedItems, Has.Count.EqualTo(3));
         for (int i = 0; i < templatedItems.Count; i++)
         {
             var expectedItem = items[i];

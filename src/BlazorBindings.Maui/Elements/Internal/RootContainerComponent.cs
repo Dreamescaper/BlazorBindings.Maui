@@ -19,7 +19,7 @@ internal class RootContainerComponent : NativeControlComponentBase, IContainerEl
         OnElementAdded.InvokeAsync(child);
     }
 
-    void IContainerElementHandler.RemoveChild(object child)
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         Elements.Remove(child);
     }

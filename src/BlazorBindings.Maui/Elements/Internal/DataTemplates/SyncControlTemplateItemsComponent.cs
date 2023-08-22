@@ -70,7 +70,7 @@ internal class SyncControlTemplateItemsComponent<T> : NativeControlComponentBase
     void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
-    void IContainerElementHandler.RemoveChild(object child) { }
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
     int IContainerElementHandler.GetChildIndex(object child) => -1;
     object IElementHandler.TargetElement => null;
 }

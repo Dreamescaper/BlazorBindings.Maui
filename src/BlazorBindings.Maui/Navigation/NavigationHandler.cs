@@ -73,7 +73,7 @@ internal class NavigationHandler : IContainerElementHandler
         page.ParentChanged -= ParentChanged;
     }
 
-    public async void RemoveChild(object child)
+    public async void RemoveChild(object child, int physicalSiblingIndex)
     {
         await RemoveChildAsync((MC.Page)child);
     }

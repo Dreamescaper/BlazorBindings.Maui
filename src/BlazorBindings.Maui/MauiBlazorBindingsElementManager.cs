@@ -37,7 +37,10 @@ internal class MauiBlazorBindingsElementManager : ElementManager
             : -1;
     }
 
-    public override void RemoveChildElement(IElementHandler parentHandler, IElementHandler childHandler)
+    public override void RemoveChildElement(
+        IElementHandler parentHandler,
+        IElementHandler childHandler,
+        int physicalSiblingIndex)
     {
         if (childHandler is INonPhysicalChild nonPhysicalChild)
         {
@@ -45,7 +48,7 @@ internal class MauiBlazorBindingsElementManager : ElementManager
         }
         else if (parentHandler is IContainerElementHandler parent)
         {
-            parent.RemoveChild(childHandler.TargetElement);
+            parent.RemoveChild(childHandler.TargetElement, physicalSiblingIndex);
         }
         else
         {

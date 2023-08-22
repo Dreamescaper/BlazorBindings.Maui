@@ -45,7 +45,7 @@ public partial class ShellContent : BaseShellItem, IContainerElementHandler
         return child == NativeControl.Content ? 0 : -1;
     }
 
-    void IContainerElementHandler.RemoveChild(object child)
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         if (NativeControl.Content == child)
         {

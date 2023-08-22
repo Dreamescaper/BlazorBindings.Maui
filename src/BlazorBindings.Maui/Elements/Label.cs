@@ -64,7 +64,7 @@ public partial class Label : View, IHandleChildContentText, IContainerElementHan
         }
     }
 
-    void IContainerElementHandler.RemoveChild(object child)
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         var childAsSpan = child as MC.Span;
         NativeControl.FormattedText?.Spans.Remove(childAsSpan);

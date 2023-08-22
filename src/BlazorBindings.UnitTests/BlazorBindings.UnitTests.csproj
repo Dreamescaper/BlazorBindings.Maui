@@ -5,6 +5,7 @@
     <IsPackable>false</IsPackable>
 	<UseMaui>true</UseMaui>
 	<EnablePreviewFeatures>true</EnablePreviewFeatures>
+	<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
   </PropertyGroup>
 	
   <ItemGroup>

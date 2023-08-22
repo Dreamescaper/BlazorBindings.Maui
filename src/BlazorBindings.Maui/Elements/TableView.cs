@@ -48,7 +48,7 @@ public partial class TableView : IContainerElementHandler
         return -1;
     }
 
-    void IContainerElementHandler.RemoveChild(object child)
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         if (child is MC.TableRoot)
         {

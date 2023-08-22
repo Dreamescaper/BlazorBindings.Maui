@@ -33,7 +33,7 @@ public class RootContainerHandler : IContainerElementHandler, INonChildContainer
         _taskCompletionSource?.TrySetResult(child);
     }
 
-    void IContainerElementHandler.RemoveChild(object child)
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         Elements.Remove(child);
     }

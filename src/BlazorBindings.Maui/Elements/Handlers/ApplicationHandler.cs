@@ -23,7 +23,7 @@ internal class ApplicationHandler : IContainerElementHandler
         return Equals(_application.MainPage, child) ? 0 : -1;
     }
 
-    public void RemoveChild(object child)
+    public void RemoveChild(object child, int physicalSiblingIndex)
     {
         // It is not allowed to have no MainPage.
     }

@@ -1,0 +1,22 @@
+﻿@inherits ElementTestBase
+
+@code {
+    [Test]
+    public async Task CreateCollectionViewWithItemTemplate()
+    {
+        var items = new (int Index, string Name)[] { (1, "First"), (2, "Seconds"), (3, ("Third")) };
+        var collectionView = await Render<MC.CollectionView>(
+    @<CollectionView ItemsSource="items">
+        <ItemTemplate>
+            <VerticalStackLayout>
+                <Label>@context.Index</Label>
+                <Label>@context.Name</Label>
+            </VerticalStackLayout>
+        </ItemTemplate>
+    </CollectionView>
+    );
+
+        // It's nice that it doesn't crash at least, but is there any way to get templated items here?...
+        Assert.That(collectionView.ItemsSource, Is.EqualTo(items));
+    }
+}

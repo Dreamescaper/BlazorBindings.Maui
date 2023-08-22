@@ -26,7 +26,7 @@
 </ContentPage>
 
 @code {
-    ObservableCollection<int> _intItems = new ObservableCollection<int>(Enumerable.Range(1, 100));
+    List<int> _intItems = Enumerable.Range(1, 100).ToList();
     int _selectedItem;
 
     void Add()

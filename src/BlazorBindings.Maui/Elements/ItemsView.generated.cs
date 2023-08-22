@@ -55,11 +55,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(ItemsSource):
-                    if (!Equals(ItemsSource, value))
-                    {
-                        ItemsSource = (IEnumerable<T>)value;
-                        NativeControl.ItemsSource = ItemsSource;
-                    }
+                    ItemsSource = (IEnumerable<T>)value;
                     break;
                 case nameof(ItemsUpdatingScrollMode):
                     if (!Equals(ItemsUpdatingScrollMode, value))
@@ -134,6 +130,7 @@ namespace BlazorBindings.Maui.Elements
             RenderTreeBuilderHelper.AddContentProperty<MC.ItemsView>(builder, sequence++, EmptyView, (x, value) => x.EmptyView = (object)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplate, (x, template) => x.ItemTemplate = template);
             RenderTreeBuilderHelper.AddDataTemplateSelectorProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplateSelector, (x, template) => x.ItemTemplate = template);
+            RenderTreeBuilderHelper.AddItemsSourceProperty<MC.ItemsView, T>(builder, sequence++, ItemsSource, (x, items) => x.ItemsSource = items);
         }
 
         static partial void RegisterAdditionalHandlers();
