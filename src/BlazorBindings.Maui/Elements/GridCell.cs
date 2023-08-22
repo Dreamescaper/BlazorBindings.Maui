@@ -5,7 +5,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public class GridCell : NativeControlComponentBase, IMauiContainerElementHandler, INonChildContainerElement
+public class GridCell : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
 {
     [Parameter] public int? Column { get; set; }
     [Parameter] public int? ColumnSpan { get; set; }
@@ -18,7 +18,6 @@ public class GridCell : NativeControlComponentBase, IMauiContainerElementHandler
     private readonly List<MC.View> _children = new();
     private MC.Grid _parentGrid;
 
-    MC.BindableObject IMauiElementHandler.ElementControl => null;
     object IElementHandler.TargetElement => null;
 
     public override Task SetParametersAsync(ParameterView parameters)
@@ -76,7 +75,7 @@ public class GridCell : NativeControlComponentBase, IMauiContainerElementHandler
 
     protected override RenderFragment GetChildContent() => ChildContent;
 
-    public void AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    public void AddChild(object child, int physicalSiblingIndex)
     {
         if (child is not MC.View childView)
         {
@@ -92,7 +91,7 @@ public class GridCell : NativeControlComponentBase, IMauiContainerElementHandler
         _parentGrid.Children.Add(childView);
     }
 
-    public void RemoveChild(MC.BindableObject child)
+    public void RemoveChild(object child)
     {
         if (child is not MC.View childView)
         {
@@ -103,7 +102,7 @@ public class GridCell : NativeControlComponentBase, IMauiContainerElementHandler
         _parentGrid.Children.Remove(childView);
     }
 
-    public int GetChildIndex(MC.BindableObject child)
+    public int GetChildIndex(object child)
     {
         return child is MC.View childView
             ? _children.IndexOf(childView)

@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class BaseShellItem : NavigableElement, IMauiElementHandler
+public partial class BaseShellItem : NavigableElement
 {
     [Parameter] public RenderFragment<MC.BaseShellItem> ItemTemplate { get; set; }
 

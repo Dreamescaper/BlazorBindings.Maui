@@ -8,7 +8,7 @@ using MCS = Microsoft.Maui.Controls.StyleSheets;
 
 namespace BlazorBindings.Maui.Elements.Handlers;
 
-public class StyleSheetHandler : IMauiElementHandler, INonPhysicalChild
+public class StyleSheetHandler : IElementHandler, INonPhysicalChild
 {
     private MC.VisualElement _parentVisualElement;
 
@@ -18,8 +18,7 @@ public class StyleSheetHandler : IMauiElementHandler, INonPhysicalChild
     }
 
     public NativeComponentRenderer Renderer { get; }
-    public MC.BindableObject ElementControl => null;
-    public object TargetElement => ElementControl;
+    public object TargetElement => null;
 
     public Assembly Assembly { get; private set; }
     public string Resource { get; private set; }

@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using BlazorBindings.Maui.Elements.Internal;
+using BlazorBindings.Maui.Extensions;
 using Microsoft.AspNetCore.Components.Rendering;
 using MC = Microsoft.Maui.Controls;
 
@@ -56,27 +57,29 @@ internal class SyncDataTemplateItemComponent<T> : ComponentBase
         {
             builder.OpenComponent<RootContainerComponent>(0);
             builder.AddAttribute(1, "ChildContent", Template.Invoke(_item));
-            builder.AddAttribute(2, nameof(RootContainerComponent.OnElementAdded), EventCallback.Factory.Create<MC.BindableObject>(this, OnRootElementAdded));
+            builder.AddAttribute(2, nameof(RootContainerComponent.OnElementAdded), EventCallback.Factory.Create<object>(this, OnRootElementAdded));
             builder.CloseComponent();
 
             _shouldRender = false;
         }
     }
 
-    private void OnRootElementAdded(MC.BindableObject rootControl)
+    private void OnRootElementAdded(object rootControl)
     {
+        var bindableRoot = rootControl.Cast<MC.BindableObject>();
+
         if (RootControl != null)
             throw new InvalidOperationException("DateTemplate cannot have more than one root element.");
 
-        RootControl = rootControl;
-        if (rootControl.BindingContext != null)
+        RootControl = bindableRoot;
+        if (bindableRoot.BindingContext != null)
         {
-            _item = (T)rootControl.BindingContext;
+            _item = (T)bindableRoot.BindingContext;
         }
 
-        rootControl.BindingContextChanged += (_, __) =>
+        bindableRoot.BindingContextChanged += (_, __) =>
         {
-            var newItem = (T)rootControl.BindingContext;
+            var newItem = (T)bindableRoot.BindingContext;
             if (newItem != null && !Equals(newItem, _item))
             {
                 _item = newItem;

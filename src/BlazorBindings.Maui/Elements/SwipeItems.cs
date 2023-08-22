@@ -2,7 +2,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class SwipeItems : IMauiContainerElementHandler
+public partial class SwipeItems : IContainerElementHandler
 {
     [Parameter] public RenderFragment ChildContent { get; set; }
 
@@ -19,7 +19,7 @@ public partial class SwipeItems : IMauiContainerElementHandler
         return base.HandleAdditionalParameter(name, value);
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         if (child is not MC.ISwipeItem swipeItem)
             throw new ArgumentException($"Expected child to be of type {typeof(MC.ISwipeItem).FullName} but it is of type {child?.GetType().FullName}.", nameof(child));
@@ -27,7 +27,7 @@ public partial class SwipeItems : IMauiContainerElementHandler
         NativeControl.Insert(physicalSiblingIndex, swipeItem);
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         if (child is not MC.ISwipeItem swipeItem)
             throw new ArgumentException($"Expected child to be of type {typeof(MC.ISwipeItem).FullName} but it is of type {child?.GetType().FullName}.", nameof(child));
@@ -35,7 +35,7 @@ public partial class SwipeItems : IMauiContainerElementHandler
         return NativeControl.IndexOf(swipeItem);
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         if (child is not MC.ISwipeItem swipeItem)
             throw new ArgumentException($"Expected child to be of type {typeof(MC.ISwipeItem).FullName} but it is of type {child?.GetType().FullName}.", nameof(child));

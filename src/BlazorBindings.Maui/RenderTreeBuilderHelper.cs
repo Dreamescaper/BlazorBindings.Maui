@@ -16,7 +16,7 @@ public static class RenderTreeBuilderHelper
         RenderTreeBuilder builder,
         int sequence,
         RenderFragment content,
-        Action<TControl, MC.BindableObject> setPropertyAction)
+        Action<TControl, object> setPropertyAction)
     {
         if (content != null)
         {

@@ -10,7 +10,7 @@ namespace BlazorBindings.Maui.Elements.DataTemplates;
 /// This makes it possible to use when returning a View from template is not an option.
 /// However, it requires a DataTemplate to render synchronously, which does not always work with Blazor.
 /// </summary>
-internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IMauiContainerElementHandler, INonChildContainerElement
+internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
 {
     protected override RenderFragment GetChildContent() => builder =>
     {
@@ -51,15 +51,13 @@ internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlCo
     }
 
     void INonPhysicalChild.RemoveFromParent(object parentElement) { }
-
-    MC.BindableObject IMauiElementHandler.ElementControl => null;
     object IElementHandler.TargetElement => null;
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex) { }
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child) { }
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child) => -1;
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
+    void IContainerElementHandler.RemoveChild(object child) { }
+    int IContainerElementHandler.GetChildIndex(object child) => -1;
     void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 
-    // In order to be able to render the item syncroniously, we need to have an item upfront, before the render.
+    // In order to be able to render the item synchronously, we need to have an item upfront, before the render.
     // Unfortunately, regular DataTemplate does not have an access to the item, it is set set BindingContext afterwards.
     // In order to workaround this issue, we use a DataTemplateSelector, which returns the same DataTemplate. But we're able
     // to store the item from OnSelectTemplate method, which is used to render the item in DataTemplate.

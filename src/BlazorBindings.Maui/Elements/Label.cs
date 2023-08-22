@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class Label : View, IHandleChildContentText, IMauiContainerElementHandler
+public partial class Label : View, IHandleChildContentText, IContainerElementHandler
 {
     private TextSpanContainer _textSpanContainer;
 
@@ -48,7 +48,7 @@ public partial class Label : View, IHandleChildContentText, IMauiContainerElemen
         }
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         var childAsSpan = child as MC.Span;
 
@@ -59,18 +59,18 @@ public partial class Label : View, IHandleChildContentText, IMauiContainerElemen
         }
         else
         {
-            Debug.WriteLine($"WARNING: {nameof(IMauiContainerElementHandler.AddChild)} called with {nameof(physicalSiblingIndex)}={physicalSiblingIndex}, but Label.FormattedText.Spans.Count={NativeControl.FormattedText.Spans.Count}");
+            Debug.WriteLine($"WARNING: {nameof(IContainerElementHandler.AddChild)} called with {nameof(physicalSiblingIndex)}={physicalSiblingIndex}, but Label.FormattedText.Spans.Count={NativeControl.FormattedText.Spans.Count}");
             formattedString.Spans.Add(childAsSpan);
         }
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         var childAsSpan = child as MC.Span;
         NativeControl.FormattedText?.Spans.Remove(childAsSpan);
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         // There are two cases to consider:
         // 1. A Xamarin.Forms Label can have only 1 child (a FormattedString), so the child's index is always 0.

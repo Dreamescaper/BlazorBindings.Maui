@@ -59,7 +59,7 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
     }
 
     // It tries to return the Element as soon as it is available, therefore Component task might still be in progress.
-    internal async Task<(MC.BindableObject Element, Task<IComponent> Component)> GetElementFromRenderedComponent(Type componentType, Dictionary<string, object> parameters = null)
+    internal async Task<(object Element, Task<IComponent> Component)> GetElementFromRenderedComponent(Type componentType, Dictionary<string, object> parameters = null)
     {
         var (elements, addComponentTask) = await GetElementsFromRenderedComponent(componentType, parameters);
 
@@ -80,7 +80,7 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
         return (component, componentId);
     }
 
-    private async Task<(List<MC.BindableObject> Elements, Task<IComponent> Component)> GetElementsFromRenderedComponent(Type componentType, Dictionary<string, object> parameters)
+    private async Task<(List<object> Elements, Task<IComponent> Component)> GetElementsFromRenderedComponent(Type componentType, Dictionary<string, object> parameters)
     {
         var container = new RootContainerHandler();
 

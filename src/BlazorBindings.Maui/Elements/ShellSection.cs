@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class ShellSection : ShellGroupItem, IMauiContainerElementHandler
+public partial class ShellSection : ShellGroupItem, IContainerElementHandler
 {
     [Parameter] public RenderFragment ChildContent { get; set; }
 
@@ -25,7 +25,7 @@ public partial class ShellSection : ShellGroupItem, IMauiContainerElementHandler
         }
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         ArgumentNullException.ThrowIfNull(child);
 
@@ -45,18 +45,18 @@ public partial class ShellSection : ShellGroupItem, IMauiContainerElementHandler
         }
         else
         {
-            Debug.WriteLine($"WARNING: {nameof(IMauiContainerElementHandler.AddChild)} called with {nameof(physicalSiblingIndex)}={physicalSiblingIndex}, but NativeControl.Items.Count={NativeControl.Items.Count}");
+            Debug.WriteLine($"WARNING: {nameof(IContainerElementHandler.AddChild)} called with {nameof(physicalSiblingIndex)}={physicalSiblingIndex}, but NativeControl.Items.Count={NativeControl.Items.Count}");
             NativeControl.Items.Add(contentToAdd);
         }
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         var shellContent = GetContentForChild(child);
         return NativeControl.Items.IndexOf(shellContent);
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         ArgumentNullException.ThrowIfNull(child);
 
@@ -67,7 +67,7 @@ public partial class ShellSection : ShellGroupItem, IMauiContainerElementHandler
     }
 
 
-    private MC.ShellContent GetContentForChild(MC.BindableObject child)
+    private MC.ShellContent GetContentForChild(object child)
     {
         return child switch
         {

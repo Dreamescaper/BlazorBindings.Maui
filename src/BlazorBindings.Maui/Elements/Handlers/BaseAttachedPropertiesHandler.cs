@@ -7,7 +7,7 @@ namespace BlazorBindings.Maui.Elements.Handlers;
 
 /// <remarks>Experimental API, subject to change.</remarks>
 [RequiresPreviewFeatures]
-public abstract class BaseAttachedPropertiesHandler : IMauiElementHandler, INonPhysicalChild
+public abstract class BaseAttachedPropertiesHandler : IElementHandler, INonPhysicalChild
 {
     /// <summary>
     /// The target of the attached property. This will be set to the parent of the attached property container.
@@ -29,6 +29,5 @@ public abstract class BaseAttachedPropertiesHandler : IMauiElementHandler, INonP
 
     // Because this is a 'fake' element, all matters related to physical trees
     // should be no-ops.
-    public MC.BindableObject ElementControl => null;
     public object TargetElement => null;
 }

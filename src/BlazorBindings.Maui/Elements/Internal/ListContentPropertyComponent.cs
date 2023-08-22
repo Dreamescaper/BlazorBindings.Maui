@@ -1,9 +1,8 @@
 ﻿using BlazorBindings.Maui.Extensions;
-using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.Internal;
 
-internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComponentBase, IMauiContainerElementHandler, INonChildContainerElement
+internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
     where TItem : class
 {
     private TControl _parent;
@@ -25,20 +24,19 @@ internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComp
         // Because this Handler is used internally only, this method is no-op.
     }
 
-    MC.BindableObject IMauiElementHandler.ElementControl => _parent as MC.BindableObject;
     object IElementHandler.TargetElement => _parent;
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         _propertyItems.Insert(physicalSiblingIndex, child.Cast<TItem>());
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         return _propertyItems.IndexOf(child.Cast<TItem>());
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         _propertyItems.Remove(child.Cast<TItem>());
     }

@@ -7,7 +7,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public abstract partial class GradientBrush : Brush, IMauiContainerElementHandler
+public abstract partial class GradientBrush : Brush, IContainerElementHandler
 {
 #pragma warning disable CA1721 // Property names should not match get methods
     [Parameter] public RenderFragment ChildContent { get; set; }
@@ -28,7 +28,7 @@ public abstract partial class GradientBrush : Brush, IMauiContainerElementHandle
         }
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         if (child is not MC.GradientStop gradientStopChild)
         {
@@ -41,12 +41,12 @@ public abstract partial class GradientBrush : Brush, IMauiContainerElementHandle
         }
         else
         {
-            Debug.WriteLine($"WARNING: {nameof(IMauiContainerElementHandler.AddChild)} called with {nameof(physicalSiblingIndex)}={physicalSiblingIndex}, but GradientBrushControl.GradientStops.Count={NativeControl.GradientStops}");
+            Debug.WriteLine($"WARNING: {nameof(IContainerElementHandler.AddChild)} called with {nameof(physicalSiblingIndex)}={physicalSiblingIndex}, but GradientBrushControl.GradientStops.Count={NativeControl.GradientStops}");
             NativeControl.GradientStops.Add(gradientStopChild);
         }
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         if (child is not MC.GradientStop gradientStopChild)
         {
@@ -56,7 +56,7 @@ public abstract partial class GradientBrush : Brush, IMauiContainerElementHandle
         return NativeControl.GradientStops.IndexOf(gradientStopChild);
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         if (child is not MC.GradientStop gradientStopChild)
         {

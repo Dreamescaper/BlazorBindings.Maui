@@ -8,7 +8,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class Shell : Page, IMauiContainerElementHandler
+public partial class Shell : Page, IContainerElementHandler
 {
     static partial void RegisterAdditionalHandlers()
     {
@@ -199,7 +199,7 @@ public partial class Shell : Page, IMauiContainerElementHandler
 
     protected override RenderFragment GetChildContent() => ChildContent;
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         ArgumentNullException.ThrowIfNull(child);
 
@@ -224,7 +224,7 @@ public partial class Shell : Page, IMauiContainerElementHandler
         }
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         ArgumentNullException.ThrowIfNull(child);
 
@@ -234,14 +234,14 @@ public partial class Shell : Page, IMauiContainerElementHandler
         NativeControl.Items.Remove(itemToRemove);
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         var shellItem = GetItemForElement(child);
         return NativeControl.Items.IndexOf(shellItem);
     }
 
 
-    private MC.ShellItem GetItemForElement(MC.BindableObject child)
+    private MC.ShellItem GetItemForElement(object child)
     {
         return child switch
         {

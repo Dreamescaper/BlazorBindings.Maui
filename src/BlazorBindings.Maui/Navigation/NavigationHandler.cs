@@ -2,7 +2,7 @@
 
 namespace BlazorBindings.Maui;
 
-internal class NavigationHandler : IMauiContainerElementHandler
+internal class NavigationHandler : IContainerElementHandler
 {
     private readonly NavigationTarget _target;
     private readonly MC.INavigation _navigation;
@@ -73,18 +73,18 @@ internal class NavigationHandler : IMauiContainerElementHandler
         page.ParentChanged -= ParentChanged;
     }
 
-    public async void RemoveChild(MC.BindableObject child)
+    public async void RemoveChild(object child)
     {
         await RemoveChildAsync((MC.Page)child);
     }
 
-    public async void AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    public async void AddChild(object child, int physicalSiblingIndex)
     {
         await AddChildAsync((MC.Page)child);
     }
 
-    public int GetChildIndex(MC.BindableObject child) => -1;
+    public int GetChildIndex(object child) => -1;
     public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
-    public MC.BindableObject ElementControl => null;
+    public object ElementControl => null;
     public object TargetElement => null;
 }

@@ -4,7 +4,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.Handlers;
 
-internal class ApplicationHandler : IMauiContainerElementHandler
+internal class ApplicationHandler : IContainerElementHandler
 {
     private readonly Application _application;
 
@@ -13,22 +13,21 @@ internal class ApplicationHandler : IMauiContainerElementHandler
         _application = application;
     }
 
-    public void AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    public void AddChild(object child, int physicalSiblingIndex)
     {
         _application.MainPage = child.Cast<MC.Page>();
     }
 
-    public int GetChildIndex(MC.BindableObject child)
+    public int GetChildIndex(object child)
     {
         return Equals(_application.MainPage, child) ? 0 : -1;
     }
 
-    public void RemoveChild(MC.BindableObject child)
+    public void RemoveChild(object child)
     {
         // It is not allowed to have no MainPage.
     }
 
-    public MC.BindableObject ElementControl => _application;
     public object TargetElement => _application;
     public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 }

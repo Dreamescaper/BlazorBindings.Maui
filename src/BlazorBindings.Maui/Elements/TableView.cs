@@ -2,7 +2,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class TableView : IMauiContainerElementHandler
+public partial class TableView : IContainerElementHandler
 {
     /// <summary>
     /// Gets or sets the root of the table.
@@ -22,7 +22,7 @@ public partial class TableView : IMauiContainerElementHandler
         return base.HandleAdditionalParameter(name, value);
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         switch (child)
         {
@@ -37,7 +37,7 @@ public partial class TableView : IMauiContainerElementHandler
         }
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         if (child is MC.TableRoot root)
             return Equals(NativeControl.Root, root) ? 0 : -1;
@@ -48,7 +48,7 @@ public partial class TableView : IMauiContainerElementHandler
         return -1;
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         if (child is MC.TableRoot)
         {

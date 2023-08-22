@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class TabbedPage : Page, IMauiContainerElementHandler
+public partial class TabbedPage : Page, IContainerElementHandler
 {
     [Parameter] public RenderFragment ChildContent { get; set; }
 
@@ -25,7 +25,7 @@ public partial class TabbedPage : Page, IMauiContainerElementHandler
         }
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         var childAsPage = child as MC.Page;
 
@@ -40,12 +40,12 @@ public partial class TabbedPage : Page, IMauiContainerElementHandler
         }
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         return NativeControl.Children.IndexOf(child as MC.Page);
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         NativeControl.Children.Remove(child as MC.Page);
     }

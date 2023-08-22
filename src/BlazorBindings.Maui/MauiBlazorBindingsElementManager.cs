@@ -3,11 +3,11 @@
 
 namespace BlazorBindings.Maui;
 
-internal class MauiBlazorBindingsElementManager : ElementManager<IMauiElementHandler>
+internal class MauiBlazorBindingsElementManager : ElementManager
 {
-    protected override void AddChildElement(
-        IMauiElementHandler parentHandler,
-        IMauiElementHandler childHandler,
+    public override void AddChildElement(
+        IElementHandler parentHandler,
+        IElementHandler childHandler,
         int physicalSiblingIndex)
     {
         if (childHandler is INonPhysicalChild nonPhysicalChild)
@@ -16,42 +16,42 @@ internal class MauiBlazorBindingsElementManager : ElementManager<IMauiElementHan
             // This is used in cases such as ModalContainer, which exists for the purposes of Blazor
             // markup and is not represented in the Xamarin.Forms control hierarchy.
 
-            nonPhysicalChild.SetParent(parentHandler.ElementControl);
+            nonPhysicalChild.SetParent(parentHandler.TargetElement);
             return;
         }
 
-        if (parentHandler is not IMauiContainerElementHandler parent)
+        if (parentHandler is not IContainerElementHandler parent)
         {
             throw new NotSupportedException($"Handler of type '{parentHandler.GetType().FullName}' representing element type " +
-                $"'{parentHandler.ElementControl?.GetType().FullName ?? "<null>"}' doesn't support adding a child " +
-                $"(child type is '{childHandler.ElementControl?.GetType().FullName}').");
+                $"'{parentHandler.TargetElement?.GetType().FullName ?? "<null>"}' doesn't support adding a child " +
+                $"(child type is '{childHandler.TargetElement?.GetType().FullName}').");
         }
 
-        parent.AddChild(childHandler.ElementControl, physicalSiblingIndex);
+        parent.AddChild(childHandler.TargetElement, physicalSiblingIndex);
     }
 
-    protected override int GetChildElementIndex(IMauiElementHandler parentHandler, IMauiElementHandler childHandler)
+    public override int GetChildElementIndex(IElementHandler parentHandler, IElementHandler childHandler)
     {
-        return parentHandler is IMauiContainerElementHandler containerHandler
-            ? containerHandler.GetChildIndex(childHandler.ElementControl)
+        return parentHandler is IContainerElementHandler containerHandler
+            ? containerHandler.GetChildIndex(childHandler.TargetElement)
             : -1;
     }
 
-    protected override void RemoveChildElement(IMauiElementHandler parentHandler, IMauiElementHandler childHandler)
+    public override void RemoveChildElement(IElementHandler parentHandler, IElementHandler childHandler)
     {
         if (childHandler is INonPhysicalChild nonPhysicalChild)
         {
-            nonPhysicalChild.RemoveFromParent(parentHandler.ElementControl);
+            nonPhysicalChild.RemoveFromParent(parentHandler.TargetElement);
         }
-        else if (parentHandler is IMauiContainerElementHandler parent)
+        else if (parentHandler is IContainerElementHandler parent)
         {
-            parent.RemoveChild(childHandler.ElementControl);
+            parent.RemoveChild(childHandler.TargetElement);
         }
         else
         {
             throw new NotSupportedException($"Handler of type '{parentHandler.GetType().FullName}' representing element type " +
-                $"'{parentHandler.ElementControl?.GetType().FullName ?? "<null>"}' doesn't support removing a child " +
-                $"(child type is '{childHandler.ElementControl?.GetType().FullName}').");
+                $"'{parentHandler.TargetElement?.GetType().FullName ?? "<null>"}' doesn't support removing a child " +
+                $"(child type is '{childHandler.TargetElement?.GetType().FullName}').");
         }
     }
 }

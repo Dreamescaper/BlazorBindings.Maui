@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public abstract class BindableObject : NativeControlComponentBase, IMauiElementHandler
+public abstract class BindableObject : NativeControlComponentBase, IElementHandler
 {
     private MC.BindableObject _nativeControl;
 
@@ -56,8 +56,6 @@ public abstract class BindableObject : NativeControlComponentBase, IMauiElementH
     void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName)
     {
     }
-
-    MC.BindableObject IMauiElementHandler.ElementControl => NativeControl;
 
     object IElementHandler.TargetElement => NativeControl;
 }

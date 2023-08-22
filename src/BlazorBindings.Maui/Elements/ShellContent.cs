@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public partial class ShellContent : BaseShellItem, IMauiContainerElementHandler
+public partial class ShellContent : BaseShellItem, IContainerElementHandler
 {
     /// <summary>
     /// Gets or sets a data template to create when ShellContent becomes active.
@@ -35,17 +35,17 @@ public partial class ShellContent : BaseShellItem, IMauiContainerElementHandler
         }
     }
 
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         NativeControl.Content = child;
     }
 
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child)
+    int IContainerElementHandler.GetChildIndex(object child)
     {
         return child == NativeControl.Content ? 0 : -1;
     }
 
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child)
+    void IContainerElementHandler.RemoveChild(object child)
     {
         if (NativeControl.Content == child)
         {

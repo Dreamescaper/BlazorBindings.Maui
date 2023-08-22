@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 namespace BlazorBindings.Maui.Elements.DataTemplates;
 
 #pragma warning disable CA1812 // Avoid uninstantiated internal classes. Class is used as generic parameter.
-internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IMauiContainerElementHandler, INonChildContainerElement
+internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
 #pragma warning restore CA1812 // Avoid uninstantiated internal classes
 {
     protected override RenderFragment GetChildContent() => builder =>
@@ -49,11 +49,9 @@ internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlCompon
     }
 
     void INonPhysicalChild.RemoveFromParent(object parentElement) { }
-
-    MC.BindableObject IMauiElementHandler.ElementControl => null;
     object IElementHandler.TargetElement => null;
-    void IMauiContainerElementHandler.AddChild(MC.BindableObject child, int physicalSiblingIndex) { }
-    void IMauiContainerElementHandler.RemoveChild(MC.BindableObject child) { }
-    int IMauiContainerElementHandler.GetChildIndex(MC.BindableObject child) => _itemRoots.IndexOf((MC.ContentView)child);
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
+    void IContainerElementHandler.RemoveChild(object child) { }
+    int IContainerElementHandler.GetChildIndex(object child) => _itemRoots.IndexOf((MC.ContentView)child);
     void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 }
