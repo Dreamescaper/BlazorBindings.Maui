@@ -8,7 +8,7 @@ namespace BlazorBindings.Maui.Elements.Internal;
 /// but instead of forcing the user to use ObservableCollection on their side, we manage the updates by Blazor.
 /// Probably not the most performant way, is there any other option?
 /// </summary>
-internal class ItemSourceComponent<TControl, TItem> : NativeControlComponentBase, IElementHandler, IContainerElementHandler, INonChildContainerElement
+internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBase, IElementHandler, IContainerElementHandler, INonChildContainerElement
 {
     private readonly ObservableCollection<TItem> _observableCollection = new();
 
@@ -18,18 +18,42 @@ internal class ItemSourceComponent<TControl, TItem> : NativeControlComponentBase
     [Parameter]
     public Action<TControl, ObservableCollection<TItem>> CollectionSetter { get; set; }
 
+    [Parameter]
+    public Func<TItem, object> KeySelector { get; set; }
+
 
     private TControl _parent;
     public object TargetElement => _parent;
 
+    private HashSet<object> _keys;
+
     protected override RenderFragment GetChildContent() => builder =>
     {
+        _keys?.Clear();
+        bool shouldAddKey = true;
+
+        int index = 0;
         foreach (var item in Items)
         {
+            var key = KeySelector == null ? item : KeySelector(item);
+            if (KeySelector == null)
+            {
+                // Blazor doesn't allow duplicate keys. Therefore we add keys until the first duplicate.
+                // In case KeySelector is provided, we don't check for that here, since it's user's responsibility now.
+                _keys ??= new();
+                shouldAddKey &= _keys.Add(key);
+                if (!shouldAddKey)
+                    key = null;
+            }
+
             builder.OpenComponent<ItemHolderComponent>(1);
-            builder.SetKey(item);
+            builder.SetKey(key);
             builder.AddAttribute(2, nameof(ItemHolderComponent.Item), item);
+            builder.AddAttribute(3, nameof(ItemHolderComponent.Index), index);
+            builder.AddAttribute(4, nameof(ItemHolderComponent.ObservableCollection), _observableCollection);
             builder.CloseComponent();
+
+            index++;
         }
     };
 
@@ -65,10 +89,37 @@ internal class ItemSourceComponent<TControl, TItem> : NativeControlComponentBase
         [Parameter]
         public TItem Item { get; set; }
 
+        [Parameter]
+        public ObservableCollection<TItem> ObservableCollection { get; set; }
+
+        [Parameter]
+        public int? Index { get; set; }
+
         public object TargetElement => Item;
 
         public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName)
         {
+        }
+
+        public override Task SetParametersAsync(ParameterView parameters)
+        {
+            var previousIndex = Index;
+            var previousItem = Item;
+
+            // Task should be completed immediately
+            var task = base.SetParametersAsync(parameters);
+
+            if (previousIndex == null)
+                return task;
+
+            if (previousIndex == Index && Equals(previousItem, Item))
+                return task;
+
+            // Generally it will not be invoked, but it is needed when Source has duplicate items, and component has no key.
+            if (previousIndex == Index && !Equals(ObservableCollection[Index.Value], Item))
+                ObservableCollection[Index.Value] = Item;
+
+            return task;
         }
     }
 }

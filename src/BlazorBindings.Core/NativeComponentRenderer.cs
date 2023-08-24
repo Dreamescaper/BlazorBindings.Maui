@@ -63,7 +63,7 @@ public abstract class NativeComponentRenderer : Renderer
 
                 _rootComponents.Add((componentId, component));
 
-                var rootAdapter = new NativeComponentAdapter(this, closestPhysicalParent: parent, knownTargetElement: parent)
+                var rootAdapter = new NativeComponentAdapter(this, closestPhysicalParent: parent, siblingIndex: 0, knownTargetElement: parent)
                 {
                     Name = $"RootAdapter attached to {parent.GetType().FullName}",
                 };
@@ -150,9 +150,9 @@ public abstract class NativeComponentRenderer : Renderer
         unregisterCallback(eventHandlerId);
     }
 
-    internal NativeComponentAdapter CreateAdapterForChildComponent(IElementHandler physicalParent, int componentId)
+    internal NativeComponentAdapter CreateAdapterForChildComponent(IElementHandler physicalParent, int componentId, int siblingIndex)
     {
-        var result = new NativeComponentAdapter(this, physicalParent);
+        var result = new NativeComponentAdapter(this, physicalParent, siblingIndex);
         _componentIdToAdapter[componentId] = result;
         return result;
     }

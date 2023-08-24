@@ -15,11 +15,15 @@ internal sealed class NativeComponentAdapter : IDisposable
 {
     private static volatile int DebugInstanceCounter;
 
-    public NativeComponentAdapter(NativeComponentRenderer renderer, IElementHandler closestPhysicalParent, IElementHandler knownTargetElement = null)
+    public NativeComponentAdapter(NativeComponentRenderer renderer,
+        IElementHandler closestPhysicalParent,
+        int siblingIndex,
+        IElementHandler knownTargetElement = null)
     {
         Renderer = renderer ?? throw new ArgumentNullException(nameof(renderer));
         _closestPhysicalParent = closestPhysicalParent;
         _targetElement = knownTargetElement;
+        _siblingIndex = siblingIndex;
 
         // Assign unique counter value. This *should* all be done on one thread, but just in case, make it thread-safe.
         _debugInstanceCounterValue = Interlocked.Increment(ref DebugInstanceCounter);
@@ -35,6 +39,7 @@ internal sealed class NativeComponentAdapter : IDisposable
     private readonly IElementHandler _closestPhysicalParent;
     private IElementHandler _targetElement;
     private IComponent _targetComponent;
+    private int _siblingIndex;
 
     public NativeComponentRenderer Renderer { get; }
 
@@ -181,7 +186,7 @@ internal sealed class NativeComponentAdapter : IDisposable
             case RenderTreeFrameType.Component:
                 {
                     // Components are represented by NativeComponentAdapter
-                    var childAdapter = Renderer.CreateAdapterForChildComponent(_targetElement ?? _closestPhysicalParent, frame.ComponentId);
+                    var childAdapter = Renderer.CreateAdapterForChildComponent(_targetElement ?? _closestPhysicalParent, frame.ComponentId, siblingIndex);
                     childAdapter.Name = $"For: '{frame.Component.GetType().FullName}'";
                     childAdapter._targetComponent = frame.Component;
 
@@ -217,9 +222,7 @@ internal sealed class NativeComponentAdapter : IDisposable
                         var typeName = _targetElement?.TargetElement?.GetType()?.Name;
                         throw new NotImplementedException($"Element {typeName} does not support markup content: " + frame.MarkupContent);
                     }
-#pragma warning disable CA2000 // Dispose objects before losing scope; adapters are disposed when they are removed from the adapter tree
-                    var childAdapter = CreateAdapter(_targetElement ?? _closestPhysicalParent);
-#pragma warning restore CA2000 // Dispose objects before losing scope
+                    var childAdapter = CreateAdapter(_targetElement ?? _closestPhysicalParent, siblingIndex);
                     childAdapter.Name = $"Markup, sib#={siblingIndex}";
                     AddChildAdapter(siblingIndex, childAdapter);
                     return 1;
@@ -235,9 +238,8 @@ internal sealed class NativeComponentAdapter : IDisposable
                         var typeName = _targetElement?.TargetElement?.GetType()?.Name;
                         throw new NotImplementedException($"Element {typeName} does not support text content: " + frame.MarkupContent);
                     }
-#pragma warning disable CA2000 // Dispose objects before losing scope; adapters are disposed when they are removed from the adapter tree
-                    var childAdapter = CreateAdapter(_targetElement ?? _closestPhysicalParent);
-#pragma warning restore CA2000 // Dispose objects before losing scope
+
+                    var childAdapter = CreateAdapter(_targetElement ?? _closestPhysicalParent, siblingIndex);
                     childAdapter.Name = $"Text, sib#={siblingIndex}";
                     AddChildAdapter(siblingIndex, childAdapter);
                     return 1;
@@ -247,9 +249,9 @@ internal sealed class NativeComponentAdapter : IDisposable
         }
     }
 
-    private NativeComponentAdapter CreateAdapter(IElementHandler physicalParent)
+    private NativeComponentAdapter CreateAdapter(IElementHandler physicalParent, int siblingIndex)
     {
-        return new NativeComponentAdapter(Renderer, physicalParent);
+        return new NativeComponentAdapter(Renderer, physicalParent, siblingIndex);
     }
 
     private void InsertElement(int siblingIndex, RenderTreeFrame[] frames, int frameIndex, int componentId, RenderBatch batch, HashSet<int> processedComponentIds)
@@ -321,8 +323,7 @@ internal sealed class NativeComponentAdapter : IDisposable
     /// </summary>
     private void AddElementAsChildElement()
     {
-        var elementIndex = GetIndexForElement();
-        Renderer.ElementManager.AddChildElement(_closestPhysicalParent, _targetElement, elementIndex);
+        Renderer.ElementManager.AddChildElement(_closestPhysicalParent, _targetElement, _siblingIndex);
     }
 
     /// <summary>

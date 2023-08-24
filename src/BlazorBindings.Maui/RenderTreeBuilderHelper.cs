@@ -4,7 +4,6 @@
 using BlazorBindings.Maui.Elements.DataTemplates;
 using BlazorBindings.Maui.Elements.Internal;
 using Microsoft.AspNetCore.Components.Rendering;
-using System.Collections.ObjectModel;
 using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui;
@@ -173,16 +172,16 @@ public static class RenderTreeBuilderHelper
         RenderTreeBuilder builder,
         int sequence,
         IEnumerable<TItem> items,
-        Action<TControl, ObservableCollection<TItem>> collectionSetter)
+        Action<TControl, ICollection<TItem>> collectionSetter)
     {
         if (items is null)
             return;
 
         builder.OpenRegion(sequence);
 
-        builder.OpenComponent<ItemSourceComponent<TControl, TItem>>(0);
-        builder.AddAttribute(1, nameof(ItemSourceComponent<TControl, TItem>.Items), items);
-        builder.AddAttribute(2, nameof(ItemSourceComponent<TControl, TItem>.CollectionSetter), collectionSetter);
+        builder.OpenComponent<ItemsSourceComponent<TControl, TItem>>(0);
+        builder.AddAttribute(1, nameof(ItemsSourceComponent<TControl, TItem>.Items), items);
+        builder.AddAttribute(2, nameof(ItemsSourceComponent<TControl, TItem>.CollectionSetter), collectionSetter);
 
         builder.CloseComponent();
 

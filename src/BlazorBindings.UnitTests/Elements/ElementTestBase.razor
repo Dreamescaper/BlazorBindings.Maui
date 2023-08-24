@@ -14,7 +14,7 @@ public ElementTestBase()
 private TestBlazorBindingsRenderer _renderer = (TestBlazorBindingsRenderer)TestBlazorBindingsRenderer.Create();
 private RenderFragmentComponent _renderedComponent;
 
-protected async Task<T> Render<T>(RenderFragment renderFragment) where T : MC.BindableObject
+protected async Task<T> Render<T>(RenderFragment renderFragment)
 {
     var container = new RootContainerHandler();
     _renderedComponent = await _renderer.AddComponent<RenderFragmentComponent>(container, new Dictionary<string, object>
