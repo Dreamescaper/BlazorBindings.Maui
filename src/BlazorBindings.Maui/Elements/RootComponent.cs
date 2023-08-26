@@ -58,13 +58,5 @@ public class RootComponent : NativeControlComponentBase, IElementHandler, INonPh
         return base.SetParametersAsync(ParameterView.Empty);
     }
 
-
-    protected override void RenderAttributes(AttributesBuilder builder)
-    {
-    }
-
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName)
-    {
-    }
     object IElementHandler.TargetElement => NativeControl;
 }

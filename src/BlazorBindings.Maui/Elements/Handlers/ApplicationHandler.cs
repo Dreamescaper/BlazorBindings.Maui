@@ -29,5 +29,4 @@ internal class ApplicationHandler : IContainerElementHandler
     }
 
     public object TargetElement => _application;
-    public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 }

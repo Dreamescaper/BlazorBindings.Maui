@@ -37,17 +37,6 @@ public partial class TableView : IContainerElementHandler
         }
     }
 
-    int IContainerElementHandler.GetChildIndex(object child)
-    {
-        if (child is MC.TableRoot root)
-            return Equals(NativeControl.Root, root) ? 0 : -1;
-
-        if (child is MC.TableSection section)
-            return NativeControl.Root?.IndexOf(section) ?? -1;
-
-        return -1;
-    }
-
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         if (child is MC.TableRoot)

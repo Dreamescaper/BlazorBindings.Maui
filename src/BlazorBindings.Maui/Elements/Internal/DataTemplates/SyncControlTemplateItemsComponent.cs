@@ -11,7 +11,7 @@ namespace BlazorBindings.Maui.Elements.DataTemplates;
 /// This makes it possible to use when returning a View from template is not an option.
 /// However, it requires a DataTemplate to render synchronously, which does not always work with Blazor.
 /// </summary>
-internal class SyncControlTemplateItemsComponent<T> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
+internal class SyncControlTemplateItemsComponent<T> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
     where T : MC.BindableObject
 {
     protected override RenderFragment GetChildContent()
@@ -66,11 +66,7 @@ internal class SyncControlTemplateItemsComponent<T> : NativeControlComponentBase
     }
 
     void INonPhysicalChild.RemoveFromParent(object parentElement) { }
-
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
-
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
-    int IContainerElementHandler.GetChildIndex(object child) => -1;
     object IElementHandler.TargetElement => null;
 }

@@ -234,13 +234,6 @@ public partial class Shell : Page, IContainerElementHandler
         NativeControl.Items.Remove(itemToRemove);
     }
 
-    int IContainerElementHandler.GetChildIndex(object child)
-    {
-        var shellItem = GetItemForElement(child);
-        return NativeControl.Items.IndexOf(shellItem);
-    }
-
-
     private MC.ShellItem GetItemForElement(object child)
     {
         return child switch

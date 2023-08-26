@@ -12,6 +12,5 @@ namespace BlazorBindings.Core;
 public abstract class ElementManager
 {
     public abstract void AddChildElement(IElementHandler parentHandler, IElementHandler childHandler, int physicalSiblingIndex);
-    public abstract int GetChildElementIndex(IElementHandler parentHandler, IElementHandler childHandler);
     public abstract void RemoveChildElement(IElementHandler parentHandler, IElementHandler childHandler, int physicalSiblingIndex);
 }

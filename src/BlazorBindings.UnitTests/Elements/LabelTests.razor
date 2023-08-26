@@ -1,0 +1,83 @@
+﻿@inherits ElementTestBase
+
+@code {
+    [Test]
+    public async Task AddLabelWithTextProperty()
+    {
+        var label = await Render<MC.Label>(@<Label Text="123" />);
+
+        Assert.That(label.Text, Is.EqualTo("123"));
+    }
+
+    [Test]
+    public async Task AddLabelWithTextContent()
+    {
+        var label = await Render<MC.Label>(@<Label>345</Label>);
+
+        Assert.That(label.Text, Is.EqualTo("345"));
+    }
+
+    [Test]
+    public async Task AddLabelWithDynamicTextContent()
+    {
+        var someText = "123";
+        var label = await Render<MC.Label>(@<Label>Dynamic - @someText - label with child content</Label>);
+
+        Assert.That(label.Text, Is.EqualTo("Dynamic - 123 - label with child content"));
+
+        someText = "234";
+        StateHasChanged();
+
+        Assert.That(label.Text, Is.EqualTo("Dynamic - 234 - label with child content"));
+    }
+
+    [Test]
+    public async Task AddLabelWithSpans()
+    {
+        var label = await Render<MC.Label>(
+    @<Label>
+        <Span Text="Label with spans " />
+        <Span TextColor="Colors.Red" Text="with color, " />
+        <Span TextDecorations="TextDecorations.Strikethrough">text decorations</Span>
+        <Span FontAttributes="MC.FontAttributes.Bold" Text=" and font attributes." />
+    </Label>
+        );
+
+        var spans = label.FormattedText.Spans;
+        Assert.That(spans[0].Text, Is.EqualTo("Label with spans "));
+
+        Assert.That(spans[1].Text, Is.EqualTo("with color, "));
+        Assert.That(spans[1].TextColor, Is.EqualTo(Colors.Red));
+
+        Assert.That(spans[2].Text, Is.EqualTo("text decorations"));
+        Assert.That(spans[2].TextDecorations, Is.EqualTo(TextDecorations.Strikethrough));
+
+        Assert.That(spans[3].Text, Is.EqualTo(" and font attributes."));
+        Assert.That(spans[3].FontAttributes, Is.EqualTo(MC.FontAttributes.Bold));
+    }
+
+    [Test]
+    public async Task AddSpanDynamically()
+    {
+        var insertSpan = false;
+
+        var label = await Render<MC.Label>(
+    @<Label>
+        <Span>1</Span>
+        <Span>2</Span>
+        @if (insertSpan)
+        {
+            <Span>10</Span>
+        }
+        <Span>3</Span>
+    </Label>
+    );
+
+        Assert.That(label.FormattedText.ToString(), Is.EqualTo("123"));
+
+        insertSpan = true;
+        StateHasChanged();
+
+        Assert.That(label.FormattedText.ToString(), Is.EqualTo("12103"));
+    }
+}

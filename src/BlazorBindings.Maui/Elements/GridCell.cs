@@ -5,7 +5,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
 
-public class GridCell : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
+public class GridCell : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
 {
     [Parameter] public int? Column { get; set; }
     [Parameter] public int? ColumnSpan { get; set; }
@@ -67,10 +67,6 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
         }
 
         return base.SetParametersAsync(ParameterView.Empty);
-    }
-
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName)
-    {
     }
 
     protected override RenderFragment GetChildContent() => ChildContent;

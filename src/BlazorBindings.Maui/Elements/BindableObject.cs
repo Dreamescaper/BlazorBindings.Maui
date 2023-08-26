@@ -22,11 +22,6 @@ public abstract class BindableObject : NativeControlComponentBase, IElementHandl
         return Task.CompletedTask;
     }
 
-    protected sealed override void RenderAttributes(AttributesBuilder builder)
-    {
-        // Since we set attributes directly in SetParametersAsync, this method is empty and sealed.
-    }
-
     protected virtual void HandleParameter(string name, object value)
     {
         if (HandleAdditionalParameter(name, value))
@@ -52,10 +47,6 @@ public abstract class BindableObject : NativeControlComponentBase, IElementHandl
     protected virtual bool HandleAdditionalParameter(string name, object value) => false;
 
     protected abstract MC.BindableObject CreateNativeElement();
-
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName)
-    {
-    }
 
     object IElementHandler.TargetElement => NativeControl;
 }

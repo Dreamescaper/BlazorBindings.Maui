@@ -8,19 +8,6 @@ namespace BlazorBindings.Maui.Elements;
 public static partial class AttributeHelper
 {
     /// <summary>
-    /// Helper method to serialize <see cref="Color" /> objects.
-    /// </summary>
-    public static string ColorToString(Color color)
-    {
-        if (color is null)
-        {
-            return null;
-        }
-
-        return color.ToRgbaHex(true);
-    }
-
-    /// <summary>
     /// Helper method to deserialize <see cref="Color" /> objects.
     /// </summary>
     public static Color GetColor(object obj)

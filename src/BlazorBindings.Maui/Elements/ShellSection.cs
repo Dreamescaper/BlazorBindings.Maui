@@ -50,12 +50,6 @@ public partial class ShellSection : ShellGroupItem, IContainerElementHandler
         }
     }
 
-    int IContainerElementHandler.GetChildIndex(object child)
-    {
-        var shellContent = GetContentForChild(child);
-        return NativeControl.Items.IndexOf(shellContent);
-    }
-
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         ArgumentNullException.ThrowIfNull(child);

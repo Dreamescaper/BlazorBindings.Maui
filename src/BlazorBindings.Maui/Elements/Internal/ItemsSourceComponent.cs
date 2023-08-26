@@ -8,7 +8,7 @@ namespace BlazorBindings.Maui.Elements.Internal;
 /// but instead of forcing the user to use ObservableCollection on their side, we manage the updates by Blazor.
 /// Probably not the most performant way, is there any other option?
 /// </summary>
-internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBase, IElementHandler, IContainerElementHandler, INonChildContainerElement
+internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBase, IElementHandler, IContainerElementHandler, INonPhysicalChild
 {
     private readonly ObservableCollection<TItem> _observableCollection = new();
 
@@ -62,11 +62,6 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
         _observableCollection.Insert(physicalSiblingIndex, (TItem)child);
     }
 
-    public int GetChildIndex(object child)
-    {
-        return _observableCollection.IndexOf((TItem)child);
-    }
-
     public void RemoveChild(object child, int physicalSiblingIndex)
     {
         _observableCollection.RemoveAt(physicalSiblingIndex);
@@ -82,7 +77,6 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
         CollectionSetter(_parent, _observableCollection);
 
     }
-    public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 
     private class ItemHolderComponent : NativeControlComponentBase, IElementHandler
     {
@@ -96,10 +90,6 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
         public int? Index { get; set; }
 
         public object TargetElement => Item;
-
-        public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName)
-        {
-        }
 
         public override Task SetParametersAsync(ParameterView parameters)
         {

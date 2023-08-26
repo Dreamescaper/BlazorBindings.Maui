@@ -2,7 +2,7 @@
 
 namespace BlazorBindings.Maui.Elements.Internal;
 
-internal class ContentPropertyComponent<TControl> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
+internal class ContentPropertyComponent<TControl> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
 {
     private TControl _parent;
 
@@ -26,11 +26,6 @@ internal class ContentPropertyComponent<TControl> : NativeControlComponentBase, 
         SetPropertyAction(_parent, child);
     }
 
-    int IContainerElementHandler.GetChildIndex(object child)
-    {
-        return -1;
-    }
-
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         SetPropertyAction(_parent, null);
@@ -39,5 +34,4 @@ internal class ContentPropertyComponent<TControl> : NativeControlComponentBase, 
     // Because this is a 'fake' element, all matters related to physical trees
     // should be no-ops.
     object IElementHandler.TargetElement => null;
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 }

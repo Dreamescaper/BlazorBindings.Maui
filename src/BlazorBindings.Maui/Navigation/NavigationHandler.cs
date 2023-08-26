@@ -84,7 +84,6 @@ internal class NavigationHandler : IContainerElementHandler
     }
 
     public int GetChildIndex(object child) => -1;
-    public void ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
     public object ElementControl => null;
     public object TargetElement => null;
 }

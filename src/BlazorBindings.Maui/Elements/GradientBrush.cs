@@ -46,16 +46,6 @@ public abstract partial class GradientBrush : Brush, IContainerElementHandler
         }
     }
 
-    int IContainerElementHandler.GetChildIndex(object child)
-    {
-        if (child is not MC.GradientStop gradientStopChild)
-        {
-            throw new ArgumentException($"GradientBrush support GradientStop child elements only, but {child?.GetType()} found instead.", nameof(child));
-        }
-
-        return NativeControl.GradientStops.IndexOf(gradientStopChild);
-    }
-
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         if (child is not MC.GradientStop gradientStopChild)

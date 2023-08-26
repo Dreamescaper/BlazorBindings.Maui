@@ -7,7 +7,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.DataTemplates;
 
-internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
+internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
 {
     protected override RenderFragment GetChildContent() => builder =>
     {
@@ -65,8 +65,6 @@ internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlCom
     object IElementHandler.TargetElement => null;
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
-    int IContainerElementHandler.GetChildIndex(object child) => -1;
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 
     class DataTemplateSelector : MC.DataTemplateSelector
     {

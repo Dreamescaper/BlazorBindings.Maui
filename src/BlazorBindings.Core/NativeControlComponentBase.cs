@@ -14,8 +14,6 @@ public abstract class NativeControlComponentBase : IComponent
     private RenderHandle _renderHandle;
     private Exception _eventCallbackException;
 
-    protected IElementHandler ElementHandler { get; private set; }
-
     public NativeControlComponentBase()
     {
         _renderFragment = builder =>
@@ -41,23 +39,14 @@ public abstract class NativeControlComponentBase : IComponent
             ExceptionDispatchInfo.Throw(oldException);
         }
 
-        builder.OpenElement(0, GetType().FullName);
-        RenderAttributes(new AttributesBuilder(builder));
-
         var childContent = GetChildContent();
         if (childContent != null)
         {
-            builder.AddContent(2, childContent);
+            builder.AddContent(0, childContent);
         }
 
-        int sequence = 3;
+        int sequence = 1;
         RenderAdditionalElementContent(builder, ref sequence);
-
-        builder.CloseElement();
-    }
-
-    protected virtual void RenderAttributes(AttributesBuilder builder)
-    {
     }
 
     protected virtual void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
@@ -118,11 +107,6 @@ public abstract class NativeControlComponentBase : IComponent
     }
 
     protected virtual RenderFragment GetChildContent() => null;
-
-    internal void SetElementReference(IElementHandler elementHandler)
-    {
-        ElementHandler = elementHandler ?? throw new ArgumentNullException(nameof(elementHandler));
-    }
 
     private async Task HandleExceptionAsync(Task task)
     {

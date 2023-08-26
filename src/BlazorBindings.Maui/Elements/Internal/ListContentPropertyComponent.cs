@@ -2,7 +2,7 @@
 
 namespace BlazorBindings.Maui.Elements.Internal;
 
-internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonChildContainerElement
+internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
     where TItem : class
 {
     private TControl _parent;
@@ -31,15 +31,8 @@ internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComp
         _propertyItems.Insert(physicalSiblingIndex, child.Cast<TItem>());
     }
 
-    int IContainerElementHandler.GetChildIndex(object child)
-    {
-        return _propertyItems.IndexOf(child.Cast<TItem>());
-    }
-
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
         _propertyItems.Remove(child.Cast<TItem>());
     }
-
-    void IElementHandler.ApplyAttribute(ulong attributeEventHandlerId, string attributeName, object attributeValue, string attributeEventUpdatesAttributeName) { }
 }

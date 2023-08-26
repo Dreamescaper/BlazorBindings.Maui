@@ -49,9 +49,9 @@
 
 	<ItemGroup>
 	  <PackageReference Include="AlohaKit" Version="1.0.74" />
-	  <PackageReference Include="CommunityToolkit.Maui" Version="5.2.0" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
 	  <PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
-	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.4-preview.89" />
+	  <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.5" />
 	  <PackageReference Include="XCalendar.Maui" Version="4.5.1" />
 	</ItemGroup>
 
