@@ -18,10 +18,14 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
     [Parameter]
     public Action<TControl, ObservableCollection<TItem>> CollectionSetter { get; set; }
 
+    [Parameter]
+    public Func<TItem, object> KeySelector { get; set; }
+
+
     private TControl _parent;
     public object TargetElement => _parent;
 
-    private readonly HashSet<object> _keys = new();
+    private HashSet<object> _keys;
 
     protected override RenderFragment GetChildContent() => builder =>
     {
@@ -31,11 +35,16 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
         int index = 0;
         foreach (var item in Items)
         {
-            object key = item;
-            // Blazor doesn't allow duplicate keys. Therefore we add keys only until the first duplicate.
-            shouldAddKey &= _keys.Add(key);
-            if (!shouldAddKey)
-                key = null;
+            var key = KeySelector == null ? item : KeySelector(item);
+            if (KeySelector == null)
+            {
+                // Blazor doesn't allow duplicate keys. Therefore we add keys until the first duplicate.
+                // In case KeySelector is provided, we don't check for that here, since it's user's responsibility now.
+                _keys ??= new();
+                shouldAddKey &= _keys.Add(key);
+                if (!shouldAddKey)
+                    key = null;
+            }
 
             builder.OpenComponent<ItemHolderComponent>(1);
             builder.SetKey(key);
