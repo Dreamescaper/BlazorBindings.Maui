@@ -9,7 +9,7 @@
     {
         List<int> source = new() { 1, 2, 3 };
 
-        var changes = await GetChanges(source, x => x.Add(4));
+        var changes = await GetChanges(source, () => source.Add(4));
 
         var change = changes.Single();
         Assert.That(change.Action, Is.EqualTo(NotifyCollectionChangedAction.Add));
@@ -22,7 +22,7 @@
     {
         List<string> source = new() { "A", "B", "C" };
 
-        var changes = await GetChanges(source, x => x.Insert(2, "D"));
+        var changes = await GetChanges(source, () => source.Insert(2, "D"));
 
         var change = changes.Single();
         Assert.That(change.Action, Is.EqualTo(NotifyCollectionChangedAction.Add));
@@ -35,7 +35,7 @@
     {
         var source = new[] { (1, "A"), (2, "B"), (3, "C") }.ToList();
 
-        var changes = await GetChanges(source, x => x.RemoveAt(0));
+        var changes = await GetChanges(source, () => source.RemoveAt(0));
 
         var change = changes.Single();
         Assert.That(change.Action, Is.EqualTo(NotifyCollectionChangedAction.Remove));
@@ -54,7 +54,7 @@
         }.ToList();
 
         var valueToRemove = source[1];
-        var changes = await GetChanges(source, x => x.RemoveAt(1));
+        var changes = await GetChanges(source, () => source.RemoveAt(1));
 
         var change = changes.Single();
         Assert.That(change.Action, Is.EqualTo(NotifyCollectionChangedAction.Remove));
@@ -67,7 +67,7 @@
     {
         var source = new[] { 9, 9, 9, 1, 2, 3 }.ToList();
 
-        var changes = await GetChanges(source, x => x.Insert(3, 4));
+        var changes = await GetChanges(source, () => source.Insert(3, 4));
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -78,7 +78,7 @@
     {
         var source = new[] { 9, 1, 2, 3, 4, 5 }.ToList();
 
-        var changes = await GetChanges(source, x => x.Insert(3, 9));
+        var changes = await GetChanges(source, () => source.Insert(3, 9));
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -89,7 +89,7 @@
     {
         var source = new[] { 9, 1, 2, 9, 3, 4, 9 }.ToList();
 
-        var changes = await GetChanges(source, x => x.RemoveAt(3));
+        var changes = await GetChanges(source, () => source.RemoveAt(3));
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -100,7 +100,7 @@
     {
         var source = new[] { 1, 9, 9, 1, 9, 9, 1 }.ToList();
 
-        var changes = await GetChanges(source, x => x.RemoveAt(3));
+        var changes = await GetChanges(source, () => source.RemoveAt(3));
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -111,7 +111,7 @@
     {
         var source = new[] { 9, 9, 9, 9, 1, 2, 3, 4 }.ToList();
 
-        var changes = await GetChanges(source, x => x.RemoveAt(4));
+        var changes = await GetChanges(source, () => source.RemoveAt(4));
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -122,7 +122,7 @@
     {
         var source = new[] { 1, 9, 9, 1, 9, 9, 1 }.ToList();
 
-        var changes = await GetChanges(source, x => x[4] = 10);
+        var changes = await GetChanges(source, () => source[4] = 10);
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -133,7 +133,7 @@
     {
         var source = new[] { 1, 9, 9, 4, 9, 9, 1 }.ToList();
 
-        var changes = await GetChanges(source, x => x[3] = 10);
+        var changes = await GetChanges(source, () => source[3] = 10);
 
         // Lots of changes here, that's expected with duplicates. Collection result is already verified in GetChanges.
         Assert.That(changes, Is.Not.Empty);
@@ -144,7 +144,7 @@
     {
         var source = new[] { "A", "B", null, "C", null }.ToList();
 
-        var changes = await GetChanges(source, x => x.RemoveAt(2));
+        var changes = await GetChanges(source, () => source.RemoveAt(2));
 
         var change = changes.Single();
         Assert.That(change.Action, Is.EqualTo(NotifyCollectionChangedAction.Remove));
@@ -157,7 +157,7 @@
     {
         var source = new[] { "A", "B", null, "C", null }.ToList();
 
-        var changes = await GetChanges(source, x => x.Clear());
+        var changes = await GetChanges(source, () => source.Clear());
 
         Assert.That(changes.SelectMany(c => c.OldItems.Cast<string>()), Is.EqualTo(new[] { "A", "B", null, "C", null }));
     }
@@ -167,10 +167,10 @@
     {
         var source = new[] { 1, 2, 3, 4 }.ToList();
 
-        var changes = await GetChanges(source, x =>
+        var changes = await GetChanges(source, () =>
         {
-            x.Clear();
-            x.AddRange(new[] { 5, 6, 7, 8 });
+            source.Clear();
+            source.AddRange(new[] { 5, 6, 7, 8 });
         });
 
         var removedItems = changes.Where(c => c.OldItems != null).SelectMany(c => c.OldItems.Cast<int>());
@@ -180,32 +180,117 @@
         Assert.That(addedItems, Is.EqualTo(new[] { 5, 6, 7, 8 }));
     }
 
+    [Test]
+    public async Task KeyProvided_RecreateTheCollection()
+    {
+        TestClass[] CreateItems() => new TestClass[]
+        {
+            new(){Value = 1},
+            new(){Value = 2},
+            new(){Value = 3}
+        };
+
+        var source = CreateItems();
+
+        var changes = await GetChanges(() => source,
+            keySelector: x => x.Value,
+            changeAction: () => source = CreateItems());
+
+        Assert.That(changes.Select(c => c.Action), Has.All.EqualTo(NotifyCollectionChangedAction.Replace));
+
+        var replacedItems = changes.Select(c => (OldItem: ((TestClass)c.OldItems[0]).Value, NewItem: ((TestClass)c.NewItems[0]).Value));
+        Assert.That(replacedItems, Is.EqualTo(new[] { (1, 1), (2, 2), (3, 3) }));
+    }
+
+    [Test]
+    public async Task KeyProvided_RecreateTheCollection_AddRemoveItem()
+    {
+        List<TestClass> CreateItems() => new TestClass[]
+        {
+            new(){Value = 1},
+            new(){Value = 2},
+            new(){Value = 3}
+        }.ToList();
+
+        var source = CreateItems();
+
+        var changes = await GetChanges(() => source, keySelector: x => x.Value,
+            () =>
+            {
+                source = CreateItems();
+                source.Insert(1, new() { Value = 9 });
+                source.RemoveAt(3);
+            });
+
+        // 1 addition, 1 removal, 2 replaces
+        Assert.That(changes.Count, Is.EqualTo(4));
+
+        var replacedItems = changes
+            .Where(c => c.Action == NotifyCollectionChangedAction.Replace)
+            .Select(c => (OldItem: ((TestClass)c.OldItems[0]).Value, NewItem: ((TestClass)c.NewItems[0]).Value));
+        Assert.That(replacedItems, Is.EqualTo(new[] { (1, 1), (2, 2) }));
+
+        var addedItems = changes
+            .Where(c => c.Action == NotifyCollectionChangedAction.Add)
+            .SelectMany(c => c.NewItems.Cast<TestClass>())
+            .Select(c => c.Value);
+        Assert.That(addedItems, Is.EqualTo(new[] { 9 }));
+
+        var removedItems = changes
+            .Where(c => c.Action == NotifyCollectionChangedAction.Remove)
+            .SelectMany(c => c.OldItems.Cast<TestClass>())
+            .Select(c => c.Value);
+        Assert.That(removedItems, Is.EqualTo(new[] { 3 }));
+    }
+
+    [Test]
+    public async Task NonUniqueKeyProvided_FailsWithException()
+    {
+        var source = new TestClass[]
+        {
+            new(){Value = 1},
+            new(){Value = 2},
+            new(){Value = 2}
+        };
+
+        var action = async () =>
+        {
+            var changes = await CreateObservableCollection(() => source, keySelector: x => x.Value);
+            StateHasChanged();
+        };
+
+        Assert.That(action, Throws.Exception.With.Message.Contains("Key values must be unique."));
+    }
+
     class TestClass
     {
         public int Value { get; set; }
     }
 
-    private async Task<ObservableCollection<T>> CreateObservableCollection<T>(IEnumerable<T> source)
+    private async Task<ObservableCollection<T>> CreateObservableCollection<T>(Func<IEnumerable<T>> source, Func<T, object> keySelector = null)
     {
-        var collectionView = await Render<MC.CollectionView>(@<CollectionView ItemsSource="source" />);
+        var collectionView = await Render<MC.CollectionView>(@<CollectionView ItemsSource="source()" ItemKeySelector="keySelector" />);
         var observableCollection = (ObservableCollection<T>)collectionView.ItemsSource;
 
-        Assert.That(observableCollection, Is.EqualTo(source));
+        Assert.That(observableCollection, Is.EqualTo(source()));
 
         return observableCollection;
     }
 
-    private async Task<List<NotifyCollectionChangedEventArgs>> GetChanges<T>(List<T> source, Action<List<T>> changeAction)
+    private Task<List<NotifyCollectionChangedEventArgs>> GetChanges<T>(IEnumerable<T> source, Action changeAction)
+        => GetChanges(() => source, null, changeAction);
+
+    private async Task<List<NotifyCollectionChangedEventArgs>> GetChanges<T>(Func<IEnumerable<T>> source, Func<T, object> keySelector, Action changeAction)
     {
-        var observableCollection = await CreateObservableCollection(source);
+        var observableCollection = await CreateObservableCollection(source, keySelector);
 
         List<NotifyCollectionChangedEventArgs> changes = new();
         observableCollection.CollectionChanged += (_, e) => changes.Add(e);
 
-        changeAction(source);
+        changeAction();
         StateHasChanged();
 
-        Assert.That(observableCollection, Is.EqualTo(source));
+        Assert.That(observableCollection, Is.EqualTo(source()));
 
         return changes;
     }

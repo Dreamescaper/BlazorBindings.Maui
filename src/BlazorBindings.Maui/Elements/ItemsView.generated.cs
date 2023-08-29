@@ -30,6 +30,7 @@ namespace BlazorBindings.Maui.Elements
 
         [Parameter] public ScrollBarVisibility? HorizontalScrollBarVisibility { get; set; }
         [Parameter] public IEnumerable<T> ItemsSource { get; set; }
+        [Parameter] public Func<T, object> ItemKeySelector { get; set; }
         [Parameter] public MC.ItemsUpdatingScrollMode? ItemsUpdatingScrollMode { get; set; }
         [Parameter] public int? RemainingItemsThreshold { get; set; }
         [Parameter] public ScrollBarVisibility? VerticalScrollBarVisibility { get; set; }
@@ -56,6 +57,9 @@ namespace BlazorBindings.Maui.Elements
                     break;
                 case nameof(ItemsSource):
                     ItemsSource = (IEnumerable<T>)value;
+                    break;
+                case nameof(ItemKeySelector):
+                    ItemKeySelector = (Func<T, object>)value;
                     break;
                 case nameof(ItemsUpdatingScrollMode):
                     if (!Equals(ItemsUpdatingScrollMode, value))
@@ -130,7 +134,7 @@ namespace BlazorBindings.Maui.Elements
             RenderTreeBuilderHelper.AddContentProperty<MC.ItemsView>(builder, sequence++, EmptyView, (x, value) => x.EmptyView = (object)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplate, (x, template) => x.ItemTemplate = template);
             RenderTreeBuilderHelper.AddDataTemplateSelectorProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplateSelector, (x, template) => x.ItemTemplate = template);
-            RenderTreeBuilderHelper.AddItemsSourceProperty<MC.ItemsView, T>(builder, sequence++, ItemsSource, (x, items) => x.ItemsSource = items);
+            RenderTreeBuilderHelper.AddItemsSourceProperty<MC.ItemsView, T>(builder, sequence++, ItemsSource, ItemKeySelector, (x, items) => x.ItemsSource = items);
         }
 
         static partial void RegisterAdditionalHandlers();

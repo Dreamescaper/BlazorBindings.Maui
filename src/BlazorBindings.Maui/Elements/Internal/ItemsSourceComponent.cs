@@ -51,6 +51,10 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
             builder.AddAttribute(2, nameof(ItemHolderComponent.Item), item);
             builder.AddAttribute(3, nameof(ItemHolderComponent.Index), index);
             builder.AddAttribute(4, nameof(ItemHolderComponent.ObservableCollection), _observableCollection);
+
+            if (key != null)
+                builder.AddAttribute(5, nameof(ItemHolderComponent.HasKey), true);
+
             builder.CloseComponent();
 
             index++;
@@ -75,7 +79,6 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
     {
         _parent = (TControl)parentElement;
         CollectionSetter(_parent, _observableCollection);
-
     }
 
     private class ItemHolderComponent : NativeControlComponentBase, IElementHandler
@@ -88,6 +91,9 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
 
         [Parameter]
         public int? Index { get; set; }
+
+        [Parameter]
+        public bool HasKey { get; set; }
 
         public object TargetElement => Item;
 
@@ -105,9 +111,11 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
             if (previousIndex == Index && Equals(previousItem, Item))
                 return task;
 
-            // Generally it will not be invoked, but it is needed when Source has duplicate items, and component has no key.
-            if (previousIndex == Index && !Equals(ObservableCollection[Index.Value], Item))
-                ObservableCollection[Index.Value] = Item;
+            // Generally it will not be invoked, but it is needed when Source has duplicate items, or component has key.
+            // The problem here is that we don't know whether previous items are going to be removed or added.
+            // We use previousIndex here, because this part of the code is executed before items are actually added/removed to ObservableCollection.
+            if ((HasKey || previousIndex == Index) && !Equals(ObservableCollection[previousIndex.Value], Item))
+                ObservableCollection[previousIndex.Value] = Item;
 
             return task;
         }
