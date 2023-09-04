@@ -83,7 +83,5 @@ internal class NavigationHandler : IContainerElementHandler
         await AddChildAsync((MC.Page)child);
     }
 
-    public int GetChildIndex(object child) => -1;
-    public object ElementControl => null;
     public object TargetElement => null;
 }

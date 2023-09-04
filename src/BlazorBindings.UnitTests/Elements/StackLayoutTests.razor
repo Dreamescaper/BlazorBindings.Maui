@@ -2,19 +2,20 @@
 @inherits ElementTestBase
 
 @code {
+
     [Test]
     public async Task AddLayoutChildren()
     {
         var layout = await Render<MC.Layout>(
-    @<VerticalStackLayout>
-        <Label>First</Label>
-        <Button>Second</Button>
+            @<VerticalStackLayout>
+                <Label>First</Label>
+                <Button>Second</Button>
 
-        <HorizontalStackLayout>
-            <Label>Third</Label>
-        </HorizontalStackLayout>
-    </VerticalStackLayout>
-    );
+                <HorizontalStackLayout>
+                    <Label>Third</Label>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            );
 
         var label = (MC.Label)layout.Children[0];
         var button = (MC.Button)layout.Children[1];
@@ -32,28 +33,33 @@
         var insertItems = false;
 
         var layout = await Render<MC.Layout>(
-    @<VerticalStackLayout>
-        @if (insertItems)
-        {
-            <Label>1</Label>
-        }
-        <Label>2</Label>
-        @if (insertItems)
-        {
-            <Label>3</Label>
-        }
-        <Label>4</Label>
-        @if (insertItems)
-        {
-            <Label>5</Label>
-        }
-        <Label>6</Label>
-        @if (insertItems)
-        {
-            <Label>7</Label>
-        }
-    </VerticalStackLayout>
-        );
+            @<VerticalStackLayout>
+                @if (insertItems)
+                {
+                    <Label>1</Label>
+                }
+                <Label>2</Label>
+                @if (insertItems)
+                {
+                    <Label>3</Label>
+                }
+                <Label>4</Label>
+
+                @if (insertItems)
+                {
+                    <Label>5</Label>
+                }
+                else
+                {
+                    <Label>6</Label>
+                }
+
+                @if (insertItems)
+                {
+                    <Label>7</Label>
+                }
+            </VerticalStackLayout>
+            );
 
         var items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
         Assert.That(items, Is.EqualTo(new[] { "2", "4", "6" }));
@@ -62,7 +68,7 @@
         StateHasChanged();
 
         items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
-        Assert.That(items, Is.EqualTo(new[] { "1", "2", "3", "4", "5", "6", "7" }));
+        Assert.That(items, Is.EqualTo(new[] { "1", "2", "3", "4", "5", "7" }));
 
         insertItems = false;
         StateHasChanged();
@@ -78,42 +84,45 @@
         var insertItems = false;
 
         var layout = await Render<MC.Layout>(
-    @<VerticalStackLayout>
-        <Label>0</Label>
-        @if (insertItems)
-        {
-            <Label>1</Label>
-        }
+            @<VerticalStackLayout>
+                <Label>0</Label>
+                @if (insertItems)
+                {
+                    <Label>1</Label>
+                }
 
-        <WrapperWithCascadingValue>
-            @if (insertItems)
-            {
-                <Label>2</Label>
-            }
-            <Label>3</Label>
-        </WrapperWithCascadingValue>
+                <WrapperWithCascadingValue>
+                    @if (insertItems)
+                    {
+                        <Label>2</Label>
+                    }
+                    <Label>3</Label>
+                </WrapperWithCascadingValue>
 
-        <Label>4</Label>
-        @if (insertItems)
-        {
-            <Label>5</Label>
-        }
+                <Label>4</Label>
+                @if (insertItems)
+                {
+                    <Label>5</Label>
+                }
 
-        @if (insertItems)
-        {
-            <WrapperWithCascadingValue>
-                <Label>6</Label>
-                <Label>7</Label>
-            </WrapperWithCascadingValue>
-        }
+                @if (insertItems)
+                {
+                    <WrapperWithCascadingValue>
+                        <Label>6</Label>
+                        <Label>7</Label>
+                    </WrapperWithCascadingValue>
+                }
+                else
+                {
+                    <Label>8</Label>
+                }
 
-        <Label>8</Label>
-        @if (insertItems)
-        {
-            <Label>9</Label>
-        }
-    </VerticalStackLayout>
-    );
+                @if (insertItems)
+                {
+                    <Label>9</Label>
+                }
+            </VerticalStackLayout>
+            );
 
         var items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
         Assert.That(items, Is.EqualTo(new[] { "0", "3", "4", "8" }));
@@ -122,13 +131,56 @@
         StateHasChanged();
 
         items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
-        Assert.That(items, Is.EqualTo(new[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        Assert.That(items, Is.EqualTo(new[] { "0", "1", "2", "3", "4", "5", "6", "7", "9" }));
 
         insertItems = false;
         StateHasChanged();
 
         items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
         Assert.That(items, Is.EqualTo(new[] { "0", "3", "4", "8" }));
+    }
+
+
+    [Test]
+    public async Task ReplaceItems()
+    {
+        var replaceItems = true;
+
+        var layout = await Render<MC.Layout>(
+            @<VerticalStackLayout>
+                @if (replaceItems)
+                {
+                    <Label>1</Label>
+                    
+                    <WrapperWithCascadingValue>
+                        <Label>2</Label>
+                    </WrapperWithCascadingValue>
+                    
+                    <Label>3</Label>
+                }
+                else
+                {
+                    <Label>4</Label>
+                    <Label>5</Label>
+                    <Label>6</Label>
+                }
+            </VerticalStackLayout>
+            );
+
+        var items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
+        Assert.That(items, Is.EqualTo(new[] { "1", "2", "3" }));
+
+        replaceItems = false;
+        StateHasChanged();
+
+        items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
+        Assert.That(items, Is.EqualTo(new[] { "4", "5", "6" }));
+
+        replaceItems = true;
+        StateHasChanged();
+
+        items = layout.Children.Cast<MC.Label>().Select(l => l.Text).ToArray();
+        Assert.That(items, Is.EqualTo(new[] { "1", "2", "3" }));
     }
 
 }

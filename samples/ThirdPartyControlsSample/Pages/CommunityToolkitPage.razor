@@ -3,21 +3,23 @@
 @using CommunityToolkit.Maui.Core
 @using ThirdPartyControlsSample.Extensions;
 
+@inject Navigation Navigation;
+
 <ContentPage Title="CommunityToolkit">
     <ScrollView>
         <VerticalStackLayout Margin="20" Spacing="8">
             <Label>Avatar with photo url</Label>
-            <AvatarView Text="HW" ImageSource="urlSource" />
+            <AvatarView Text="HW" ImageSource="urlSource"/>
 
             <Label>Avatar without photo</Label>
-            <AvatarView Text="HW" />
+            <AvatarView Text="HW"/>
 
             <Label>Drawing view</Label>
             <DrawingView IsMultiLineModeEnabled="true"
                          ShouldClearOnFinish="false"
                          LineColor="Colors.Black"
                          HeightRequest="100"
-                         WidthRequest="200" />
+                         WidthRequest="200"/>
 
             <Label>Popup</Label>
             <Button OnClick="ShowPopup">Show popup</Button>
@@ -27,14 +29,13 @@
 </ContentPage>
 
 @code {
-    @inject Navigation Navigation;
+    ImageSource urlSource = "https://static.wikia.nocookie.net/firefly/images/f/fa/Wash.jpg";
 
-ImageSource urlSource = "https://static.wikia.nocookie.net/firefly/images/f/fa/Wash.jpg";
+    string popupResult;
 
-string popupResult;
+    async Task ShowPopup()
+    {
+        popupResult = (string)await Navigation.ShowCommunityToolkitPopupAsync<CommunityToolkitPopup>();
+    }
 
-async Task ShowPopup()
-{
-    popupResult = (string)await Navigation.ShowCommunityToolkitPopupAsync<CommunityToolkitPopup>();
-}
 }

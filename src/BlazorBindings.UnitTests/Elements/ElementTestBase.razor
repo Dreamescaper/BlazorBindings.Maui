@@ -6,58 +6,58 @@
 @implements IHandleEvent
 
 @code {
-public ElementTestBase()
-{
-    MC.Application.Current = new TestApplication();
-}
+    public ElementTestBase()
+    {
+        MC.Application.Current = new TestApplication();
+    }
 
-private TestBlazorBindingsRenderer _renderer = (TestBlazorBindingsRenderer)TestBlazorBindingsRenderer.Create();
-private RenderFragmentComponent _renderedComponent;
+    private TestBlazorBindingsRenderer _renderer = (TestBlazorBindingsRenderer)TestBlazorBindingsRenderer.Create();
+    private RenderFragmentComponent _renderedComponent;
 
-protected async Task<T> Render<T>(RenderFragment renderFragment)
-{
-    var container = new RootContainerHandler();
-    _renderedComponent = await _renderer.AddComponent<RenderFragmentComponent>(container, new Dictionary<string, object>
+    protected async Task<T> Render<T>(RenderFragment renderFragment)
+    {
+        var container = new RootContainerHandler();
+        _renderedComponent = await _renderer.AddComponent<RenderFragmentComponent>(container, new Dictionary<string, object>
+            {
+                ["RenderFragment"] = renderFragment
+            });
+
+        return (T)container.Elements[0];
+    }
+
+    protected new void StateHasChanged()
+    {
+        _renderedComponent?.StateHasChanged();
+        ThrowOnException();
+    }
+
+    protected void ThrowOnException()
+    {
+        if (_renderer.Exceptions.Count > 0)
         {
-            ["RenderFragment"] = renderFragment
-        });
-
-    return (T)container.Elements[0];
-}
-
-protected new void StateHasChanged()
-{
-    _renderedComponent?.StateHasChanged();
-    ThrowOnException();
-}
-
-protected void ThrowOnException()
-{
-    if (_renderer.Exceptions.Count > 0)
-    {
-        ExceptionDispatchInfo.Throw(_renderer.Exceptions[0]);
-    }
-}
-
-Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg)
-{
-    var task = (_renderedComponent as IHandleEvent)?.HandleEventAsync(callback, arg);
-    ThrowOnException();
-    return task ?? Task.CompletedTask;
-}
-
-private class RenderFragmentComponent : ComponentBase
-{
-    [Parameter] public RenderFragment RenderFragment { get; set; }
-
-    protected override void BuildRenderTree(RenderTreeBuilder builder)
-    {
-        RenderFragment(builder);
+            ExceptionDispatchInfo.Throw(_renderer.Exceptions[0]);
+        }
     }
 
-    public new void StateHasChanged()
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object arg)
     {
-        base.StateHasChanged();
+        var task = (_renderedComponent as IHandleEvent)?.HandleEventAsync(callback, arg);
+        ThrowOnException();
+        return task ?? Task.CompletedTask;
     }
-}
+
+    private class RenderFragmentComponent : ComponentBase
+    {
+        [Parameter] public RenderFragment RenderFragment { get; set; }
+
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            RenderFragment(builder);
+        }
+
+        public new void StateHasChanged()
+        {
+            base.StateHasChanged();
+        }
+    }
 }

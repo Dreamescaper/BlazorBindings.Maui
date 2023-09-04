@@ -1,0 +1,38 @@
+@using BlazorBindings.UnitTests.Components;
+@using BlazorBindings.UnitTests.Elements;
+
+@inherits ElementTestBase
+
+@code
+{
+    [Test]
+    public async Task TargetElementsShouldHavePropertiesSetWhenAddedToParents()
+    {
+        var parent = await Render<TestContainerComponent.TestTargetElement>(
+    @<TestContainerComponent X="1" Y="2">
+        <TestContainerComponent X="3" Y="4">
+            <WrapperWithCascadingValue>
+                <TestContainerComponent X="5" Y="6" />
+            </WrapperWithCascadingValue>
+            <TestContainerComponent X="7" Y="8" />
+        </TestContainerComponent>
+
+        <TestContainerComponent X="9" Y="10" />
+    </TestContainerComponent>
+    );
+
+        Assert.That((parent.X, parent.Y), Is.EqualTo((1, 2)));
+
+        var child0 = parent.Children[0];
+        var child1 = parent.Children[1];
+
+        Assert.That((child0.X, child0.Y), Is.EqualTo((3, 4)));
+        Assert.That((child1.X, child1.Y), Is.EqualTo((9, 10)));
+
+        var child00 = child0.Children[0];
+        var child01 = child0.Children[1];
+
+        Assert.That((child00.X, child00.Y), Is.EqualTo((5, 6)));
+        Assert.That((child01.X, child01.Y), Is.EqualTo((7, 8)));
+    }
+}

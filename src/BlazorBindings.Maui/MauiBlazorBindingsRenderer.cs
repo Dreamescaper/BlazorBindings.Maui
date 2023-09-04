@@ -53,11 +53,6 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
         ExceptionDispatchInfo.Throw(exception);
     }
 
-    protected override ElementManager CreateNativeControlManager()
-    {
-        return new MauiBlazorBindingsElementManager();
-    }
-
     // It tries to return the Element as soon as it is available, therefore Component task might still be in progress.
     internal async Task<(object Element, Task<IComponent> Component)> GetElementFromRenderedComponent(Type componentType, Dictionary<string, object> parameters = null)
     {

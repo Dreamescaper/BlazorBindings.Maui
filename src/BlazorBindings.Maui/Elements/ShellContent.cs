@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using Microsoft.AspNetCore.Components.Rendering;
+using System.Diagnostics;
 using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
@@ -42,10 +43,14 @@ public partial class ShellContent : BaseShellItem, IContainerElementHandler
 
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
-        if (NativeControl.Content == child)
-        {
-            NativeControl.Content = null;
-        }
+        Debug.Assert(NativeControl.Content == child);
+        NativeControl.Content = null;
+    }
+
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        Debug.Assert(NativeControl.Content == oldChild);
+        NativeControl.Content = newChild;
     }
 
     protected override void RenderAdditionalPartialElementContent(RenderTreeBuilder builder, ref int sequence)

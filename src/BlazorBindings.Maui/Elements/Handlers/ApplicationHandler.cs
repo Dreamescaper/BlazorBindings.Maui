@@ -18,11 +18,6 @@ internal class ApplicationHandler : IContainerElementHandler
         _application.MainPage = child.Cast<MC.Page>();
     }
 
-    public int GetChildIndex(object child)
-    {
-        return Equals(_application.MainPage, child) ? 0 : -1;
-    }
-
     public void RemoveChild(object child, int physicalSiblingIndex)
     {
         // It is not allowed to have no MainPage.

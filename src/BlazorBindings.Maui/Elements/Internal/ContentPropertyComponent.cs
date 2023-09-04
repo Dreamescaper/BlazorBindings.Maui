@@ -31,6 +31,11 @@ internal class ContentPropertyComponent<TControl> : NativeControlComponentBase, 
         SetPropertyAction(_parent, null);
     }
 
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        SetPropertyAction(_parent, newChild);
+    }
+
     // Because this is a 'fake' element, all matters related to physical trees
     // should be no-ops.
     object IElementHandler.TargetElement => null;

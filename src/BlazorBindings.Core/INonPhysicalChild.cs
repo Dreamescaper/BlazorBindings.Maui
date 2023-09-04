@@ -25,4 +25,11 @@ public interface INonPhysicalChild
     /// This is useful so that this component can unapply its effects from parent element.
     /// </summary>
     void RemoveFromParent(object parentElement);
+
+    /// <summary>
+    /// If this property is true, then renderer will pass children of this component to parent.
+    /// This is useful if you want to apply some effects to children (e.g. attached properties),
+    /// but still add them to parent element.
+    /// </summary>
+    internal bool ShouldAddChildrenToParent { get => false; }
 }

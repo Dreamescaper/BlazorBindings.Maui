@@ -1,4 +1,5 @@
 ﻿using BlazorBindings.Maui.Extensions;
+using System.Diagnostics;
 
 namespace BlazorBindings.Maui.Elements.Internal;
 
@@ -33,6 +34,13 @@ internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComp
 
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
+        Debug.Assert(_propertyItems[physicalSiblingIndex] == child);
         _propertyItems.Remove(child.Cast<TItem>());
+    }
+
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        Debug.Assert(_propertyItems[physicalSiblingIndex] == oldChild);
+        _propertyItems[physicalSiblingIndex] = newChild.Cast<TItem>();
     }
 }

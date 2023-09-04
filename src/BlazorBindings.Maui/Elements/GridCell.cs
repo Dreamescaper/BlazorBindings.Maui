@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+using BlazorBindings.Maui.Extensions;
 using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
@@ -16,9 +17,6 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
 
 
     private readonly List<MC.View> _children = new();
-    private MC.Grid _parentGrid;
-
-    object IElementHandler.TargetElement => null;
 
     public override Task SetParametersAsync(ParameterView parameters)
     {
@@ -73,10 +71,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
 
     public void AddChild(object child, int physicalSiblingIndex)
     {
-        if (child is not MC.View childView)
-        {
-            throw new ArgumentException($"Expected parent to be of type {typeof(MC.View).FullName} but it is of type {child?.GetType().FullName}.", nameof(child));
-        }
+        var childView = child.Cast<MC.View>();
 
         MC.Grid.SetColumn(childView, Column ?? 0);
         MC.Grid.SetColumnSpan(childView, ColumnSpan ?? 1);
@@ -84,44 +79,16 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
         MC.Grid.SetRowSpan(childView, RowSpan ?? 1);
 
         _children.Add(childView);
-        _parentGrid.Children.Add(childView);
     }
 
     public void RemoveChild(object child, int physicalSiblingIndex)
     {
-        if (child is not MC.View childView)
-        {
-            throw new ArgumentException($"Expected parent to be of type {typeof(MC.View).FullName} but it is of type {child?.GetType().FullName}.", nameof(child));
-        }
-
+        var childView = child.Cast<MC.View>();
         _children.Remove(childView);
-        _parentGrid.Children.Remove(childView);
     }
 
-    public int GetChildIndex(object child)
-    {
-        return child is MC.View childView
-            ? _children.IndexOf(childView)
-            : -1;
-    }
-
-    void INonPhysicalChild.SetParent(object parentElement)
-    {
-        _parentGrid = parentElement as MC.Grid
-            ?? throw new ArgumentException($"Expected parent to be of type {typeof(MC.Grid).FullName} but it is of type {parentElement?.GetType().FullName}.", nameof(parentElement));
-    }
-
-    void INonPhysicalChild.RemoveFromParent(object parentElement)
-    {
-        if (_parentGrid != null)
-        {
-            foreach (var child in _children)
-            {
-                _parentGrid.Children.Remove(child);
-            }
-
-            _children.Clear();
-            _parentGrid = null;
-        }
-    }
+    object IElementHandler.TargetElement => null;
+    void INonPhysicalChild.SetParent(object parentElement) { }
+    void INonPhysicalChild.RemoveFromParent(object parentElement) { }
+    bool INonPhysicalChild.ShouldAddChildrenToParent => true;
 }

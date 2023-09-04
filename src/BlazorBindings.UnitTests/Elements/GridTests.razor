@@ -134,8 +134,7 @@
     </Grid>
     );
 
-        // Order of children doesn't really matter for Grid.
-        var labels = grid.Children.Cast<MC.Label>().OrderBy(l => l.Text).ToArray();
+        var labels = grid.Children.Cast<MC.Label>().ToArray();
         var label00a = labels[0];
         var label00b = labels[1];
         var label01a = labels[2];
@@ -172,7 +171,7 @@
         insertItems = false;
         StateHasChanged();
 
-        labels = grid.Children.Cast<MC.Label>().OrderBy(l => l.Text).ToArray();
+        labels = grid.Children.Cast<MC.Label>().ToArray();
         label00b = labels[0];
         label01a = labels[1];
         label10a = labels[2];
@@ -193,7 +192,7 @@
         insertItems = true;
         StateHasChanged();
 
-        labels = grid.Children.Cast<MC.Label>().OrderBy(l => l.Text).ToArray();
+        labels = grid.Children.Cast<MC.Label>().ToArray();
         label00a = labels[0];
         label00b = labels[1];
         label01a = labels[2];

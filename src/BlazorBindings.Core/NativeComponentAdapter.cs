@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.RenderTree;
 using System.Diagnostics;
 
@@ -13,60 +12,71 @@ namespace BlazorBindings.Core;
 [DebuggerDisplay("{DebugName}")]
 internal sealed class NativeComponentAdapter : IDisposable
 {
-    private static volatile int DebugInstanceCounter;
-
     public NativeComponentAdapter(NativeComponentRenderer renderer, NativeComponentAdapter closestPhysicalParent, IElementHandler knownTargetElement = null)
     {
         Renderer = renderer ?? throw new ArgumentNullException(nameof(renderer));
         _closestPhysicalParent = closestPhysicalParent;
         _targetElement = knownTargetElement;
-
-        // Assign unique counter value. This *should* all be done on one thread, but just in case, make it thread-safe.
-        _debugInstanceCounterValue = Interlocked.Increment(ref DebugInstanceCounter);
     }
 
-    private readonly int _debugInstanceCounterValue;
-
-    private string DebugName => $"[#{_debugInstanceCounterValue}] {Name}";
-
-    public NativeComponentAdapter Parent { get; private set; }
-    public List<NativeComponentAdapter> Children { get; } = new();
-
-    private readonly NativeComponentAdapter _closestPhysicalParent;
-    private IElementHandler _targetElement;
-    private IComponent _targetComponent;
-
-    private NativeComponentAdapter PhysicalTarget => _targetElement != null ? this : _closestPhysicalParent;
-
-    public NativeComponentRenderer Renderer { get; }
 
     /// <summary>
     /// Used for debugging purposes.
     /// </summary>
     public string Name { get; internal set; }
 
-    public override string ToString()
+    private string Text
     {
-        return $"{nameof(NativeComponentAdapter)}: Name={Name ?? "<?>"}, Target={_targetElement?.GetType().Name ?? "<None>"}, #Children={Children.Count}";
+        get
+        {
+            try
+            {
+                return (_targetElement?.TargetElement as dynamic)?.Text;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 
-    internal void ApplyEdits(int componentId, ArrayBuilderSegment<RenderTreeEdit> edits, ArrayRange<RenderTreeFrame> referenceFrames, RenderBatch batch, HashSet<int> processedComponentIds)
+    private string DebugName => $"[\"{Text}\" {Name}";
+
+    public int DeepLevel { get; init; }
+
+    public NativeComponentAdapter Parent { get; private set; }
+    public List<NativeComponentAdapter> Children { get; } = new();
+
+    private readonly NativeComponentAdapter _closestPhysicalParent;
+    private IElementHandler _targetElement;
+
+    private NativeComponentAdapter PhysicalTarget => _targetElement != null ? this : _closestPhysicalParent;
+
+    public NativeComponentRenderer Renderer { get; }
+
+    private List<(int Index, NativeComponentAdapter ElementToRemove, NativeComponentAdapter ElementToAdd)> _pendingEdits;
+
+    internal void ApplyEdits(
+        int componentId,
+        ArrayBuilderSegment<RenderTreeEdit> edits,
+        RenderBatch batch,
+        HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
-        Renderer.Dispatcher.AssertAccess();
+        var referenceFrames = batch.ReferenceFrames.Array;
 
         foreach (var edit in edits)
         {
             switch (edit.Type)
             {
                 case RenderTreeEditType.PrependFrame:
-                    ApplyPrependFrame(batch, componentId, edit.SiblingIndex, referenceFrames.Array, edit.ReferenceFrameIndex, processedComponentIds);
+                    ApplyPrependFrame(batch, componentId, edit.SiblingIndex, referenceFrames, edit.ReferenceFrameIndex, adaptersWithPendingEdits);
                     break;
                 case RenderTreeEditType.RemoveFrame:
-                    ApplyRemoveFrame(edit.SiblingIndex);
+                    ApplyRemoveFrame(edit.SiblingIndex, adaptersWithPendingEdits);
                     break;
                 case RenderTreeEditType.UpdateText:
                     {
-                        var frame = batch.ReferenceFrames.Array[edit.ReferenceFrameIndex];
+                        var frame = referenceFrames[edit.ReferenceFrameIndex];
                         if (_targetElement is IHandleChildContentText handleChildContentText)
                         {
                             handleChildContentText.HandleText(edit.SiblingIndex, frame.TextContent);
@@ -78,10 +88,6 @@ internal sealed class NativeComponentAdapter : IDisposable
                         break;
                     }
                 case RenderTreeEditType.StepIn:
-                    {
-                        // TODO: Need to implement this. For now it seems safe to ignore.
-                        break;
-                    }
                 case RenderTreeEditType.StepOut:
                     {
                         // TODO: Need to implement this. For now it seems safe to ignore.
@@ -89,7 +95,7 @@ internal sealed class NativeComponentAdapter : IDisposable
                     }
                 case RenderTreeEditType.UpdateMarkup:
                     {
-                        var frame = batch.ReferenceFrames.Array[edit.ReferenceFrameIndex];
+                        var frame = referenceFrames[edit.ReferenceFrameIndex];
                         if (!string.IsNullOrWhiteSpace(frame.MarkupContent))
                             throw new NotImplementedException($"Not supported edit type: {edit.Type}");
 
@@ -101,33 +107,102 @@ internal sealed class NativeComponentAdapter : IDisposable
         }
     }
 
-    private void ApplyRemoveFrame(int siblingIndex)
+    // a) We want to add child element from the deepest element to the top one, so that elements are added to parents with all the required changes.
+    // b) If elements are replaced, we want to have a single edit instead of two separate ones (remove+add) - it's more efficient, and 
+    // the only way in some cases (when elements don't support empty content).
+    // Therefore we store all add/remove actions, and apply them (rearranged) after other edits.
+    public void ApplyPendingEdits()
+    {
+        if (_pendingEdits == null)
+            return;
+
+        for (var i = 0; i < _pendingEdits.Count; i++)
+        {
+            var (index, elementToRemove, elementToAdd) = _pendingEdits[i];
+            var nextEdit = _pendingEdits.ElementAtOrDefault(i + 1);
+
+            // If we have two consequent edits (Add -> Remove or Remove -> Add) for the same index,
+            // and non of them are INonPhysicalChild elements,
+            // we try to replace them instead of adding and removing separately.
+            if (nextEdit.Index == index)
+            {
+                if (elementToRemove is not null and not { _targetElement: INonPhysicalChild }
+                    && nextEdit.ElementToAdd is not null and not { _targetElement: INonPhysicalChild })
+                {
+                    Renderer.ElementManager.ReplaceChildElement(_targetElement, elementToRemove._targetElement, nextEdit.ElementToAdd._targetElement, index);
+                    i++;
+                    continue;
+                }
+                else if (elementToAdd is not null and not { _targetElement: INonPhysicalChild }
+                    && nextEdit.ElementToRemove is not null and not { _targetElement: INonPhysicalChild })
+                {
+                    Renderer.ElementManager.ReplaceChildElement(_targetElement, nextEdit.ElementToRemove._targetElement, elementToAdd._targetElement, index);
+                    i++;
+                    continue;
+                }
+            }
+
+            if (elementToRemove != null)
+                Renderer.ElementManager.RemoveChildElement(_targetElement, elementToRemove._targetElement, index);
+
+            if (elementToAdd != null)
+                Renderer.ElementManager.AddChildElement(_targetElement, elementToAdd._targetElement, index);
+        }
+
+        _pendingEdits.Clear();
+    }
+
+    private void AddPendingRemoval(NativeComponentAdapter childToRemove, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
+    {
+        var targetEdits = PhysicalTarget._pendingEdits ??= new();
+        targetEdits.Add((index, childToRemove, null));
+        adaptersWithPendingEdits.Add(PhysicalTarget);
+    }
+
+    private void AddPendingAddition(NativeComponentAdapter childToAdd, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
+    {
+        var targetEdits = PhysicalTarget._pendingEdits ??= new();
+        targetEdits.Add((index, null, childToAdd));
+        adaptersWithPendingEdits.Add(PhysicalTarget);
+    }
+
+    private void ApplyRemoveFrame(int siblingIndex, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
         var childToRemove = Children[siblingIndex];
-        RemoveChildElementAndDescendants(childToRemove);
+        RemoveChildElementAndDescendants(childToRemove, adaptersWithPendingEdits);
         Children.RemoveAt(siblingIndex);
     }
 
-    private void RemoveChildElementAndDescendants(NativeComponentAdapter childToRemove)
+    private void RemoveChildElementAndDescendants(NativeComponentAdapter childToRemove, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
-        if (childToRemove._targetElement != null)
+        if (childToRemove?._targetElement != null)
         {
             // This adapter represents a physical element, so by removing it, we implicitly
             // remove all descendants.
             var index = PhysicalTarget.GetChildPhysicalIndex(childToRemove);
-            Renderer.ElementManager.RemoveChildElement(PhysicalTarget._targetElement, childToRemove._targetElement, index);
+            PhysicalTarget.AddPendingRemoval(childToRemove, index, adaptersWithPendingEdits);
+
+            if (PhysicalTarget._targetElement is INonPhysicalChild { ShouldAddChildrenToParent: true })
+            {
+                // Since element was added to parent previously, we have to remove it from there.
+                PhysicalTarget.Parent.RemoveChildElementAndDescendants(childToRemove, adaptersWithPendingEdits);
+            }
         }
-        else
+        else if (childToRemove != null)
         {
             // This adapter is just a container for other adapters
-            foreach (var child in childToRemove.Children)
-            {
-                childToRemove.RemoveChildElementAndDescendants(child);
-            }
+            for (int i = 0; i < childToRemove.Children.Count; i++)
+                childToRemove.ApplyRemoveFrame(i, adaptersWithPendingEdits);
         }
     }
 
-    private int ApplyPrependFrame(RenderBatch batch, int componentId, int siblingIndex, RenderTreeFrame[] frames, int frameIndex, HashSet<int> processedComponentIds)
+    private int ApplyPrependFrame(
+        RenderBatch batch,
+        int componentId,
+        int siblingIndex,
+        RenderTreeFrame[] frames,
+        int frameIndex,
+        HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
         ref var frame = ref frames[frameIndex];
         switch (frame.FrameType)
@@ -136,36 +211,14 @@ internal sealed class NativeComponentAdapter : IDisposable
                 {
                     var childAdapter = AddChildAdapter(siblingIndex, frame);
 
-                    // For most elements we should add element as child after all properties to have them fully initialized before rendering.
-                    // However, INonPhysicalChild elements are not real elements, but apply to parent instead, therefore should be added as child before any properties are set.
-                    if (childAdapter._targetElement is INonPhysicalChild)
-                    {
-                        AddElementAsChildElement(childAdapter);
-                    }
-
-                    // Apply edits for child component recursively.
-                    // That is done to fully initialize elements before adding to the UI tree.
-                    processedComponentIds.Add(frame.ComponentId);
-
-                    for (var i = 0; i < batch.UpdatedComponents.Count; i++)
-                    {
-                        var componentEdits = batch.UpdatedComponents.Array[i];
-                        if (componentEdits.ComponentId == frame.ComponentId && componentEdits.Edits.Count > 0)
-                        {
-                            childAdapter.ApplyEdits(frame.ComponentId, componentEdits.Edits, batch.ReferenceFrames, batch, processedComponentIds);
-                        }
-                    }
-
-                    if (childAdapter._targetElement is not INonPhysicalChild and not null)
-                    {
-                        AddElementAsChildElement(childAdapter);
-                    }
+                    if (childAdapter._targetElement is not null)
+                        AddElementAsChildElement(childAdapter, adaptersWithPendingEdits);
 
                     return 1;
                 }
             case RenderTreeFrameType.Region:
                 {
-                    return InsertFrameRange(batch, componentId, siblingIndex, frames, frameIndex + 1, frameIndex + frame.RegionSubtreeLength, processedComponentIds);
+                    return InsertFrameRange(batch, componentId, siblingIndex, frames, frameIndex + 1, frameIndex + frame.RegionSubtreeLength, adaptersWithPendingEdits);
                 }
             case RenderTreeFrameType.Markup:
                 {
@@ -173,7 +226,8 @@ internal sealed class NativeComponentAdapter : IDisposable
                     {
                         throw new NotImplementedException($"Not supported frame type: {frame.FrameType}");
                     }
-                    AddChildAdapter(siblingIndex, frame);
+                    // We don't need any adapter for Markup frames, but we care about frame position, therefore we simply insert null here.
+                    Children.Insert(siblingIndex, null);
                     return 1;
                 }
             case RenderTreeFrameType.Text:
@@ -187,7 +241,8 @@ internal sealed class NativeComponentAdapter : IDisposable
                         var typeName = _targetElement?.TargetElement?.GetType()?.Name;
                         throw new NotImplementedException($"Element {typeName} does not support text content: " + frame.MarkupContent);
                     }
-                    AddChildAdapter(siblingIndex, frame);
+                    // We don't need any adapter for Text frames, but we care about frame position, therefore we simply insert null here.
+                    Children.Insert(siblingIndex, null);
                     return 1;
                 }
             default:
@@ -198,10 +253,28 @@ internal sealed class NativeComponentAdapter : IDisposable
     /// <summary>
     /// Add element as a child element for closest physical parent.
     /// </summary>
-    private void AddElementAsChildElement(NativeComponentAdapter childAdapter)
+    private void AddElementAsChildElement(NativeComponentAdapter childAdapter, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
+        if (childAdapter is null)
+            return;
+
         var elementIndex = PhysicalTarget.GetChildPhysicalIndex(childAdapter);
-        Renderer.ElementManager.AddChildElement(PhysicalTarget._targetElement, childAdapter._targetElement, elementIndex);
+
+        // For most elements we should add element as child after all properties to have them fully initialized before rendering.
+        // However, INonPhysicalChild elements are not real elements, but apply to parent instead, therefore should be added as child before any properties are set.
+        if (childAdapter._targetElement is INonPhysicalChild)
+        {
+            Renderer.ElementManager.AddChildElement(PhysicalTarget._targetElement, childAdapter._targetElement, elementIndex);
+        }
+        else
+        {
+            AddPendingAddition(childAdapter, elementIndex, adaptersWithPendingEdits);
+        }
+
+        if (PhysicalTarget._targetElement is INonPhysicalChild { ShouldAddChildrenToParent: true })
+        {
+            PhysicalTarget.Parent.AddElementAsChildElement(childAdapter, adaptersWithPendingEdits);
+        }
     }
 
     /// <summary>
@@ -232,15 +305,18 @@ internal sealed class NativeComponentAdapter : IDisposable
         {
             foreach (var child in parent.Children)
             {
+                if (child is null)
+                    continue;
+
                 if (child == targetChild)
                     return true;
 
-                if (child._targetElement != null)
+                if (child._targetElement != null && child._targetElement is not INonPhysicalChild)
                 {
-                    if (child._targetElement is not INonPhysicalChild)
-                        index++;
+                    index++;
                 }
-                else
+
+                if (child._targetElement == null || child._targetElement is INonPhysicalChild { ShouldAddChildrenToParent: true })
                 {
                     if (FindChildPhysicalIndexRecursive(child, targetChild, ref index))
                         return true;
@@ -251,13 +327,20 @@ internal sealed class NativeComponentAdapter : IDisposable
         }
     }
 
-    private int InsertFrameRange(RenderBatch batch, int componentId, int childIndex, RenderTreeFrame[] frames, int startIndex, int endIndexExcl, HashSet<int> processedComponentIds)
+    private int InsertFrameRange(
+        RenderBatch batch,
+        int componentId,
+        int childIndex,
+        RenderTreeFrame[] frames,
+        int startIndex,
+        int endIndexExcl,
+        HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
         var origChildIndex = childIndex;
         for (var frameIndex = startIndex; frameIndex < endIndexExcl; frameIndex++)
         {
             ref var frame = ref batch.ReferenceFrames.Array[frameIndex];
-            var numChildrenInserted = ApplyPrependFrame(batch, componentId, childIndex, frames, frameIndex, processedComponentIds);
+            var numChildrenInserted = ApplyPrependFrame(batch, componentId, childIndex, frames, frameIndex, adaptersWithPendingEdits);
             childIndex += numChildrenInserted;
 
             // Skip over any descendants, since they are already dealt with recursively
@@ -291,12 +374,12 @@ internal sealed class NativeComponentAdapter : IDisposable
         var childAdapter = new NativeComponentAdapter(Renderer, PhysicalTarget)
         {
             Parent = this,
-            Name = name
+            Name = name,
+            DeepLevel = DeepLevel + 1
         };
 
         if (frame.FrameType is RenderTreeFrameType.Component)
         {
-            childAdapter._targetComponent = frame.Component;
             Renderer.RegisterComponentAdapter(childAdapter, frame.ComponentId);
 
             if (frame.Component is IElementHandler targetHandler)

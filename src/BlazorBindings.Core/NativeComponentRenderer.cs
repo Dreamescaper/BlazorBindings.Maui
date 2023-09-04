@@ -18,7 +18,7 @@ public abstract class NativeComponentRenderer : Renderer
     {
     }
 
-    protected abstract ElementManager CreateNativeControlManager();
+    protected virtual ElementManager CreateNativeControlManager() => new();
 
     internal ElementManager ElementManager => _elementManager ??= CreateNativeControlManager();
 
@@ -85,20 +85,22 @@ public abstract class NativeComponentRenderer : Renderer
 
     protected override Task UpdateDisplayAsync(in RenderBatch renderBatch)
     {
-        HashSet<int> processedComponentIds = new HashSet<int>();
+        HashSet<NativeComponentAdapter> adaptersWithPendingEdits = new();
 
         var numUpdatedComponents = renderBatch.UpdatedComponents.Count;
         for (var componentIndex = 0; componentIndex < numUpdatedComponents; componentIndex++)
         {
             var updatedComponent = renderBatch.UpdatedComponents.Array[componentIndex];
 
-            // If UpdatedComponent is already processed (due to recursive ApplyEdits) - skip it.
-            if (updatedComponent.Edits.Count > 0 && !processedComponentIds.Contains(updatedComponent.ComponentId))
+            if (updatedComponent.Edits.Count > 0)
             {
                 var adapter = _componentIdToAdapter[updatedComponent.ComponentId];
-                adapter.ApplyEdits(updatedComponent.ComponentId, updatedComponent.Edits, renderBatch.ReferenceFrames, renderBatch, processedComponentIds);
+                adapter.ApplyEdits(updatedComponent.ComponentId, updatedComponent.Edits, renderBatch, adaptersWithPendingEdits);
             }
         }
+
+        foreach (var adapter in adaptersWithPendingEdits.OrderByDescending(a => a.DeepLevel))
+            adapter.ApplyPendingEdits();
 
         var numDisposedComponents = renderBatch.DisposedComponentIDs.Count;
         for (var i = 0; i < numDisposedComponents; i++)
