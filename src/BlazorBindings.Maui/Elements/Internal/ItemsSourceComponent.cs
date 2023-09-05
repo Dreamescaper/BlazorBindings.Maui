@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace BlazorBindings.Maui.Elements.Internal;
 
@@ -61,14 +62,22 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
         }
     };
 
-    public void AddChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
         _observableCollection.Insert(physicalSiblingIndex, (TItem)child);
     }
 
-    public void RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
+        Debug.Assert(Equals(_observableCollection[physicalSiblingIndex], child));
         _observableCollection.RemoveAt(physicalSiblingIndex);
+    }
+
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        Debug.Assert(Equals(_observableCollection[physicalSiblingIndex], oldChild));
+        if (!Equals(_observableCollection[physicalSiblingIndex], newChild))
+            _observableCollection[physicalSiblingIndex] = (TItem)newChild;
     }
 
     public void RemoveFromParent(object parentElement)
