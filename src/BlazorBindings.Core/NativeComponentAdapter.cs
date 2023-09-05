@@ -124,22 +124,23 @@ internal sealed class NativeComponentAdapter : IDisposable
             // If we have two consequent edits (Add -> Remove or Remove -> Add) for the same index,
             // and non of them are INonPhysicalChild elements,
             // we try to replace them instead of adding and removing separately.
-            if (nextEdit.Index == index)
+            if (nextEdit.Index == index
+                && elementToRemove is not null and not { _targetElement: INonPhysicalChild }
+                && nextEdit.ElementToAdd is not null and not { _targetElement: INonPhysicalChild })
             {
-                if (elementToRemove is not null and not { _targetElement: INonPhysicalChild }
-                    && nextEdit.ElementToAdd is not null and not { _targetElement: INonPhysicalChild })
-                {
-                    Renderer.ElementManager.ReplaceChildElement(_targetElement, elementToRemove._targetElement, nextEdit.ElementToAdd._targetElement, index);
-                    i++;
-                    continue;
-                }
-                else if (elementToAdd is not null and not { _targetElement: INonPhysicalChild }
-                    && nextEdit.ElementToRemove is not null and not { _targetElement: INonPhysicalChild })
-                {
-                    Renderer.ElementManager.ReplaceChildElement(_targetElement, nextEdit.ElementToRemove._targetElement, elementToAdd._targetElement, index);
-                    i++;
-                    continue;
-                }
+                Renderer.ElementManager.ReplaceChildElement(_targetElement, elementToRemove._targetElement, nextEdit.ElementToAdd._targetElement, index);
+                i++;
+                continue;
+            }
+            if ((nextEdit.Index == index + 1 || nextEdit.Index == index - 1)
+                && elementToAdd is not null and not { _targetElement: INonPhysicalChild }
+                && nextEdit.ElementToRemove is not null and not { _targetElement: INonPhysicalChild })
+            {
+                // When we add element first, and then delete - index shifts.
+                var replacedIndex = Math.Min(index, nextEdit.Index);
+                Renderer.ElementManager.ReplaceChildElement(_targetElement, nextEdit.ElementToRemove._targetElement, elementToAdd._targetElement, replacedIndex);
+                i++;
+                continue;
             }
 
             if (elementToRemove != null)
