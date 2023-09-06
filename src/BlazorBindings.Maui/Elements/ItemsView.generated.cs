@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #pragma warning disable CA2252
@@ -29,14 +28,11 @@ namespace BlazorBindings.Maui.Elements
         }
 
         [Parameter] public ScrollBarVisibility? HorizontalScrollBarVisibility { get; set; }
-        [Parameter] public IEnumerable<T> ItemsSource { get; set; }
-        [Parameter] public Func<T, object> ItemKeySelector { get; set; }
         [Parameter] public MC.ItemsUpdatingScrollMode? ItemsUpdatingScrollMode { get; set; }
         [Parameter] public int? RemainingItemsThreshold { get; set; }
         [Parameter] public ScrollBarVisibility? VerticalScrollBarVisibility { get; set; }
         [Parameter] public RenderFragment EmptyView { get; set; }
         [Parameter] public RenderFragment<T> ItemTemplate { get; set; }
-        [Parameter] public RenderFragment<T> ItemTemplateSelector { get; set; }
         [Parameter] public EventCallback<MC.ScrollToRequestEventArgs> OnScrollToRequested { get; set; }
         [Parameter] public EventCallback<MC.ItemsViewScrolledEventArgs> OnScrolled { get; set; }
         [Parameter] public EventCallback OnRemainingItemsThresholdReached { get; set; }
@@ -54,12 +50,6 @@ namespace BlazorBindings.Maui.Elements
                         HorizontalScrollBarVisibility = (ScrollBarVisibility?)value;
                         NativeControl.HorizontalScrollBarVisibility = HorizontalScrollBarVisibility ?? (ScrollBarVisibility)MC.ItemsView.HorizontalScrollBarVisibilityProperty.DefaultValue;
                     }
-                    break;
-                case nameof(ItemsSource):
-                    ItemsSource = (IEnumerable<T>)value;
-                    break;
-                case nameof(ItemKeySelector):
-                    ItemKeySelector = (Func<T, object>)value;
                     break;
                 case nameof(ItemsUpdatingScrollMode):
                     if (!Equals(ItemsUpdatingScrollMode, value))
@@ -87,9 +77,6 @@ namespace BlazorBindings.Maui.Elements
                     break;
                 case nameof(ItemTemplate):
                     ItemTemplate = (RenderFragment<T>)value;
-                    break;
-                case nameof(ItemTemplateSelector):
-                    ItemTemplateSelector = (RenderFragment<T>)value;
                     break;
                 case nameof(OnScrollToRequested):
                     if (!Equals(OnScrollToRequested, value))
@@ -133,8 +120,6 @@ namespace BlazorBindings.Maui.Elements
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<MC.ItemsView>(builder, sequence++, EmptyView, (x, value) => x.EmptyView = (object)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplate, (x, template) => x.ItemTemplate = template);
-            RenderTreeBuilderHelper.AddDataTemplateSelectorProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplateSelector, (x, template) => x.ItemTemplate = template);
-            RenderTreeBuilderHelper.AddItemsSourceProperty<MC.ItemsView, T>(builder, sequence++, ItemsSource, ItemKeySelector, (x, items) => x.ItemsSource = items);
         }
 
         static partial void RegisterAdditionalHandlers();

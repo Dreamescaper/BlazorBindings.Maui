@@ -1,4 +1,8 @@
-﻿@inherits ElementTestBase
+﻿@using System.Collections.Specialized;
+@using System.Collections.ObjectModel;
+@using System.Collections.Immutable;
+
+@inherits ElementTestBase
 
 @code {
     [Test]
@@ -13,10 +17,44 @@
                 <Label>@context.Name</Label>
             </VerticalStackLayout>
         </ItemTemplate>
-    </CollectionView>
-    );
+    </CollectionView>);
 
         // It's nice that it doesn't crash at least, but is there any way to get templated items here?...
         Assert.That(collectionView.ItemsSource, Is.EqualTo(items));
+
+        // For a regular collections we attempt to detect changes in the collection.
+        Assert.That(collectionView.ItemsSource is INotifyCollectionChanged);
+    }
+
+    [Test]
+    public async Task ObservableItemsViewIsAssignedDirectly()
+    {
+        var items = new ObservableCollection<int>(new[] { 1, 2, 3, 4 });
+
+        var collectionView = await Render<MC.CollectionView>(
+    @<CollectionView ItemsSource="items">
+        <ItemTemplate>
+            <Label>@context</Label>
+        </ItemTemplate>
+    </CollectionView>);
+
+        // Since collection is already observable, no need to diff additionally.
+        Assert.That(collectionView.ItemsSource, Is.SameAs(items));
+    }
+
+    [Test]
+    public async Task ImmutableItemsViewIsAssignedDirectly()
+    {
+        var items = ImmutableList.Create(1, 2, 3, 4);
+
+        var collectionView = await Render<MC.CollectionView>(
+    @<CollectionView ItemsSource="items">
+        <ItemTemplate>
+            <Label>@context</Label>
+        </ItemTemplate>
+    </CollectionView>);
+
+        // Since collection is immutable, there is no point in detecting changes there.
+        Assert.That(collectionView.ItemsSource, Is.SameAs(items));
     }
 }

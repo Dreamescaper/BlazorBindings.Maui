@@ -51,7 +51,7 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(ItemsView),
     GenericProperties = new[] { nameof(ItemsView.ItemsSource), nameof(ItemsView.ItemTemplate) },
     ContentProperties = new[] { nameof(ItemsView.EmptyView) },
-    Exclude = new[] { nameof(ItemsView.EmptyViewTemplate) })]
+    Exclude = new[] { nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource) })]
 [assembly: GenerateComponent(typeof(Label))]
 [assembly: GenerateComponent(typeof(Layout))]
 [assembly: GenerateComponent(typeof(LinearGradientBrush))]
