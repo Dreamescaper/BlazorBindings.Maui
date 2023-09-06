@@ -54,7 +54,7 @@ internal sealed class NativeComponentAdapter : IDisposable
 
     public NativeComponentRenderer Renderer { get; }
 
-    private List<(int Index, NativeComponentAdapter ElementToRemove, NativeComponentAdapter ElementToAdd)> _pendingEdits;
+    private List<PendingEdit> _pendingEdits;
 
     internal void ApplyEdits(
         int componentId,
@@ -118,36 +118,27 @@ internal sealed class NativeComponentAdapter : IDisposable
 
         for (var i = 0; i < _pendingEdits.Count; i++)
         {
-            var (index, elementToRemove, elementToAdd) = _pendingEdits[i];
+            var edit = _pendingEdits[i];
             var nextEdit = _pendingEdits.ElementAtOrDefault(i + 1);
 
             // If we have two consequent edits (Add -> Remove or Remove -> Add) for the same index,
             // and non of them are INonPhysicalChild elements,
             // we try to replace them instead of adding and removing separately.
-            if (nextEdit.Index == index
-                && elementToRemove is not null and not { _targetElement: INonPhysicalChild }
-                && nextEdit.ElementToAdd is not null and not { _targetElement: INonPhysicalChild })
+            if (nextEdit.Index == edit.Index
+                && edit is { Type: EditType.Remove, Element._targetElement: not INonPhysicalChild }
+                && nextEdit is { Type: EditType.Add, Element._targetElement: not INonPhysicalChild })
             {
-                Renderer.ElementManager.ReplaceChildElement(_targetElement, elementToRemove._targetElement, nextEdit.ElementToAdd._targetElement, index);
+                Renderer.ElementManager.ReplaceChildElement(_targetElement, edit.Element._targetElement, nextEdit.Element._targetElement, edit.Index);
                 i++;
-                continue;
             }
-            if ((nextEdit.Index == index + 1 || nextEdit.Index == index - 1)
-                && elementToAdd is not null and not { _targetElement: INonPhysicalChild }
-                && nextEdit.ElementToRemove is not null and not { _targetElement: INonPhysicalChild })
+            else if (edit.Type == EditType.Remove)
             {
-                // When we add element first, and then delete - index shifts.
-                var replacedIndex = Math.Min(index, nextEdit.Index);
-                Renderer.ElementManager.ReplaceChildElement(_targetElement, nextEdit.ElementToRemove._targetElement, elementToAdd._targetElement, replacedIndex);
-                i++;
-                continue;
+                Renderer.ElementManager.RemoveChildElement(_targetElement, edit.Element._targetElement, edit.Index);
             }
-
-            if (elementToRemove != null)
-                Renderer.ElementManager.RemoveChildElement(_targetElement, elementToRemove._targetElement, index);
-
-            if (elementToAdd != null)
-                Renderer.ElementManager.AddChildElement(_targetElement, elementToAdd._targetElement, index);
+            else if (edit.Type == EditType.Add)
+            {
+                Renderer.ElementManager.AddChildElement(_targetElement, edit.Element._targetElement, edit.Index);
+            }
         }
 
         _pendingEdits.Clear();
@@ -156,14 +147,53 @@ internal sealed class NativeComponentAdapter : IDisposable
     private void AddPendingRemoval(NativeComponentAdapter childToRemove, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
         var targetEdits = PhysicalTarget._pendingEdits ??= new();
-        targetEdits.Add((index, childToRemove, null));
         adaptersWithPendingEdits.Add(PhysicalTarget);
+
+        if (targetEdits.Count == 0)
+        {
+            targetEdits.Add(new(EditType.Remove, index, childToRemove));
+            return;
+        }
+
+        // If elements are added and removed, we want to put removal closer before the corresponding addition,
+        // to allow replacing instead.
+        // But because the order of operations changes, we need to adjust indexes.
+        int i;
+        for (i = targetEdits.Count; i > 0; i--)
+        {
+            var previousEdit = targetEdits[i - 1];
+
+            if (previousEdit.Type == EditType.Remove)
+                break;
+
+            if (previousEdit.Index < index - 1)
+                break;
+
+            // Generally we try to put Remove edit before an Add edit.
+            // But if there's already a Remove edit before that Add edit, with a matching index, 
+            // we don't need to put another Remove there.
+            if (i >= 2
+                && previousEdit.Type == EditType.Add
+                && targetEdits[i - 2] is { Type: EditType.Remove } previousRemoval
+                && previousRemoval.Index == previousEdit.Index)
+            {
+                break;
+            }
+
+            if (previousEdit.Index <= index)
+                index--;
+
+            if (previousEdit.Index > index)
+                targetEdits[i - 1] = previousEdit with { Index = previousEdit.Index - 1 };
+        }
+
+        targetEdits.Insert(i, new(EditType.Remove, index, childToRemove));
     }
 
     private void AddPendingAddition(NativeComponentAdapter childToAdd, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
         var targetEdits = PhysicalTarget._pendingEdits ??= new();
-        targetEdits.Add((index, null, childToAdd));
+        targetEdits.Add(new(EditType.Add, index, childToAdd));
         adaptersWithPendingEdits.Add(PhysicalTarget);
     }
 
@@ -401,4 +431,7 @@ internal sealed class NativeComponentAdapter : IDisposable
             disposableTargetElement.Dispose();
         }
     }
+
+    record struct PendingEdit(EditType Type, int Index, NativeComponentAdapter Element);
+    enum EditType { Add, Remove }
 }
