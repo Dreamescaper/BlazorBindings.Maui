@@ -1,23 +1,25 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using BlazorBindings.Maui.SkiaSharp;
+using BlazorBindings.Maui.Elements.SkiaSharp;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 
-namespace ControlGallery.Views;
+namespace ThirdPartyControlsSample.Pages;
 
 public partial class SkiaCanvasPage
 {
     public SKCanvasView CanvasView { get; set; }
     public SKCanvasView CanvasView2 { get; set; }
 
-    private float rotation;
-    public void RotationSliderChanged(double value)
+
+    double _sliderValue;
+    float Rotation => (float)(_sliderValue * 360);
+
+    private void InvalidateSurfaces()
     {
-        rotation = (float)(value * 360);
-        CanvasView?.InvalidateSurface();
-        CanvasView2?.InvalidateSurface();
+        CanvasView.NativeControl.InvalidateSurface();
+        CanvasView2.NativeControl.InvalidateSurface();
     }
 
     private void PaintSurface2(SKPaintSurfaceEventArgs e)
@@ -54,7 +56,7 @@ public partial class SkiaCanvasPage
         canvas.Translate(canvasSize.MidX, canvasSize.MidY);
         var shortSideRatio = Math.Min(canvasSize.Width / pathSize.Width, canvasSize.Height / pathSize.Width);
         canvas.Scale(0.9f * shortSideRatio);
-        canvas.RotateDegrees(rotation);
+        canvas.RotateDegrees(Rotation);
         canvas.Translate(-pathSize.MidX, -pathSize.MidY);
 
         canvas.DrawPath(path, paint);
@@ -80,7 +82,7 @@ public partial class SkiaCanvasPage
         canvas.Translate(canvasSize.MidX, canvasSize.MidY);
         var shortSideRatio = Math.Min(canvasSize.Width / pathSize.Width, canvasSize.Height / pathSize.Width);
         canvas.Scale(0.7f * shortSideRatio);
-        canvas.RotateDegrees(rotation);
+        canvas.RotateDegrees(Rotation);
         canvas.Translate(-pathSize.MidX, -pathSize.MidY);
 
         canvas.Scale(-1);

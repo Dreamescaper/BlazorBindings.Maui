@@ -50,7 +50,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\src\BlazorBindings.Maui.SkiaSharp\BlazorBindings.Maui.SkiaSharp.csproj" />
 	  <ProjectReference Include="..\..\src\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
 	</ItemGroup>
 

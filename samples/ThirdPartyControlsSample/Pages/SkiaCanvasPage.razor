@@ -1,12 +1,13 @@
-﻿@page "/skia/canvas"
+﻿@using BlazorBindings.Maui.Elements.SkiaSharp
+
 <ContentPage Title="SkiaSharp Canvas">
     <StackLayout Padding="20">
-        <Slider Margin="20" ValueChanged="RotationSliderChanged" />
+        <Slider Margin="20" @bind-Value="_sliderValue" @bind-Value:after="InvalidateSurfaces" />
 
-        <BlazorBindings.Maui.SkiaSharp.SKCanvasView @ref="CanvasView"
+        <SKCanvasView @ref="CanvasView"
                       OnPaintSurface="PaintSurface"
                       VerticalOptions="LayoutOptions.FillAndExpand" />
-        <BlazorBindings.Maui.SkiaSharp.SKCanvasView @ref="CanvasView2"
+        <SKCanvasView @ref="CanvasView2"
                       OnPaintSurface="PaintSurface2"
                       VerticalOptions="LayoutOptions.FillAndExpand" />
     </StackLayout>

@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 using BlazorBindings.Maui;
-using SkiaSharp.Views.Maui.Controls.Hosting;
 using UraniumUI;
 
 namespace ControlGallery;
@@ -14,7 +13,6 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            .UseSkiaSharp()
             .UseMauiBlazorBindings()
             .ConfigureFonts(fonts =>
             {
