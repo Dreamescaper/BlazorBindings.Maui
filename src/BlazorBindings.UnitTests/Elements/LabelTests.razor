@@ -18,6 +18,17 @@
     }
 
     [Test]
+    public async Task AddLabelWithMarkupContent()
+    {
+        var label = await Render<MC.Label>(
+    @<Label TextColor="Colors.White">
+        345
+    </Label>);
+
+        Assert.That(label.Text, Is.EqualTo("345"));
+    }
+
+    [Test]
     public async Task AddLabelWithDynamicTextContent()
     {
         var someText = "123";
@@ -66,9 +77,9 @@
         <Span>1</Span>
         <Span>2</Span>
         @if (insertSpan)
-        {
-            <Span>10</Span>
-        }
+    {
+        <Span>10</Span>
+    }
         <Span>3</Span>
     </Label>
     );

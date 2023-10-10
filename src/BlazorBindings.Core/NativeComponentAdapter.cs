@@ -255,7 +255,15 @@ internal sealed class NativeComponentAdapter : IDisposable
                 {
                     if (!string.IsNullOrWhiteSpace(frame.MarkupContent))
                     {
-                        throw new NotImplementedException($"Not supported frame type: {frame.FrameType}");
+                        if (_targetElement is IHandleChildContentText handleChildContentText)
+                        {
+                            handleChildContentText.HandleText(siblingIndex, frame.MarkupContent);
+                        }
+                        else
+                        {
+                            var typeName = _targetElement?.TargetElement?.GetType()?.Name;
+                            throw new NotImplementedException($"Element {typeName} does not support text content: " + frame.MarkupContent);
+                        }
                     }
                     // We don't need any adapter for Markup frames, but we care about frame position, therefore we simply insert null here.
                     Children.Insert(siblingIndex, null);
