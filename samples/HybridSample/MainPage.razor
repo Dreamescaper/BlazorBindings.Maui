@@ -1,0 +1,70 @@
+﻿@using HybridSample.Data
+@using HybridSample.Web
+
+@implements IDisposable
+
+<ContentPage>
+    <Grid RowDefinitions="*,*">
+        <GridCell Row="0">
+            <ScrollView>
+                <VerticalStackLayout Spacing="25"
+                                     Padding="new(30,0)"
+                                     VerticalOptions="LayoutOptions.Center">
+
+                    <Image Source="dotNetBotSource"
+                           HeightRequest="200"
+                           HorizontalOptions="LayoutOptions.Center" />
+
+                    <Label Text="Hello, World!"
+                           FontSize="32"
+                           HorizontalOptions="LayoutOptions.Center" />
+
+                    <Label Text="Welcome to .NET Multi-platform App UI"
+                           FontSize="18"
+                           HorizontalOptions="LayoutOptions.Center" />
+
+                    <Button Text="@ButtonText"
+                            HorizontalOptions="LayoutOptions.Center"
+                            OnClick="OnCounterClicked" />
+                </VerticalStackLayout>
+            </ScrollView>
+        </GridCell>
+
+        <GridCell Row="1">
+            <BlazorWebView HostPage="wwwroot/index.html">
+                <RootComponents>
+                    <RootComponent Selector="#app" ComponentType="typeof(Main)" />
+                </RootComponents>
+            </BlazorWebView>
+        </GridCell>
+
+    </Grid>
+</ContentPage>
+
+@code {
+    [Inject] CounterState CounterState { get; set; }
+
+    ImageSource dotNetBotSource = ImageSource.FromFile("dotnet_bot.png");
+
+    string ButtonText => CounterState.CurrentCount switch
+    {
+        0 => "Click me",
+        1 => $"Clicked 1 time",
+        _ => $"Clicked {CounterState.CurrentCount} times"
+    };
+
+    void OnCounterClicked()
+    {
+        CounterState.IncrementCount();
+    }
+
+    protected override void OnInitialized()
+    {
+        CounterState.StateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        CounterState.StateChanged -= StateHasChanged;
+    }
+}

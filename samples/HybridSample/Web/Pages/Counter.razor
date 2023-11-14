@@ -1,0 +1,29 @@
+﻿@using HybridSample.Data
+
+@page "/counter"
+@implements IDisposable
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @CounterState.CurrentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    [Inject] CounterState CounterState { get; set; }
+
+    private void IncrementCount()
+    {
+        CounterState.IncrementCount();
+    }
+
+    protected override void OnInitialized()
+    {
+        CounterState.StateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        CounterState.StateChanged -= StateHasChanged;
+    }
+}
