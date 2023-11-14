@@ -72,14 +72,14 @@
     void OutlinedClicked() => buttonClicked = "Outlined";
     void TextClicked() => buttonClicked = "Text";
 
-    string[] combo1Items = new[] { "Item 1", "Item 2", "Item 3", "Item 4", };
-    (string Text, IconKind Icon)[] combo2Items = new[]
-    {
+    string[] combo1Items = ["Item 1", "Item 2", "Item 3", "Item 4"];
+    (string Text, IconKind Icon)[] combo2Items =
+    [
         ("Item A", IconKind.Airlines),
         ("Item B", IconKind.Camera),
         ("Item C", IconKind.Person),
         ("Item D", IconKind.AutoDelete),
-    };
+    ];
 
     int selectedIndex1 = -1;
     int selectedIndex2 = -1;

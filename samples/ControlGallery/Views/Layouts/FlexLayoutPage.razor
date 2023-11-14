@@ -19,9 +19,9 @@
             <Label Text="FlexLayout with wrapping" />
             <FlexLayout Wrap="FlexWrap.Wrap">
                 @foreach (var color in _colors)
-            {
-                <BoxView Color="color" HeightRequest="50" WidthRequest="50" Margin="5" />
-            }
+                {
+                    <BoxView Color="color" HeightRequest="50" WidthRequest="50" Margin="5" />
+                }
             </FlexLayout>
 
             <Label Text="Flex page layout" />
@@ -58,22 +58,23 @@
 </ContentPage>
 
 @code {
-Color[] _colors = new[] {
-    Colors.AliceBlue,
-    Colors.Aqua,
-    Colors.Azure,
-    Colors.Beige,
-    Colors.Bisque,
-    Colors.Black,
-    Colors.Blue,
-    Colors.Brown,
-    Colors.BurlyWood,
-    Colors.Crimson,
-    Colors.DarkGray,
-    Colors.CornflowerBlue,
-    Colors.DarkOliveGreen,
-    Colors.Fuchsia,
-    Colors.AliceBlue,
-    Colors.DarkSeaGreen
-};
+    Color[] _colors =
+    [
+        Colors.AliceBlue,
+        Colors.Aqua,
+        Colors.Azure,
+        Colors.Beige,
+        Colors.Bisque,
+        Colors.Black,
+        Colors.Blue,
+        Colors.Brown,
+        Colors.BurlyWood,
+        Colors.Crimson,
+        Colors.DarkGray,
+        Colors.CornflowerBlue,
+        Colors.DarkOliveGreen,
+        Colors.Fuchsia,
+        Colors.AliceBlue,
+        Colors.DarkSeaGreen
+    ];
 }

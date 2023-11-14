@@ -10,15 +10,14 @@
         </StackLayout>
     </ScrollView>
 </ContentPage>
-@code {
-Animal Dog;
 
-[Parameter]
-public string Name
-{
-    set
+@code {
+    Animal Dog;
+
+    [Parameter] public string Name { get; set; }
+
+    protected override void OnParametersSet()
     {
-        Dog = DogData.Dogs.FirstOrDefault(m => m.Name == Uri.UnescapeDataString(value));
+        Dog = DogData.Dogs.FirstOrDefault(m => m.Name == Uri.UnescapeDataString(Name));
     }
-}
 }

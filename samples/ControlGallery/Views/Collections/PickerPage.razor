@@ -65,36 +65,32 @@
 
     public int SelectedIndex { get; set; } = -1;
 
-    public List<PickerModel> Models { get; set; } = new List<PickerModel>
-    {
-        new PickerModel{Name = "Model 1"},
-        new PickerModel{Name = "Model 2"},
-        new PickerModel{Name = "Model 3"},
-    };
+    public List<PickerModel> Models { get; set; } =
+    [
+        new PickerModel { Name = "Model 1" },
+        new PickerModel { Name = "Model 2" },
+        new PickerModel { Name = "Model 3" },
+    ];
 
-    public string SelectedString
-    {
-        get;
-        set;
-    }
+    public string SelectedString { get; set; }
 
-    public List<string> Strings { get; set; } = new List<string>
-    {
+    public List<string> Strings { get; set; } =
+    [
         "String 1",
         "String 2",
         "String 3",
-    };
+    ];
 
     static PickerModel defaultModel = new PickerModel { Name = "Default Model" };
     public PickerModel SelectedModelDefault { get; set; } = defaultModel;
 
-    public List<PickerModel> ModelsWithDefault { get; set; } = new List<PickerModel>
-    {
+    public List<PickerModel> ModelsWithDefault { get; set; } =
+    [
         new PickerModel{Name = "Model 1"},
         new PickerModel{Name = "Model 2"},
         defaultModel,
         new PickerModel{Name = "Model 3"},
-    };
+    ];
 
     public void ButtonClicked()
     {

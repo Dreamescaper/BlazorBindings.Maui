@@ -32,12 +32,13 @@
 </ContentPage>
 
 @code {
-    Item[] items = new Item[] {
+    Item[] items = 
+    [
         new("Nemo", "https://static.wikia.nocookie.net/pixar/images/a/aa/Nemo-FN.png/revision/latest/smart/width/250/height/250?cb=20160710221104"),
         new("Dory", "https://static.wikia.nocookie.net/pixar/images/1/1f/Dory-white.jpg/revision/latest/scale-to-width-down/350?cb=20110924203518"),
         new("Bruce", "https://static.wikia.nocookie.net/pixar/images/e/e3/Bruce-render.png/revision/latest/scale-to-width-down/350?cb=20181210152244"),
         new("Gill", "https://static.wikia.nocookie.net/pixar/images/7/72/Gill.png/revision/latest/scale-to-width-down/350?cb=20210322233843")
-    };
+    ];
 
     IndicatorView indicatorView;
     Item currentItem;

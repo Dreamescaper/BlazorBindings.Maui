@@ -10,15 +10,14 @@
         </StackLayout>
     </ScrollView>
 </ContentPage>
-@code {
-Animal Elephant;
 
-[Parameter]
-public string Name
-{
-    set
+@code {
+    Animal Elephant;
+
+    [Parameter] public string Name { get; set; }
+
+    protected override void OnParametersSet()
     {
-        Elephant = ElephantData.Elephants.FirstOrDefault(m => m.Name == Uri.UnescapeDataString(value));
+        Elephant = ElephantData.Elephants.FirstOrDefault(m => m.Name == Uri.UnescapeDataString(Name));
     }
-}
 }

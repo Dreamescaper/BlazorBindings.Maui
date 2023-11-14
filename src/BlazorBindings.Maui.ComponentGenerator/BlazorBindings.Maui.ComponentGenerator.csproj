@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net7.0</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 
 		<Description>Dotnet tool which generate BlazorBindings.Maui components for MAUI elements.</Description>
 		<PackAsTool>true</PackAsTool>
@@ -12,7 +12,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
-		<PackageReference Include="Microsoft.Build.Locator" Version="1.6.1" />
+		<PackageReference Include="Microsoft.Build.Locator" Version="1.6.10" />
 		<PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.5.0" />
 		<PackageReference Include="Microsoft.CodeAnalysis.Workspaces.MSBuild" Version="4.5.0" />
 	</ItemGroup>

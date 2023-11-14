@@ -268,7 +268,7 @@ namespace {componentNamespace}
     {
         var nsName = typeToGenerate.ContainingNamespace.GetFullName();
         var parts = nsName.Split('.')
-            .Except(new[] { "Maui", "Controls", "Views", "UI", "Microsoft" }, StringComparer.OrdinalIgnoreCase);
+            .Except(["Maui", "Controls", "Views", "UI", "Microsoft"], StringComparer.OrdinalIgnoreCase);
 
         return string.Join('.', parts);
     }

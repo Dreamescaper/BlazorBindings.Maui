@@ -12,6 +12,7 @@ internal class MauiBlazorBindingsServiceProvider : IServiceProvider
     private readonly IServiceProvider _serviceProvider;
     private NavigationManager _navigationManager;
     private INavigationInterception _navigationInterception;
+    private IScrollToLocationHash _scrollToLocationHash;
 
     public MauiBlazorBindingsServiceProvider(IServiceProvider serviceProvider)
     {
@@ -25,6 +26,9 @@ internal class MauiBlazorBindingsServiceProvider : IServiceProvider
 
         if (serviceType == typeof(INavigationInterception))
             return _navigationInterception ??= new MbbNavigationInterception();
+
+        if (serviceType == typeof(IScrollToLocationHash))
+            return _scrollToLocationHash ??= new MbbScrollToLocationHash();
 
         return _serviceProvider.GetService(serviceType);
     }

@@ -8,18 +8,18 @@ namespace BlazorBindings.Maui.ComponentGenerator;
 
 public partial class GeneratedPropertyInfo
 {
-    private static readonly (string TypeName, bool AllowDescendantTypes)[] ContentTypes = new[]
-    {
+    private static readonly (string TypeName, bool AllowDescendantTypes)[] ContentTypes =
+    [
         ("Microsoft.Maui.IView", false),
         ("Microsoft.Maui.Controls.VisualElement", true),
         ("Microsoft.Maui.Controls.BaseMenuItem", true),
         ("Microsoft.Maui.Controls.Brush", true),
         ("Microsoft.Maui.Controls.Shadow", false),
         ("Microsoft.Maui.Controls.ControlTemplate", false),
-        ("Microsoft.Maui.Controls.DataTemplate",false),
+        ("Microsoft.Maui.Controls.DataTemplate", false),
         ("Microsoft.Maui.Controls.Shapes.Shape", true),
-        ("Microsoft.Maui.Graphics.IShape",false)
-    };
+        ("Microsoft.Maui.Graphics.IShape", false)
+    ];
 
     public bool IsRenderFragmentProperty => Kind == GeneratedPropertyKind.RenderFragment;
     public bool IsControlTemplate => _propertyInfo.Type.GetFullName() == "Microsoft.Maui.Controls.ControlTemplate";

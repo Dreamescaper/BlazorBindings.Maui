@@ -30,12 +30,12 @@
                             <Span TextColor="lightTextColor">1.0</Span>
                         </Label>
                         @*
-                            // TODO: Figure out how to do this for the underlined <Span> below
-                            <Span.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding TapCommand, Mode=OneWay}"
-                                    CommandParameter="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/" />
-                            </Span.GestureRecognizers>
+                        // TODO: Figure out how to do this for the underlined <Span> below
+                        <Span.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding TapCommand, Mode=OneWay}"
+                        CommandParameter="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/" />
+                        </Span.GestureRecognizers>
 
                         *@
                         <Label>
@@ -45,12 +45,11 @@
                                   TextDecorations="TextDecorations.Underline">Xamarin Platform</Span>
                             <Span>.</Span>
                         </Label>
-                        <Button Margin="new Thickness(0,10,0,0)"
+                        <Button Text="Learn more"
+                                Margin="new Thickness(0,10,0,0)"
                                 OnClick="OpenWeb"
                                 BackgroundColor="primaryColor"
-                                TextColor="Colors.White">
-                            Learn more
-                        </Button>
+                                TextColor="Colors.White" />
                     </StackLayout>
                 </ScrollView>
             </GridCell>
@@ -61,10 +60,10 @@
 @code
 {
     Color primaryColor = Color.FromArgb("96d1ff");
-Color lightTextColor = Color.FromArgb("999999");
+    Color lightTextColor = Color.FromArgb("999999");
 
-async Task OpenWeb()
-{
-    await Launcher.OpenAsync(new Uri("https://docs.microsoft.com/en-us/xamarin/xamarin-forms/"));
-}
+    async Task OpenWeb()
+    {
+        await Launcher.OpenAsync(new Uri("https://docs.microsoft.com/en-us/xamarin/xamarin-forms/"));
+    }
 }
