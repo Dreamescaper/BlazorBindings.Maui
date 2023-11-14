@@ -41,7 +41,7 @@ public abstract class BindableObject : NativeControlComponentBase, IElementHandl
         RenderAdditionalPartialElementContent(builder, ref sequence);
     }
 
-    [RequiresPreviewFeatures]
+    [Experimental("MBB001")]
     protected virtual void RenderAdditionalPartialElementContent(RenderTreeBuilder builder, ref int sequence) { }
 
     protected virtual bool HandleAdditionalParameter(string name, object value) => false;

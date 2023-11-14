@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Components;
 using System.Net;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
@@ -33,6 +33,10 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.WebViewSource" /> object that represents the location that this <see cref="T:Microsoft.Maui.Controls.WebView" /> object displays.
         /// </summary>
         [Parameter] public MC.WebViewSource Source { get; set; }
+        /// <summary>
+        /// Gets or sets the user agent string that this <see cref="T:Microsoft.Maui.Controls.WebView" /> object uses.
+        /// </summary>
+        [Parameter] public string UserAgent { get; set; }
         [Parameter] public EventCallback<MC.WebNavigatedEventArgs> OnNavigated { get; set; }
         [Parameter] public EventCallback<MC.WebNavigatingEventArgs> OnNavigating { get; set; }
 
@@ -56,6 +60,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         Source = (MC.WebViewSource)value;
                         NativeControl.Source = Source;
+                    }
+                    break;
+                case nameof(UserAgent):
+                    if (!Equals(UserAgent, value))
+                    {
+                        UserAgent = (string)value;
+                        NativeControl.UserAgent = UserAgent;
                     }
                     break;
                 case nameof(OnNavigated):

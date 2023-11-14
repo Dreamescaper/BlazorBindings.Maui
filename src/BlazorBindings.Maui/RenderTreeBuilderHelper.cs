@@ -9,7 +9,7 @@ using MC = Microsoft.Maui.Controls;
 namespace BlazorBindings.Maui;
 
 /// <remarks>Experimental API, subject to change.</remarks>
-[RequiresPreviewFeatures]
+[Experimental("MBB001")]
 public static class RenderTreeBuilderHelper
 {
     public static void AddContentProperty<TControl>(

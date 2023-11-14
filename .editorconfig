@@ -203,3 +203,6 @@ dotnet_diagnostic.BL0006.severity = none
 
 # CA1724: The type name conflicts in whole or in part with the namespace name. Change either name to eliminate the conflict.
 dotnet_diagnostic.CA1724.severity = none
+
+# MBB001: Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+dotnet_diagnostic.MBB001.severity = none

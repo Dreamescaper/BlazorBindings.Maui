@@ -12,7 +12,7 @@ using Microsoft.Maui;
 using System;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
@@ -33,23 +33,7 @@ namespace BlazorBindings.Maui.Elements
         /// Whether the editor will change size to accommodate input as the user enters it.
         /// </value>
         [Parameter] public MC.EditorAutoSizeOption? AutoSize { get; set; }
-        [Parameter] public int? CursorPosition { get; set; }
-        /// <summary>
-        /// Gets a value that indicates whether the font for the editor is bold, italic, or neither.
-        /// </summary>
-        [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
-        [Parameter] public bool? FontAutoScalingEnabled { get; set; }
-        /// <summary>
-        /// Gets the font family to which the font for the editor belongs.
-        /// </summary>
-        [Parameter] public string FontFamily { get; set; }
-        /// <summary>
-        /// Gets the size of the font for the editor.
-        /// </summary>
-        [Parameter] public double? FontSize { get; set; }
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
-        [Parameter] public bool? IsTextPredictionEnabled { get; set; }
-        [Parameter] public int? SelectionLength { get; set; }
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
         [Parameter] public EventCallback OnCompleted { get; set; }
 
@@ -68,60 +52,11 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.AutoSize = AutoSize ?? (MC.EditorAutoSizeOption)MC.Editor.AutoSizeProperty.DefaultValue;
                     }
                     break;
-                case nameof(CursorPosition):
-                    if (!Equals(CursorPosition, value))
-                    {
-                        CursorPosition = (int?)value;
-                        NativeControl.CursorPosition = CursorPosition ?? (int)MC.Editor.CursorPositionProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(FontAttributes):
-                    if (!Equals(FontAttributes, value))
-                    {
-                        FontAttributes = (MC.FontAttributes?)value;
-                        NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.Editor.FontAttributesProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(FontAutoScalingEnabled):
-                    if (!Equals(FontAutoScalingEnabled, value))
-                    {
-                        FontAutoScalingEnabled = (bool?)value;
-                        NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.Editor.FontAutoScalingEnabledProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(FontFamily):
-                    if (!Equals(FontFamily, value))
-                    {
-                        FontFamily = (string)value;
-                        NativeControl.FontFamily = FontFamily;
-                    }
-                    break;
-                case nameof(FontSize):
-                    if (!Equals(FontSize, value))
-                    {
-                        FontSize = (double?)value;
-                        NativeControl.FontSize = FontSize ?? (double)MC.Editor.FontSizeProperty.DefaultValue;
-                    }
-                    break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
                         HorizontalTextAlignment = (TextAlignment?)value;
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.Editor.HorizontalTextAlignmentProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(IsTextPredictionEnabled):
-                    if (!Equals(IsTextPredictionEnabled, value))
-                    {
-                        IsTextPredictionEnabled = (bool?)value;
-                        NativeControl.IsTextPredictionEnabled = IsTextPredictionEnabled ?? (bool)MC.Editor.IsTextPredictionEnabledProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(SelectionLength):
-                    if (!Equals(SelectionLength, value))
-                    {
-                        SelectionLength = (int?)value;
-                        NativeControl.SelectionLength = SelectionLength ?? (int)MC.Editor.SelectionLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):

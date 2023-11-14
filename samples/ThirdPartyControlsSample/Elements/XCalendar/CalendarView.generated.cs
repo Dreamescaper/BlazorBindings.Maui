@@ -15,7 +15,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using XMV = XCalendar.Maui.Views;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements.XCalendar
 {

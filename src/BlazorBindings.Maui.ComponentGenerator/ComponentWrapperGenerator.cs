@@ -123,7 +123,7 @@ public partial class ComponentWrapperGenerator
         var content = $@"{headerText}
 {usingsText}
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace {componentNamespace}
 {{

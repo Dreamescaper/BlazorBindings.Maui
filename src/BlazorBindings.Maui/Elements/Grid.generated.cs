@@ -10,7 +10,7 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
@@ -25,17 +25,17 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Provides the interface for the bound property that gets or sets the distance between columns in the Grid.
+        /// Gets or sets the amount of space between columns in the Grid.
         /// </summary>
         /// <value>
-        /// The space between columns in this <see cref="T:Microsoft.Maui.Controls.Grid" /> layout. The default is 6.
+        /// The space between columns in this <see cref="T:Microsoft.Maui.Controls.Grid" /> layout. The default is 0.
         /// </value>
         [Parameter] public double? ColumnSpacing { get; set; }
         /// <summary>
-        /// Gets or sets the amount of space left between rows in the Grid.
+        /// Gets or sets the amount of space between rows in the Grid.
         /// </summary>
         /// <value>
-        /// The space between rows
+        /// The space between rows in this <see cref="T:Microsoft.Maui.Controls.Grid" /> layout. The default is 0.
         /// </value>
         [Parameter] public double? RowSpacing { get; set; }
 

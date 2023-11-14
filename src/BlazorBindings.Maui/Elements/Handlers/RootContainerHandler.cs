@@ -8,7 +8,7 @@ namespace BlazorBindings.Maui.Elements.Handlers;
 /// from a Blazor component.
 /// </summary>
 /// <remarks>Experimental API, subject to change.</remarks>
-[RequiresPreviewFeatures]
+[Experimental("MBB001")]
 public class RootContainerHandler : IContainerElementHandler, INonPhysicalChild
 {
     private TaskCompletionSource<object> _taskCompletionSource;

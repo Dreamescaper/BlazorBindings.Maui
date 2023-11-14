@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Controls;
+using System.Diagnostics.CodeAnalysis;
 using IComponent = Microsoft.AspNetCore.Components.IComponent;
 using MC = Microsoft.Maui.Controls;
 
@@ -76,7 +77,7 @@ public partial class Navigation : INavigation
     /// This method is exposed for extensibility purposes, and shouldn't be used directly.
     /// </summary>
     /// <remarks>Experimental API, subject to change.</remarks>
-    [RequiresPreviewFeatures]
+    [Experimental("MBB001")]
     public async Task<T> BuildElement<T>(Type componentType, Dictionary<string, object> arguments) where T : Element
     {
         var (bindableObject, componentTask) = await _renderer.GetElementFromRenderedComponent(componentType, arguments);

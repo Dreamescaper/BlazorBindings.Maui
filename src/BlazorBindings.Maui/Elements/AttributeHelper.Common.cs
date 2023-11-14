@@ -2,12 +2,13 @@
 // Licensed under the MIT license.
 
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace BlazorBindings.Maui.Elements;
 
-[RequiresPreviewFeatures]
+[Experimental("MBB001")]
 public static partial class AttributeHelper
 {
     public static bool GetBool(object value, bool defaultValueIfNull = default)

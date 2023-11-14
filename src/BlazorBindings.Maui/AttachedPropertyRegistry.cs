@@ -2,11 +2,12 @@
 // Licensed under the MIT license.
 
 using Microsoft.Maui.Controls;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BlazorBindings.Maui;
 
 /// <remarks>Experimental API, subject to change.</remarks>
-[RequiresPreviewFeatures]
+[Experimental("MBB001")]
 public static class AttachedPropertyRegistry
 {
     internal static readonly Dictionary<string, Action<BindableObject, object>> AttachedPropertyHandlers = new();

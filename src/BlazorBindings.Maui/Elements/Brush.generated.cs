@@ -10,10 +10,13 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Defines the core behavior and built-in colors for painting an area.
+    /// </summary>
     public abstract partial class Brush : Element
     {
         static Brush()

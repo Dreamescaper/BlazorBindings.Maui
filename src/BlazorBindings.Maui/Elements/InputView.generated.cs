@@ -12,7 +12,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
@@ -34,6 +34,26 @@ namespace BlazorBindings.Maui.Elements
         /// </value>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
+        /// Gets or sets the position of the cursor. The value must be more than or equal to 0 and less or equal to the length of <see cref="P:Microsoft.Maui.Controls.InputView.Text" />.
+        /// </summary>
+        [Parameter] public int? CursorPosition { get; set; }
+        /// <summary>
+        /// Gets or sets a value that indicates whether the font for the text of this entry is bold, italic, or neither.
+        /// </summary>
+        [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
+        /// <summary>
+        /// Determines whether or not the font of this entry should scale automatically according to the operating system settings. Default value is <see langword="true" />.
+        /// </summary>
+        [Parameter] public bool? FontAutoScalingEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets the font family for the text of this entry.
+        /// </summary>
+        [Parameter] public string FontFamily { get; set; }
+        /// <summary>
+        /// Gets or sets the size of the font for the text of this entry.
+        /// </summary>
+        [Parameter] public double? FontSize { get; set; }
+        /// <summary>
         /// Gets or sets a value that indicates whether user should be prevented from modifying the text. Default is <see langword="false" />.
         /// </summary>
         /// <value>
@@ -47,6 +67,13 @@ namespace BlazorBindings.Maui.Elements
         /// <see langword="true" /> if spell checking is enabled. Otherwise <see langword="false" />.
         /// </value>
         [Parameter] public bool? IsSpellCheckEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets a value that controls whether text prediction and automatic text correction are enabled.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if text prediction (auto correction) is enabled. Otherwise <see langword="false" />.
+        /// </value>
+        [Parameter] public bool? IsTextPredictionEnabled { get; set; }
         /// <summary>
         /// Gets or sets the Keyboard for the InputView.
         /// </summary>
@@ -76,6 +103,10 @@ namespace BlazorBindings.Maui.Elements
         /// </value>
         [Parameter] public Color PlaceholderColor { get; set; }
         /// <summary>
+        /// Gets or sets the length of the selection. The selection will start at <see cref="P:Microsoft.Maui.Controls.InputView.CursorPosition" />.
+        /// </summary>
+        [Parameter] public int? SelectionLength { get; set; }
+        /// <summary>
         /// Gets or sets the text color.
         /// </summary>
         [Parameter] public Color TextColor { get; set; }
@@ -95,6 +126,41 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.InputView.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
+                case nameof(CursorPosition):
+                    if (!Equals(CursorPosition, value))
+                    {
+                        CursorPosition = (int?)value;
+                        NativeControl.CursorPosition = CursorPosition ?? (int)MC.InputView.CursorPositionProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(FontAttributes):
+                    if (!Equals(FontAttributes, value))
+                    {
+                        FontAttributes = (MC.FontAttributes?)value;
+                        NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.InputView.FontAttributesProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(FontAutoScalingEnabled):
+                    if (!Equals(FontAutoScalingEnabled, value))
+                    {
+                        FontAutoScalingEnabled = (bool?)value;
+                        NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.InputView.FontAutoScalingEnabledProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(FontFamily):
+                    if (!Equals(FontFamily, value))
+                    {
+                        FontFamily = (string)value;
+                        NativeControl.FontFamily = FontFamily;
+                    }
+                    break;
+                case nameof(FontSize):
+                    if (!Equals(FontSize, value))
+                    {
+                        FontSize = (double?)value;
+                        NativeControl.FontSize = FontSize ?? (double)MC.InputView.FontSizeProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(IsReadOnly):
                     if (!Equals(IsReadOnly, value))
                     {
@@ -107,6 +173,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         IsSpellCheckEnabled = (bool?)value;
                         NativeControl.IsSpellCheckEnabled = IsSpellCheckEnabled ?? (bool)MC.InputView.IsSpellCheckEnabledProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsTextPredictionEnabled):
+                    if (!Equals(IsTextPredictionEnabled, value))
+                    {
+                        IsTextPredictionEnabled = (bool?)value;
+                        NativeControl.IsTextPredictionEnabled = IsTextPredictionEnabled ?? (bool)MC.InputView.IsTextPredictionEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(Keyboard):
@@ -135,6 +208,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         PlaceholderColor = (Color)value;
                         NativeControl.PlaceholderColor = PlaceholderColor;
+                    }
+                    break;
+                case nameof(SelectionLength):
+                    if (!Equals(SelectionLength, value))
+                    {
+                        SelectionLength = (int?)value;
+                        NativeControl.SelectionLength = SelectionLength ?? (int)MC.InputView.SelectionLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):

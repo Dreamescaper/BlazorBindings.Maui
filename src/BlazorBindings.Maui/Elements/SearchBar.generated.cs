@@ -13,7 +13,7 @@ using Microsoft.Maui.Graphics;
 using System;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
@@ -31,26 +31,10 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the color of the cancel button.
         /// </summary>
         [Parameter] public Color CancelButtonColor { get; set; }
-        [Parameter] public int? CursorPosition { get; set; }
-        /// <summary>
-        /// Gets a value that indicates whether the font for the searchbar text is bold, italic, or neither.
-        /// </summary>
-        [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
-        [Parameter] public bool? FontAutoScalingEnabled { get; set; }
-        /// <summary>
-        /// Gets or sets the font family for the search bar text.
-        /// </summary>
-        [Parameter] public string FontFamily { get; set; }
-        /// <summary>
-        /// Gets the size of the font for the text in the searchbar.
-        /// </summary>
-        [Parameter] public double? FontSize { get; set; }
         /// <summary>
         /// Gets or sets the horizontal text alignment.
         /// </summary>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
-        [Parameter] public bool? IsTextPredictionEnabled { get; set; }
-        [Parameter] public int? SelectionLength { get; set; }
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
         [Parameter] public EventCallback OnSearchButtonPressed { get; set; }
 
@@ -69,60 +53,11 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.CancelButtonColor = CancelButtonColor;
                     }
                     break;
-                case nameof(CursorPosition):
-                    if (!Equals(CursorPosition, value))
-                    {
-                        CursorPosition = (int?)value;
-                        NativeControl.CursorPosition = CursorPosition ?? (int)MC.SearchBar.CursorPositionProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(FontAttributes):
-                    if (!Equals(FontAttributes, value))
-                    {
-                        FontAttributes = (MC.FontAttributes?)value;
-                        NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.SearchBar.FontAttributesProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(FontAutoScalingEnabled):
-                    if (!Equals(FontAutoScalingEnabled, value))
-                    {
-                        FontAutoScalingEnabled = (bool?)value;
-                        NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.SearchBar.FontAutoScalingEnabledProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(FontFamily):
-                    if (!Equals(FontFamily, value))
-                    {
-                        FontFamily = (string)value;
-                        NativeControl.FontFamily = FontFamily;
-                    }
-                    break;
-                case nameof(FontSize):
-                    if (!Equals(FontSize, value))
-                    {
-                        FontSize = (double?)value;
-                        NativeControl.FontSize = FontSize ?? (double)MC.SearchBar.FontSizeProperty.DefaultValue;
-                    }
-                    break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
                         HorizontalTextAlignment = (TextAlignment?)value;
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.SearchBar.HorizontalTextAlignmentProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(IsTextPredictionEnabled):
-                    if (!Equals(IsTextPredictionEnabled, value))
-                    {
-                        IsTextPredictionEnabled = (bool?)value;
-                        NativeControl.IsTextPredictionEnabled = IsTextPredictionEnabled ?? (bool)MC.SearchBar.IsTextPredictionEnabledProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(SelectionLength):
-                    if (!Equals(SelectionLength, value))
-                    {
-                        SelectionLength = (int?)value;
-                        NativeControl.SelectionLength = SelectionLength ?? (int)MC.SearchBar.SelectionLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):

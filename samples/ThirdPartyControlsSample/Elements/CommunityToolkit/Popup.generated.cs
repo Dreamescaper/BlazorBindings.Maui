@@ -16,7 +16,7 @@ using Microsoft.Maui.Graphics;
 using MMP = Microsoft.Maui.Primitives;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements.CommunityToolkit
 {
@@ -43,9 +43,21 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public MMP.LayoutAlignment? HorizontalOptions { get; set; }
         /// <summary>
+        /// Property that represent Resources of Popup.
+        /// </summary>
+        [Parameter] public MC.ResourceDictionary Resources { get; set; }
+        /// <summary>
         /// Gets or sets the <see cref="P:CommunityToolkit.Maui.Views.Popup.Size" /> of the Popup Display.
         /// </summary>
         [Parameter] public Size? Size { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="P:CommunityToolkit.Maui.Views.Popup.Style" /> of the Popup.
+        /// </summary>
+        [Parameter] public MC.Style Style { get; set; }
+        /// <summary>
+        /// Property that represent Style Class of Popup.
+        /// </summary>
+        [Parameter] public string StyleClass { get; set; }
         /// <summary>
         /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> for positioning the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> vertically on the screen.
         /// </summary>
@@ -90,11 +102,32 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                         NativeControl.HorizontalOptions = HorizontalOptions ?? (MMP.LayoutAlignment)CMV.Popup.HorizontalOptionsProperty.DefaultValue;
                     }
                     break;
+                case nameof(Resources):
+                    if (!Equals(Resources, value))
+                    {
+                        Resources = (MC.ResourceDictionary)value;
+                        NativeControl.Resources = Resources;
+                    }
+                    break;
                 case nameof(Size):
                     if (!Equals(Size, value))
                     {
                         Size = (Size?)value;
                         NativeControl.Size = Size ?? (Size)CMV.Popup.SizeProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(Style):
+                    if (!Equals(Style, value))
+                    {
+                        Style = (MC.Style)value;
+                        NativeControl.Style = Style;
+                    }
+                    break;
+                case nameof(StyleClass):
+                    if (!Equals(StyleClass, value))
+                    {
+                        StyleClass = (string)value;
+                        NativeControl.StyleClass = AttributeHelper.GetStringList(StyleClass);
                     }
                     break;
                 case nameof(VerticalOptions):

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements
 {
@@ -25,6 +25,10 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether tapping anywhere on the page will cause the soft input to hide.
+        /// </summary>
+        [Parameter] public bool? HideSoftInputOnTapped { get; set; }
         /// <summary>
         /// Gets or sets the view that contains the content of the Page.
         /// </summary>
@@ -41,6 +45,13 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(HideSoftInputOnTapped):
+                    if (!Equals(HideSoftInputOnTapped, value))
+                    {
+                        HideSoftInputOnTapped = (bool?)value;
+                        NativeControl.HideSoftInputOnTapped = HideSoftInputOnTapped ?? (bool)MC.ContentPage.HideSoftInputOnTappedProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
                     break;

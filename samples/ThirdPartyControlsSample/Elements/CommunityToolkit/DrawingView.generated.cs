@@ -16,7 +16,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-#pragma warning disable CA2252
+#pragma warning disable MBB001
 
 namespace BlazorBindings.Maui.Elements.CommunityToolkit
 {
@@ -55,6 +55,9 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public bool? ShouldClearOnFinish { get; set; }
         [Parameter] public EventCallback<CM.Core.DrawingLineCompletedEventArgs> OnDrawingLineCompleted { get; set; }
+        [Parameter] public EventCallback<CM.Core.DrawingLineStartedEventArgs> OnDrawingLineStarted { get; set; }
+        [Parameter] public EventCallback OnDrawingLineCancelled { get; set; }
+        [Parameter] public EventCallback<CM.Core.PointDrawnEventArgs> OnPointDrawn { get; set; }
 
         public new CMV.DrawingView NativeControl => (CMV.DrawingView)((BindableObject)this).NativeControl;
 
@@ -114,6 +117,36 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                         OnDrawingLineCompleted = (EventCallback<CM.Core.DrawingLineCompletedEventArgs>)value;
                         NativeControl.DrawingLineCompleted -= NativeControlDrawingLineCompleted;
                         NativeControl.DrawingLineCompleted += NativeControlDrawingLineCompleted;
+                    }
+                    break;
+                case nameof(OnDrawingLineStarted):
+                    if (!Equals(OnDrawingLineStarted, value))
+                    {
+                        void NativeControlDrawingLineStarted(object sender, CM.Core.DrawingLineStartedEventArgs e) => InvokeEventCallback(OnDrawingLineStarted, e);
+
+                        OnDrawingLineStarted = (EventCallback<CM.Core.DrawingLineStartedEventArgs>)value;
+                        NativeControl.DrawingLineStarted -= NativeControlDrawingLineStarted;
+                        NativeControl.DrawingLineStarted += NativeControlDrawingLineStarted;
+                    }
+                    break;
+                case nameof(OnDrawingLineCancelled):
+                    if (!Equals(OnDrawingLineCancelled, value))
+                    {
+                        void NativeControlDrawingLineCancelled(object sender, EventArgs e) => InvokeEventCallback(OnDrawingLineCancelled);
+
+                        OnDrawingLineCancelled = (EventCallback)value;
+                        NativeControl.DrawingLineCancelled -= NativeControlDrawingLineCancelled;
+                        NativeControl.DrawingLineCancelled += NativeControlDrawingLineCancelled;
+                    }
+                    break;
+                case nameof(OnPointDrawn):
+                    if (!Equals(OnPointDrawn, value))
+                    {
+                        void NativeControlPointDrawn(object sender, CM.Core.PointDrawnEventArgs e) => InvokeEventCallback(OnPointDrawn, e);
+
+                        OnPointDrawn = (EventCallback<CM.Core.PointDrawnEventArgs>)value;
+                        NativeControl.PointDrawn -= NativeControlPointDrawn;
+                        NativeControl.PointDrawn += NativeControlPointDrawn;
                     }
                     break;
 
