@@ -11,7 +11,6 @@ namespace BlazorBindings.Maui.Elements.DataTemplates;
 internal class SyncDataTemplateItemComponent<T> : ComponentBase
 {
     private T _item;
-    private bool _shouldRender = true;
     private bool _initialValueSet;
 
     public MC.BindableObject RootControl { get; private set; }
@@ -43,14 +42,6 @@ internal class SyncDataTemplateItemComponent<T> : ComponentBase
         return base.SetParametersAsync(ParameterView.Empty);
     }
 
-    protected override bool ShouldRender()
-    {
-        // Re-rendering is required only if BindingContext is changed.
-        // If this method is not overridden, it re-renders all items in DataTemplateItemsComponent
-        // when new item is added there.
-        return _shouldRender;
-    }
-
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         if (_item != null)
@@ -59,8 +50,6 @@ internal class SyncDataTemplateItemComponent<T> : ComponentBase
             builder.AddAttribute(1, "ChildContent", Template.Invoke(_item));
             builder.AddAttribute(2, nameof(RootContainerComponent.OnElementAdded), EventCallback.Factory.Create<object>(this, OnRootElementAdded));
             builder.CloseComponent();
-
-            _shouldRender = false;
         }
     }
 
@@ -83,7 +72,6 @@ internal class SyncDataTemplateItemComponent<T> : ComponentBase
             if (newItem != null && !Equals(newItem, _item))
             {
                 _item = newItem;
-                _shouldRender = true;
                 StateHasChanged();
             }
         };
