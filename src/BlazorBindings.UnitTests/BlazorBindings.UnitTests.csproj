@@ -3,8 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <IsPackable>false</IsPackable>
-	<EnablePreviewFeatures>true</EnablePreviewFeatures>
-	<GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);MBB001</NoWarn>
   </PropertyGroup>
 	
   <ItemGroup>
