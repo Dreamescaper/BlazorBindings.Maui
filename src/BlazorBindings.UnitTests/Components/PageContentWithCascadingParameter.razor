@@ -8,20 +8,20 @@
 </ContentPage>
 
 @code {
-[CascadingParameter] public string Par1 { get; set; }
+    [CascadingParameter] public string Par1 { get; set; }
 
-public static void ValidateContent(MC.Element content, string par1)
-{
-    var contentPage = content as MC.ContentPage;
-    Assert.IsNotNull(contentPage);
-    Assert.That(contentPage.Title, Is.EqualTo("Test"));
+    public static void ValidateContent(MC.Element content, string par1)
+    {
+        var contentPage = content as MC.ContentPage;
+        Assert.That(contentPage, Is.Not.Null);
+        Assert.That(contentPage.Title, Is.EqualTo("Test"));
 
-    var stack = contentPage.Content as MC.VerticalStackLayout;
-    Assert.IsNotNull(stack);
+        var stack = contentPage.Content as MC.VerticalStackLayout;
+        Assert.That(stack, Is.Not.Null);
 
-    var label1 = (stack.Children[0] as MC.Label)?.Text;
-    Assert.That(label1, Is.EqualTo(par1));
+        var label1 = (stack.Children[0] as MC.Label)?.Text;
+        Assert.That(label1, Is.EqualTo(par1));
 
-    NonPageContent.ValidateContent(stack.Children[1]);
-}
+        NonPageContent.ValidateContent(stack.Children[1]);
+    }
 }

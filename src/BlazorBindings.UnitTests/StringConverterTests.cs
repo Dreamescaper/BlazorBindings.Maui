@@ -39,8 +39,8 @@ public class StringConverterTests
         var success = StringConverter.TryParse(type, s, CultureInfo.InvariantCulture, out var result);
         Assert.Multiple(() =>
         {
-            Assert.AreEqual(expectedResult, result);
-            Assert.AreEqual(expectedSuccess, success);
+            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(success, Is.EqualTo(expectedSuccess));
         });
     }
 

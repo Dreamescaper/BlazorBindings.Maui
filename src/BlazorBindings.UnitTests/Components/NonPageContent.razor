@@ -3,13 +3,13 @@
 </VerticalStackLayout>
 
 @code {
-public static void ValidateContent(Microsoft.Maui.IElement content)
-{
-    var stackLayout = content as MC.VerticalStackLayout;
-    Assert.IsNotNull(stackLayout);
+    public static void ValidateContent(Microsoft.Maui.IElement content)
+    {
+        var stackLayout = content as MC.VerticalStackLayout;
+        Assert.That(stackLayout, Is.Not.Null);
 
-    var label = stackLayout.Children.FirstOrDefault() as MC.Label;
-    Assert.IsNotNull(label);
-    Assert.That(label.Text, Is.EqualTo("Text"));
-}
+        var label = stackLayout.Children.FirstOrDefault() as MC.Label;
+        Assert.That(label, Is.Not.Null);
+        Assert.That(label.Text, Is.EqualTo("Text"));
+    }
 }

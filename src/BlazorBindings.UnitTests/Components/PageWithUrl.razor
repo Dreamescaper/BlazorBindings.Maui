@@ -46,7 +46,7 @@
     public static void ValidateContent(MC.Element content, int i = 0, long? l = null, DateTime? dt = null, string[] additionalLines = null)
     {
         var contentPage = content as MC.ContentPage;
-        Assert.IsNotNull(contentPage);
+        Assert.That(contentPage, Is.Not.Null);
 
         var layout = (MC.VerticalStackLayout)contentPage.Content;
         var labelI = (MC.Label)layout[0];
