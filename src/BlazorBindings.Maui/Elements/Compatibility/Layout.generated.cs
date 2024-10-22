@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Compatibility
 {
+    /// <summary>
+    /// Base class for layouts that allow you to arrange and group UI controls in your application.
+    /// </summary>
     public abstract partial class Layout : BlazorBindings.Maui.Elements.View
     {
         static Layout()
@@ -25,8 +28,20 @@ namespace BlazorBindings.Maui.Elements.Compatibility
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that controls whether child elements inherit the input transparency of this layout when the tranparency is <see langword="true" />.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to cause child elements to inherit the input transparency of this layout, when this layout's <see cref="P:Microsoft.Maui.Controls.VisualElement.InputTransparent" /> property is <see langword="true" />. <see langword="false" /> to cause child elements to ignore the input tranparency of this layout.
+        /// </value>
         [Parameter] public bool? CascadeInputTransparent { get; set; }
+        /// <summary>
+        /// Gets or sets a value which determines if the layout should clip its children to its bounds. The default value is <see langword="false" />.
+        /// </summary>
         [Parameter] public bool? IsClippedToBounds { get; set; }
+        /// <summary>
+        /// Gets or sets the inner padding of the layout. The default value is a <see cref="T:Microsoft.Maui.Thickness" /> with all values set to 0.
+        /// </summary>
         [Parameter] public Thickness? Padding { get; set; }
         [Parameter] public EventCallback OnLayoutChanged { get; set; }
 

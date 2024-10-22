@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.Element" /> that supports navigation.
+    /// Represents an <see cref="T:Microsoft.Maui.Controls.Element" /> with base functionality for <see cref="T:Microsoft.Maui.Controls.Page" /> navigation. Does not necessarily render on screen.
     /// </summary>
     public abstract partial class NavigableElement : Element
     {
@@ -24,8 +24,17 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the style classes for the element.
+        /// </summary>
         [Parameter] public string @class { get; set; }
+        /// <summary>
+        /// Gets or sets the unique <see cref="P:Microsoft.Maui.Controls.NavigableElement.Style" /> for this element.
+        /// </summary>
         [Parameter] public MC.Style Style { get; set; }
+        /// <summary>
+        /// Gets or sets the style classes for the element.
+        /// </summary>
         [Parameter] public string StyleClass { get; set; }
 
         public new MC.NavigableElement NativeControl => (MC.NavigableElement)((BindableObject)this).NativeControl;
