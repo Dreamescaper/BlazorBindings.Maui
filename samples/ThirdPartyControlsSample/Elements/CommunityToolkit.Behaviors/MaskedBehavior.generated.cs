@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
 {
+    /// <summary>
+    /// The MaskedBehavior is a behavior that allows the user to define an input mask for data entry. Adding this behavior to an <see cref="T:Microsoft.Maui.Controls.InputView" /> (i.e. <see cref="T:Microsoft.Maui.Controls.Entry" />) control will force the user to only input values matching a given mask. Examples of its usage include input of a credit card number or a phone number.
+    /// </summary>
     public partial class MaskedBehavior : BlazorBindings.Maui.Elements.Behavior
     {
         static MaskedBehavior()
@@ -23,7 +26,13 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// The mask that the input value needs to match.
+        /// </summary>
         [Parameter] public string Mask { get; set; }
+        /// <summary>
+        /// Gets or sets which character in the <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> property that will be visible and entered by a user. Defaults to 'X'. <br /> By default the 'X' character will be unmasked therefore a <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> of "XX XX XX" would display "12 34 56". If you wish to include 'X' in your <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> then you could set this <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.UnmaskedCharacter" /> to something else e.g. '0' and then use a <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> of "00X00X00" which would then display "12X34X56".
+        /// </summary>
         [Parameter] public char? UnmaskedCharacter { get; set; }
 
         public new CMB.MaskedBehavior NativeControl => (CMB.MaskedBehavior)((BindableObject)this).NativeControl;

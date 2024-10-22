@@ -27,16 +27,34 @@ namespace BlazorBindings.Maui.Elements.XCalendar
         }
 
         [Parameter] public double? DayNameHorizontalSpacing { get; set; }
+        /// <summary>
+        /// The height of the view showing the days of the week.
+        /// </summary>
         [Parameter] public double? DayNamesHeightRequest { get; set; }
         [Parameter] public double? DayNameVerticalSpacing { get; set; }
         [Parameter] public IEnumerable<object> Days { get; set; }
         [Parameter] public IList<DayOfWeek> DaysOfWeek { get; set; }
+        /// <summary>
+        /// The height of the view used to display the <see cref="P:XCalendar.Maui.Views.CalendarView.Days" />
+        /// </summary>
         [Parameter] public double? DaysViewHeightRequest { get; set; }
         [Parameter] public DateTime? NavigatedDate { get; set; }
         [Parameter] public RenderFragment DayNamesTemplate { get; set; }
+        /// <summary>
+        /// The template used to display the days of the week.
+        /// </summary>
         [Parameter] public RenderFragment<global::XCalendar.Core.Interfaces.ICalendarDay> DayNameTemplate { get; set; }
+        /// <summary>
+        /// The template used to display the <see cref="P:XCalendar.Maui.Views.CalendarView.Days" />.
+        /// </summary>
         [Parameter] public RenderFragment DaysViewTemplate { get; set; }
+        /// <summary>
+        /// The template used to display a <see cref="T:XCalendar.Core.Interfaces.ICalendarDay" />
+        /// </summary>
         [Parameter] public RenderFragment<global::XCalendar.Core.Interfaces.ICalendarDay> DayTemplate { get; set; }
+        /// <summary>
+        /// The template used to display the view for navigating the calendar.
+        /// </summary>
         [Parameter] public RenderFragment NavigationViewTemplate { get; set; }
 
         public new XMV.CalendarView NativeControl => (XMV.CalendarView)((BindableObject)this).NativeControl;

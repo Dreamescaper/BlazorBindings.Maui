@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
 {
+    /// <summary>
+    /// The <see cref="T:CommunityToolkit.Maui.Behaviors.UserStoppedTypingBehavior" /> is a behavior that allows the user to trigger an action when a user has stopped data input any <see cref="T:Microsoft.Maui.Controls.InputView" /> derivate like <see cref="T:Microsoft.Maui.Controls.Entry" /> or <see cref="T:Microsoft.Maui.Controls.SearchBar" />. Examples of its usage include triggering a search when a user has stopped entering their search query.
+    /// </summary>
     public partial class UserStoppedTypingBehavior : BlazorBindings.Maui.Elements.Behavior
     {
         static UserStoppedTypingBehavior()
@@ -23,8 +26,17 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// The minimum length of the input value required before <see cref="P:CommunityToolkit.Maui.Behaviors.UserStoppedTypingBehavior.Command" /> will be executed but only after <see cref="P:CommunityToolkit.Maui.Behaviors.UserStoppedTypingBehavior.StoppedTypingTimeThreshold" /> has passed.
+        /// </summary>
         [Parameter] public int? MinimumLengthThreshold { get; set; }
+        /// <summary>
+        /// Indicates whether or not the keyboard should be dismissed automatically after the user stopped typing.
+        /// </summary>
         [Parameter] public bool? ShouldDismissKeyboardAutomatically { get; set; }
+        /// <summary>
+        /// The time of inactivity in milliseconds after which <see cref="P:CommunityToolkit.Maui.Behaviors.UserStoppedTypingBehavior.Command" /> will be executed. If <see cref="P:CommunityToolkit.Maui.Behaviors.UserStoppedTypingBehavior.MinimumLengthThreshold" /> is also set, the condition there also needs to be met.
+        /// </summary>
         [Parameter] public int? StoppedTypingTimeThreshold { get; set; }
 
         public new CMB.UserStoppedTypingBehavior NativeControl => (CMB.UserStoppedTypingBehavior)((BindableObject)this).NativeControl;
