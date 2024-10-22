@@ -18,9 +18,6 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
 {
-    /// <summary>
-    /// <see cref="T:Microsoft.Maui.Controls.PlatformBehavior`2" /> that controls the Status bar color
-    /// </summary>
     public partial class StatusBarBehavior : BlazorBindings.Maui.Elements.Behavior
     {
         static StatusBarBehavior()
@@ -28,13 +25,8 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
             RegisterAdditionalHandlers();
         }
 
-        /// <summary>
-        /// Property that holds the value of the Status bar color.
-        /// </summary>
+        [Parameter] public CMB.StatusBarApplyOn? ApplyOn { get; set; }
         [Parameter] public Color StatusBarColor { get; set; }
-        /// <summary>
-        /// Property that holds the value of the Status bar color.
-        /// </summary>
         [Parameter] public CM.Core.StatusBarStyle? StatusBarStyle { get; set; }
 
         public new CMB.StatusBarBehavior NativeControl => (CMB.StatusBarBehavior)((BindableObject)this).NativeControl;
@@ -45,6 +37,13 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
         {
             switch (name)
             {
+                case nameof(ApplyOn):
+                    if (!Equals(ApplyOn, value))
+                    {
+                        ApplyOn = (CMB.StatusBarApplyOn?)value;
+                        NativeControl.ApplyOn = ApplyOn ?? (CMB.StatusBarApplyOn)CMB.StatusBarBehavior.ApplyOnProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(StatusBarColor):
                     if (!Equals(StatusBarColor, value))
                     {

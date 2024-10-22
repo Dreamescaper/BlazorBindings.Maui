@@ -18,9 +18,6 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.CommunityToolkit
 {
-    /// <summary>
-    /// AvatarView control.
-    /// </summary>
     public partial class AvatarView : BlazorBindings.Maui.Elements.Border
     {
         static AvatarView()
@@ -28,45 +25,15 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
             RegisterAdditionalHandlers();
         }
 
-        /// <summary>
-        /// Gets or sets a value of the control border colour.
-        /// </summary>
         [Parameter] public Color BorderColor { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control border width.
-        /// </summary>
         [Parameter] public double? BorderWidth { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control text character spacing property.
-        /// </summary>
         [Parameter] public double? CharacterSpacing { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control font attributes property.
-        /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
-        /// <summary>
-        /// Gets or sets a value indicating whether control font auto scaling enabled property.
-        /// </summary>
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control font family property.
-        /// </summary>
         [Parameter] public string FontFamily { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control font size property.
-        /// </summary>
         [Parameter] public double? FontSize { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control image source property.
-        /// </summary>
         [Parameter] public MC.ImageSource ImageSource { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control text property.
-        /// </summary>
         [Parameter] public string Text { get; set; }
-        /// <summary>
-        /// Gets or sets a value of the control text colour property.
-        /// </summary>
         [Parameter] public Color TextColor { get; set; }
         [Parameter] public TextTransform? TextTransform { get; set; }
 
