@@ -5,12 +5,12 @@
 public async Task SetIndicatorTemplate()
 {
     var indicatorView = await Render<MC.IndicatorView>(
-    @<IndicatorView Count="3">
-        <IndicatorTemplate>
-            <Label Text="x" />
-        </IndicatorTemplate>
-            </IndicatorView>
-        );
+        @<IndicatorView Count="3">
+            <IndicatorTemplate>
+                <Label Text="x" />
+            </IndicatorTemplate>
+        </IndicatorView>
+    );
 
         var children = indicatorView.IndicatorLayout.Children;
         Assert.That(children.Count, Is.EqualTo(3));
@@ -24,12 +24,12 @@ public async Task ChangeCount()
 {
     var count = 3;
     var indicatorView = await Render<MC.IndicatorView>(
-    @<IndicatorView Count="count">
-        <IndicatorTemplate>
-            <Label Text="x" />
-        </IndicatorTemplate>
-    </IndicatorView>
-);
+        @<IndicatorView Count="count">
+            <IndicatorTemplate>
+                <Label Text="x" />
+            </IndicatorTemplate>
+        </IndicatorView>
+    );
 
     var children = indicatorView.IndicatorLayout.Children;
     Assert.That(children.Count, Is.EqualTo(3));
