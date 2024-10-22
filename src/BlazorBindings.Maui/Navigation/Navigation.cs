@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Controls;
-using System.Diagnostics.CodeAnalysis;
 using IComponent = Microsoft.AspNetCore.Components.IComponent;
 using MC = Microsoft.Maui.Controls;
 
