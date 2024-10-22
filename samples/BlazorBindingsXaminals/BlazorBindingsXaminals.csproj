@@ -29,10 +29,10 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\Images\appicon.svg" ForegroundFile="Resources\Images\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\appicon.svg" ForegroundFile="Resources\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Images\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\appiconfg.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -44,15 +44,6 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\appicon.svg" />
-	  <MauiImage Remove="Resources\Images\appiconfg.svg" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\appicon.svg" />
-	  <None Remove="Resources\Images\appiconfg.svg" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
