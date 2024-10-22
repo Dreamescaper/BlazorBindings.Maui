@@ -1,45 +1,44 @@
 ﻿@inherits ElementTestBase
 
 @code {
-[Test]
-public async Task SetIndicatorTemplate()
-{
-    var indicatorView = await Render<MC.IndicatorView>(
+    [Test, Ignore("https://github.com/dotnet/maui/issues/12180")]
+    public async Task SetIndicatorTemplate()
+    {
+        var indicatorView = await Render<MC.IndicatorView>(
     @<IndicatorView Count="3">
         <IndicatorTemplate>
             <Label Text="x" />
         </IndicatorTemplate>
-            </IndicatorView>
-        );
+    </IndicatorView>);
 
         var children = indicatorView.IndicatorLayout.Children;
         Assert.That(children.Count, Is.EqualTo(3));
 
         var label = children[0].GetTemplateContent<MC.Label>();
         Assert.That(label.Text, Is.EqualTo("x"));
-}
+    }
 
-[Test]
-public async Task ChangeCount()
-{
-    var count = 3;
-    var indicatorView = await Render<MC.IndicatorView>(
+    [Test, Ignore("https://github.com/dotnet/maui/issues/12180")]
+    public async Task ChangeCount()
+    {
+        var count = 3;
+        var indicatorView = await Render<MC.IndicatorView>(
     @<IndicatorView Count="count">
         <IndicatorTemplate>
             <Label Text="x" />
         </IndicatorTemplate>
     </IndicatorView>
-);
+    );
 
-    var children = indicatorView.IndicatorLayout.Children;
-    Assert.That(children.Count, Is.EqualTo(3));
+        var children = indicatorView.IndicatorLayout.Children;
+        Assert.That(children.Count, Is.EqualTo(3));
 
-    count = 5;
-    StateHasChanged();
-    Assert.That(children.Count, Is.EqualTo(5));
+        count = 5;
+        StateHasChanged();
+        Assert.That(children.Count, Is.EqualTo(5));
 
-    count = 2;
-    StateHasChanged();
-    Assert.That(children.Count, Is.EqualTo(2));
-}
+        count = 2;
+        StateHasChanged();
+        Assert.That(children.Count, Is.EqualTo(2));
+    }
 }

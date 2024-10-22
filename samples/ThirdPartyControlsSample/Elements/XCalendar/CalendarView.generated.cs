@@ -32,7 +32,7 @@ namespace BlazorBindings.Maui.Elements.XCalendar
         /// </summary>
         [Parameter] public double? DayNamesHeightRequest { get; set; }
         [Parameter] public double? DayNameVerticalSpacing { get; set; }
-        [Parameter] public IEnumerable<global::XCalendar.Core.Interfaces.ICalendarDay> Days { get; set; }
+        [Parameter] public IEnumerable<object> Days { get; set; }
         [Parameter] public IList<DayOfWeek> DaysOfWeek { get; set; }
         /// <summary>
         /// The height of the view used to display the <see cref="P:XCalendar.Maui.Views.CalendarView.Days" />
@@ -89,7 +89,7 @@ namespace BlazorBindings.Maui.Elements.XCalendar
                 case nameof(Days):
                     if (!Equals(Days, value))
                     {
-                        Days = (IEnumerable<global::XCalendar.Core.Interfaces.ICalendarDay>)value;
+                        Days = (IEnumerable<object>)value;
                         NativeControl.Days = Days;
                     }
                     break;

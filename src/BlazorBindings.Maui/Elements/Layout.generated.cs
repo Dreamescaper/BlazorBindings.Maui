@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// <para>Provides the base class for all Layout elements. Use Layout elements to position and size child elements in Microsoft.Maui.Controls applications.</para>
+    /// Base class for layouts that allow you to arrange and group UI controls in your application.
     /// </summary>
     public abstract partial class Layout : View
     {
@@ -26,24 +26,24 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that controls whether child elements inherit the input transparency of this layout when the tranparency is <see langword="true" />.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to cause child elements to inherit the input transparency of this layout, when this layout's <see cref="P:Microsoft.Maui.Controls.VisualElement.InputTransparent" /> property is <see langword="true" />. <see langword="false" /> to cause child elements to ignore the input tranparency of this layout.
+        /// </value>
         [Parameter] public bool? CascadeInputTransparent { get; set; }
         [Parameter] public bool? IgnoreSafeArea { get; set; }
         /// <summary>
-        /// Gets or sets a value which determines if the Layout should clip its children to its bounds.
+        /// Gets or sets a value which determines if the layout should clip its children to its bounds. The default value is <see langword="false" />.
         /// </summary>
-        /// <value>
-        /// <see langword="true" /> if the Layout is clipped; otherwise, <see langword="false" />. The default value is <see langword="false" />.
-        /// </value>
         [Parameter] public bool? IsClippedToBounds { get; set; }
         /// <summary>
-        /// Gets or sets the inner padding of the Layout.
+        /// Gets or sets the inner padding of the layout. The default value is a <see cref="T:Microsoft.Maui.Thickness" /> with all values set to 0.
         /// </summary>
-        /// <value>
-        /// The Thickness values for the layout. The default value is a Thickness with all values set to 0.
-        /// </value>
         [Parameter] public Thickness? Padding { get; set; }
         /// <summary>
-        /// For internal use by the Microsoft.Maui.Controls platform.
+        /// Gets the child objects contained in this layout.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
 

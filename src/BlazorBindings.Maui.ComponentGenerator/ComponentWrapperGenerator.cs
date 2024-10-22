@@ -189,8 +189,18 @@ namespace {componentNamespace}
         }
 
         var xmlDoc = new XmlDocument();
-        // Returned XML doc string has no root element, which does not allow to parse it.
-        xmlDoc.LoadXml($"<member>{xmlDocString}</member>");
+
+        // Try parse raw doc string (should have root element)
+        try
+        {
+            xmlDoc.LoadXml(xmlDocString);
+        }
+        catch
+        {
+            // Fallback to old method if not.
+            xmlDoc.LoadXml($"<member>{xmlDocString}</member>");
+        }
+
         var xmlDocNode = xmlDoc.FirstChild;
 
         var xmlDocContents = string.Empty;

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using Microsoft.UI.Xaml;
 using BlazorBindingsToDo;
 
 // To learn more about WinUI, the WinUI project structure,

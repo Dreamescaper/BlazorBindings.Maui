@@ -38,7 +38,7 @@ public abstract partial class VisualElement
     {
         base.RenderAdditionalPartialElementContent(builder, ref sequence);
 
-        RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.Behavior>(builder, sequence++, Behaviors, 
+        RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.Behavior>(builder, sequence++, Behaviors,
             x => x.Behaviors);
     }
 }

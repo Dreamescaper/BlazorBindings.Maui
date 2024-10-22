@@ -35,13 +35,13 @@ class TestApplication : MC.Application
         public void SetVirtualView(IElement view) => VirtualView = view;
         public void UpdateValue(string property) { }
     }
+}
 
 #pragma warning disable CS0612 // Type or member is obsolete. Unfortunately, I need to register this, otherwise some tests fail.
-    class TestSystemResources : ISystemResourcesProvider
+class TestSystemResources : ISystemResourcesProvider
 #pragma warning restore CS0612 // Type or member is obsolete
-    {
-        public IResourceDictionary GetSystemResources() => new ResourceDictionary();
-    }
+{
+    public IResourceDictionary GetSystemResources() => new ResourceDictionary();
 }
 
 public static class TestServiceProvider
@@ -49,6 +49,10 @@ public static class TestServiceProvider
     public static IServiceProvider Create()
     {
         var builder = MauiApp.CreateBuilder();
+
+        // Added this as a workaround to https://github.com/dotnet/maui/issues/24216
+        DependencyService.RegisterSingleton(new TestSystemResources());
+
         builder.UseMauiBlazorBindings();
         builder.Services.AddSingleton<MauiBlazorBindingsRenderer, TestBlazorBindingsRenderer>();
         builder.Services.AddSingleton<MauiDispatching.IDispatcher, TestDispatcher>();

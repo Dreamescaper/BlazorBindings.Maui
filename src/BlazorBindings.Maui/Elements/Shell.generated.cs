@@ -27,49 +27,73 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the backdrop of the flyout, which is the appearance of the flyout overlay.
+        /// </summary>
         [Parameter] public Color FlyoutBackdropColor { get; set; }
         /// <summary>
-        /// Gets or sets the background color of the <see cref="P:Microsoft.Maui.Controls.Shell" /> Flyout.
+        /// Gets or sets the background color of the flyout.
         /// </summary>
         [Parameter] public Color FlyoutBackgroundColor { get; set; }
+        /// <summary>
+        /// Gets or sets the flyout background image. Of type ImageSource, could be a file, embedded resource, URI, or stream.
+        /// </summary>
         [Parameter] public MC.ImageSource FlyoutBackgroundImage { get; set; }
+        /// <summary>
+        /// Gets or sets the aspect ratio of the background image.
+        /// </summary>
         [Parameter] public Aspect? FlyoutBackgroundImageAspect { get; set; }
         /// <summary>
-        /// Setting the <see cref="T:Microsoft.Maui.FlyoutBehavior" /> property to Disabled hides the flyout, which is useful when you only have one ShellItem. The other valid FlyoutBehavior values are Flyout (default), and Locked.
+        /// Gets or sets the behavior to open the flyout.
         /// </summary>
         [Parameter] public FlyoutBehavior? FlyoutBehavior { get; set; }
         /// <summary>
-        /// Setting the FlyoutHeaderBehavior to CollapseOnScroll collapses the flyout as scrolling occurs. The other valid FlyoutHeaderBehavior values are Default, Fixed, and Scroll (scroll with the menu items).
+        /// Gets or sets the header behavior for the flyout.
         /// </summary>
         [Parameter] public MC.FlyoutHeaderBehavior? FlyoutHeaderBehavior { get; set; }
+        /// <summary>
+        /// Gets or sets the height of the flyout.
+        /// </summary>
         [Parameter] public double? FlyoutHeight { get; set; }
         /// <summary>
-        /// Gets or sets the icon that, when pressed, opens the <see cref="P:Microsoft.Maui.Controls.Shell" /> Flyout.
+        /// Gets or sets the icon that, when pressed, opens the flyout.
         /// </summary>
-        /// <value>
-        /// The default icon is a "hamburger" icon.
-        /// </value>
         [Parameter] public MC.ImageSource FlyoutIcon { get; set; }
         /// <summary>
-        /// Gets or sets the visible status of the <see cref="P:Microsoft.Maui.Controls.Shell" /> Flyout.
+        /// Gets or sets the visible status of the flyout.
         /// </summary>
         [Parameter] public bool? FlyoutIsPresented { get; set; }
+        /// <summary>
+        /// Modifies the behavior of the flyout scroll.
+        /// </summary>
         [Parameter] public MC.ScrollMode? FlyoutVerticalScrollMode { get; set; }
+        /// <summary>
+        /// Gets or sets the width of the flyout.
+        /// </summary>
         [Parameter] public double? FlyoutWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the backdrop of the flyout, which is the appearance of the flyout overlay.
+        /// </summary>
         [Parameter] public RenderFragment FlyoutBackdrop { get; set; }
+        /// <summary>
+        /// Gets or sets the background color of the Shell Flyout.
+        /// </summary>
         [Parameter] public RenderFragment FlyoutBackground { get; set; }
         [Parameter] public RenderFragment FlyoutContent { get; set; }
+        /// <summary>
+        /// Gets or sets the flyout footer appearance using a <see cref="T:Microsoft.Maui.Controls.DataTemplate" />.
+        /// </summary>
         [Parameter] public RenderFragment FlyoutFooter { get; set; }
         /// <summary>
-        /// The flyout header appearance can be defined by setting the <see cref="P:Microsoft.Maui.Controls.Shell.FlyoutHeaderTemplate" /> property to a <see cref="P:Microsoft.Maui.Controls.DataTemplate" />.
+        /// Gets or sets the flyout header appearance using a <see cref="T:Microsoft.Maui.Controls.DataTemplate" />.
         /// </summary>
         [Parameter] public RenderFragment FlyoutHeader { get; set; }
         /// <summary>
-        /// Gets or sets <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> applied to each of the <see cref="P:Microsoft.Maui.Controls.Shell.Items" />.
+        /// Gets or sets <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> applied to each of the Items.
         /// </summary>
         [Parameter] public RenderFragment<MC.BaseShellItem> ItemTemplate { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> applied to <see cref="T:Microsoft.Maui.Controls.MenuItem" /> objects in the <see cref="P:Microsoft.Maui.Controls.ShellContent.MenuItems" /> collection.
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> applied to MenuItem objects in the MenuItems collection.
         /// </summary>
         [Parameter] public RenderFragment<MC.BaseShellItem> MenuItemTemplate { get; set; }
         [Parameter] public EventCallback<MC.ShellNavigatedEventArgs> OnNavigated { get; set; }

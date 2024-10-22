@@ -29,6 +29,10 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
         }
 
         /// <summary>
+        /// When the status bar color and style should be applied.
+        /// </summary>
+        [Parameter] public CMB.StatusBarApplyOn? ApplyOn { get; set; }
+        /// <summary>
         /// Property that holds the value of the Status bar color.
         /// </summary>
         [Parameter] public Color StatusBarColor { get; set; }
@@ -45,6 +49,13 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
         {
             switch (name)
             {
+                case nameof(ApplyOn):
+                    if (!Equals(ApplyOn, value))
+                    {
+                        ApplyOn = (CMB.StatusBarApplyOn?)value;
+                        NativeControl.ApplyOn = ApplyOn ?? (CMB.StatusBarApplyOn)CMB.StatusBarBehavior.ApplyOnProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(StatusBarColor):
                     if (!Equals(StatusBarColor, value))
                     {
