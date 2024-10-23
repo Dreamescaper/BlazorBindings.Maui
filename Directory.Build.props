@@ -9,7 +9,6 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<LangVersion>12.0</LangVersion>
-		<PackageReadmeFile>Readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
@@ -19,6 +18,10 @@
 	<ItemGroup>
 		<PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146" PrivateAssets="all" />
 	</ItemGroup>
+	
+	<PropertyGroup Condition="Exists('..\..\Readme.md')">
+		<PackageReadmeFile>Readme.md</PackageReadmeFile>
+	</PropertyGroup>
 
 	<ItemGroup Condition="Exists('..\..\Readme.md')">
 		<None Include="..\..\Readme.md">
