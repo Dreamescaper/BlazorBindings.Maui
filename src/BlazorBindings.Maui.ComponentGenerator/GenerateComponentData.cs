@@ -15,6 +15,7 @@ public class GenerateComponentSettings
     public HashSet<string> Exclude { get; set; } = new();
     public HashSet<string> Include { get; set; } = new();
     public HashSet<string> ContentProperties { get; set; } = new();
+    public HashSet<string> NonContentProperties { get; set; } = new();
     public string[] PropertyChangedEvents { get; set; } = Array.Empty<string>();
     public Dictionary<string, INamedTypeSymbol> GenericProperties { get; set; } = new();
     public Dictionary<string, string> Aliases { get; set; } = new();

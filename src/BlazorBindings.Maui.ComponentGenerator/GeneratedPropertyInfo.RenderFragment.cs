@@ -8,17 +8,22 @@ namespace BlazorBindings.Maui.ComponentGenerator;
 
 public partial class GeneratedPropertyInfo
 {
-    private static readonly (string TypeName, bool AllowDescendantTypes)[] ContentTypes =
+
+    private static readonly string[] ContentTypes =
     [
-        ("Microsoft.Maui.IView", false),
-        ("Microsoft.Maui.Controls.VisualElement", true),
-        ("Microsoft.Maui.Controls.BaseMenuItem", true),
-        ("Microsoft.Maui.Controls.Brush", true),
-        ("Microsoft.Maui.Controls.Shadow", false),
-        ("Microsoft.Maui.Controls.ControlTemplate", false),
-        ("Microsoft.Maui.Controls.DataTemplate", false),
-        ("Microsoft.Maui.Controls.Shapes.Shape", true),
-        ("Microsoft.Maui.Graphics.IShape", false)
+        "Microsoft.Maui.IView",
+        "Microsoft.Maui.Controls.BindableObject",
+        "Microsoft.Maui.Controls.ControlTemplate",
+        "Microsoft.Maui.Controls.DataTemplate",
+        "Microsoft.Maui.Graphics.IShape"
+    ];
+
+    private static readonly string[] NonContentTypes =
+    [
+        "Microsoft.Maui.Controls.FormattedString",
+        "Microsoft.Maui.Controls.ImageSource",
+        "Microsoft.Maui.Controls.ItemsLayout",
+        "Microsoft.Maui.Controls.Window",
     ];
 
     public bool IsRenderFragmentProperty => Kind == GeneratedPropertyKind.RenderFragment;
@@ -99,6 +104,9 @@ public partial class GeneratedPropertyInfo
         if (containingType.Settings.ContentProperties.Contains(prop.Name))
             return true;
 
+        if (containingType.Settings.NonContentProperties.Contains(prop.Name))
+            return false;
+
         var type = prop.Type;
         if (IsContent(type) && HasPublicSetter(prop))
             return true;
@@ -110,14 +118,21 @@ public partial class GeneratedPropertyInfo
 
         return false;
 
-        bool IsContent(ITypeSymbol type) => ContentTypes.Any(t =>
+        bool IsContent(ITypeSymbol type)
         {
             var compilation = containingType.Compilation;
-            var contentTypeSymbol = compilation.GetTypeByMetadataName(t.TypeName);
-            var conversion = compilation.ClassifyConversion(type, contentTypeSymbol);
-            return conversion is { IsIdentity: true }
-                || t.AllowDescendantTypes && conversion is { IsReference: true, IsImplicit: true };
-        });
+
+            return ContentTypes.Any(contentType =>
+                {
+                    var contentTypeSymbol = compilation.GetTypeByMetadataName(contentType);
+                    return compilation.ClassifyConversion(type, contentTypeSymbol) is { IsImplicit: true } or { IsReference: true, IsImplicit: true };
+                })
+                && !NonContentTypes.Any(nonContentType =>
+                {
+                    var nonContentTypeSymbol = compilation.GetTypeByMetadataName(nonContentType);
+                    return compilation.ClassifyConversion(type, nonContentTypeSymbol) is { IsImplicit: true } or { IsReference: true, IsImplicit: true };
+                });
+        }
     }
 
     private static bool IsIList(ITypeSymbol type, out ITypeSymbol itemType)
