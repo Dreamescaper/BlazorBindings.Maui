@@ -20,7 +20,7 @@
 		<PackageReference Include="Nerdbank.GitVersioning" Version="3.6.146" PrivateAssets="all" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="Exists('..\..\Readme.md')">
 		<None Include="..\..\Readme.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
