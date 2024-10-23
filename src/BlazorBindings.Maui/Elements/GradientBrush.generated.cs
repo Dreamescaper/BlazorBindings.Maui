@@ -8,6 +8,7 @@
 using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using System;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback OnInvalidateGradientBrushRequested { get; set; }
 
         public new MC.GradientBrush NativeControl => (MC.GradientBrush)((BindableObject)this).NativeControl;
@@ -31,6 +33,9 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(ChildContent):
+                    ChildContent = (RenderFragment)value;
+                    break;
                 case nameof(OnInvalidateGradientBrushRequested):
                     if (!Equals(OnInvalidateGradientBrushRequested, value))
                     {
@@ -46,6 +51,12 @@ namespace BlazorBindings.Maui.Elements
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.GradientBrush, MC.GradientStop>(builder, sequence++, ChildContent, x => x.GradientStops);
         }
 
         static partial void RegisterAdditionalHandlers();

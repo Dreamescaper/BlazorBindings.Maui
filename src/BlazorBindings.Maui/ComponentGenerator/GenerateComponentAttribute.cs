@@ -33,6 +33,12 @@ public class GenerateComponentAttribute : Attribute
     public string[] ContentProperties { get; set; }
 
     /// <summary>
+    /// Makes property to be generated with original type,
+    /// when it usually would be generated as RenderFragment.
+    /// </summary>
+    public string[] NonContentProperties { get; set; }
+
+    /// <summary>
     /// Generate parameters with different name. Format: "{MauiName}:{GeneratedName}".
     /// </summary>
     public string[] Aliases { get; set; }

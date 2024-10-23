@@ -26,9 +26,10 @@ using System.Runtime.CompilerServices;
     Exclude = [nameof(DatePicker.Date), nameof(DatePicker.DateSelected), nameof(DatePicker.MaximumDate), nameof(DatePicker.MinimumDate)])]
 [assembly: GenerateComponent(typeof(Editor))]
 [assembly: GenerateComponent(typeof(Element),
-    Exclude = [ nameof(Element.Handler), nameof(Element.ChildAdded), nameof(Element.ChildRemoved),
-        nameof(Element.DescendantAdded), nameof(Element.DescendantRemoved), nameof(Element.ParentChanged),
-        nameof(Element.ParentChanging), nameof(Element.HandlerChanged), nameof(Element.HandlerChanging) ])]
+    Exclude = [ nameof(Element.ChildAdded), nameof(Element.ChildRemoved),
+        nameof(Element.DescendantAdded), nameof(Element.DescendantRemoved),
+        nameof(Element.Parent), nameof(Element.ParentChanging), nameof(Element.ParentChanged),
+        nameof(Element.Handler), nameof(Element.HandlerChanged), nameof(Element.HandlerChanging) ])]
 [assembly: GenerateComponent(typeof(Entry), IsGeneric = true)]
 [assembly: GenerateComponent(typeof(FlexLayout))]
 [assembly: GenerateComponent(typeof(FlyoutItem))]
@@ -38,7 +39,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(GradientBrush))]
 [assembly: GenerateComponent(typeof(GradientStop))]
 [assembly: GenerateComponent(typeof(GraphicsView))]
-[assembly: GenerateComponent(typeof(Grid))]
+[assembly: GenerateComponent(typeof(Grid),
+    Exclude = [nameof(Grid.ColumnDefinitions), nameof(Grid.RowDefinitions)])]
 [assembly: GenerateComponent(typeof(GroupableItemsView),
     Exclude = [nameof(GroupableItemsView.GroupFooterTemplate), nameof(GroupableItemsView.GroupHeaderTemplate), nameof(GroupableItemsView.IsGrouped)])]
 [assembly: GenerateComponent(typeof(HorizontalStackLayout))]
@@ -97,12 +99,13 @@ using System.Runtime.CompilerServices;
         $"{nameof(Shell.FlyoutHeaderTemplate)}:FlyoutHeader",
         $"{nameof(Shell.FlyoutFooterTemplate)}:FlyoutFooter",
         $"{nameof(Shell.FlyoutContentTemplate)}:FlyoutContent",
-    ])]
+    ],
+    Exclude = [nameof(Shell.Items)])]
 [assembly: GenerateComponent(typeof(ShellContent),
     Exclude = [nameof(ShellContent.ContentTemplate)])]
 [assembly: GenerateComponent(typeof(ShellGroupItem))]
-[assembly: GenerateComponent(typeof(ShellItem))]
-[assembly: GenerateComponent(typeof(ShellSection))]
+[assembly: GenerateComponent(typeof(ShellItem), Exclude = [nameof(ShellItem.Items)])]
+[assembly: GenerateComponent(typeof(ShellSection), Exclude = [nameof(ShellSection.Items)])]
 [assembly: GenerateComponent(typeof(Slider))]
 [assembly: GenerateComponent(typeof(SolidColorBrush))]
 [assembly: GenerateComponent(typeof(Span))]
@@ -134,7 +137,7 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(VerticalStackLayout))]
 [assembly: GenerateComponent(typeof(View))]
 [assembly: GenerateComponent(typeof(VisualElement), Exclude = [nameof(VisualElement.BackgroundColor)])]
-[assembly: GenerateComponent(typeof(WebView))]
+[assembly: GenerateComponent(typeof(WebView), NonContentProperties = [nameof(WebView.Source)])]
 
 // Cells
 [assembly: GenerateComponent(typeof(TextCell))]

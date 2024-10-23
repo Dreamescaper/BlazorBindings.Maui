@@ -94,6 +94,7 @@ public class Program
                     Exclude = GetNamedArgumentValues(a, "Exclude").ToHashSet(),
                     Include = GetNamedArgumentValues(a, "Include").ToHashSet(),
                     ContentProperties = GetNamedArgumentValues(a, "ContentProperties").ToHashSet(),
+                    NonContentProperties = GetNamedArgumentValues(a, "NonContentProperties").ToHashSet(),
                     PropertyChangedEvents = GetNamedArgumentValues(a, "PropertyChangedEvents"),
                     GenericProperties = GetNamedArgumentValues(a, "GenericProperties").Select(v => v.Split(':')).ToDictionary(v => v[0],
                         v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
