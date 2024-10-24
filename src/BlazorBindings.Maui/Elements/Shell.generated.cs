@@ -206,7 +206,7 @@ namespace BlazorBindings.Maui.Elements
                     MenuItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
                     break;
                 case nameof(OnNavigated):
-                    if (!Equals(OnNavigated, value))
+                    if (!EqualityHelper.IsEqual(OnNavigated, value))
                     {
                         void NativeControlNavigated(object sender, MC.ShellNavigatedEventArgs e) => InvokeEventCallback(OnNavigated, e);
 
@@ -216,7 +216,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnNavigating):
-                    if (!Equals(OnNavigating, value))
+                    if (!EqualityHelper.IsEqual(OnNavigating, value))
                     {
                         void NativeControlNavigating(object sender, MC.ShellNavigatingEventArgs e) => InvokeEventCallback(OnNavigating, e);
 

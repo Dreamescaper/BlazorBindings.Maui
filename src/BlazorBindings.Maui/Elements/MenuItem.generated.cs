@@ -99,7 +99,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnClick):
-                    if (!Equals(OnClick, value))
+                    if (!EqualityHelper.IsEqual(OnClick, value))
                     {
                         void NativeControlClicked(object sender, EventArgs e) => InvokeEventCallback(OnClick);
 

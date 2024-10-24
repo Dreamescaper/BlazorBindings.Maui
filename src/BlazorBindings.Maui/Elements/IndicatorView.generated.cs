@@ -103,7 +103,7 @@ namespace BlazorBindings.Maui.Elements
                     IndicatorTemplate = (RenderFragment)value;
                     break;
                 case nameof(PositionChanged):
-                    if (!Equals(PositionChanged, value))
+                    if (!EqualityHelper.IsEqual(PositionChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {

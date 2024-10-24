@@ -35,7 +35,7 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(OnPinchUpdated):
-                    if (!Equals(OnPinchUpdated, value))
+                    if (!EqualityHelper.IsEqual(OnPinchUpdated, value))
                     {
                         void NativeControlPinchUpdated(object sender, MC.PinchGestureUpdatedEventArgs e) => InvokeEventCallback(OnPinchUpdated, e);
 

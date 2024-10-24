@@ -112,7 +112,7 @@ namespace BlazorBindings.Maui.Elements
                     ToolbarItems = (RenderFragment)value;
                     break;
                 case nameof(OnLayoutChanged):
-                    if (!Equals(OnLayoutChanged, value))
+                    if (!EqualityHelper.IsEqual(OnLayoutChanged, value))
                     {
                         void NativeControlLayoutChanged(object sender, EventArgs e) => InvokeEventCallback(OnLayoutChanged);
 
@@ -122,7 +122,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnAppearing):
-                    if (!Equals(OnAppearing, value))
+                    if (!EqualityHelper.IsEqual(OnAppearing, value))
                     {
                         void NativeControlAppearing(object sender, EventArgs e) => InvokeEventCallback(OnAppearing);
 
@@ -132,7 +132,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnDisappearing):
-                    if (!Equals(OnDisappearing, value))
+                    if (!EqualityHelper.IsEqual(OnDisappearing, value))
                     {
                         void NativeControlDisappearing(object sender, EventArgs e) => InvokeEventCallback(OnDisappearing);
 
@@ -142,7 +142,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnNavigatedTo):
-                    if (!Equals(OnNavigatedTo, value))
+                    if (!EqualityHelper.IsEqual(OnNavigatedTo, value))
                     {
                         void NativeControlNavigatedTo(object sender, MC.NavigatedToEventArgs e) => InvokeEventCallback(OnNavigatedTo, e);
 
@@ -152,7 +152,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnNavigatingFrom):
-                    if (!Equals(OnNavigatingFrom, value))
+                    if (!EqualityHelper.IsEqual(OnNavigatingFrom, value))
                     {
                         void NativeControlNavigatingFrom(object sender, MC.NavigatingFromEventArgs e) => InvokeEventCallback(OnNavigatingFrom, e);
 
@@ -162,7 +162,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnNavigatedFrom):
-                    if (!Equals(OnNavigatedFrom, value))
+                    if (!EqualityHelper.IsEqual(OnNavigatedFrom, value))
                     {
                         void NativeControlNavigatedFrom(object sender, MC.NavigatedFromEventArgs e) => InvokeEventCallback(OnNavigatedFrom, e);
 

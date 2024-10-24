@@ -184,7 +184,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     ChildContent = (RenderFragment)value;
                     break;
                 case nameof(IsActivedChanged):
-                    if (!Equals(IsActivedChanged, value))
+                    if (!EqualityHelper.IsEqual(IsActivedChanged, value))
                     {
                         void NativeControlIsActivedChanged(object sender, MCM.Core.ValueChangedEventArgs e)
                         {

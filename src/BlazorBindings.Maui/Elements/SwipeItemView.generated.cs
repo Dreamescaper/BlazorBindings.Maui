@@ -33,7 +33,7 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(OnInvoked):
-                    if (!Equals(OnInvoked, value))
+                    if (!EqualityHelper.IsEqual(OnInvoked, value))
                     {
                         void NativeControlInvoked(object sender, EventArgs e) => InvokeEventCallback(OnInvoked);
 

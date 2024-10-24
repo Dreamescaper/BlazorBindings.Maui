@@ -68,7 +68,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnSearchButtonPressed):
-                    if (!Equals(OnSearchButtonPressed, value))
+                    if (!EqualityHelper.IsEqual(OnSearchButtonPressed, value))
                     {
                         void NativeControlSearchButtonPressed(object sender, EventArgs e) => InvokeEventCallback(OnSearchButtonPressed);
 

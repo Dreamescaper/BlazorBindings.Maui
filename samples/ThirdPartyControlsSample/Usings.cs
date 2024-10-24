@@ -1,0 +1,1 @@
+﻿global using BlazorBindings.Maui.Extensions;

@@ -57,7 +57,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnTapped):
-                    if (!Equals(OnTapped, value))
+                    if (!EqualityHelper.IsEqual(OnTapped, value))
                     {
                         void NativeControlTapped(object sender, MC.TappedEventArgs e) => InvokeEventCallback(OnTapped, e);
 

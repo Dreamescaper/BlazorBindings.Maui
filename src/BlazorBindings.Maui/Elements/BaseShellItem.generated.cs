@@ -123,7 +123,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnAppearing):
-                    if (!Equals(OnAppearing, value))
+                    if (!EqualityHelper.IsEqual(OnAppearing, value))
                     {
                         void NativeControlAppearing(object sender, EventArgs e) => InvokeEventCallback(OnAppearing);
 
@@ -133,7 +133,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnDisappearing):
-                    if (!Equals(OnDisappearing, value))
+                    if (!EqualityHelper.IsEqual(OnDisappearing, value))
                     {
                         void NativeControlDisappearing(object sender, EventArgs e) => InvokeEventCallback(OnDisappearing);
 

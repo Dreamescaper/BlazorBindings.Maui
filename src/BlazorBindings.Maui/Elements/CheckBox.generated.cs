@@ -49,7 +49,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(IsCheckedChanged):
-                    if (!Equals(IsCheckedChanged, value))
+                    if (!EqualityHelper.IsEqual(IsCheckedChanged, value))
                     {
                         void NativeControlCheckedChanged(object sender, MC.CheckedChangedEventArgs e)
                         {

@@ -101,7 +101,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(CurrentItemChanged):
-                    if (!Equals(CurrentItemChanged, value))
+                    if (!EqualityHelper.IsEqual(CurrentItemChanged, value))
                     {
                         void NativeControlCurrentItemChanged(object sender, MC.CurrentItemChangedEventArgs e)
                         {
@@ -116,7 +116,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(PositionChanged):
-                    if (!Equals(PositionChanged, value))
+                    if (!EqualityHelper.IsEqual(PositionChanged, value))
                     {
                         void NativeControlPositionChanged(object sender, MC.PositionChangedEventArgs e)
                         {

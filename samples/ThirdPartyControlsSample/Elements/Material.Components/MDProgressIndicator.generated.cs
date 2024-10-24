@@ -83,7 +83,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(PercentChanged):
-                    if (!Equals(PercentChanged, value))
+                    if (!EqualityHelper.IsEqual(PercentChanged, value))
                     {
                         void NativeControlPercentChanged(object sender, MCM.Core.ValueChangedEventArgs e)
                         {

@@ -64,7 +64,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnSwiped):
-                    if (!Equals(OnSwiped, value))
+                    if (!EqualityHelper.IsEqual(OnSwiped, value))
                     {
                         void NativeControlSwiped(object sender, MC.SwipedEventArgs e) => InvokeEventCallback(OnSwiped, e);
 
