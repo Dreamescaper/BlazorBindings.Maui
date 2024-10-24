@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     ContextMenu = (RenderFragment)value;
                     break;
                 case nameof(OnPress):
-                    if (!Equals(OnPress, value))
+                    if (!EqualityHelper.IsEqual(OnPress, value))
                     {
                         void NativeControlPressed(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnPress, e);
 
@@ -55,7 +55,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnMoved):
-                    if (!Equals(OnMoved, value))
+                    if (!EqualityHelper.IsEqual(OnMoved, value))
                     {
                         void NativeControlMoved(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnMoved, e);
 
@@ -65,7 +65,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnRelease):
-                    if (!Equals(OnRelease, value))
+                    if (!EqualityHelper.IsEqual(OnRelease, value))
                     {
                         void NativeControlReleased(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnRelease, e);
 
@@ -75,7 +75,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnLongPressed):
-                    if (!Equals(OnLongPressed, value))
+                    if (!EqualityHelper.IsEqual(OnLongPressed, value))
                     {
                         void NativeControlLongPressed(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnLongPressed, e);
 
@@ -85,7 +85,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnClick):
-                    if (!Equals(OnClick, value))
+                    if (!EqualityHelper.IsEqual(OnClick, value))
                     {
                         void NativeControlClicked(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnClick, e);
 
@@ -95,7 +95,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnEntered):
-                    if (!Equals(OnEntered, value))
+                    if (!EqualityHelper.IsEqual(OnEntered, value))
                     {
                         void NativeControlEntered(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnEntered, e);
 
@@ -105,7 +105,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnExited):
-                    if (!Equals(OnExited, value))
+                    if (!EqualityHelper.IsEqual(OnExited, value))
                     {
                         void NativeControlExited(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnExited, e);
 

@@ -123,7 +123,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(TextChanged):
-                    if (!Equals(TextChanged, value))
+                    if (!EqualityHelper.IsEqual(TextChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {
@@ -141,7 +141,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnCompleted):
-                    if (!Equals(OnCompleted, value))
+                    if (!EqualityHelper.IsEqual(OnCompleted, value))
                     {
                         void NativeControlCompleted(object sender, EventArgs e) => InvokeEventCallback(OnCompleted);
 

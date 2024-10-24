@@ -226,7 +226,7 @@ namespace BlazorBindings.Maui.Elements
                     Header = (RenderFragment)value;
                     break;
                 case nameof(OnItemAppearing):
-                    if (!Equals(OnItemAppearing, value))
+                    if (!EqualityHelper.IsEqual(OnItemAppearing, value))
                     {
                         void NativeControlItemAppearing(object sender, MC.ItemVisibilityEventArgs e) => InvokeEventCallback(OnItemAppearing, e);
 
@@ -236,7 +236,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnItemDisappearing):
-                    if (!Equals(OnItemDisappearing, value))
+                    if (!EqualityHelper.IsEqual(OnItemDisappearing, value))
                     {
                         void NativeControlItemDisappearing(object sender, MC.ItemVisibilityEventArgs e) => InvokeEventCallback(OnItemDisappearing, e);
 
@@ -246,7 +246,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnItemSelected):
-                    if (!Equals(OnItemSelected, value))
+                    if (!EqualityHelper.IsEqual(OnItemSelected, value))
                     {
                         void NativeControlItemSelected(object sender, MC.SelectedItemChangedEventArgs e) => InvokeEventCallback(OnItemSelected, e);
 
@@ -256,7 +256,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnItemTapped):
-                    if (!Equals(OnItemTapped, value))
+                    if (!EqualityHelper.IsEqual(OnItemTapped, value))
                     {
                         void NativeControlItemTapped(object sender, MC.ItemTappedEventArgs e) => InvokeEventCallback(OnItemTapped, e);
 
@@ -266,7 +266,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnScrolled):
-                    if (!Equals(OnScrolled, value))
+                    if (!EqualityHelper.IsEqual(OnScrolled, value))
                     {
                         void NativeControlScrolled(object sender, MC.ScrolledEventArgs e) => InvokeEventCallback(OnScrolled, e);
 
@@ -276,7 +276,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(IsRefreshingChanged):
-                    if (!Equals(IsRefreshingChanged, value))
+                    if (!EqualityHelper.IsEqual(IsRefreshingChanged, value))
                     {
                         void NativeControlRefreshing(object sender, EventArgs e)
                         {

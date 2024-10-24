@@ -51,7 +51,7 @@ namespace BlazorBindings.Maui.Elements.SkiaSharp
                     }
                     break;
                 case nameof(OnPaintSurface):
-                    if (!Equals(OnPaintSurface, value))
+                    if (!EqualityHelper.IsEqual(OnPaintSurface, value))
                     {
                         void NativeControlPaintSurface(object sender, global::SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e) => InvokeEventCallback(OnPaintSurface, e);
 
@@ -61,7 +61,7 @@ namespace BlazorBindings.Maui.Elements.SkiaSharp
                     }
                     break;
                 case nameof(OnTouch):
-                    if (!Equals(OnTouch, value))
+                    if (!EqualityHelper.IsEqual(OnTouch, value))
                     {
                         void NativeControlTouch(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnTouch, e);
 

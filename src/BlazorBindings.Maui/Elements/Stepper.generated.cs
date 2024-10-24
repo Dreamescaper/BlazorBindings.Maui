@@ -91,7 +91,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(ValueChanged):
-                    if (!Equals(ValueChanged, value))
+                    if (!EqualityHelper.IsEqual(ValueChanged, value))
                     {
                         void NativeControlValueChanged(object sender, MC.ValueChangedEventArgs e)
                         {

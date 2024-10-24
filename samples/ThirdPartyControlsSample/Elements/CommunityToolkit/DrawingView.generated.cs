@@ -110,7 +110,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     }
                     break;
                 case nameof(OnDrawingLineCompleted):
-                    if (!Equals(OnDrawingLineCompleted, value))
+                    if (!EqualityHelper.IsEqual(OnDrawingLineCompleted, value))
                     {
                         void NativeControlDrawingLineCompleted(object sender, CM.Core.DrawingLineCompletedEventArgs e) => InvokeEventCallback(OnDrawingLineCompleted, e);
 
@@ -120,7 +120,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     }
                     break;
                 case nameof(OnDrawingLineStarted):
-                    if (!Equals(OnDrawingLineStarted, value))
+                    if (!EqualityHelper.IsEqual(OnDrawingLineStarted, value))
                     {
                         void NativeControlDrawingLineStarted(object sender, CM.Core.DrawingLineStartedEventArgs e) => InvokeEventCallback(OnDrawingLineStarted, e);
 
@@ -130,7 +130,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     }
                     break;
                 case nameof(OnDrawingLineCancelled):
-                    if (!Equals(OnDrawingLineCancelled, value))
+                    if (!EqualityHelper.IsEqual(OnDrawingLineCancelled, value))
                     {
                         void NativeControlDrawingLineCancelled(object sender, EventArgs e) => InvokeEventCallback(OnDrawingLineCancelled);
 
@@ -140,7 +140,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     }
                     break;
                 case nameof(OnPointDrawn):
-                    if (!Equals(OnPointDrawn, value))
+                    if (!EqualityHelper.IsEqual(OnPointDrawn, value))
                     {
                         void NativeControlPointDrawn(object sender, CM.Core.PointDrawnEventArgs e) => InvokeEventCallback(OnPointDrawn, e);
 

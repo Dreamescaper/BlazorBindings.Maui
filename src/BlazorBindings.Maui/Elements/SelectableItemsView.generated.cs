@@ -60,7 +60,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(SelectedItemChanged):
-                    if (!Equals(SelectedItemChanged, value))
+                    if (!EqualityHelper.IsEqual(SelectedItemChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {
@@ -78,7 +78,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(SelectedItemsChanged):
-                    if (!Equals(SelectedItemsChanged, value))
+                    if (!EqualityHelper.IsEqual(SelectedItemsChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {
@@ -96,7 +96,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnSelectionChanged):
-                    if (!Equals(OnSelectionChanged, value))
+                    if (!EqualityHelper.IsEqual(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, MC.SelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 

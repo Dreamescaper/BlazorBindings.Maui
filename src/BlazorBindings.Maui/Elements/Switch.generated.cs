@@ -69,7 +69,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(IsToggledChanged):
-                    if (!Equals(IsToggledChanged, value))
+                    if (!EqualityHelper.IsEqual(IsToggledChanged, value))
                     {
                         void NativeControlToggled(object sender, MC.ToggledEventArgs e)
                         {

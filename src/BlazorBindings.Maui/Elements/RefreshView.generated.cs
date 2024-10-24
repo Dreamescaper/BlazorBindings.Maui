@@ -50,7 +50,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(IsRefreshingChanged):
-                    if (!Equals(IsRefreshingChanged, value))
+                    if (!EqualityHelper.IsEqual(IsRefreshingChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {

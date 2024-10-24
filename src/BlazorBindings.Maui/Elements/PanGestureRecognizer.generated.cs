@@ -46,7 +46,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnPanUpdated):
-                    if (!Equals(OnPanUpdated, value))
+                    if (!EqualityHelper.IsEqual(OnPanUpdated, value))
                     {
                         void NativeControlPanUpdated(object sender, MC.PanUpdatedEventArgs e) => InvokeEventCallback(OnPanUpdated, e);
 

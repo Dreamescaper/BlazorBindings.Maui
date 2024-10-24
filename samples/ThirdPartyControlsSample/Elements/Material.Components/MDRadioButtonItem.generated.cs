@@ -115,7 +115,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(IsSelectedChanged):
-                    if (!Equals(IsSelectedChanged, value))
+                    if (!EqualityHelper.IsEqual(IsSelectedChanged, value))
                     {
                         void NativeControlSelectedChanged(object sender, MCM.Core.SelectedChangedEventArgs e)
                         {

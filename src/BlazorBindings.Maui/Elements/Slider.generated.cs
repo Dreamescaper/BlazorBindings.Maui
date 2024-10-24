@@ -131,7 +131,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(ValueChanged):
-                    if (!Equals(ValueChanged, value))
+                    if (!EqualityHelper.IsEqual(ValueChanged, value))
                     {
                         void NativeControlValueChanged(object sender, MC.ValueChangedEventArgs e)
                         {
@@ -146,7 +146,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnDragStarted):
-                    if (!Equals(OnDragStarted, value))
+                    if (!EqualityHelper.IsEqual(OnDragStarted, value))
                     {
                         void NativeControlDragStarted(object sender, EventArgs e) => InvokeEventCallback(OnDragStarted);
 
@@ -156,7 +156,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnDragCompleted):
-                    if (!Equals(OnDragCompleted, value))
+                    if (!EqualityHelper.IsEqual(OnDragCompleted, value))
                     {
                         void NativeControlDragCompleted(object sender, EventArgs e) => InvokeEventCallback(OnDragCompleted);
 

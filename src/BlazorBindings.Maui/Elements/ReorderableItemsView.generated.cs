@@ -41,7 +41,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnReorderCompleted):
-                    if (!Equals(OnReorderCompleted, value))
+                    if (!EqualityHelper.IsEqual(OnReorderCompleted, value))
                     {
                         void NativeControlReorderCompleted(object sender, EventArgs e) => InvokeEventCallback(OnReorderCompleted);
 

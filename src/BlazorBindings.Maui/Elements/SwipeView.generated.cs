@@ -59,7 +59,7 @@ namespace BlazorBindings.Maui.Elements
                     TopItems = (RenderFragment)value;
                     break;
                 case nameof(OnSwipeStarted):
-                    if (!Equals(OnSwipeStarted, value))
+                    if (!EqualityHelper.IsEqual(OnSwipeStarted, value))
                     {
                         void NativeControlSwipeStarted(object sender, MC.SwipeStartedEventArgs e) => InvokeEventCallback(OnSwipeStarted, e);
 
@@ -69,7 +69,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnSwipeChanging):
-                    if (!Equals(OnSwipeChanging, value))
+                    if (!EqualityHelper.IsEqual(OnSwipeChanging, value))
                     {
                         void NativeControlSwipeChanging(object sender, MC.SwipeChangingEventArgs e) => InvokeEventCallback(OnSwipeChanging, e);
 
@@ -79,7 +79,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnSwipeEnded):
-                    if (!Equals(OnSwipeEnded, value))
+                    if (!EqualityHelper.IsEqual(OnSwipeEnded, value))
                     {
                         void NativeControlSwipeEnded(object sender, MC.SwipeEndedEventArgs e) => InvokeEventCallback(OnSwipeEnded, e);
 

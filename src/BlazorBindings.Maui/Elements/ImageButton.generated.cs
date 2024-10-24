@@ -93,7 +93,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnClick):
-                    if (!Equals(OnClick, value))
+                    if (!EqualityHelper.IsEqual(OnClick, value))
                     {
                         void NativeControlClicked(object sender, EventArgs e) => InvokeEventCallback(OnClick);
 
@@ -103,7 +103,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnPress):
-                    if (!Equals(OnPress, value))
+                    if (!EqualityHelper.IsEqual(OnPress, value))
                     {
                         void NativeControlPressed(object sender, EventArgs e) => InvokeEventCallback(OnPress);
 
@@ -113,7 +113,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnRelease):
-                    if (!Equals(OnRelease, value))
+                    if (!EqualityHelper.IsEqual(OnRelease, value))
                     {
                         void NativeControlReleased(object sender, EventArgs e) => InvokeEventCallback(OnRelease);
 

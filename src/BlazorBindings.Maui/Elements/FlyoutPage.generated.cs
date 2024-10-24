@@ -62,7 +62,7 @@ namespace BlazorBindings.Maui.Elements
                     Flyout = (RenderFragment)value;
                     break;
                 case nameof(IsPresentedChanged):
-                    if (!Equals(IsPresentedChanged, value))
+                    if (!EqualityHelper.IsEqual(IsPresentedChanged, value))
                     {
                         void NativeControlIsPresentedChanged(object sender, EventArgs e)
                         {

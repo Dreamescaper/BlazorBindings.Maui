@@ -79,7 +79,7 @@ namespace BlazorBindings.Maui.Elements
                     ItemTemplate = (RenderFragment<T>)value;
                     break;
                 case nameof(OnScrollToRequested):
-                    if (!Equals(OnScrollToRequested, value))
+                    if (!EqualityHelper.IsEqual(OnScrollToRequested, value))
                     {
                         void NativeControlScrollToRequested(object sender, MC.ScrollToRequestEventArgs e) => InvokeEventCallback(OnScrollToRequested, e);
 
@@ -89,7 +89,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnScrolled):
-                    if (!Equals(OnScrolled, value))
+                    if (!EqualityHelper.IsEqual(OnScrolled, value))
                     {
                         void NativeControlScrolled(object sender, MC.ItemsViewScrolledEventArgs e) => InvokeEventCallback(OnScrolled, e);
 
@@ -99,7 +99,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnRemainingItemsThresholdReached):
-                    if (!Equals(OnRemainingItemsThresholdReached, value))
+                    if (!EqualityHelper.IsEqual(OnRemainingItemsThresholdReached, value))
                     {
                         void NativeControlRemainingItemsThresholdReached(object sender, EventArgs e) => InvokeEventCallback(OnRemainingItemsThresholdReached);
 

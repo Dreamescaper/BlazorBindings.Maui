@@ -48,7 +48,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnStartHoverInteraction):
-                    if (!Equals(OnStartHoverInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnStartHoverInteraction, value))
                     {
                         void NativeControlStartHoverInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnStartHoverInteraction, e);
 
@@ -58,7 +58,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnMoveHoverInteraction):
-                    if (!Equals(OnMoveHoverInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnMoveHoverInteraction, value))
                     {
                         void NativeControlMoveHoverInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnMoveHoverInteraction, e);
 
@@ -68,7 +68,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnEndHoverInteraction):
-                    if (!Equals(OnEndHoverInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnEndHoverInteraction, value))
                     {
                         void NativeControlEndHoverInteraction(object sender, EventArgs e) => InvokeEventCallback(OnEndHoverInteraction);
 
@@ -78,7 +78,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnStartInteraction):
-                    if (!Equals(OnStartInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnStartInteraction, value))
                     {
                         void NativeControlStartInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnStartInteraction, e);
 
@@ -88,7 +88,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnDragInteraction):
-                    if (!Equals(OnDragInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnDragInteraction, value))
                     {
                         void NativeControlDragInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnDragInteraction, e);
 
@@ -98,7 +98,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnEndInteraction):
-                    if (!Equals(OnEndInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnEndInteraction, value))
                     {
                         void NativeControlEndInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnEndInteraction, e);
 
@@ -108,7 +108,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnCancelInteraction):
-                    if (!Equals(OnCancelInteraction, value))
+                    if (!EqualityHelper.IsEqual(OnCancelInteraction, value))
                     {
                         void NativeControlCancelInteraction(object sender, EventArgs e) => InvokeEventCallback(OnCancelInteraction);
 

@@ -189,7 +189,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(IsCheckedChanged):
-                    if (!Equals(IsCheckedChanged, value))
+                    if (!EqualityHelper.IsEqual(IsCheckedChanged, value))
                     {
                         void NativeControlCheckedChanged(object sender, MC.CheckedChangedEventArgs e)
                         {
@@ -204,7 +204,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnClosed):
-                    if (!Equals(OnClosed, value))
+                    if (!EqualityHelper.IsEqual(OnClosed, value))
                     {
                         void NativeControlClosed(object sender, EventArgs e) => InvokeEventCallback(OnClosed);
 

@@ -70,7 +70,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnNavigated):
-                    if (!Equals(OnNavigated, value))
+                    if (!EqualityHelper.IsEqual(OnNavigated, value))
                     {
                         void NativeControlNavigated(object sender, MC.WebNavigatedEventArgs e) => InvokeEventCallback(OnNavigated, e);
 
@@ -80,7 +80,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnNavigating):
-                    if (!Equals(OnNavigating, value))
+                    if (!EqualityHelper.IsEqual(OnNavigating, value))
                     {
                         void NativeControlNavigating(object sender, MC.WebNavigatingEventArgs e) => InvokeEventCallback(OnNavigating, e);
 

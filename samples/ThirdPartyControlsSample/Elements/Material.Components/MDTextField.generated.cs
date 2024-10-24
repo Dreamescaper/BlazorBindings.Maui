@@ -300,7 +300,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(TextChanged):
-                    if (!Equals(TextChanged, value))
+                    if (!EqualityHelper.IsEqual(TextChanged, value))
                     {
                         void NativeControlTextChanged(object sender, MC.TextChangedEventArgs e)
                         {
@@ -315,7 +315,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(OnTrailingIconClicked):
-                    if (!Equals(OnTrailingIconClicked, value))
+                    if (!EqualityHelper.IsEqual(OnTrailingIconClicked, value))
                     {
                         void NativeControlTrailingIconClicked(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnTrailingIconClicked, e);
 

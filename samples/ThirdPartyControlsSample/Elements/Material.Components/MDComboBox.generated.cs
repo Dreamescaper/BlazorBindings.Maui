@@ -201,7 +201,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     ChildContent = (RenderFragment)value;
                     break;
                 case nameof(SelectedIndexChanged):
-                    if (!Equals(SelectedIndexChanged, value))
+                    if (!EqualityHelper.IsEqual(SelectedIndexChanged, value))
                     {
                         void NativeControlSelectedIndexChanged(object sender, MCM.Core.SelectedIndexChangedEventArgs e)
                         {

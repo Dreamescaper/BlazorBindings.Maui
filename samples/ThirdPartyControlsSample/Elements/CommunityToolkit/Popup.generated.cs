@@ -148,7 +148,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     ChildContent = (RenderFragment)value;
                     break;
                 case nameof(OnClosed):
-                    if (!Equals(OnClosed, value))
+                    if (!EqualityHelper.IsEqual(OnClosed, value))
                     {
                         void NativeControlClosed(object sender, CM.Core.PopupClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
 
@@ -158,7 +158,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     }
                     break;
                 case nameof(OnOpened):
-                    if (!Equals(OnOpened, value))
+                    if (!EqualityHelper.IsEqual(OnOpened, value))
                     {
                         void NativeControlOpened(object sender, CM.Core.PopupOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
 

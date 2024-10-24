@@ -365,7 +365,7 @@ namespace BlazorBindings.Maui.Elements
                     ItemTemplate = (RenderFragment<T>)value;
                     break;
                 case nameof(QueryChanged):
-                    if (!Equals(QueryChanged, value))
+                    if (!EqualityHelper.IsEqual(QueryChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {
@@ -383,7 +383,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(SelectedItemChanged):
-                    if (!Equals(SelectedItemChanged, value))
+                    if (!EqualityHelper.IsEqual(SelectedItemChanged, value))
                     {
                         void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
                         {
@@ -401,7 +401,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnFocused):
-                    if (!Equals(OnFocused, value))
+                    if (!EqualityHelper.IsEqual(OnFocused, value))
                     {
                         void NativeControlFocused(object sender, EventArgs e) => InvokeEventCallback(OnFocused);
 
@@ -411,7 +411,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnUnfocused):
-                    if (!Equals(OnUnfocused, value))
+                    if (!EqualityHelper.IsEqual(OnUnfocused, value))
                     {
                         void NativeControlUnfocused(object sender, EventArgs e) => InvokeEventCallback(OnUnfocused);
 

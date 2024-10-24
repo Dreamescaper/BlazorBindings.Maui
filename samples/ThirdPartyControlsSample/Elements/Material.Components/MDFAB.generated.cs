@@ -180,7 +180,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     }
                     break;
                 case nameof(IsExtendedChanged):
-                    if (!Equals(IsExtendedChanged, value))
+                    if (!EqualityHelper.IsEqual(IsExtendedChanged, value))
                     {
                         void NativeControlExtendedChanged(object sender, EventArgs e)
                         {

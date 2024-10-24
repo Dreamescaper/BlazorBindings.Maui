@@ -86,7 +86,7 @@ namespace BlazorBindings.Maui.Elements
                     ChildContent = (RenderFragment)value;
                     break;
                 case nameof(OnScrolled):
-                    if (!Equals(OnScrolled, value))
+                    if (!EqualityHelper.IsEqual(OnScrolled, value))
                     {
                         void NativeControlScrolled(object sender, MC.ScrolledEventArgs e) => InvokeEventCallback(OnScrolled, e);
 

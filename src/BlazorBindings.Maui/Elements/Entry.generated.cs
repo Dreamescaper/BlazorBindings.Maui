@@ -92,7 +92,7 @@ namespace BlazorBindings.Maui.Elements
                     }
                     break;
                 case nameof(OnCompleted):
-                    if (!Equals(OnCompleted, value))
+                    if (!EqualityHelper.IsEqual(OnCompleted, value))
                     {
                         void NativeControlCompleted(object sender, EventArgs e) => InvokeEventCallback(OnCompleted);
 
