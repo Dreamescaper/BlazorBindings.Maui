@@ -36,7 +36,7 @@ public partial class GeneratedPropertyInfo
         var localFunctionBody = GetLocalHandlerFunctionBody();
 
         return $@"                case nameof({ComponentPropertyName}):
-                    if (!Equals({ComponentPropertyName}, value))
+                    if (!EqualityHelper.IsEqual({ComponentPropertyName}, value))
                     {{
                         void {localFunctionName}(object sender, {GetTypeNameAndAddNamespace(EventArgsType)} e){localFunctionBody}
 
