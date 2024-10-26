@@ -35,6 +35,7 @@
 
 		<IncludeContentInPack>true</IncludeContentInPack>
 		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<IncludeSymbols>false</IncludeSymbols>
 		<ContentTargetFolders>content</ContentTargetFolders>
 
 		<!--
