@@ -22,7 +22,10 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
 
     public override Dispatcher Dispatcher { get; } = new MauiDeviceDispatcher();
 
-    public Task AddComponent(Type componentType, MC.Application parent, Dictionary<string, object> parameters = null)
+    public Task AddComponent(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
+        MC.Application parent, 
+        Dictionary<string, object> parameters = null)
     {
         var handler = new ApplicationHandler(parent);
         var addComponentTask = AddComponent(componentType, handler, parameters);
@@ -43,7 +46,8 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
         return addComponentTask;
     }
 
-    public Task AddComponent<T>(MC.Application parent, Dictionary<string, object> parameters = null)
+    public Task AddComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        MC.Application parent, Dictionary<string, object> parameters = null)
     {
         return AddComponent(typeof(T), parent, parameters);
     }
@@ -54,7 +58,9 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
     }
 
     // It tries to return the Element as soon as it is available, therefore Component task might still be in progress.
-    internal async Task<(object Element, Task<IComponent> Component)> GetElementFromRenderedComponent(Type componentType, Dictionary<string, object> parameters = null)
+    internal async Task<(object Element, Task<IComponent> Component)> GetElementFromRenderedComponent(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        Dictionary<string, object> parameters = null)
     {
         var (elements, addComponentTask) = await GetElementsFromRenderedComponent(componentType, parameters);
 
@@ -66,7 +72,8 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
         return (elements[0], addComponentTask);
     }
 
-    internal async Task<(T Component, int ComponentId)> AddRootComponent<T>(Dictionary<string, object> initialParameters)
+    internal async Task<(T Component, int ComponentId)> AddRootComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        Dictionary<string, object> initialParameters)
         where T : IComponent
     {
         var component = (T)InstantiateComponent(typeof(T));
@@ -75,7 +82,9 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
         return (component, componentId);
     }
 
-    private async Task<(List<object> Elements, Task<IComponent> Component)> GetElementsFromRenderedComponent(Type componentType, Dictionary<string, object> parameters)
+    private async Task<(List<object> Elements, Task<IComponent> Component)> GetElementsFromRenderedComponent(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
+        Dictionary<string, object> parameters)
     {
         var container = new RootContainerHandler();
 

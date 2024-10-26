@@ -1,8 +1,11 @@
-﻿namespace BlazorBindings.Maui;
+﻿
+namespace BlazorBindings.Maui;
 
 internal static class RenderFragments
 {
-    public static RenderFragment FromComponentType(Type componentType, Dictionary<string, object> parameters = null)
+    public static RenderFragment FromComponentType(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
+        Dictionary<string, object> parameters = null)
     {
         return builder =>
         {

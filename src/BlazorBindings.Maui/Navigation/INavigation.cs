@@ -22,7 +22,9 @@ public interface INavigation
     /// <summary>
     /// Push page component <typeparamref name="T"/> to the Navigation Stack.
     /// </summary>
-    Task PushAsync<T>(Dictionary<string, object> arguments = null, bool animated = true) where T : IComponent;
+    Task PushAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        Dictionary<string, object> arguments = null, bool animated = true)
+        where T : IComponent;
 
     /// <summary>
     /// Push page component from the <paramref name="renderFragment"/> to the Modal Stack.
@@ -33,5 +35,7 @@ public interface INavigation
     /// <summary>
     /// Push page component <typeparamref name="T"/> to the Modal Stack.
     /// </summary>
-    Task PushModalAsync<T>(Dictionary<string, object> arguments = null, bool animated = true) where T : IComponent;
+    Task PushModalAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        Dictionary<string, object> arguments = null, bool animated = true)
+        where T : IComponent;
 }

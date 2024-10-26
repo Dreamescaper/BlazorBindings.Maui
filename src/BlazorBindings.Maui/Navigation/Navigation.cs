@@ -9,6 +9,8 @@ public partial class Navigation : INavigation
 {
     private readonly MauiBlazorBindingsRenderer _renderer;
     private readonly NavigationManager _navigationManager;
+
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
     private Type _wrapperComponentType;
 
     internal Navigation(MauiBlazorBindingsServiceProvider services)
@@ -17,7 +19,7 @@ public partial class Navigation : INavigation
         _navigationManager = services.GetRequiredService<NavigationManager>();
     }
 
-    internal void SetWrapperComponentType(Type wrapperComponentType)
+    internal void SetWrapperComponentType([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type wrapperComponentType)
     {
         _wrapperComponentType = wrapperComponentType;
     }
@@ -27,7 +29,8 @@ public partial class Navigation : INavigation
     /// <summary>
     /// Push page component <typeparamref name="T"/> to the Navigation Stack.
     /// </summary>
-    public Task PushAsync<T>(Dictionary<string, object> arguments = null, bool animated = true) where T : IComponent
+    public Task PushAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        Dictionary<string, object> arguments = null, bool animated = true) where T : IComponent
     {
         return Navigate(typeof(T), arguments, NavigationTarget.Navigation, animated);
     }
@@ -35,7 +38,8 @@ public partial class Navigation : INavigation
     /// <summary>
     /// Push page component <typeparamref name="T"/> to the Modal Stack.
     /// </summary>
-    public Task PushModalAsync<T>(Dictionary<string, object> arguments = null, bool animated = true) where T : IComponent
+    public Task PushModalAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        Dictionary<string, object> arguments = null, bool animated = true) where T : IComponent
     {
         return Navigate(typeof(T), arguments, NavigationTarget.Modal, animated);
     }
@@ -77,7 +81,9 @@ public partial class Navigation : INavigation
     /// </summary>
     /// <remarks>Experimental API, subject to change.</remarks>
     [Experimental("MBB001")]
-    public async Task<T> BuildElement<T>(Type componentType, Dictionary<string, object> arguments) where T : Element
+    public async Task<T> BuildElement<T>(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        Dictionary<string, object> arguments) where T : Element
     {
         var (bindableObject, componentTask) = await _renderer.GetElementFromRenderedComponent(componentType, arguments);
         var element = (Element)bindableObject;
@@ -107,7 +113,9 @@ public partial class Navigation : INavigation
         }, target, animated);
     }
 
-    private async Task Navigate(Type componentType, Dictionary<string, object> arguments, NavigationTarget target, bool animated)
+    private async Task Navigate(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        Dictionary<string, object> arguments, NavigationTarget target, bool animated)
     {
         if (_wrapperComponentType != null)
         {
