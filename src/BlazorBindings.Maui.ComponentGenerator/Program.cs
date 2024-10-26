@@ -94,6 +94,7 @@ public class Program
                     Exclude = GetNamedArgumentValues(a, "Exclude").ToHashSet(),
                     Include = GetNamedArgumentValues(a, "Include").ToHashSet(),
                     ContentProperties = GetNamedArgumentValues(a, "ContentProperties").ToHashSet(),
+                    NonContentProperties = GetNamedArgumentValues(a, "NonContentProperties").ToHashSet(),
                     PropertyChangedEvents = GetNamedArgumentValues(a, "PropertyChangedEvents"),
                     GenericProperties = GetNamedArgumentValues(a, "GenericProperties").Select(v => v.Split(':')).ToDictionary(v => v[0],
                         v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
@@ -118,7 +119,7 @@ public class Program
                     .Where(t => compilation.ClassifyCommonConversion(t, elementType) is { IsReference: true, IsImplicit: true });
 
                 return typesInAssembly
-                    .Where(typeSymbol => typesToGenerate.Any(t => !SymbolEqualityComparer.Default.Equals(t.TypeSymbol, typeSymbol)))
+                    .Where(typeSymbol => !typesToGenerate.Any(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, typeSymbol)))
                     .Select(typeSymbol => new GenerateComponentSettings
                     {
                         FileHeader = FileHeader,

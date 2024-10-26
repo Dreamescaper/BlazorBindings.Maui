@@ -10,6 +10,7 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
+using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
 using System;
 using System.Threading.Tasks;
@@ -129,9 +130,21 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
+        /// Gets the list of <see cref="T:Microsoft.Maui.Controls.Behavior" /> objects associated to this element. This is a read-only bindable property.
+        /// </summary>
+        [Parameter] public RenderFragment Behaviors { get; set; }
+        /// <summary>
+        /// Specifies the clipping region for an element.
+        /// </summary>
+        [Parameter] public RenderFragment Clip { get; set; }
+        /// <summary>
         /// Gets or sets the shadow effect cast by the element.
         /// </summary>
         [Parameter] public RenderFragment Shadow { get; set; }
+        /// <summary>
+        /// Gets the list of <see cref="T:Microsoft.Maui.Controls.TriggerBase" /> objects associated to this element. This is a read-only bindable property.
+        /// </summary>
+        [Parameter] public RenderFragment Triggers { get; set; }
         [Parameter] public EventCallback OnChildrenReordered { get; set; }
         [Parameter] public EventCallback<MC.FocusEventArgs> OnFocused { get; set; }
         [Parameter] public EventCallback OnMeasureInvalidated { get; set; }
@@ -318,8 +331,17 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Background):
                     Background = (RenderFragment)value;
                     break;
+                case nameof(Behaviors):
+                    Behaviors = (RenderFragment)value;
+                    break;
+                case nameof(Clip):
+                    Clip = (RenderFragment)value;
+                    break;
                 case nameof(Shadow):
                     Shadow = (RenderFragment)value;
+                    break;
+                case nameof(Triggers):
+                    Triggers = (RenderFragment)value;
                     break;
                 case nameof(OnChildrenReordered):
                     if (!Equals(OnChildrenReordered, value))
@@ -402,7 +424,10 @@ namespace BlazorBindings.Maui.Elements
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Background, (x, value) => x.Background = (MC.Brush)value);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.Behavior>(builder, sequence++, Behaviors, x => x.Behaviors);
+            RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Clip, (x, value) => x.Clip = (Geometry)value);
             RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Shadow, (x, value) => x.Shadow = (MC.Shadow)value);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.TriggerBase>(builder, sequence++, Triggers, x => x.Triggers);
         }
 
         static partial void RegisterAdditionalHandlers();
