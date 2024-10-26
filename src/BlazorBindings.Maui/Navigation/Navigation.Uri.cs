@@ -71,7 +71,9 @@ public partial class Navigation
 
     // This method is only needed for backward-compatibility - to allow assigning non-string parameters without 
     // specifying Route constraints. It should probably be removed in future versions.
-    private static Dictionary<string, object> ConvertParameters(Type componentType, IReadOnlyDictionary<string, object> parameters)
+    private static Dictionary<string, object> ConvertParameters(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] Type componentType, 
+        IReadOnlyDictionary<string, object> parameters)
     {
         if (parameters is null)
         {

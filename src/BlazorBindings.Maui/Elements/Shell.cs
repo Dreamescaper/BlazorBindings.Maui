@@ -269,22 +269,7 @@ public partial class Shell : Page, IContainerElementHandler
     private MC.ShellItem GetItemForMenuItem(MC.MenuItem childAsMenuItem)
     {
         // MenuItem is wrapped in ShellMenuItem, which is internal type.
-        // Not sure how to identify this item correctly.
-        return NativeControl.Items.FirstOrDefault(item => IsShellItemWithMenuItem(item, childAsMenuItem));
+        // ShellMenuItems sets itself as MenuItem parent.
+        return NativeControl.Items.FirstOrDefault(item => item == childAsMenuItem.Parent);
     }
-
-    private static bool IsShellItemWithMenuItem(MC.ShellItem shellItem, MC.MenuItem menuItem)
-    {
-        // Xamarin.Forms.MenuShellItem is internal so we have to use reflection to check that
-        // its MenuItem property is the same as the MenuItem we're looking for.
-        if (!MenuShellItemType.IsAssignableFrom(shellItem.GetType()))
-        {
-            return false;
-        }
-        var menuItemInMenuShellItem = MenuShellItemMenuItemProperty.GetValue(shellItem);
-        return menuItemInMenuShellItem == menuItem;
-    }
-
-    private static readonly Type MenuShellItemType = typeof(MC.ShellItem).Assembly.GetType("Microsoft.Maui.Controls.MenuShellItem");
-    private static readonly PropertyInfo MenuShellItemMenuItemProperty = MenuShellItemType.GetProperty("MenuItem");
 }

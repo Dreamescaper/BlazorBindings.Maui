@@ -2,7 +2,8 @@
 
 namespace BlazorBindings.Maui;
 
-public class BlazorBindingsApplication<T> : Application where T : IComponent
+public class BlazorBindingsApplication<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>
+    : Application where T : IComponent
 {
     public BlazorBindingsApplication(IServiceProvider services)
     {
@@ -23,6 +24,7 @@ public class BlazorBindingsApplication<T> : Application where T : IComponent
         static async void AwaitVoid(Task task) => await task;
     }
 
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
     public virtual Type WrapperComponentType { get; }
 
     /// <summary>
