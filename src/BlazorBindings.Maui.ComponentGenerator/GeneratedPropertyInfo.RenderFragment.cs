@@ -125,12 +125,12 @@ public partial class GeneratedPropertyInfo
             return ContentTypes.Any(contentType =>
                 {
                     var contentTypeSymbol = compilation.GetTypeByMetadataName(contentType);
-                    return compilation.ClassifyConversion(type, contentTypeSymbol) is { IsImplicit: true } or { IsReference: true, IsImplicit: true };
+                    return compilation.ClassifyConversion(type, contentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
                 })
                 && !NonContentTypes.Any(nonContentType =>
                 {
                     var nonContentTypeSymbol = compilation.GetTypeByMetadataName(nonContentType);
-                    return compilation.ClassifyConversion(type, nonContentTypeSymbol) is { IsImplicit: true } or { IsReference: true, IsImplicit: true };
+                    return compilation.ClassifyConversion(type, nonContentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
                 });
         }
     }
