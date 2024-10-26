@@ -269,8 +269,7 @@ public partial class Shell : Page, IContainerElementHandler
     private MC.ShellItem GetItemForMenuItem(MC.MenuItem childAsMenuItem)
     {
         // MenuItem is wrapped in ShellMenuItem, which is internal type.
-        // Not sure how to identify this item correctly.
-        return NativeControl.Items.FirstOrDefault(item => item.Title == childAsMenuItem.Text
-            && item.Items.Count == 0);
+        // ShellMenuItems sets itself as MenuItem parent.
+        return NativeControl.Items.FirstOrDefault(item => item == childAsMenuItem.Parent);
     }
 }
