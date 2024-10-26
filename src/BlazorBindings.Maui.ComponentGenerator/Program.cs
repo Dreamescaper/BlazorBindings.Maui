@@ -6,10 +6,6 @@ using CommandLine;
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System;
 
 namespace BlazorBindings.Maui.ComponentGenerator;
 

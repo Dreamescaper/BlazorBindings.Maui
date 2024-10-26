@@ -82,25 +82,29 @@ public partial class ComponentWrapperGenerator
         var createNativeElement = isComponentAbstract ? "" : $@"
         protected override {generatedType.GetTypeNameAndAddNamespace(typeToGenerate)} CreateNativeElement() => new();";
 
-        var handleParameter = !allProperties.Any() ? "" : $@"
-        protected override void HandleParameter(string name, object value)
-        {{
-            switch (name)
-            {{
-                {handleProperties.Trim()}
+        var handleParameter = !allProperties.Any() ? "" : $$"""
 
-                default:
-                    base.HandleParameter(name, value);
-                    break;
-            }}
-        }}";
+                    protected override void HandleParameter(string name, object value)
+                    {
+                        switch (name)
+                        {
+                            {{handleProperties.Trim()}}
 
-        var renderAdditionalElementContent = !contentProperties.Any() ? "" : $@"
+                            default:
+                                base.HandleParameter(name, value);
+                                break;
+                        }
+                    }
+            """;
 
-        protected override void RenderAdditionalElementContent({generatedType.GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder")} builder, ref int sequence)
-        {{
-            base.RenderAdditionalElementContent(builder, ref sequence);{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))}
-        }}";
+        var renderAdditionalElementContent = contentProperties.Length == 0 ? "" : $$"""
+
+
+                    protected override void RenderAdditionalElementContent({{generatedType.GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder")}} builder, ref int sequence)
+                    {
+                        base.RenderAdditionalElementContent(builder, ref sequence);{{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))}}
+                    }
+            """;
 
 
         var usingsText = string.Join(
@@ -117,28 +121,30 @@ public partial class ComponentWrapperGenerator
 
         var xmlDoc = GetXmlDocContents(typeToGenerate, "    ");
 
-        var content = $@"{headerText}
-{usingsText}
+        var content = $$"""
+            {{headerText}}
+            {{usingsText}}
 
-#pragma warning disable MBB001
+            #pragma warning disable MBB001
 
-namespace {componentNamespace}
-{{
-{xmlDoc}    public {classModifiers}partial class {componentName}{genericModifier} : {componentBaseName}{baseGenericModifier}
-    {{
-        static {componentName}()
-        {{
-            {staticConstructorBody.Trim()}
-        }}
-{propertyDeclarations}
-        public new {mauiTypeName} NativeControl => ({mauiTypeName})((BindableObject)this).NativeControl;
-{createNativeElement}
-{handleParameter}{renderAdditionalElementContent}
+            namespace {{componentNamespace}}
+            {
+            {{xmlDoc}}    public {{classModifiers}}partial class {{componentName}}{{genericModifier}} : {{componentBaseName}}{{baseGenericModifier}}
+                {
+                    static {{componentName}}()
+                    {
+                        {{staticConstructorBody.Trim()}}
+                    }
+            {{propertyDeclarations}}
+                    public new {{mauiTypeName}} NativeControl => ({{mauiTypeName}})((BindableObject)this).NativeControl;
+            {{createNativeElement}}
+            {{handleParameter}}{{renderAdditionalElementContent}}
 
-        static partial void RegisterAdditionalHandlers();
-    }}
-}}
-";
+                    static partial void RegisterAdditionalHandlers();
+                }
+            }
+
+            """;
 
         return (GetComponentGroup(typeToGenerate), componentName, content);
     }
@@ -147,12 +153,12 @@ namespace {componentNamespace}
     {
         var usings = new List<UsingStatement>
         {
-            new UsingStatement { Namespace = "System" },
-            new UsingStatement { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
-            new UsingStatement { Namespace = "BlazorBindings.Core", IsUsed = true, },
-            new UsingStatement { Namespace = "System.Threading.Tasks", IsUsed = true, },
-            new UsingStatement { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
-            new UsingStatement { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
+            new() { Namespace = "System" },
+            new() { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
+            new() { Namespace = "BlazorBindings.Core", IsUsed = true, },
+            new() { Namespace = "System.Threading.Tasks", IsUsed = true, },
+            new() { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
+            new() { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
         };
 
         var existingAliases = usings
@@ -239,7 +245,7 @@ namespace {componentNamespace}
         {
             var allText = xmlDocElement?.InnerXml;
             allText = allText?.Replace("To be added.", "").Replace("This is a bindable property.", "");
-            allText = allText is null ? null : Regex.Replace(allText, @"\s+", " ");
+            allText = allText is null ? null : MultipleSpacesRegex().Replace(allText, " ");
             return string.IsNullOrWhiteSpace(allText) ? null : allText.Trim();
         }
     }
@@ -273,8 +279,7 @@ namespace {componentNamespace}
             : possibleIdentifier;
     }
 
-    private static readonly List<string> ReservedKeywords = new List<string>
-        { "class", };
+    private static readonly List<string> ReservedKeywords = ["class"];
 
     private static string GetComponentGroup(INamedTypeSymbol typeToGenerate)
     {
@@ -311,4 +316,7 @@ namespace {componentNamespace}
         existingAliases.Add(uniqueAlias);
         return uniqueAlias;
     }
+
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex MultipleSpacesRegex();
 }
