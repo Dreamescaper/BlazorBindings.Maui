@@ -3,6 +3,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Security.Claims;
@@ -35,12 +36,12 @@ public abstract class NativeControlComponentBase : IComponent
     protected static bool Equals(EventCallback e1, object e2)
         => e2 is EventCallback other
         && ReferenceEquals(GetReceiver(e1), GetReceiver(other))
-        && Equals(GetDelegate(e2), GetDelegate(other));
+        && Equals(GetDelegate(e1), GetDelegate(other));
 
     protected static bool Equals<T>(EventCallback<T> e1, object e2)
         => e2 is EventCallback<T> other
         && ReferenceEquals(GetReceiver(e1), GetReceiver(other))
-        && Equals(GetDelegate(e2), GetDelegate(other));
+        && Equals(GetDelegate(e1), GetDelegate(other));
 
     protected virtual void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -173,28 +174,21 @@ public abstract class NativeControlComponentBase : IComponent
         }
     }
 
-    private static bool AreEqual(object callback1, object callback2)
-    {
-        // Retrieve the delegate (method) of both callbacks.
-        var delegate1 = GetDelegate(callback1);
-        var delegate2 = GetDelegate(callback2);
-
-        // Retrieve the receiver (the object the delegate is bound to) of both callbacks.
-        var receiver1 = GetReceiver(callback1);
-        var receiver2 = GetReceiver(callback2);
-
-        // Compare both the receiver and the delegate. They must both be equal for the callbacks to be considered equal.
-        return ReferenceEquals(receiver1, receiver2) && Equals(delegate1, delegate2);
-    }
-
-    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Receiver")]
-    extern static ref IHandleEvent GetReceiver(object obj);
-
-    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Delegate")]
-    extern static ref MulticastDelegate GetDelegate(object obj);
-
     void IComponent.Attach(RenderHandle renderHandle)
     {
         _renderHandle = renderHandle;
     }
+
+
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Receiver")]
+    extern static ref IHandleEvent GetReceiver(EventCallback callback);
+
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Receiver")]
+    extern static IHandleEvent GetReceiver<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(EventCallback<T> e1);
+
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Delegate")]
+    extern static ref MulticastDelegate GetDelegate(EventCallback callback);
+
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Delegate")]
+    extern static MulticastDelegate GetDelegate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(EventCallback<T> e1);
 }
