@@ -3,9 +3,6 @@
 
 using BlazorBindings.Maui.ComponentGenerator.Extensions;
 using Microsoft.CodeAnalysis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -149,19 +146,24 @@ namespace {componentNamespace}
     private static List<UsingStatement> GetDefaultUsings(INamedTypeSymbol typeToGenerate, string componentNamespace)
     {
         var usings = new List<UsingStatement>
-            {
-                new UsingStatement { Namespace = "System" },
-                new UsingStatement { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
-                new UsingStatement { Namespace = "BlazorBindings.Core", IsUsed = true, },
-                new UsingStatement { Namespace = "System.Threading.Tasks", IsUsed = true, },
-                new UsingStatement { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
-                new UsingStatement { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
-            };
+        {
+            new UsingStatement { Namespace = "System" },
+            new UsingStatement { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
+            new UsingStatement { Namespace = "BlazorBindings.Core", IsUsed = true, },
+            new UsingStatement { Namespace = "System.Threading.Tasks", IsUsed = true, },
+            new UsingStatement { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
+            new UsingStatement { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
+        };
+
+        var existingAliases = usings
+            .Where(u => !string.IsNullOrEmpty(u.Alias))
+            .Select(u => u.Alias)
+            .ToHashSet();
 
         var typeNamespace = typeToGenerate.ContainingNamespace.GetFullName();
         if (typeNamespace != "Microsoft.Maui.Controls")
         {
-            var typeNamespaceAlias = GetNamespaceAlias(typeNamespace);
+            var typeNamespaceAlias = GetUniqueNamespaceAlias(typeNamespace, existingAliases);
             usings.Add(new UsingStatement { Namespace = typeNamespace, Alias = typeNamespaceAlias, IsUsed = true });
         }
 
@@ -173,7 +175,7 @@ namespace {componentNamespace}
         var assemblyName = typeToGenerate.ContainingAssembly.Name;
         if (assemblyName.Contains('.') && typeNamespace != assemblyName && typeNamespace.StartsWith(assemblyName))
         {
-            usings.Add(new UsingStatement { Namespace = assemblyName, Alias = GetNamespaceAlias(assemblyName) });
+            usings.Add(new UsingStatement { Namespace = assemblyName, Alias = GetUniqueNamespaceAlias(assemblyName, existingAliases) });
         }
 
         return usings;
@@ -274,7 +276,7 @@ namespace {componentNamespace}
     private static readonly List<string> ReservedKeywords = new List<string>
         { "class", };
 
-    private string GetComponentGroup(INamedTypeSymbol typeToGenerate)
+    private static string GetComponentGroup(INamedTypeSymbol typeToGenerate)
     {
         var nsName = typeToGenerate.ContainingNamespace.GetFullName();
         var parts = nsName.Split('.')
@@ -283,7 +285,7 @@ namespace {componentNamespace}
         return string.Join('.', parts);
     }
 
-    private string GetComponentNamespace(INamedTypeSymbol typeToGenerate)
+    private static string GetComponentNamespace(INamedTypeSymbol typeToGenerate)
     {
         var group = GetComponentGroup(typeToGenerate);
         return string.IsNullOrEmpty(group) ? "BlazorBindings.Maui.Elements" : $"BlazorBindings.Maui.Elements.{group}";
@@ -292,5 +294,21 @@ namespace {componentNamespace}
     private static string GetNamespaceAlias(string @namespace)
     {
         return new string(@namespace.Split('.').Where(part => part != "Microsoft").Select(part => part[0]).ToArray());
+    }
+
+    private static string GetUniqueNamespaceAlias(string @namespace, HashSet<string> existingAliases)
+    {
+        var baseAlias = GetNamespaceAlias(@namespace);
+        var uniqueAlias = baseAlias;
+        var counter = 1;
+
+        while (existingAliases.Contains(uniqueAlias))
+        {
+            uniqueAlias = baseAlias + counter;
+            counter++;
+        }
+
+        existingAliases.Add(uniqueAlias);
+        return uniqueAlias;
     }
 }
