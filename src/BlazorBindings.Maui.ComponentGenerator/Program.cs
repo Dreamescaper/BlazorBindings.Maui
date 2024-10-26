@@ -119,7 +119,7 @@ public class Program
                     .Where(t => compilation.ClassifyCommonConversion(t, elementType) is { IsReference: true, IsImplicit: true });
 
                 return typesInAssembly
-                    .Where(typeSymbol => typesToGenerate.Any(t => !SymbolEqualityComparer.Default.Equals(t.TypeSymbol, typeSymbol)))
+                    .Where(typeSymbol => !typesToGenerate.Any(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, typeSymbol)))
                     .Select(typeSymbol => new GenerateComponentSettings
                     {
                         FileHeader = FileHeader,
