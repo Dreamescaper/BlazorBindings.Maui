@@ -3,10 +3,8 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
-using System.Security.Claims;
 
 namespace BlazorBindings.Core;
 
@@ -33,11 +31,14 @@ public abstract class NativeControlComponentBase : IComponent
         return Task.CompletedTask;
     }
 
+    // Equals methods are overridden only as a workaround to this issue:
+    // https://github.com/dotnet/aspnetcore/issues/53361
     protected static bool Equals(EventCallback e1, object e2)
         => e2 is EventCallback other
         && ReferenceEquals(GetReceiver(ref e1), GetReceiver(ref other))
         && Equals(GetDelegate(ref e1), GetDelegate(ref other));
 
+    // TODO: uncomment on dotnet9.0
     //protected static bool Equals<T>(EventCallback<T> e1, object e2)
     //    => e2 is EventCallback<T> other
     //    && ReferenceEquals(GetReceiver(ref e1), GetReceiver(ref other))
@@ -187,6 +188,7 @@ public abstract class NativeControlComponentBase : IComponent
     extern static ref MulticastDelegate GetDelegate(ref EventCallback _this);
 
     // Unfortunately can't use with generics https://github.com/dotnet/runtime/issues/89439
+    // TODO: uncomment on dotnet9.0
 
     //[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Receiver")]
     //extern static ref IHandleEvent GetReceiver<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ref EventCallback<T> _this);
