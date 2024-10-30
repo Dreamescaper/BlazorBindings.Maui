@@ -39,6 +39,7 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public string UserAgent { get; set; }
         [Parameter] public EventCallback<MC.WebNavigatedEventArgs> OnNavigated { get; set; }
         [Parameter] public EventCallback<MC.WebNavigatingEventArgs> OnNavigating { get; set; }
+        [Parameter] public EventCallback<MC.WebViewProcessTerminatedEventArgs> OnProcessTerminated { get; set; }
 
         public new MC.WebView NativeControl => (MC.WebView)((BindableObject)this).NativeControl;
 
@@ -87,6 +88,16 @@ namespace BlazorBindings.Maui.Elements
                         OnNavigating = (EventCallback<MC.WebNavigatingEventArgs>)value;
                         NativeControl.Navigating -= NativeControlNavigating;
                         NativeControl.Navigating += NativeControlNavigating;
+                    }
+                    break;
+                case nameof(OnProcessTerminated):
+                    if (!Equals(OnProcessTerminated, value))
+                    {
+                        void NativeControlProcessTerminated(object sender, MC.WebViewProcessTerminatedEventArgs e) => InvokeEventCallback(OnProcessTerminated, e);
+
+                        OnProcessTerminated = (EventCallback<MC.WebViewProcessTerminatedEventArgs>)value;
+                        NativeControl.ProcessTerminated -= NativeControlProcessTerminated;
+                        NativeControl.ProcessTerminated += NativeControlProcessTerminated;
                     }
                     break;
 

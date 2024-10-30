@@ -22,19 +22,16 @@ public partial class TimePicker
             case nameof(TimeChanged):
                 if (!Equals(TimeChanged, value))
                 {
-                    void NativeControlPropertyChanged(object sender, PropertyChangedEventArgs e)
+                    void NativeControlTimeSelected(object sender, MC.TimeChangedEventArgs e)
                     {
-                        if (e.PropertyName == nameof(NativeControl.Time))
-                        {
-                            var value = TimeOnly.FromTimeSpan(NativeControl.Time);
-                            Time = value;
-                            InvokeEventCallback(TimeChanged, value);
-                        }
+                        var value = TimeOnly.FromTimeSpan(e.NewTime);
+                        Time = value;
+                        InvokeEventCallback(TimeChanged, value);
                     }
 
                     TimeChanged = (EventCallback<TimeOnly>)value;
-                    NativeControl.PropertyChanged -= NativeControlPropertyChanged;
-                    NativeControl.PropertyChanged += NativeControlPropertyChanged;
+                    NativeControl.TimeSelected -= NativeControlTimeSelected;
+                    NativeControl.TimeSelected += NativeControlTimeSelected;
                 }
                 return true;
         }

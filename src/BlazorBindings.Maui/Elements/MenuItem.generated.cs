@@ -25,7 +25,6 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
-        [Parameter] public string @class { get; set; }
         [Parameter] public MC.ImageSource IconImageSource { get; set; }
         /// <summary>
         /// Gets or sets a value that indicates whether or not the menu item removes its associated UI element.
@@ -38,10 +37,6 @@ namespace BlazorBindings.Maui.Elements
         /// For internal use by the Microsoft.Maui.Controls platform.
         /// </summary>
         [Parameter] public bool? IsEnabled { get; set; }
-        /// <summary>
-        /// Sets the StyleClass of the generated <see cref="T:Microsoft.Maui.Controls.FlyoutItem" /> when used with <see cref="T:Microsoft.Maui.Controls.Shell" />
-        /// </summary>
-        [Parameter] public string StyleClass { get; set; }
         /// <summary>
         /// The text of the menu item.
         /// </summary>
@@ -56,13 +51,6 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
-                case nameof(@class):
-                    if (!Equals(@class, value))
-                    {
-                        @class = (string)value;
-                        NativeControl.@class = AttributeHelper.GetStringList(@class);
-                    }
-                    break;
                 case nameof(IconImageSource):
                     if (!Equals(IconImageSource, value))
                     {
@@ -82,13 +70,6 @@ namespace BlazorBindings.Maui.Elements
                     {
                         IsEnabled = (bool?)value;
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.MenuItem.IsEnabledProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(StyleClass):
-                    if (!Equals(StyleClass, value))
-                    {
-                        StyleClass = (string)value;
-                        NativeControl.StyleClass = AttributeHelper.GetStringList(StyleClass);
                     }
                     break;
                 case nameof(Text):

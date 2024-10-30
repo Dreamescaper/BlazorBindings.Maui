@@ -84,7 +84,7 @@ namespace BlazorBindings.Maui.Elements
                     if (!Equals(FlyoutItemIsVisible, value))
                     {
                         FlyoutItemIsVisible = (bool?)value;
-                        NativeControl.FlyoutItemIsVisible = FlyoutItemIsVisible ?? default;
+                        NativeControl.FlyoutItemIsVisible = FlyoutItemIsVisible ?? (bool)MC.BaseShellItem.FlyoutItemIsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Icon):

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net8.0</TargetFrameworks>
+		<TargetFrameworks>net9.0</TargetFrameworks>
 
 		<Description>Dotnet tool which generate BlazorBindings.Maui components for MAUI elements.</Description>
 		<PackAsTool>true</PackAsTool>

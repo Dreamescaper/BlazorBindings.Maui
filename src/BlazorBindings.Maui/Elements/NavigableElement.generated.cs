@@ -17,60 +17,16 @@ namespace BlazorBindings.Maui.Elements
     /// <summary>
     /// Represents an <see cref="T:Microsoft.Maui.Controls.Element" /> with base functionality for <see cref="T:Microsoft.Maui.Controls.Page" /> navigation. Does not necessarily render on screen.
     /// </summary>
-    public abstract partial class NavigableElement : Element
+    public abstract partial class NavigableElement : StyleableElement
     {
         static NavigableElement()
         {
             RegisterAdditionalHandlers();
         }
 
-        /// <summary>
-        /// Gets or sets the style classes for the element.
-        /// </summary>
-        [Parameter] public string @class { get; set; }
-        /// <summary>
-        /// Gets or sets the unique <see cref="P:Microsoft.Maui.Controls.NavigableElement.Style" /> for this element.
-        /// </summary>
-        [Parameter] public MC.Style Style { get; set; }
-        /// <summary>
-        /// Gets or sets the style classes for the element.
-        /// </summary>
-        [Parameter] public string StyleClass { get; set; }
-
         public new MC.NavigableElement NativeControl => (MC.NavigableElement)((BindableObject)this).NativeControl;
 
 
-        protected override void HandleParameter(string name, object value)
-        {
-            switch (name)
-            {
-                case nameof(@class):
-                    if (!Equals(@class, value))
-                    {
-                        @class = (string)value;
-                        NativeControl.@class = AttributeHelper.GetStringList(@class);
-                    }
-                    break;
-                case nameof(Style):
-                    if (!Equals(Style, value))
-                    {
-                        Style = (MC.Style)value;
-                        NativeControl.Style = Style;
-                    }
-                    break;
-                case nameof(StyleClass):
-                    if (!Equals(StyleClass, value))
-                    {
-                        StyleClass = (string)value;
-                        NativeControl.StyleClass = AttributeHelper.GetStringList(StyleClass);
-                    }
-                    break;
-
-                default:
-                    base.HandleParameter(name, value);
-                    break;
-            }
-        }
 
         static partial void RegisterAdditionalHandlers();
     }
