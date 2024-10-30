@@ -3,9 +3,6 @@
 
 using BlazorBindings.Maui.ComponentGenerator.Extensions;
 using Microsoft.CodeAnalysis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
@@ -85,25 +82,29 @@ public partial class ComponentWrapperGenerator
         var createNativeElement = isComponentAbstract ? "" : $@"
         protected override {generatedType.GetTypeNameAndAddNamespace(typeToGenerate)} CreateNativeElement() => new();";
 
-        var handleParameter = !allProperties.Any() ? "" : $@"
-        protected override void HandleParameter(string name, object value)
-        {{
-            switch (name)
-            {{
-                {handleProperties.Trim()}
+        var handleParameter = !allProperties.Any() ? "" : $$"""
 
-                default:
-                    base.HandleParameter(name, value);
-                    break;
-            }}
-        }}";
+                    protected override void HandleParameter(string name, object value)
+                    {
+                        switch (name)
+                        {
+                            {{handleProperties.Trim()}}
 
-        var renderAdditionalElementContent = !contentProperties.Any() ? "" : $@"
+                            default:
+                                base.HandleParameter(name, value);
+                                break;
+                        }
+                    }
+            """;
 
-        protected override void RenderAdditionalElementContent({generatedType.GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder")} builder, ref int sequence)
-        {{
-            base.RenderAdditionalElementContent(builder, ref sequence);{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))}
-        }}";
+        var renderAdditionalElementContent = contentProperties.Length == 0 ? "" : $$"""
+
+
+                    protected override void RenderAdditionalElementContent({{generatedType.GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder")}} builder, ref int sequence)
+                    {
+                        base.RenderAdditionalElementContent(builder, ref sequence);{{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))}}
+                    }
+            """;
 
 
         var usingsText = string.Join(
@@ -120,28 +121,30 @@ public partial class ComponentWrapperGenerator
 
         var xmlDoc = GetXmlDocContents(typeToGenerate, "    ");
 
-        var content = $@"{headerText}
-{usingsText}
+        var content = $$"""
+            {{headerText}}
+            {{usingsText}}
 
-#pragma warning disable MBB001
+            #pragma warning disable MBB001
 
-namespace {componentNamespace}
-{{
-{xmlDoc}    public {classModifiers}partial class {componentName}{genericModifier} : {componentBaseName}{baseGenericModifier}
-    {{
-        static {componentName}()
-        {{
-            {staticConstructorBody.Trim()}
-        }}
-{propertyDeclarations}
-        public new {mauiTypeName} NativeControl => ({mauiTypeName})((BindableObject)this).NativeControl;
-{createNativeElement}
-{handleParameter}{renderAdditionalElementContent}
+            namespace {{componentNamespace}}
+            {
+            {{xmlDoc}}    public {{classModifiers}}partial class {{componentName}}{{genericModifier}} : {{componentBaseName}}{{baseGenericModifier}}
+                {
+                    static {{componentName}}()
+                    {
+                        {{staticConstructorBody.Trim()}}
+                    }
+            {{propertyDeclarations}}
+                    public new {{mauiTypeName}} NativeControl => ({{mauiTypeName}})((BindableObject)this).NativeControl;
+            {{createNativeElement}}
+            {{handleParameter}}{{renderAdditionalElementContent}}
 
-        static partial void RegisterAdditionalHandlers();
-    }}
-}}
-";
+                    static partial void RegisterAdditionalHandlers();
+                }
+            }
+
+            """;
 
         return (GetComponentGroup(typeToGenerate), componentName, content);
     }
@@ -149,19 +152,24 @@ namespace {componentNamespace}
     private static List<UsingStatement> GetDefaultUsings(INamedTypeSymbol typeToGenerate, string componentNamespace)
     {
         var usings = new List<UsingStatement>
-            {
-                new UsingStatement { Namespace = "System" },
-                new UsingStatement { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
-                new UsingStatement { Namespace = "BlazorBindings.Core", IsUsed = true, },
-                new UsingStatement { Namespace = "System.Threading.Tasks", IsUsed = true, },
-                new UsingStatement { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
-                new UsingStatement { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
-            };
+        {
+            new() { Namespace = "System" },
+            new() { Namespace = "Microsoft.AspNetCore.Components", IsUsed = true, },
+            new() { Namespace = "BlazorBindings.Core", IsUsed = true, },
+            new() { Namespace = "System.Threading.Tasks", IsUsed = true, },
+            new() { Namespace = "Microsoft.Maui.Controls", Alias = "MC", IsUsed = true },
+            new() { Namespace = "Microsoft.Maui.Primitives", Alias = "MMP" }
+        };
+
+        var existingAliases = usings
+            .Where(u => !string.IsNullOrEmpty(u.Alias))
+            .Select(u => u.Alias)
+            .ToHashSet();
 
         var typeNamespace = typeToGenerate.ContainingNamespace.GetFullName();
         if (typeNamespace != "Microsoft.Maui.Controls")
         {
-            var typeNamespaceAlias = GetNamespaceAlias(typeNamespace);
+            var typeNamespaceAlias = GetUniqueNamespaceAlias(typeNamespace, existingAliases);
             usings.Add(new UsingStatement { Namespace = typeNamespace, Alias = typeNamespaceAlias, IsUsed = true });
         }
 
@@ -173,7 +181,7 @@ namespace {componentNamespace}
         var assemblyName = typeToGenerate.ContainingAssembly.Name;
         if (assemblyName.Contains('.') && typeNamespace != assemblyName && typeNamespace.StartsWith(assemblyName))
         {
-            usings.Add(new UsingStatement { Namespace = assemblyName, Alias = GetNamespaceAlias(assemblyName) });
+            usings.Add(new UsingStatement { Namespace = assemblyName, Alias = GetUniqueNamespaceAlias(assemblyName, existingAliases) });
         }
 
         return usings;
@@ -237,7 +245,7 @@ namespace {componentNamespace}
         {
             var allText = xmlDocElement?.InnerXml;
             allText = allText?.Replace("To be added.", "").Replace("This is a bindable property.", "");
-            allText = allText is null ? null : Regex.Replace(allText, @"\s+", " ");
+            allText = allText is null ? null : MultipleSpacesRegex().Replace(allText, " ");
             return string.IsNullOrWhiteSpace(allText) ? null : allText.Trim();
         }
     }
@@ -271,10 +279,9 @@ namespace {componentNamespace}
             : possibleIdentifier;
     }
 
-    private static readonly List<string> ReservedKeywords = new List<string>
-        { "class", };
+    private static readonly List<string> ReservedKeywords = ["class"];
 
-    private string GetComponentGroup(INamedTypeSymbol typeToGenerate)
+    private static string GetComponentGroup(INamedTypeSymbol typeToGenerate)
     {
         var nsName = typeToGenerate.ContainingNamespace.GetFullName();
         var parts = nsName.Split('.')
@@ -283,7 +290,7 @@ namespace {componentNamespace}
         return string.Join('.', parts);
     }
 
-    private string GetComponentNamespace(INamedTypeSymbol typeToGenerate)
+    private static string GetComponentNamespace(INamedTypeSymbol typeToGenerate)
     {
         var group = GetComponentGroup(typeToGenerate);
         return string.IsNullOrEmpty(group) ? "BlazorBindings.Maui.Elements" : $"BlazorBindings.Maui.Elements.{group}";
@@ -293,4 +300,23 @@ namespace {componentNamespace}
     {
         return new string(@namespace.Split('.').Where(part => part != "Microsoft").Select(part => part[0]).ToArray());
     }
+
+    private static string GetUniqueNamespaceAlias(string @namespace, HashSet<string> existingAliases)
+    {
+        var baseAlias = GetNamespaceAlias(@namespace);
+        var uniqueAlias = baseAlias;
+        var counter = 1;
+
+        while (existingAliases.Contains(uniqueAlias))
+        {
+            uniqueAlias = baseAlias + counter;
+            counter++;
+        }
+
+        existingAliases.Add(uniqueAlias);
+        return uniqueAlias;
+    }
+
+    [GeneratedRegex(@"\s+")]
+    private static partial Regex MultipleSpacesRegex();
 }
