@@ -29,13 +29,13 @@ public class Program
             .ParseArguments<Options>(args)
             .WithParsedAsync(async o =>
             {
-                o.ProjectPath ??= Array.Find(Directory.GetFiles(Directory.GetCurrentDirectory()), f
-                        => f.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase))
-                        ?? throw new ArgumentException("Cannot find any csproj files.");
+                o.ProjectPath ??= Directory.GetFiles(Directory.GetCurrentDirectory())
+                    .FirstOrDefault(f => f.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase))
+                    ?? throw new ArgumentException("Cannot find any csproj files.");
 
                 o.OutPath ??= Path.Combine(o.ProjectPath, "..", "Elements");
 
-                var compilation = await CreateComplitation(o);
+                var compilation = await CreateCompilation(o);
 
                 var typesToGenerate = GetTypesToGenerate(compilation);
 
@@ -125,7 +125,7 @@ public class Program
 
         foreach (var info in typesToGenerate)
         {
-            var baseTypeInfo = typesToGenerate.Find(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, info.TypeSymbol?.BaseType));
+            var baseTypeInfo = typesToGenerate.FirstOrDefault(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, info.TypeSymbol?.BaseType));
             info.BaseTypeInfo = baseTypeInfo;
         }
 
@@ -147,7 +147,7 @@ public class Program
         return values.Select(a => a.Value as string).Where(v => v is not null).ToArray();
     }
 
-    private static async Task<Compilation> CreateComplitation(Options o)
+    private static async Task<Compilation> CreateCompilation(Options o)
     {
         Console.WriteLine("Creating project compilation.");
 
