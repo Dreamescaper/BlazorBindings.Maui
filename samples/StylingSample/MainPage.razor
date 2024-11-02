@@ -1,0 +1,51 @@
+﻿@page "/main"
+
+<ContentPage Resources="AppStyles.Scoped">
+    <VerticalStackLayout Spacing="25"
+                         Padding="new(30,0)"
+                         VerticalOptions="LayoutOptions.Center">
+        <Image Source="dotNetBotSource"
+               HeightRequest="200"
+               HorizontalOptions="LayoutOptions.Center" />
+
+        <Label Text="Hello, World!"
+               FontSize="32"
+               HorizontalOptions="LayoutOptions.Center" />
+
+        <Label Text="Welcome to .NET Multi-platform App UI"
+               FontSize="18"
+               HorizontalOptions="LayoutOptions.Center" />
+
+        <Button Text="@ButtonText"
+                HorizontalOptions="LayoutOptions.Center"
+                OnClick="OnCounterClicked" />
+
+        <Button Text="Change App Theme" OnClick="ChangeAppTheme">
+        </Button>
+    </VerticalStackLayout>
+</ContentPage>
+
+@code {
+    ImageSource dotNetBotSource = ImageSource.FromFile("dotnet_bot.png");
+
+    int count = 0;
+
+    string ButtonText => count switch
+    {
+        0 => "Click me",
+        1 => $"Clicked 1 time",
+        _ => $"Clicked {count} times"
+    };
+
+    void OnCounterClicked()
+    {
+        count++;
+    }
+
+    void ChangeAppTheme()
+    {
+        MC.Application.Current!.UserAppTheme = MC.Application.Current!.UserAppTheme == AppTheme.Light
+            ? AppTheme.Dark
+            : AppTheme.Light;
+    }
+}
