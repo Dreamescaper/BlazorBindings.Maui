@@ -2,13 +2,14 @@
 using Microsoft.Extensions.Logging;
 
 namespace StylingSample;
+
 public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
         builder
-            .UseMauiApp<BlazorBindingsApplication<AppShell>>()
+            .UseMauiApp<App>()
             .UseMauiBlazorBindings()
             .ConfigureFonts(fonts =>
             {
@@ -17,7 +18,7 @@ public static class MauiProgram
             });
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
         return builder.Build();

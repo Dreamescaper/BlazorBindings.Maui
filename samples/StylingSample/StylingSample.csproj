@@ -61,22 +61,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.2.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Resources\Styles\ScopedStyle.xaml.cs">
-	    <DependentUpon>ScopedStyle.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Resources\Styles\ScopedStyle.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
+	
 </Project>
