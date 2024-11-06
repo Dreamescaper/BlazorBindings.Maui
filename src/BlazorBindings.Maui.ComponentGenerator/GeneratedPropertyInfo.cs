@@ -307,6 +307,8 @@ public partial class GeneratedPropertyInfo
             .Select(member => typeSymbol.GetMember(member, true))
             .Where(member => member != null);
 
-        return typeSymbol.GetMembers().Union(baseMembers, SymbolEqualityComparer.Default).OfType<T>();
+        return typeSymbol.GetMembers().Union(baseMembers, SymbolEqualityComparer.Default)
+            .Where(m => !m.IsStatic && m.DeclaredAccessibility == Accessibility.Public)
+            .OfType<T>();
     }
 }
