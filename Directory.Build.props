@@ -8,7 +8,7 @@
 		<Authors>Microsoft, Dreamescaper</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<LangVersion>12.0</LangVersion>
+		<LangVersion>13.0</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
