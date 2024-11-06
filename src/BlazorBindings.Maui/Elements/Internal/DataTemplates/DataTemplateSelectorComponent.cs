@@ -57,7 +57,7 @@ internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlCom
     void INonPhysicalChild.SetParent(object parentElement)
     {
         var parent = (TControl)parentElement;
-        var dataTemplate = new DataTemplateSelector(TemplateSelector, AddTemplateGroup, AddTemplateRootToGroup);
+        var dataTemplate = new DataTemplateSelector<TItem>(TemplateSelector, AddTemplateGroup, AddTemplateRootToGroup);
         SetDataTemplateSelectorAction(parent, dataTemplate);
     }
 
@@ -66,57 +66,58 @@ internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlCom
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
 
-    class DataTemplateSelector : MC.DataTemplateSelector
+}
+
+file class DataTemplateSelector<TItem> : MC.DataTemplateSelector
+{
+    private readonly RenderFragment<TItem> _renderFragment;
+    private readonly Func<int> _addGroupFunc;
+    private readonly Func<int, MC.View> _addRootToGroupFunc;
+    private readonly Dictionary<Type, MC.DataTemplate> _dataTemplates = new();
+
+    public DataTemplateSelector(RenderFragment<TItem> renderFragment, Func<int> addGroupFunc, Func<int, MC.View> addRootToGroupFunc)
     {
-        private readonly RenderFragment<TItem> _renderFragment;
-        private readonly Func<int> _addGroupFunc;
-        private readonly Func<int, MC.View> _addRootToGroupFunc;
-        private readonly Dictionary<Type, MC.DataTemplate> _dataTemplates = new();
+        _renderFragment = renderFragment;
+        _addGroupFunc = addGroupFunc;
+        _addRootToGroupFunc = addRootToGroupFunc;
+    }
 
-        public DataTemplateSelector(RenderFragment<TItem> renderFragment, Func<int> addGroupFunc, Func<int, MC.View> addRootToGroupFunc)
+    protected override MC.DataTemplate OnSelectTemplate(object item, MC.BindableObject container)
+    {
+        var componentType = GetComponentType(_renderFragment((TItem)item));
+
+        if (!_dataTemplates.TryGetValue(componentType, out var dataTemplate))
         {
-            _renderFragment = renderFragment;
-            _addGroupFunc = addGroupFunc;
-            _addRootToGroupFunc = addRootToGroupFunc;
+            var groupIndex = _addGroupFunc();
+            dataTemplate = new MC.DataTemplate(() => _addRootToGroupFunc(groupIndex));
+            _dataTemplates[componentType] = dataTemplate;
         }
 
-        protected override MC.DataTemplate OnSelectTemplate(object item, MC.BindableObject container)
+        return dataTemplate;
+    }
+
+    static readonly RenderTreeBuilder InspectRenderTreeBuilder = new();
+    private static Type GetComponentType(RenderFragment renderFragment)
+    {
+        // Consider reworking if https://github.com/dotnet/aspnetcore/issues/17200 is implemented.
+        try
         {
-            var componentType = GetComponentType(_renderFragment((TItem)item));
+            renderFragment(InspectRenderTreeBuilder);
+            var frames = InspectRenderTreeBuilder.GetFrames();
 
-            if (!_dataTemplates.TryGetValue(componentType, out var dataTemplate))
+            for (var i = 0; i < frames.Count; i++)
             {
-                var groupIndex = _addGroupFunc();
-                dataTemplate = new MC.DataTemplate(() => _addRootToGroupFunc(groupIndex));
-                _dataTemplates[componentType] = dataTemplate;
-            }
-
-            return dataTemplate;
-        }
-
-        static readonly RenderTreeBuilder InspectRenderTreeBuilder = new();
-        private static Type GetComponentType(RenderFragment renderFragment)
-        {
-            // Consider reworking if https://github.com/dotnet/aspnetcore/issues/17200 is implemented.
-            try
-            {
-                renderFragment(InspectRenderTreeBuilder);
-                var frames = InspectRenderTreeBuilder.GetFrames();
-
-                for (var i = 0; i < frames.Count; i++)
+                if (frames.Array[i].FrameType == RenderTreeFrameType.Component)
                 {
-                    if (frames.Array[i].FrameType == RenderTreeFrameType.Component)
-                    {
-                        return frames.Array[i].ComponentType;
-                    }
+                    return frames.Array[i].ComponentType;
                 }
+            }
 
-                throw new InvalidOperationException("RenderFragment does not contain any components.");
-            }
-            finally
-            {
-                InspectRenderTreeBuilder.Clear();
-            }
+            throw new InvalidOperationException("RenderFragment does not contain any components.");
+        }
+        finally
+        {
+            InspectRenderTreeBuilder.Clear();
         }
     }
 }
