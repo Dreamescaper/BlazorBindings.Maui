@@ -10,16 +10,12 @@ namespace BlazorBindings.Core;
 /// Represents a "shadow" item that Blazor uses to map changes into the live native UI tree.
 /// </summary>
 [DebuggerDisplay("{DebugName}")]
-internal sealed class NativeComponentAdapter : IDisposable
+internal sealed class NativeComponentAdapter(
+    NativeComponentRenderer renderer,
+    NativeComponentAdapter closestPhysicalParent,
+    IElementHandler knownTargetElement = null)
+    : IDisposable
 {
-    public NativeComponentAdapter(NativeComponentRenderer renderer, NativeComponentAdapter closestPhysicalParent, IElementHandler knownTargetElement = null)
-    {
-        Renderer = renderer ?? throw new ArgumentNullException(nameof(renderer));
-        _closestPhysicalParent = closestPhysicalParent;
-        _targetElement = knownTargetElement;
-    }
-
-
     /// <summary>
     /// Used for debugging purposes.
     /// </summary>
@@ -45,14 +41,13 @@ internal sealed class NativeComponentAdapter : IDisposable
     public int DeepLevel { get; init; }
 
     public NativeComponentAdapter Parent { get; private set; }
-    public List<NativeComponentAdapter> Children { get; } = new();
+    public List<NativeComponentAdapter> Children { get; } = [];
 
-    private readonly NativeComponentAdapter _closestPhysicalParent;
-    private IElementHandler _targetElement;
+    private IElementHandler _targetElement = knownTargetElement;
 
-    private NativeComponentAdapter PhysicalTarget => _targetElement != null ? this : _closestPhysicalParent;
+    private NativeComponentAdapter PhysicalTarget => _targetElement != null ? this : closestPhysicalParent;
 
-    public NativeComponentRenderer Renderer { get; }
+    public NativeComponentRenderer Renderer { get; } = renderer ?? throw new ArgumentNullException(nameof(renderer));
 
     private List<PendingEdit> _pendingEdits;
 
@@ -146,7 +141,7 @@ internal sealed class NativeComponentAdapter : IDisposable
 
     private void AddPendingRemoval(NativeComponentAdapter childToRemove, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
-        var targetEdits = PhysicalTarget._pendingEdits ??= new();
+        var targetEdits = PhysicalTarget._pendingEdits ??= [];
         adaptersWithPendingEdits.Add(PhysicalTarget);
 
         if (targetEdits.Count == 0)
@@ -192,7 +187,7 @@ internal sealed class NativeComponentAdapter : IDisposable
 
     private void AddPendingAddition(NativeComponentAdapter childToAdd, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
-        var targetEdits = PhysicalTarget._pendingEdits ??= new();
+        var targetEdits = PhysicalTarget._pendingEdits ??= [];
         targetEdits.Add(new(EditType.Add, index, childToAdd));
         adaptersWithPendingEdits.Add(PhysicalTarget);
     }

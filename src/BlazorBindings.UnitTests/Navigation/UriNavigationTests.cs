@@ -106,21 +106,21 @@ public class UriNavigationTests
         await _navigationService.NavigateToAsync("/switchable-pages");
         var navigatedPage = _mauiNavigation.NavigationStack.Last();
 
-        Assert.That(_mauiNavigation.NavigationStack.Count, Is.EqualTo(2));
+        Assert.That(_mauiNavigation.NavigationStack, Has.Count.EqualTo(2));
         Assert.That(navigatedPage.Title, Is.EqualTo("Page1"));
 
         var switchButton = (MC.Button)((MC.ContentPage)navigatedPage).Content;
         switchButton.SendClicked();
         navigatedPage = _mauiNavigation.NavigationStack.Last();
 
-        Assert.That(_mauiNavigation.NavigationStack.Count, Is.EqualTo(2));
+        Assert.That(_mauiNavigation.NavigationStack, Has.Count.EqualTo(2));
         Assert.That(navigatedPage.Title, Is.EqualTo("Page2"));
 
         switchButton = (MC.Button)((MC.ContentPage)navigatedPage).Content;
         switchButton.SendClicked();
         navigatedPage = _mauiNavigation.NavigationStack.Last();
 
-        Assert.That(_mauiNavigation.NavigationStack.Count, Is.EqualTo(2));
+        Assert.That(_mauiNavigation.NavigationStack, Has.Count.EqualTo(2));
         Assert.That(navigatedPage.Title, Is.EqualTo("Page1"));
     }
 

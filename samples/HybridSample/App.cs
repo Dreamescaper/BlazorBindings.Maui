@@ -5,9 +5,6 @@ using BlazorBindings.Maui;
 
 namespace HybridSample;
 
-public class App : BlazorBindingsApplication<MainPage>
+public class App(IServiceProvider services) : BlazorBindingsApplication<MainPage>(services)
 {
-    public App(IServiceProvider services) : base(services)
-    {
-    }
 }

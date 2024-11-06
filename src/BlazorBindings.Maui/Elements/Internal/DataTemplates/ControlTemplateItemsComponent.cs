@@ -3,7 +3,7 @@
 
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 /// <summary>
 /// This ControlTemplate implementation wraps the content in an additional View, therefore it is not suitable in cases when non-View content
@@ -35,7 +35,7 @@ internal class ControlTemplateItemsComponent<T> : NativeControlComponentBase, IC
     [Parameter] public Action<T, MC.DataTemplate> SetDataTemplateAction { get; set; }
     [Parameter] public RenderFragment Template { get; set; }
 
-    private readonly List<MC.ContentView> _itemRoots = new();
+    private readonly List<MC.ContentView> _itemRoots = [];
 
     private MC.View AddTemplateRoot()
     {

@@ -7,8 +7,8 @@ namespace BlazorBindingsXaminals.Data;
 
 public static class DogData
 {
-    public static IList<Animal> Dogs { get; } = new List<Animal>
-        {
+    public static IList<Animal> Dogs { get; } =
+        [
             new Animal
             {
                 Name = "Afghan Hound",
@@ -104,5 +104,5 @@ public static class DogData
                 Details = "The St. Bernard or St Bernard is a breed of very large working dog from the western Alps in Italy and Switzerland. They were originally bred for rescue by the hospice of the Great St Bernard Pass on the Italian-Swiss border. The hospice, built by and named after Italian monk Bernard of Menthon, acquired its first dogs between 1660 and 1670. The breed has become famous through tales of alpine rescues, as well as for its enormous size.",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hummel_Vedor_vd_Robandahoeve.jpg/320px-Hummel_Vedor_vd_Robandahoeve.jpg"
             }
-        };
+        ];
 }

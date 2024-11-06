@@ -7,8 +7,8 @@ namespace BlazorBindingsXaminals.Data;
 
 public static class CatData
 {
-    public static IList<Animal> Cats { get; } = new List<Animal>
-        {
+    public static IList<Animal> Cats { get; } =
+        [
             new Animal
             {
                 Name = "Abyssinian",
@@ -96,5 +96,5 @@ public static class CatData
                 Details = "The Sphynx cat is a breed of cat known for its lack of coat (fur). It was developed through selective breeding, starting in the 1960s. The skin should have the texture of chamois, as it has fine hairs, or they may be completely hairless. Whiskers may be present, either whole or broken, or may be totally absent. They also have a narrow, long head, and webbed feet. Their skin is the color that their fur would be, and all the usual cat markings (solid, point, van, tabby, tortie, etc.) may be found on the Sphynx cat's skin. Because they have no coat, they lose more body heat than coated cats. This makes them warm to the touch as well as heat-seeking.",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Sphinx2_July_2006.jpg/180px-Sphinx2_July_2006.jpg"
             }
-        };
+        ];
 }

@@ -3,7 +3,6 @@
 
 using Microsoft.Maui.Graphics;
 using System.Diagnostics;
-using System.Reflection;
 using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;

@@ -3,11 +3,9 @@
 
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
-#pragma warning disable CA1812 // Avoid uninstantiated internal classes. Class is used as generic parameter.
 internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
-#pragma warning restore CA1812 // Avoid uninstantiated internal classes
 {
     protected override RenderFragment GetChildContent() => builder =>
     {
@@ -31,7 +29,7 @@ internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlCompon
     [Parameter] public Action<TControl, MC.DataTemplate> SetDataTemplateAction { get; set; }
     [Parameter] public RenderFragment<TItem> Template { get; set; }
 
-    private readonly List<MC.ContentView> _itemRoots = new();
+    private readonly List<MC.ContentView> _itemRoots = [];
 
     public MC.View AddTemplateRoot()
     {

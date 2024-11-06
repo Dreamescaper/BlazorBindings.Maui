@@ -7,16 +7,11 @@ namespace BlazorBindings.Core;
 /// Helper class for types that accept inline text spans. This type collects text spans
 /// and returns the string represented by the contained text spans.
 /// </summary>
-public class TextSpanContainer
+public class TextSpanContainer(bool trimWhitespace = true)
 {
-    private readonly List<string> _textSpans = new();
+    private readonly List<string> _textSpans = [];
 
-    public TextSpanContainer(bool trimWhitespace = true)
-    {
-        TrimWhitespace = trimWhitespace;
-    }
-
-    public bool TrimWhitespace { get; }
+    public bool TrimWhitespace { get; } = trimWhitespace;
 
     /// <summary>
     /// Updates the text spans with the new text at the new index and returns the new
@@ -27,10 +22,7 @@ public class TextSpanContainer
     /// <returns></returns>
     public string GetUpdatedText(int index, string text)
     {
-        if (index < 0)
-        {
-            throw new ArgumentOutOfRangeException(nameof(index));
-        }
+        ArgumentOutOfRangeException.ThrowIfNegative(index);
 
         if (index >= _textSpans.Count)
         {

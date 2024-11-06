@@ -262,8 +262,8 @@ public partial class GeneratedPropertyInfo
         return symbol.GetAttributes().Any(a => a.AttributeClass.Name == nameof(ObsoleteAttribute));
     }
 
-    private static readonly List<string> DisallowedComponentTypes = new()
-    {
+    private static readonly List<string> DisallowedComponentTypes =
+    [
         "Microsoft.Maui.Controls.Button.ButtonContentLayout", // TODO: This is temporary; should be possible to add support later
         "Microsoft.Maui.Controls.ColumnDefinitionCollection",
         "Microsoft.Maui.Controls.PointCollection",
@@ -289,7 +289,7 @@ public partial class GeneratedPropertyInfo
         "Microsoft.Maui.Graphics.IShape",
         "Microsoft.Maui.IView",
         "Microsoft.Maui.IViewHandler"
-    };
+    ];
 
     private string GetTypeNameAndAddNamespace(ITypeSymbol type)
     {

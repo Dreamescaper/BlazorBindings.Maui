@@ -16,7 +16,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
     [Parameter] public RenderFragment ChildContent { get; set; }
 
 
-    private readonly List<MC.View> _children = new();
+    private readonly List<MC.View> _children = [];
 
     public override Task SetParametersAsync(ParameterView parameters)
     {

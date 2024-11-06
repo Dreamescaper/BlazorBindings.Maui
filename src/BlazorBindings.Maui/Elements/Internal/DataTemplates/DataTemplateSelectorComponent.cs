@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.RenderTree;
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
 {
@@ -38,7 +38,7 @@ internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlCom
     [Parameter] public Action<TControl, MC.DataTemplateSelector> SetDataTemplateSelectorAction { get; set; }
     [Parameter] public RenderFragment<TItem> TemplateSelector { get; set; }
 
-    private readonly List<List<MC.ContentView>> _itemRootsGroups = new();
+    private readonly List<List<MC.ContentView>> _itemRootsGroups = [];
 
     private MC.View AddTemplateRootToGroup(int groupIndex)
     {
@@ -50,7 +50,7 @@ internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlCom
 
     private int AddTemplateGroup()
     {
-        _itemRootsGroups.Add(new List<MC.ContentView>());
+        _itemRootsGroups.Add([]);
         return _itemRootsGroups.Count - 1;
     }
 
@@ -68,28 +68,22 @@ internal class DataTemplateSelectorComponent<TControl, TItem> : NativeControlCom
 
 }
 
-file class DataTemplateSelector<TItem> : MC.DataTemplateSelector
+file class DataTemplateSelector<TItem>(
+    RenderFragment<TItem> renderFragment,
+    Func<int> addGroupFunc,
+    Func<int, MC.View> addRootToGroupFunc)
+    : MC.DataTemplateSelector
 {
-    private readonly RenderFragment<TItem> _renderFragment;
-    private readonly Func<int> _addGroupFunc;
-    private readonly Func<int, MC.View> _addRootToGroupFunc;
-    private readonly Dictionary<Type, MC.DataTemplate> _dataTemplates = new();
-
-    public DataTemplateSelector(RenderFragment<TItem> renderFragment, Func<int> addGroupFunc, Func<int, MC.View> addRootToGroupFunc)
-    {
-        _renderFragment = renderFragment;
-        _addGroupFunc = addGroupFunc;
-        _addRootToGroupFunc = addRootToGroupFunc;
-    }
+    private readonly Dictionary<Type, MC.DataTemplate> _dataTemplates = [];
 
     protected override MC.DataTemplate OnSelectTemplate(object item, MC.BindableObject container)
     {
-        var componentType = GetComponentType(_renderFragment((TItem)item));
+        var componentType = GetComponentType(renderFragment((TItem)item));
 
         if (!_dataTemplates.TryGetValue(componentType, out var dataTemplate))
         {
-            var groupIndex = _addGroupFunc();
-            dataTemplate = new MC.DataTemplate(() => _addRootToGroupFunc(groupIndex));
+            var groupIndex = addGroupFunc();
+            dataTemplate = new MC.DataTemplate(() => addRootToGroupFunc(groupIndex));
             _dataTemplates[componentType] = dataTemplate;
         }
 

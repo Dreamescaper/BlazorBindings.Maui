@@ -3,7 +3,7 @@
 
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 /// <summary>
 /// Unlike <see cref="DataTemplateItemsComponent{TControl, TItem}"/>, this DataTemplate component does not use a wrapping element. 
@@ -27,7 +27,7 @@ internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlCo
     [Parameter] public Action<TControl, MC.DataTemplate> SetDataTemplateAction { get; set; }
     [Parameter] public RenderFragment<TItem> Template { get; set; }
 
-    private readonly List<TItem> _initialItems = new();
+    private readonly List<TItem> _initialItems = [];
 
     private SyncDataTemplateItemComponent<TItem> _lastAddedItem;
 

@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using BlazorBindings.Maui.Elements.Internal;
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 /// <summary>
 /// Unlike <see cref="ControlTemplateItemsComponent{T}"/>, this DataTemplate component does not use a wrapping element. 
@@ -18,7 +17,7 @@ internal class SyncControlTemplateItemsComponent<T> : NativeControlComponentBase
     {
         return builder =>
         {
-            for (int i = 0; i < _count; i++)
+            for (var i = 0; i < _count; i++)
             {
                 builder.OpenComponent<RootContainerComponent>(1);
                 builder.AddAttribute(2, nameof(RootContainerComponent.ChildContent), Template);

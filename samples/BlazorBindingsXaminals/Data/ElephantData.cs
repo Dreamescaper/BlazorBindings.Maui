@@ -7,8 +7,8 @@ namespace BlazorBindingsXaminals.Data;
 
 public static class ElephantData
 {
-    public static IList<Animal> Elephants { get; } = new List<Animal>
-        {
+    public static IList<Animal> Elephants { get; } =
+        [
             new Animal
             {
                 Name = "African Bush Elephant",
@@ -104,5 +104,5 @@ public static class ElephantData
                 Details = "The pygmy mammoth or Channel Islands mammoth is an extinct species of dwarf elephant descended from the Columbian mammoth of mainland North America. This species became extinct during the Quaternary extinction event in which many megafauna species became extinct due to changing conditions to which the species could not adapt. A case of island or insular dwarfism, from a recent analysis in 2010 it was determined that M. exilis was on average, 1.72 m (5.6 ft) tall at the shoulders and 760 kg (1,680 lb) in weight, in stark contrast to its 4.3 m (14 ft) tall, 9,070 kg (20,000 lb) ancestor. Another estimate gives a shoulder height of 2.02 m (6.6 ft) and a weight of 1,350 kg (2,980 lb).",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/f/f6/Mammuthus_exilis.jpg"
             }
-        };
+        ];
 }

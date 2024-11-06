@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using BlazorBindings.Maui.Elements.DataTemplates;
 using BlazorBindings.Maui.Elements.Internal;
+using BlazorBindings.Maui.Elements.Internal.DataTemplates;
 using Microsoft.AspNetCore.Components.Rendering;
 using MC = Microsoft.Maui.Controls;
 

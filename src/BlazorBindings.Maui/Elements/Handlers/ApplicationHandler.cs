@@ -4,18 +4,11 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.Handlers;
 
-internal class ApplicationHandler : IContainerElementHandler
+internal class ApplicationHandler(Application application) : IContainerElementHandler
 {
-    private readonly Application _application;
-
-    public ApplicationHandler(Application application)
-    {
-        _application = application;
-    }
-
     public void AddChild(object child, int physicalSiblingIndex)
     {
-        _application.MainPage = child.Cast<MC.Page>();
+        application.MainPage = child.Cast<MC.Page>();
     }
 
     public void RemoveChild(object child, int physicalSiblingIndex)
@@ -23,5 +16,5 @@ internal class ApplicationHandler : IContainerElementHandler
         // It is not allowed to have no MainPage.
     }
 
-    public object TargetElement => _application;
+    public object TargetElement => application;
 }

@@ -1,12 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-using BlazorBindings.Maui.Elements.Internal;
 using BlazorBindings.Maui.Extensions;
 using Microsoft.AspNetCore.Components.Rendering;
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 internal class SyncDataTemplateItemComponent<T> : ComponentBase
 {

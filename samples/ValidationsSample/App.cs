@@ -2,9 +2,6 @@
 
 namespace ValidationsSample;
 
-public class App : BlazorBindingsApplication<LoginPage>
+public class App(IServiceProvider services) : BlazorBindingsApplication<LoginPage>(services)
 {
-    public App(IServiceProvider services) : base(services)
-    {
-    }
 }

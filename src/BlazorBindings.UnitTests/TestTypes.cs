@@ -78,15 +78,13 @@ public static class TestServiceProvider
     }
 }
 
-internal class TestBlazorBindingsRenderer : MauiBlazorBindingsRenderer
+internal class TestBlazorBindingsRenderer
+    (MauiBlazorBindingsServiceProvider serviceProvider, ILoggerFactory loggerFactory)
+    : MauiBlazorBindingsRenderer(serviceProvider, loggerFactory)
 {
-    public TestBlazorBindingsRenderer(MauiBlazorBindingsServiceProvider serviceProvider, ILoggerFactory loggerFactory) : base(serviceProvider, loggerFactory)
-    {
-    }
-
     public bool ThrowExceptions { get; set; } = true;
 
-    public List<Exception> Exceptions { get; } = new();
+    public List<Exception> Exceptions { get; } = [];
 
     protected override void HandleException(Exception exception)
     {
