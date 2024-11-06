@@ -38,11 +38,10 @@ public abstract class NativeControlComponentBase : IComponent
         && ReferenceEquals(GetReceiver(ref e1), GetReceiver(ref other))
         && Equals(GetDelegate(ref e1), GetDelegate(ref other));
 
-    // TODO: uncomment on dotnet9.0
-    //protected static bool Equals<T>(EventCallback<T> e1, object e2)
-    //    => e2 is EventCallback<T> other
-    //    && ReferenceEquals(GetReceiver(ref e1), GetReceiver(ref other))
-    //    && Equals(GetDelegate(ref e1), GetDelegate(ref other));
+    protected static bool Equals<T>(EventCallback<T> e1, object e2)
+        => e2 is EventCallback<T> other
+        && ReferenceEquals(GetReceiver(ref e1), GetReceiver(ref other))
+        && Equals(GetDelegate(ref e1), GetDelegate(ref other));
 
     protected virtual void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -187,12 +186,9 @@ public abstract class NativeControlComponentBase : IComponent
     [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Delegate")]
     extern static ref MulticastDelegate GetDelegate(ref EventCallback _this);
 
-    // Unfortunately can't use with generics https://github.com/dotnet/runtime/issues/89439
-    // TODO: uncomment on dotnet9.0
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Receiver")]
+    extern static ref IHandleEvent GetReceiver<T>(ref EventCallback<T> _this);
 
-    //[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Receiver")]
-    //extern static ref IHandleEvent GetReceiver<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ref EventCallback<T> _this);
-
-    //[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Delegate")]
-    //extern static ref MulticastDelegate GetDelegate<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(ref EventCallback<T> _this);
+    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "Delegate")]
+    extern static ref MulticastDelegate GetDelegate<T>(ref EventCallback<T> _this);
 }
