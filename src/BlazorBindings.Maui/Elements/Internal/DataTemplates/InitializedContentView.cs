@@ -3,7 +3,7 @@
 
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 internal class InitializedContentView : ContentView
 {

@@ -26,9 +26,7 @@ public static class MauiProgram
     }
 }
 
-public class App : BlazorBindingsApplication<AppShell>
+public class App(IServiceProvider services) : BlazorBindingsApplication<AppShell>(services)
 {
-    public App(IServiceProvider services) : base(services) { }
-
     public override Type WrapperComponentType => typeof(Root);
 }

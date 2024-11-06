@@ -8,16 +8,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace BlazorBindings.Core;
 
-public abstract class NativeComponentRenderer : Renderer
+public abstract class NativeComponentRenderer
+    (IServiceProvider serviceProvider, ILoggerFactory loggerFactory)
+    : Renderer(serviceProvider, loggerFactory)
 {
-    private readonly Dictionary<int, NativeComponentAdapter> _componentIdToAdapter = new();
-    private readonly List<(int Id, IComponent Component)> _rootComponents = new();
+    private readonly Dictionary<int, NativeComponentAdapter> _componentIdToAdapter = [];
+    private readonly List<(int Id, IComponent Component)> _rootComponents = [];
     private ElementManager _elementManager;
-
-    public NativeComponentRenderer(IServiceProvider serviceProvider, ILoggerFactory loggerFactory)
-        : base(serviceProvider, loggerFactory)
-    {
-    }
 
     protected virtual ElementManager CreateNativeControlManager() => new();
 
@@ -47,7 +44,7 @@ public abstract class NativeComponentRenderer : Renderer
     /// <param name="parameters"></param>
     /// <returns></returns>
     public async Task<IComponent> AddComponent(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
         IElementHandler parent,
         Dictionary<string, object> parameters = null)
     {
@@ -91,7 +88,7 @@ public abstract class NativeComponentRenderer : Renderer
 
     protected override Task UpdateDisplayAsync(in RenderBatch renderBatch)
     {
-        HashSet<NativeComponentAdapter> adaptersWithPendingEdits = new();
+        HashSet<NativeComponentAdapter> adaptersWithPendingEdits = [];
 
         var numUpdatedComponents = renderBatch.UpdatedComponents.Count;
         for (var componentIndex = 0; componentIndex < numUpdatedComponents; componentIndex++)

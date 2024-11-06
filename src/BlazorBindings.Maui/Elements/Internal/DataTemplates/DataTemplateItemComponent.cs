@@ -4,11 +4,9 @@
 using Microsoft.AspNetCore.Components.Rendering;
 using MC = Microsoft.Maui.Controls;
 
-namespace BlazorBindings.Maui.Elements.DataTemplates;
+namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
-#pragma warning disable CA1812 // Avoid uninstantiated internal classes. Class is used as generic parameter.
 internal class DataTemplateItemComponent<T> : ComponentBase
-#pragma warning restore CA1812 // Avoid uninstantiated internal classes
 {
     private object _item;
 

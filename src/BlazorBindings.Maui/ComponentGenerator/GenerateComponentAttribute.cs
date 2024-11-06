@@ -1,12 +1,10 @@
 ﻿namespace BlazorBindings.Maui.ComponentGenerator;
 
 [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-public class GenerateComponentAttribute : Attribute
+#pragma warning disable CS9113 // Parameter is unread. Type is used by Component Generator.
+public class GenerateComponentAttribute(Type typeToGenerate) : Attribute
+#pragma warning restore CS9113 // Parameter is unread.
 {
-    public GenerateComponentAttribute(Type typeToGenerate)
-    {
-    }
-
     /// <summary>
     /// Exclude members from generation.
     /// </summary>

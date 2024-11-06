@@ -2,21 +2,11 @@
 
 namespace BlazorBindings.Maui;
 
-internal class NavigationHandler : IContainerElementHandler
+internal class NavigationHandler(MC.INavigation navigation, NavigationTarget target, bool animated) : IContainerElementHandler
 {
-    private readonly NavigationTarget _target;
-    private readonly MC.INavigation _navigation;
-    private readonly bool _animated;
     private readonly TaskCompletionSource _taskCompletionSource = new();
     private MC.Page _currentPage;
     private bool _firstAdd = true;
-
-    public NavigationHandler(MC.INavigation navigation, NavigationTarget target, bool animated)
-    {
-        _target = target;
-        _navigation = navigation;
-        _animated = animated;
-    }
 
     public Task WaitForNavigation() => _taskCompletionSource.Task;
     public event Action PageClosed;
@@ -25,13 +15,13 @@ internal class NavigationHandler : IContainerElementHandler
     {
         _currentPage = child;
 
-        if (_target == NavigationTarget.Modal)
+        if (target == NavigationTarget.Modal)
         {
-            await _navigation.PushModalAsync(child, _firstAdd && _animated);
+            await navigation.PushModalAsync(child, _firstAdd && animated);
         }
         else
         {
-            await _navigation.PushAsync(child, _firstAdd && _animated);
+            await navigation.PushAsync(child, _firstAdd && animated);
         }
 
         _taskCompletionSource.TrySetResult();
@@ -43,17 +33,17 @@ internal class NavigationHandler : IContainerElementHandler
     public async Task RemoveChildAsync(MC.Page child)
     {
         child.ParentChanged -= ParentChanged;
-        if (_target == NavigationTarget.Modal)
+        if (target == NavigationTarget.Modal)
         {
-            if (_navigation.ModalStack.LastOrDefault() == child)
+            if (navigation.ModalStack.LastOrDefault() == child)
             {
-                await _navigation.PopModalAsync(animated: false);
+                await navigation.PopModalAsync(animated: false);
             }
         }
         else
         {
-            if (_navigation.NavigationStack.Contains(child))
-                _navigation.RemovePage(child);
+            if (navigation.NavigationStack.Contains(child))
+                navigation.RemovePage(child);
         }
     }
 

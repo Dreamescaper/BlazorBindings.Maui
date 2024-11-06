@@ -11,7 +11,7 @@ namespace BlazorBindings.Maui.Elements.Internal;
 /// </summary>
 internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBase, IElementHandler, IContainerElementHandler, INonPhysicalChild
 {
-    private readonly ObservableCollection<TItem> _observableCollection = new();
+    private readonly ObservableCollection<TItem> _observableCollection = [];
 
     [Parameter]
     public IEnumerable<TItem> Items { get; set; }
@@ -41,7 +41,7 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
             {
                 // Blazor doesn't allow duplicate keys. Therefore we add keys until the first duplicate.
                 // In case KeySelector is provided, we don't check for that here, since it's user's responsibility now.
-                _keys ??= new();
+                _keys ??= [];
                 shouldAddKey &= _keys.Add(key);
                 if (!shouldAddKey)
                     key = null;

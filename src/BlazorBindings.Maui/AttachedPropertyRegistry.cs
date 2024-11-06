@@ -9,7 +9,7 @@ namespace BlazorBindings.Maui;
 [Experimental("MBB001")]
 public static class AttachedPropertyRegistry
 {
-    internal static readonly Dictionary<string, Action<BindableObject, object>> AttachedPropertyHandlers = new();
+    internal static readonly Dictionary<string, Action<BindableObject, object>> AttachedPropertyHandlers = [];
 
     public static void RegisterAttachedPropertyHandler(string propertyName, Action<BindableObject, object> handler)
     {

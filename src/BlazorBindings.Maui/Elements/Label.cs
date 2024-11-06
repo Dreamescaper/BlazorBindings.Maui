@@ -10,9 +10,7 @@ public partial class Label : View, IHandleChildContentText, IContainerElementHan
 {
     private TextSpanContainer _textSpanContainer;
 
-#pragma warning disable CA1721 // Property names should not match get methods
     [Parameter] public RenderFragment ChildContent { get; set; }
-#pragma warning restore CA1721 // Property names should not match get methods
 
     protected override bool HandleAdditionalParameter(string name, object value)
     {

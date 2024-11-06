@@ -31,14 +31,10 @@ public class BlazorBindingsApplicationTests
         return new BlazorBindingsApplicationWithWrapper<TMain, TWrapper>(TestServiceProvider.Create());
     }
 
-    class BlazorBindingsApplicationWithWrapper<TMain, TWrapper> : BlazorBindingsApplication<TMain>
+    class BlazorBindingsApplicationWithWrapper<TMain, TWrapper>(IServiceProvider services) : BlazorBindingsApplication<TMain>(services)
         where TMain : IComponent
         where TWrapper : IComponent
     {
-        public BlazorBindingsApplicationWithWrapper(IServiceProvider services) : base(services)
-        {
-        }
-
         public override Type WrapperComponentType => typeof(TWrapper);
     }
 }

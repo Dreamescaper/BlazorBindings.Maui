@@ -4,27 +4,14 @@ using System.Text;
 
 namespace BlazorBindings.Maui.ComponentGenerator;
 
-public class GeneratedTypeInfo
+public record GeneratedTypeInfo(
+    Compilation Compilation,
+    GenerateComponentSettings Settings,
+    string TypeName,
+    string BaseTypeName,
+    ITypeSymbol MauiType,
+    IList<UsingStatement> Usings)
 {
-    public GeneratedTypeInfo(Compilation compilation, GenerateComponentSettings settings, string typeName, string baseTypeName, ITypeSymbol mauiType, IList<UsingStatement> usings)
-    {
-        TypeName = typeName;
-        BaseTypeName = baseTypeName;
-        IsGeneric = settings.IsGeneric;
-        MauiType = mauiType;
-        Usings = usings;
-        Compilation = compilation;
-        Settings = settings;
-    }
-
-    public string TypeName { get; }
-    public string BaseTypeName { get; }
-    public bool IsGeneric { get; }
-    public Compilation Compilation { get; }
-    public GenerateComponentSettings Settings { get; }
-    public ITypeSymbol MauiType { get; }
-    public IList<UsingStatement> Usings { get; }
-
     public string GetTypeNameAndAddNamespace(string @namespace, string typeName)
     {
         // Adding random usings might cause conflicts with global usings.

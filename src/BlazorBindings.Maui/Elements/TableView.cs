@@ -30,7 +30,7 @@ public partial class TableView : IContainerElementHandler
                 NativeControl.Root = root;
                 break;
             case MC.TableSection section:
-                (NativeControl.Root ??= new()).Insert(0, section);
+                (NativeControl.Root ??= []).Insert(0, section);
                 break;
             default:
                 throw new ArgumentException($"TableView does not allow {child?.GetType().Name} as a child, it only allows TableRoot or TableSection.", nameof(child));

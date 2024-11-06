@@ -4,15 +4,8 @@ using IDispatcher = Fluxor.IDispatcher;
 
 namespace FluxorSample.Store.WeatherUseCase;
 
-public class Effects
+public class Effects(HttpClient http)
 {
-    private readonly HttpClient http;
-
-    public Effects(HttpClient http)
-    {
-        this.http = http;
-    }
-
     [EffectMethod]
     public async Task HandleFetchDataAction(FetchDataAction action, IDispatcher dispatcher)
     {

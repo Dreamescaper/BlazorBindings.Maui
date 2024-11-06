@@ -7,8 +7,8 @@ namespace BlazorBindingsXaminals.Data;
 
 public static class MonkeyData
 {
-    public static IList<Animal> Monkeys { get; } = new List<Animal>
-        {
+    public static IList<Animal> Monkeys { get; } =
+        [
             new Animal
             {
                 Name = "Baboon",
@@ -144,5 +144,5 @@ public static class MonkeyData
                 Details = "The gelada, sometimes called the bleeding-heart monkey or the gelada baboon, is a species of Old World monkey found only in the Ethiopian Highlands, with large populations in the Semien Mountains. Theropithecus is derived from the Greek root words for \"beast-ape.\" Like its close relatives the baboons, it is largely terrestrial, spending much of its time foraging in grasslands.",
                 ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Gelada-Pavian.jpg/320px-Gelada-Pavian.jpg"
             }
-        };
+        ];
 }

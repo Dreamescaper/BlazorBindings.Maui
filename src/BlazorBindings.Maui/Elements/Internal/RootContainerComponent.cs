@@ -10,7 +10,7 @@ internal class RootContainerComponent : NativeControlComponentBase, IContainerEl
 
     protected override RenderFragment GetChildContent() => ChildContent;
 
-    public List<object> Elements { get; } = new();
+    public List<object> Elements { get; } = [];
 
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {

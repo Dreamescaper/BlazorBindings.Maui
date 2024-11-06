@@ -13,7 +13,7 @@ public class RootContainerHandler : IContainerElementHandler, INonPhysicalChild
 {
     private TaskCompletionSource<object> _taskCompletionSource;
 
-    public List<object> Elements { get; } = new();
+    public List<object> Elements { get; } = [];
 
     public Task WaitForElementAsync()
     {
