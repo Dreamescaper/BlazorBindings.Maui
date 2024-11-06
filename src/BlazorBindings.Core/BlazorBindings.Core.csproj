@@ -6,7 +6,7 @@
 		<Description>Common logic for using Blazor to target native renderers. For mobile app projects for Android and iOS use the BlazorBindings.Maui package.</Description>
 		<PackageTags>blazor;blazorbindings</PackageTags>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<IsTrimmable>true</IsTrimmable>
+		<IsAotCompatible>true</IsAotCompatible>
 	</PropertyGroup>
 
 	<ItemGroup>
