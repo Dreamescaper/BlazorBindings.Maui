@@ -5,7 +5,7 @@
 		<Title>Maui binding for Blazor</Title>
 		<Description>Maui Blazor Bindings enables using Blazor syntax in .razor files to build native apps for iOS and Android.</Description>
 		<PackageTags>blazor;blazorbindings</PackageTags>
-		<IsTrimmable>true</IsTrimmable>
+		<IsAotCompatible>true</IsAotCompatible>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">10.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
@@ -20,6 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<!-- Be careful with updating, as it might cause issues with the version avaible in workloads via $(MauiVersion) -->
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0-rc.2.24503.2" />
 
 		<!-- Because of this bug https://github.com/dotnet/maui/issues/3536 we have to exlude targets assets -->
