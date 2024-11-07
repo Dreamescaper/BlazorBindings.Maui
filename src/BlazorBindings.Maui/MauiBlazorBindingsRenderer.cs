@@ -22,12 +22,12 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
 
     public override Dispatcher Dispatcher { get; } = new MauiDeviceDispatcher();
 
-    public Task AddComponent(
+    internal Task AddComponent(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
-        MC.Application parent, 
+        MC.Window parent,
         Dictionary<string, object> parameters = null)
     {
-        var handler = new ApplicationHandler(parent);
+        var handler = new WindowHandler(parent);
         var addComponentTask = AddComponent(componentType, handler, parameters);
 
         if (addComponentTask.Exception != null)
@@ -36,20 +36,7 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
             ExceptionDispatchInfo.Throw(addComponentTask.Exception.InnerException);
         }
 
-        if (!addComponentTask.IsCompleted && parent is MC.Application app)
-        {
-            // MAUI requires the Application to have the MainPage. If rendering task is not completed synchronously,
-            // we need to set MainPage to something.
-            app.MainPage ??= new MC.ContentPage();
-        }
-
         return addComponentTask;
-    }
-
-    public Task AddComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
-        MC.Application parent, Dictionary<string, object> parameters = null)
-    {
-        return AddComponent(typeof(T), parent, parameters);
     }
 
     protected override void HandleException(Exception exception)
@@ -59,7 +46,7 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
 
     // It tries to return the Element as soon as it is available, therefore Component task might still be in progress.
     internal async Task<(object Element, Task<IComponent> Component)> GetElementFromRenderedComponent(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
         Dictionary<string, object> parameters = null)
     {
         var (elements, addComponentTask) = await GetElementsFromRenderedComponent(componentType, parameters);
