@@ -122,7 +122,7 @@ public partial class GeneratedPropertyInfo
 
         var inferredEvents = GetMembers<IEventSymbol>(componentInfo.TypeSymbol, containingType.Settings.Include)
             .Where(e => !componentInfo.Exclude.Contains(e.Name))
-            .Where(e => e.DeclaredAccessibility == Accessibility.Public && IsBrowsable(e))
+            .Where(e => e.DeclaredAccessibility == Accessibility.Public && e.IsBrowsable())
             .Select(eventInfo =>
             {
                 var isBindEvent = IsBindEvent(eventInfo, out var bindedProperty);
