@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 //    Exclude = [
 //        typeof(Application),
 //        typeof(AbsoluteLayout),
+//        typeof(Microsoft.Maui.Controls.Compatibility.RelativeLayout),
 //        typeof(ImageSource),
 //        typeof(FileImageSource),
 //        typeof(UriImageSource),
