@@ -8,6 +8,20 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BlazorBindings.UnitTests")]
 
+//[assembly: GenerateComponentsFromAssembly(typeof(Element),
+//    Exclude = [
+//        typeof(Application),
+//        typeof(AbsoluteLayout),
+//        typeof(ImageSource),
+//        typeof(FileImageSource),
+//        typeof(UriImageSource),
+//        typeof(StreamImageSource),
+//        typeof(FontImageSource),
+//        typeof(Path),
+//        typeof(FormattedString),
+//        typeof(NavigationPage)
+//    ])]
+
 [assembly: GenerateComponent(typeof(ActivityIndicator))]
 [assembly: GenerateComponent(typeof(BaseMenuItem))]
 [assembly: GenerateComponent(typeof(BaseShellItem))]
