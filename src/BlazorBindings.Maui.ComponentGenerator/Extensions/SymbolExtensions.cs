@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using System.ComponentModel;
 
 namespace BlazorBindings.Maui.ComponentGenerator.Extensions;
 
@@ -110,6 +111,17 @@ internal static class SymbolExtensions
         return symbol.IsGenericType && symbol.ConstructedFrom.SpecialType == SpecialType.System_Nullable_T;
     }
 
+    public static bool IsObsolete(this ISymbol symbol)
+    {
+        return symbol.GetAttributes().Any(a => a.AttributeClass.Name == nameof(ObsoleteAttribute));
+    }
+
+    public static bool IsBrowsable(this ISymbol propInfo)
+    {
+        // [EditorBrowsable(EditorBrowsableState.Never)]
+        return !propInfo.GetAttributes().Any(a => a.AttributeClass.Name == nameof(EditorBrowsableAttribute)
+            && a.ConstructorArguments.FirstOrDefault().Value?.Equals((int)EditorBrowsableState.Never) == true);
+    }
 
     private static readonly Dictionary<SpecialType, string> TypeToCSharpName = new()
     {

@@ -8,10 +8,13 @@
 @code {
     public ElementTestBase()
     {
-        MC.Application.Current = new TestApplication();
+        _application = TestApplication.Create();
+        _renderer = (TestBlazorBindingsRenderer)_application.Handler.MauiContext.Services.GetRequiredService<MauiBlazorBindingsRenderer>();
+        MC.Application.Current = _application;
     }
 
-    private TestBlazorBindingsRenderer _renderer = (TestBlazorBindingsRenderer)TestBlazorBindingsRenderer.Create();
+    private readonly MC.Application _application;
+    private readonly TestBlazorBindingsRenderer _renderer;
     private RenderFragmentComponent _renderedComponent;
 
     protected async Task<T> Render<T>(RenderFragment renderFragment)

@@ -1,9 +1,18 @@
 ﻿namespace BlazorBindings.Maui.ComponentGenerator;
 
-[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
 #pragma warning disable CS9113 // Parameter is unread. Type is used by Component Generator.
+
+[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
 public class GenerateComponentsFromAssemblyAttribute(Type containingType) : Attribute
-#pragma warning restore CS9113 // Parameter is unread.
 {
+    /// <summary>
+    /// Add prefix to generated component types names. E.g. if you have TypeNamePrefix="EX", component type for
+    /// control 'Button' will be named 'EXButton',
+    /// </summary>
     public string TypeNamePrefix { get; set; }
+
+    /// <summary>
+    /// Exclude specific types from generation.
+    /// </summary>
+    public Type[] Exclude { get; set; }
 }

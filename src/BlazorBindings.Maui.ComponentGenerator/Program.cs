@@ -104,11 +104,15 @@ public class Program
             {
                 var containingTypeSymbol = a.ConstructorArguments.FirstOrDefault().Value as INamedTypeSymbol;
                 var typeNamePrefix = a.NamedArguments.FirstOrDefault(a => a.Key == "TypeNamePrefix").Value.Value as string;
+                var excludeTypes = a.NamedArguments.FirstOrDefault(a => a.Key == "Exclude").Value is { Kind: TypedConstantKind.Array } array
+                    ? array.Values.Select(v => (INamedTypeSymbol)v.Value).ToArray()
+                    : [];
 
                 var typesInAssembly = containingTypeSymbol.ContainingAssembly
                     .GlobalNamespace.GetAllTypes()
-                    .Where(t => t.DeclaredAccessibility == Accessibility.Public)
+                    .Where(t => t.DeclaredAccessibility == Accessibility.Public && t.IsBrowsable() && !t.IsObsolete())
                     .Where(t => !(t.IsGenericType && t.IsDefinition))
+                    .Where(t => !excludeTypes.Any(excludeType => SymbolEqualityComparer.Default.Equals(excludeType, t)))
                     .Where(t => compilation.ClassifyCommonConversion(t, elementType) is { IsReference: true, IsImplicit: true });
 
                 return typesInAssembly
