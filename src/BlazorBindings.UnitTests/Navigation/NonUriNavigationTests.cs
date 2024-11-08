@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 using BlazorBindings.UnitTests.Components;
-using Microsoft.Maui.Dispatching;
 
 namespace BlazorBindings.UnitTests.Navigation;
 
@@ -20,13 +19,11 @@ public class NonUriNavigationTests
             ? (MC.Page)new MC.Shell { Items = { new MC.ContentPage { Title = "Root" } } }
             : new MC.NavigationPage(new MC.ContentPage { Title = "Root" });
 
-        var sp = TestServiceProvider.Create();
-        MC.Application.Current = new TestApplication(sp) { MainPage = mainPage };
+        var application = TestApplication.Create();
+        application.MainPage = mainPage;
+        MC.Application.Current = application;
 
-        var ctx = MC.Application.Current.Handler.MauiContext;
-        var dsp = ctx.Services.GetService<IDispatcher>();
-
-        _navigationService = sp.GetRequiredService<Maui.Navigation>();
+        _navigationService = application.Handler.MauiContext.Services.GetRequiredService<Maui.Navigation>();
         _mauiNavigation = mainPage.Navigation;
         _rootPage = _mauiNavigation.NavigationStack[0];
     }

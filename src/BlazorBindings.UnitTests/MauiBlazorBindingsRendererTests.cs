@@ -1,30 +1,23 @@
-﻿using BlazorBindings.UnitTests.Components;
+﻿using BlazorBindings.Maui;
+using BlazorBindings.UnitTests.Components;
 
 namespace BlazorBindings.UnitTests;
 
 public class MauiBlazorBindingsRendererTests
 {
-    private readonly TestBlazorBindingsRenderer _renderer = (TestBlazorBindingsRenderer)TestBlazorBindingsRenderer.Create();
-    private readonly MC.Application _application = new TestApplication();
+    private readonly TestBlazorBindingsRenderer _renderer;
+    private readonly MC.Window _window = new();
 
     public MauiBlazorBindingsRendererTests()
     {
-        MC.Application.Current = _application;
-    }
-
-    [Test]
-    public async Task RenderToApplication_PageContent()
-    {
-        await _renderer.AddComponent<PageContent>(_application);
-
-        var content = _application.MainPage;
-        PageContent.ValidateContent(content);
+        var services = TestServiceProvider.CreateMauiAppBuilder().Build().Services;
+        _renderer = (TestBlazorBindingsRenderer)services.GetRequiredService<MauiBlazorBindingsRenderer>();
     }
 
     [Test]
     public void ShouldThrowExceptionIfHappenedDuringSyncRender()
     {
-        void action() => _ = _renderer.AddComponent<ComponentWithException>(_application);
+        void action() => _ = _renderer.AddComponent(typeof(ComponentWithException), _window);
 
         Assert.That(action, Throws.InvalidOperationException.With.Message.EqualTo("Should fail here."));
     }
@@ -34,8 +27,8 @@ public class MauiBlazorBindingsRendererTests
     {
         _renderer.ThrowExceptions = false;
 
-        await _renderer.AddComponent<PageWithButtonWithExceptionOnClick>(_application);
-        var button = (MC.Button)((MC.ContentPage)_application.MainPage).Content;
+        await _renderer.AddComponent(typeof(PageWithButtonWithExceptionOnClick), _window);
+        var button = (MC.Button)((MC.ContentPage)_window.Page).Content;
         button.SendClicked();
 
         Assert.That(() => _renderer.Exceptions, Is.Not.Empty.After(1000, 10));
@@ -45,18 +38,18 @@ public class MauiBlazorBindingsRendererTests
     [Test]
     public async Task RenderedComponentShouldBeAbleToReplaceMainPage()
     {
-        await _renderer.AddComponent(typeof(SwitchablePages), _application);
+        await _renderer.AddComponent(typeof(SwitchablePages), _window);
 
-        Assert.That(_application.MainPage.Title, Is.EqualTo("Page1"));
+        Assert.That(_window.Page.Title, Is.EqualTo("Page1"));
 
-        var switchButton = (MC.Button)((MC.ContentPage)_application.MainPage).Content;
+        var switchButton = (MC.Button)((MC.ContentPage)_window.Page).Content;
         switchButton.SendClicked();
 
-        Assert.That(_application.MainPage.Title, Is.EqualTo("Page2"));
+        Assert.That(_window.Page.Title, Is.EqualTo("Page2"));
 
-        switchButton = (MC.Button)((MC.ContentPage)_application.MainPage).Content;
+        switchButton = (MC.Button)((MC.ContentPage)_window.Page).Content;
         switchButton.SendClicked();
 
-        Assert.That(_application.MainPage.Title, Is.EqualTo("Page1"));
+        Assert.That(_window.Page.Title, Is.EqualTo("Page1"));
     }
 }

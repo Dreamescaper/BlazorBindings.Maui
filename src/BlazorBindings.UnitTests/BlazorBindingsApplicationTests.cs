@@ -1,5 +1,7 @@
 ﻿using BlazorBindings.Maui;
 using BlazorBindings.UnitTests.Components;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
 namespace BlazorBindings.UnitTests;
 
@@ -19,19 +21,23 @@ public class BlazorBindingsApplicationTests
         PageContentWithCascadingParameter.ValidateContent(application.MainPage, WrapperWithCascadingValue.Value);
     }
 
-    private static BlazorBindingsApplication<T> CreateApplication<T>() where T : IComponent
+    private static Application CreateApplication<T>() where T : IComponent
     {
-        return new BlazorBindingsApplication<T>(TestServiceProvider.Create());
+        var application = TestApplication.Create<BlazorBindingsApplication<T>>();
+        ((IApplication)application).CreateWindow(new ActivationState(application.Handler.MauiContext));
+        return application;
     }
 
-    private static BlazorBindingsApplication<TMain> CreateApplicationWithWrapper<TMain, TWrapper>()
+    private static Application CreateApplicationWithWrapper<TMain, TWrapper>()
         where TMain : IComponent
         where TWrapper : IComponent
     {
-        return new BlazorBindingsApplicationWithWrapper<TMain, TWrapper>(TestServiceProvider.Create());
+        var application = TestApplication.Create<BlazorBindingsApplicationWithWrapper<TMain, TWrapper>>();
+        ((IApplication)application).CreateWindow(new ActivationState(application.Handler.MauiContext));
+        return application;
     }
 
-    class BlazorBindingsApplicationWithWrapper<TMain, TWrapper>(IServiceProvider services) : BlazorBindingsApplication<TMain>(services)
+    class BlazorBindingsApplicationWithWrapper<TMain, TWrapper> : BlazorBindingsApplication<TMain>
         where TMain : IComponent
         where TWrapper : IComponent
     {

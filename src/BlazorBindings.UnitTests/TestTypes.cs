@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Hosting;
 using Microsoft.Maui.Controls.Internals;
 using Microsoft.Maui.Hosting;
 using System.Runtime.ExceptionServices;
@@ -10,18 +11,30 @@ using MauiDispatching = Microsoft.Maui.Dispatching;
 
 namespace BlazorBindings.UnitTests;
 
-class TestApplication : MC.Application
+static class TestApplication
 {
-    public TestApplication(IServiceProvider serviceProvider = null)
+    class ApplicationFromTestAssembly : MC.Application;
+
+    public static MC.Application Create() => Create<ApplicationFromTestAssembly>();
+
+    public static T Create<T>() where T : MC.Application, new()
     {
-        serviceProvider ??= TestServiceProvider.Create();
-        Handler = new TestHandler
+        var mauiApp = TestServiceProvider
+            .CreateMauiAppBuilder()
+            .UseMauiApp<T>()
+            .Build();
+
+        var application = mauiApp.Services.GetRequiredService<IApplication>();
+
+        application.Handler = new TestHandler
         {
-            MauiContext = new MauiContext(serviceProvider),
-            VirtualView = this
+            MauiContext = new MauiContext(mauiApp.Services),
+            VirtualView = application
         };
 
         DependencyService.RegisterSingleton(new TestSystemResources());
+
+        return (T)application;
     }
 
     class TestHandler : IElementHandler
@@ -46,7 +59,7 @@ class TestSystemResources : ISystemResourcesProvider
 
 public static class TestServiceProvider
 {
-    public static IServiceProvider Create()
+    public static MauiAppBuilder CreateMauiAppBuilder()
     {
         var builder = MauiApp.CreateBuilder();
 
@@ -56,7 +69,7 @@ public static class TestServiceProvider
         builder.UseMauiBlazorBindings();
         builder.Services.AddSingleton<MauiBlazorBindingsRenderer, TestBlazorBindingsRenderer>();
         builder.Services.AddSingleton<MauiDispatching.IDispatcher, TestDispatcher>();
-        return builder.Build().Services;
+        return builder;
     }
 
     class TestDispatcher : MauiDispatching.IDispatcher
@@ -95,11 +108,6 @@ internal class TestBlazorBindingsRenderer
     }
 
     public override Dispatcher Dispatcher => NullDispatcher.Instance;
-
-    public static MauiBlazorBindingsRenderer Create()
-    {
-        return TestServiceProvider.Create().GetRequiredService<MauiBlazorBindingsRenderer>();
-    }
 
     sealed class NullDispatcher : Dispatcher
     {

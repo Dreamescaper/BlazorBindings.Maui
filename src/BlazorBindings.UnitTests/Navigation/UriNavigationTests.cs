@@ -13,9 +13,10 @@ public class UriNavigationTests
     public UriNavigationTests()
     {
         var shell = new MC.Shell { Items = { new MC.ContentPage { Title = "Root" } } };
-        var sp = TestServiceProvider.Create();
-        MC.Application.Current = new TestApplication(sp) { MainPage = shell };
-        _navigationService = sp.GetRequiredService<Maui.Navigation>();
+        var application = TestApplication.Create();
+        application.MainPage = shell;
+        MC.Application.Current = application;
+        _navigationService = application.Handler.MauiContext.Services.GetRequiredService<Maui.Navigation>();
         _mauiNavigation = shell.Navigation;
     }
 
