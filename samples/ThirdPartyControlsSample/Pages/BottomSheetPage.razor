@@ -1,0 +1,14 @@
+﻿<ContentPage Title="Bottom Sheet">
+    <VerticalStackLayout Padding="12">
+        <Button Text="Show Bottom Sheet" OnClick="ShowBottomSheet" />
+    </VerticalStackLayout>
+</ContentPage>
+
+@code {
+    [Inject] INavigation Navigation { get; set; }
+
+    async Task ShowBottomSheet()
+    {
+        await Navigation.ShowBottomSheet<BottomSheetExample>();
+    }
+}
