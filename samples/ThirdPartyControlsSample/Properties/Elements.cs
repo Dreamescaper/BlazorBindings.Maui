@@ -1,5 +1,6 @@
 ﻿using BlazorBindings.Maui.ComponentGenerator;
 using SkiaSharp.Views.Maui.Controls;
+using The49.Maui.BottomSheet;
 using XCalendar.Maui.Views;
 
 // CommunityToolkit
@@ -21,6 +22,10 @@ using XCalendar.Maui.Views;
 // Material.Components.Maui
 [assembly: GenerateComponentsFromAssembly(typeof(Material.Components.Maui.Button),
     TypeNamePrefix = "MD")]
+
+// The49.Maui.BottomSheet
+[assembly: GenerateComponent(typeof(BottomSheet), Exclude = ["Controller"])]
+[assembly: GenerateComponentsFromAssembly(typeof(BottomSheet), IncludeNonElements = true)]
 
 [assembly: GenerateComponent(typeof(Material.Components.Maui.SKTouchCanvasView))]
 [assembly: GenerateComponent(typeof(SKCanvasView))]
