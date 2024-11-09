@@ -64,6 +64,7 @@ public class Program
         Console.WriteLine("Finding types to generate.");
 
         var elementType = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Element");
+        var bindableObjectType = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.BindableObject");
 
         var attributes = compilation.Assembly.GetAttributes();
         var typesToGenerate = attributes
@@ -104,16 +105,19 @@ public class Program
             {
                 var containingTypeSymbol = a.ConstructorArguments.FirstOrDefault().Value as INamedTypeSymbol;
                 var typeNamePrefix = a.NamedArguments.FirstOrDefault(a => a.Key == "TypeNamePrefix").Value.Value as string;
+                var includeNonElements = a.NamedArguments.FirstOrDefault(a => a.Key == "IncludeNonElements").Value.Value as bool?;
                 var excludeTypes = a.NamedArguments.FirstOrDefault(a => a.Key == "Exclude").Value is { Kind: TypedConstantKind.Array } array
                     ? array.Values.Select(v => (INamedTypeSymbol)v.Value).ToArray()
                     : [];
+
+                var requiredBaseType = includeNonElements == true ? bindableObjectType : elementType;
 
                 var typesInAssembly = containingTypeSymbol.ContainingAssembly
                     .GlobalNamespace.GetAllTypes()
                     .Where(t => t.DeclaredAccessibility == Accessibility.Public && t.IsBrowsable() && !t.IsObsolete())
                     .Where(t => !(t.IsGenericType && t.IsDefinition))
                     .Where(t => !excludeTypes.Any(excludeType => SymbolEqualityComparer.Default.Equals(excludeType, t)))
-                    .Where(t => compilation.ClassifyCommonConversion(t, elementType) is { IsReference: true, IsImplicit: true });
+                    .Where(t => compilation.ClassifyCommonConversion(t, requiredBaseType) is { IsReference: true, IsImplicit: true });
 
                 return typesInAssembly
                     .Where(typeSymbol => !typesToGenerate.Any(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, typeSymbol)))
