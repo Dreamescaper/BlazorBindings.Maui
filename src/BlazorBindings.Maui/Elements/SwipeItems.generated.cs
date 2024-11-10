@@ -8,6 +8,7 @@
 using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using System.Threading.Tasks;
 
@@ -24,6 +25,7 @@ namespace BlazorBindings.Maui.Elements
 
         [Parameter] public SwipeMode? Mode { get; set; }
         [Parameter] public SwipeBehaviorOnInvoked? SwipeBehaviorOnInvoked { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.SwipeItems NativeControl => (MC.SwipeItems)((BindableObject)this).NativeControl;
 
@@ -47,11 +49,20 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.SwipeBehaviorOnInvoked = SwipeBehaviorOnInvoked ?? (SwipeBehaviorOnInvoked)MC.SwipeItems.SwipeBehaviorOnInvokedProperty.DefaultValue;
                     }
                     break;
+                case nameof(ChildContent):
+                    ChildContent = (RenderFragment)value;
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.SwipeItems, MC.ISwipeItem>(builder, sequence++, ChildContent, x => x);
         }
 
         static partial void RegisterAdditionalHandlers();

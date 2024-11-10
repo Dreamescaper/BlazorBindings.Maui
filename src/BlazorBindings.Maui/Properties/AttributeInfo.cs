@@ -73,7 +73,6 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(LinearGradientBrush))]
 [assembly: GenerateComponent(typeof(ListView),
     Exclude = [nameof(ListView.ItemTemplate)],
-    Include = [nameof(ListView.ItemsSource)],
     GenericProperties = [
         nameof(ListView.ItemsSource),
         $"{nameof(ListView.GroupHeaderTemplate)}:System.Object",
@@ -138,7 +137,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(Switch))]
 [assembly: GenerateComponent(typeof(Tab))]
 [assembly: GenerateComponent(typeof(TabBar))]
-[assembly: GenerateComponent(typeof(TabbedPage))]
+[assembly: GenerateComponent(typeof(TabbedPage),
+    Exclude = [nameof(TabbedPage.ItemsSource), nameof(TabbedPage.ItemTemplate)])]
 [assembly: GenerateComponent(typeof(TableView),
     Exclude = [nameof(TableView.Root)])]
 [assembly: GenerateComponent(typeof(TableRoot))]

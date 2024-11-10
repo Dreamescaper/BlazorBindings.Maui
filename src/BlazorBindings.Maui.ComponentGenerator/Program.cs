@@ -43,6 +43,11 @@ public class Program
 
                 var componentWrapperGenerator = new ComponentWrapperGenerator();
 
+                if (!o.KeepExistingFiles)
+                {
+                    DeleteExistingFiles(o.OutPath);
+                }
+
                 foreach (var generatedType in typesToGenerate)
                 {
                     var (groupName, name, source) = componentWrapperGenerator.GenerateComponentFile(compilation, generatedType);
@@ -57,6 +62,15 @@ public class Program
                     File.WriteAllText(path, source);
                 }
             });
+    }
+
+    private static void DeleteExistingFiles(string path)
+    {
+        var generatedFiles = Directory.EnumerateFiles(path, "*.generated.cs", SearchOption.AllDirectories);
+        foreach (var generatedFile in generatedFiles)
+        {
+            File.Delete(generatedFile);
+        }
     }
 
     private static GenerateComponentSettings[] GetTypesToGenerate(Compilation compilation)
@@ -173,5 +187,8 @@ public class Program
 
         [Option('o', "out-path", HelpText = "Out path for generated files.")]
         public string OutPath { get; set; }
+
+        [Option("keep-existing-files", Default = false, HelpText = "Do not remove files from previous generations.")]
+        public bool KeepExistingFiles { get; set; }
     }
 }

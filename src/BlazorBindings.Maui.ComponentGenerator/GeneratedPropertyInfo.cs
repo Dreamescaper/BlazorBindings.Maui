@@ -6,6 +6,7 @@ namespace BlazorBindings.Maui.ComponentGenerator;
 public partial class GeneratedPropertyInfo
 {
     private readonly IPropertySymbol _propertyInfo;
+    private readonly ITypeSymbol _propertyType;
     private Lazy<string> _componentPropertyNameLazy;
     private Lazy<string> _componentTypeLazy;
 
@@ -30,6 +31,7 @@ public partial class GeneratedPropertyInfo
     }
 
     private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo,
+                                  ITypeSymbol mauiPropertyType,
                                   string mauiPropertyName,
                                   string mauiContainingTypeName,
                                   string componentPropertyName,
@@ -42,6 +44,7 @@ public partial class GeneratedPropertyInfo
         Kind = kind;
         MauiPropertyName = mauiPropertyName;
         MauiContainingTypeName = mauiContainingTypeName;
+        _propertyType = mauiPropertyType;
         _componentTypeLazy = new Lazy<string>(componentType);
         _componentPropertyNameLazy = new Lazy<string>(componentPropertyName);
     }
@@ -49,6 +52,7 @@ public partial class GeneratedPropertyInfo
     private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo, IPropertySymbol propertyInfo, GeneratedPropertyKind kind)
     {
         _propertyInfo = propertyInfo;
+        _propertyType = propertyInfo.Type;
         Kind = kind;
 
         ContainingType = typeInfo;
@@ -102,7 +106,7 @@ public partial class GeneratedPropertyInfo
                     if (!Equals({propName}, value))
                     {{
                         {propName} = ({ComponentType})value;
-                        NativeControl.{MauiPropertyName} = {GetConvertedProperty(_propertyInfo.Type, propName)};
+                        NativeControl.{MauiPropertyName} = {GetConvertedProperty(_propertyType, propName)};
                     }}
                     break;
 ";
@@ -294,7 +298,15 @@ public partial class GeneratedPropertyInfo
             .Select(member => typeSymbol.GetMember(member, true))
             .Where(member => member != null);
 
-        return typeSymbol.GetMembers().Union(baseMembers, SymbolEqualityComparer.Default)
+        IEnumerable<ISymbol> members = typeSymbol.GetMembers();
+
+        // Since we don't generate components for generic types, we include them here.
+        if (typeSymbol.BaseType != null && typeSymbol.BaseType.IsGenericType)
+        {
+            members = members.Concat(typeSymbol.BaseType.GetMembers());
+        }
+
+        return members.Union(baseMembers, SymbolEqualityComparer.Default)
             .Where(m => !m.IsStatic && m.DeclaredAccessibility == Accessibility.Public)
             .OfType<T>();
     }
