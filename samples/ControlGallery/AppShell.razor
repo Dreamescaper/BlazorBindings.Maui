@@ -11,6 +11,7 @@
 @using ControlGallery.Views.PresentData
 @using ControlGallery.Views.SetValues
 @using ControlGallery.Views.Shell
+@using ControlGallery.Views.Menus
 
 <Shell BackgroundColor="_backgroundColor"
        ForegroundColor="_foregroundColor"
@@ -62,9 +63,9 @@
     <ShellContent Title="Shell Properties">
         <ContentTemplate>
             <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
-                                 @bind-ShellForegroundColor="_foregroundColor"
-                                 @bind-ShellUnselectedColor="_unselectedColor"
-                                 @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
+            @bind-ShellForegroundColor="_foregroundColor"
+            @bind-ShellUnselectedColor="_unselectedColor"
+            @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
         </ContentTemplate>
     </ShellContent>
 
@@ -81,6 +82,11 @@
     <GestureEvents />
     <GestureRecognizersPage />
     <ErrorBoundariesPage />
+
+    @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
+    {
+        <ContextMenuPage />
+    }
 </Shell>
 
 @code {
