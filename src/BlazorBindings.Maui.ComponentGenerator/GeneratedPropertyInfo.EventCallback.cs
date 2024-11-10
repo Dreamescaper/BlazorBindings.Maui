@@ -6,11 +6,10 @@ namespace BlazorBindings.Maui.ComponentGenerator;
 
 public partial class GeneratedPropertyInfo
 {
-    private INamedTypeSymbol _eventHandlerType;
     private IPropertySymbol _bindedProperty;
 
     private bool IsPropertyChangedEvent => MauiPropertyName == "PropertyChanged";
-    private ITypeSymbol EventArgsType => _eventHandlerType.GetMethod("Invoke")?.Parameters[1].Type;
+    private ITypeSymbol EventArgsType => _propertyType.GetMethod("Invoke")?.Parameters[1].Type;
 
     public string GetHandleEventCallbackProperty()
     {
@@ -61,7 +60,7 @@ public partial class GeneratedPropertyInfo
         }
         else
         {
-            argument = GetEventArgType(_eventHandlerType).Name != nameof(EventArgs) ? "e" : "";
+            argument = GetEventArgType(_propertyType).Name != nameof(EventArgs) ? "e" : "";
         }
 
         if (_bindedProperty != null && IsPropertyChangedEvent)
@@ -109,6 +108,7 @@ public partial class GeneratedPropertyInfo
 
                 var generatedPropertyInfo = new GeneratedPropertyInfo(
                     containingType,
+                    eventInfo.Type,
                     "PropertyChanged",
                     containingType.GetTypeNameAndAddNamespace(componentType),
                     componentEventName,
@@ -116,7 +116,6 @@ public partial class GeneratedPropertyInfo
                     GeneratedPropertyKind.EventCallback);
 
                 generatedPropertyInfo._bindedProperty = propertyInfo;
-                generatedPropertyInfo._eventHandlerType = (INamedTypeSymbol)eventInfo.Type;
                 return generatedPropertyInfo;
             });
 
@@ -134,6 +133,7 @@ public partial class GeneratedPropertyInfo
 
                 var generatedPropertyInfo = new GeneratedPropertyInfo(
                     containingType,
+                    eventInfo.Type,
                     eventInfo.Name,
                     containingType.GetTypeNameAndAddNamespace(componentType),
                     eventCallbackName,
@@ -141,7 +141,6 @@ public partial class GeneratedPropertyInfo
                     GeneratedPropertyKind.EventCallback);
 
                 generatedPropertyInfo._bindedProperty = bindedProperty;
-                generatedPropertyInfo._eventHandlerType = (INamedTypeSymbol)eventInfo.Type;
                 return generatedPropertyInfo;
             })
                 .Where(e => e != null);

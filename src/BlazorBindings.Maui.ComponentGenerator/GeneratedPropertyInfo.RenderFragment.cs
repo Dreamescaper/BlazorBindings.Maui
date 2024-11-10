@@ -9,7 +9,7 @@ public partial class GeneratedPropertyInfo
 
     private static readonly string[] ContentTypes =
     [
-        "Microsoft.Maui.IView",
+        "Microsoft.Maui.IElement",
         "Microsoft.Maui.Controls.BindableObject",
         "Microsoft.Maui.Controls.ControlTemplate",
         "Microsoft.Maui.Controls.DataTemplate",
@@ -25,8 +25,8 @@ public partial class GeneratedPropertyInfo
     ];
 
     public bool IsRenderFragmentProperty => Kind == GeneratedPropertyKind.RenderFragment;
-    public bool IsControlTemplate => _propertyInfo.Type.GetFullName() == "Microsoft.Maui.Controls.ControlTemplate";
-    public bool IsDataTemplate => _propertyInfo.Type.GetFullName() == "Microsoft.Maui.Controls.DataTemplate";
+    public bool IsControlTemplate => _propertyType.GetFullName() == "Microsoft.Maui.Controls.ControlTemplate";
+    public bool IsDataTemplate => _propertyType.GetFullName() == "Microsoft.Maui.Controls.DataTemplate";
     public bool ForceContent => ContainingType.Settings.ContentProperties.Contains(_propertyInfo.Name);
 
     public string GetHandleContentProperty()
@@ -39,7 +39,13 @@ public partial class GeneratedPropertyInfo
 
     public string RenderContentProperty()
     {
-        var type = (INamedTypeSymbol)_propertyInfo.Type;
+        // Handling the case when ChildContent property is created for the IList element type itself.
+        if (_propertyInfo is null && IsIList(_propertyType, out var itemType))
+        {
+            // RenderTreeBuilderHelper.AddListContentProperty<MC.TableSection, MC.Cell>(builder, sequence++, ChildContent, x => x);
+            var itemTypeName = GetTypeNameAndAddNamespace(itemType);
+            return $"\r\n            RenderTreeBuilderHelper.AddListContentProperty<{MauiContainingTypeName}, {itemTypeName}>(builder, sequence++, {ComponentPropertyName}, x => x);";
+        }
 
         if (IsControlTemplate)
         {
@@ -57,7 +63,7 @@ public partial class GeneratedPropertyInfo
             var itemTypeName = GenericTypeArgument is null ? "T" : GetTypeNameAndAddNamespace(GenericTypeArgument);
             return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty<{MauiContainingTypeName}, {itemTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, template) => x.{_propertyInfo.Name} = template);";
         }
-        else if (!ForceContent && IsIList(type, out var itemType))
+        else if (!ForceContent && IsIList(_propertyType, out itemType))
         {
             // RenderTreeBuilderHelper.AddListContentProperty<MC.Layout, IView>(builder, sequence++, ChildContent, x => x.Children);
             var itemTypeName = GetTypeNameAndAddNamespace(itemType);
@@ -66,7 +72,7 @@ public partial class GeneratedPropertyInfo
         else
         {
             // RenderTreeBuilderHelper.AddContentProperty<MC.ContentPage>(builder, sequence++, ChildContent, (x, value) => x.Content = (MC.View)value);
-            var propTypeName = GetTypeNameAndAddNamespace(type);
+            var propTypeName = GetTypeNameAndAddNamespace(_propertyType);
             return $"\r\n            RenderTreeBuilderHelper.AddContentProperty<{MauiContainingTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, value) => x.{_propertyInfo.Name} = ({propTypeName})value);";
         }
     }
@@ -81,7 +87,27 @@ public partial class GeneratedPropertyInfo
             .Where(prop => IsRenderFragmentPropertySymbol(containingType, prop))
             .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
-        return propInfos.Select(prop => new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment)).ToArray();
+        var propertyInfos = propInfos.Select(prop => new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment)).ToArray();
+
+        // If there is no ChildContent property, but the type itself is IList, we add ChildContent property for children.
+        if (!propertyInfos.Any(p => p.ComponentPropertyName == "ChildContent")
+            && IsIList(containingType.MauiType, out var itemType)
+            && (containingType.MauiBaseType == null || !IsIList(containingType.MauiBaseType, out _))
+            && IsContent(containingType.Compilation, itemType))
+        {
+            var thisProperty = new GeneratedPropertyInfo(
+                containingType,
+                containingType.MauiType,
+                null,
+                containingType.GetTypeNameAndAddNamespace(containingType.MauiType),
+                "ChildContent",
+                "RenderFragment",
+                GeneratedPropertyKind.RenderFragment);
+
+            propertyInfos = propertyInfos.Append(thisProperty).ToArray();
+        }
+
+        return propertyInfos;
     }
 
     private static bool IsReferenceProperty(GeneratedTypeInfo containingType, IPropertySymbol prop)
@@ -106,31 +132,29 @@ public partial class GeneratedPropertyInfo
             return false;
 
         var type = prop.Type;
-        if (IsContent(type) && HasPublicSetter(prop))
+        if (IsContent(containingType.Compilation, type) && HasPublicSetter(prop))
             return true;
 
-        if (IsIList(type, out var itemType) && IsContent(itemType))
+        if (IsIList(type, out var itemType) && IsContent(containingType.Compilation, itemType))
         {
             return true;
         }
 
         return false;
+    }
 
-        bool IsContent(ITypeSymbol type)
+    private static bool IsContent(Compilation compilation, ITypeSymbol type)
+    {
+        return ContentTypes.Any(contentType =>
         {
-            var compilation = containingType.Compilation;
-
-            return ContentTypes.Any(contentType =>
-                {
-                    var contentTypeSymbol = compilation.GetTypeByMetadataName(contentType);
-                    return compilation.ClassifyConversion(type, contentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
-                })
-                && !NonContentTypes.Any(nonContentType =>
-                {
-                    var nonContentTypeSymbol = compilation.GetTypeByMetadataName(nonContentType);
-                    return compilation.ClassifyConversion(type, nonContentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
-                });
-        }
+            var contentTypeSymbol = compilation.GetTypeByMetadataName(contentType);
+            return compilation.ClassifyConversion(type, contentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
+        })
+            && !NonContentTypes.Any(nonContentType =>
+            {
+                var nonContentTypeSymbol = compilation.GetTypeByMetadataName(nonContentType);
+                return compilation.ClassifyConversion(type, nonContentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
+            });
     }
 
     private static bool IsIList(ITypeSymbol type, out ITypeSymbol itemType)
