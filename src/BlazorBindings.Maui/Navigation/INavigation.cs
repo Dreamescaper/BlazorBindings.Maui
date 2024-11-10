@@ -8,7 +8,10 @@ public interface INavigation
     /// <param name="uri">URI to navigate to.</param>
     /// <param name="parameters">Additional parameters to set for component.</param>
     Task NavigateToAsync(string uri, Dictionary<string, object> parameters = null);
-    Task OpenWindow<T>(Dictionary<string, object> arguments = null) where T : IComponent;
+
+    Task OpenWindow<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
+        Dictionary<string, object> arguments = null) where T : IComponent;
+
     Task PopAsync(bool animated = true);
 
     Task PopModalAsync(bool animated = true);
