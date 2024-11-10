@@ -13,82 +13,85 @@
 @using ControlGallery.Views.Shell
 @using ControlGallery.Views.Menus
 
-<Shell BackgroundColor="_backgroundColor"
-       ForegroundColor="_foregroundColor"
-       UnselectedColor="_unselectedColor"
-       TabBarTitleColor="_tabBarTitleColor">
+<Window Title="Main Window">
+    <Shell BackgroundColor="_backgroundColor"
+           ForegroundColor="_foregroundColor"
+           UnselectedColor="_unselectedColor"
+           TabBarTitleColor="_tabBarTitleColor">
 
-    @*Present data*@
-    <BoxViewPage />
-    <LabelPage />
-    <Shapes />
+        @*Present data*@
+        <BoxViewPage />
+        <LabelPage />
+        <Shapes />
 
-    @*Initiate commands*@
-    <ButtonPage />
-    <RefreshViewPage />
-    <SearchBarPage />
-    <SwipeViewPage />
+        @*Initiate commands*@
+        <ButtonPage />
+        <RefreshViewPage />
+        <SearchBarPage />
+        <SwipeViewPage />
 
-    @*Set values*@
-    <SliderPage />
-    <CheckboxPage />
-    <SwitchPage />
-    <RadioButtonPage />
-    <DatePickerPage />
-    <TimePickerPage />
+        @*Set values*@
+        <SliderPage />
+        <CheckboxPage />
+        <SwitchPage />
+        <RadioButtonPage />
+        <DatePickerPage />
+        <TimePickerPage />
 
-    @*Edit text*@
-    <EntryPage />
-    <EditorPage />
+        @*Edit text*@
+        <EntryPage />
+        <EditorPage />
 
-    @*Display collections*@
-    <CarouselViewPage />
-    <ShellSection Title="CollectionView">
-        <AddRemovePage />
-        <GridLayoutPage />
-        <SelectionPage />
-        <InfiniteScrollPage />
-        <DynamicItemsPage />
-    </ShellSection>
-    <PickerPage />
-    <TableViewPage />
-    <ListViewPage />
+        @*Display collections*@
+        <CarouselViewPage />
+        <ShellSection Title="CollectionView">
+            <AddRemovePage />
+            <GridLayoutPage />
+            <SelectionPage />
+            <InfiniteScrollPage />
+            <DynamicItemsPage />
+        </ShellSection>
+        <PickerPage />
+        <TableViewPage />
+        <ListViewPage />
 
-    @*Layouts*@
-    <AbsoluteLayoutPage />
-    <GridPage />
-    <FlexLayoutPage />
+        @*Layouts*@
+        <AbsoluteLayoutPage />
+        <GridPage />
+        <FlexLayoutPage />
 
-    @*Shell*@
-    <ShellContent Title="Shell Properties">
-        <ContentTemplate>
-            <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
-            @bind-ShellForegroundColor="_foregroundColor"
-            @bind-ShellUnselectedColor="_unselectedColor"
-            @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
-        </ContentTemplate>
-    </ShellContent>
+        @*Shell*@
+        <ShellContent Title="Shell Properties">
+            <ContentTemplate>
+                <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
+                                     @bind-ShellForegroundColor="_foregroundColor"
+                                     @bind-ShellUnselectedColor="_unselectedColor"
+                                     @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
+            </ContentTemplate>
+        </ShellContent>
 
-    <ShellItemsPage />
+        <ShellItemsPage />
 
-    @*Navigation*@
-    <ShellSection Title="Navigation">
-        <NavigationPage />
-        <UriNavigationPage />
-    </ShellSection>
+        @*Navigation*@
+        <ShellSection Title="Navigation">
+            <NavigationPage />
+            <UriNavigationPage />
+        </ShellSection>
 
-    @*Other*@
-    <ShadowsPage />
-    <GestureEvents />
-    <GestureRecognizersPage />
-    <ErrorBoundariesPage />
+        @*Other*@
+        <ShadowsPage />
+        <GestureEvents />
+        <GestureRecognizersPage />
+        <ErrorBoundariesPage />
 
-    @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
-    {
-        <ContextMenuPage />
-        <MenuBarPage />
-    }
-</Shell>
+        @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
+        {
+            <ContextMenuPage />
+            <MenuBarPage />
+            <WindowsPage />
+        }
+    </Shell>
+</Window>
 
 @code {
     Color _backgroundColor;

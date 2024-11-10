@@ -21,6 +21,38 @@ public class BlazorBindingsApplicationTests
         PageContentWithCascadingParameter.ValidateContent(application.MainPage, WrapperWithCascadingValue.Value);
     }
 
+    [Test]
+    public void SetsMainWindow()
+    {
+        var application = CreateApplication<WindowWithPageContent>();
+        WindowWithPageContent.ValidateContent(application.Windows.Single());
+    }
+
+    [Test]
+    public void ShouldBeAbleToReplaceMainPage()
+    {
+        var application = CreateApplication<SwitchablePages>();
+
+        Assert.That(application.MainPage.Title, Is.EqualTo("Page1"));
+
+        var switchButton = (MC.Button)((MC.ContentPage)application.MainPage).Content;
+        switchButton.SendClicked();
+
+        Assert.That(application.MainPage.Title, Is.EqualTo("Page2"));
+
+        switchButton = (MC.Button)((MC.ContentPage)application.MainPage).Content;
+        switchButton.SendClicked();
+
+        Assert.That(application.MainPage.Title, Is.EqualTo("Page1"));
+    }
+
+    [Test]
+    public void ShouldThrowExceptionIfHappenedDuringSyncRender()
+    {
+        Assert.That(CreateApplication<ComponentWithException>,
+            Throws.InvalidOperationException.With.Message.EqualTo("Should fail here."));
+    }
+
     private static Application CreateApplication<T>() where T : IComponent
     {
         var application = TestApplication.Create<BlazorBindingsApplication<T>>();
