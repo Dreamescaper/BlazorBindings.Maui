@@ -1,0 +1,57 @@
+﻿<ContentPage Title="Menu Bar">
+    <MenuBarItems>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="Save" OnClick="Save">
+                <KeyboardAccelerators>
+                    <KeyboardAccelerator Key="S" Modifiers="KeyboardAcceleratorModifiers.Ctrl" />
+                </KeyboardAccelerators>
+            </MenuFlyoutItem>
+
+            <MenuFlyoutItem Text="Exit" OnClick="Exit">
+                <KeyboardAccelerators>
+                    <KeyboardAccelerator Key="Q" Modifiers="KeyboardAcceleratorModifiers.Ctrl" />
+                </KeyboardAccelerators>
+            </MenuFlyoutItem>
+        </MenuBarItem>
+
+        <MenuBarItem Text="Update">
+            <MenuFlyoutSubItem Text="Set Value">
+                <MenuFlyoutItem Text="1" OnClick="() => SetValue(1)" />
+                <MenuFlyoutItem Text="2" OnClick="() => SetValue(2)" />
+                <MenuFlyoutItem Text="3" OnClick="() => SetValue(3)" />
+            </MenuFlyoutSubItem>
+        </MenuBarItem>
+
+    </MenuBarItems>
+
+    <ChildContent>
+        <VerticalStackLayout>
+            <Label>Selected value:  @value</Label>
+            @if (_saved)
+            {
+                <Label>Values are saved.</Label>
+            }
+        </VerticalStackLayout>
+    </ChildContent>
+</ContentPage>
+
+@code {
+    bool _saved;
+    int? value;
+
+    void SetValue(int i)
+    {
+        value = i;
+        _saved = false;
+    }
+
+    void Save()
+    {
+        _saved = true;
+    }
+
+    void Exit()
+    {
+        Application.Current.Quit();
+    }
+}

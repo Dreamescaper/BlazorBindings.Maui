@@ -156,6 +156,8 @@ using System.Runtime.CompilerServices;
 
 [assembly: GenerateComponent(typeof(FlyoutBase))]
 [assembly: GenerateComponent(typeof(KeyboardAccelerator))]
+[assembly: GenerateComponent(typeof(MenuBar))]
+[assembly: GenerateComponent(typeof(MenuBarItem))]
 [assembly: GenerateComponent(typeof(MenuFlyout))]
 [assembly: GenerateComponent(typeof(MenuFlyoutItem))]
 [assembly: GenerateComponent(typeof(MenuFlyoutSeparator))]
