@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 //    Exclude = [
 //        typeof(Application),
 //        typeof(AbsoluteLayout),
+//        typeof(ContentPresenter),
 //        typeof(ImageSource),
 //        typeof(FileImageSource),
 //        typeof(UriImageSource),
@@ -152,6 +153,13 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(View))]
 [assembly: GenerateComponent(typeof(VisualElement), Exclude = [nameof(VisualElement.BackgroundColor)])]
 [assembly: GenerateComponent(typeof(WebView), NonContentProperties = [nameof(WebView.Source)])]
+
+[assembly: GenerateComponent(typeof(FlyoutBase))]
+[assembly: GenerateComponent(typeof(KeyboardAccelerator))]
+[assembly: GenerateComponent(typeof(MenuFlyout))]
+[assembly: GenerateComponent(typeof(MenuFlyoutItem))]
+[assembly: GenerateComponent(typeof(MenuFlyoutSeparator))]
+[assembly: GenerateComponent(typeof(MenuFlyoutSubItem))]
 
 // Cells
 [assembly: GenerateComponent(typeof(TextCell))]

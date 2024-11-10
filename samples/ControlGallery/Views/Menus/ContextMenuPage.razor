@@ -1,0 +1,30 @@
+﻿<ContentPage Title="Context Menu" BackgroundColor="_selectedColor">
+    <VerticalStackLayout>
+        <Label Text="Right click to open context menu">
+            <ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="Black" OnClick="() => SelectColor(Colors.Black)" />
+
+                    <MenuFlyoutSubItem Text="Light">
+                        <MenuFlyoutItem Text="Blue" OnClick="() => SelectColor(Colors.LightBlue)" />
+                        <MenuFlyoutItem Text="Coral" OnClick="() => SelectColor(Colors.LightCoral)" />
+                        <MenuFlyoutItem Text="Cyan" OnClick="() => SelectColor(Colors.LightCyan)" />
+                    </MenuFlyoutSubItem>
+
+                    <MenuFlyoutSubItem Text="Dark">
+                        <MenuFlyoutItem Text="Blue" OnClick="() => SelectColor(Colors.DarkBlue)" />
+                        <MenuFlyoutItem Text="DarkMagenta" OnClick="() => SelectColor(Colors.DarkMagenta)" />
+                        <MenuFlyoutItem Text="Cyan" OnClick="() => SelectColor(Colors.DarkCyan)" />
+                    </MenuFlyoutSubItem>
+                </MenuFlyout>
+            </ContextFlyout>
+        </Label>
+    </VerticalStackLayout>
+
+</ContentPage>
+
+@code {
+    Color? _selectedColor = null;
+
+    void SelectColor(Color color) => _selectedColor = color;
+}
