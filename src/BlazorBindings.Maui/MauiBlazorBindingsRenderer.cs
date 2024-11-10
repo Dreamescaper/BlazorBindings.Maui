@@ -4,7 +4,6 @@
 using BlazorBindings.Maui.Elements.Handlers;
 using Microsoft.Extensions.Logging;
 using System.Runtime.ExceptionServices;
-using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui;
 
@@ -21,23 +20,6 @@ public class MauiBlazorBindingsRenderer : NativeComponentRenderer
     }
 
     public override Dispatcher Dispatcher { get; } = new MauiDeviceDispatcher();
-
-    internal Task AddComponent(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
-        MC.Window parent,
-        Dictionary<string, object> parameters = null)
-    {
-        var handler = new WindowHandler(parent);
-        var addComponentTask = AddComponent(componentType, handler, parameters);
-
-        if (addComponentTask.Exception != null)
-        {
-            // If exception was thrown during the sync execution - throw it straight away.
-            ExceptionDispatchInfo.Throw(addComponentTask.Exception.InnerException);
-        }
-
-        return addComponentTask;
-    }
 
     protected override void HandleException(Exception exception)
     {

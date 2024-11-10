@@ -1,0 +1,17 @@
+﻿<Window Title="Test Window" MinimumHeight="100" MinimumWidth="200">
+    <PageContent />
+</Window>
+
+
+@code {
+    public static void ValidateContent(MC.Element content)
+    {
+        var window = content as MC.Window;
+        Assert.That(window, Is.Not.Null);
+        Assert.That(window.Title, Is.EqualTo("Test Window"));
+        Assert.That(window.MinimumHeight, Is.EqualTo(100));
+        Assert.That(window.MinimumWidth, Is.EqualTo(200));
+
+        PageContent.ValidateContent(window.Page);
+    }
+}

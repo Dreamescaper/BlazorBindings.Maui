@@ -163,6 +163,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(MenuFlyoutSeparator))]
 [assembly: GenerateComponent(typeof(MenuFlyoutSubItem))]
 
+[assembly: GenerateComponent(typeof(Window))]
+
 // Cells
 [assembly: GenerateComponent(typeof(TextCell))]
 [assembly: GenerateComponent(typeof(ImageCell))]
