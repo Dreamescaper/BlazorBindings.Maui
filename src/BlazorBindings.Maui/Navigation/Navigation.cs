@@ -75,6 +75,13 @@ public partial class Navigation : INavigation
         await MauiNavigation.PopToRootAsync(animated);
     }
 
+    public async Task OpenWindow<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>
+        (Dictionary<string, object> arguments = null) where T : IComponent
+    {
+        var window = await BuildElement<MC.Window>(typeof(T), arguments);
+        Application.Current.OpenWindow(window);
+    }
+
     /// <summary>
     /// Returns rendered MAUI element from component <typeparamref name="T"/>.
     /// This method is exposed for extensibility purposes, and shouldn't be used directly.
@@ -82,7 +89,7 @@ public partial class Navigation : INavigation
     /// <remarks>Experimental API, subject to change.</remarks>
     [Experimental("MBB001")]
     public async Task<T> BuildElement<T>(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
         Dictionary<string, object> arguments) where T : Element
     {
         var (bindableObject, componentTask) = await _renderer.GetElementFromRenderedComponent(componentType, arguments);
@@ -114,7 +121,7 @@ public partial class Navigation : INavigation
     }
 
     private async Task Navigate(
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType, 
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
         Dictionary<string, object> arguments, NavigationTarget target, bool animated)
     {
         if (_wrapperComponentType != null)

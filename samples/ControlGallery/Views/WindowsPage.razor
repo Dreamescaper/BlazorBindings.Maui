@@ -1,0 +1,14 @@
+﻿<ContentPage Title="Windows">
+    <VerticalStackLayout>
+        <Button Text="Open Window" OnClick="OpenWindow" />
+    </VerticalStackLayout>
+</ContentPage>
+
+@code {
+    [Inject] INavigation Navigation { get; set; }
+
+    async Task OpenWindow()
+    {
+        await Navigation.OpenWindow<WindowExample>();
+    }
+}
