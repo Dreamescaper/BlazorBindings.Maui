@@ -9,7 +9,8 @@ public record GeneratedTypeInfo(
     GenerateComponentSettings Settings,
     string TypeName,
     string BaseTypeName,
-    ITypeSymbol MauiType,
+    INamedTypeSymbol MauiType,
+    INamedTypeSymbol MauiBaseType,
     IList<UsingStatement> Usings)
 {
     public string GetTypeNameAndAddNamespace(string @namespace, string typeName)

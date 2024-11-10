@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 //    Exclude = [
 //        typeof(Application),
 //        typeof(AbsoluteLayout),
+//        typeof(ContentPresenter),
 //        typeof(Microsoft.Maui.Controls.Compatibility.RelativeLayout),
 //        typeof(ImageSource),
 //        typeof(FileImageSource),
@@ -74,7 +75,6 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(LinearGradientBrush))]
 [assembly: GenerateComponent(typeof(ListView),
     Exclude = [nameof(ListView.ItemTemplate)],
-    Include = [nameof(ListView.ItemsSource)],
     GenericProperties = [
         nameof(ListView.ItemsSource),
         $"{nameof(ListView.GroupHeaderTemplate)}:System.Object",
@@ -140,7 +140,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(Switch))]
 [assembly: GenerateComponent(typeof(Tab))]
 [assembly: GenerateComponent(typeof(TabBar))]
-[assembly: GenerateComponent(typeof(TabbedPage))]
+[assembly: GenerateComponent(typeof(TabbedPage),
+    Exclude = [nameof(TabbedPage.ItemsSource), nameof(TabbedPage.ItemTemplate)])]
 [assembly: GenerateComponent(typeof(TableView),
     Exclude = [nameof(TableView.Root)])]
 [assembly: GenerateComponent(typeof(TableRoot))]
@@ -154,6 +155,15 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(View))]
 [assembly: GenerateComponent(typeof(VisualElement), Exclude = [nameof(VisualElement.BackgroundColor)])]
 [assembly: GenerateComponent(typeof(WebView), NonContentProperties = [nameof(WebView.Source)])]
+
+[assembly: GenerateComponent(typeof(FlyoutBase))]
+[assembly: GenerateComponent(typeof(KeyboardAccelerator))]
+[assembly: GenerateComponent(typeof(MenuBar))]
+[assembly: GenerateComponent(typeof(MenuBarItem))]
+[assembly: GenerateComponent(typeof(MenuFlyout))]
+[assembly: GenerateComponent(typeof(MenuFlyoutItem))]
+[assembly: GenerateComponent(typeof(MenuFlyoutSeparator))]
+[assembly: GenerateComponent(typeof(MenuFlyoutSubItem))]
 
 // Cells
 [assembly: GenerateComponent(typeof(TextCell))]

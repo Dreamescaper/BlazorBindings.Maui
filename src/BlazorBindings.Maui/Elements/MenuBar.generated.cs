@@ -16,37 +16,29 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
-    public partial class SwipeItems : Element
+    public partial class MenuBar : Element
     {
-        static SwipeItems()
+        static MenuBar()
         {
             RegisterAdditionalHandlers();
         }
 
-        [Parameter] public SwipeMode? Mode { get; set; }
-        [Parameter] public SwipeBehaviorOnInvoked? SwipeBehaviorOnInvoked { get; set; }
+        [Parameter] public bool? IsEnabled { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
 
-        public new MC.SwipeItems NativeControl => (MC.SwipeItems)((BindableObject)this).NativeControl;
+        public new MC.MenuBar NativeControl => (MC.MenuBar)((BindableObject)this).NativeControl;
 
-        protected override MC.SwipeItems CreateNativeElement() => new();
+        protected override MC.MenuBar CreateNativeElement() => new();
 
         protected override void HandleParameter(string name, object value)
         {
             switch (name)
             {
-                case nameof(Mode):
-                    if (!Equals(Mode, value))
+                case nameof(IsEnabled):
+                    if (!Equals(IsEnabled, value))
                     {
-                        Mode = (SwipeMode?)value;
-                        NativeControl.Mode = Mode ?? (SwipeMode)MC.SwipeItems.ModeProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(SwipeBehaviorOnInvoked):
-                    if (!Equals(SwipeBehaviorOnInvoked, value))
-                    {
-                        SwipeBehaviorOnInvoked = (SwipeBehaviorOnInvoked?)value;
-                        NativeControl.SwipeBehaviorOnInvoked = SwipeBehaviorOnInvoked ?? (SwipeBehaviorOnInvoked)MC.SwipeItems.SwipeBehaviorOnInvokedProperty.DefaultValue;
+                        IsEnabled = (bool?)value;
+                        NativeControl.IsEnabled = IsEnabled ?? (bool)MC.MenuBar.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
@@ -62,7 +54,7 @@ namespace BlazorBindings.Maui.Elements
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddListContentProperty<MC.SwipeItems, MC.ISwipeItem>(builder, sequence++, ChildContent, x => x);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.MenuBar, IMenuBarItem>(builder, sequence++, ChildContent, x => x);
         }
 
         static partial void RegisterAdditionalHandlers();

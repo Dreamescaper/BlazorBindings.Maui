@@ -16,39 +16,23 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
-    public partial class SwipeItems : Element
+    public partial class MenuFlyout : FlyoutBase
     {
-        static SwipeItems()
+        static MenuFlyout()
         {
             RegisterAdditionalHandlers();
         }
 
-        [Parameter] public SwipeMode? Mode { get; set; }
-        [Parameter] public SwipeBehaviorOnInvoked? SwipeBehaviorOnInvoked { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
 
-        public new MC.SwipeItems NativeControl => (MC.SwipeItems)((BindableObject)this).NativeControl;
+        public new MC.MenuFlyout NativeControl => (MC.MenuFlyout)((BindableObject)this).NativeControl;
 
-        protected override MC.SwipeItems CreateNativeElement() => new();
+        protected override MC.MenuFlyout CreateNativeElement() => new();
 
         protected override void HandleParameter(string name, object value)
         {
             switch (name)
             {
-                case nameof(Mode):
-                    if (!Equals(Mode, value))
-                    {
-                        Mode = (SwipeMode?)value;
-                        NativeControl.Mode = Mode ?? (SwipeMode)MC.SwipeItems.ModeProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(SwipeBehaviorOnInvoked):
-                    if (!Equals(SwipeBehaviorOnInvoked, value))
-                    {
-                        SwipeBehaviorOnInvoked = (SwipeBehaviorOnInvoked?)value;
-                        NativeControl.SwipeBehaviorOnInvoked = SwipeBehaviorOnInvoked ?? (SwipeBehaviorOnInvoked)MC.SwipeItems.SwipeBehaviorOnInvokedProperty.DefaultValue;
-                    }
-                    break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
                     break;
@@ -62,7 +46,7 @@ namespace BlazorBindings.Maui.Elements
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddListContentProperty<MC.SwipeItems, MC.ISwipeItem>(builder, sequence++, ChildContent, x => x);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.MenuFlyout, IMenuElement>(builder, sequence++, ChildContent, x => x);
         }
 
         static partial void RegisterAdditionalHandlers();

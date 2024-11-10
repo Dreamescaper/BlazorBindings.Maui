@@ -43,6 +43,11 @@ public class Program
 
                 var componentWrapperGenerator = new ComponentWrapperGenerator();
 
+                if (!o.KeepExistingFiles)
+                {
+                    DeleteExistingFiles(o.OutPath);
+                }
+
                 foreach (var generatedType in typesToGenerate)
                 {
                     var (groupName, name, source) = componentWrapperGenerator.GenerateComponentFile(compilation, generatedType);
@@ -59,11 +64,21 @@ public class Program
             });
     }
 
+    private static void DeleteExistingFiles(string path)
+    {
+        var generatedFiles = Directory.EnumerateFiles(path, "*.generated.cs", SearchOption.AllDirectories);
+        foreach (var generatedFile in generatedFiles)
+        {
+            File.Delete(generatedFile);
+        }
+    }
+
     private static GenerateComponentSettings[] GetTypesToGenerate(Compilation compilation)
     {
         Console.WriteLine("Finding types to generate.");
 
         var elementType = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Element");
+        var bindableObjectType = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.BindableObject");
 
         var attributes = compilation.Assembly.GetAttributes();
         var typesToGenerate = attributes
@@ -104,16 +119,19 @@ public class Program
             {
                 var containingTypeSymbol = a.ConstructorArguments.FirstOrDefault().Value as INamedTypeSymbol;
                 var typeNamePrefix = a.NamedArguments.FirstOrDefault(a => a.Key == "TypeNamePrefix").Value.Value as string;
+                var includeNonElements = a.NamedArguments.FirstOrDefault(a => a.Key == "IncludeNonElements").Value.Value as bool?;
                 var excludeTypes = a.NamedArguments.FirstOrDefault(a => a.Key == "Exclude").Value is { Kind: TypedConstantKind.Array } array
                     ? array.Values.Select(v => (INamedTypeSymbol)v.Value).ToArray()
                     : [];
+
+                var requiredBaseType = includeNonElements == true ? bindableObjectType : elementType;
 
                 var typesInAssembly = containingTypeSymbol.ContainingAssembly
                     .GlobalNamespace.GetAllTypes()
                     .Where(t => t.DeclaredAccessibility == Accessibility.Public && t.IsBrowsable() && !t.IsObsolete())
                     .Where(t => !(t.IsGenericType && t.IsDefinition))
                     .Where(t => !excludeTypes.Any(excludeType => SymbolEqualityComparer.Default.Equals(excludeType, t)))
-                    .Where(t => compilation.ClassifyCommonConversion(t, elementType) is { IsReference: true, IsImplicit: true });
+                    .Where(t => compilation.ClassifyCommonConversion(t, requiredBaseType) is { IsReference: true, IsImplicit: true });
 
                 return typesInAssembly
                     .Where(typeSymbol => !typesToGenerate.Any(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, typeSymbol)))
@@ -169,5 +187,8 @@ public class Program
 
         [Option('o', "out-path", HelpText = "Out path for generated files.")]
         public string OutPath { get; set; }
+
+        [Option("keep-existing-files", Default = false, HelpText = "Do not remove files from previous generations.")]
+        public bool KeepExistingFiles { get; set; }
     }
 }

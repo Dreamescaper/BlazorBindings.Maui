@@ -15,4 +15,10 @@ public class GenerateComponentsFromAssemblyAttribute(Type containingType) : Attr
     /// Exclude specific types from generation.
     /// </summary>
     public Type[] Exclude { get; set; }
+
+    /// <summary>
+    /// By default, only types inherited from <see cref="Microsoft.Maui.Controls.Element"/> are included. 
+    /// Set to true to include everything inherited from <see cref="Microsoft.Maui.Controls.BindableObject"/>.
+    /// </summary>
+    public bool IncludeNonElements { get; set; }
 }

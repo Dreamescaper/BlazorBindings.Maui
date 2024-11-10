@@ -1,9 +1,14 @@
 ﻿@using ThirdPartyControlsSample.Pages
 
 <Shell>
-    <CommunityToolkitPage/>
-    <CommunityToolkitBehaviors/>
-    <XCalendarPage/>
-    <MaterialComponentsPage/>
-    <SkiaCanvasPage/>
+    <CommunityToolkitPage />
+    <CommunityToolkitBehaviors />
+    <XCalendarPage />
+    <SkiaCanvasPage />
+
+    @if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)
+    {
+        <MaterialComponentsPage />
+        <BottomSheetPage />
+    }
 </Shell>

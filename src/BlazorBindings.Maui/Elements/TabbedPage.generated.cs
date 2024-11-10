@@ -10,6 +10,7 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -43,6 +44,8 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public Color SelectedTabColor { get; set; }
         [Parameter] public Color UnselectedTabColor { get; set; }
         [Parameter] public RenderFragment BarBackground { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public EventCallback<NotifyCollectionChangedEventArgs> OnPagesChanged { get; set; }
 
         public new MC.TabbedPage NativeControl => (MC.TabbedPage)((BindableObject)this).NativeControl;
 
@@ -83,6 +86,19 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(BarBackground):
                     BarBackground = (RenderFragment)value;
                     break;
+                case nameof(ChildContent):
+                    ChildContent = (RenderFragment)value;
+                    break;
+                case nameof(OnPagesChanged):
+                    if (!Equals(OnPagesChanged, value))
+                    {
+                        void NativeControlPagesChanged(object sender, NotifyCollectionChangedEventArgs e) => InvokeEventCallback(OnPagesChanged, e);
+
+                        OnPagesChanged = (EventCallback<NotifyCollectionChangedEventArgs>)value;
+                        NativeControl.PagesChanged -= NativeControlPagesChanged;
+                        NativeControl.PagesChanged += NativeControlPagesChanged;
+                    }
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
@@ -94,6 +110,7 @@ namespace BlazorBindings.Maui.Elements
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<MC.TabbedPage>(builder, sequence++, BarBackground, (x, value) => x.BarBackground = (MC.Brush)value);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.MultiPage<MC.Page>, MC.Page>(builder, sequence++, ChildContent, x => x.Children);
         }
 
         static partial void RegisterAdditionalHandlers();

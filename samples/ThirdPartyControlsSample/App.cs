@@ -3,9 +3,9 @@ using Material.Components.Maui.Styles;
 
 namespace ThirdPartyControlsSample;
 
-public class App(IServiceProvider services) : BlazorBindingsApplication<AppShell>(services)
+public class App : BlazorBindingsApplication<AppShell>
 {
-    protected override void Configure()
+    public App()
     {
         Resources.Add(new MaterialStyles());
     }

@@ -35,7 +35,7 @@ public partial class ComponentWrapperGenerator
 
         // usings
         var usings = GetDefaultUsings(typeToGenerate, componentNamespace);
-        var generatedType = new GeneratedTypeInfo(compilation, generatedInfo, componentName, componentBaseName, typeToGenerate, usings);
+        var generatedType = new GeneratedTypeInfo(compilation, generatedInfo, componentName, componentBaseName, typeToGenerate, baseType, usings);
 
         var mauiTypeName = generatedType.GetTypeNameAndAddNamespace(typeToGenerate);
 
