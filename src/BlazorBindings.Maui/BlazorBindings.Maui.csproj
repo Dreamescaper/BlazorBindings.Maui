@@ -21,10 +21,10 @@
 
 	<ItemGroup>
 		<!-- Be careful with updating, as it might cause issues with the version avaible in workloads via $(MauiVersion) -->
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0-rc.2.24503.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
 
 		<!-- Because of this bug https://github.com/dotnet/maui/issues/3536 we have to exlude targets assets -->
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.0-rc.2.24503.2" IncludeAssets="compile;runtime" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.0" IncludeAssets="compile;runtime" />
 	</ItemGroup>
 	
 </Project>

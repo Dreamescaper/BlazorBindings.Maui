@@ -10,6 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.0-rc.2.24474.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.0" />
 	</ItemGroup>
 </Project>
