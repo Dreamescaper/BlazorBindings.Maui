@@ -35,6 +35,7 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public double? X { get; set; }
         [Parameter] public double? Y { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public RenderFragment TitleBar { get; set; }
         [Parameter] public EventCallback OnSizeChanged { get; set; }
         [Parameter] public EventCallback<MC.ModalPoppedEventArgs> OnModalPopped { get; set; }
         [Parameter] public EventCallback<MC.ModalPoppingEventArgs> OnModalPopping { get; set; }
@@ -130,6 +131,9 @@ namespace BlazorBindings.Maui.Elements
                     break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
+                    break;
+                case nameof(TitleBar):
+                    TitleBar = (RenderFragment)value;
                     break;
                 case nameof(OnSizeChanged):
                     if (!Equals(OnSizeChanged, value))
@@ -282,6 +286,7 @@ namespace BlazorBindings.Maui.Elements
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<MC.Window>(builder, sequence++, ChildContent, (x, value) => x.Page = (MC.Page)value);
+            RenderTreeBuilderHelper.AddContentProperty<MC.Window>(builder, sequence++, TitleBar, (x, value) => x.TitleBar = (ITitleBar)value);
         }
 
         static partial void RegisterAdditionalHandlers();

@@ -14,23 +14,35 @@
 @using ControlGallery.Views.Menus
 
 <Window Title="Main Window">
+    <TitleBar>
+        <TitleBar HeightRequest="48">
+            <Content>
+                <SearchBar VerticalOptions="LayoutOptions.Center"
+                           MaximumWidthRequest="300"
+                           HorizontalOptions="LayoutOptions.Fill"
+                           Placeholder="Search" />
+            </Content>
+        </TitleBar>
+    </TitleBar>
+
+    <ChildContent>
     <Shell BackgroundColor="_backgroundColor"
            ForegroundColor="_foregroundColor"
            UnselectedColor="_unselectedColor"
            TabBarTitleColor="_tabBarTitleColor">
 
-        @*Present data*@
+            @*Present data*@
         <BoxViewPage />
         <LabelPage />
         <Shapes />
 
-        @*Initiate commands*@
+            @*Initiate commands*@
         <ButtonPage />
         <RefreshViewPage />
         <SearchBarPage />
         <SwipeViewPage />
 
-        @*Set values*@
+            @*Set values*@
         <SliderPage />
         <CheckboxPage />
         <SwitchPage />
@@ -38,11 +50,11 @@
         <DatePickerPage />
         <TimePickerPage />
 
-        @*Edit text*@
+            @*Edit text*@
         <EntryPage />
         <EditorPage />
 
-        @*Display collections*@
+            @*Display collections*@
         <CarouselViewPage />
         <ShellSection Title="CollectionView">
             <AddRemovePage />
@@ -55,12 +67,12 @@
         <TableViewPage />
         <ListViewPage />
 
-        @*Layouts*@
+            @*Layouts*@
         <AbsoluteLayoutPage />
         <GridPage />
         <FlexLayoutPage />
 
-        @*Shell*@
+            @*Shell*@
         <ShellContent Title="Shell Properties">
             <ContentTemplate>
                 <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
@@ -72,25 +84,26 @@
 
         <ShellItemsPage />
 
-        @*Navigation*@
+            @*Navigation*@
         <ShellSection Title="Navigation">
             <NavigationPage />
             <UriNavigationPage />
         </ShellSection>
 
-        @*Other*@
+            @*Other*@
         <ShadowsPage />
         <GestureEvents />
         <GestureRecognizersPage />
         <ErrorBoundariesPage />
 
-        @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
-        {
-            <ContextMenuPage />
-            <MenuBarPage />
-            <WindowsPage />
-        }
+            @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
+            {
+                        <ContextMenuPage />
+                        <MenuBarPage />
+                        <WindowsPage />
+            }
     </Shell>
+    </ChildContent>
 </Window>
 
 @code {
