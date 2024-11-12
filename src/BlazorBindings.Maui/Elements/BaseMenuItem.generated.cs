@@ -17,7 +17,7 @@ namespace BlazorBindings.Maui.Elements
     /// <summary>
     /// Base class for menu items.
     /// </summary>
-    public abstract partial class BaseMenuItem : Element
+    public abstract partial class BaseMenuItem : StyleableElement
     {
         static BaseMenuItem()
         {

@@ -65,10 +65,6 @@ namespace BlazorBindings.Maui.Elements
         /// The name of the clear placeholder icon for use with screen readers.
         /// </summary>
         [Parameter] public string ClearPlaceholderName { get; set; }
-        /// <summary>
-        /// The name or path of the property that is displayed for each item of data in the <see cref="P:Microsoft.Maui.Controls.SearchHandler.ItemsSource" /> collection.
-        /// </summary>
-        [Parameter] public string DisplayMemberName { get; set; }
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
         [Parameter] public string FontFamily { get; set; }
@@ -219,13 +215,6 @@ namespace BlazorBindings.Maui.Elements
                     {
                         ClearPlaceholderName = (string)value;
                         NativeControl.ClearPlaceholderName = ClearPlaceholderName;
-                    }
-                    break;
-                case nameof(DisplayMemberName):
-                    if (!Equals(DisplayMemberName, value))
-                    {
-                        DisplayMemberName = (string)value;
-                        NativeControl.DisplayMemberName = DisplayMemberName;
                     }
                     break;
                 case nameof(FontAttributes):

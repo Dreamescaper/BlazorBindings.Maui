@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0</TargetFrameworks>
+		<TargetFrameworks>net9.0</TargetFrameworks>
 		<Title>Blazor Bindings Core Runtime</Title>
 		<Description>Common logic for using Blazor to target native renderers. For mobile app projects for Android and iOS use the BlazorBindings.Maui package.</Description>
 		<PackageTags>blazor;blazorbindings</PackageTags>
@@ -10,6 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.0" />
 	</ItemGroup>
 </Project>

@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 //        typeof(Application),
 //        typeof(AbsoluteLayout),
 //        typeof(ContentPresenter),
+//        typeof(Microsoft.Maui.Controls.Compatibility.RelativeLayout),
 //        typeof(ImageSource),
 //        typeof(FileImageSource),
 //        typeof(UriImageSource),
@@ -129,6 +130,7 @@ using System.Runtime.CompilerServices;
     ContentProperties = [nameof(StructuredItemsView.Header), nameof(StructuredItemsView.Footer)],
     Exclude = [nameof(StructuredItemsView.HeaderTemplate), nameof(StructuredItemsView.FooterTemplate)])]
 [assembly: GenerateComponent(typeof(Stepper))]
+[assembly: GenerateComponent(typeof(StyleableElement))]
 [assembly: GenerateComponent(typeof(SwipeView),
     ContentProperties = [nameof(SwipeView.LeftItems), nameof(SwipeView.RightItems), nameof(SwipeView.TopItems), nameof(SwipeView.BottomItems)])]
 [assembly: GenerateComponent(typeof(SwipeItems),
@@ -147,7 +149,7 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(TableSectionBase))]
 [assembly: GenerateComponent(typeof(TemplatedPage), Exclude = [nameof(TemplatedPage.ControlTemplate)])]
 [assembly: GenerateComponent(typeof(TemplatedView))]
-[assembly: GenerateComponent(typeof(TimePicker), Exclude = [nameof(TimePicker.Time)])]
+[assembly: GenerateComponent(typeof(TimePicker), Exclude = [nameof(TimePicker.Time), nameof(TimePicker.TimeSelected)])]
 [assembly: GenerateComponent(typeof(ToolbarItem))]
 [assembly: GenerateComponent(typeof(VerticalStackLayout))]
 [assembly: GenerateComponent(typeof(View))]

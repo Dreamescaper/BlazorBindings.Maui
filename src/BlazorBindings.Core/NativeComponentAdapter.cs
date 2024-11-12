@@ -3,13 +3,14 @@
 
 using Microsoft.AspNetCore.Components.RenderTree;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BlazorBindings.Core;
 
 /// <summary>
 /// Represents a "shadow" item that Blazor uses to map changes into the live native UI tree.
 /// </summary>
-[DebuggerDisplay("{DebugName}")]
+[DebuggerDisplay("{GetDebugName}")]
 internal sealed class NativeComponentAdapter(
     NativeComponentRenderer renderer,
     NativeComponentAdapter closestPhysicalParent,
@@ -21,22 +22,18 @@ internal sealed class NativeComponentAdapter(
     /// </summary>
     public string Name { get; internal set; }
 
-    private string Text
+    [RequiresUnreferencedCode("This method is used for debug only.")]
+    private string GetDebugName()
     {
-        get
+        string text = null;
+        try
         {
-            try
-            {
-                return (_targetElement?.TargetElement as dynamic)?.Text;
-            }
-            catch
-            {
-                return null;
-            }
+            text = (_targetElement?.TargetElement as dynamic)?.Text;
         }
-    }
+        catch { }
 
-    private string DebugName => $"[\"{Text}\" {Name}";
+        return $"[\"{text}\" {Name}";
+    }
 
     public int DeepLevel { get; init; }
 

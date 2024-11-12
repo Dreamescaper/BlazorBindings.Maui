@@ -12,13 +12,13 @@ jobs:
     runs-on: windows-2022
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0        
     - name: Install .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '9.0.x'
     - name: Install MAUI
       run: dotnet workload install maui
     - name: Restore dependencies
@@ -33,7 +33,7 @@ jobs:
     - name: Pack nugets
       run: dotnet pack -o ./packages -c Release --no-restore
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         path: packages
 
@@ -41,7 +41,7 @@ jobs:
     runs-on: windows-2022
     needs: [build]
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
     
     - name: Publish to Myget
       run: dotnet nuget push */*.nupkg -k ${{ secrets.MYGET_TOKEN }} -s https://www.myget.org/F/blazorbindings/api/v2/package
