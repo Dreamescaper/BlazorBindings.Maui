@@ -14,83 +14,96 @@
 @using ControlGallery.Views.Menus
 
 <Window Title="Main Window">
-    <Shell BackgroundColor="_backgroundColor"
-           ForegroundColor="_foregroundColor"
-           UnselectedColor="_unselectedColor"
-           TabBarTitleColor="_tabBarTitleColor">
+    <TitleBar>
+        <TitleBar HeightRequest="48">
+            <Content>
+                <SearchBar VerticalOptions="LayoutOptions.Center"
+                           MaximumWidthRequest="300"
+                           HorizontalOptions="LayoutOptions.Fill"
+                           Placeholder="Search" />
+            </Content>
+        </TitleBar>
+    </TitleBar>
 
-        @*Present data*@
-        <BoxViewPage />
-        <LabelPage />
-        <Shapes />
+    <ChildContent>
+        <Shell BackgroundColor="_backgroundColor"
+               ForegroundColor="_foregroundColor"
+               UnselectedColor="_unselectedColor"
+               TabBarTitleColor="_tabBarTitleColor">
 
-        @*Initiate commands*@
-        <ButtonPage />
-        <RefreshViewPage />
-        <SearchBarPage />
-        <SwipeViewPage />
+            @*Present data*@
+            <BoxViewPage />
+            <LabelPage />
+            <Shapes />
 
-        @*Set values*@
-        <SliderPage />
-        <CheckboxPage />
-        <SwitchPage />
-        <RadioButtonPage />
-        <DatePickerPage />
-        <TimePickerPage />
+            @*Initiate commands*@
+            <ButtonPage />
+            <RefreshViewPage />
+            <SearchBarPage />
+            <SwipeViewPage />
 
-        @*Edit text*@
-        <EntryPage />
-        <EditorPage />
+            @*Set values*@
+            <SliderPage />
+            <CheckboxPage />
+            <SwitchPage />
+            <RadioButtonPage />
+            <DatePickerPage />
+            <TimePickerPage />
 
-        @*Display collections*@
-        <CarouselViewPage />
-        <ShellSection Title="CollectionView">
-            <AddRemovePage />
-            <GridLayoutPage />
-            <SelectionPage />
-            <InfiniteScrollPage />
-            <DynamicItemsPage />
-        </ShellSection>
-        <PickerPage />
-        <TableViewPage />
-        <ListViewPage />
+            @*Edit text*@
+            <EntryPage />
+            <EditorPage />
 
-        @*Layouts*@
-        <AbsoluteLayoutPage />
-        <GridPage />
-        <FlexLayoutPage />
+            @*Display collections*@
+            <CarouselViewPage />
+            <ShellSection Title="CollectionView">
+                <AddRemovePage />
+                <GridLayoutPage />
+                <SelectionPage />
+                <InfiniteScrollPage />
+                <DynamicItemsPage />
+            </ShellSection>
+            <PickerPage />
+            <TableViewPage />
+            <ListViewPage />
 
-        @*Shell*@
-        <ShellContent Title="Shell Properties">
-            <ContentTemplate>
-                <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
-                                     @bind-ShellForegroundColor="_foregroundColor"
-                                     @bind-ShellUnselectedColor="_unselectedColor"
-                                     @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
-            </ContentTemplate>
-        </ShellContent>
+            @*Layouts*@
+            <AbsoluteLayoutPage />
+            <GridPage />
+            <FlexLayoutPage />
 
-        <ShellItemsPage />
+            @*Shell*@
+            <ShellContent Title="Shell Properties">
+                <ContentTemplate>
+                    <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
+                                         @bind-ShellForegroundColor="_foregroundColor"
+                                         @bind-ShellUnselectedColor="_unselectedColor"
+                                         @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
+                </ContentTemplate>
+            </ShellContent>
 
-        @*Navigation*@
-        <ShellSection Title="Navigation">
-            <NavigationPage />
-            <UriNavigationPage />
-        </ShellSection>
+            <ShellItemsPage />
 
-        @*Other*@
-        <ShadowsPage />
-        <GestureEvents />
-        <GestureRecognizersPage />
-        <ErrorBoundariesPage />
+            @*Navigation*@
+            <ShellSection Title="Navigation">
+                <NavigationPage />
+                <UriNavigationPage />
+            </ShellSection>
 
-        @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
-        {
-            <ContextMenuPage />
-            <MenuBarPage />
-            <WindowsPage />
-        }
-    </Shell>
+            @*Other*@
+            <ShadowsPage />
+            <GestureEvents />
+            <GestureRecognizersPage />
+            <ErrorBoundariesPage />
+
+            @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
+            {
+                <ContextMenuPage />
+                <MenuBarPage />
+                <WindowsPage />
+            }
+        </Shell>
+    </ChildContent>
 </Window>
 
 @code {

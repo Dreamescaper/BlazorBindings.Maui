@@ -150,6 +150,7 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(TemplatedPage), Exclude = [nameof(TemplatedPage.ControlTemplate)])]
 [assembly: GenerateComponent(typeof(TemplatedView))]
 [assembly: GenerateComponent(typeof(TimePicker), Exclude = [nameof(TimePicker.Time), nameof(TimePicker.TimeSelected)])]
+[assembly: GenerateComponent(typeof(TitleBar))]
 [assembly: GenerateComponent(typeof(ToolbarItem))]
 [assembly: GenerateComponent(typeof(VerticalStackLayout))]
 [assembly: GenerateComponent(typeof(View))]
