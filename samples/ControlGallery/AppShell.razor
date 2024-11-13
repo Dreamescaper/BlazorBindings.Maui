@@ -26,83 +26,83 @@
     </TitleBar>
 
     <ChildContent>
-    <Shell BackgroundColor="_backgroundColor"
-           ForegroundColor="_foregroundColor"
-           UnselectedColor="_unselectedColor"
-           TabBarTitleColor="_tabBarTitleColor">
+        <Shell BackgroundColor="_backgroundColor"
+               ForegroundColor="_foregroundColor"
+               UnselectedColor="_unselectedColor"
+               TabBarTitleColor="_tabBarTitleColor">
 
             @*Present data*@
-        <BoxViewPage />
-        <LabelPage />
-        <Shapes />
+            <BoxViewPage />
+            <LabelPage />
+            <Shapes />
 
             @*Initiate commands*@
-        <ButtonPage />
-        <RefreshViewPage />
-        <SearchBarPage />
-        <SwipeViewPage />
+            <ButtonPage />
+            <RefreshViewPage />
+            <SearchBarPage />
+            <SwipeViewPage />
 
             @*Set values*@
-        <SliderPage />
-        <CheckboxPage />
-        <SwitchPage />
-        <RadioButtonPage />
-        <DatePickerPage />
-        <TimePickerPage />
+            <SliderPage />
+            <CheckboxPage />
+            <SwitchPage />
+            <RadioButtonPage />
+            <DatePickerPage />
+            <TimePickerPage />
 
             @*Edit text*@
-        <EntryPage />
-        <EditorPage />
+            <EntryPage />
+            <EditorPage />
 
             @*Display collections*@
-        <CarouselViewPage />
-        <ShellSection Title="CollectionView">
-            <AddRemovePage />
-            <GridLayoutPage />
-            <SelectionPage />
-            <InfiniteScrollPage />
-            <DynamicItemsPage />
-        </ShellSection>
-        <PickerPage />
-        <TableViewPage />
-        <ListViewPage />
+            <CarouselViewPage />
+            <ShellSection Title="CollectionView">
+                <AddRemovePage />
+                <GridLayoutPage />
+                <SelectionPage />
+                <InfiniteScrollPage />
+                <DynamicItemsPage />
+            </ShellSection>
+            <PickerPage />
+            <TableViewPage />
+            <ListViewPage />
 
             @*Layouts*@
-        <AbsoluteLayoutPage />
-        <GridPage />
-        <FlexLayoutPage />
+            <AbsoluteLayoutPage />
+            <GridPage />
+            <FlexLayoutPage />
 
             @*Shell*@
-        <ShellContent Title="Shell Properties">
-            <ContentTemplate>
-                <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
-                                     @bind-ShellForegroundColor="_foregroundColor"
-                                     @bind-ShellUnselectedColor="_unselectedColor"
-                                     @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
-            </ContentTemplate>
-        </ShellContent>
+            <ShellContent Title="Shell Properties">
+                <ContentTemplate>
+                    <ShellPropertiesPage @bind-ShellBackgroundColor="_backgroundColor"
+                                         @bind-ShellForegroundColor="_foregroundColor"
+                                         @bind-ShellUnselectedColor="_unselectedColor"
+                                         @bind-ShellTabBarTitleColor="_tabBarTitleColor" />
+                </ContentTemplate>
+            </ShellContent>
 
-        <ShellItemsPage />
+            <ShellItemsPage />
 
             @*Navigation*@
-        <ShellSection Title="Navigation">
-            <NavigationPage />
-            <UriNavigationPage />
-        </ShellSection>
+            <ShellSection Title="Navigation">
+                <NavigationPage />
+                <UriNavigationPage />
+            </ShellSection>
 
             @*Other*@
-        <ShadowsPage />
-        <GestureEvents />
-        <GestureRecognizersPage />
-        <ErrorBoundariesPage />
+            <ShadowsPage />
+            <GestureEvents />
+            <GestureRecognizersPage />
+            <ErrorBoundariesPage />
 
             @if (DeviceInfo.Platform == DevicePlatform.WinUI || DeviceInfo.Platform == DevicePlatform.MacCatalyst)
             {
-                        <ContextMenuPage />
-                        <MenuBarPage />
-                        <WindowsPage />
+                <ContextMenuPage />
+                <MenuBarPage />
+                <WindowsPage />
             }
-    </Shell>
+        </Shell>
     </ChildContent>
 </Window>
 
