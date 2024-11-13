@@ -185,6 +185,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(SwipeGestureRecognizer))]
 [assembly: GenerateComponent(typeof(TapGestureRecognizer))]
 [assembly: GenerateComponent(typeof(PointerGestureRecognizer))]
+[assembly: GenerateComponent(typeof(DragGestureRecognizer))]
+[assembly: GenerateComponent(typeof(DropGestureRecognizer))]
 
 
 // Compatibility

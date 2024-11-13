@@ -1,0 +1,78 @@
+﻿@using Microsoft.Maui.Layouts
+
+<ContentPage Title="Drag And Drop Gestures">
+    <Grid RowDefinitions="*,40">
+        <ScrollView Grid.Row="0" Margin="16">
+            <VerticalStackLayout>
+                <Label Text="Try dragging boxes below" />
+
+                <FlexLayout Wrap="FlexWrap.Wrap">
+                    @foreach (var color in _colors)
+                    {
+                        <BoxView Color="color" HeightRequest="50" WidthRequest="50" Margin="5">
+                            <GestureRecognizers>
+                                <DragGestureRecognizer OnDragStarting="a => DragStarted(a, color)"
+                                                       OnDropCompleted="Dropped" />
+                            </GestureRecognizers>
+                        </BoxView>
+                    }
+                </FlexLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border Grid.Row="1" BackgroundColor="Colors.Red">
+            <GestureRecognizers>
+                <DropGestureRecognizer OnDrop="Delete" />
+            </GestureRecognizers>
+
+            <ChildContent>
+                <Label Text="DELETE"
+                       VerticalOptions="LayoutOptions.Center"
+                       HorizontalOptions="LayoutOptions.Center"
+                       IsVisible="_dragInProgress" />
+            </ChildContent>
+        </Border>
+    </Grid>
+
+</ContentPage>
+
+@code {
+    bool _dragInProgress;
+
+    List<Color> _colors =
+    [
+        Colors.AliceBlue,
+    Colors.Aqua,
+    Colors.Azure,
+    Colors.Beige,
+    Colors.Bisque,
+    Colors.Black,
+    Colors.Blue,
+    Colors.Brown,
+    Colors.BurlyWood,
+    Colors.Crimson,
+    Colors.DarkGray,
+    Colors.CornflowerBlue,
+    Colors.DarkOliveGreen,
+    Colors.Fuchsia,
+    Colors.AliceBlue,
+    Colors.DarkSeaGreen
+    ];
+
+    void DragStarted(DragStartingEventArgs args, Color color)
+    {
+        _dragInProgress = true;
+        args.Data.Properties["Color"] = color;
+    }
+
+    void Dropped()
+    {
+        _dragInProgress = false;
+    }
+
+    void Delete(DropEventArgs args)
+    {
+        var color = (Color)args.Data.Properties["Color"];
+        _colors.Remove(color);
+    }
+}
