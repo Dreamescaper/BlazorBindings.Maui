@@ -11,17 +11,17 @@ public partial class GeneratedPropertyInfo
     [
         "Microsoft.Maui.IElement",
         "Microsoft.Maui.Controls.BindableObject",
+        "Microsoft.Maui.Controls.IGestureRecognizer",
         "Microsoft.Maui.Controls.ControlTemplate",
         "Microsoft.Maui.Controls.DataTemplate",
-        "Microsoft.Maui.Graphics.IShape"
+        "Microsoft.Maui.Graphics.IShape",
     ];
 
     private static readonly string[] NonContentTypes =
     [
         "Microsoft.Maui.Controls.FormattedString",
         "Microsoft.Maui.Controls.ImageSource",
-        "Microsoft.Maui.Controls.ItemsLayout",
-        "Microsoft.Maui.Controls.Window",
+        "Microsoft.Maui.Controls.ItemsLayout"
     ];
 
     public bool IsRenderFragmentProperty => Kind == GeneratedPropertyKind.RenderFragment;

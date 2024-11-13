@@ -8,6 +8,7 @@
 using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using System.Threading.Tasks;
 
@@ -37,6 +38,10 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> that define how the element gets laid out in a layout cycle.
         /// </summary>
         [Parameter] public MC.LayoutOptions? VerticalOptions { get; set; }
+        /// <summary>
+        /// The collection of gesture recognizers associated with this view.
+        /// </summary>
+        [Parameter] public RenderFragment GestureRecognizers { get; set; }
 
         public new MC.View NativeControl => (MC.View)((BindableObject)this).NativeControl;
 
@@ -66,11 +71,20 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.VerticalOptions = VerticalOptions ?? (MC.LayoutOptions)MC.View.VerticalOptionsProperty.DefaultValue;
                     }
                     break;
+                case nameof(GestureRecognizers):
+                    GestureRecognizers = (RenderFragment)value;
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.View, MC.IGestureRecognizer>(builder, sequence++, GestureRecognizers, x => x.GestureRecognizers);
         }
 
         static partial void RegisterAdditionalHandlers();

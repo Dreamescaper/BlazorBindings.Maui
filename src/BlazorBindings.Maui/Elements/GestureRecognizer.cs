@@ -7,6 +7,11 @@ namespace BlazorBindings.Maui.Elements;
 
 public partial class GestureRecognizer : INonPhysicalChild
 {
+    // This INonPhysicalChild staff was done to allow GestureElements to be the direct child of the element.
+    // However, not all elements support that (if they have no ChildContent property). Therefore. GestureElements property is added.
+    // This thing remains in order to preserve backward compatibility.
+    // Probably should be removed at some point.
+
     void INonPhysicalChild.RemoveFromParent(object parentElement)
     {
         switch (parentElement)
