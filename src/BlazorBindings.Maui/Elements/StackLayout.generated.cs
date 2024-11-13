@@ -25,8 +25,11 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the value which indicates the direction which child elements are positioned. Default value is <see cref="F:Microsoft.Maui.Controls.StackOrientation.Vertical" />.
+        /// Gets or sets the value which indicates the direction which child elements are positioned.
         /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.StackOrientation" /> which indicates the direction children layouts flow. The default value is Vertical.
+        /// </value>
         [Parameter] public MC.StackOrientation? Orientation { get; set; }
 
         public new MC.StackLayout NativeControl => (MC.StackLayout)((BindableObject)this).NativeControl;
