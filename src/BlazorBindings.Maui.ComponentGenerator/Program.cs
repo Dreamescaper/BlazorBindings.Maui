@@ -66,6 +66,9 @@ public class Program
 
     private static void DeleteExistingFiles(string path)
     {
+        if (!Directory.Exists(path))
+            return;
+
         var generatedFiles = Directory.EnumerateFiles(path, "*.generated.cs", SearchOption.AllDirectories);
         foreach (var generatedFile in generatedFiles)
         {
