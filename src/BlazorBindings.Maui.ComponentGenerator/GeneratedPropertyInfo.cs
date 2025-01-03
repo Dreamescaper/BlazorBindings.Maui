@@ -189,10 +189,12 @@ public partial class GeneratedPropertyInfo
 
         return IsPublicProperty(prop)
             && HasPublicSetter(prop)
-            && (IsExplicitlyAllowed(prop, generatedType) || !DisallowedComponentTypes.Contains(prop.Type.GetFullName()))
+            && (IsExplicitlyAllowed(prop, generatedType) || (!IsDisallowed(prop) && !IsCommandParameter(prop)))
             && (prop.Type.GetFullName() == "Microsoft.Maui.Controls.Brush" || !IsRenderFragmentPropertySymbol(generatedType, prop));
-    }
 
+        static bool IsDisallowed(IPropertySymbol prop) => DisallowedComponentTypes.Contains(prop.Type.GetFullName());
+        static bool IsCommandParameter(IPropertySymbol prop) => prop.Type.SpecialType == SpecialType.System_Object && prop.Name.EndsWith("CommandParameter");
+    }
 
     private static string GetComponentPropertyTypeName(IPropertySymbol propertySymbol, GeneratedTypeInfo containingType, bool isRenderFragmentProperty = false, bool makeNullable = false)
     {
@@ -275,7 +277,7 @@ public partial class GeneratedPropertyInfo
         "Microsoft.Maui.Controls.Shapes.Geometry",
         "Microsoft.Maui.Controls.GradientStopCollection",
         "System.Windows.Input.ICommand",
-        "System.Object",
+        "Microsoft.Maui.Controls.Command",
         "Microsoft.Maui.Controls.Page",
         "Microsoft.Maui.Controls.RowDefinitionCollection",
         "Microsoft.Maui.Controls.Shadow",

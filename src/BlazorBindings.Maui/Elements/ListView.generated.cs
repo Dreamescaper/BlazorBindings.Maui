@@ -73,6 +73,13 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public int? RowHeight { get; set; }
         /// <summary>
+        /// Gets or sets the currently selected item from the <see cref="P:Microsoft.Maui.Controls.ItemsView`1.ItemsSource" />.
+        /// </summary>
+        /// <value>
+        /// The selected item or <see langword="null" /> if no item is selected.
+        /// </value>
+        [Parameter] public T SelectedItem { get; set; }
+        /// <summary>
         /// Gets or sets a value that controls whether and how many items can be selected.
         /// </summary>
         /// <value>
@@ -186,6 +193,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         RowHeight = (int?)value;
                         NativeControl.RowHeight = RowHeight ?? (int)MC.ListView.RowHeightProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SelectedItem):
+                    if (!Equals(SelectedItem, value))
+                    {
+                        SelectedItem = (T)value;
+                        NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(SelectionMode):

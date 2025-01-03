@@ -42,6 +42,7 @@ namespace BlazorBindings.Maui.Elements
         /// The color of text on the bar.
         /// </value>
         [Parameter] public Color BarTextColor { get; set; }
+        [Parameter] public object SelectedItem { get; set; }
         [Parameter] public Color SelectedTabColor { get; set; }
         [Parameter] public Color UnselectedTabColor { get; set; }
         [Parameter] public RenderFragment BarBackground { get; set; }
@@ -69,6 +70,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         BarTextColor = (Color)value;
                         NativeControl.BarTextColor = BarTextColor;
+                    }
+                    break;
+                case nameof(SelectedItem):
+                    if (!Equals(SelectedItem, value))
+                    {
+                        SelectedItem = (object)value;
+                        NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(SelectedTabColor):

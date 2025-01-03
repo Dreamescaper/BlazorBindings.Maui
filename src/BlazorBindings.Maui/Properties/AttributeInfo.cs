@@ -49,11 +49,12 @@ using System.Runtime.CompilerServices;
     ContentProperties = [nameof(ItemsView.EmptyView)],
     Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)])]
 [assembly: GenerateComponent(typeof(ListView),
-    Exclude = [nameof(ListView.ItemTemplate)],
+    Exclude = [nameof(ListView.ItemTemplate), nameof(ListView.Header), nameof(ListView.Footer)],
     GenericProperties = [
         nameof(ListView.ItemsSource),
         $"{nameof(ListView.GroupHeaderTemplate)}:System.Object",
         nameof(ListView.GroupDisplayBinding),
+        nameof(ListView.SelectedItem),
         nameof(ListView.GroupShortNameBinding)],
     Aliases = [
         $"{nameof(ListView.HeaderTemplate)}:Header",
@@ -61,6 +62,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(Picker),
     GenericProperties = [nameof(Picker.ItemsSource), nameof(Picker.SelectedItem), nameof(Picker.ItemDisplayBinding)],
     PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
+[assembly: GenerateComponent(typeof(RadioButton),
+    Exclude = [nameof(RadioButton.Value), nameof(RadioButton.Content)])]
 [assembly: GenerateComponent(typeof(RefreshView),
     Exclude = [nameof(RefreshView.Refreshing)],
     PropertyChangedEvents = [nameof(RefreshView.IsRefreshing)])]
@@ -84,8 +87,8 @@ using System.Runtime.CompilerServices;
         $"{nameof(Shell.FlyoutFooterTemplate)}:FlyoutFooter",
         $"{nameof(Shell.FlyoutContentTemplate)}:FlyoutContent",
     ],
-    Exclude = [nameof(Shell.Items)])]
-[assembly: GenerateComponent(typeof(ShellContent), Exclude = [nameof(ShellContent.ContentTemplate)])]
+    Exclude = [nameof(Shell.Items), nameof(Shell.FlyoutHeader), nameof(Shell.FlyoutFooter), nameof(Shell.FlyoutContent)])]
+[assembly: GenerateComponent(typeof(ShellContent), Exclude = [nameof(ShellContent.ContentTemplate), nameof(ShellContent.Content)])]
 [assembly: GenerateComponent(typeof(ShellItem), Exclude = [nameof(ShellItem.Items)])]
 [assembly: GenerateComponent(typeof(ShellSection), Exclude = [nameof(ShellSection.Items)])]
 [assembly: GenerateComponent(typeof(StructuredItemsView),
