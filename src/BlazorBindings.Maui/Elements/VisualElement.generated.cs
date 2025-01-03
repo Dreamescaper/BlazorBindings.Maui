@@ -10,7 +10,6 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
-using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
 using System;
 using System.Threading.Tasks;
@@ -425,7 +424,7 @@ namespace BlazorBindings.Maui.Elements
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Background, (x, value) => x.Background = (MC.Brush)value);
             RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.Behavior>(builder, sequence++, Behaviors, x => x.Behaviors);
-            RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Clip, (x, value) => x.Clip = (Geometry)value);
+            RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Clip, (x, value) => x.Clip = (MC.Shapes.Geometry)value);
             RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Shadow, (x, value) => x.Shadow = (MC.Shadow)value);
             RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.TriggerBase>(builder, sequence++, Triggers, x => x.Triggers);
         }

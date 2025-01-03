@@ -37,6 +37,7 @@ public record GeneratedTypeInfo(
         {
             @using = new UsingStatement { Namespace = @namespace, IsUsed = true };
             Usings.Add(@using);
+            return typeName;
         }
 
         return $"global::{@namespace}.{typeName}";

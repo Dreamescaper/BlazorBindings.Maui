@@ -10,7 +10,6 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
-using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
@@ -28,8 +27,8 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public Thickness? Padding { get; set; }
         [Parameter] public Color StrokeColor { get; set; }
         [Parameter] public double? StrokeDashOffset { get; set; }
-        [Parameter] public PenLineCap? StrokeLineCap { get; set; }
-        [Parameter] public PenLineJoin? StrokeLineJoin { get; set; }
+        [Parameter] public MC.Shapes.PenLineCap? StrokeLineCap { get; set; }
+        [Parameter] public MC.Shapes.PenLineJoin? StrokeLineJoin { get; set; }
         [Parameter] public double? StrokeMiterLimit { get; set; }
         [Parameter] public double? StrokeThickness { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
@@ -68,15 +67,15 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(StrokeLineCap):
                     if (!Equals(StrokeLineCap, value))
                     {
-                        StrokeLineCap = (PenLineCap?)value;
-                        NativeControl.StrokeLineCap = StrokeLineCap ?? (PenLineCap)MC.Border.StrokeLineCapProperty.DefaultValue;
+                        StrokeLineCap = (MC.Shapes.PenLineCap?)value;
+                        NativeControl.StrokeLineCap = StrokeLineCap ?? (MC.Shapes.PenLineCap)MC.Border.StrokeLineCapProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeLineJoin):
                     if (!Equals(StrokeLineJoin, value))
                     {
-                        StrokeLineJoin = (PenLineJoin?)value;
-                        NativeControl.StrokeLineJoin = StrokeLineJoin ?? (PenLineJoin)MC.Border.StrokeLineJoinProperty.DefaultValue;
+                        StrokeLineJoin = (MC.Shapes.PenLineJoin?)value;
+                        NativeControl.StrokeLineJoin = StrokeLineJoin ?? (MC.Shapes.PenLineJoin)MC.Border.StrokeLineJoinProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeMiterLimit):
