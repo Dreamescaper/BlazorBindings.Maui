@@ -65,7 +65,7 @@ internal static class SymbolExtensions
         }
 
         var currentNamespace = namespaceOrType.ContainingNamespace;
-        while (!currentNamespace.IsGlobalNamespace)
+        while (currentNamespace != null && !currentNamespace.IsGlobalNamespace)
         {
             stack.Push(currentNamespace.Name);
             currentNamespace = currentNamespace.ContainingNamespace;
@@ -86,7 +86,9 @@ internal static class SymbolExtensions
         }
         else
         {
-            return namespaceOrType.Name;
+            return namespaceOrType.CanBeReferencedByName
+                ? namespaceOrType.Name
+                : namespaceOrType.ToString();
         }
     }
 

@@ -15,15 +15,7 @@ public record GeneratedTypeInfo(
 {
     public string GetTypeNameAndAddNamespace(string @namespace, string typeName)
     {
-        // Adding random usings might cause conflicts with global usings.
-        // Therefore, we only add usings for commonly used namespaces.
-
         var @using = Usings.FirstOrDefault(u => u.Namespace == @namespace);
-        if (@using == null && (@namespace.StartsWith("System.") || @namespace.StartsWith("Microsoft.")))
-        {
-            @using = new UsingStatement { Namespace = @namespace, IsUsed = true };
-            Usings.Add(@using);
-        }
 
         if (@using != null)
         {
@@ -39,11 +31,24 @@ public record GeneratedTypeInfo(
             return $"{aliasedNs}.{typeName}";
         }
 
+        // Adding random usings might cause conflicts with global usings.
+        // Therefore, we only add usings for commonly used namespaces.
+        if (@using == null && (@namespace.StartsWith("System.") || @namespace.StartsWith("Microsoft.")))
+        {
+            @using = new UsingStatement { Namespace = @namespace, IsUsed = true };
+            Usings.Add(@using);
+        }
+
         return $"global::{@namespace}.{typeName}";
     }
 
     public string GetTypeNameAndAddNamespace(ITypeSymbol type)
     {
+        if (type is IArrayTypeSymbol arrayType)
+        {
+            return $"{GetTypeNameAndAddNamespace(arrayType.ElementType)}[]";
+        }
+
         var typeName = type.GetCSharpTypeName();
         if (typeName != null)
         {
