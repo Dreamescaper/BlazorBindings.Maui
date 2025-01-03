@@ -124,10 +124,7 @@ public partial class GeneratedPropertyInfo
             .Where(e => e.DeclaredAccessibility == Accessibility.Public && e.IsBrowsable())
             .Select(eventInfo =>
             {
-                var isBindEvent = IsBindEvent(eventInfo, out var bindedProperty);
-
-                if (isBindEvent && IsRenderFragmentPropertySymbol(containingType, bindedProperty))
-                    return null;
+                var isBindEvent = IsBindEvent(eventInfo, containingType, out var bindedProperty);
 
                 var eventCallbackName = isBindEvent ? $"{bindedProperty.Name}Changed" : GetEventCallbackName(eventInfo);
 
@@ -178,10 +175,11 @@ public partial class GeneratedPropertyInfo
         };
     }
 
-    private static bool IsBindEvent(IEventSymbol eventSymbol, out IPropertySymbol property)
+    private static bool IsBindEvent(IEventSymbol eventSymbol, GeneratedTypeInfo containingType, out IPropertySymbol property)
     {
-        var properties = eventSymbol.ContainingType.GetMembers().OfType<IPropertySymbol>()
-            .Where(p => IsPublicProperty(p) && HasPublicSetter(p));
+        var properties = eventSymbol.ContainingType.GetMembers()
+            .OfType<IPropertySymbol>()
+            .Where(p => IsValueProperty(p, containingType));
 
         property = properties.FirstOrDefault(p =>
             eventSymbol.Name == $"{p.Name}Changed"  // e.g. Value - ValueChanged

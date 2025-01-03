@@ -10,6 +10,7 @@ using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
+using System;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 
@@ -45,6 +46,7 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public Color UnselectedTabColor { get; set; }
         [Parameter] public RenderFragment BarBackground { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public EventCallback OnCurrentPageChanged { get; set; }
         [Parameter] public EventCallback<NotifyCollectionChangedEventArgs> OnPagesChanged { get; set; }
 
         public new MC.TabbedPage NativeControl => (MC.TabbedPage)((BindableObject)this).NativeControl;
@@ -88,6 +90,16 @@ namespace BlazorBindings.Maui.Elements
                     break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
+                    break;
+                case nameof(OnCurrentPageChanged):
+                    if (!Equals(OnCurrentPageChanged, value))
+                    {
+                        void NativeControlCurrentPageChanged(object sender, EventArgs e) => InvokeEventCallback(OnCurrentPageChanged);
+
+                        OnCurrentPageChanged = (EventCallback)value;
+                        NativeControl.CurrentPageChanged -= NativeControlCurrentPageChanged;
+                        NativeControl.CurrentPageChanged += NativeControlCurrentPageChanged;
+                    }
                     break;
                 case nameof(OnPagesChanged):
                     if (!Equals(OnPagesChanged, value))

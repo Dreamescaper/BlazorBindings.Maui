@@ -149,15 +149,8 @@ public partial class GeneratedPropertyInfo
 
     internal static GeneratedPropertyInfo[] GetValueProperties(GeneratedTypeInfo generatedType)
     {
-        var componentInfo = generatedType.Settings;
-
-        var props = GetMembers<IPropertySymbol>(componentInfo.TypeSymbol, generatedType.Settings.Include)
-            .Where(p => !componentInfo.Exclude.Contains(p.Name))
-            .Where(p => !componentInfo.ContentProperties.Contains(p.Name))
-            .Where(IsPublicProperty)
-            .Where(HasPublicSetter)
-            .Where(prop => IsExplicitlyAllowed(prop, generatedType) || !DisallowedComponentTypes.Contains(prop.Type.GetFullName()))
-            .Where(prop => prop.Type.GetFullName() == "Microsoft.Maui.Controls.Brush" || !IsRenderFragmentPropertySymbol(generatedType, prop))
+        var props = GetMembers<IPropertySymbol>(generatedType.Settings.TypeSymbol, generatedType.Settings.Include)
+            .Where(p => IsValueProperty(p, generatedType))
             .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
         return props.Select(prop =>
@@ -184,6 +177,20 @@ public partial class GeneratedPropertyInfo
             })
             .Where(p => p != null)
             .ToArray();
+    }
+
+    private static bool IsValueProperty(IPropertySymbol prop, GeneratedTypeInfo generatedType)
+    {
+        if (generatedType.Settings.Exclude.Contains(prop.Name))
+            return false;
+
+        if (generatedType.Settings.ContentProperties.Contains(prop.Name))
+            return false;
+
+        return IsPublicProperty(prop)
+            && HasPublicSetter(prop)
+            && (IsExplicitlyAllowed(prop, generatedType) || !DisallowedComponentTypes.Contains(prop.Type.GetFullName()))
+            && (prop.Type.GetFullName() == "Microsoft.Maui.Controls.Brush" || !IsRenderFragmentPropertySymbol(generatedType, prop));
     }
 
 

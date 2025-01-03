@@ -28,6 +28,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public bool? IsPaneOpen { get; set; }
         [Parameter] public RenderFragment Content { get; set; }
         [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public EventCallback<MCM.Core.ValueChangedEventArgs> OnContentChanged { get; set; }
 
         public new MCM.SplitView NativeControl => (MCM.SplitView)((BindableObject)this).NativeControl;
 
@@ -56,6 +57,16 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
+                    break;
+                case nameof(OnContentChanged):
+                    if (!Equals(OnContentChanged, value))
+                    {
+                        void NativeControlContentChanged(object sender, MCM.Core.ValueChangedEventArgs e) => InvokeEventCallback(OnContentChanged, e);
+
+                        OnContentChanged = (EventCallback<MCM.Core.ValueChangedEventArgs>)value;
+                        NativeControl.ContentChanged -= NativeControlContentChanged;
+                        NativeControl.ContentChanged += NativeControlContentChanged;
+                    }
                     break;
 
                 default:

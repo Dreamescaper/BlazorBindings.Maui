@@ -63,13 +63,13 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public MMP.LayoutAlignment? VerticalOptions { get; set; }
         /// <summary>
-        /// Property that represents the Window that's showing the Popup.
-        /// </summary>
-        [Parameter] public MC.Window Window { get; set; }
-        /// <summary>
         /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.View" /> content to render in the Popup.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
+        /// <summary>
+        /// Property that represents the Window that's showing the Popup.
+        /// </summary>
+        [Parameter] public RenderFragment Window { get; set; }
         [Parameter] public EventCallback<CM.Core.PopupClosedEventArgs> OnClosed { get; set; }
         [Parameter] public EventCallback<CM.Core.PopupOpenedEventArgs> OnOpened { get; set; }
 
@@ -137,15 +137,11 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                         NativeControl.VerticalOptions = VerticalOptions ?? (MMP.LayoutAlignment)CMV.Popup.VerticalOptionsProperty.DefaultValue;
                     }
                     break;
-                case nameof(Window):
-                    if (!Equals(Window, value))
-                    {
-                        Window = (MC.Window)value;
-                        NativeControl.Window = Window;
-                    }
-                    break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
+                    break;
+                case nameof(Window):
+                    Window = (RenderFragment)value;
                     break;
                 case nameof(OnClosed):
                     if (!Equals(OnClosed, value))
@@ -178,6 +174,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<CMV.Popup>(builder, sequence++, ChildContent, (x, value) => x.Content = (MC.View)value);
+            RenderTreeBuilderHelper.AddContentProperty<CMV.Popup>(builder, sequence++, Window, (x, value) => x.Window = (MC.Window)value);
         }
 
         static partial void RegisterAdditionalHandlers();
