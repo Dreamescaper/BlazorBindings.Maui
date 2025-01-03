@@ -90,20 +90,13 @@ internal static class SymbolExtensions
         }
     }
 
-    public static bool IsHidingMember(this ISymbol symbol)
+    public static bool IsHidingMember(this IPropertySymbol symbol)
     {
         var currentType = symbol.ContainingType?.BaseType;
-
-        while (currentType != null)
-        {
-            var containsMember = currentType.GetMembers(symbol.Name).Any(s => s.Kind == symbol.Kind);
-            if (containsMember)
-                return true;
-
-            currentType = currentType.BaseType;
-        }
-
-        return false;
+        var baseProperty = currentType.GetProperty(symbol.Name, includeBaseTypes: true);
+        return baseProperty != null
+            && baseProperty.DeclaredAccessibility == symbol.DeclaredAccessibility
+            && SymbolEqualityComparer.Default.Equals(baseProperty.Type, symbol.Type);
     }
 
     public static bool IsNullableStruct(this INamedTypeSymbol symbol)
