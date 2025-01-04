@@ -94,8 +94,7 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(StructuredItemsView),
     ContentProperties = [nameof(StructuredItemsView.Header), nameof(StructuredItemsView.Footer)],
     Exclude = [nameof(StructuredItemsView.HeaderTemplate), nameof(StructuredItemsView.FooterTemplate)])]
-[assembly: GenerateComponent(typeof(SwipeView),
-    ContentProperties = [nameof(SwipeView.LeftItems), nameof(SwipeView.RightItems), nameof(SwipeView.TopItems), nameof(SwipeView.BottomItems)])]
+[assembly: GenerateComponent(typeof(SwipeView))]
 [assembly: GenerateComponent(typeof(SwipeItems), Exclude = [nameof(SwipeItems.CollectionChanged)])]
 [assembly: GenerateComponent(typeof(TabbedPage), Exclude = [nameof(TabbedPage.ItemsSource), nameof(TabbedPage.ItemTemplate)])]
 [assembly: GenerateComponent(typeof(TableView), Exclude = [nameof(TableView.Root)])]

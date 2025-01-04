@@ -63,7 +63,7 @@ public partial class GeneratedPropertyInfo
             var itemTypeName = GenericTypeArgument is null ? "T" : GetTypeNameAndAddNamespace(GenericTypeArgument);
             return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty<{MauiContainingTypeName}, {itemTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, template) => x.{_propertyInfo.Name} = template);";
         }
-        else if (!ForceContent && IsIList(_propertyType, out itemType))
+        else if (!ForceContent && IsIList(_propertyType, out itemType) && !IsElement(Compilation, _propertyType))
         {
             // RenderTreeBuilderHelper.AddListContentProperty<MC.Layout, IView>(builder, sequence++, ChildContent, x => x.Children);
             var itemTypeName = GetTypeNameAndAddNamespace(itemType);
@@ -155,6 +155,12 @@ public partial class GeneratedPropertyInfo
                 var nonContentTypeSymbol = compilation.GetTypeByMetadataName(nonContentType);
                 return compilation.ClassifyConversion(type, nonContentTypeSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
             });
+    }
+
+    private static bool IsElement(Compilation compilation, ITypeSymbol type)
+    {
+        var elementSymbol = compilation.GetTypeByMetadataName("Microsoft.Maui.Controls.Element");
+        return compilation.ClassifyConversion(type, elementSymbol) is { IsIdentity: true } or { IsReference: true, IsImplicit: true };
     }
 
     private static bool IsIList(ITypeSymbol type, out ITypeSymbol itemType)
