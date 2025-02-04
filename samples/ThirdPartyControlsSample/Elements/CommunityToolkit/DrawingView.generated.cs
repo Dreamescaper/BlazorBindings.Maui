@@ -31,7 +31,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         }
 
         /// <summary>
-        /// Allows to draw on the <see cref="T:CommunityToolkit.Maui.Core.IDrawingView" />.
+        /// Allows drawing on the <see cref="T:CommunityToolkit.Maui.Core.IDrawingView" />.
         /// </summary>
         [Parameter] public Action<ICanvas, RectF> DrawAction { get; set; }
         /// <summary>

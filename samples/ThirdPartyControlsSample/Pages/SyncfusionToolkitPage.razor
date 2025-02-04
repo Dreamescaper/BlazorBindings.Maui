@@ -1,0 +1,37 @@
+﻿@using BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
+@using BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
+@using BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
+@using BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TextInputLayout
+
+<ContentPage Title="Syncfusion Toolkit">
+    <SfTabView>
+        <SfTabItem Header="Calendar">
+            <SfCalendar />
+        </SfTabItem>
+
+        <SfTabItem Header="InputLayout">
+            <VerticalStackLayout>
+                <SfTextInputLayout Hint="Some Value">
+                    <Entry @bind-Text="value" />
+                </SfTextInputLayout>
+            </VerticalStackLayout>
+        </SfTabItem>
+
+        <SfTabItem Header="Chips">
+            <VerticalStackLayout>
+                <SfChipGroup ItemsSource="names">
+                    <ChipLayout>
+                        <FlexLayout HorizontalOptions="LayoutOptions.Start"
+                                    VerticalOptions="LayoutOptions.Center" />
+                    </ChipLayout>
+                </SfChipGroup>
+            </VerticalStackLayout>
+        </SfTabItem>
+    </SfTabView>
+</ContentPage>
+
+@code {
+    string value;
+
+    List<string> names = ["Alex", "Petra", "Kate", "Thomas", "Bernie", "Amber", "Oswald"];
+}

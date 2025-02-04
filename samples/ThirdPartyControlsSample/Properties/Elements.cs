@@ -29,3 +29,6 @@ using XCalendar.Maui.Views;
 
 [assembly: GenerateComponent(typeof(Material.Components.Maui.SKTouchCanvasView))]
 [assembly: GenerateComponent(typeof(SKCanvasView))]
+
+// Syncfusion
+[assembly: GenerateComponentsFromAssembly(typeof(Syncfusion.Maui.Toolkit.TextInputLayout.SfTextInputLayout))]

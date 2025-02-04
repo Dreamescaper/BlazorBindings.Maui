@@ -31,7 +31,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the popup can be dismissed by tapping outside of the Popup.
+        /// Gets or sets a value indicating whether the popup can be dismissed by tapping outside the Popup.
         /// </summary>
         [Parameter] public bool? CanBeDismissedByTappingOutsideOfPopup { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public MMP.LayoutAlignment? HorizontalOptions { get; set; }
         /// <summary>
-        /// Property that represent Resources of Popup.
+        /// Property that represents Resources of Popup.
         /// </summary>
         [Parameter] public MC.ResourceDictionary Resources { get; set; }
         /// <summary>
@@ -55,7 +55,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public MC.Style Style { get; set; }
         /// <summary>
-        /// Property that represent Style Class of Popup.
+        /// Property that represents Style Class of Popup.
         /// </summary>
         [Parameter] public string StyleClass { get; set; }
         /// <summary>
