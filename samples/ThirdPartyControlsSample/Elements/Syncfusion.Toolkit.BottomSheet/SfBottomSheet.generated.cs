@@ -146,6 +146,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// </value>
         [Parameter] public SMTB.BottomSheetState? State { get; set; }
         /// <summary>
+        /// Gets or sets the background of the SfBottomSheet.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> value representing the background.
+        /// </value>
+        [Parameter] public new RenderFragment Background { get; set; }
+        /// <summary>
         /// Gets or sets the content of the SfBottomSheet control.
         /// </summary>
         /// <value>
@@ -158,7 +165,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.View" /> that represents the content view of the bottom sheet.
         /// </value>
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public new RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets the background color of the grabber in SfBottomSheet.
         /// </summary>

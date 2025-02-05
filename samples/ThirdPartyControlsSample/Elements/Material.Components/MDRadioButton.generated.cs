@@ -25,7 +25,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         }
 
         [Parameter] public int? SelectedIndex { get; set; }
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public new RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<int> SelectedIndexChanged { get; set; }
 
         public new MCM.RadioButton NativeControl => (MCM.RadioButton)((BindableObject)this).NativeControl;

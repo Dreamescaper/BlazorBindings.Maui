@@ -10,6 +10,16 @@ internal static class SymbolExtensions
         return typeSymbol.GetMembers(method).FirstOrDefault() as IMethodSymbol;
     }
 
+    public static IEnumerable<INamedTypeSymbol> GetBaseTypes(this ITypeSymbol typeSymbol)
+    {
+        var baseType = typeSymbol.BaseType;
+        while (baseType != null)
+        {
+            yield return baseType;
+            baseType = baseType.BaseType;
+        }
+    }
+
     public static ISymbol GetMember(this ITypeSymbol typeSymbol, string memberName, bool includeBaseTypes)
     {
         var currentType = typeSymbol;
@@ -97,8 +107,15 @@ internal static class SymbolExtensions
         var currentType = symbol.ContainingType?.BaseType;
         var baseProperty = currentType.GetProperty(symbol.Name, includeBaseTypes: true);
         return baseProperty != null
-            && baseProperty.DeclaredAccessibility == symbol.DeclaredAccessibility
-            && SymbolEqualityComparer.Default.Equals(baseProperty.Type, symbol.Type);
+            && baseProperty.DeclaredAccessibility == symbol.DeclaredAccessibility;
+    }
+
+    public static bool IsHidingMember(this IEventSymbol symbol)
+    {
+        var currentType = symbol.ContainingType?.BaseType;
+        var baseEvent = currentType.GetEvent(symbol.Name, includeBaseTypes: true);
+        return baseEvent != null
+            && baseEvent.DeclaredAccessibility == symbol.DeclaredAccessibility;
     }
 
     public static bool IsNullableStruct(this INamedTypeSymbol symbol)

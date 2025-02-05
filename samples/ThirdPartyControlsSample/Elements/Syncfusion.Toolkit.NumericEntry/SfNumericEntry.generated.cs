@@ -229,8 +229,8 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
         [Parameter] public RenderFragment Stroke { get; set; }
         [Parameter] public EventCallback<Nullable<double>> ValueChanged { get; set; }
         [Parameter] public EventCallback OnCompleted { get; set; }
-        [Parameter] public EventCallback<MC.FocusEventArgs> OnFocused { get; set; }
-        [Parameter] public EventCallback<MC.FocusEventArgs> OnUnfocused { get; set; }
+        [Parameter] public new EventCallback<MC.FocusEventArgs> OnFocused { get; set; }
+        [Parameter] public new EventCallback<MC.FocusEventArgs> OnUnfocused { get; set; }
 
         public new SMTN.SfNumericEntry NativeControl => (SMTN.SfNumericEntry)((BindableObject)this).NativeControl;
 

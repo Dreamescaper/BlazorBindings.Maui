@@ -204,7 +204,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// <value>
         /// The collection used to populate the content of the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />. The default is an empty collection.
         /// </value>
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public new RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets a value that can be used to customize the scroll button’s background color in the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />.
         /// </summary>

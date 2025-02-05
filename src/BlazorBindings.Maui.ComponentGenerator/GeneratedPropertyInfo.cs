@@ -30,6 +30,8 @@ public partial class GeneratedPropertyInfo
         set => _componentTypeLazy = new Lazy<string>(value);
     }
 
+    public bool IsHidingProperty { get; private set; }
+
     private GeneratedPropertyInfo(GeneratedTypeInfo typeInfo,
                                   ITypeSymbol mauiPropertyType,
                                   string mauiPropertyName,
@@ -84,17 +86,13 @@ public partial class GeneratedPropertyInfo
 
     public string GetPropertyDeclaration()
     {
-        // razor compiler doesn't allow 'new' properties, it considers them as duplicates.
-        if (_propertyInfo is not null && _propertyInfo.IsHidingMember())
-        {
-            return "";
-        }
+        var newModifier = IsHidingProperty ? "new " : "";
 
         const string indent = "        ";
 
         var xmlDocContents = _propertyInfo is null ? "" : ComponentWrapperGenerator.GetXmlDocContents(_propertyInfo, indent);
 
-        return $@"{xmlDocContents}{indent}[Parameter] public {ComponentType} {ComponentPropertyName} {{ get; set; }}
+        return $@"{xmlDocContents}{indent}[Parameter] public {newModifier}{ComponentType} {ComponentPropertyName} {{ get; set; }}
 ";
     }
 
@@ -155,6 +153,8 @@ public partial class GeneratedPropertyInfo
 
         return props.Select(prop =>
             {
+                GeneratedPropertyInfo propertyInfo;
+
                 if (prop.Type.GetFullName() == "Microsoft.Maui.Controls.Brush")
                 {
                     var propName = prop.Name.Replace("Brush", "") + "Color";
@@ -164,7 +164,7 @@ public partial class GeneratedPropertyInfo
                         return null;
                     }
 
-                    return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value)
+                    propertyInfo = new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value)
                     {
                         ComponentPropertyName = propName,
                         ComponentType = generatedType.GetTypeNameAndAddNamespace("Microsoft.Maui.Graphics", "Color")
@@ -172,8 +172,12 @@ public partial class GeneratedPropertyInfo
                 }
                 else
                 {
-                    return new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value);
+                    propertyInfo = new GeneratedPropertyInfo(generatedType, prop, GeneratedPropertyKind.Value);
                 }
+
+                propertyInfo.IsHidingProperty = prop.IsHidingMember();
+
+                return propertyInfo;
             })
             .Where(p => p != null)
             .ToArray();

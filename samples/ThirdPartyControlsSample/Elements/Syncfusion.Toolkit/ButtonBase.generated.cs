@@ -105,6 +105,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// </value>
         [Parameter] public MC.ImageSource ImageSource { get; set; }
         /// <summary>
+        /// Gets or sets the value of Padding. This property can be used to set padding to the sides of ButtonBase.
+        /// </summary>
+        /// <value>
+        /// Specifies the padding.The default value is 2 for Android platform and 0 for other platform.
+        /// </value>
+        [Parameter] public new Thickness? Padding { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether the image icon of SfButton is visible or not. The icon is in visible state when this property is set to true.
         /// </summary>
         /// <value>
@@ -146,6 +153,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// Specifies the text alignment.The default value is <see cref="F:Microsoft.Maui.TextAlignment.Center" />.
         /// </value>
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
+        /// <summary>
+        /// Gets or sets the value of BackgroundColor.This property can be used to give Background Color to the ButtonBase control.
+        /// </summary>
+        /// <value>
+        /// Specifies the background color.The default value is null .
+        /// </value>
+        [Parameter] public new RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the value of stroke.This property can be used to give border Color to ButtonBase control.
         /// </summary>

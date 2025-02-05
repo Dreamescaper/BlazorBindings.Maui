@@ -87,7 +87,16 @@ public partial class GeneratedPropertyInfo
             .Where(prop => IsRenderFragmentPropertySymbol(containingType, prop))
             .OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase);
 
-        var propertyInfos = propInfos.Select(prop => new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment)).ToArray();
+        var propertyInfos = propInfos.Select(prop =>
+        {
+            var generatedInfo = new GeneratedPropertyInfo(containingType, prop, GeneratedPropertyKind.RenderFragment);
+
+            generatedInfo.IsHidingProperty = generatedInfo.ComponentPropertyName == "ChildContent"
+                ? IfChildContentHiding(containingType.MauiBaseType, containingType.Compilation)
+                : prop.IsHidingMember();
+
+            return generatedInfo;
+        }).ToArray();
 
         // If there is no ChildContent property, but the type itself is IList, we add ChildContent property for children.
         if (!propertyInfos.Any(p => p.ComponentPropertyName == "ChildContent")
@@ -104,7 +113,9 @@ public partial class GeneratedPropertyInfo
                 "RenderFragment",
                 GeneratedPropertyKind.RenderFragment);
 
-            propertyInfos = propertyInfos.Append(thisProperty).ToArray();
+            thisProperty.IsHidingProperty = IfChildContentHiding(containingType.MauiBaseType, containingType.Compilation);
+
+            propertyInfos = [.. propertyInfos, thisProperty];
         }
 
         return propertyInfos;
@@ -184,5 +195,27 @@ public partial class GeneratedPropertyInfo
                 return false;
             }
         }
+    }
+
+    private static bool IfChildContentHiding(ITypeSymbol baseType, Compilation compilation)
+    {
+        var currentType = baseType;
+
+        while (currentType != null)
+        {
+            if (currentType.GetAttributes().Any(a => a.AttributeClass.Name == "ContentPropertyAttribute"))
+            {
+                return true;
+            }
+
+            currentType = currentType.BaseType;
+        }
+
+        if (IsIList(baseType, out var itemType) && IsContent(compilation, itemType))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

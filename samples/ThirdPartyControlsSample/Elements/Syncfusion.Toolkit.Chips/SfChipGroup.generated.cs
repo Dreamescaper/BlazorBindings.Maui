@@ -219,7 +219,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// <value>
         /// The collection used to populate the chip items. The default is null.
         /// </value>
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public new RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets the value of ItemTemplate. This property can be used to set custom content for data item in the chip group control.
         /// </summary>

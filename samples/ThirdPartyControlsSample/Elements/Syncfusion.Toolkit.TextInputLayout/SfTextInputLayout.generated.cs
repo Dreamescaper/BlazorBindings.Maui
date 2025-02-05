@@ -93,6 +93,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TextInputLayout
         /// </summary>
         [Parameter] public Thickness? InputViewPadding { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether the control is enabled and can interact with the user. The default value is <c>true</c>.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the control is enabled; otherwise, <c>false</c>.
+        /// </value>
+        [Parameter] public new bool? IsEnabled { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether the hint label should always be floated, even when the input text is empty. The default value is <c>false</c>.
         /// </summary>
         /// <value>

@@ -37,6 +37,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Buttons
         /// </value>
         [Parameter] public Aspect? BackgroundImageAspect { get; set; }
         /// <summary>
+        /// Gets or sets the value of corner radius. This property can be used to customize the corners of button control.
+        /// </summary>
+        /// <value>
+        /// The default value is 20.
+        /// </value>
+        [Parameter] public new CornerRadius? CornerRadius { get; set; }
+        /// <summary>
         /// Gets or sets the value of dash array of the border. This property can be used to customize the dash of border.
         /// </summary>
         /// <value>
@@ -65,6 +72,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Buttons
         /// </value>
         [Parameter] public LineBreakMode? LineBreakMode { get; set; }
         /// <summary>
+        /// Gets or sets the value of stroke thickness. This property can be used to give border thickness to button control.
+        /// </summary>
+        /// <value>
+        /// The default value is 0d.
+        /// </value>
+        [Parameter] public new double? StrokeThickness { get; set; }
+        /// <summary>
+        /// Gets or sets the value of text color. This property can be used to give text color to the text in control.
+        /// </summary>
+        /// <value>
+        /// The default value is Colors.White.
+        /// </value>
+        [Parameter] public new Color TextColor { get; set; }
+        /// <summary>
         /// Gets or sets the value of text transform. This property is used to specify the text transformation options for text processing.
         /// </summary>
         /// <value>
@@ -72,12 +93,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Buttons
         /// </value>
         [Parameter] public TextTransform? TextTransform { get; set; }
         /// <summary>
+        /// Gets or sets the value of background. This property can be used to give background color to the control.
+        /// </summary>
+        /// <value>
+        /// The default value is SolidColorBrush(Color.FromArgb("#6750A4")) .
+        /// </value>
+        [Parameter] public new RenderFragment Background { get; set; }
+        /// <summary>
         /// Gets or sets the value of the content. This property can be used to set custom view to the button control.
         /// </summary>
         /// <value>
         /// The default value is null.
         /// </value>
-        [Parameter] public RenderFragment ChildContent { get; set; }
+        [Parameter] public new RenderFragment ChildContent { get; set; }
 
         public new SMTB.SfButton NativeControl => (SMTB.SfButton)((BindableObject)this).NativeControl;
 

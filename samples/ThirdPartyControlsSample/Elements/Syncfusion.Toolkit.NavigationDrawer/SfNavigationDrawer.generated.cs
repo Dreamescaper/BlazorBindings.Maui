@@ -31,6 +31,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         }
 
         /// <summary>
+        /// Gets or sets a value of the flow direction of the navigation drawer.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.SfNavigationDrawer.FlowDirection" /> values and the default value is <see cref="F:Microsoft.Maui.FlowDirection.LeftToRight" />.
+        /// </value>
+        [Parameter] public new FlowDirection? FlowDirection { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether to open or close the drawer.
         /// </summary>
         /// <value>

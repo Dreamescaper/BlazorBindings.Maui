@@ -138,6 +138,7 @@ public partial class GeneratedPropertyInfo
                     GeneratedPropertyKind.EventCallback);
 
                 generatedPropertyInfo._bindedProperty = bindedProperty;
+                generatedPropertyInfo.IsHidingProperty = eventInfo.IsHidingMember() || IsHidingCustomViewEvents(eventInfo);
                 return generatedPropertyInfo;
             })
                 .Where(e => e != null);
@@ -194,5 +195,12 @@ public partial class GeneratedPropertyInfo
     private static ITypeSymbol GetEventArgType(ITypeSymbol eventHandlerType)
     {
         return eventHandlerType.GetMethod("Invoke").Parameters[1].Type;
+    }
+
+    private static bool IsHidingCustomViewEvents(IEventSymbol eventSymbol)
+    {
+        // View has some events defines by us. We need to add 'new' to them as well.
+        return eventSymbol.ContainingType.GetBaseTypes().Any(t => t.Name == "View") &&
+            eventSymbol.Name is "Tap" or "DoubleTap" or "Swipe" or "PinchUpdate" or "PanUpdate";
     }
 }
