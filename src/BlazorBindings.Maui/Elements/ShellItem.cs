@@ -27,18 +27,7 @@ public partial class ShellItem : ShellGroupItem, IContainerElementHandler
 
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
-        if (child is null)
-        {
-            throw new ArgumentNullException(nameof(child));
-        }
-
-        MC.ShellSection sectionToAdd = child switch
-        {
-            MC.TemplatedPage childAsTemplatedPage => childAsTemplatedPage,  // Implicit conversion
-            MC.ShellContent childAsShellContent => childAsShellContent,  // Implicit conversion
-            MC.ShellSection childAsShellSection => childAsShellSection,
-            _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
-        };
+        var sectionToAdd = GetSectionToAdd(child);
 
         if (NativeControl.Items.Count >= physicalSiblingIndex)
         {
@@ -53,15 +42,32 @@ public partial class ShellItem : ShellGroupItem, IContainerElementHandler
 
     void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
     {
-        if (child is null)
-        {
-            throw new ArgumentNullException(nameof(child));
-        }
+        ArgumentNullException.ThrowIfNull(child);
 
         var sectionToRemove = GetSectionForElement(child)
             ?? throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support removing a child (child type is '{child.GetType().FullName}').");
 
         NativeControl.Items.Remove(sectionToRemove);
+    }
+
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        var sectionToAdd = GetSectionToAdd(newChild);
+        NativeControl.Items[physicalSiblingIndex] = sectionToAdd;
+    }
+
+    private MC.ShellSection GetSectionToAdd(object child)
+    {
+        ArgumentNullException.ThrowIfNull(child);
+
+        MC.ShellSection sectionToAdd = child switch
+        {
+            MC.TemplatedPage childAsTemplatedPage => childAsTemplatedPage,  // Implicit conversion
+            MC.ShellContent childAsShellContent => childAsShellContent,  // Implicit conversion
+            MC.ShellSection childAsShellSection => childAsShellSection,
+            _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
+        };
+        return sectionToAdd;
     }
 
     private MC.ShellSection GetSectionForElement(object child)
@@ -83,6 +89,6 @@ public partial class ShellItem : ShellGroupItem, IContainerElementHandler
     private MC.ShellSection GetSectionForTemplatedPage(MC.TemplatedPage templatedPage)
     {
         return NativeControl.Items
-            .FirstOrDefault(section => section.Items.Any(contect => contect.Content == templatedPage));
+            .FirstOrDefault(section => section.Items.Any(content => content.Content == templatedPage));
     }
 }

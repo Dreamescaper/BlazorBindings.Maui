@@ -193,24 +193,14 @@ public partial class Shell : Page, IContainerElementHandler
 
             default:
                 return base.HandleAdditionalParameter(name, value);
-        };
+        }
     }
 
     protected override RenderFragment GetChildContent() => ChildContent;
 
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
-        ArgumentNullException.ThrowIfNull(child);
-
-        MC.ShellItem itemToAdd = child switch
-        {
-            MC.TemplatedPage childAsTemplatedPage => childAsTemplatedPage, // Implicit conversion
-            MC.ShellContent childAsShellContent => childAsShellContent, // Implicit conversion
-            MC.ShellSection childAsShellSection => childAsShellSection, // Implicit conversion
-            MC.MenuItem childAsMenuItem => childAsMenuItem, // Implicit conversion
-            MC.ShellItem childAsShellItem => childAsShellItem,
-            _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
-        };
+        MC.ShellItem itemToAdd = GetItemToAdd(child);
 
         if (NativeControl.Items.Count >= physicalSiblingIndex)
         {
@@ -231,6 +221,27 @@ public partial class Shell : Page, IContainerElementHandler
             ?? throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support removing a child (child type is '{child.GetType().FullName}').");
 
         NativeControl.Items.Remove(itemToRemove);
+    }
+
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        MC.ShellItem itemToAdd = GetItemToAdd(newChild);
+        NativeControl.Items[physicalSiblingIndex] = itemToAdd;
+    }
+
+    private MC.ShellItem GetItemToAdd(object child)
+    {
+        ArgumentNullException.ThrowIfNull(child);
+
+        return child switch
+        {
+            MC.TemplatedPage childAsTemplatedPage => childAsTemplatedPage, // Implicit conversion
+            MC.ShellContent childAsShellContent => childAsShellContent, // Implicit conversion
+            MC.ShellSection childAsShellSection => childAsShellSection, // Implicit conversion
+            MC.MenuItem childAsMenuItem => childAsMenuItem, // Implicit conversion
+            MC.ShellItem childAsShellItem => childAsShellItem,
+            _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
+        };
     }
 
     private MC.ShellItem GetItemForElement(object child)

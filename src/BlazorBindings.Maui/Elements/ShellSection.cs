@@ -27,17 +27,7 @@ public partial class ShellSection : ShellGroupItem, IContainerElementHandler
 
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex)
     {
-        ArgumentNullException.ThrowIfNull(child);
-
-        MC.ShellContent contentToAdd = child switch
-        {
-            MC.TemplatedPage childAsTemplatedPage => childAsTemplatedPage,  // Implicit conversion
-            MC.ShellContent childAsShellContent => childAsShellContent,
-            _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
-        };
-
-        // Ensure that there is non-null Content to avoid exceptions in Xamarin.Forms
-        contentToAdd.Content ??= new MC.Page();
+        var contentToAdd = GetContentToAdd(child);
 
         if (NativeControl.Items.Count >= physicalSiblingIndex)
         {
@@ -60,6 +50,24 @@ public partial class ShellSection : ShellGroupItem, IContainerElementHandler
         NativeControl.Items.Remove(contentToRemove);
     }
 
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    {
+        var contentToAdd = GetContentToAdd(newChild);
+        NativeControl.Items[physicalSiblingIndex] = contentToAdd;
+    }
+
+    private MC.ShellContent GetContentToAdd(object child)
+    {
+        ArgumentNullException.ThrowIfNull(child);
+
+        MC.ShellContent contentToAdd = child switch
+        {
+            MC.TemplatedPage childAsTemplatedPage => childAsTemplatedPage,  // Implicit conversion
+            MC.ShellContent childAsShellContent => childAsShellContent,
+            _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
+        };
+        return contentToAdd;
+    }
 
     private MC.ShellContent GetContentForChild(object child)
     {
