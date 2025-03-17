@@ -1,6 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
+using BlazorBindings.Core;
+using Microsoft.AspNetCore.Components;
+using IElementHandler = BlazorBindings.Core.IElementHandler;
 using WVM = Microsoft.AspNetCore.Components.WebView.Maui;
 
 namespace BlazorBindings.Maui.Elements;

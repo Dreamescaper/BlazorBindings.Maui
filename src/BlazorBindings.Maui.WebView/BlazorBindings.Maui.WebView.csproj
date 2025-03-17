@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>BlazorBindings.Maui</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Because of this bug https://github.com/dotnet/maui/issues/3536 we have to exlude targets assets -->
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="9.0.0" IncludeAssets="compile;runtime" />
+	</ItemGroup>
+
+</Project>
