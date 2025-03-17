@@ -74,7 +74,7 @@
             </ContentTemplate>
         </ShellContent>
     </Shell>
-    );
+        );
 
         var shellContent = shell.CurrentItem.Items[0].Items[0];
         var page = ((MC.IShellContentController)shellContent).GetOrCreateContent();
@@ -120,7 +120,7 @@
         <MenuItem Text="@($"MenuItem #{i + 1}")" />
     }
     </Shell>
-    );
+        );
 
         // Assert
         Assert.That(shell.Items, Has.Count.EqualTo(2));
@@ -160,5 +160,43 @@
         flyoutItem = shell.Items[0];
         Assert.That(flyoutItem.Items, Has.Count.EqualTo(1));
         Assert.That(flyoutItem.Items[0].Title, Is.EqualTo("Tab Title"));
+    }
+
+    [Test]
+    public async Task ShellPagesAreAddedInCorrectOrder()
+    {
+        // There was a bug in NativeComponentAdapter, which lead to items being added in incorrect order.
+        // It's crucial int this test that
+        // a) mixed items are added, e.g. page and ShellContent
+        // b) pages are added via components, not only directly
+
+        var shell = await Render<MC.Shell>(
+    @<Shell>
+        <PageContent Title="Page1" />
+
+        <ShellContent Title="Page2">
+            <PageContent Title="Page2" />
+        </ShellContent>
+
+        <PageContent Title="Page3" />
+
+        <ShellSection Title="Section">
+            <PageContent Title="Page4" />
+            <PageContent Title="Page5" />
+        </ShellSection>
+
+        <ContentPage Title="Page6" />
+    </Shell>
+    );
+
+        Assert.That(shell.Items.Select(i => i.Title),
+            Is.EqualTo(["Page1", "Page2", "Page3", "Section", "Page6"]));
+
+        var sectionItem = shell.Items[3];
+        var sectionPages = sectionItem.Items.Single().Items;
+
+        Assert.That(sectionPages.Select(i => i.Title), Is.EqualTo(["Page4", "Page5"]));
+
+        Assert.That(shell.CurrentItem.Title, Is.EqualTo("Page1"));
     }
 }

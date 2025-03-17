@@ -184,8 +184,42 @@ internal sealed class NativeComponentAdapter(
 
     private void AddPendingAddition(NativeComponentAdapter childToAdd, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
+        /* In cases when there are non-elements involved, the order of add operations could be wrong. E.g. 
+        AppShell.razor
+        <Shell>
+            <UserPageComponent Title="Page1" />
+            <ContentPage Title="Page2" />
+        </Shell>
+        
+        UserPageComponent.razor
+        <ContentPage Title="Page1" />
+
+        In this case, Page1 is added to Shell first (with index 0), and then Page2 is added (again, with index 0).
+        So the final order is correct - Page1, Page2.
+        But because Page1 was added first, Shell would set it as a current page.
+
+        To avoid such behavior, we attempt to re-order Add operations by index - to add Page1 with index 0, then Page2 with index1.
+        */
+
         var targetEdits = PhysicalTarget._pendingEdits ??= [];
-        targetEdits.Add(new(EditType.Add, index, childToAdd));
+
+
+        int i;
+        for (i = targetEdits.Count; i > 0; i--)
+        {
+            var previousEdit = targetEdits[i - 1];
+
+            if (previousEdit.Type != EditType.Add)
+                break;
+
+            if (previousEdit.Index < index)
+                break;
+
+            // If previous addition has greater index - we switch them places, and increment previous index.
+            targetEdits[i - 1] = previousEdit with { Index = previousEdit.Index + 1 };
+        }
+
+        targetEdits.Insert(i, new(EditType.Add, index, childToAdd));
         adaptersWithPendingEdits.Add(PhysicalTarget);
     }
 

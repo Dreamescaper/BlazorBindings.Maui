@@ -1,13 +1,15 @@
-﻿<ContentPage Title="Test">
+﻿<ContentPage Title="@Title">
     <NonPageContent />
 </ContentPage>
 
 @code {
-    public static void ValidateContent(MC.Element content)
+    [Parameter] public string Title { get; set; } = "Test";
+
+    public static void ValidateContent(MC.Element content, string title = "Test")
     {
         var contentPage = content as MC.ContentPage;
         Assert.That(contentPage, Is.Not.Null);
-        Assert.That(contentPage.Title, Is.EqualTo("Test"));
+        Assert.That(contentPage.Title, Is.EqualTo(title));
         NonPageContent.ValidateContent(contentPage.Content);
     }
 }
