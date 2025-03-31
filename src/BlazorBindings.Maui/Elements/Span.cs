@@ -6,7 +6,7 @@ namespace BlazorBindings.Maui.Elements;
 public partial class Span : GestureElement, IHandleChildContentText
 {
 
-    private readonly TextSpanContainer _textSpanContainer = new();
+    private readonly TextSpanContainer _textSpanContainer = new(trimWhitespace: false);
 
     [Parameter] public RenderFragment ChildContent { get; set; }
 

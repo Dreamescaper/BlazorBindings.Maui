@@ -43,7 +43,7 @@
     }
 
     [Test]
-    public async Task AddLabelWithSpans()
+    public async Task AddLabelWithSpans_Text()
     {
         var label = await Render<MC.Label>(
     @<Label>
@@ -51,6 +51,31 @@
         <Span TextColor="Colors.Red" Text="with color, " />
         <Span TextDecorations="TextDecorations.Strikethrough">text decorations</Span>
         <Span FontAttributes="MC.FontAttributes.Bold" Text=" and font attributes." />
+    </Label>
+        );
+
+        var spans = label.FormattedText.Spans;
+        Assert.That(spans[0].Text, Is.EqualTo("Label with spans "));
+
+        Assert.That(spans[1].Text, Is.EqualTo("with color, "));
+        Assert.That(spans[1].TextColor, Is.EqualTo(Colors.Red));
+
+        Assert.That(spans[2].Text, Is.EqualTo("text decorations"));
+        Assert.That(spans[2].TextDecorations, Is.EqualTo(TextDecorations.Strikethrough));
+
+        Assert.That(spans[3].Text, Is.EqualTo(" and font attributes."));
+        Assert.That(spans[3].FontAttributes, Is.EqualTo(MC.FontAttributes.Bold));
+    }
+
+    [Test]
+    public async Task AddLabelWithSpans_Content()
+    {
+        var label = await Render<MC.Label>(
+    @<Label>
+        <Span>Label with spans </Span>
+        <Span TextColor="Colors.Red">with color, </Span>
+        <Span TextDecorations="TextDecorations.Strikethrough">text decorations</Span>
+        <Span FontAttributes="MC.FontAttributes.Bold"> and font attributes.</Span>
     </Label>
         );
 
