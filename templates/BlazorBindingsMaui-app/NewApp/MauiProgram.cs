@@ -1,4 +1,6 @@
-﻿namespace NewApp;
+﻿using BlazorBindings.Maui;
+
+namespace NewApp;
 
 public static class MauiProgram
 {
