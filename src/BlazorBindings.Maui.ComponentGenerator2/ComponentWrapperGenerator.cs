@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 using BlazorBindings.Maui.ComponentGenerator.Extensions;
-using BlazorBindings.Maui.ComponentGenerator.Model;
 using BlazorBindings.Maui.ComponentGenerator2.Extensions;
 using Microsoft.CodeAnalysis;
 
@@ -39,8 +38,7 @@ public partial class ComponentWrapperGenerator
         var mauiTypeName = generatedType.GetTypeNameAndAddNamespace(typeToGenerate);
 
         // props
-        var contentProperties = GeneratedPropertyInfo.GetContentProperties(generatedType);
-        var allProperties = new GeneratedPropertyInfo[0];
+        var allProperties = generatedType.Properties;
 
         var propertyDeclarations = string.Concat(allProperties.Select(p => p.GetPropertyDeclaration()));
         if (propertyDeclarations.Length > 0)
@@ -75,12 +73,13 @@ public partial class ComponentWrapperGenerator
                     }
             """;
 
-        var renderAdditionalElementContent = contentProperties.Length == 0 ? "" : $$"""
+        var additionalContents = string.Concat(allProperties.Select(prop => prop.AdditionalContentForProperty()));
+        var renderAdditionalElementContent = additionalContents.Length == 0 ? "" : $$"""
 
 
                     protected override void RenderAdditionalElementContent({{generatedType.GetTypeNameAndAddNamespace("Microsoft.AspNetCore.Components.Rendering", "RenderTreeBuilder")}} builder, ref int sequence)
                     {
-                        base.RenderAdditionalElementContent(builder, ref sequence);{{string.Concat(contentProperties.Select(prop => prop.RenderContentProperty()))}}
+                        base.RenderAdditionalElementContent(builder, ref sequence);{{additionalContents}}
                     }
             """;
 

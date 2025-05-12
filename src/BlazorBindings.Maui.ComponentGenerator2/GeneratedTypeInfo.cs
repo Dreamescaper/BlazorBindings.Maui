@@ -1,4 +1,5 @@
 ﻿using BlazorBindings.Maui.ComponentGenerator.Extensions;
+using BlazorBindings.Maui.ComponentGenerator.Model;
 using Microsoft.CodeAnalysis;
 using System.Text;
 
@@ -13,6 +14,9 @@ public record GeneratedTypeInfo(
     INamedTypeSymbol MauiBaseType,
     IList<UsingStatement> Usings)
 {
+    private List<GeneratedPropertyInfo>? properties;
+    public List<GeneratedPropertyInfo> Properties => properties ??= GetGeneratedProperties();
+
     public string GetTypeNameAndAddNamespace(string @namespace, string typeName)
     {
         var @using = Usings.FirstOrDefault(u => u.Namespace == @namespace);
@@ -90,5 +94,21 @@ public record GeneratedTypeInfo(
         }
         typeNameBuilder.Append('>');
         return typeNameBuilder.ToString();
+    }
+
+    private List<GeneratedPropertyInfo> GetGeneratedProperties()
+    {
+        var properties = new List<GeneratedPropertyInfo>();
+
+        RenderFragmentPropertyInfo.AddContentProperties(properties, this);
+        ValuePropertyInfo.AddValueProperties(properties, this);
+        EventCallbackPropertyInfo.AddEventCallbackProperties(properties, this);
+
+        properties = properties.Where(p => p is ValuePropertyInfo).OrderBy(p => p.ComponentPropertyName)
+            .Concat(properties.OfType<RenderFragmentPropertyInfo>())
+            .Concat(properties.OfType<EventCallbackPropertyInfo>())
+            .ToList();
+
+        return properties;
     }
 }

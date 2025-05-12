@@ -41,6 +41,8 @@ public abstract class GeneratedPropertyInfo
 
     public abstract string GetHandlePropertyCase();
 
+    public virtual string AdditionalContentForProperty() => "";
+
     protected string GetTypeNameAndAddNamespace(ITypeSymbol type)
     {
         return ContainingType.GetTypeNameAndAddNamespace(type);

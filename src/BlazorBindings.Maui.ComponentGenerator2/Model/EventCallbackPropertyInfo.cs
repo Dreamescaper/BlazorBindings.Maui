@@ -59,7 +59,7 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
         return $@"                case nameof({ComponentPropertyName}):
                     if (!Equals({ComponentPropertyName}, value))
                     {{
-                        void {localFunctionName}(object sender, {GetTypeNameAndAddNamespace(EventSymbol.Type)} e){localFunctionBody}
+                        void {localFunctionName}(object sender, {GetTypeNameAndAddNamespace(GetEventArgType(EventSymbol.Type))} e){localFunctionBody}
 
                         {ComponentPropertyName} = ({ComponentType})value;
                         NativeControl.{eventName} -= {localFunctionName};

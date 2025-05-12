@@ -18,6 +18,10 @@ internal static class StringExtensions
             return null;
         }
 
-        return indent + str.Replace("\n", "\n" + indent);
+        var lines = str
+            .Split(["\r\n", "\r", "\n"], StringSplitOptions.TrimEntries)
+            .Select(line => line.Length > 0 ? indent + line : line);
+
+        return string.Join(Environment.NewLine, lines);
     }
 }

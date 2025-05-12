@@ -54,7 +54,7 @@ public static partial class XmlDocExtensions
             if (valueText != null)
             {
                 xmlDocContentBuilder.AppendLine("/// <value>");
-                xmlDocContentBuilder.AppendLine("/// {valueText}");
+                xmlDocContentBuilder.AppendLine($"/// {valueText}");
                 xmlDocContentBuilder.AppendLine("/// </value>");
             }
             xmlDocContents = xmlDocContentBuilder.ToString();

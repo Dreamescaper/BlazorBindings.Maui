@@ -12,8 +12,8 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
     public ValuePropertyInfo(GeneratedTypeInfo generatedType, IPropertySymbol property) : base(generatedType)
     {
         MauiProperty = property;
-        ComponentPropertyName = property.Name.EscapeIdentifierName();
-        ComponentType = generatedType.GetTypeNameAndAddNamespace(property.Type);
+        ComponentPropertyName = GetComponentPropertyName(generatedType, property);
+        ComponentType = GetComponentPropertyTypeName(property, generatedType, makeNullable: true);
     }
 
     public override string GetHandlePropertyCase()
@@ -105,6 +105,15 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
 
         static bool IsDisallowed(IPropertySymbol prop) => DisallowedComponentTypes.Contains(prop.Type.GetFullName());
         static bool IsCommandParameter(IPropertySymbol prop) => prop.Type.SpecialType == SpecialType.System_Object && prop.Name.EndsWith("CommandParameter");
+    }
+
+
+    private static string GetComponentPropertyName(GeneratedTypeInfo containingType, IPropertySymbol mauiProperty)
+    {
+        if (containingType.Settings.Aliases.TryGetValue(mauiProperty.Name, out var aliasName))
+            return aliasName;
+
+        return mauiProperty.Name.EscapeIdentifierName();
     }
 
 

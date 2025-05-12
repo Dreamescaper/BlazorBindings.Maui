@@ -20,6 +20,9 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
     {
         MauiProperty = property;
         MauiPropertyType = property.Type;
+
+        ComponentPropertyName = GetComponentPropertyName(containingType, property);
+        ComponentType = GetComponentPropertyTypeName(property, containingType, isRenderFragmentProperty: true);
     }
 
     public RenderFragmentPropertyInfo(GeneratedTypeInfo containingType) : base(containingType)
@@ -37,7 +40,7 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
 ";
     }
 
-    public string RenderContentProperty()
+    public override string AdditionalContentForProperty()
     {
         // Handling the case when ChildContent property is created for the IList element type itself.
         if (MauiProperty is null && IsIList(MauiPropertyType, out var itemType))
@@ -83,6 +86,19 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
         }
     }
 
+    private static string GetComponentPropertyName(GeneratedTypeInfo containingType, IPropertySymbol mauiProperty)
+    {
+        if (containingType.Settings.Aliases.TryGetValue(mauiProperty.Name, out var aliasName))
+            return aliasName;
+
+        if (mauiProperty.ContainingType.GetAttributes().Any(a => a.AttributeClass?.Name == "ContentPropertyAttribute"
+            && Equals(a.ConstructorArguments.FirstOrDefault().Value, mauiProperty.Name)))
+        {
+            return "ChildContent";
+        }
+
+        return mauiProperty.Name.EscapeIdentifierName();
+    }
 
     private static bool IsReferenceProperty(GeneratedTypeInfo containingType, IPropertySymbol prop)
     {

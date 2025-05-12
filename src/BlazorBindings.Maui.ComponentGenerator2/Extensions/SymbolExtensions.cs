@@ -146,7 +146,7 @@ internal static class SymbolExtensions
     public static bool IsAssignableToType(this ITypeSymbol typeSymbol, string toTypeName, Compilation compilation)
     {
         var toType = compilation.GetTypeByMetadataName(toTypeName);
-        return toType != null && typeSymbol.IsAssignableToType(typeSymbol, compilation);
+        return toType != null && typeSymbol.IsAssignableToType(toType, compilation);
     }
 
 
