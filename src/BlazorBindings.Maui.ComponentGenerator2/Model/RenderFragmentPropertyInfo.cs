@@ -12,26 +12,22 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
 
     public override ISymbol? MemberSymbol => MauiProperty;
 
-    private static readonly string[] ContentTypes =
-    [
-        "Microsoft.Maui.IElement",
-        "Microsoft.Maui.Controls.BindableObject",
-        "Microsoft.Maui.Controls.IGestureRecognizer",
-        "Microsoft.Maui.Controls.ControlTemplate",
-        "Microsoft.Maui.Controls.DataTemplate",
-        "Microsoft.Maui.Graphics.IShape",
-    ];
-
-    private static readonly string[] NonContentTypes =
-    [
-        "Microsoft.Maui.Controls.FormattedString",
-        "Microsoft.Maui.Controls.ImageSource",
-        "Microsoft.Maui.Controls.ItemsLayout"
-    ];
-
     private bool IsControlTemplate => MauiPropertyType?.GetFullName() == "Microsoft.Maui.Controls.ControlTemplate";
     private bool IsDataTemplate => MauiPropertyType?.GetFullName() == "Microsoft.Maui.Controls.DataTemplate";
     private bool ForceContent => ContainingType.Settings.ContentProperties.Contains(MauiProperty?.Name!);
+
+    public RenderFragmentPropertyInfo(GeneratedTypeInfo containingType, IPropertySymbol property) : base(containingType)
+    {
+        MauiProperty = property;
+        MauiPropertyType = property.Type;
+    }
+
+    public RenderFragmentPropertyInfo(GeneratedTypeInfo containingType) : base(containingType)
+    {
+        MauiPropertyType = containingType.MauiType;
+        ComponentPropertyName = "ChildContent";
+        ComponentType = "RenderFragment";
+    }
 
     public override string GetHandlePropertyCase()
     {
@@ -48,36 +44,42 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
         {
             // RenderTreeBuilderHelper.AddListContentProperty<MC.TableSection, MC.Cell>(builder, sequence++, ChildContent, x => x);
             var itemTypeName = GetTypeNameAndAddNamespace(itemType);
-            return $"\r\n            RenderTreeBuilderHelper.AddListContentProperty<{MauiContainingTypeName}, {itemTypeName}>(builder, sequence++, {ComponentPropertyName}, x => x);";
+            return $"\r\n            RenderTreeBuilderHelper.AddListContentProperty<{MauiContainingTypeName}, {itemTypeName}>(" +
+                $"builder, sequence++, {ComponentPropertyName}, x => x);";
         }
 
         if (IsControlTemplate)
         {
             // RenderTreeBuilderHelper.AddControlTemplateProperty<MC.TemplatedView>(builder, sequence++, ControlTemplate, (x, template) => x.ControlTemplate = template);
-            return $"\r\n            RenderTreeBuilderHelper.AddControlTemplateProperty<{MauiContainingTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, template) => x.{MauiProperty.Name} = template);";
+            return $"\r\n            RenderTreeBuilderHelper.AddControlTemplateProperty<{MauiContainingTypeName}>(" +
+                $"builder, sequence++, {ComponentPropertyName}, (x, template) => x.{MauiProperty.Name} = template);";
         }
         else if (IsDataTemplate && !IsGeneric)
         {
             // RenderTreeBuilderHelper.AddDataTemplateProperty<MC.Shell>(builder, sequence++, FlyoutContent, (x, template) => x.FlyoutContentTemplate = template);
-            return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty<{MauiContainingTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, template) => x.{MauiProperty.Name} = template);";
+            return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty<{MauiContainingTypeName}>(" +
+                $"builder, sequence++, {ComponentPropertyName}, (x, template) => x.{MauiProperty.Name} = template);";
         }
         else if (IsDataTemplate && IsGeneric)
         {
             // RenderTreeBuilderHelper.AddDataTemplateProperty<MC.ItemsView, T>(builder, sequence++, ItemTemplate, (x, template) => x.ItemTemplate = template);
             var itemTypeName = GenericTypeArgument is null ? "T" : GetTypeNameAndAddNamespace(GenericTypeArgument);
-            return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty<{MauiContainingTypeName}, {itemTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, template) => x.{MauiProperty.Name} = template);";
+            return $"\r\n            RenderTreeBuilderHelper.AddDataTemplateProperty<{MauiContainingTypeName}, {itemTypeName}>(" +
+                $"builder, sequence++, {ComponentPropertyName}, (x, template) => x.{MauiProperty.Name} = template);";
         }
         else if (!ForceContent && IsIList(MauiPropertyType, out itemType) && !IsElement(Compilation, MauiPropertyType))
         {
             // RenderTreeBuilderHelper.AddListContentProperty<MC.Layout, IView>(builder, sequence++, ChildContent, x => x.Children);
             var itemTypeName = GetTypeNameAndAddNamespace(itemType);
-            return $"\r\n            RenderTreeBuilderHelper.AddListContentProperty<{MauiContainingTypeName}, {itemTypeName}>(builder, sequence++, {ComponentPropertyName}, x => x.{MauiProperty.Name});";
+            return $"\r\n            RenderTreeBuilderHelper.AddListContentProperty<{MauiContainingTypeName}, {itemTypeName}>(" +
+                $"builder, sequence++, {ComponentPropertyName}, x => x.{MauiProperty.Name});";
         }
         else
         {
             // RenderTreeBuilderHelper.AddContentProperty<MC.ContentPage>(builder, sequence++, ChildContent, (x, value) => x.Content = (MC.View)value);
             var propTypeName = GetTypeNameAndAddNamespace(MauiPropertyType);
-            return $"\r\n            RenderTreeBuilderHelper.AddContentProperty<{MauiContainingTypeName}>(builder, sequence++, {ComponentPropertyName}, (x, value) => x.{MauiProperty.Name} = ({propTypeName})value);";
+            return $"\r\n            RenderTreeBuilderHelper.AddContentProperty<{MauiContainingTypeName}>(" +
+                $"builder, sequence++, {ComponentPropertyName}, (x, value) => x.{MauiProperty.Name} = ({propTypeName})value);";
         }
     }
 
@@ -198,18 +200,28 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
             && (!IsIList(containingType.MauiBaseType, out _))
             && IsContent(containingType.Compilation, itemType))
         {
-            var thisProperty = new RenderFragmentPropertyInfo(
-                containingType,
-                containingType.MauiType,
-                null,
-                containingType.GetTypeNameAndAddNamespace(containingType.MauiType),
-                "ChildContent",
-                "RenderFragment");
-
+            var thisProperty = new RenderFragmentPropertyInfo(containingType);
             thisProperty.IsHidingProperty = IfChildContentHiding(containingType.MauiBaseType, containingType.Compilation);
 
             generatedProperties.Add(thisProperty);
         }
 
     }
+
+    private static readonly string[] ContentTypes =
+    [
+        "Microsoft.Maui.IElement",
+        "Microsoft.Maui.Controls.BindableObject",
+        "Microsoft.Maui.Controls.IGestureRecognizer",
+        "Microsoft.Maui.Controls.ControlTemplate",
+        "Microsoft.Maui.Controls.DataTemplate",
+        "Microsoft.Maui.Graphics.IShape",
+    ];
+
+    private static readonly string[] NonContentTypes =
+    [
+        "Microsoft.Maui.Controls.FormattedString",
+        "Microsoft.Maui.Controls.ImageSource",
+        "Microsoft.Maui.Controls.ItemsLayout"
+    ];
 }

@@ -9,8 +9,8 @@ public abstract class GeneratedPropertyInfo
 {
     public abstract ISymbol? MemberSymbol { get; }
 
-    public string ComponentPropertyName { get; set; }
-    public string ComponentType { get; set; }
+    public string ComponentPropertyName { get; init; }
+    public string ComponentType { get; init; }
     public bool IsHidingProperty { get; set; }
     public bool IsGeneric => GenericTypeArgument != null;
     public INamedTypeSymbol? GenericTypeArgument { get; }
@@ -18,7 +18,7 @@ public abstract class GeneratedPropertyInfo
     public GeneratedTypeInfo ContainingType { get; }
     public Compilation Compilation => ContainingType.Compilation;
 
-    public GeneratedPropertyInfo(GeneratedTypeInfo containingType)
+    protected GeneratedPropertyInfo(GeneratedTypeInfo containingType)
     {
         ContainingType = containingType;
         MauiContainingTypeName = GetTypeNameAndAddNamespace(containingType.MauiType);
@@ -26,13 +26,17 @@ public abstract class GeneratedPropertyInfo
 
     public string GetPropertyDeclaration()
     {
-        var newModifier = IsHidingProperty ? "new " : "";
-
         const string indent = "        ";
 
-        var xmlDocContents = MemberSymbol?.GetXmlDocContents()?.Indent(indent) ?? "";
-        return $@"{xmlDocContents}{indent}[Parameter] public {newModifier}{ComponentType} {ComponentPropertyName} {{ get; set; }}
+        var newModifier = IsHidingProperty ? "new " : "";
+        return $@"{GetXmlDocs()}{indent}[Parameter] public {newModifier}{ComponentType} {ComponentPropertyName} {{ get; set; }}
 ";
+    }
+
+    protected virtual string GetXmlDocs()
+    {
+        const string indent = "        ";
+        return MemberSymbol?.GetXmlDocContents()?.Indent(indent) ?? "";
     }
 
     public abstract string GetHandlePropertyCase();
@@ -89,4 +93,52 @@ public abstract class GeneratedPropertyInfo
             .Where(m => !generatedType.Settings.Exclude.Contains(m.Name))
             .OfType<T>();
     }
+
+    protected static string GetComponentPropertyTypeName(IPropertySymbol propertySymbol, GeneratedTypeInfo containingType, bool isRenderFragmentProperty = false, bool makeNullable = false)
+    {
+        var typeSymbol = propertySymbol.Type;
+        var isGeneric = containingType.Settings.GenericProperties.TryGetValue(propertySymbol.Name, out var typeArgument);
+        var typeArgumentName = typeArgument is null ? "T" : containingType.GetTypeNameAndAddNamespace(typeArgument);
+
+        if (typeSymbol is not INamedTypeSymbol namedTypeSymbol)
+        {
+            return containingType.GetTypeNameAndAddNamespace(typeSymbol);
+        }
+        else if (namedTypeSymbol.IsGenericType
+            && namedTypeSymbol.ConstructedFrom.SpecialType == SpecialType.System_Collections_Generic_IList_T
+            && namedTypeSymbol.TypeArguments[0].SpecialType == SpecialType.System_String)
+        {
+            // Lists of strings are special-cased because they are handled specially by the handlers as a comma-separated list
+            return "string";
+        }
+        else if (isRenderFragmentProperty)
+        {
+            return isGeneric ? $"RenderFragment<{typeArgumentName}>" : "RenderFragment";
+        }
+        else if (makeNullable && namedTypeSymbol.IsValueType && !namedTypeSymbol.IsNullableStruct())
+        {
+            return containingType.GetTypeNameAndAddNamespace(typeSymbol) + "?";
+        }
+        else if (namedTypeSymbol.SpecialType == SpecialType.System_Collections_IEnumerable && isGeneric)
+        {
+            return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", $"IEnumerable<{typeArgumentName}>");
+        }
+        else if (namedTypeSymbol.GetFullName() == "System.Collections.IList" && isGeneric)
+        {
+            return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", $"IList<{typeArgumentName}>");
+        }
+        else if (namedTypeSymbol.GetFullName() == "Microsoft.Maui.Controls.BindingBase" && isGeneric)
+        {
+            return "Func<T, string>";
+        }
+        else if (namedTypeSymbol.SpecialType == SpecialType.System_Object && isGeneric)
+        {
+            return typeArgumentName;
+        }
+        else
+        {
+            return containingType.GetTypeNameAndAddNamespace(namedTypeSymbol);
+        }
+    }
+
 }
