@@ -12,8 +12,8 @@ public abstract class GeneratedPropertyInfo
     public string ComponentPropertyName { get; init; }
     public string ComponentType { get; init; }
     public bool IsHidingProperty { get; set; }
-    public bool IsGeneric => GenericTypeArgument != null;
-    public INamedTypeSymbol? GenericTypeArgument { get; }
+    public bool IsGeneric { get; init; }
+    public INamedTypeSymbol? GenericTypeArgument { get; init; }
     public string MauiContainingTypeName { get; }
     public GeneratedTypeInfo ContainingType { get; }
     public Compilation Compilation => ContainingType.Compilation;

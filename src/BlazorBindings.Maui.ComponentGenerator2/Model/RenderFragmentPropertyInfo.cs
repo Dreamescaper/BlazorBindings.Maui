@@ -23,6 +23,9 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
 
         ComponentPropertyName = GetComponentPropertyName(containingType, property);
         ComponentType = GetComponentPropertyTypeName(property, containingType, isRenderFragmentProperty: true);
+
+        IsGeneric = containingType.Settings.GenericProperties.TryGetValue(property.Name, out var genericTypeArgument);
+        GenericTypeArgument = genericTypeArgument;
     }
 
     public RenderFragmentPropertyInfo(GeneratedTypeInfo containingType) : base(containingType)

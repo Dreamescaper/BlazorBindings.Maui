@@ -14,12 +14,15 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
         MauiProperty = property;
         ComponentPropertyName = GetComponentPropertyName(generatedType, property);
         ComponentType = GetComponentPropertyTypeName(property, generatedType, makeNullable: true);
+
+        IsGeneric = generatedType.Settings.GenericProperties.TryGetValue(property.Name, out var genericTypeArgument);
+        GenericTypeArgument = genericTypeArgument;
     }
 
     public override string GetHandlePropertyCase()
     {
         var propName = ComponentPropertyName;
-        var mauiPropertyName = MauiProperty.Name;
+        var mauiPropertyName = MauiProperty.Name.EscapeIdentifierName();
 
         return $@"                case nameof({propName}):
                     if (!Equals({propName}, value))
@@ -79,7 +82,7 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
                 var propName = prop.Name.Replace("Brush", "") + "Color";
 
                 if (prop.ContainingType.GetProperty(propName, includeBaseTypes: true) != null)
-                    return;
+                    continue;
 
                 generatedProperties.Add(new ValuePropertyInfo(generatedType, prop)
                 {
@@ -87,12 +90,12 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
                     ComponentType = generatedType.GetTypeNameAndAddNamespace("Microsoft.Maui.Graphics", "Color")
                 });
 
-                return;
+                continue;
             }
 
             // Check if already added as RenderFragment or EventCallback.
-            if (generatedProperties.Any(p => p.ComponentPropertyName == prop.Name))
-                return;
+            if (generatedProperties.Any(p => p.MemberSymbol?.Name == prop.Name))
+                continue;
 
             generatedProperties.Add(new ValuePropertyInfo(generatedType, prop));
         }

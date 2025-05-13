@@ -10,7 +10,10 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
     public IEventSymbol EventSymbol { get; private init; }
     public IPropertySymbol? BindProperty { get; private init; }
 
-    public override ISymbol? MemberSymbol => EventSymbol;
+
+    // TODO revert
+    public override ISymbol? MemberSymbol => null;
+    //public override ISymbol? MemberSymbol => EventSymbol;
 
     public EventCallbackPropertyInfo(
         GeneratedTypeInfo containingType,
