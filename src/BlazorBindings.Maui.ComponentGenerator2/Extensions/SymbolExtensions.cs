@@ -173,4 +173,18 @@ internal static class SymbolExtensions
     {
         return TypeToCSharpName.TryGetValue(typeSymbol.SpecialType, out var typeName) ? typeName : null;
     }
+
+    public static int GetInheritanceDepth(this ITypeSymbol typeSymbol)
+    {
+        var depth = 0;
+        var currentType = typeSymbol;
+
+        while (currentType != null)
+        {
+            depth++;
+            currentType = currentType.BaseType;
+        }
+
+        return depth;
+    }
 }

@@ -48,14 +48,24 @@ public class Program
                     DeleteExistingFiles(o.OutPath);
                 }
 
-                foreach (var generatedType in typesToGenerate)
-                {
-                    var (groupName, name, source) = componentWrapperGenerator.GenerateComponentFile(compilation, generatedType);
+                List<GeneratedTypeInfo> generatedTypes = [];
 
-                    var fileName = $"{name}.generated.cs";
-                    var path = string.IsNullOrEmpty(groupName)
+                // We order types by inheritance depth to make sure that parent type is processed
+                // before descending type.
+                foreach (var typeSettings in typesToGenerate.OrderBy(type => type.TypeSymbol.GetInheritanceDepth()))
+                {
+                    var generatedType = GeneratedTypeInfo.Create(compilation, typeSettings, generatedTypes);
+                    generatedTypes.Add(generatedType);
+                }
+
+                foreach (var generatedType in generatedTypes)
+                {
+                    var source = componentWrapperGenerator.GenerateComponentFileSource(generatedType);
+
+                    var fileName = $"{generatedType.TypeName}.generated.cs";
+                    var path = string.IsNullOrEmpty(generatedType.ComponentGroup)
                         ? Path.Combine(o.OutPath, fileName)
-                        : Path.Combine(o.OutPath, groupName, fileName);
+                        : Path.Combine(o.OutPath, generatedType.ComponentGroup, fileName);
 
                     Directory.GetParent(path).Create();
 
@@ -147,12 +157,6 @@ public class Program
             });
 
         typesToGenerate.AddRange(typesByAssembly);
-
-        foreach (var info in typesToGenerate)
-        {
-            var baseTypeInfo = typesToGenerate.FirstOrDefault(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, info.TypeSymbol?.BaseType));
-            info.BaseTypeInfo = baseTypeInfo;
-        }
 
         return [.. typesToGenerate];
     }
