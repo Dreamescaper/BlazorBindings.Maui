@@ -119,8 +119,6 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
             : $" => InvokeEventCallback({ComponentPropertyName}, {argument});";
     }
 
-
-
     protected override string GetXmlDocs()
     {
         return PropertyChangedEvent ? string.Empty : base.GetXmlDocs();
@@ -146,7 +144,6 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
         {
             var bindProperty = GetBindProperty(eventInfo, generatedProperties);
             var property = new EventCallbackPropertyInfo(containingType, eventInfo, bindProperty);
-            property.IsHidingProperty = eventInfo.IsHidingMember() || IsHidingCustomViewEvents(eventInfo);
             generatedProperties.Add(property);
         }
     }
@@ -198,12 +195,5 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
     private static ITypeSymbol GetEventArgType(ITypeSymbol eventHandlerType)
     {
         return eventHandlerType.GetMethod("Invoke")!.Parameters[1].Type;
-    }
-
-    private static bool IsHidingCustomViewEvents(IEventSymbol eventSymbol)
-    {
-        // View has some events defines by us. We need to add 'new' to them as well.
-        return eventSymbol.ContainingType.GetBaseTypes().Any(t => t.Name == "View") &&
-            eventSymbol.Name is "Tap" or "DoubleTap" or "Swipe" or "PinchUpdate" or "PanUpdate";
     }
 }

@@ -171,29 +171,6 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
         }
     }
 
-    private static bool IfChildContentHiding(ITypeSymbol? baseType, Compilation compilation)
-    {
-        var currentType = baseType;
-
-        while (currentType != null)
-        {
-            if (currentType.GetAttributes().Any(a => a.AttributeClass?.Name == "ContentPropertyAttribute"))
-            {
-                return true;
-            }
-
-            currentType = currentType.BaseType;
-        }
-
-        if (IsIList(baseType, out var itemType) && IsContent(compilation, itemType))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-
     public static void AddContentProperties(List<GeneratedPropertyInfo> generatedProperties, GeneratedTypeInfo containingType)
     {
         var componentInfo = containingType.Settings;
@@ -205,11 +182,6 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
         foreach (var prop in propInfos)
         {
             var generatedInfo = new RenderFragmentPropertyInfo(containingType, prop);
-
-            generatedInfo.IsHidingProperty = generatedInfo.ComponentPropertyName == "ChildContent"
-                ? IfChildContentHiding(containingType.MauiBaseType, containingType.Compilation)
-                : prop.IsHidingMember();
-
             generatedProperties.Add(generatedInfo);
         }
 
@@ -220,8 +192,6 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
             && IsContent(containingType.Compilation, itemType))
         {
             var thisProperty = new RenderFragmentPropertyInfo(containingType);
-            thisProperty.IsHidingProperty = IfChildContentHiding(containingType.MauiBaseType, containingType.Compilation);
-
             generatedProperties.Add(thisProperty);
         }
 

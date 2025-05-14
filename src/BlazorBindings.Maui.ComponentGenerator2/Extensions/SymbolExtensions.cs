@@ -103,22 +103,6 @@ internal static class SymbolExtensions
         }
     }
 
-    public static bool IsHidingMember(this IPropertySymbol symbol)
-    {
-        var currentType = symbol.ContainingType?.BaseType;
-        var baseProperty = currentType.GetProperty(symbol.Name, includeBaseTypes: true);
-        return baseProperty != null
-            && baseProperty.DeclaredAccessibility == symbol.DeclaredAccessibility;
-    }
-
-    public static bool IsHidingMember(this IEventSymbol symbol)
-    {
-        var currentType = symbol.ContainingType?.BaseType;
-        var baseEvent = currentType.GetEvent(symbol.Name, includeBaseTypes: true);
-        return baseEvent != null
-            && baseEvent.DeclaredAccessibility == symbol.DeclaredAccessibility;
-    }
-
     public static bool IsNullableStruct(this INamedTypeSymbol symbol)
     {
         return symbol.IsGenericType && symbol.ConstructedFrom.SpecialType == SpecialType.System_Nullable_T;

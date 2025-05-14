@@ -14,6 +14,7 @@ public record GeneratedTypeInfo(
     string BaseTypeName,
     INamedTypeSymbol MauiType,
     GeneratedTypeInfo? GeneratedBaseType,
+    INamedTypeSymbol? BaseTypeSymbol,
     INamedTypeSymbol MauiBaseType,
     IList<UsingStatement> Usings)
 {
@@ -83,6 +84,24 @@ public record GeneratedTypeInfo(
         return GetTypeNameAndAddNamespace(nsName, FormatTypeName(namedType));
     }
 
+    public bool BaseTypesHaveProperty(string propertyName)
+    {
+        if (BaseTypeSymbol != null)
+        {
+            return BaseTypeSymbol.GetProperty(propertyName, includeBaseTypes: true) != null;
+        }
+
+        if (GeneratedBaseType != null)
+        {
+            if (GeneratedBaseType.Properties.Any(p => p.ComponentPropertyName == propertyName))
+                return true;
+
+            return GeneratedBaseType.BaseTypesHaveProperty(propertyName);
+        }
+
+        return false;
+    }
+
     private string FormatTypeName(INamedTypeSymbol namedType)
     {
         if (!namedType.IsGenericType)
@@ -130,12 +149,17 @@ public record GeneratedTypeInfo(
         var componentName = generatedInfo.TypeAlias ?? typeToGenerate.Name;
         var componentNamespace = GetComponentNamespace(typeToGenerate);
 
-        var baseType = GetBaseTypeOfInterest(typeToGenerate);
-        var generatedBaseType = generatedTypes.FirstOrDefault(t => SymbolEqualityComparer.Default.Equals(t.MauiType, baseType));
-        var componentBaseName = generatedBaseType?.TypeName ?? baseType.Name;
+        var mauiBaseType = GetBaseTypeOfInterest(typeToGenerate);
+        var generatedBaseType = generatedTypes.FirstOrDefault(t => SymbolEqualityComparer.Default.Equals(t.MauiType, mauiBaseType));
+        var componentBaseName = generatedBaseType?.TypeName ?? mauiBaseType.Name;
+        var baseTypeNamespace = GetComponentNamespace(mauiBaseType);
 
-        if (componentNamespace != GetComponentNamespace(baseType))
-            componentBaseName = $"{GetComponentNamespace(baseType)}.{componentBaseName}";
+        var baseTypeSymbol = generatedBaseType != null
+            ? null
+            : compilation.GetTypeByMetadataName($"{baseTypeNamespace}.{componentBaseName}");
+
+        if (componentNamespace != baseTypeNamespace)
+            componentBaseName = $"{baseTypeNamespace}.{componentBaseName}";
 
         var usings = GetDefaultUsings(typeToGenerate, componentNamespace);
 
@@ -148,7 +172,8 @@ public record GeneratedTypeInfo(
             componentBaseName,
             typeToGenerate,
             generatedBaseType,
-            baseType,
+            baseTypeSymbol,
+            mauiBaseType,
             usings);
     }
 
@@ -204,7 +229,6 @@ public record GeneratedTypeInfo(
 
         return usings;
     }
-
 
     /// <summary>
     /// Finds the next non-generic base type of the specified type. This matches the Mobile Blazor Bindings
