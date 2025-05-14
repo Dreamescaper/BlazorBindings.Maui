@@ -93,7 +93,7 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
                 continue;
             }
 
-            // Check if already added as RenderFragment or EventCallback.
+            // Check if already added as RenderFragment.
             if (generatedProperties.Any(p => p.MemberSymbol?.Name == prop.Name))
                 continue;
 
@@ -106,7 +106,7 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
         return HasPublicSetter(prop)
             && (IsExplicitlyAllowed(prop, generatedType) || (!IsDisallowed(prop) && !IsCommandParameter(prop)));
 
-        static bool IsDisallowed(IPropertySymbol prop) => DisallowedComponentTypes.Contains(prop.Type.GetFullName());
+        bool IsDisallowed(IPropertySymbol prop) => DisallowedComponentTypes.Any(nonContentType => prop.Type.IsAssignableToType(nonContentType, generatedType.Compilation));
         static bool IsCommandParameter(IPropertySymbol prop) => prop.Type.SpecialType == SpecialType.System_Object && prop.Name.EndsWith("CommandParameter");
     }
 
@@ -122,30 +122,16 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
 
     private static readonly List<string> DisallowedComponentTypes =
     [
-        "Microsoft.Maui.Controls.Button.ButtonContentLayout", // TODO: This is temporary; should be possible to add support later
-        "Microsoft.Maui.Controls.ColumnDefinitionCollection",
         "Microsoft.Maui.Controls.PointCollection",
         "Microsoft.Maui.Controls.DoubleCollection",
-        "Microsoft.Maui.Controls.ControlTemplate",
-        "Microsoft.Maui.Controls.DataTemplate",
-        "Microsoft.Maui.Controls.Element",
+        "Microsoft.Maui.Controls.FormattedString",
+        "System.Windows.Input.ICommand",
         "Microsoft.Maui.Font", // TODO: This is temporary; should be possible to add support later
         "Microsoft.Maui.Graphics.Font", // TODO: This is temporary; should be possible to add support later
-        "Microsoft.Maui.Controls.FormattedString",
-        "Microsoft.Maui.Controls.Shapes.Geometry",
-        "Microsoft.Maui.Controls.GradientStopCollection",
-        "System.Windows.Input.ICommand",
-        "Microsoft.Maui.Controls.Command",
-        "Microsoft.Maui.Controls.Page",
-        "Microsoft.Maui.Controls.RowDefinitionCollection",
-        "Microsoft.Maui.Controls.Shadow",
-        "Microsoft.Maui.Controls.ShellContent",
-        "Microsoft.Maui.Controls.ShellItem",
-        "Microsoft.Maui.Controls.ShellSection",
         "Microsoft.Maui.Controls.IVisual",
-        "Microsoft.Maui.Controls.View",
-        "Microsoft.Maui.Graphics.IShape",
+        "Microsoft.Maui.Controls.NavigableElement",
         "Microsoft.Maui.IView",
+        "Microsoft.Maui.Graphics.IShape",
         "Microsoft.Maui.IViewHandler"
     ];
 }
