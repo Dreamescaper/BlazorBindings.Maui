@@ -42,12 +42,6 @@ public class Program
                 Console.WriteLine($"Generating {typesToGenerate.Length} files.");
 
                 var componentWrapperGenerator = new ComponentWrapperGenerator();
-
-                if (!o.KeepExistingFiles)
-                {
-                    DeleteExistingFiles(o.OutPath);
-                }
-
                 List<GeneratedTypeInfo> generatedTypes = [];
 
                 // We order types by inheritance depth to make sure that parent type is processed
@@ -56,6 +50,11 @@ public class Program
                 {
                     var generatedType = GeneratedTypeInfo.Create(compilation, typeSettings, generatedTypes);
                     generatedTypes.Add(generatedType);
+                }
+
+                if (!o.KeepExistingFiles)
+                {
+                    DeleteExistingFiles(o.OutPath);
                 }
 
                 foreach (var generatedType in generatedTypes)
