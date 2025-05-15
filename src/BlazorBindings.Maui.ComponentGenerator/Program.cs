@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using BlazorBindings.Maui.ComponentGenerator.Extensions;
+using BlazorBindings.Maui.ComponentGenerator.Model;
 using CommandLine;
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;

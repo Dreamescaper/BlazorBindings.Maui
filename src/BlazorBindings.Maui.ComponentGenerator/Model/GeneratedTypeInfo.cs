@@ -1,9 +1,8 @@
 ﻿using BlazorBindings.Maui.ComponentGenerator.Extensions;
-using BlazorBindings.Maui.ComponentGenerator.Model;
 using Microsoft.CodeAnalysis;
 using System.Text;
 
-namespace BlazorBindings.Maui.ComponentGenerator;
+namespace BlazorBindings.Maui.ComponentGenerator.Model;
 
 public record GeneratedTypeInfo(
     Compilation Compilation,
@@ -157,6 +156,28 @@ public record GeneratedTypeInfo(
         var baseTypeSymbol = generatedBaseType != null
             ? null
             : compilation.GetTypeByMetadataName($"{baseTypeNamespace}.{componentBaseName}");
+
+        // If baseTypeSymbol is from generated file from current assembly - that means that
+        // it was generated previously by this tool, and should be ignored.
+        if (baseTypeSymbol != null
+            && SymbolEqualityComparer.Default.Equals(baseTypeSymbol.ContainingAssembly, compilation.Assembly)
+            && baseTypeSymbol.Locations.Any(l => l.SourceTree?.FilePath.EndsWith("generated.cs") == true))
+        {
+            baseTypeSymbol = null;
+        }
+
+        // Generate base type if not included explicitly
+        if (generatedBaseType is null && baseTypeSymbol is null)
+        {
+            var baseGeneratedInfo = new GenerateComponentSettings
+            {
+                FileHeader = generatedInfo.FileHeader,
+                TypeSymbol = mauiBaseType
+            };
+            generatedBaseType = Create(compilation, baseGeneratedInfo, generatedTypes);
+
+            generatedTypes.Add(generatedBaseType);
+        }
 
         if (componentNamespace != baseTypeNamespace)
             componentBaseName = $"{baseTypeNamespace}.{componentBaseName}";
