@@ -167,6 +167,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// Specifies the stroke.The default value is Color.FromArgb("#79747E").
         /// </value>
         [Parameter] public RenderFragment Stroke { get; set; }
+        /// <summary>
+        /// It represents the Clicked event handler. This clicked event is hooked when clicking the ButtonBase control.
+        /// </summary>
         [Parameter] public EventCallback OnClick { get; set; }
 
         public new SMT.ButtonBase NativeControl => (SMT.ButtonBase)((BindableObject)this).NativeControl;

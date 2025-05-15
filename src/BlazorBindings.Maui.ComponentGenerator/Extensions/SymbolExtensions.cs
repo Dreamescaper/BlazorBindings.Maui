@@ -1,11 +1,12 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using System.ComponentModel;
 
 namespace BlazorBindings.Maui.ComponentGenerator.Extensions;
 
 internal static class SymbolExtensions
 {
-    public static IMethodSymbol GetMethod(this ITypeSymbol typeSymbol, string method)
+    public static IMethodSymbol? GetMethod(this ITypeSymbol typeSymbol, string method)
     {
         return typeSymbol.GetMembers(method).FirstOrDefault() as IMethodSymbol;
     }
@@ -20,7 +21,7 @@ internal static class SymbolExtensions
         }
     }
 
-    public static ISymbol GetMember(this ITypeSymbol typeSymbol, string memberName, bool includeBaseTypes)
+    public static ISymbol? GetMember(this ITypeSymbol typeSymbol, string memberName, bool includeBaseTypes)
     {
         var currentType = typeSymbol;
 
@@ -38,14 +39,14 @@ internal static class SymbolExtensions
         return null;
     }
 
-    public static IEventSymbol GetEvent(this ITypeSymbol typeSymbol, string eventName, bool includeBaseTypes)
+    public static IEventSymbol? GetEvent(this ITypeSymbol typeSymbol, string eventName, bool includeBaseTypes)
     {
-        return GetMember(typeSymbol, eventName, includeBaseTypes) as IEventSymbol;
+        return typeSymbol.GetMember(eventName, includeBaseTypes) as IEventSymbol;
     }
 
-    public static IPropertySymbol GetProperty(this ITypeSymbol typeSymbol, string propName, bool includeBaseTypes = false)
+    public static IPropertySymbol? GetProperty(this ITypeSymbol typeSymbol, string propName, bool includeBaseTypes = false)
     {
-        return GetMember(typeSymbol, propName, includeBaseTypes) as IPropertySymbol;
+        return typeSymbol.GetMember(propName, includeBaseTypes) as IPropertySymbol;
     }
 
     public static IEnumerable<INamedTypeSymbol> GetAllTypes(this INamespaceSymbol namespaceSymbol)
@@ -57,7 +58,7 @@ internal static class SymbolExtensions
 
             if (nsOrType is INamespaceSymbol ns)
             {
-                foreach (var type in GetAllTypes(ns))
+                foreach (var type in ns.GetAllTypes())
                     yield return type;
             }
         }
@@ -102,22 +103,6 @@ internal static class SymbolExtensions
         }
     }
 
-    public static bool IsHidingMember(this IPropertySymbol symbol)
-    {
-        var currentType = symbol.ContainingType?.BaseType;
-        var baseProperty = currentType.GetProperty(symbol.Name, includeBaseTypes: true);
-        return baseProperty != null
-            && baseProperty.DeclaredAccessibility == symbol.DeclaredAccessibility;
-    }
-
-    public static bool IsHidingMember(this IEventSymbol symbol)
-    {
-        var currentType = symbol.ContainingType?.BaseType;
-        var baseEvent = currentType.GetEvent(symbol.Name, includeBaseTypes: true);
-        return baseEvent != null
-            && baseEvent.DeclaredAccessibility == symbol.DeclaredAccessibility;
-    }
-
     public static bool IsNullableStruct(this INamedTypeSymbol symbol)
     {
         return symbol.IsGenericType && symbol.ConstructedFrom.SpecialType == SpecialType.System_Nullable_T;
@@ -134,6 +119,20 @@ internal static class SymbolExtensions
         return !propInfo.GetAttributes().Any(a => a.AttributeClass.Name == nameof(EditorBrowsableAttribute)
             && a.ConstructorArguments.FirstOrDefault().Value?.Equals((int)EditorBrowsableState.Never) == true);
     }
+
+    public static bool IsAssignableToType(this ITypeSymbol type, ITypeSymbol toType, Compilation compilation)
+    {
+        return compilation.ClassifyConversion(type, toType)
+            is { IsIdentity: true }
+            or { IsReference: true, IsImplicit: true };
+    }
+
+    public static bool IsAssignableToType(this ITypeSymbol typeSymbol, string toTypeName, Compilation compilation)
+    {
+        var toType = compilation.GetTypeByMetadataName(toTypeName);
+        return toType != null && typeSymbol.IsAssignableToType(toType, compilation);
+    }
+
 
     private static readonly Dictionary<SpecialType, string> TypeToCSharpName = new()
     {
@@ -157,5 +156,19 @@ internal static class SymbolExtensions
     public static string GetCSharpTypeName(this ITypeSymbol typeSymbol)
     {
         return TypeToCSharpName.TryGetValue(typeSymbol.SpecialType, out var typeName) ? typeName : null;
+    }
+
+    public static int GetInheritanceDepth(this ITypeSymbol typeSymbol)
+    {
+        var depth = 0;
+        var currentType = typeSymbol;
+
+        while (currentType != null)
+        {
+            depth++;
+            currentType = currentType.BaseType;
+        }
+
+        return depth;
     }
 }

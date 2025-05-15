@@ -24,10 +24,25 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Raised when the pointer enters the view.
+        /// </summary>
         [Parameter] public EventCallback<MC.PointerEventArgs> OnPointerEntered { get; set; }
+        /// <summary>
+        /// Raised when the pointer exits the view.
+        /// </summary>
         [Parameter] public EventCallback<MC.PointerEventArgs> OnPointerExited { get; set; }
+        /// <summary>
+        /// Raised when the pointer moves within the view.
+        /// </summary>
         [Parameter] public EventCallback<MC.PointerEventArgs> OnPointerMoved { get; set; }
+        /// <summary>
+        /// Raised when the pointer initiates a press within the view.
+        /// </summary>
         [Parameter] public EventCallback<MC.PointerEventArgs> OnPointerPressed { get; set; }
+        /// <summary>
+        /// Raised when the pointer that has previous initiated a press is released within the view.
+        /// </summary>
         [Parameter] public EventCallback<MC.PointerEventArgs> OnPointerReleased { get; set; }
 
         public new MC.PointerGestureRecognizer NativeControl => (MC.PointerGestureRecognizer)((BindableObject)this).NativeControl;

@@ -11,7 +11,6 @@ using MC = Microsoft.Maui.Controls;
 using MCC = Microsoft.Maui.Controls.Compatibility;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Maui;
-using System;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -43,7 +42,6 @@ namespace BlazorBindings.Maui.Elements.Compatibility
         /// Gets or sets the inner padding of the layout. The default value is a <see cref="T:Microsoft.Maui.Thickness" /> with all values set to 0.
         /// </summary>
         [Parameter] public Thickness? Padding { get; set; }
-        [Parameter] public EventCallback OnLayoutChanged { get; set; }
 
         public new MCC.Layout NativeControl => (MCC.Layout)((BindableObject)this).NativeControl;
 
@@ -71,16 +69,6 @@ namespace BlazorBindings.Maui.Elements.Compatibility
                     {
                         Padding = (Thickness?)value;
                         NativeControl.Padding = Padding ?? (Thickness)MCC.Layout.PaddingProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(OnLayoutChanged):
-                    if (!Equals(OnLayoutChanged, value))
-                    {
-                        void NativeControlLayoutChanged(object sender, EventArgs e) => InvokeEventCallback(OnLayoutChanged);
-
-                        OnLayoutChanged = (EventCallback)value;
-                        NativeControl.LayoutChanged -= NativeControlLayoutChanged;
-                        NativeControl.LayoutChanged += NativeControlLayoutChanged;
                     }
                     break;
 

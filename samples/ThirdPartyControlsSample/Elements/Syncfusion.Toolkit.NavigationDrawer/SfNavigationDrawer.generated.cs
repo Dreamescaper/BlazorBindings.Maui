@@ -58,10 +58,25 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.SfNavigationDrawer.DrawerSettings" /> values and the default value is a new instance of <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.SfNavigationDrawer.DrawerSettings" />.
         /// </value>
         [Parameter] public RenderFragment DrawerSettings { get; set; }
+        /// <summary>
+        /// It is drawer closed event.
+        /// </summary>
         [Parameter] public EventCallback OnDrawerClosed { get; set; }
+        /// <summary>
+        /// It is drawer opened event.
+        /// </summary>
         [Parameter] public EventCallback OnDrawerOpened { get; set; }
+        /// <summary>
+        /// It is drawer toggled event.
+        /// </summary>
         [Parameter] public EventCallback<SMTN.ToggledEventArgs> OnDrawerToggled { get; set; }
+        /// <summary>
+        /// It is drawer closing event.
+        /// </summary>
         [Parameter] public EventCallback<CancelEventArgs> OnDrawerClosing { get; set; }
+        /// <summary>
+        /// It is drawer opening event.
+        /// </summary>
         [Parameter] public EventCallback<CancelEventArgs> OnDrawerOpening { get; set; }
 
         public new SMTN.SfNavigationDrawer NativeControl => (SMTN.SfNavigationDrawer)((BindableObject)this).NativeControl;

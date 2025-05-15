@@ -227,9 +227,21 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
         /// The default value is <c>Colors.LightGray</c>
         /// </value>
         [Parameter] public RenderFragment Stroke { get; set; }
+        /// <summary>
+        /// Occurs after the user triggers evaluation of new input by pressing the Enter key, clicking a spin button, or by changing focus.
+        /// </summary>
         [Parameter] public EventCallback<Nullable<double>> ValueChanged { get; set; }
+        /// <summary>
+        /// Occurs when the user finalizes the text in an numeric entry with the return key.
+        /// </summary>
         [Parameter] public EventCallback OnCompleted { get; set; }
+        /// <summary>
+        /// Occurs when the control get focused.
+        /// </summary>
         [Parameter] public new EventCallback<MC.FocusEventArgs> OnFocused { get; set; }
+        /// <summary>
+        /// Occurs when the control get unfocused.
+        /// </summary>
         [Parameter] public new EventCallback<MC.FocusEventArgs> OnUnfocused { get; set; }
 
         public new SMTN.SfNumericEntry NativeControl => (SMTN.SfNumericEntry)((BindableObject)this).NativeControl;

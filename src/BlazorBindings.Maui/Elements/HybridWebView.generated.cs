@@ -26,6 +26,9 @@ namespace BlazorBindings.Maui.Elements
 
         [Parameter] public string DefaultFile { get; set; }
         [Parameter] public string HybridRoot { get; set; }
+        /// <summary>
+        /// Raised when a raw message is received from the web view. Raw messages are strings that have no additional processing.
+        /// </summary>
         [Parameter] public EventCallback<MC.HybridWebViewRawMessageReceivedEventArgs> OnRawMessageReceived { get; set; }
 
         public new MC.HybridWebView NativeControl => (MC.HybridWebView)((BindableObject)this).NativeControl;

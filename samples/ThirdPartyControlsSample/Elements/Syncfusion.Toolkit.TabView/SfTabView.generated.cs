@@ -219,8 +219,17 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// The background color of the tab bar. The default value is null.
         /// </value>
         [Parameter] public RenderFragment TabBarBackground { get; set; }
+        /// <summary>
+        /// Occurs when the current selection is changed.
+        /// </summary>
         [Parameter] public EventCallback<SMTT.TabSelectionChangedEventArgs> OnSelectionChanged { get; set; }
+        /// <summary>
+        /// Occurs when the header of the tab item is tapped.
+        /// </summary>
         [Parameter] public EventCallback<SMTT.TabItemTappedEventArgs> OnTabItemTapped { get; set; }
+        /// <summary>
+        /// Occurs when the selection is changing in the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />.
+        /// </summary>
         [Parameter] public EventCallback<SMTT.SelectionChangingEventArgs> OnSelectionChanging { get; set; }
 
         public new SMTT.SfTabView NativeControl => (SMTT.SfTabView)((BindableObject)this).NativeControl;

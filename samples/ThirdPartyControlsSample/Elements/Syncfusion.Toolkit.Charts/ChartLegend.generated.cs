@@ -70,6 +70,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLegendLabelStyle" /> value.
         /// </value>
         [Parameter] public RenderFragment LabelStyle { get; set; }
+        /// <summary>
+        /// This event occurs when the legend label is created.
+        /// </summary>
         [Parameter] public EventCallback<SMT.LegendItemEventArgs> OnLegendItemCreated { get; set; }
 
         public new SMTC.ChartLegend NativeControl => (SMTC.ChartLegend)((BindableObject)this).NativeControl;

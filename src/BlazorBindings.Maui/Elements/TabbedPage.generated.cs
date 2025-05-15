@@ -130,7 +130,7 @@ namespace BlazorBindings.Maui.Elements
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<MC.TabbedPage>(builder, sequence++, BarBackground, (x, value) => x.BarBackground = (MC.Brush)value);
-            RenderTreeBuilderHelper.AddListContentProperty<MC.MultiPage<MC.Page>, MC.Page>(builder, sequence++, ChildContent, x => x.Children);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.TabbedPage, MC.Page>(builder, sequence++, ChildContent, x => x.Children);
         }
 
         static partial void RegisterAdditionalHandlers();

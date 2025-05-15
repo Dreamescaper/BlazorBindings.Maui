@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 using BlazorBindings.Maui.ComponentGenerator.Extensions;
+using BlazorBindings.Maui.ComponentGenerator.Model;
 using CommandLine;
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
@@ -42,20 +43,29 @@ public class Program
                 Console.WriteLine($"Generating {typesToGenerate.Length} files.");
 
                 var componentWrapperGenerator = new ComponentWrapperGenerator();
+                List<GeneratedTypeInfo> generatedTypes = [];
+
+                // We order types by inheritance depth to make sure that parent type is processed
+                // before descending type.
+                foreach (var typeSettings in typesToGenerate.OrderBy(type => type.TypeSymbol.GetInheritanceDepth()))
+                {
+                    var generatedType = GeneratedTypeInfo.Create(compilation, typeSettings, generatedTypes);
+                    generatedTypes.Add(generatedType);
+                }
 
                 if (!o.KeepExistingFiles)
                 {
                     DeleteExistingFiles(o.OutPath);
                 }
 
-                foreach (var generatedType in typesToGenerate)
+                foreach (var generatedType in generatedTypes)
                 {
-                    var (groupName, name, source) = componentWrapperGenerator.GenerateComponentFile(compilation, generatedType);
+                    var source = componentWrapperGenerator.GenerateComponentFileSource(generatedType);
 
-                    var fileName = $"{name}.generated.cs";
-                    var path = string.IsNullOrEmpty(groupName)
+                    var fileName = $"{generatedType.TypeName}.generated.cs";
+                    var path = string.IsNullOrEmpty(generatedType.ComponentGroup)
                         ? Path.Combine(o.OutPath, fileName)
-                        : Path.Combine(o.OutPath, groupName, fileName);
+                        : Path.Combine(o.OutPath, generatedType.ComponentGroup, fileName);
 
                     Directory.GetParent(path).Create();
 
@@ -110,7 +120,7 @@ public class Program
                     GenericProperties = GetNamedArgumentValues(a, "GenericProperties").Select(v => v.Split(':')).ToDictionary(v => v[0],
                         v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
                     Aliases = propertiesAliases,
-                    IsGeneric = (a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool?) ?? false
+                    IsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool? ?? false
                 };
             })
             .Where(type => type.TypeSymbol != null)
@@ -147,12 +157,6 @@ public class Program
             });
 
         typesToGenerate.AddRange(typesByAssembly);
-
-        foreach (var info in typesToGenerate)
-        {
-            var baseTypeInfo = typesToGenerate.FirstOrDefault(t => SymbolEqualityComparer.Default.Equals(t.TypeSymbol, info.TypeSymbol?.BaseType));
-            info.BaseTypeInfo = baseTypeInfo;
-        }
 
         return [.. typesToGenerate];
     }

@@ -40,6 +40,10 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
+        /// Gets or sets an object that controls the position of the button image and the spacing between the button's image and the button's text.
+        /// </summary>
+        [Parameter] public MC.Button.ButtonContentLayout ContentLayout { get; set; }
+        /// <summary>
         /// Gets or sets the corner radius for the button, in device-independent units.
         /// </summary>
         [Parameter] public int? CornerRadius { get; set; }
@@ -83,8 +87,17 @@ namespace BlazorBindings.Maui.Elements
         /// Applies text transformation to the <see cref="P:Microsoft.Maui.Controls.Button.Text" /> displayed on this button.
         /// </summary>
         [Parameter] public TextTransform? TextTransform { get; set; }
+        /// <summary>
+        /// Occurs when the button is clicked/tapped.
+        /// </summary>
         [Parameter] public EventCallback OnClick { get; set; }
+        /// <summary>
+        /// Occurs when the button is pressed.
+        /// </summary>
         [Parameter] public EventCallback OnPress { get; set; }
+        /// <summary>
+        /// Occurs when the button is released.
+        /// </summary>
         [Parameter] public EventCallback OnRelease { get; set; }
 
         public new MC.Button NativeControl => (MC.Button)((BindableObject)this).NativeControl;
@@ -114,6 +127,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         CharacterSpacing = (double?)value;
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.Button.CharacterSpacingProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(ContentLayout):
+                    if (!Equals(ContentLayout, value))
+                    {
+                        ContentLayout = (MC.Button.ButtonContentLayout)value;
+                        NativeControl.ContentLayout = ContentLayout;
                     }
                     break;
                 case nameof(CornerRadius):

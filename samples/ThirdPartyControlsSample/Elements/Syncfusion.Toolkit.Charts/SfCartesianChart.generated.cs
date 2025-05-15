@@ -97,14 +97,41 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartZoomPanBehavior" /> value and its default value is null.
         /// </value>
         [Parameter] public RenderFragment ZoomPanBehavior { get; set; }
+        /// <summary>
+        /// This event is raised when the trackball is moved from one data point to another. This helps to customize the trackball label and marker based on the condition.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.TrackballEventArgs> OnTrackballCreated { get; set; }
+        /// <summary>
+        /// This event is triggered when zooming begins.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartZoomStartEventArgs> OnZoomStart { get; set; }
+        /// <summary>
+        /// This event is triggered during the zooming process.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartZoomDeltaEventArgs> OnZoomDelta { get; set; }
+        /// <summary>
+        /// This event is triggered when zooming concludes.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartZoomEventArgs> OnZoomEnd { get; set; }
+        /// <summary>
+        /// This event is triggered when a selection zoom action begins.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartSelectionZoomEventArgs> OnSelectionZoomStart { get; set; }
+        /// <summary>
+        /// This event is triggered during the process of selection zooming.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartSelectionZoomDeltaEventArgs> OnSelectionZoomDelta { get; set; }
+        /// <summary>
+        /// This event is triggered when a selection zoom action concludes.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartSelectionZoomEventArgs> OnSelectionZoomEnd { get; set; }
+        /// <summary>
+        /// This event is triggered when panning the chart.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartScrollEventArgs> OnScroll { get; set; }
+        /// <summary>
+        /// This event is triggered when reset the chart.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartResetZoomEventArgs> OnResetZoom { get; set; }
 
         public new SMTC.SfCartesianChart NativeControl => (SMTC.SfCartesianChart)((BindableObject)this).NativeControl;

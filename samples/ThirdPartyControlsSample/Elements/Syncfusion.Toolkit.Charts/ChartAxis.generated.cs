@@ -230,7 +230,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// It accepts the <see cref="T:Microsoft.Maui.Controls.DataTemplate" />value and its default value is null.
         /// </value>
         [Parameter] public RenderFragment TrackballLabelTemplate { get; set; }
+        /// <summary>
+        /// This event occurs when the axis label is created.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartAxisLabelEventArgs> OnLabelCreated { get; set; }
+        /// <summary>
+        /// This event occurs when the actual range is changed.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ActualRangeChangedEventArgs> OnActualRangeChanged { get; set; }
 
         public new SMTC.ChartAxis NativeControl => (SMTC.ChartAxis)((BindableObject)this).NativeControl;

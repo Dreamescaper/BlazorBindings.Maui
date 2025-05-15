@@ -9,6 +9,7 @@
 		<PackAsTool>true</PackAsTool>
 		<ToolCommandName>dotnet-generate-maui-blazor-components</ToolCommandName>
 		<PackageTags>blazor;blazorbindings</PackageTags>
+		<Nullable>annotations</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
