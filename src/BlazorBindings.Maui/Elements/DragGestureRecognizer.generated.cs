@@ -28,7 +28,13 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the value which indicates whether the element the gesture recognizer is attached to can be a drag source.
         /// </summary>
         [Parameter] public bool? CanDrag { get; set; }
+        /// <summary>
+        /// Occurs when a drop gesture is completed.
+        /// </summary>
         [Parameter] public EventCallback<MC.DropCompletedEventArgs> OnDropCompleted { get; set; }
+        /// <summary>
+        /// Occurs when a drag gesture is detected.
+        /// </summary>
         [Parameter] public EventCallback<MC.DragStartingEventArgs> OnDragStarting { get; set; }
 
         public new MC.DragGestureRecognizer NativeControl => (MC.DragGestureRecognizer)((BindableObject)this).NativeControl;

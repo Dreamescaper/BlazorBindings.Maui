@@ -127,8 +127,17 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.PullToRefresh
         /// It accepts <see cref="T:Microsoft.Maui.Controls.DataTemplate" />. The default value is null.
         /// </value>
         [Parameter] public RenderFragment RefreshingViewTemplate { get; set; }
+        /// <summary>
+        /// Occurs when the pulling operation is performed.
+        /// </summary>
         [Parameter] public EventCallback<SMTP.PullingEventArgs> OnPulling { get; set; }
+        /// <summary>
+        /// Occurs when the refreshing operation starts.
+        /// </summary>
         [Parameter] public EventCallback<bool> IsRefreshingChanged { get; set; }
+        /// <summary>
+        /// Occurs when the refreshing operation completes.
+        /// </summary>
         [Parameter] public EventCallback OnRefreshed { get; set; }
 
         public new SMTP.SfPullToRefresh NativeControl => (SMTP.SfPullToRefresh)((BindableObject)this).NativeControl;

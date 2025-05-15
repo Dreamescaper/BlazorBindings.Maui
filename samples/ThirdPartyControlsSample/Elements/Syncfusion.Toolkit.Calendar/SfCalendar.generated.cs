@@ -134,6 +134,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// </value>
         [Parameter] public Nullable<DateTime> SelectedDate { get; set; }
         /// <summary>
+        /// Gets or sets the selected date range to select the range of dates of the calendar.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.SelectedDateRange" /> is null.
+        /// </value>
+        [Parameter] public SMTC.CalendarDateRange SelectedDateRange { get; set; }
+        /// <summary>
+        /// Gets or sets the selected multi date ranges to select the multiple range of dates of the calendar.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.SelectedDateRanges" /> is null.
+        /// </value>
+        [Parameter] public ObservableCollection<SMTC.CalendarDateRange> SelectedDateRanges { get; set; }
+        /// <summary>
         /// Gets or sets the selected dates to select the multiple dates of the calendar.
         /// </summary>
         [Parameter] public ObservableCollection<DateTime> SelectedDates { get; set; }
@@ -245,12 +259,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// Gets or sets the properties which allows to customize the calendar year, decade and century views.
         /// </summary>
         [Parameter] public RenderFragment YearView { get; set; }
+        /// <summary>
+        /// Occurs whenever the calendar view and visible dates changed on SfCalendar.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.CalendarView> ViewChanged { get; set; }
+        /// <summary>
+        /// Occurs after the selection changed on SfCalendar.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.CalendarSelectionChangedEventArgs> OnSelectionChanged { get; set; }
+        /// <summary>
+        /// Occurs after the tap interaction on SfCalendar.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.CalendarTappedEventArgs> OnTapped { get; set; }
+        /// <summary>
+        /// Occurs after the double tapped interaction on SfCalendar.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.CalendarDoubleTappedEventArgs> OnDoubleTapped { get; set; }
+        /// <summary>
+        /// Occurs after the long press interaction on SfCalendar.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.CalendarLongPressedEventArgs> OnLongPressed { get; set; }
+        /// <summary>
+        /// Occurs whenever the confirm button tapped on calendar. The date that have been selected are confirmed.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.CalendarSubmittedEventArgs> OnActionButtonClicked { get; set; }
+        /// <summary>
+        /// Occurs whenever the cancel button tapped on calendar. It reset the selected values to confirmed selected values.
+        /// </summary>
         [Parameter] public EventCallback OnActionButtonCanceled { get; set; }
 
         public new SMTC.SfCalendar NativeControl => (SMTC.SfCalendar)((BindableObject)this).NativeControl;
@@ -364,6 +399,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         SelectedDate = (Nullable<DateTime>)value;
                         NativeControl.SelectedDate = SelectedDate;
+                    }
+                    break;
+                case nameof(SelectedDateRange):
+                    if (!Equals(SelectedDateRange, value))
+                    {
+                        SelectedDateRange = (SMTC.CalendarDateRange)value;
+                        NativeControl.SelectedDateRange = SelectedDateRange;
+                    }
+                    break;
+                case nameof(SelectedDateRanges):
+                    if (!Equals(SelectedDateRanges, value))
+                    {
+                        SelectedDateRanges = (ObservableCollection<SMTC.CalendarDateRange>)value;
+                        NativeControl.SelectedDateRanges = SelectedDateRanges;
                     }
                     break;
                 case nameof(SelectedDates):

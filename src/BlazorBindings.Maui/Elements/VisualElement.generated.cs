@@ -144,12 +144,33 @@ namespace BlazorBindings.Maui.Elements
         /// Gets the list of <see cref="T:Microsoft.Maui.Controls.TriggerBase" /> objects associated to this element. This is a read-only bindable property.
         /// </summary>
         [Parameter] public RenderFragment Triggers { get; set; }
+        /// <summary>
+        /// Occurs when the order of this element's children changes.
+        /// </summary>
         [Parameter] public EventCallback OnChildrenReordered { get; set; }
+        /// <summary>
+        /// Occurs when this element is focused.
+        /// </summary>
         [Parameter] public EventCallback<MC.FocusEventArgs> OnFocused { get; set; }
+        /// <summary>
+        /// Occurs when the current measure of an element has been invalidated.
+        /// </summary>
         [Parameter] public EventCallback OnMeasureInvalidated { get; set; }
+        /// <summary>
+        /// Occurs when the size of an element changed.
+        /// </summary>
         [Parameter] public EventCallback OnSizeChanged { get; set; }
+        /// <summary>
+        /// Occurs when this element is unfocused.
+        /// </summary>
         [Parameter] public EventCallback<MC.FocusEventArgs> OnUnfocused { get; set; }
+        /// <summary>
+        /// Occurs when an element has been constructed and added to the platform visual tree.
+        /// </summary>
         [Parameter] public EventCallback OnLoaded { get; set; }
+        /// <summary>
+        /// Occurs when an element is no longer connected to the platform visual tree.
+        /// </summary>
         [Parameter] public EventCallback OnUnloaded { get; set; }
 
         public new MC.VisualElement NativeControl => (MC.VisualElement)((BindableObject)this).NativeControl;

@@ -191,6 +191,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TextInputLayout
         /// Gets or sets the view to be displayed after the input view.
         /// </summary>
         [Parameter] public RenderFragment TrailingView { get; set; }
+        /// <summary>
+        /// Occurs when the visibility of the password input is toggled.
+        /// </summary>
         [Parameter] public EventCallback<SMTT.PasswordVisibilityToggledEventArgs> OnPasswordVisibilityToggled { get; set; }
 
         public new SMTT.SfTextInputLayout NativeControl => (SMTT.SfTextInputLayout)((BindableObject)this).NativeControl;

@@ -55,11 +55,29 @@ namespace BlazorBindings.Maui.Elements
         /// Gets the <see cref="T:Microsoft.Maui.Controls.ToolbarItem" /> objects for this page, implemented in a platform-specific manner.
         /// </summary>
         [Parameter] public RenderFragment ToolbarItems { get; set; }
+        /// <summary>
+        /// Raised when the children of this page, and thus potentially the layout, have changed.
+        /// </summary>
         [Parameter] public EventCallback OnLayoutChanged { get; set; }
+        /// <summary>
+        /// Raised when this page is visually appearing on screen.
+        /// </summary>
         [Parameter] public EventCallback OnAppearing { get; set; }
+        /// <summary>
+        /// Raised when this page is visually disappearing from the screen.
+        /// </summary>
         [Parameter] public EventCallback OnDisappearing { get; set; }
+        /// <summary>
+        /// Raised after the page was navigated to.
+        /// </summary>
         [Parameter] public EventCallback<MC.NavigatedToEventArgs> OnNavigatedTo { get; set; }
+        /// <summary>
+        /// Raised before navigating away from the page.
+        /// </summary>
         [Parameter] public EventCallback<MC.NavigatingFromEventArgs> OnNavigatingFrom { get; set; }
+        /// <summary>
+        /// Raised after the page was navigated away from.
+        /// </summary>
         [Parameter] public EventCallback<MC.NavigatedFromEventArgs> OnNavigatedFrom { get; set; }
 
         public new MC.Page NativeControl => (MC.Page)((BindableObject)this).NativeControl;

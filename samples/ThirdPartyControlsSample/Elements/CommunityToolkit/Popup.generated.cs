@@ -70,7 +70,13 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// Property that represents the Window that's showing the Popup.
         /// </summary>
         [Parameter] public RenderFragment Window { get; set; }
+        /// <summary>
+        /// Dismissed event is invoked when the popup is closed.
+        /// </summary>
         [Parameter] public EventCallback<CM.Core.PopupClosedEventArgs> OnClosed { get; set; }
+        /// <summary>
+        /// Opened event is invoked when the popup is opened.
+        /// </summary>
         [Parameter] public EventCallback<CM.Core.PopupOpenedEventArgs> OnOpened { get; set; }
 
         public new CMV.Popup NativeControl => (CMV.Popup)((BindableObject)this).NativeControl;

@@ -227,9 +227,21 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// A DataTemplate object that is used to display the custom content. The default is null.
         /// </value>
         [Parameter] public RenderFragment ItemTemplate { get; set; }
+        /// <summary>
+        /// Raised when the item in SfChips control is tapped.
+        /// </summary>
         [Parameter] public EventCallback OnChipClicked { get; set; }
+        /// <summary>
+        /// Occurs when the user selects an item from unselected items.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.SelectionChangingEventArgs> OnSelectionChanging { get; set; }
+        /// <summary>
+        /// Occurs when the user selects an item from unselected items.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.SelectionChangedEventArgs> OnSelectionChanged { get; set; }
+        /// <summary>
+        /// Occurs when the user clicked the close button in <see cref="T:Syncfusion.Maui.Toolkit.Chips.SfChipGroup" />.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.SelectionChangedEventArgs> OnItemRemoved { get; set; }
 
         public new SMTC.SfChipGroup NativeControl => (SMTC.SfChipGroup)((BindableObject)this).NativeControl;

@@ -37,8 +37,17 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the user agent string that this <see cref="T:Microsoft.Maui.Controls.WebView" /> object uses.
         /// </summary>
         [Parameter] public string UserAgent { get; set; }
+        /// <summary>
+        /// Raised after web navigation completes.
+        /// </summary>
         [Parameter] public EventCallback<MC.WebNavigatedEventArgs> OnNavigated { get; set; }
+        /// <summary>
+        /// Raised after web navigation begins.
+        /// </summary>
         [Parameter] public EventCallback<MC.WebNavigatingEventArgs> OnNavigating { get; set; }
+        /// <summary>
+        /// Raised when a WebView process ends unexpectedly.
+        /// </summary>
         [Parameter] public EventCallback<MC.WebViewProcessTerminatedEventArgs> OnProcessTerminated { get; set; }
 
         public new MC.WebView NativeControl => (MC.WebView)((BindableObject)this).NativeControl;

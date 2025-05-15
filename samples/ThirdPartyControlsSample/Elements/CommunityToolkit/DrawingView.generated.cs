@@ -54,9 +54,21 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// Indicates whether the <see cref="T:CommunityToolkit.Maui.Views.DrawingView" /> is cleared after releasing the tap/click and a line is drawn. Note: when <see cref="P:CommunityToolkit.Maui.Views.DrawingView.IsMultiLineModeEnabled" /> is also enabled, this might cause unexpected behavior.
         /// </summary>
         [Parameter] public bool? ShouldClearOnFinish { get; set; }
+        /// <summary>
+        /// Event occurred when drawing line completed.
+        /// </summary>
         [Parameter] public EventCallback<CM.Core.DrawingLineCompletedEventArgs> OnDrawingLineCompleted { get; set; }
+        /// <summary>
+        /// Event occurred when drawing line started.
+        /// </summary>
         [Parameter] public EventCallback<CM.Core.DrawingLineStartedEventArgs> OnDrawingLineStarted { get; set; }
+        /// <summary>
+        /// Event occurred when drawing line canceled.
+        /// </summary>
         [Parameter] public EventCallback OnDrawingLineCancelled { get; set; }
+        /// <summary>
+        /// Event occurred when drawing.
+        /// </summary>
         [Parameter] public EventCallback<CM.Core.PointDrawnEventArgs> OnPointDrawn { get; set; }
 
         public new CMV.DrawingView NativeControl => (CMV.DrawingView)((BindableObject)this).NativeControl;

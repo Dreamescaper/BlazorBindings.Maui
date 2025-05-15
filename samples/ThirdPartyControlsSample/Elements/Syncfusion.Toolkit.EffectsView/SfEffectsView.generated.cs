@@ -162,10 +162,40 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
         /// Specifies the selection color of the effects view. The default value is SolidColorBrush(Colors.Black).
         /// </value>
         [Parameter] public RenderFragment SelectionBackground { get; set; }
+        /// <summary>
+        /// The <see cref="E:Syncfusion.Maui.Toolkit.EffectsView.SfEffectsView.AnimationCompleted" /> event occurs on direct interaction and when programmatically applied, it only occurs when touch-up is called on direct interaction and after the effects have been completed. It will not trigger the selection effect.
+        /// </summary>
+        /// <value>
+        /// Occurs when animation is completed.
+        /// </value>
         [Parameter] public EventCallback OnAnimationCompleted { get; set; }
+        /// <summary>
+        /// The <see cref="E:Syncfusion.Maui.Toolkit.EffectsView.SfEffectsView.SelectionChanged" /> event triggers both the rendering of <see cref="F:Syncfusion.Maui.Toolkit.EffectsView.SfEffects.Selection" /> by direct interaction and the <see cref="P:Syncfusion.Maui.Toolkit.EffectsView.SfEffectsView.IsSelected" /> property changed.
+        /// </summary>
+        /// <value>
+        /// Occurs when changing IsSelected property and setting selection effect.
+        /// </value>
         [Parameter] public EventCallback OnSelectionChanged { get; set; }
+        /// <summary>
+        /// Occurs when handling touch down.
+        /// </summary>
+        /// <value>
+        /// Occurs when handling touch down.
+        /// </value>
         [Parameter] public EventCallback OnTouchDown { get; set; }
+        /// <summary>
+        /// Occurs when handling touch up.
+        /// </summary>
+        /// <value>
+        /// Occurs when handling touch up.
+        /// </value>
         [Parameter] public EventCallback OnTouchUp { get; set; }
+        /// <summary>
+        /// Occurs when handling long press.
+        /// </summary>
+        /// <value>
+        /// Occurs when handling long press.
+        /// </value>
         [Parameter] public EventCallback OnLongPressed { get; set; }
 
         public new SMTE.SfEffectsView NativeControl => (SMTE.SfEffectsView)((BindableObject)this).NativeControl;

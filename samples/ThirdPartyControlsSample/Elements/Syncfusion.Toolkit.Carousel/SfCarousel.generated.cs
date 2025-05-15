@@ -152,8 +152,17 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
         /// The default value is null, indicating no custom view is set initially.
         /// </value>
         [Parameter] public RenderFragment LoadMoreView { get; set; }
+        /// <summary>
+        /// Triggered when an item is selected from the list of unselected items in the <see cref="T:Syncfusion.Maui.Toolkit.Carousel.SfCarousel" />.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.SelectionChangedEventArgs> OnSelectionChanged { get; set; }
+        /// <summary>
+        /// Triggered when a swipe gesture initiates an item selection in the <see cref="T:Syncfusion.Maui.Toolkit.Carousel.SfCarousel" />.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.SwipeStartedEventArgs> OnSwipeStarted { get; set; }
+        /// <summary>
+        /// Triggered when a swipe gesture is completed in the <see cref="T:Syncfusion.Maui.Toolkit.Carousel.SfCarousel" />.
+        /// </summary>
         [Parameter] public EventCallback OnSwipeEnded { get; set; }
 
         public new SMTC.SfCarousel NativeControl => (SMTC.SfCarousel)((BindableObject)this).NativeControl;

@@ -167,6 +167,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.TextColor" /> is "Color.FromArgb("#1C1B1F")", <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.FontSize" /> is 14, <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.FontFamily" /> is null, <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.FontAttributes" /> is <see cref="F:Microsoft.Maui.Controls.FontAttributes.None" />.
         /// </value>
         [Parameter] public RenderFragment TextStyle { get; set; }
+        /// <summary>
+        /// Occurs when the selection within the segment item is changed.
+        /// </summary>
         [Parameter] public EventCallback<SMTS.SelectionChangedEventArgs> OnSelectionChanged { get; set; }
 
         public new SMTS.SfSegmentedControl NativeControl => (SMTS.SfSegmentedControl)((BindableObject)this).NativeControl;

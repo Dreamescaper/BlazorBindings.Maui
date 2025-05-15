@@ -63,6 +63,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// Specifies the show selection indicator property. The default value is false.
         /// </value>
         [Parameter] public bool? ShowSelectionIndicator { get; set; }
+        /// <summary>
+        /// Occurs when the close button is clicked/tapped.
+        /// </summary>
         [Parameter] public EventCallback OnCloseButtonClicked { get; set; }
 
         public new SMTC.SfChip NativeControl => (SMTC.SfChip)((BindableObject)this).NativeControl;

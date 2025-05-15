@@ -31,6 +31,7 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
         [Parameter] public bool? HasBackdrop { get; set; }
         [Parameter] public bool? HasHandle { get; set; }
         [Parameter] public bool? IsCancelable { get; set; }
+        [Parameter] public TMB.Detent SelectedDetent { get; set; }
         [Parameter] public RenderFragment Detents { get; set; }
         [Parameter] public EventCallback<TMB.DismissOrigin> OnDismissed { get; set; }
         [Parameter] public EventCallback OnShowing { get; set; }
@@ -77,6 +78,13 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                     {
                         IsCancelable = (bool?)value;
                         NativeControl.IsCancelable = IsCancelable ?? (bool)TMB.BottomSheet.IsCancelableProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SelectedDetent):
+                    if (!Equals(SelectedDetent, value))
+                    {
+                        SelectedDetent = (TMB.Detent)value;
+                        NativeControl.SelectedDetent = SelectedDetent;
                     }
                     break;
                 case nameof(Detents):

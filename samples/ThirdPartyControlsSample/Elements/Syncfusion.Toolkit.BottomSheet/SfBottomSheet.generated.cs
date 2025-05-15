@@ -173,6 +173,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> value representing the grabber's background color.
         /// </value>
         [Parameter] public RenderFragment GrabberBackground { get; set; }
+        /// <summary>
+        /// Invoke the event when the state of <see cref="T:Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet" /> is changed.
+        /// </summary>
         [Parameter] public EventCallback<SMTB.BottomSheetState> StateChanged { get; set; }
 
         public new SMTB.SfBottomSheet NativeControl => (SMTB.SfBottomSheet)((BindableObject)this).NativeControl;

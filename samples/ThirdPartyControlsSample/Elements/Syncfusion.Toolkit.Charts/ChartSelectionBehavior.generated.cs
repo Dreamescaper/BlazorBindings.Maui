@@ -64,7 +64,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// This property takes <see cref="T:Microsoft.Maui.Controls.Brush" /> value and its default value is null.
         /// </value>
         [Parameter] public RenderFragment SelectionBrush { get; set; }
+        /// <summary>
+        /// Occurs when the user clicks on the series segment or sets the value for <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartSelectionBehavior.SelectedIndex" /> or <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartSelectionBehavior.SelectedIndexes" /> properties. This event is triggered before a segment or series is selected.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartSelectionChangingEventArgs> OnSelectionChanging { get; set; }
+        /// <summary>
+        /// This event is triggered after a clicked series segment or sets the value for <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartSelectionBehavior.SelectedIndex" /> or <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartSelectionBehavior.SelectedIndexes" /> properties. It provides information about the selection change, including the currently selected index and the previously selected index.
+        /// </summary>
         [Parameter] public EventCallback<SMTC.ChartSelectionChangedEventArgs> OnSelectionChanged { get; set; }
 
         public new SMTC.ChartSelectionBehavior NativeControl => (SMTC.ChartSelectionBehavior)((BindableObject)this).NativeControl;

@@ -46,6 +46,9 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the vertical text alignment.
         /// </summary>
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
+        /// <summary>
+        /// Occurs when the user finalizes the text in an entry with the return key.
+        /// </summary>
         [Parameter] public EventCallback OnCompleted { get; set; }
 
         public new MC.Entry NativeControl => (MC.Entry)((BindableObject)this).NativeControl;
