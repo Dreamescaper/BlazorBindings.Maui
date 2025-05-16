@@ -30,10 +30,10 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public FlexAlignContent? AlignContent { get; set; }
         /// <summary>
-        /// Gets or sets a value that controls how child elements are laid out within their row or column.
+        /// Gets or sets a value that controls how child elements are arranged within their row or column.
         /// </summary>
         /// <value>
-        /// A value that controls how child elements are laid out within their row or column.
+        /// A value that controls how child elements are arranged within their row or column.
         /// </value>
         [Parameter] public FlexAlignItems? AlignItems { get; set; }
         /// <summary>

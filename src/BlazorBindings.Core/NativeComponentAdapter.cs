@@ -23,6 +23,7 @@ internal sealed class NativeComponentAdapter(
     public string Name { get; internal set; }
 
     [RequiresUnreferencedCode("This method is used for debug only.")]
+    [RequiresDynamicCode("This method is used for debug only.")]
     private string GetDebugName()
     {
         string text = null;
@@ -100,7 +101,7 @@ internal sealed class NativeComponentAdapter(
     }
 
     // a) We want to add child element from the deepest element to the top one, so that elements are added to parents with all the required changes.
-    // b) If elements are replaced, we want to have a single edit instead of two separate ones (remove+add) - it's more efficient, and 
+    // b) If elements are replaced, we want to have a single edit instead of two separate ones (remove+add) - it's more efficient, and
     // the only way in some cases (when elements don't support empty content).
     // Therefore we store all add/remove actions, and apply them (rearranged) after other edits.
     public void ApplyPendingEdits()
@@ -162,7 +163,7 @@ internal sealed class NativeComponentAdapter(
                 break;
 
             // Generally we try to put Remove edit before an Add edit.
-            // But if there's already a Remove edit before that Add edit, with a matching index, 
+            // But if there's already a Remove edit before that Add edit, with a matching index,
             // we don't need to put another Remove there.
             if (i >= 2
                 && previousEdit.Type == EditType.Add
@@ -184,13 +185,13 @@ internal sealed class NativeComponentAdapter(
 
     private void AddPendingAddition(NativeComponentAdapter childToAdd, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
-        /* In cases when there are non-elements involved, the order of add operations could be wrong. E.g. 
+        /* In cases when there are non-elements involved, the order of add operations could be wrong. E.g.
         AppShell.razor
         <Shell>
             <UserPageComponent Title="Page1" />
             <ContentPage Title="Page2" />
         </Shell>
-        
+
         UserPageComponent.razor
         <ContentPage Title="Page1" />
 
@@ -412,7 +413,7 @@ internal sealed class NativeComponentAdapter(
             frameIndex += CountDescendantFrames(frame);
         }
 
-        return (childIndex - origChildIndex); // Total number of children inserted     
+        return (childIndex - origChildIndex); // Total number of children inserted
     }
 
     private static int CountDescendantFrames(RenderTreeFrame frame)

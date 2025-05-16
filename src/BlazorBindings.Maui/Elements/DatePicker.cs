@@ -5,7 +5,7 @@ namespace BlazorBindings.Maui.Elements;
 public partial class DatePicker
 {
     [Parameter] public DateOnly? Date { get; set; }
-    [Parameter] public EventCallback<DateOnly> DateChanged { get; set; }
+    [Parameter] public EventCallback<DateOnly?> DateChanged { get; set; }
     [Parameter] public DateOnly? MaximumDate { get; set; }
     [Parameter] public DateOnly? MinimumDate { get; set; }
 
@@ -39,12 +39,15 @@ public partial class DatePicker
                 {
                     void NativeControlDateSelected(object sender, MC.DateChangedEventArgs e)
                     {
-                        var value = DateOnly.FromDateTime(NativeControl.Date);
-                        Date = value;
-                        InvokeEventCallback(DateChanged, value);
+                        var dateValue = NativeControl.Date is null
+                            ? (DateOnly?)null
+                            : DateOnly.FromDateTime(NativeControl.Date.Value);
+
+                        Date = dateValue;
+                        InvokeEventCallback(DateChanged, dateValue);
                     }
 
-                    DateChanged = (EventCallback<DateOnly>)value;
+                    DateChanged = (EventCallback<DateOnly?>)value;
                     NativeControl.DateSelected -= NativeControlDateSelected;
                     NativeControl.DateSelected += NativeControlDateSelected;
                 }

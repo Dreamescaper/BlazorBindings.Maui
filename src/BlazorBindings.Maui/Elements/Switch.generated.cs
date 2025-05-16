@@ -30,6 +30,10 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public bool? IsToggled { get; set; }
         /// <summary>
+        /// Gets or sets the color of the toggle switch's track when it is in the off state. If not set, the default color will be used for the off-track appearance.
+        /// </summary>
+        [Parameter] public Color OffColor { get; set; }
+        /// <summary>
         /// Gets or sets the color of the switch when it is in the "On" position.
         /// </summary>
         /// <value>
@@ -52,6 +56,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         IsToggled = (bool?)value;
                         NativeControl.IsToggled = IsToggled ?? (bool)MC.Switch.IsToggledProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(OffColor):
+                    if (!Equals(OffColor, value))
+                    {
+                        OffColor = (Color)value;
+                        NativeControl.OffColor = OffColor;
                     }
                     break;
                 case nameof(OnColor):
