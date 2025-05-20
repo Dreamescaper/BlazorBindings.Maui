@@ -7,6 +7,7 @@ using CommandLine;
 using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
+using System.Collections;
 
 namespace BlazorBindings.Maui.ComponentGenerator;
 
@@ -31,7 +32,7 @@ public class Program
             .WithParsedAsync(async o =>
             {
                 o.ProjectPath ??= Directory.GetFiles(Directory.GetCurrentDirectory())
-                    .FirstOrDefault(f => f.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase))
+                        .FirstOrDefault(f => f.EndsWith(".csproj", StringComparison.OrdinalIgnoreCase))
                     ?? throw new ArgumentException("Cannot find any csproj files.");
 
                 o.OutPath ??= Path.Combine(o.ProjectPath, "..", "Elements");
@@ -40,24 +41,15 @@ public class Program
 
                 var typesToGenerate = GetTypesToGenerate(compilation);
 
-                Console.WriteLine($"Generating {typesToGenerate.Length} files.");
-
                 var componentWrapperGenerator = new ComponentWrapperGenerator();
-                List<GeneratedTypeInfo> generatedTypes = [];
-
-                // We order types by inheritance depth to make sure that parent type is processed
-                // before descending type.
-                foreach (var typeSettings in typesToGenerate.OrderBy(type => type.TypeSymbol.GetInheritanceDepth()))
-                {
-                    var generatedType = GeneratedTypeInfo.Create(compilation, typeSettings, generatedTypes);
-                    generatedTypes.Add(generatedType);
-                }
+                var generatedTypes = GeneratedTypeInfo.Create(compilation, typesToGenerate);
 
                 if (!o.KeepExistingFiles)
                 {
                     DeleteExistingFiles(o.OutPath);
                 }
 
+                Console.WriteLine($"Generating {generatedTypes.Count} files.");
                 foreach (var generatedType in generatedTypes)
                 {
                     var source = componentWrapperGenerator.GenerateComponentFileSource(generatedType);
@@ -86,7 +78,7 @@ public class Program
         }
     }
 
-    private static GenerateComponentSettings[] GetTypesToGenerate(Compilation compilation)
+    private static List<GenerateComponentSettings> GetTypesToGenerate(Compilation compilation)
     {
         Console.WriteLine("Finding types to generate.");
 
@@ -98,20 +90,20 @@ public class Program
             .Where(a => a.AttributeClass?.ToDisplayString() == "BlazorBindings.Maui.ComponentGenerator.GenerateComponentAttribute")
             .Select(a =>
             {
-                var typeSymbol = a.ConstructorArguments.FirstOrDefault().Value as INamedTypeSymbol;
+                var typeSymbol = a.ConstructorArguments.First().Value as INamedTypeSymbol;
 
                 var propertiesAliases = GetNamedArgumentValues(a, "Aliases")
                     .Select(v => v.Split(':'))
                     .ToDictionary(v => v[0], v => v[1]);
 
                 // Type alias has type name as a key.
-                propertiesAliases.Remove(typeSymbol.Name, out var typeAlias);
+                propertiesAliases.Remove(typeSymbol?.Name, out var typeAlias);
 
                 return new GenerateComponentSettings
                 {
                     FileHeader = FileHeader,
                     TypeAlias = typeAlias,
-                    TypeSymbol = typeSymbol,
+                    TypeSymbol = typeSymbol!,
                     Exclude = [.. GetNamedArgumentValues(a, "Exclude")],
                     Include = [.. GetNamedArgumentValues(a, "Include")],
                     ContentProperties = [.. GetNamedArgumentValues(a, "ContentProperties")],
@@ -158,7 +150,7 @@ public class Program
 
         typesToGenerate.AddRange(typesByAssembly);
 
-        return [.. typesToGenerate];
+        return typesToGenerate;
     }
 
     private static string[] GetNamedArgumentValues(AttributeData attribute, string name)

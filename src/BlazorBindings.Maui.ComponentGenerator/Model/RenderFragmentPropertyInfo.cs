@@ -19,10 +19,10 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
     public override ISymbol? MemberSymbol => MauiProperty;
 
     [MemberNotNullWhen(true, nameof(MauiProperty))]
-    private bool IsControlTemplate  { get; }
+    public bool IsControlTemplate  { get; }
 
     [MemberNotNullWhen(true, nameof(MauiProperty))]
-    private bool IsDataTemplate { get; }
+    public bool IsDataTemplate { get; }
 
     private bool ForceContent => ContainingType.Settings.ContentProperties.Contains(MauiProperty?.Name!);
 

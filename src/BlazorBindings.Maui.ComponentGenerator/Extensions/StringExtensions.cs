@@ -11,7 +11,7 @@ internal static class StringExtensions
             : name;
     }
 
-    public static string? Indent(this string str, string indent)
+    public static string? Indent(this string? str, string indent)
     {
         if (str is null)
         {
