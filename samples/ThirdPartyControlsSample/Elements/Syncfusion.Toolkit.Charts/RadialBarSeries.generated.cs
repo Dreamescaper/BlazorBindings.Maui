@@ -83,6 +83,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts any <see cref="T:Microsoft.Maui.Controls.View" /> object, and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment CenterView { get; set; }
         /// <summary>
         /// Gets or sets the brush value that represents the fill color of the track in a radial bar chart.
@@ -90,6 +93,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TrackFill { get; set; }
         /// <summary>
         /// Gets or sets the brush value that represents the stroke color of the track in a radial bar chart.
@@ -97,6 +103,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TrackStroke { get; set; }
 
         public new SMTC.RadialBarSeries NativeControl => (SMTC.RadialBarSeries)((BindableObject)this).NativeControl;

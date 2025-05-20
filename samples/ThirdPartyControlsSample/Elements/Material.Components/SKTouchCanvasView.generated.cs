@@ -24,6 +24,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
             RegisterAdditionalHandlers();
         }
 
+        /// <remarks>
+        /// Accepts single ContextMenu element.
+        /// </remarks>
         [Parameter] public RenderFragment ContextMenu { get; set; }
         [Parameter] public EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs> OnPress { get; set; }
         [Parameter] public EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs> OnMoved { get; set; }

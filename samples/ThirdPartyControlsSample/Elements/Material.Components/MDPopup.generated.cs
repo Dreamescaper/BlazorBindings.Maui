@@ -29,6 +29,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public int? OffsetX { get; set; }
         [Parameter] public int? OffsetY { get; set; }
         [Parameter] public MC.LayoutAlignment? VerticalOptions { get; set; }
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MCM.Popup NativeControl => (MCM.Popup)((BindableObject)this).NativeControl;

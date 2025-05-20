@@ -55,6 +55,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Microsoft.Maui.Controls.Layout" />value and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more IView elements.
+        /// </remarks>
         [Parameter] public RenderFragment ItemsLayout { get; set; }
         /// <summary>
         /// Gets or sets a template to customize the appearance of each legend item.
@@ -69,6 +72,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLegendLabelStyle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLegendLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LabelStyle { get; set; }
         /// <summary>
         /// This event occurs when the legend label is created.

@@ -170,26 +170,44 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TextInputLayout
         /// <summary>
         /// Gets or sets the background of the container.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment ContainerBackground { get; set; }
         /// <summary>
         /// Gets or sets the style applied to the error label.
         /// </summary>
+        /// <remarks>
+        /// Accepts single LabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment ErrorLabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the style applied to the helper label.
         /// </summary>
+        /// <remarks>
+        /// Accepts single LabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment HelperLabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the style applied to the hint label.
         /// </summary>
+        /// <remarks>
+        /// Accepts single LabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment HintLabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the view to be displayed before the input view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment LeadingView { get; set; }
         /// <summary>
         /// Gets or sets the view to be displayed after the input view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment TrailingView { get; set; }
         /// <summary>
         /// Occurs when the visibility of the password input is toggled.

@@ -34,7 +34,13 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public double? Width { get; set; }
         [Parameter] public double? X { get; set; }
         [Parameter] public double? Y { get; set; }
+        /// <remarks>
+        /// Accepts single Page element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
+        /// <remarks>
+        /// Accepts single ITitleBar element.
+        /// </remarks>
         [Parameter] public RenderFragment TitleBar { get; set; }
         [Parameter] public EventCallback OnSizeChanged { get; set; }
         [Parameter] public EventCallback<MC.ModalPoppedEventArgs> OnModalPopped { get; set; }

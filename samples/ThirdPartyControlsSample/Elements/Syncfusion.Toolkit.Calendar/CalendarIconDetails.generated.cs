@@ -39,6 +39,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <summary>
         /// Gets or sets the color of special date icon for the SfCalendar.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Fill { get; set; }
 
         public new SMTC.CalendarIconDetails NativeControl => (SMTC.CalendarIconDetails)((BindableObject)this).NativeControl;

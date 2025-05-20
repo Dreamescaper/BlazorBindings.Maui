@@ -32,6 +32,9 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
         [Parameter] public bool? HasHandle { get; set; }
         [Parameter] public bool? IsCancelable { get; set; }
         [Parameter] public TMB.Detent SelectedDetent { get; set; }
+        /// <remarks>
+        /// Accepts one or more Detent elements.
+        /// </remarks>
         [Parameter] public RenderFragment Detents { get; set; }
         [Parameter] public EventCallback<TMB.DismissOrigin> OnDismissed { get; set; }
         [Parameter] public EventCallback OnShowing { get; set; }

@@ -159,6 +159,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// <value>
         /// Specifies the background color.The default value is null .
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public new RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the value of stroke.This property can be used to give border Color to ButtonBase control.
@@ -166,6 +169,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// <value>
         /// Specifies the stroke.The default value is Color.FromArgb("#79747E").
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
         /// <summary>
         /// It represents the Clicked event handler. This clicked event is hooked when clicking the ButtonBase control.

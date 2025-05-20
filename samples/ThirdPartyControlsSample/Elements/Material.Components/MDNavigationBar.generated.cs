@@ -26,6 +26,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
 
         [Parameter] public bool? HasLabel { get; set; }
         [Parameter] public int? SelectedIndex { get; set; }
+        /// <remarks>
+        /// Accepts one or more NavigationBarItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<MC.SelectedItemChangedEventArgs> OnSelectedItemChanged { get; set; }
 

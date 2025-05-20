@@ -45,6 +45,9 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets the child objects contained in this layout.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more IView elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.Layout NativeControl => (MC.Layout)((BindableObject)this).NativeControl;

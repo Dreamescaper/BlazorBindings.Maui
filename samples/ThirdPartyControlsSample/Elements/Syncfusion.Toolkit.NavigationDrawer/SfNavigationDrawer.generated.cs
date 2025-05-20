@@ -50,6 +50,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         /// <value>
         /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.SfNavigationDrawer.ContentView" /> values and the default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ContentView { get; set; }
         /// <summary>
         /// Gets or sets the settings for the navigation drawer.
@@ -57,6 +60,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         /// <value>
         /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.SfNavigationDrawer.DrawerSettings" /> values and the default value is a new instance of <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.SfNavigationDrawer.DrawerSettings" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single DrawerSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment DrawerSettings { get; set; }
         /// <summary>
         /// It is drawer closed event.

@@ -33,7 +33,13 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public global::IconPacks.Material.IconKind? SwitchIcon { get; set; }
         [Parameter] public string Title { get; set; }
         [Parameter] public Color ToolBarBackGroundColour { get; set; }
+        /// <remarks>
+        /// Accepts one or more View elements.
+        /// </remarks>
         [Parameter] public RenderFragment FooterItems { get; set; }
+        /// <remarks>
+        /// Accepts one or more View elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<MC.SelectedItemChangedEventArgs> OnSelectedItemChanged { get; set; }
 

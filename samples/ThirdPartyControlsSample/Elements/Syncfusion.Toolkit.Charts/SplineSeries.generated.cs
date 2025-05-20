@@ -47,6 +47,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartMarkerSettings" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartMarkerSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment MarkerSettings { get; set; }
 
         public new SMTC.SplineSeries NativeControl => (SMTC.SplineSeries)((BindableObject)this).NativeControl;

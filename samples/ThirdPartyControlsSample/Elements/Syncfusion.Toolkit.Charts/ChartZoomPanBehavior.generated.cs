@@ -104,6 +104,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Microsoft.Maui.Controls.Brush" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionRectFill { get; set; }
         /// <summary>
         /// Gets or sets the stroke color of the selection rectangle.
@@ -111,6 +114,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Microsoft.Maui.Controls.Brush" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionRectStroke { get; set; }
 
         public new SMTC.ChartZoomPanBehavior NativeControl => (SMTC.ChartZoomPanBehavior)((BindableObject)this).NativeControl;

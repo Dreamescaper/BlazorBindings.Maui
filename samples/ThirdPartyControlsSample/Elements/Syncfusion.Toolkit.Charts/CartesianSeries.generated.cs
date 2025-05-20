@@ -61,6 +61,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.CartesianDataLabelSettings" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single CartesianDataLabelSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment DataLabelSettings { get; set; }
         /// <summary>
         /// Gets or sets the DataTemplate to customize the appearance of the corresponding series Trackball labels.

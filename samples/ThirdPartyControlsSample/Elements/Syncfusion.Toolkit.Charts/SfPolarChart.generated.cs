@@ -47,6 +47,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the list of <see cref="T:Microsoft.Maui.Controls.Brush" />, and comes with a set of predefined brushes by default.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more Brush elements.
+        /// </remarks>
         [Parameter] public RenderFragment PaletteBrushes { get; set; }
         /// <summary>
         /// Gets or sets the primary axis in the chart.
@@ -54,6 +57,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxis" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAxis element.
+        /// </remarks>
         [Parameter] public RenderFragment PrimaryAxis { get; set; }
         /// <summary>
         /// Gets or sets the collection of vertical axis in the chart.
@@ -61,6 +67,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.RangeAxisBase" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single RangeAxisBase element.
+        /// </remarks>
         [Parameter] public RenderFragment SecondaryAxis { get; set; }
         /// <summary>
         /// Gets or sets a collection of chart series to be added in Polar chart.
@@ -68,6 +77,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartPolarSeriesCollection" /> instance as value.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more PolarSeries elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new SMTC.SfPolarChart NativeControl => (SMTC.SfPolarChart)((BindableObject)this).NativeControl;

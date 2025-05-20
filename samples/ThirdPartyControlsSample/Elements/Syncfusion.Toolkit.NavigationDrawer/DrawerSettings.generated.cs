@@ -104,6 +104,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         /// <value>
         /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.DrawerSettings.DrawerContentView" /> values and the default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment DrawerContentView { get; set; }
         /// <summary>
         /// Gets or sets the view that can be used to customize the drawer footer view of SfNavigationDrawer.
@@ -111,6 +114,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         /// <value>
         /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.DrawerSettings.DrawerFooterView" /> values and the default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment DrawerFooterView { get; set; }
         /// <summary>
         /// Gets or sets the view that can be used to customize the drawer header view of SfNavigationDrawer.
@@ -118,6 +124,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         /// <value>
         /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.NavigationDrawer.DrawerSettings.DrawerHeaderView" /> values and the default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment DrawerHeaderView { get; set; }
 
         public new SMTN.DrawerSettings NativeControl => (SMTN.DrawerSettings)((BindableObject)this).NativeControl;

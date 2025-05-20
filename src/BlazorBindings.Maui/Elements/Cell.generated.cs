@@ -47,6 +47,9 @@ namespace BlazorBindings.Maui.Elements
         /// <value>
         /// The list of menu items that will be displayed when the user performs the device-specific context gesture on the Cell.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more MenuItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment ContextActions { get; set; }
         [Parameter] public EventCallback OnAppearing { get; set; }
         [Parameter] public EventCallback OnDisappearing { get; set; }

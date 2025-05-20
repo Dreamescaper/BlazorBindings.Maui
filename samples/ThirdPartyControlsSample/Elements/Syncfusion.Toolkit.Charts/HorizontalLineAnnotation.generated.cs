@@ -40,6 +40,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLabelStyle" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment AxisLabelStyle { get; set; }
 
         public new SMTC.HorizontalLineAnnotation NativeControl => (SMTC.HorizontalLineAnnotation)((BindableObject)this).NativeControl;

@@ -50,10 +50,16 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets the <see cref="T:Microsoft.Maui.Controls.MenuBarItem" /> objects for this page, implemented in a platform-specific manner.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more MenuBarItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment MenuBarItems { get; set; }
         /// <summary>
         /// Gets the <see cref="T:Microsoft.Maui.Controls.ToolbarItem" /> objects for this page, implemented in a platform-specific manner.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more ToolbarItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment ToolbarItems { get; set; }
         /// <summary>
         /// Raised when the children of this page, and thus potentially the layout, have changed.

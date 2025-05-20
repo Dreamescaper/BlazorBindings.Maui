@@ -23,6 +23,9 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <remarks>
+        /// Accepts one or more GradientStop elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback OnInvalidateGradientBrushRequested { get; set; }
 

@@ -40,6 +40,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartInteractiveBehavior" /> instance as value and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartInteractiveBehavior element.
+        /// </remarks>
         [Parameter] public RenderFragment InteractiveBehavior { get; set; }
         /// <summary>
         /// Gets or sets the legend that helps to identify the corresponding series or data point in chart.
@@ -47,6 +50,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes a <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLegend" /> instance as value and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLegend element.
+        /// </remarks>
         [Parameter] public RenderFragment Legend { get; set; }
         /// <summary>
         /// Gets or sets the view to the background of chart area.
@@ -54,6 +60,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <c>View</c> as its value. Its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment PlotAreaBackgroundView { get; set; }
         /// <summary>
         /// Gets or sets a tooltip behavior that allows to customize the default tooltip appearance in the chart.
@@ -61,6 +70,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior" /> instance as value and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartTooltipBehavior element.
+        /// </remarks>
         [Parameter] public RenderFragment TooltipBehavior { get; set; }
 
         public new SMTC.ChartBase NativeControl => (SMTC.ChartBase)((BindableObject)this).NativeControl;

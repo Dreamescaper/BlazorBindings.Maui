@@ -63,10 +63,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <summary>
         /// Gets or sets the background color of the segment item.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the text style of the segment item.
         /// </summary>
+        /// <remarks>
+        /// Accepts single SegmentTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
 
         public new SMTS.SfSegmentItem NativeControl => (SMTS.SfSegmentItem)((BindableObject)this).NativeControl;

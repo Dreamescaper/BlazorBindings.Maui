@@ -127,22 +127,37 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Brush" /> which will be used to fill the background of an element.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets the list of <see cref="T:Microsoft.Maui.Controls.Behavior" /> objects associated to this element. This is a read-only bindable property.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more Behavior elements.
+        /// </remarks>
         [Parameter] public RenderFragment Behaviors { get; set; }
         /// <summary>
         /// Specifies the clipping region for an element.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Geometry element.
+        /// </remarks>
         [Parameter] public RenderFragment Clip { get; set; }
         /// <summary>
         /// Gets or sets the shadow effect cast by the element.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Shadow element.
+        /// </remarks>
         [Parameter] public RenderFragment Shadow { get; set; }
         /// <summary>
         /// Gets the list of <see cref="T:Microsoft.Maui.Controls.TriggerBase" /> objects associated to this element. This is a read-only bindable property.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more TriggerBase elements.
+        /// </remarks>
         [Parameter] public RenderFragment Triggers { get; set; }
         /// <summary>
         /// Occurs when the order of this element's children changes.

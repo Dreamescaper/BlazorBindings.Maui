@@ -24,6 +24,9 @@ namespace BlazorBindings.Maui.Elements
         }
 
         [Parameter] public bool? IsEnabled { get; set; }
+        /// <remarks>
+        /// Accepts one or more IMenuBarItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.MenuBar NativeControl => (MC.MenuBar)((BindableObject)this).NativeControl;

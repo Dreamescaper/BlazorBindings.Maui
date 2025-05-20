@@ -90,6 +90,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Microsoft.Maui.Controls.Brush" /> values
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment BearishFill { get; set; }
         /// <summary>
         /// Gets or sets the brush to be used for bullish points in a financial chart. It is typically used in conjunction with a <see cref="T:Syncfusion.Maui.Toolkit.Charts.CandleSeries" /> or <see cref="T:Syncfusion.Maui.Toolkit.Charts.HiLoOpenCloseSeries" /> series to visually represent positive price movements or bullish market conditions.
@@ -97,6 +100,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Microsoft.Maui.Controls.Brush" /> values
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment BullishFill { get; set; }
 
         public new SMTC.FinancialSeriesBase NativeControl => (SMTC.FinancialSeriesBase)((BindableObject)this).NativeControl;

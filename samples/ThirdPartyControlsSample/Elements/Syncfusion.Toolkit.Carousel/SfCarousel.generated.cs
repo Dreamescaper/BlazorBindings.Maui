@@ -151,6 +151,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
         /// <value>
         /// The default value is null, indicating no custom view is set initially.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment LoadMoreView { get; set; }
         /// <summary>
         /// Triggered when an item is selected from the list of unselected items in the <see cref="T:Syncfusion.Maui.Toolkit.Carousel.SfCarousel" />.

@@ -101,6 +101,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <summary>
         /// Gets or sets the background for the month cells of the calendar month view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the month cell template or template selector.
@@ -115,22 +118,37 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarMonthView.DisabledDatesBackground" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment DisabledDatesBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the disabled month cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment DisabledDatesTextStyle { get; set; }
         /// <summary>
         /// Gets or sets properties which allows to customize the view header view of the calendar month view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarMonthHeaderView element.
+        /// </remarks>
         [Parameter] public RenderFragment HeaderView { get; set; }
         /// <summary>
         /// Gets or sets the text style of the range in-between month cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment RangeTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the text style of the selection month cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the background for the special month cells of the calendar month view.
@@ -138,14 +156,23 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarMonthView.SpecialDatesBackground" /> is Transparent
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SpecialDatesBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the special month cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment SpecialDatesTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the text style of the month cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
         /// <summary>
         /// Gets or sets the background for the today month cell of the calendar month view.
@@ -153,18 +180,30 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarYearView.TodayBackground" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TodayBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the today month cell text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TodayTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the background for the trailing and leading month cells of the calendar month view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TrailingLeadingDatesBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the trailing and leading month cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TrailingLeadingDatesTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the background for the weekend month cells of the calendar month view.
@@ -172,6 +211,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarMonthView.WeekendDatesBackground" /> is null
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment WeekendDatesBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the weekend month cells text, that used to customize the text color, font, font size, font family and font attributes.
@@ -179,10 +221,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarMonthView.WeekendDatesTextStyle" /> is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment WeekendDatesTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the properties which allows to customize the week number view of the calendar month view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarWeekNumberStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment WeekNumberStyle { get; set; }
 
         public new SMTC.CalendarMonthView NativeControl => (SMTC.CalendarMonthView)((BindableObject)this).NativeControl;

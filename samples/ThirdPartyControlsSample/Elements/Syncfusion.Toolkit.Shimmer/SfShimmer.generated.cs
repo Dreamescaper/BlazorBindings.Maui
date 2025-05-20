@@ -90,6 +90,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Shimmer
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Shimmer.SfShimmer.CustomView" /> is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment CustomView { get; set; }
         /// <summary>
         /// Gets or sets the background color of the shimmer view.
@@ -97,6 +100,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Shimmer
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Shimmer.SfShimmer.Fill" /> is "#F3EDF6".
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Fill { get; set; }
 
         public new SMTS.SfShimmer NativeControl => (SMTS.SfShimmer)((BindableObject)this).NativeControl;

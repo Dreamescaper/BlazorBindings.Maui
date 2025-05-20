@@ -50,6 +50,9 @@ namespace BlazorBindings.Maui.Elements
         /// <value>
         /// The <see cref="T:Microsoft.Maui.Controls.View" /> that is displayed.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<MC.ScrolledEventArgs> OnScrolled { get; set; }
 

@@ -25,6 +25,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         }
 
         [Parameter] public int? SelectedIndex { get; set; }
+        /// <remarks>
+        /// Accepts one or more RadioButtonItem elements.
+        /// </remarks>
         [Parameter] public new RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<int> SelectedIndexChanged { get; set; }
 

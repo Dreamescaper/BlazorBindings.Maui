@@ -151,6 +151,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> value representing the background.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public new RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the content of the SfBottomSheet control.
@@ -158,6 +161,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.View" /> that represents the content of the bottom sheet.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment BottomSheetContent { get; set; }
         /// <summary>
         /// Gets or sets the view that can be used to customize the main content of the SfBottomSheet.
@@ -165,6 +171,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.View" /> that represents the content view of the bottom sheet.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public new RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets the background color of the grabber in SfBottomSheet.
@@ -172,6 +181,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> value representing the grabber's background color.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment GrabberBackground { get; set; }
         /// <summary>
         /// Invoke the event when the state of <see cref="T:Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet" /> is changed.

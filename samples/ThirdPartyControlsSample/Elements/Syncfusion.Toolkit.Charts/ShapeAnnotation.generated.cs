@@ -76,6 +76,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Microsoft.Maui.Controls.Brush" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Fill { get; set; }
         /// <summary>
         /// Gets or sets the value to customize the appearance of shape annotation text.
@@ -83,6 +86,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAnnotationLabelStyle" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAnnotationLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the stroke for the annotation.
@@ -90,6 +96,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Microsoft.Maui.Controls.Brush" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.ShapeAnnotation NativeControl => (SMTC.ShapeAnnotation)((BindableObject)this).NativeControl;

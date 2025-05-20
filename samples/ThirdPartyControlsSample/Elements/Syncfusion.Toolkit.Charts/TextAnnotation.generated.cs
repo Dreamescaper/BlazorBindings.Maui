@@ -40,6 +40,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAnnotationLabelStyle" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAnnotationLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LabelStyle { get; set; }
 
         public new SMTC.TextAnnotation NativeControl => (SMTC.TextAnnotation)((BindableObject)this).NativeControl;

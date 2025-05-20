@@ -68,6 +68,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLabelStyle" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the value to customize the appearance of the trackball line.
@@ -75,6 +78,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LineStyle { get; set; }
         /// <summary>
         /// Gets or sets the option for customize the trackball markers.
@@ -82,6 +88,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartMarkerSettings" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartMarkerSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment MarkerSettings { get; set; }
 
         public new SMTC.ChartTrackballBehavior NativeControl => (SMTC.ChartTrackballBehavior)((BindableObject)this).NativeControl;

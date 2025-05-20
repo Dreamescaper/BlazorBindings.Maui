@@ -74,10 +74,16 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the backdrop of the flyout, which is the appearance of the flyout overlay.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment FlyoutBackdrop { get; set; }
         /// <summary>
         /// Gets or sets the background color of the Shell Flyout.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment FlyoutBackground { get; set; }
         [Parameter] public RenderFragment FlyoutContent { get; set; }
         /// <summary>

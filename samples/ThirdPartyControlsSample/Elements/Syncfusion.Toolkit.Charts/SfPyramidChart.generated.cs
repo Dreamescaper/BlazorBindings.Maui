@@ -101,6 +101,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.PyramidDataLabelSettings" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single PyramidDataLabelSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment DataLabelSettings { get; set; }
         /// <summary>
         /// Gets or sets the DataTemplate that can be used to customize the appearance of the Data label.
@@ -115,6 +118,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property accepts a list of brushes as input and comes with a set of predefined brushes by default.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more Brush elements.
+        /// </remarks>
         [Parameter] public RenderFragment PaletteBrushes { get; set; }
         /// <summary>
         /// Gets or sets a value for initiating selection or highlighting of a single or multiple data points in the chart.
@@ -122,6 +128,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes a <see cref="T:Syncfusion.Maui.Toolkit.Charts.DataPointSelectionBehavior" /> instance as a value, and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single DataPointSelectionBehavior element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionBehavior { get; set; }
         /// <summary>
         /// Gets or sets the color used to paint the pyramid segments' outline.
@@ -129,6 +138,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Microsoft.Maui.Controls.Brush" /> values and its default value is <c>Transparent</c>.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
         /// <summary>
         /// Gets or sets the DataTemplate that can be used to customize the appearance of the tooltip.

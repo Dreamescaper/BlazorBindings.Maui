@@ -69,6 +69,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarYearView.Background" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the year cell template or template selector.
@@ -83,10 +86,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarYearView.DisabledDatesBackground" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment DisabledDatesBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the disabled year, decade and century cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment DisabledDatesTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the background for the leading decade and century cells of the calendar decade and century view.
@@ -94,22 +103,37 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarYearView.LeadingDatesBackground" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment LeadingDatesBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the leading decade and century cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LeadingDatesTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the text style of the range in-between year, decade and century cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment RangeTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the text style of the selection year, decade and century cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the text style of the year, decade and century cells text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
         /// <summary>
         /// Gets or sets the background for the today year, decade and century cell of the calendar year, decade and century view.
@@ -117,10 +141,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarYearView.TodayBackground" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TodayBackground { get; set; }
         /// <summary>
         /// Gets or sets the text style of the today year, decade and century cell text, that used to customize the text color, font, font size, font family and font attributes.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TodayTextStyle { get; set; }
 
         public new SMTC.CalendarYearView NativeControl => (SMTC.CalendarYearView)((BindableObject)this).NativeControl;

@@ -35,6 +35,9 @@ namespace BlazorBindings.Maui.Elements
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.View" /> subclass, or <see langword="null" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.ContentPage NativeControl => (MC.ContentPage)((BindableObject)this).NativeControl;

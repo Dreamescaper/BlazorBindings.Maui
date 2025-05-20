@@ -25,6 +25,9 @@ namespace BlazorBindings.Maui.Elements
 
         [Parameter] public SwipeMode? Mode { get; set; }
         [Parameter] public SwipeBehaviorOnInvoked? SwipeBehaviorOnInvoked { get; set; }
+        /// <remarks>
+        /// Accepts one or more ISwipeItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.SwipeItems NativeControl => (MC.SwipeItems)((BindableObject)this).NativeControl;

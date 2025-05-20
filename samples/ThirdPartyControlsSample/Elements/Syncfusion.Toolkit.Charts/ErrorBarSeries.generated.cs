@@ -89,6 +89,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ErrorBarCapLineStyle" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ErrorBarCapLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment HorizontalCapLineStyle { get; set; }
         /// <summary>
         /// Gets or sets the style for horizontal lines, and it is often used to customize the appearance of horizontal error bars for visual purposes.
@@ -96,6 +99,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ErrorBarLineStyle" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ErrorBarLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment HorizontalLineStyle { get; set; }
         /// <summary>
         /// Gets or sets the style for vertical caps, and it is often used to customize the appearance of vertical caps in the error bar for visual purposes.
@@ -103,6 +109,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ErrorBarCapLineStyle" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ErrorBarCapLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment VerticalCapLineStyle { get; set; }
         /// <summary>
         /// Gets or sets the style for vertical lines, and it is often used to customize the appearance of the vertical error bar for visual purposes.
@@ -110,6 +119,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ErrorBarLineStyle" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ErrorBarLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment VerticalLineStyle { get; set; }
 
         public new SMTC.ErrorBarSeries NativeControl => (SMTC.ErrorBarSeries)((BindableObject)this).NativeControl;

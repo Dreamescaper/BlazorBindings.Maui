@@ -40,6 +40,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartMarkerSettings" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartMarkerSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment MarkerSettings { get; set; }
 
         public new SMTC.LineSeries NativeControl => (SMTC.LineSeries)((BindableObject)this).NativeControl;

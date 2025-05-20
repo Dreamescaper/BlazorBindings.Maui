@@ -40,6 +40,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Microsoft.Maui.Controls.View" /> values and its defaults is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment CenterView { get; set; }
 
         public new SMTC.DoughnutSeries NativeControl => (SMTC.DoughnutSeries)((BindableObject)this).NativeControl;

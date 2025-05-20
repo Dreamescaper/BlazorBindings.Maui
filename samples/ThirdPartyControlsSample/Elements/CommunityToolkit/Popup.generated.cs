@@ -65,10 +65,16 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// <summary>
         /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.View" /> content to render in the Popup.
         /// </summary>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Property that represents the Window that's showing the Popup.
         /// </summary>
+        /// <remarks>
+        /// Accepts single Window element.
+        /// </remarks>
         [Parameter] public RenderFragment Window { get; set; }
         /// <summary>
         /// Dismissed event is invoked when the popup is closed.

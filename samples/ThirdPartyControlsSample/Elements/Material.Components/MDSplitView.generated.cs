@@ -26,7 +26,13 @@ namespace BlazorBindings.Maui.Elements.Material.Components
 
         [Parameter] public MCM.DrawerDisplayMode? DisplayMode { get; set; }
         [Parameter] public bool? IsPaneOpen { get; set; }
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment Content { get; set; }
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<MCM.Core.ValueChangedEventArgs> OnContentChanged { get; set; }
 

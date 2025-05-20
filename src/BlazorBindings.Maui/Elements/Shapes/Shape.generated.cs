@@ -33,7 +33,13 @@ namespace BlazorBindings.Maui.Elements.Shapes
         [Parameter] public MCS.PenLineJoin? StrokeLineJoin { get; set; }
         [Parameter] public double? StrokeMiterLimit { get; set; }
         [Parameter] public double? StrokeThickness { get; set; }
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Fill { get; set; }
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new MCS.Shape NativeControl => (MCS.Shape)((BindableObject)this).NativeControl;
