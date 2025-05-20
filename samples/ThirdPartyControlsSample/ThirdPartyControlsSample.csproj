@@ -64,4 +64,8 @@
 		<ProjectReference Include="..\..\src\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Elements\Shapes\" />
+	</ItemGroup>
+
 </Project>

@@ -153,13 +153,6 @@ namespace BlazorBindings.Maui.Elements
         /// </remarks>
         [Parameter] public RenderFragment Shadow { get; set; }
         /// <summary>
-        /// Gets the list of <see cref="T:Microsoft.Maui.Controls.TriggerBase" /> objects associated to this element. This is a read-only bindable property.
-        /// </summary>
-        /// <remarks>
-        /// Accepts one or more TriggerBase elements.
-        /// </remarks>
-        [Parameter] public RenderFragment Triggers { get; set; }
-        /// <summary>
         /// Occurs when the order of this element's children changes.
         /// </summary>
         [Parameter] public EventCallback OnChildrenReordered { get; set; }
@@ -375,9 +368,6 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Shadow):
                     Shadow = (RenderFragment)value;
                     break;
-                case nameof(Triggers):
-                    Triggers = (RenderFragment)value;
-                    break;
                 case nameof(OnChildrenReordered):
                     if (!Equals(OnChildrenReordered, value))
                     {
@@ -462,7 +452,6 @@ namespace BlazorBindings.Maui.Elements
             RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.Behavior>(builder, sequence++, Behaviors, x => x.Behaviors);
             RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Clip, (x, value) => x.Clip = (MC.Shapes.Geometry)value);
             RenderTreeBuilderHelper.AddContentProperty<MC.VisualElement>(builder, sequence++, Shadow, (x, value) => x.Shadow = (MC.Shadow)value);
-            RenderTreeBuilderHelper.AddListContentProperty<MC.VisualElement, MC.TriggerBase>(builder, sequence++, Triggers, x => x.Triggers);
         }
 
         static partial void RegisterAdditionalHandlers();

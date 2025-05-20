@@ -155,13 +155,13 @@ public record GeneratedTypeInfo(
         while (pendingTypesToGenerate.Count > 0)
         {
             var generatedInfo = pendingTypesToGenerate.Last();
-            AddBla(compilation, generatedInfo, generatedTypes, pendingTypesToGenerate);
+            AddGeneratedType(compilation, generatedInfo, generatedTypes, pendingTypesToGenerate);
         }
 
         return generatedTypes;
     }
 
-    private static GeneratedTypeInfo AddBla(
+    private static GeneratedTypeInfo AddGeneratedType(
         Compilation compilation,
         GenerateComponentSettings generatedInfo,
         List<GeneratedTypeInfo> generatedTypes,
@@ -198,6 +198,8 @@ public record GeneratedTypeInfo(
             mauiBaseType,
             usings);
 
+        generatedTypes.Add(generatedTypeInfo);
+
         // Generate RenderFragment property content types if not included explicitly
         var renderFragmentTypes = generatedTypeInfo.Properties
             .OfType<RenderFragmentPropertyInfo>()
@@ -211,7 +213,6 @@ public record GeneratedTypeInfo(
             GetOrAddForType(renderFragmentType);
         }
 
-        generatedTypes.Add(generatedTypeInfo);
         return generatedTypeInfo;
 
         (GeneratedTypeInfo? GeneratedType, INamedTypeSymbol? ExistingSymbol) GetOrAddForType(INamedTypeSymbol mauiType)
@@ -238,7 +239,7 @@ public record GeneratedTypeInfo(
                 TypeSymbol = mauiType
             };
 
-            generatedType = AddBla(compilation, pendingGeneratedInfo, generatedTypes, pendingTypesToGenerate);
+            generatedType = AddGeneratedType(compilation, pendingGeneratedInfo, generatedTypes, pendingTypesToGenerate);
             return (generatedType, null);
         }
     }

@@ -19,7 +19,6 @@ using System.Runtime.CompilerServices;
         typeof(UriImageSource),
         typeof(StreamImageSource),
         typeof(FontImageSource),
-        typeof(Path),
         typeof(FormattedString),
         typeof(NavigationPage),
         typeof(AppLinkEntry)
