@@ -61,7 +61,7 @@ public static partial class XmlDocExtensions
         }
         return xmlDocContents;
 
-        static string GetXmlDocText(XmlElement xmlDocElement)
+        static string? GetXmlDocText(XmlElement? xmlDocElement)
         {
             var allText = xmlDocElement?.InnerXml;
             allText = allText?.Replace("To be added.", "").Replace("This is a bindable property.", "");

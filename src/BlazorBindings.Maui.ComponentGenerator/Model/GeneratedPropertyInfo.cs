@@ -30,14 +30,14 @@ public abstract class GeneratedPropertyInfo
         const string indent = "        ";
 
         var newModifier = IsHidingProperty ? "new " : "";
-        return $@"{GetXmlDocs()}{indent}[Parameter] public {newModifier}{ComponentType} {ComponentPropertyName} {{ get; set; }}
+        var xmlDocs = GetXmlDocs()?.Indent(indent) ?? "";
+        return $@"{xmlDocs}{indent}[Parameter] public {newModifier}{ComponentType} {ComponentPropertyName} {{ get; set; }}
 ";
     }
 
-    protected virtual string GetXmlDocs()
+    protected virtual string? GetXmlDocs()
     {
-        const string indent = "        ";
-        return MemberSymbol?.GetXmlDocContents()?.Indent(indent) ?? "";
+        return MemberSymbol?.GetXmlDocContents();
     }
 
     public abstract string GetHandlePropertyCase();
