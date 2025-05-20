@@ -54,6 +54,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment MinorGridLineStyle { get; set; }
         /// <summary>
         /// Gets or sets the <b> ChartAxisTickStyle </b> to customize the appearance of the minor tick lines.
@@ -61,6 +64,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxisTickStyle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAxisTickStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment MinorTickStyle { get; set; }
 
         public new SMTC.RangeAxisBase NativeControl => (SMTC.RangeAxisBase)((BindableObject)this).NativeControl;

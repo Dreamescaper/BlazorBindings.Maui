@@ -39,7 +39,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// <summary>
         /// Gets the collection of child views contained within this view.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more IView elements.
+        /// </remarks>
         [Parameter] public RenderFragment Children { get; set; }
+        /// <remarks>
+        /// Accepts one or more IView elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new SMT.SfView NativeControl => (SMT.SfView)((BindableObject)this).NativeControl;

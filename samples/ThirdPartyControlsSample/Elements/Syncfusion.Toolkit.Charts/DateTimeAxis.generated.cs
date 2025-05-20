@@ -73,6 +73,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <summary>
         /// Gets or sets the collection of plot bands to be added to the chart axis.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more DateTimePlotBand elements.
+        /// </remarks>
         [Parameter] public RenderFragment PlotBands { get; set; }
 
         public new SMTC.DateTimeAxis NativeControl => (SMTC.DateTimeAxis)((BindableObject)this).NativeControl;

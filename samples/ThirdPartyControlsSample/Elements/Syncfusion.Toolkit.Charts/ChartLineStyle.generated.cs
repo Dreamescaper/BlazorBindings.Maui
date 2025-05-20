@@ -48,6 +48,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.ChartLineStyle NativeControl => (SMTC.ChartLineStyle)((BindableObject)this).NativeControl;

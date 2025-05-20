@@ -197,6 +197,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// <value>
         /// Specifies the background of the selection indicator. The default value is SolidColorBrush(Color.FromArgb("#6200EE")).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment IndicatorBackground { get; set; }
         /// <summary>
         /// Gets or sets the collection used to populate the content of the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />.
@@ -204,6 +207,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// <value>
         /// The collection used to populate the content of the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />. The default is an empty collection.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more SfTabItem elements.
+        /// </remarks>
         [Parameter] public new RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets a value that can be used to customize the scroll button’s background color in the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />.
@@ -211,6 +217,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> value that specifies the background color of the scroll button.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment ScrollButtonBackground { get; set; }
         /// <summary>
         /// Gets or sets the background color of the tab bar.
@@ -218,6 +227,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// <value>
         /// The background color of the tab bar. The default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TabBarBackground { get; set; }
         /// <summary>
         /// Occurs when the current selection is changed.

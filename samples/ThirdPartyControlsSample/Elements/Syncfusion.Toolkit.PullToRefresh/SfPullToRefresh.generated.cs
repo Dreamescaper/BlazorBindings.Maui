@@ -105,6 +105,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.PullToRefresh
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" />. The default background is Color.FromArgb("#F3EDF7").
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment ProgressBackground { get; set; }
         /// <summary>
         /// Gets or sets the pullable content of <see cref="T:Syncfusion.Maui.Toolkit.PullToRefresh.SfPullToRefresh" />.
@@ -112,6 +115,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.PullToRefresh
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.View" />. The default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment PullableContent { get; set; }
         /// <summary>
         /// Gets or sets the template to be displayed as the refresh content when <see cref="E:Syncfusion.Maui.Toolkit.PullToRefresh.SfPullToRefresh.Pulling" />.

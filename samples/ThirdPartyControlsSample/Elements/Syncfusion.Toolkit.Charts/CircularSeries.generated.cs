@@ -76,6 +76,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.CircularDataLabelSettings" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single CircularDataLabelSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment DataLabelSettings { get; set; }
         /// <summary>
         /// Gets or sets a value to customize the stroke appearance of the series.
@@ -83,6 +86,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values and its default value is <c>Transparent</c>.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.CircularSeries NativeControl => (SMTC.CircularSeries)((BindableObject)this).NativeControl;

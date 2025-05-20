@@ -48,6 +48,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartMarkerSettings" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartMarkerSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment MarkerSettings { get; set; }
         /// <summary>
         /// Gets or sets a value to customize the border appearance of the area series.
@@ -55,6 +58,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.AreaSeries NativeControl => (SMTC.AreaSeries)((BindableObject)this).NativeControl;

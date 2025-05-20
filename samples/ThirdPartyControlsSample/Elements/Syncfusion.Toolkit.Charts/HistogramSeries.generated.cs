@@ -55,6 +55,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment CurveStyle { get; set; }
         /// <summary>
         /// Gets or sets the stroke of the histogram segments, which defines the color of the borders around each segment.
@@ -62,6 +65,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values and its default value is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.HistogramSeries NativeControl => (SMTC.HistogramSeries)((BindableObject)this).NativeControl;

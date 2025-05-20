@@ -69,10 +69,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The Default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarFooterView.Background" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the ok and cancel button text style in the footer view of SfCalendar.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
 
         public new SMTC.CalendarFooterView NativeControl => (SMTC.CalendarFooterView)((BindableObject)this).NativeControl;

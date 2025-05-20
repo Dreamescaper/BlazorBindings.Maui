@@ -46,15 +46,27 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets a <see cref="T:Microsoft.Maui.Controls.View" /> control that represents the content.<br /><br /> This content is centered in the title bar, and is allocated the remaining space between the leading and trailing content.<br /><br /><br /> Views set here will block all input to the title bar region and handle input directly.
         /// </summary>
+        /// <remarks>
+        /// Accepts single IView element.
+        /// </remarks>
         [Parameter] public RenderFragment Content { get; set; }
         /// <summary>
         /// Gets or sets a <see cref="T:Microsoft.Maui.Controls.View" /> control that represents the leading content.<br /><br /> The leading content follows the optional <see cref="P:Microsoft.Maui.Controls.TitleBar.Icon" /> and is aligned to the left or right of the title bar, depending on the <see cref="T:Microsoft.Maui.FlowDirection" />. Views set here will be allocated as much space as they require. <br /><br /> Views set here will block all input to the title bar region and handle input directly.
         /// </summary>
+        /// <remarks>
+        /// Accepts single IView element.
+        /// </remarks>
         [Parameter] public RenderFragment LeadingContent { get; set; }
+        /// <remarks>
+        /// Accepts one or more IView elements.
+        /// </remarks>
         [Parameter] public RenderFragment PassthroughElements { get; set; }
         /// <summary>
         /// Gets or sets a <see cref="T:Microsoft.Maui.Controls.View" /> control that represents the trailing content.<br /><br /> The trailing content is aligned to the right or left of the title bar, depending on the <see cref="T:Microsoft.Maui.FlowDirection" />. Views set here will be allocated as much space as they require. <br /><br /> Views set here will block all input to the title bar region and handle input directly.
         /// </summary>
+        /// <remarks>
+        /// Accepts single IView element.
+        /// </remarks>
         [Parameter] public RenderFragment TrailingContent { get; set; }
 
         public new MC.TitleBar NativeControl => (MC.TitleBar)((BindableObject)this).NativeControl;

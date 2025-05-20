@@ -28,6 +28,9 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets the list of KeyboardAccelerators for the MenuFlyoutItem.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more KeyboardAccelerator elements.
+        /// </remarks>
         [Parameter] public RenderFragment KeyboardAccelerators { get; set; }
 
         public new MC.MenuFlyoutItem NativeControl => (MC.MenuFlyoutItem)((BindableObject)this).NativeControl;

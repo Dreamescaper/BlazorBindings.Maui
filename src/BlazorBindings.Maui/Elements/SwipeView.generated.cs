@@ -23,9 +23,21 @@ namespace BlazorBindings.Maui.Elements
         }
 
         [Parameter] public double? Threshold { get; set; }
+        /// <remarks>
+        /// Accepts one or more ISwipeItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment BottomItems { get; set; }
+        /// <remarks>
+        /// Accepts one or more ISwipeItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment LeftItems { get; set; }
+        /// <remarks>
+        /// Accepts one or more ISwipeItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment RightItems { get; set; }
+        /// <remarks>
+        /// Accepts one or more ISwipeItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment TopItems { get; set; }
         [Parameter] public EventCallback<MC.SwipeStartedEventArgs> OnSwipeStarted { get; set; }
         [Parameter] public EventCallback<MC.SwipeChangingEventArgs> OnSwipeChanging { get; set; }

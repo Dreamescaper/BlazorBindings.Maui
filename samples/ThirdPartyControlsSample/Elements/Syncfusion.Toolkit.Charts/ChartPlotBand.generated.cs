@@ -111,6 +111,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes <see cref="T:Microsoft.Maui.Controls.Brush" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Fill { get; set; }
         /// <summary>
         /// Gets or sets the customized style for the plot band labels.
@@ -118,6 +121,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartPlotBandLabelStyle" /> as its value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartPlotBandLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LabelStyle { get; set; }
         /// <summary>
         /// Gets or sets a value to customize the outer stroke appearance of the plot band.
@@ -125,6 +131,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.ChartPlotBand NativeControl => (SMTC.ChartPlotBand)((BindableObject)this).NativeControl;

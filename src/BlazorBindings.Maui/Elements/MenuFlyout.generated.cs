@@ -23,6 +23,9 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <remarks>
+        /// Accepts one or more IMenuElement elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.MenuFlyout NativeControl => (MC.MenuFlyout)((BindableObject)this).NativeControl;

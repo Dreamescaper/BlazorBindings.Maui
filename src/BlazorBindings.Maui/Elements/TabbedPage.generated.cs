@@ -45,7 +45,13 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public object SelectedItem { get; set; }
         [Parameter] public Color SelectedTabColor { get; set; }
         [Parameter] public Color UnselectedTabColor { get; set; }
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment BarBackground { get; set; }
+        /// <remarks>
+        /// Accepts one or more Page elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback OnCurrentPageChanged { get; set; }
         [Parameter] public EventCallback<NotifyCollectionChangedEventArgs> OnPagesChanged { get; set; }

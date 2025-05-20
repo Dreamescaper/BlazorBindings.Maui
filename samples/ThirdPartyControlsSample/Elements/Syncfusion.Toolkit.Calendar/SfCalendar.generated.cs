@@ -213,10 +213,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.EndRangeSelectionBackground" /> is "#6200EE"(Blue).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment EndRangeSelectionBackground { get; set; }
         /// <summary>
         /// Gets or sets the properties which allows to customize the calendar footer.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarFooterView element.
+        /// </remarks>
         [Parameter] public RenderFragment FooterView { get; set; }
         /// <summary>
         /// Gets or sets the header template or template selector for month, year, decade, and century view.
@@ -225,10 +231,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <summary>
         /// Gets or sets the properties which allows to customize the calendar header of month, year, decade and century views.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarHeaderView element.
+        /// </remarks>
         [Parameter] public RenderFragment HeaderView { get; set; }
         /// <summary>
         /// Gets or sets the properties which allows to customize the calendar month view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarMonthView element.
+        /// </remarks>
         [Parameter] public RenderFragment MonthView { get; set; }
         /// <summary>
         /// Gets or sets the view header template or template selector for month view.
@@ -240,6 +252,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.SelectionBackground" /> is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionBackground { get; set; }
         /// <summary>
         /// Gets or sets the value that describes the highlight for range start date of calendar.
@@ -247,6 +262,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.StartRangeSelectionBackground" /> is "#6200EE"(Blue).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment StartRangeSelectionBackground { get; set; }
         /// <summary>
         /// Gets or sets the value that describes the today highlight color value.
@@ -254,10 +272,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.TodayHighlightBrush" /> is "#6200EE"(Blue).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment TodayHighlightBrush { get; set; }
         /// <summary>
         /// Gets or sets the properties which allows to customize the calendar year, decade and century views.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarYearView element.
+        /// </remarks>
         [Parameter] public RenderFragment YearView { get; set; }
         /// <summary>
         /// Occurs whenever the calendar view and visible dates changed on SfCalendar.

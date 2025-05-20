@@ -30,6 +30,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
         /// <summary>
         /// Gets or sets the content of the view.
         /// </summary>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public new RenderFragment ChildContent { get; set; }
 
         public new SMT.SfContentView NativeControl => (SMT.SfContentView)((BindableObject)this).NativeControl;

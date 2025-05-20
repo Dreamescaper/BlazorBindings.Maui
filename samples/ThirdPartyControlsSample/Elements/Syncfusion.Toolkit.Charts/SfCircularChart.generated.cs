@@ -33,6 +33,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartSeriesCollection" /> instance as value.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more ChartSeries elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new SMTC.SfCircularChart NativeControl => (SMTC.SfCircularChart)((BindableObject)this).NativeControl;

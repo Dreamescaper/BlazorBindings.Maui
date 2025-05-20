@@ -31,6 +31,9 @@ namespace BlazorBindings.Maui.Elements
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Controls.View" /> that contains the content.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.ContentView NativeControl => (MC.ContentView)((BindableObject)this).NativeControl;

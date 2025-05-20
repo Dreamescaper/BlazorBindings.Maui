@@ -47,6 +47,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes a<see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAnnotationCollection" /> instance as a value, and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more ChartAnnotation elements.
+        /// </remarks>
         [Parameter] public RenderFragment Annotations { get; set; }
         /// <summary>
         /// Gets or sets the palette brushes for chart.
@@ -54,6 +57,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the list of <see cref="T:Microsoft.Maui.Controls.Brush" /> and its default value is predefined palette.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more Brush elements.
+        /// </remarks>
         [Parameter] public RenderFragment PaletteBrushes { get; set; }
         /// <summary>
         /// Gets or sets a value for initiating selection or highlighting of a single or multiple series in the chart.
@@ -61,6 +67,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes a <see cref="T:Syncfusion.Maui.Toolkit.Charts.SeriesSelectionBehavior" /> instance as a value, and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single SeriesSelectionBehavior element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionBehavior { get; set; }
         /// <summary>
         /// Gets or sets a collection of chart series to be added in cartesian chart.
@@ -68,6 +77,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartSeriesCollection" /> instance as value.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more ChartSeries elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets a value for initiating trackball, which displays the tooltip for the data points that are closer to the point where you interact on the chart area.
@@ -75,6 +87,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes a<see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartTrackballBehavior" /> instance as a value, and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartTrackballBehavior element.
+        /// </remarks>
         [Parameter] public RenderFragment TrackballBehavior { get; set; }
         /// <summary>
         /// Gets the collection of horizontal axes in the chart.
@@ -82,6 +97,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// Returns the collection of <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxis" />.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more ChartAxis elements.
+        /// </remarks>
         [Parameter] public RenderFragment XAxes { get; set; }
         /// <summary>
         /// Gets the collection of vertical axes in the chart.
@@ -89,6 +107,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// Returns the collection of <see cref="T:Syncfusion.Maui.Toolkit.Charts.RangeAxisBase" />.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more RangeAxisBase elements.
+        /// </remarks>
         [Parameter] public RenderFragment YAxes { get; set; }
         /// <summary>
         /// Gets or sets a value for initiating the zooming and panning operations in chart.
@@ -96,6 +117,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartZoomPanBehavior" /> value and its default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartZoomPanBehavior element.
+        /// </remarks>
         [Parameter] public RenderFragment ZoomPanBehavior { get; set; }
         /// <summary>
         /// This event is raised when the trackball is moved from one data point to another. This helps to customize the trackball label and marker based on the condition.

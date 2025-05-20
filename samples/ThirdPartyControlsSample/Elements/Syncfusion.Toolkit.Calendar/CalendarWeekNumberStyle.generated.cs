@@ -41,10 +41,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarWeekNumberStyle.Background" /> is "#2121210A".
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the text style of the week number text in SfCalendar.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
 
         public new SMTC.CalendarWeekNumberStyle NativeControl => (SMTC.CalendarWeekNumberStyle)((BindableObject)this).NativeControl;

@@ -28,6 +28,9 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the View representing the content of the ViewCell.
         /// </summary>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MC.ViewCell NativeControl => (MC.ViewCell)((BindableObject)this).NativeControl;

@@ -98,6 +98,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Buttons
         /// <value>
         /// The default value is SolidColorBrush(Color.FromArgb("#6750A4")) .
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public new RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the value of the content. This property can be used to set custom view to the button control.

@@ -147,6 +147,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
         /// <value>
         /// Specifies the highlight color of the effects view. The default value is SolidColorBrush(Colors.Black).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment HighlightBackground { get; set; }
         /// <summary>
         /// Gets or sets the color of the ripple.
@@ -154,6 +157,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
         /// <value>
         /// Specifies the color of the ripple effect. The default value is SolidColorBrush(Colors.Black).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment RippleBackground { get; set; }
         /// <summary>
         /// Gets or sets the color applied when the view is on selected state.
@@ -161,6 +167,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
         /// <value>
         /// Specifies the selection color of the effects view. The default value is SolidColorBrush(Colors.Black).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionBackground { get; set; }
         /// <summary>
         /// The <see cref="E:Syncfusion.Maui.Toolkit.EffectsView.SfEffectsView.AnimationCompleted" /> event occurs on direct interaction and when programmatically applied, it only occurs when touch-up is called on direct interaction and after the effects have been completed. It will not trigger the selection effect.

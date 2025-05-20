@@ -68,6 +68,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It takes the <see cref="T:Syncfusion.Maui.Toolkit.Charts.PolarDataLabelSettings" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single PolarDataLabelSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment DataLabelSettings { get; set; }
         /// <summary>
         /// Gets or sets the option for customize the series markers.
@@ -75,6 +78,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartMarkerSettings" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartMarkerSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment MarkerSettings { get; set; }
 
         public new SMTC.PolarSeries NativeControl => (SMTC.PolarSeries)((BindableObject)this).NativeControl;

@@ -26,6 +26,9 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public MC.FlyoutLayoutBehavior? FlyoutLayoutBehavior { get; set; }
         [Parameter] public bool? IsGestureEnabled { get; set; }
         [Parameter] public bool? IsPresented { get; set; }
+        /// <remarks>
+        /// Accepts single Page element.
+        /// </remarks>
         [Parameter] public RenderFragment Flyout { get; set; }
         [Parameter] public EventCallback<bool> IsPresentedChanged { get; set; }
 

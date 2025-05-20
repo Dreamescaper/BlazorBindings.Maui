@@ -55,10 +55,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.CalendarMonthHeaderView.Background" /> is Transparent.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
         /// <summary>
         /// Gets or sets the text style of the view header text in SfCalendar.
         /// </summary>
+        /// <remarks>
+        /// Accepts single CalendarTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
 
         public new SMTC.CalendarMonthHeaderView NativeControl => (SMTC.CalendarMonthHeaderView)((BindableObject)this).NativeControl;

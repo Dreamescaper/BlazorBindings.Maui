@@ -47,6 +47,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property takes the <see cref="T:Microsoft.Maui.Controls.View" /> as its value and its default value is null
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment View { get; set; }
 
         public new SMTC.ViewAnnotation NativeControl => (SMTC.ViewAnnotation)((BindableObject)this).NativeControl;

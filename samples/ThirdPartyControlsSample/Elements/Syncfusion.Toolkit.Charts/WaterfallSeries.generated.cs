@@ -83,6 +83,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment ConnectorLineStyle { get; set; }
         /// <summary>
         /// Gets or sets a brush value that indicates the Negative segment's interior.
@@ -90,6 +93,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment NegativePointsBrush { get; set; }
         /// <summary>
         /// Gets or sets a brush value that indicates the summary segment's interior.
@@ -97,6 +103,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Microsoft.Maui.Controls.Brush" /> values.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SummaryPointsBrush { get; set; }
 
         public new SMTC.WaterfallSeries NativeControl => (SMTC.WaterfallSeries)((BindableObject)this).NativeControl;

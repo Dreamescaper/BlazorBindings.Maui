@@ -219,6 +219,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
         /// <value>
         /// The default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single Path element.
+        /// </remarks>
         [Parameter] public RenderFragment ClearButtonPath { get; set; }
         /// <summary>
         /// Gets or sets a color that describes the stroke.
@@ -226,6 +229,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
         /// <value>
         /// The default value is <c>Colors.LightGray</c>
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
         /// <summary>
         /// Occurs after the user triggers evaluation of new input by pressing the Enter key, clicking a spin button, or by changing focus.

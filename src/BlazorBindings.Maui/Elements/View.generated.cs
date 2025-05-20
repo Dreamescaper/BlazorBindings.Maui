@@ -41,6 +41,9 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// The collection of gesture recognizers associated with this view.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more IGestureRecognizer elements.
+        /// </remarks>
         [Parameter] public RenderFragment GestureRecognizers { get; set; }
 
         public new MC.View NativeControl => (MC.View)((BindableObject)this).NativeControl;

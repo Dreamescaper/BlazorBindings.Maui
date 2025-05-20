@@ -187,6 +187,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// This property accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment AxisLineStyle { get; set; }
         /// <summary>
         /// Gets or sets the value to customize the appearance of chart axis labels.
@@ -194,6 +197,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxisLabelStyle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAxisLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment LabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" /> to customize the appearance of the major grid lines.
@@ -201,6 +207,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartLineStyle" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLineStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment MajorGridLineStyle { get; set; }
         /// <summary>
         /// Gets or sets the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxisTickStyle" /> to customize the appearance of the major tick lines.
@@ -208,6 +217,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxisTickStyle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAxisTickStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment MajorTickStyle { get; set; }
         /// <summary>
         /// Gets or sets the title for the chart axis.
@@ -215,6 +227,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartAxisTitle" /> value.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartAxisTitle element.
+        /// </remarks>
         [Parameter] public RenderFragment Title { get; set; }
         /// <summary>
         /// Gets or sets option for customize the trackball axis label.
@@ -222,6 +237,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the bool values and its default value is <c>True</c>.
         /// </value>
+        /// <remarks>
+        /// Accepts single ChartLabelStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TrackballLabelStyle { get; set; }
         /// <summary>
         /// Gets or sets the DataTemplate to customize the appearance of the axis Trackball labels.

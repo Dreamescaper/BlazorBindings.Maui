@@ -28,6 +28,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public Color BackgroundColour { get; set; }
         [Parameter] public Color RippleColor { get; set; }
         [Parameter] public int? VisibleItemCount { get; set; }
+        /// <remarks>
+        /// Accepts one or more MenuItem elements.
+        /// </remarks>
         [Parameter] public new RenderFragment ChildContent { get; set; }
 
         public new MCM.ContextMenu NativeControl => (MCM.ContextMenu)((BindableObject)this).NativeControl;

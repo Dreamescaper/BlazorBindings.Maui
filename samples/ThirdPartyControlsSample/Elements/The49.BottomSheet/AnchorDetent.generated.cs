@@ -24,6 +24,9 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
             RegisterAdditionalHandlers();
         }
 
+        /// <remarks>
+        /// Accepts single VisualElement element.
+        /// </remarks>
         [Parameter] public RenderFragment Anchor { get; set; }
 
         public new TMB.AnchorDetent NativeControl => (TMB.AnchorDetent)((BindableObject)this).NativeControl;

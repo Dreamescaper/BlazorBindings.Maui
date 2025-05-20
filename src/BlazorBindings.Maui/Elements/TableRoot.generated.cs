@@ -26,6 +26,9 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <remarks>
+        /// Accepts one or more TableSection elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<NotifyCollectionChangedEventArgs> OnCollectionChanged { get; set; }
 

@@ -46,6 +46,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public MCM.Tokens.Shape? Shape { get; set; }
         [Parameter] public Color StateLayerColor { get; set; }
         [Parameter] public string Text { get; set; }
+        /// <remarks>
+        /// Accepts one or more ComboBoxItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
         [Parameter] public EventCallback<int> SelectedIndexChanged { get; set; }
 

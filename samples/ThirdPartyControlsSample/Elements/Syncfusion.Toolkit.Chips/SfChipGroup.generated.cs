@@ -191,6 +191,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// <value>
         /// Specifies the chip background color. The default value is SolidColorBrush(Colors.Transparent).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment ChipBackground { get; set; }
         /// <summary>
         /// Gets or sets the value of ChipLayout. This property can be used to add all the chips in a chip group.
@@ -198,6 +201,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// <value>
         /// Specifies the chip layout. The default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more IView elements.
+        /// </remarks>
         [Parameter] public RenderFragment ChipLayout { get; set; }
         /// <summary>
         /// Gets or sets the value of the ChipStroke. This property can be used to change the border color of the chip in the chip group.
@@ -205,6 +211,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// <value>
         /// Specifies the chip stroke color. The default value is SolidColorBrush(Color.FromArgb("#79747E")).
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment ChipStroke { get; set; }
         /// <summary>
         /// Gets or sets the value of InputView. This property can be used to set input view or editor in the input chip group.
@@ -212,6 +221,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// <value>
         /// Specifies the input view. The default value is null.
         /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment InputView { get; set; }
         /// <summary>
         /// Gets or sets the value of the ChipCollection. This chip collection of <see cref="T:Syncfusion.Maui.Toolkit.Chips.SfChip" /> is used to generate the chips in <see cref="T:Syncfusion.Maui.Toolkit.Chips.SfChipGroup" />.
@@ -219,6 +231,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
         /// <value>
         /// The collection used to populate the chip items. The default is null.
         /// </value>
+        /// <remarks>
+        /// Accepts one or more SfChip elements.
+        /// </remarks>
         [Parameter] public new RenderFragment ChildContent { get; set; }
         /// <summary>
         /// Gets or sets the value of ItemTemplate. This property can be used to set custom content for data item in the chip group control.

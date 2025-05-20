@@ -43,6 +43,9 @@ namespace BlazorBindings.Maui.Elements.Material.Components
         [Parameter] public Color RippleColor { get; set; }
         [Parameter] public Color StateLayerColor { get; set; }
         [Parameter] public string Text { get; set; }
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
         public new MCM.TabItem NativeControl => (MCM.TabItem)((BindableObject)this).NativeControl;

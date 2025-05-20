@@ -69,6 +69,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorSettings.Background" /> is "new SolidColorBrush(Color.FromArgb("#6750A4"))".
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
 
         public new SMTS.SelectionIndicatorSettings NativeControl => (SMTS.SelectionIndicatorSettings)((BindableObject)this).NativeControl;

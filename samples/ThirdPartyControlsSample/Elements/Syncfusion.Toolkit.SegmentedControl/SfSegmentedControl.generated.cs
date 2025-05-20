@@ -134,6 +134,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value is <see cref="P:Microsoft.Maui.Controls.Brush.Transparent" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment DisabledSegmentBackground { get; set; }
         /// <summary>
         /// Gets or sets the background brush for the segments in the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentedControl" />.
@@ -141,6 +144,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value of <see cref="P:Microsoft.Maui.Controls.Brush.Transparent" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment SegmentBackground { get; set; }
         /// <summary>
         /// Gets or sets the data template to use for customizing the appearance of individual segments in the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentedControl" />.
@@ -152,6 +158,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorSettings.TextColor" /> is <see cref="F:Microsoft.Maui.Graphics.Colors.White" />, <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorSettings.Background" /> is "new SolidColorBrush(Color.FromArgb("#6750A4"))", <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorSettings.SelectionIndicatorPlacement" /> is <see cref="F:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorPlacement.Fill" />, <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorSettings.Stroke" /> is "Color.FromArgb("#6750A4")"&gt; <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SelectionIndicatorSettings.StrokeThickness" /> is "3"/&gt;.
         /// </value>
+        /// <remarks>
+        /// Accepts single SelectionIndicatorSettings element.
+        /// </remarks>
         [Parameter] public RenderFragment SelectionIndicatorSettings { get; set; }
         /// <summary>
         /// Gets or sets the stroke brush for the segments in the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentedControl" />.
@@ -159,6 +168,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value of "new SolidColorBrush(Color.FromArgb("#79747E")"/&gt;.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
         /// <summary>
         /// Gets or sets the style of segment item text, that used to customize the text color, font, font size, font family and font attributes.
@@ -166,6 +178,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.TextColor" /> is "Color.FromArgb("#1C1B1F")", <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.FontSize" /> is 14, <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.FontFamily" /> is null, <see cref="P:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentTextStyle.FontAttributes" /> is <see cref="F:Microsoft.Maui.Controls.FontAttributes.None" />.
         /// </value>
+        /// <remarks>
+        /// Accepts single SegmentTextStyle element.
+        /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
         /// <summary>
         /// Occurs when the selection within the segment item is changed.

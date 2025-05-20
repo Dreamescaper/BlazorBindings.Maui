@@ -83,6 +83,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accept the <see cref="T:Microsoft.Maui.Controls.Brush" /> values and its default is <c>Black</c>.
         /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.BoxAndWhiskerSeries NativeControl => (SMTC.BoxAndWhiskerSeries)((BindableObject)this).NativeControl;

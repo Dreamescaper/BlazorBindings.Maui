@@ -28,6 +28,9 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Add <see cref="T:Microsoft.Maui.Controls.MenuItem" /> instances to flyout.
         /// </summary>
+        /// <remarks>
+        /// Accepts one or more MenuItem elements.
+        /// </remarks>
         [Parameter] public RenderFragment MenuItems { get; set; }
 
         public new MC.ShellContent NativeControl => (MC.ShellContent)((BindableObject)this).NativeControl;
