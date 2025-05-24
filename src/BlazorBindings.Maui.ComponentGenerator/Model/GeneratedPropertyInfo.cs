@@ -1,7 +1,5 @@
 ﻿using BlazorBindings.Maui.ComponentGenerator.Extensions;
-using BlazorBindings.Maui.ComponentGenerator2.Extensions;
 using Microsoft.CodeAnalysis;
-using System.Reflection;
 
 namespace BlazorBindings.Maui.ComponentGenerator.Model;
 

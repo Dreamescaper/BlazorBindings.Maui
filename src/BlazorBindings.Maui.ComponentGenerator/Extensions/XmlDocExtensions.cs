@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace BlazorBindings.Maui.ComponentGenerator2.Extensions;
+namespace BlazorBindings.Maui.ComponentGenerator.Extensions;
 
 public static partial class XmlDocExtensions
 {

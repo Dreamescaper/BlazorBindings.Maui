@@ -2,11 +2,11 @@
   "profiles": {
     "GenerateThirdPartyControls": {
       "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\..\\..\\samples\\ThirdPartyControlsSample\\ThirdPartyControlsSample.csproj"
+      "commandLineArgs": "../../../../../samples/ThirdPartyControlsSample/ThirdPartyControlsSample.csproj"
     },
     "GenerateBlazorBindings.Maui": {
       "commandName": "Project",
-      "commandLineArgs": "..\\..\\..\\..\\BlazorBindings.Maui\\BlazorBindings.Maui.csproj"
+      "commandLineArgs": "../../../../BlazorBindings.Maui/BlazorBindings.Maui.csproj"
     }
   }
 }
