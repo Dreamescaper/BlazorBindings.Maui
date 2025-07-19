@@ -62,12 +62,12 @@ public partial class Navigation : INavigation
 
     public async Task PopModalAsync(bool animated = true)
     {
-        await NavigationAction(() => MauiNavigation.PopModalAsync(animated));
+        await MauiNavigation.PopModalAsync(animated);
     }
 
     public async Task PopAsync(bool animated = true)
     {
-        await NavigationAction(() => MauiNavigation.PopAsync(animated));
+        await MauiNavigation.PopAsync(animated);
     }
 
     public async Task PopToRootAsync(bool animated = true)
@@ -133,38 +133,15 @@ public partial class Navigation : INavigation
             componentType = _wrapperComponentType;
         }
 
-        await NavigationAction(() =>
+        var navigationHandler = new NavigationHandler(MauiNavigation, target, animated);
+        var renderTask = _renderer.AddComponent(componentType, navigationHandler, arguments);
+
+        navigationHandler.PageClosed += async () =>
         {
-            var navigationHandler = new NavigationHandler(MauiNavigation, target, animated);
-            var renderTask = _renderer.AddComponent(componentType, navigationHandler, arguments);
+            _renderer.RemoveRootComponent(await renderTask);
+        };
 
-            navigationHandler.PageClosed += async () =>
-            {
-                _renderer.RemoveRootComponent(await renderTask);
-            };
-
-            return Task.WhenAny(renderTask, navigationHandler.WaitForNavigation());
-        });
-    }
-
-    static bool _navigationInProgress;
-    static async Task NavigationAction(Func<Task> action)
-    {
-        // Do not allow multiple navigations at the same time.
-        if (_navigationInProgress)
-            return;
-
-        try
-        {
-            _navigationInProgress = true;
-            await action();
-        }
-        finally
-        {
-            // Small delay for animation.
-            await Task.Yield();
-            _navigationInProgress = false;
-        }
+        await Task.WhenAny(renderTask, navigationHandler.WaitForNavigation());
     }
 
     private class RenderFragmentComponent : ComponentBase
