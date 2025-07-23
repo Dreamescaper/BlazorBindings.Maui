@@ -287,8 +287,7 @@ internal sealed class NativeComponentAdapter(
                         }
                         else
                         {
-                            var typeName = _targetElement?.TargetElement?.GetType()?.Name;
-                            throw new NotImplementedException($"Element {typeName} does not support text content: " + frame.MarkupContent);
+                            throw new NotImplementedException($"Element {GetDebugTypeName()} does not support text content: " + frame.MarkupContent);
                         }
                     }
                     // We don't need any adapter for Markup frames, but we care about frame position, therefore we simply insert null here.
@@ -303,8 +302,7 @@ internal sealed class NativeComponentAdapter(
                     }
                     else if (!string.IsNullOrWhiteSpace(frame.TextContent))
                     {
-                        var typeName = _targetElement?.TargetElement?.GetType()?.Name;
-                        throw new NotImplementedException($"Element {typeName} does not support text content: " + frame.MarkupContent);
+                        throw new NotImplementedException($"Element {GetDebugTypeName()} does not support text content: " + frame.MarkupContent);
                     }
                     // We don't need any adapter for Text frames, but we care about frame position, therefore we simply insert null here.
                     Children.Insert(siblingIndex, null);
@@ -464,6 +462,16 @@ internal sealed class NativeComponentAdapter(
         {
             disposableTargetElement.Dispose();
         }
+    }
+
+    private string GetDebugTypeName()
+    {
+        var obj = _targetElement?.TargetElement
+            ?? _targetElement
+            ?? closestPhysicalParent?._targetElement?.TargetElement
+            ?? closestPhysicalParent?._targetElement;
+
+        return obj?.GetType().Name;
     }
 
     record struct PendingEdit(EditType Type, int Index, NativeComponentAdapter Element);
