@@ -3,7 +3,6 @@
 
 using BlazorBindings.Maui.ComponentGenerator;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BlazorBindings.UnitTests")]
@@ -47,17 +46,6 @@ using System.Runtime.CompilerServices;
     GenericProperties = [nameof(ItemsView.ItemsSource), nameof(ItemsView.ItemTemplate)],
     ContentProperties = [nameof(ItemsView.EmptyView)],
     Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)])]
-[assembly: GenerateComponent(typeof(ListView),
-    Exclude = [nameof(ListView.ItemTemplate), nameof(ListView.Header), nameof(ListView.Footer)],
-    GenericProperties = [
-        nameof(ListView.ItemsSource),
-        $"{nameof(ListView.GroupHeaderTemplate)}:System.Object",
-        nameof(ListView.GroupDisplayBinding),
-        nameof(ListView.SelectedItem),
-        nameof(ListView.GroupShortNameBinding)],
-    Aliases = [
-        $"{nameof(ListView.HeaderTemplate)}:Header",
-        $"{nameof(ListView.FooterTemplate)}:Footer" ])]
 [assembly: GenerateComponent(typeof(Picker),
     GenericProperties = [nameof(Picker.ItemsSource), nameof(Picker.SelectedItem), nameof(Picker.ItemDisplayBinding)],
     PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
@@ -96,7 +84,6 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(SwipeView))]
 [assembly: GenerateComponent(typeof(SwipeItems), Exclude = [nameof(SwipeItems.CollectionChanged)])]
 [assembly: GenerateComponent(typeof(TabbedPage), Exclude = [nameof(TabbedPage.ItemsSource), nameof(TabbedPage.ItemTemplate)])]
-[assembly: GenerateComponent(typeof(TableView), Exclude = [nameof(TableView.Root)])]
 [assembly: GenerateComponent(typeof(TableRoot))]
 [assembly: GenerateComponent(typeof(TableSection))]
 [assembly: GenerateComponent(typeof(TableSectionBase))]
@@ -106,9 +93,6 @@ using System.Runtime.CompilerServices;
     Exclude = [nameof(VisualElement.BackgroundColor), nameof(VisualElement.Triggers)])]
 [assembly: GenerateComponent(typeof(WebView), NonContentProperties = [nameof(WebView.Source)])]
 [assembly: GenerateComponent(typeof(KeyboardAccelerator))]
-
-[assembly: GenerateComponent(typeof(EntryCell),
-    PropertyChangedEvents = [nameof(EntryCell.Text)])]
 
 // Compatibility
 [assembly: GenerateComponent(typeof(Microsoft.Maui.Controls.Compatibility.Layout))]
