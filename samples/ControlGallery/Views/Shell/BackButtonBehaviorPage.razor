@@ -31,7 +31,7 @@ async Task OnBackPressed()
 {
     _backPressed = true;
 
-    var promptAccepted = await _page.NativeControl.DisplayAlert("Go Back", "Are you sure you want to go back?", "Yes", "No");
+    var promptAccepted = await _page.NativeControl.DisplayAlertAsync("Go Back", "Are you sure you want to go back?", "Yes", "No");
     if (promptAccepted)
     {
         await Navigation.PopAsync();

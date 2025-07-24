@@ -27,7 +27,7 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> that define how the element gets laid out in a layout cycle.
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> that define how the element gets arranged in a layout cycle.
         /// </summary>
         [Parameter] public MC.LayoutOptions? HorizontalOptions { get; set; }
         /// <summary>
@@ -35,7 +35,7 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public Thickness? Margin { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> that define how the element gets laid out in a layout cycle.
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> that define how the element gets arrange in a layout cycle.
         /// </summary>
         [Parameter] public MC.LayoutOptions? VerticalOptions { get; set; }
         /// <summary>

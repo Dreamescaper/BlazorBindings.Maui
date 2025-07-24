@@ -1,26 +1,26 @@
 ﻿@inherits ElementTestBase
 
 @code {
-[Test]
-public async Task BindedTimeIsUpdatedWhenSelected()
-{
-    TimeOnly bindedTime = default;
-    var timePicker = await Render<MC.TimePicker>(@<TimePicker @bind-Time="bindedTime" />);
+    [Test]
+    public async Task BindedTimeIsUpdatedWhenSelected()
+    {
+        TimeOnly? bindedTime = default;
+        var timePicker = await Render<MC.TimePicker>(@<TimePicker @bind-Time="bindedTime" />);
 
-    timePicker.Time = new TimeSpan(12, 36, 42);
+        timePicker.Time = new TimeSpan(12, 36, 42);
 
-    Assert.That(bindedTime, Is.EqualTo(new TimeOnly(12, 36, 42)));
-}
+        Assert.That(bindedTime, Is.EqualTo(new TimeOnly(12, 36, 42)));
+    }
 
-[Test]
-public async Task SelectedTimeIsUpdatedWhenBindedValueChanged()
-{
-    TimeOnly bindedTime = default;
-    var timePicker = await Render<MC.TimePicker>(@<TimePicker @bind-Time="bindedTime" />);
+    [Test]
+    public async Task SelectedTimeIsUpdatedWhenBindedValueChanged()
+    {
+        TimeOnly? bindedTime = default;
+        var timePicker = await Render<MC.TimePicker>(@<TimePicker @bind-Time="bindedTime" />);
 
-    bindedTime = new TimeOnly(11, 22, 33);
-    StateHasChanged();
+        bindedTime = new TimeOnly(11, 22, 33);
+        StateHasChanged();
 
-    Assert.That(timePicker.Time, Is.EqualTo(new TimeSpan(11, 22, 33)));
-}
+        Assert.That(timePicker.Time, Is.EqualTo(new TimeSpan(11, 22, 33)));
+    }
 }

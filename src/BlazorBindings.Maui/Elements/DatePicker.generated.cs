@@ -30,6 +30,9 @@ namespace BlazorBindings.Maui.Elements
         /// Gets a value that indicates whether the font for the date picker text is bold, italic, or neither.
         /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
+        /// <summary>
+        /// Gets or sets whether the font size is automatically scaled based on the operating system's accessibility settings.
+        /// </summary>
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
         /// <summary>
         /// Gets or sets the font family for the picker text.
