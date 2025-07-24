@@ -134,8 +134,9 @@ public abstract class GeneratedPropertyInfo
         }
         else if (namedTypeSymbol.SpecialType == SpecialType.System_Object && isGeneric)
         {
-            // Some third-party components (e.g. Syncfusion DropDownListBase) define ItemsSource as object. We map it as IList<T>.
-            if (propertySymbol.Name == "ItemsSource")
+            // Some third-party components (e.g. Syncfusion DropDownListBase) define ItemsSource as object.
+            // We map it as IList<T>, unless type is requested explicitly.
+            if (propertySymbol.Name == "ItemsSource" && typeArgument is null)
             {
                 return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", $"IList<{typeArgumentName}>");
             }
