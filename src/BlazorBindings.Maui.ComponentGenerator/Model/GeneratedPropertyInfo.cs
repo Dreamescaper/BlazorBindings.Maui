@@ -50,7 +50,7 @@ public abstract class GeneratedPropertyInfo
     protected static bool IsExplicitlyAllowed(IPropertySymbol propertyInfo, GeneratedTypeInfo generatedType)
     {
         return generatedType.Settings.Include.Contains(propertyInfo.Name)
-            || propertyInfo.Type.SpecialType == SpecialType.System_Object && generatedType.Settings.GenericProperties.ContainsKey(propertyInfo.Name);
+            || propertyInfo.Type.SpecialType == SpecialType.System_Object && generatedType.MakePropertyGeneric(propertyInfo.Name, out _);
     }
 
     protected static bool IsPublicMember(ISymbol symbol)
@@ -98,7 +98,7 @@ public abstract class GeneratedPropertyInfo
     protected static string GetComponentPropertyTypeName(IPropertySymbol propertySymbol, GeneratedTypeInfo containingType, bool isRenderFragmentProperty = false, bool makeNullable = false)
     {
         var typeSymbol = propertySymbol.Type;
-        var isGeneric = containingType.Settings.GenericProperties.TryGetValue(propertySymbol.Name, out var typeArgument);
+        var isGeneric = containingType.MakePropertyGeneric(propertySymbol.Name, out var typeArgument);
         var typeArgumentName = typeArgument is null ? "T" : containingType.GetTypeNameAndAddNamespace(typeArgument);
 
         if (typeSymbol is not INamedTypeSymbol namedTypeSymbol)
@@ -134,6 +134,12 @@ public abstract class GeneratedPropertyInfo
         }
         else if (namedTypeSymbol.SpecialType == SpecialType.System_Object && isGeneric)
         {
+            // Some third-party components (e.g. Syncfusion DropDownListBase) define ItemsSource as object. We map it as IList<T>.
+            if (propertySymbol.Name == "ItemsSource")
+            {
+                return containingType.GetTypeNameAndAddNamespace("System.Collections.Generic", $"IList<{typeArgumentName}>");
+            }
+
             return typeArgumentName;
         }
         else

@@ -25,8 +25,30 @@ public record GeneratedTypeInfo(
     public bool IsAbstract => MauiType.IsAbstract ||
         !MauiType.Constructors.Any(c => c.DeclaredAccessibility == Accessibility.Public && c.Parameters.Length == 0);
 
-    public bool IsGeneric => Settings.IsGeneric || Settings.GenericProperties.Any(p => p.Value == null) || IsBaseTypeGeneric;
-    public bool IsBaseTypeGeneric => GeneratedBaseType?.IsGeneric ?? false;
+    public bool IsGeneric => Settings.IsGeneric || Settings.GenericProperties.Any(p => p.Value == null) || IsBaseTypeGeneric || MakeItemsGeneric;
+    public bool IsBaseTypeGeneric { get; } = GeneratedBaseType?.IsGeneric ?? false;
+    private bool MakeItemsGeneric { get; } = Settings.MakeItemsGeneric ?? ShouldMakeItemsGenericByDefault(MauiType, Settings);
+
+    private static bool ShouldMakeItemsGenericByDefault(INamedTypeSymbol mauiType, GenerateComponentSettings settings)
+    {
+        // Making a property generic (and the component as a whole) has a downside - you need to set generic type if 
+        // you don't provide any generic properties values.
+        // Therefore, by default we try to make such properties generic only if we think that it's unlikely that this property would be omitted.
+        // We don't make such properties generic if component has default content property.
+        // E.g. for SfTabView setting ItemsSource is only one of options, and you can set Items property with SfTabItem directly.
+        // For such use case requiring to provide generic type does not make much sense.
+
+        if (settings.Exclude.Contains("ItemsSource"))
+            return false;
+
+        if (settings.GenericProperties.ContainsKey("ItemsSource"))
+            return false;
+
+        if (mauiType.GetAttributes().Any(a => a.AttributeClass?.Name == "ContentPropertyAttribute"))
+            return false;
+
+        return mauiType.GetProperty("ItemsSource", includeBaseTypes: true)?.SetMethod?.DeclaredAccessibility == Accessibility.Public;
+    }
 
     public string GetTypeNameAndAddNamespace(string @namespace, string typeName)
     {
@@ -101,6 +123,26 @@ public record GeneratedTypeInfo(
                 return true;
 
             return GeneratedBaseType.BaseTypesHaveProperty(propertyName);
+        }
+
+        return false;
+    }
+
+    public bool MakePropertyGeneric(string propertyName, out INamedTypeSymbol? typeSymbol)
+    {
+        if (Settings.GenericProperties.TryGetValue(propertyName, out typeSymbol))
+            return true;
+
+        typeSymbol = null;
+        if (MakeItemsGeneric && propertyName is
+            "ItemsSource" or
+            "SelectedItem" or
+            "CurrentItem" or
+            "ItemTemplateSelector" or
+            "ItemDisplayBinding" or
+            "ItemDisplayBinding")
+        {
+            return true;
         }
 
         return false;
@@ -359,7 +401,7 @@ public record GeneratedTypeInfo(
     {
         var currentType = type.BaseType;
 
-        while(currentType is not null)
+        while (currentType is not null)
         {
             if (!currentType.IsGenericType)
                 return currentType;

@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.StepLineSeries" /> is a chart type to represent data using connected horizontal and vertical steps, creating a stepped line visualization.
     /// </summary>
-    public partial class StepLineSeries : LineSeries
+    public partial class StepLineSeries<T> : LineSeries<T>
     {
         static StepLineSeries()
         {

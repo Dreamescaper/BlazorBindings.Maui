@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.SplineAreaSeries" /> is a collection of data points using smooth bezier line curves with the areas below filled.
     /// </summary>
-    public partial class SplineAreaSeries : AreaSeries
+    public partial class SplineAreaSeries<T> : AreaSeries<T>
     {
         static SplineAreaSeries()
         {

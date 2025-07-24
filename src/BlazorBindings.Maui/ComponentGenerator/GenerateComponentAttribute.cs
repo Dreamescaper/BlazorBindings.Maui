@@ -48,4 +48,10 @@ public class GenerateComponentAttribute(Type typeToGenerate) : Attribute
     /// Generate generic component type.
     /// </summary>
     public bool IsGeneric { get; set; }
+
+    /// <summary>
+    /// For collection components make ItemsSource, SelectedItem, CurrentItem, ItemTemplate properties generic.
+    /// Generator does it automatically under some conditions. You can set it to false to opt-out of this behavior.
+    /// </summary>
+    public bool MakeItemsGeneric { get; set; }
 }

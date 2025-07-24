@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Represents an abstract base class for financial chart series such as Candle and OHLC (Open-High-Low-Close).
     /// </summary>
-    public abstract partial class FinancialSeriesBase : CartesianSeries
+    public abstract partial class FinancialSeriesBase<T> : CartesianSeries<T>
     {
         static FinancialSeriesBase()
         {

@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Serves as a base class for all types of range series.
     /// </summary>
-    public abstract partial class RangeSeriesBase : CartesianSeries
+    public abstract partial class RangeSeriesBase<T> : CartesianSeries<T>
     {
         static RangeSeriesBase()
         {

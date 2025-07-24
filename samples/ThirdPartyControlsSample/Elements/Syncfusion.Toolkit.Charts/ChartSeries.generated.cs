@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
 using SMTC = Syncfusion.Maui.Toolkit.Charts;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -21,7 +22,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Represents the base class for all chart series types, including <see cref="T:Syncfusion.Maui.Toolkit.Charts.SfCartesianChart" />, <see cref="T:Syncfusion.Maui.Toolkit.Charts.SfCircularChart" />, and <see cref="T:Syncfusion.Maui.Toolkit.Charts.SfPolarChart" />.
     /// </summary>
-    public abstract partial class ChartSeries : BlazorBindings.Maui.Elements.Element
+    public abstract partial class ChartSeries<T> : BlazorBindings.Maui.Elements.Element
     {
         static ChartSeries()
         {
@@ -66,7 +67,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <summary>
         /// Gets or sets a data points collection that will be used to plot a chart.
         /// </summary>
-        [Parameter] public object ItemsSource { get; set; }
+        [Parameter] public IList<T> ItemsSource { get; set; }
         /// <summary>
         /// Gets or sets an option that determines the content to be displayed in the data labels. It is recommended to use PieSeries, DoughnutSeries, and BarSeries with LabelContext set to Percentage.
         /// </summary>
@@ -192,7 +193,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (object)value;
+                        ItemsSource = (IList<T>)value;
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;

@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.SplineRangeAreaSeries" /> is a set of data points represented by smooth bezier curves, with the area between the curves filled to illustrate the range between two values.
     /// </summary>
-    public partial class SplineRangeAreaSeries : RangeSeriesBase
+    public partial class SplineRangeAreaSeries<T> : RangeSeriesBase<T>
     {
         static SplineRangeAreaSeries()
         {

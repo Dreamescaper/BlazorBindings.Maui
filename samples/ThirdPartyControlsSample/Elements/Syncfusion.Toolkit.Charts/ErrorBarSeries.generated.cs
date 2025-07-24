@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.ErrorBarSeries" /> indicate the uncertainty or error in data points, making it easy to identify patterns and trends in the data.
     /// </summary>
-    public partial class ErrorBarSeries : XYDataSeries
+    public partial class ErrorBarSeries<T> : XYDataSeries<T>
     {
         static ErrorBarSeries()
         {

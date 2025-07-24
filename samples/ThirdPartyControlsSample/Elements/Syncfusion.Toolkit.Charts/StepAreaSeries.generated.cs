@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.StepAreaSeries" /> is a chart type to represent data using connected horizontal and vertical steps, creating a stepped area visualization.
     /// </summary>
-    public partial class StepAreaSeries : AreaSeries
+    public partial class StepAreaSeries<T> : AreaSeries<T>
     {
         static StepAreaSeries()
         {

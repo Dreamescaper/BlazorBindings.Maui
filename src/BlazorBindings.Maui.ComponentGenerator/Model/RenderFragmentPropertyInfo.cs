@@ -19,7 +19,7 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
     public override ISymbol? MemberSymbol => MauiProperty;
 
     [MemberNotNullWhen(true, nameof(MauiProperty))]
-    public bool IsControlTemplate  { get; }
+    public bool IsControlTemplate { get; }
 
     [MemberNotNullWhen(true, nameof(MauiProperty))]
     public bool IsDataTemplate { get; }
@@ -34,7 +34,7 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
         ComponentPropertyName = GetComponentPropertyName(containingType, property);
         ComponentType = GetComponentPropertyTypeName(property, containingType, isRenderFragmentProperty: true);
 
-        IsGeneric = containingType.Settings.GenericProperties.TryGetValue(property.Name, out var genericTypeArgument);
+        IsGeneric = containingType.MakePropertyGeneric(property.Name, out var genericTypeArgument);
         GenericTypeArgument = genericTypeArgument;
 
         (IsList, MauiContentType) = GetMauiContentType(Compilation, MauiPropertyType);

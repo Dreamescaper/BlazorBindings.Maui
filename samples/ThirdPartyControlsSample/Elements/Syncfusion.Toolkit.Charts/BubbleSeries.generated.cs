@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.BubbleSeries" /> displays a collection of data points represented by a bubble of different size.
     /// </summary>
-    public partial class BubbleSeries : XYDataSeries
+    public partial class BubbleSeries<T> : XYDataSeries<T>
     {
         static BubbleSeries()
         {

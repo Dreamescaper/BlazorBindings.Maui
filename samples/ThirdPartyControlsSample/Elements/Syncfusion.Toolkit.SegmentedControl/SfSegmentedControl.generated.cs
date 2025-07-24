@@ -14,6 +14,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using SMTS = Syncfusion.Maui.Toolkit.SegmentedControl;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -23,7 +24,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
     /// <summary>
     /// The SfSegmentedControl that allows you to display a set of segments, typically used for switch among different views. Each segment in the control represents an item that the user can select. The control can be populated with a collection of <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentItem" /> objects and a collection of strings. The SfSegmentedControl provides various customization options such as segment height, width, selection indicator settings, text and icon styles, and more. It supports setting the currently selected segment using the SelectedIndex property and provides an option to enable auto-scrolling when the selected index changes. You can also customize the appearance of individual segments using the SegmentTemplate.
     /// </summary>
-    public partial class SfSegmentedControl : BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SfView
+    public partial class SfSegmentedControl<T> : BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SfView
     {
         static SfSegmentedControl()
         {
@@ -64,7 +65,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// <value>
         /// The default value is <c>null</c>.
         /// </value>
-        [Parameter] public object ItemsSource { get; set; }
+        [Parameter] public IList<T> ItemsSource { get; set; }
         /// <summary>
         /// Gets or sets the background brush for the segments in the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentedControl" />.
         /// </summary>
@@ -226,7 +227,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (object)value;
+                        ItemsSource = (IList<T>)value;
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
