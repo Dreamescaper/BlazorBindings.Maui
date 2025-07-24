@@ -34,7 +34,6 @@ using System.Runtime.CompilerServices;
         nameof(Element.Handler), nameof(Element.HandlerChanged), nameof(Element.HandlerChanging) ])]
 [assembly: GenerateComponent(typeof(Entry), IsGeneric = true)]
 [assembly: GenerateComponent(typeof(FlyoutPage), Exclude = [nameof(FlyoutPage.Detail)])]
-[assembly: GenerateComponent(typeof(Frame))]
 [assembly: GenerateComponent(typeof(Grid), Exclude = [nameof(Grid.ColumnDefinitions), nameof(Grid.RowDefinitions)])]
 [assembly: GenerateComponent(typeof(GroupableItemsView),
     Exclude = [nameof(GroupableItemsView.GroupFooterTemplate), nameof(GroupableItemsView.GroupHeaderTemplate), nameof(GroupableItemsView.IsGrouped)])]

@@ -13,7 +13,7 @@
                 {
                     var index = i;
 
-                    <Frame BackgroundColor="GetColor(index)"
+                    <Border BackgroundColor="GetColor(index)"
                             CornerRadius="5"
                             Margin="5"
                             MinimumHeightRequest="24"
@@ -21,7 +21,7 @@
                             HorizontalOptions="LayoutOptions.Center">
 
                         <Label Text="@index.ToString()" />
-                    </Frame>
+                    </Border>
                 }
             </VerticalStackLayout>
         </ScrollView>

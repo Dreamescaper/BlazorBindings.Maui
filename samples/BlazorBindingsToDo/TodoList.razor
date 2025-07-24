@@ -1,7 +1,7 @@
 ﻿@inject AppState AppState
 
 <StackLayout>
-    <Frame BorderColor="Colors.LightBlue" CornerRadius="10" Margin="5" Padding="10">
+    <Border StrokeColor="Colors.LightBlue" CornerRadius="10" Margin="5" Padding="10">
         <StackLayout>
             @* Input area *@
             <Entry @bind-Text="newText"
@@ -15,8 +15,8 @@
             <ActivityIndicator Color="Colors.Orange"
                                IsRunning="isAdding" />
         </StackLayout>
-    </Frame>
-    <Frame BorderColor="Colors.LightBlue" CornerRadius="10" Margin="5" Padding="10">
+    </Border>
+    <Border StrokeColor="Colors.LightBlue" CornerRadius="10" Margin="5" Padding="10">
         <ScrollView>
             <StackLayout>
                 <ProgressBar Margin="new Thickness(10)" Progress="@ItemsPercentComplete" />
@@ -39,7 +39,7 @@
                 }
             </StackLayout>
         </ScrollView>
-    </Frame>
+    </Border>
 </StackLayout>
 
 @code

@@ -7,29 +7,29 @@
 
             <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" HorizontalOptions="LayoutOptions.Center" WidthRequest="300">
                 <GridCell Row="0" Column="0" ColumnSpan="2" RowSpan="2">
-                    <Frame BackgroundColor="Colors.DarkRed">
+                    <Border BackgroundColor="Colors.DarkRed">
                         <Label Text="1" HorizontalOptions="LayoutOptions.Center" />
-                    </Frame>
+                    </Border>
                 </GridCell>
                 <GridCell Row="0" Column="2">
-                    <Frame BackgroundColor="Colors.DarkSeaGreen">
+                    <Border BackgroundColor="Colors.DarkSeaGreen">
                         <Label Text="2" HorizontalOptions="LayoutOptions.Center" />
-                    </Frame>
+                    </Border>
                 </GridCell>
                 <GridCell Row="1" Column="2">
-                    <Frame BackgroundColor="Colors.LightCyan">
+                    <Border BackgroundColor="Colors.LightCyan">
                         <Label Text="3" HorizontalOptions="LayoutOptions.Center" />
-                    </Frame>
+                    </Border>
                 </GridCell>
                 <GridCell Row="2" Column="0">
-                    <Frame BackgroundColor="Colors.DarkGreen">
+                    <Border BackgroundColor="Colors.DarkGreen">
                         <Label Text="4" HorizontalOptions="LayoutOptions.Center" />
-                    </Frame>
+                    </Border>
                 </GridCell>
                 <GridCell Row="2" Column="1" ColumnSpan="2">
-                    <Frame BackgroundColor="Colors.DarkViolet">
+                    <Border BackgroundColor="Colors.DarkViolet">
                         <Label Text="5" HorizontalOptions="LayoutOptions.Center" />
-                    </Frame>
+                    </Border>
                 </GridCell>
             </Grid>
 
@@ -37,25 +37,25 @@
 
 
             <Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*" HorizontalOptions="LayoutOptions.Center" WidthRequest="300">
-                <Frame BackgroundColor="Colors.DarkViolet" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                <Border BackgroundColor="Colors.DarkViolet" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
                     <Label Text="1" HorizontalOptions="LayoutOptions.Center" />
-                </Frame>
+                </Border>
 
-                <Frame BackgroundColor="Colors.DarkRed" Grid.Row="0" Grid.Column="1">
+                <Border BackgroundColor="Colors.DarkRed" Grid.Row="0" Grid.Column="1">
                     <Label Text="2" HorizontalOptions="LayoutOptions.Center" />
-                </Frame>
+                </Border>
 
-                <Frame BackgroundColor="Colors.DarkSeaGreen" Grid.Row="0" Grid.Column="3">
+                <Border BackgroundColor="Colors.DarkSeaGreen" Grid.Row="0" Grid.Column="3">
                     <Label Text="3" HorizontalOptions="LayoutOptions.Center" />
-                </Frame>
+                </Border>
 
-                <Frame BackgroundColor="Colors.LightCyan" Grid.Row="@(1)" Grid.Column=@(1) Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <Border BackgroundColor="Colors.LightCyan" Grid.Row="@(1)" Grid.Column=@(1) Grid.ColumnSpan="2" Grid.RowSpan="2">
                     <Label Text="4" HorizontalOptions="LayoutOptions.Center" />
-                </Frame>
+                </Border>
 
-                <Frame BackgroundColor="Colors.DarkGreen" Grid.Row="2" Grid.Column="0">
+                <Border BackgroundColor="Colors.DarkGreen" Grid.Row="2" Grid.Column="0">
                     <Label Text="5" HorizontalOptions="LayoutOptions.Center" />
-                </Frame>
+                </Border>
             </Grid>
 
         </VerticalStackLayout>
