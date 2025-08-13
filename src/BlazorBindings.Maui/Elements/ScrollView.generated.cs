@@ -27,6 +27,13 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
+        /// Gets or sets a value that controls whether child elements inherit the input transparency of this layout when the transparency is <see langword="true" />.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to cause child elements to inherit the input transparency of this layout, when this layout's <see cref="P:Microsoft.Maui.Controls.VisualElement.InputTransparent" /> property is <see langword="true" />. <see langword="false" /> to cause child elements to ignore the input transparency of this layout.
+        /// </value>
+        [Parameter] public new bool? CascadeInputTransparent { get; set; }
+        /// <summary>
         /// Gets or sets a value that controls when the horizontal scroll bar is visible.
         /// </summary>
         /// <value>
@@ -37,6 +44,11 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the scrolling direction of the ScrollView.
         /// </summary>
         [Parameter] public ScrollOrientation? Orientation { get; set; }
+        [Parameter] public new Thickness? Padding { get; set; }
+        /// <summary>
+        /// Gets or sets the safe area edges to obey for this scroll view. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// </summary>
+        [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>
         /// Gets or sets a value that controls when the vertical scroll bar is visible.
         /// </summary>
@@ -64,6 +76,13 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(CascadeInputTransparent):
+                    if (!Equals(CascadeInputTransparent, value))
+                    {
+                        CascadeInputTransparent = (bool?)value;
+                        NativeControl.CascadeInputTransparent = CascadeInputTransparent ?? (bool)MC.ScrollView.CascadeInputTransparentProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(HorizontalScrollBarVisibility):
                     if (!Equals(HorizontalScrollBarVisibility, value))
                     {
@@ -76,6 +95,20 @@ namespace BlazorBindings.Maui.Elements
                     {
                         Orientation = (ScrollOrientation?)value;
                         NativeControl.Orientation = Orientation ?? (ScrollOrientation)MC.ScrollView.OrientationProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(Padding):
+                    if (!Equals(Padding, value))
+                    {
+                        Padding = (Thickness?)value;
+                        NativeControl.Padding = Padding ?? (Thickness)MC.ScrollView.PaddingProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SafeAreaEdges):
+                    if (!Equals(SafeAreaEdges, value))
+                    {
+                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.ScrollView.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalScrollBarVisibility):

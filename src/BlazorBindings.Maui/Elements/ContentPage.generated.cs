@@ -9,6 +9,7 @@ using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.Maui;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -29,6 +30,10 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets a value that indicates whether tapping anywhere on the page will cause the soft input to hide.
         /// </summary>
         [Parameter] public bool? HideSoftInputOnTapped { get; set; }
+        /// <summary>
+        /// Gets or sets the safe area edges to obey for this content page. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// </summary>
+        [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>
         /// Gets or sets the view that contains the content of the Page.
         /// </summary>
@@ -53,6 +58,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         HideSoftInputOnTapped = (bool?)value;
                         NativeControl.HideSoftInputOnTapped = HideSoftInputOnTapped ?? (bool)MC.ContentPage.HideSoftInputOnTappedProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SafeAreaEdges):
+                    if (!Equals(SafeAreaEdges, value))
+                    {
+                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.ContentPage.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):

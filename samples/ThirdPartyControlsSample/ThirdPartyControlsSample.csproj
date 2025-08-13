@@ -49,7 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-preview.6.25359.8" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-preview.7.25406.3" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="11.0.0" />
 		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.116.1" />

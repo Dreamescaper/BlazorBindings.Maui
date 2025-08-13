@@ -52,10 +52,13 @@ namespace BlazorBindings.Maui.Elements
         /// A valid date format.
         /// </value>
         [Parameter] public string Format { get; set; }
+        [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
         /// Gets or sets the text color for the date picker.
         /// </summary>
         [Parameter] public Color TextColor { get; set; }
+        [Parameter] public EventCallback<MC.DatePickerOpenedEventArgs> OnOpened { get; set; }
+        [Parameter] public EventCallback<MC.DatePickerClosedEventArgs> OnClosed { get; set; }
 
         public new MC.DatePicker NativeControl => (MC.DatePicker)((BindableObject)this).NativeControl;
 
@@ -107,11 +110,38 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.Format = Format;
                     }
                     break;
+                case nameof(IsOpen):
+                    if (!Equals(IsOpen, value))
+                    {
+                        IsOpen = (bool?)value;
+                        NativeControl.IsOpen = IsOpen ?? (bool)MC.DatePicker.IsOpenProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
                         TextColor = (Color)value;
                         NativeControl.TextColor = TextColor;
+                    }
+                    break;
+                case nameof(OnOpened):
+                    if (!Equals(OnOpened, value))
+                    {
+                        void NativeControlOpened(object sender, MC.DatePickerOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
+
+                        OnOpened = (EventCallback<MC.DatePickerOpenedEventArgs>)value;
+                        NativeControl.Opened -= NativeControlOpened;
+                        NativeControl.Opened += NativeControlOpened;
+                    }
+                    break;
+                case nameof(OnClosed):
+                    if (!Equals(OnClosed, value))
+                    {
+                        void NativeControlClosed(object sender, MC.DatePickerClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
+
+                        OnClosed = (EventCallback<MC.DatePickerClosedEventArgs>)value;
+                        NativeControl.Closed -= NativeControlClosed;
+                        NativeControl.Closed += NativeControlClosed;
                     }
                     break;
 

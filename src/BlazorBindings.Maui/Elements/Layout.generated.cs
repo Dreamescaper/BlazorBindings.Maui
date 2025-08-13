@@ -33,7 +33,6 @@ namespace BlazorBindings.Maui.Elements
         /// <see langword="true" /> to cause child elements to inherit the input transparency of this layout, when this layout's <see cref="P:Microsoft.Maui.Controls.VisualElement.InputTransparent" /> property is <see langword="true" />. <see langword="false" /> to cause child elements to ignore the input tranparency of this layout.
         /// </value>
         [Parameter] public bool? CascadeInputTransparent { get; set; }
-        [Parameter] public bool? IgnoreSafeArea { get; set; }
         /// <summary>
         /// Gets or sets a value which determines if the layout should clip its children to its bounds. The default value is <see langword="false" />.
         /// </summary>
@@ -42,6 +41,10 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the inner padding of the layout. The default value is a <see cref="T:Microsoft.Maui.Thickness" /> with all values set to 0.
         /// </summary>
         [Parameter] public Thickness? Padding { get; set; }
+        /// <summary>
+        /// Gets or sets the safe area edges to obey for this layout. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// </summary>
+        [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>
         /// Gets the child objects contained in this layout.
         /// </summary>
@@ -64,13 +67,6 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.CascadeInputTransparent = CascadeInputTransparent ?? (bool)MC.Layout.CascadeInputTransparentProperty.DefaultValue;
                     }
                     break;
-                case nameof(IgnoreSafeArea):
-                    if (!Equals(IgnoreSafeArea, value))
-                    {
-                        IgnoreSafeArea = (bool?)value;
-                        NativeControl.IgnoreSafeArea = IgnoreSafeArea ?? default;
-                    }
-                    break;
                 case nameof(IsClippedToBounds):
                     if (!Equals(IsClippedToBounds, value))
                     {
@@ -83,6 +79,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         Padding = (Thickness?)value;
                         NativeControl.Padding = Padding ?? (Thickness)MC.Layout.PaddingProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SafeAreaEdges):
+                    if (!Equals(SafeAreaEdges, value))
+                    {
+                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.Layout.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):

@@ -26,6 +26,14 @@ namespace BlazorBindings.Maui.Elements
 
         [Parameter] public FlowDirection? FlowDirection { get; set; }
         [Parameter] public double? Height { get; set; }
+        /// <summary>
+        /// Gets or sets whether the window can be maximized.
+        /// </summary>
+        [Parameter] public bool? IsMaximizable { get; set; }
+        /// <summary>
+        /// Gets or sets whether the window can be minimized.
+        /// </summary>
+        [Parameter] public bool? IsMinimizable { get; set; }
         [Parameter] public double? MaximumHeight { get; set; }
         [Parameter] public double? MaximumWidth { get; set; }
         [Parameter] public double? MinimumHeight { get; set; }
@@ -77,6 +85,20 @@ namespace BlazorBindings.Maui.Elements
                     {
                         Height = (double?)value;
                         NativeControl.Height = Height ?? (double)MC.Window.HeightProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsMaximizable):
+                    if (!Equals(IsMaximizable, value))
+                    {
+                        IsMaximizable = (bool?)value;
+                        NativeControl.IsMaximizable = IsMaximizable ?? (bool)MC.Window.IsMaximizableProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsMinimizable):
+                    if (!Equals(IsMinimizable, value))
+                    {
+                        IsMinimizable = (bool?)value;
+                        NativeControl.IsMinimizable = IsMinimizable ?? (bool)MC.Window.IsMinimizableProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumHeight):

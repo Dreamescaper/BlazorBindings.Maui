@@ -36,10 +36,6 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public MC.ImageSource IconImageSource { get; set; }
         /// <summary>
-        /// Gets or sets the page busy state. This will cause the platform specific global activity indicator to show a busy state.
-        /// </summary>
-        [Parameter] public bool? IsBusy { get; set; }
-        /// <summary>
         /// Gets or sets the space between the content of the page and its border.
         /// </summary>
         [Parameter] public Thickness? Padding { get; set; }
@@ -61,10 +57,6 @@ namespace BlazorBindings.Maui.Elements
         /// Accepts one or more ToolbarItem elements.
         /// </remarks>
         [Parameter] public RenderFragment ToolbarItems { get; set; }
-        /// <summary>
-        /// Raised when the children of this page, and thus potentially the layout, have changed.
-        /// </summary>
-        [Parameter] public EventCallback OnLayoutChanged { get; set; }
         /// <summary>
         /// Raised when this page is visually appearing on screen.
         /// </summary>
@@ -108,13 +100,6 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.IconImageSource = IconImageSource;
                     }
                     break;
-                case nameof(IsBusy):
-                    if (!Equals(IsBusy, value))
-                    {
-                        IsBusy = (bool?)value;
-                        NativeControl.IsBusy = IsBusy ?? (bool)MC.Page.IsBusyProperty.DefaultValue;
-                    }
-                    break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
@@ -134,16 +119,6 @@ namespace BlazorBindings.Maui.Elements
                     break;
                 case nameof(ToolbarItems):
                     ToolbarItems = (RenderFragment)value;
-                    break;
-                case nameof(OnLayoutChanged):
-                    if (!Equals(OnLayoutChanged, value))
-                    {
-                        void NativeControlLayoutChanged(object sender, EventArgs e) => InvokeEventCallback(OnLayoutChanged);
-
-                        OnLayoutChanged = (EventCallback)value;
-                        NativeControl.LayoutChanged -= NativeControlLayoutChanged;
-                        NativeControl.LayoutChanged += NativeControlLayoutChanged;
-                    }
                     break;
                 case nameof(OnAppearing):
                     if (!Equals(OnAppearing, value))
