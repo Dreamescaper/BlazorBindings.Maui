@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A <see cref="T:Microsoft.Maui.Controls.GroupableItemsView" /> that supports reordering of items through user interaction.
+    /// </summary>
     public partial class ReorderableItemsView<T> : GroupableItemsView<T>
     {
         static ReorderableItemsView()
@@ -22,7 +25,16 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether items in the collection can be reordered by the user.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if items can be reordered through user interaction (such as drag and drop); otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? CanReorderItems { get; set; }
+        /// <summary>
+        /// Occurs when a reorder operation has been completed.
+        /// </summary>
         [Parameter] public EventCallback OnReorderCompleted { get; set; }
 
         public new MC.ReorderableItemsView NativeControl => (MC.ReorderableItemsView)((BindableObject)this).NativeControl;

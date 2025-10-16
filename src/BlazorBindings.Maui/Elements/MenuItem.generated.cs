@@ -29,9 +29,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets a value that indicates whether or not the menu item removes its associated UI element.
         /// </summary>
-        /// <value>
-        /// False
-        /// </value>
         [Parameter] public bool? IsDestructive { get; set; }
         /// <summary>
         /// For internal use by the Microsoft.Maui.Controls platform.

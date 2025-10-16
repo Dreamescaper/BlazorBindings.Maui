@@ -49,10 +49,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="SQLitePCLRaw.core" Version="2.1.10" />
-		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.10" />
-		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="2.1.10" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-preview.7.25406.3" />
+		<PackageReference Include="SQLitePCLRaw.core" Version="3.0.2" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
+		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="3.0.2" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-rc.2.25504.7" />
 	</ItemGroup>
 
 	<ItemGroup>

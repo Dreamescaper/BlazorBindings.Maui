@@ -42,9 +42,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the size of the font for the text in the picker.
         /// </summary>
-        /// <value>
-        /// A <see langword="double" /> that indicates the size of the font.
-        /// </value>
         [Parameter] public double? FontSize { get; set; }
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
         [Parameter] public bool? IsOpen { get; set; }
@@ -59,9 +56,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the index of the selected item of the picker.
         /// </summary>
-        /// <value>
-        /// An 0-based index representing the selected item in the list. Default is -1.
-        /// </value>
         [Parameter] public int? SelectedIndex { get; set; }
         /// <summary>
         /// Gets or sets the selected item.
@@ -74,9 +68,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the title for the Picker.
         /// </summary>
-        /// <value>
-        /// A string.
-        /// </value>
         [Parameter] public string Title { get; set; }
         [Parameter] public Color TitleColor { get; set; }
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }

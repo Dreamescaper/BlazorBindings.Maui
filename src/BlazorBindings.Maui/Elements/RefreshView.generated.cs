@@ -23,6 +23,10 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the pull-to-refresh gesture is enabled. When false, the refresh gesture is disabled but child controls remain interactive.
+        /// </summary>
+        [Parameter] public bool? IsRefreshEnabled { get; set; }
         [Parameter] public bool? IsRefreshing { get; set; }
         [Parameter] public Color RefreshColor { get; set; }
         [Parameter] public EventCallback<bool> IsRefreshingChanged { get; set; }
@@ -35,6 +39,13 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(IsRefreshEnabled):
+                    if (!Equals(IsRefreshEnabled, value))
+                    {
+                        IsRefreshEnabled = (bool?)value;
+                        NativeControl.IsRefreshEnabled = IsRefreshEnabled ?? (bool)MC.RefreshView.IsRefreshEnabledProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(IsRefreshing):
                     if (!Equals(IsRefreshing, value))
                     {

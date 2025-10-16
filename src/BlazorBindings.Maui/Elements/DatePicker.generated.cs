@@ -41,16 +41,10 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the size of the font for the text in the picker.
         /// </summary>
-        /// <value>
-        /// A <see langword="double" /> that indicates the size of the font.
-        /// </value>
         [Parameter] public double? FontSize { get; set; }
         /// <summary>
         /// The format of the date to display to the user. This is a dependency property.
         /// </summary>
-        /// <value>
-        /// A valid date format.
-        /// </value>
         [Parameter] public string Format { get; set; }
         [Parameter] public bool? IsOpen { get; set; }
         /// <summary>

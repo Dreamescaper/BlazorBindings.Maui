@@ -29,9 +29,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets a value that controls whether the editor will change size to accommodate input as the user enters it.
         /// </summary>
-        /// <value>
-        /// Whether the editor will change size to accommodate input as the user enters it.
-        /// </value>
         [Parameter] public MC.EditorAutoSizeOption? AutoSize { get; set; }
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }

@@ -28,9 +28,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets the list of recognizers that belong to the element.
         /// </summary>
-        /// <value>
-        /// The list of recognizers that belong to the element.
-        /// </value>
         /// <remarks>
         /// Accepts one or more IGestureRecognizer elements.
         /// </remarks>

@@ -65,8 +65,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="4.2.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-preview.7.25406.3" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-preview.7.25380.108" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-rc.2.25504.7" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0-rc.2.25502.107" />
 	</ItemGroup>
 	
 </Project>

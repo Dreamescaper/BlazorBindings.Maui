@@ -27,16 +27,10 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the amount of space between columns in the Grid.
         /// </summary>
-        /// <value>
-        /// The space between columns in this <see cref="T:Microsoft.Maui.Controls.Grid" /> layout. The default is 0.
-        /// </value>
         [Parameter] public double? ColumnSpacing { get; set; }
         /// <summary>
         /// Gets or sets the amount of space between rows in the Grid.
         /// </summary>
-        /// <value>
-        /// The space between rows in this <see cref="T:Microsoft.Maui.Controls.Grid" /> layout. The default is 0.
-        /// </value>
         [Parameter] public double? RowSpacing { get; set; }
 
         public new MC.Grid NativeControl => (MC.Grid)((BindableObject)this).NativeControl;
