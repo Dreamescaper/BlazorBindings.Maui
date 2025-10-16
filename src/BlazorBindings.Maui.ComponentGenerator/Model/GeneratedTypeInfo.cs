@@ -140,7 +140,7 @@ public record GeneratedTypeInfo(
             "CurrentItem" or
             "ItemTemplateSelector" or
             "ItemDisplayBinding" or
-            "ItemDisplayBinding")
+            "ItemTemplate")
         {
             return true;
         }
