@@ -24,7 +24,11 @@ public class Program
 
     public static async Task Main(string[] args)
     {
-        MSBuildLocator.RegisterInstance(MSBuildLocator.QueryVisualStudioInstances().MaxBy(instance => instance.Version));
+        var instance = MSBuildLocator.QueryVisualStudioInstances().MaxBy(instance => instance.Version);
+        if (instance != null)
+        {
+            MSBuildLocator.RegisterInstance(instance);
+        }
 
         await Parser.Default
             .ParseArguments<Options>(args)
