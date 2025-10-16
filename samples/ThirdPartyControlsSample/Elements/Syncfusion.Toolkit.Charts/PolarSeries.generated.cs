@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// It is the base class for all types of polar series.
     /// </summary>
-    public abstract partial class PolarSeries : ChartSeries
+    public abstract partial class PolarSeries<T> : ChartSeries<T>
     {
         static PolarSeries()
         {

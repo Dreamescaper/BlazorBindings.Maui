@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.PieSeries" /> displays data as a proportion of the whole. Its most commonly used to make comparisons among a set of given data.
     /// </summary>
-    public partial class PieSeries : CircularSeries
+    public partial class PieSeries<T> : CircularSeries<T>
     {
         static PieSeries()
         {

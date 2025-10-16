@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.FastLineSeries" /> is a special kind of line series that can render a collection with a large number of data points.
     /// </summary>
-    public partial class FastLineSeries : XYDataSeries
+    public partial class FastLineSeries<T> : XYDataSeries<T>
     {
         static FastLineSeries()
         {

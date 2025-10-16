@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.LineSeries" /> displays a collection of data points connected using straight lines.
     /// </summary>
-    public partial class LineSeries : XYDataSeries
+    public partial class LineSeries<T> : XYDataSeries<T>
     {
         static LineSeries()
         {

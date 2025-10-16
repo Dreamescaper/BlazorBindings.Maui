@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Serves as the base class for Y-range based Cartesian series.
     /// </summary>
-    public abstract partial class XYDataSeries : CartesianSeries
+    public abstract partial class XYDataSeries<T> : CartesianSeries<T>
     {
         static XYDataSeries()
         {

@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.ScatterSeries" /> displays a collection of data points represented by a circle of equal size.
     /// </summary>
-    public partial class ScatterSeries : XYDataSeries
+    public partial class ScatterSeries<T> : XYDataSeries<T>
     {
         static ScatterSeries()
         {

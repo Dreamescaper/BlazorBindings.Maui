@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingLineSeries" /> is a collection of data points, where the lines are stacked on top of each other.
     /// </summary>
-    public partial class StackingLineSeries : StackingSeriesBase
+    public partial class StackingLineSeries<T> : StackingSeriesBase<T>
     {
         static StackingLineSeries()
         {

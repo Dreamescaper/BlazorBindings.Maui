@@ -22,7 +22,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Carousel.SfCarousel" /> class represents a control that allows user navigate through a collection of galleried items.
     /// </summary>
-    public partial class SfCarousel : BlazorBindings.Maui.Elements.View
+    public partial class SfCarousel<T> : BlazorBindings.Maui.Elements.View
     {
         static SfCarousel()
         {
@@ -144,7 +144,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
         /// <value>
         /// The default value is null, indicating no template is set initially.
         /// </value>
-        [Parameter] public RenderFragment ItemTemplate { get; set; }
+        [Parameter] public RenderFragment<T> ItemTemplate { get; set; }
         /// <summary>
         /// Gets or sets the custom view displayed when additional items are loaded in the carousel, replacing the default "Load More" label.
         /// </summary>
@@ -289,7 +289,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
                     }
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment)value;
+                    ItemTemplate = (RenderFragment<T>)value;
                     break;
                 case nameof(LoadMoreView):
                     LoadMoreView = (RenderFragment)value;
@@ -334,7 +334,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddDataTemplateProperty<SMTC.SfCarousel>(builder, sequence++, ItemTemplate, (x, template) => x.ItemTemplate = template);
+            RenderTreeBuilderHelper.AddDataTemplateProperty<SMTC.SfCarousel, T>(builder, sequence++, ItemTemplate, (x, template) => x.ItemTemplate = template);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCarousel>(builder, sequence++, LoadMoreView, (x, value) => x.LoadMoreView = (MC.View)value);
         }
 

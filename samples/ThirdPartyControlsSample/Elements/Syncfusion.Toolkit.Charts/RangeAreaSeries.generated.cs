@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.RangeAreaSeries" /> is a chart type to represent data as filled areas between two ranges, typically depicting a range of values or uncertainty.
     /// </summary>
-    public partial class RangeAreaSeries : RangeSeriesBase
+    public partial class RangeAreaSeries<T> : RangeSeriesBase<T>
     {
         static RangeAreaSeries()
         {

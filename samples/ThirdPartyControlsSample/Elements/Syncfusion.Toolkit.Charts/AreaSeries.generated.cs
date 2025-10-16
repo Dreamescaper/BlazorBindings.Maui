@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.AreaSeries" /> is a collection of data points connected to form a closed loop area, filled with the specified color.
     /// </summary>
-    public partial class AreaSeries : XYDataSeries
+    public partial class AreaSeries<T> : XYDataSeries<T>
     {
         static AreaSeries()
         {

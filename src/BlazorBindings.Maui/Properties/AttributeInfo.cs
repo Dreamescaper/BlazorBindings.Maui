@@ -42,9 +42,9 @@ using System.Runtime.CompilerServices;
     Exclude = [nameof(IndicatorView.ItemsSource), nameof(IndicatorView.IndicatorLayout)])]
 [assembly: GenerateComponent(typeof(InputView), Exclude = [nameof(InputView.Text), nameof(InputView.TextChanged)])]
 [assembly: GenerateComponent(typeof(ItemsView),
-    GenericProperties = [nameof(ItemsView.ItemsSource), nameof(ItemsView.ItemTemplate)],
     ContentProperties = [nameof(ItemsView.EmptyView)],
-    Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)])]
+    Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)], // ItemsSource mapped manually
+    MakeItemsGeneric = true)]
 [assembly: GenerateComponent(typeof(Picker),
     GenericProperties = [nameof(Picker.ItemsSource), nameof(Picker.SelectedItem), nameof(Picker.ItemDisplayBinding)],
     PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
@@ -56,10 +56,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(ReorderableItemsView),
     Exclude = [nameof(ReorderableItemsView.CanMixGroups)])]
 [assembly: GenerateComponent(typeof(SearchHandler),
-    GenericProperties = [nameof(SearchHandler.ItemsSource), nameof(SearchHandler.SelectedItem), nameof(SearchHandler.ItemTemplate)],
     PropertyChangedEvents = [nameof(SearchHandler.Query), nameof(SearchHandler.SelectedItem)])]
 [assembly: GenerateComponent(typeof(SelectableItemsView),
-    GenericProperties = [nameof(SelectableItemsView.SelectedItem)],
     PropertyChangedEvents = [nameof(SelectableItemsView.SelectedItem), nameof(SelectableItemsView.SelectedItems)])]
 [assembly: GenerateComponent(typeof(Shadow),
     Exclude = [nameof(Shadow.Brush)])]

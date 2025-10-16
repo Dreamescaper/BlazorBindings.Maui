@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Represents a range column series in .NET MAUI <see cref="T:Syncfusion.Maui.Toolkit.Charts.SfCartesianChart" />.
     /// </summary>
-    public partial class RangeColumnSeries : RangeSeriesBase
+    public partial class RangeColumnSeries<T> : RangeSeriesBase<T>
     {
         static RangeColumnSeries()
         {

@@ -22,7 +22,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.ColumnSeries" /> displays a set of vertical bars for the given data point values.
     /// </summary>
-    public partial class ColumnSeries : XYDataSeries
+    public partial class ColumnSeries<T> : XYDataSeries<T>
     {
         static ColumnSeries()
         {

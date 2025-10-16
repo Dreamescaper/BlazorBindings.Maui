@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.BoxAndWhiskerSeries" /> class represents a series that plots box-and-whisker diagrams in a <see cref="T:Syncfusion.Maui.Toolkit.Charts.SfCartesianChart" />.
     /// </summary>
-    public partial class BoxAndWhiskerSeries : XYDataSeries
+    public partial class BoxAndWhiskerSeries<T> : XYDataSeries<T>
     {
         static BoxAndWhiskerSeries()
         {

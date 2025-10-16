@@ -15,7 +15,7 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
         ComponentPropertyName = GetComponentPropertyName(generatedType, property);
         ComponentType = GetComponentPropertyTypeName(property, generatedType, makeNullable: true);
 
-        IsGeneric = generatedType.Settings.GenericProperties.TryGetValue(property.Name, out var genericTypeArgument);
+        IsGeneric = generatedType.MakePropertyGeneric(property.Name, out var genericTypeArgument);
         GenericTypeArgument = genericTypeArgument;
     }
 

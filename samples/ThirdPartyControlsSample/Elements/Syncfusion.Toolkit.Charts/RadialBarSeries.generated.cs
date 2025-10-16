@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.RadialBarSeries" /> displays data in different categories. Its typically used to make comparisons among a set of given data using the circular shapes of the bars.
     /// </summary>
-    public partial class RadialBarSeries : CircularSeries
+    public partial class RadialBarSeries<T> : CircularSeries<T>
     {
         static RadialBarSeries()
         {

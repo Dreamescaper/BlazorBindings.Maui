@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.HistogramSeries" /> displays the distribution of a dataset by dividing it into intervals and showing the count of values within each interval.
     /// </summary>
-    public partial class HistogramSeries : XYDataSeries
+    public partial class HistogramSeries<T> : XYDataSeries<T>
     {
         static HistogramSeries()
         {

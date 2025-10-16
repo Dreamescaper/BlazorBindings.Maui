@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.CandleSeries" /> displays a set of candle used in financial analysis to represent open, high, low, and close values of an asset or security.
     /// </summary>
-    public partial class CandleSeries : HiLoOpenCloseSeries
+    public partial class CandleSeries<T> : HiLoOpenCloseSeries<T>
     {
         static CandleSeries()
         {

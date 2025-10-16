@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Represents the base class for all circular chart series, such as <see cref="T:Syncfusion.Maui.Toolkit.Charts.PieSeries" />, <see cref="T:Syncfusion.Maui.Toolkit.Charts.DoughnutSeries" />, and <see cref="T:Syncfusion.Maui.Toolkit.Charts.RadialBarSeries" /> series.
     /// </summary>
-    public abstract partial class CircularSeries : ChartSeries
+    public abstract partial class CircularSeries<T> : ChartSeries<T>
     {
         static CircularSeries()
         {

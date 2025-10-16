@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.SplineSeries" /> is a set of data points linked together by smooth bezier curves.
     /// </summary>
-    public partial class SplineSeries : XYDataSeries
+    public partial class SplineSeries<T> : XYDataSeries<T>
     {
         static SplineSeries()
         {

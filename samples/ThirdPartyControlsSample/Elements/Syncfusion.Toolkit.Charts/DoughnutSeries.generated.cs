@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.DoughnutSeries" /> displays data as a proportion of the whole. Its most commonly used to make comparisons among a set of given data.
     /// </summary>
-    public partial class DoughnutSeries : PieSeries
+    public partial class DoughnutSeries<T> : PieSeries<T>
     {
         static DoughnutSeries()
         {
