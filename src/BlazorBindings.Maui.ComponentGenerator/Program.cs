@@ -115,7 +115,8 @@ public class Program
                     GenericProperties = GetNamedArgumentValues(a, "GenericProperties").Select(v => v.Split(':')).ToDictionary(v => v[0],
                         v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
                     Aliases = propertiesAliases,
-                    IsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool? ?? false
+                    IsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool? ?? false,
+                    MakeItemsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "MakeItemsGeneric").Value.Value as bool?
                 };
             })
             .Where(type => type.TypeSymbol != null)

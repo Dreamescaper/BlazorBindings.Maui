@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.HiLoOpenCloseSeries" /> displays a set of OHLC segments used in financial analysis to represent open, high, low, and close values of an asset or security.
     /// </summary>
-    public partial class HiLoOpenCloseSeries : FinancialSeriesBase
+    public partial class HiLoOpenCloseSeries<T> : FinancialSeriesBase<T>
     {
         static HiLoOpenCloseSeries()
         {

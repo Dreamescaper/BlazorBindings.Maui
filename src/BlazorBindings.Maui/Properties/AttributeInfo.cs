@@ -3,7 +3,6 @@
 
 using BlazorBindings.Maui.ComponentGenerator;
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Shapes;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BlazorBindings.UnitTests")]
@@ -44,23 +43,19 @@ using System.Runtime.CompilerServices;
     Exclude = [nameof(IndicatorView.ItemsSource), nameof(IndicatorView.IndicatorLayout)])]
 [assembly: GenerateComponent(typeof(InputView), Exclude = [nameof(InputView.Text), nameof(InputView.TextChanged)])]
 [assembly: GenerateComponent(typeof(ItemsView),
-    GenericProperties = [nameof(ItemsView.ItemsSource), nameof(ItemsView.ItemTemplate)],
     ContentProperties = [nameof(ItemsView.EmptyView)],
-    Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)])]
+    Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)], // ItemsSource mapped manually
+    MakeItemsGeneric = true)]
 [assembly: GenerateComponent(typeof(ListView),
     Exclude = [nameof(ListView.ItemTemplate), nameof(ListView.Header), nameof(ListView.Footer)],
     GenericProperties = [
-        nameof(ListView.ItemsSource),
         $"{nameof(ListView.GroupHeaderTemplate)}:System.Object",
         nameof(ListView.GroupDisplayBinding),
-        nameof(ListView.SelectedItem),
         nameof(ListView.GroupShortNameBinding)],
     Aliases = [
         $"{nameof(ListView.HeaderTemplate)}:Header",
         $"{nameof(ListView.FooterTemplate)}:Footer" ])]
-[assembly: GenerateComponent(typeof(Picker),
-    GenericProperties = [nameof(Picker.ItemsSource), nameof(Picker.SelectedItem), nameof(Picker.ItemDisplayBinding)],
-    PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
+[assembly: GenerateComponent(typeof(Picker), PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
 [assembly: GenerateComponent(typeof(RadioButton),
     Exclude = [nameof(RadioButton.Value), nameof(RadioButton.Content)])]
 [assembly: GenerateComponent(typeof(RefreshView),
@@ -69,10 +64,8 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(ReorderableItemsView),
     Exclude = [nameof(ReorderableItemsView.CanMixGroups)])]
 [assembly: GenerateComponent(typeof(SearchHandler),
-    GenericProperties = [nameof(SearchHandler.ItemsSource), nameof(SearchHandler.SelectedItem), nameof(SearchHandler.ItemTemplate)],
     PropertyChangedEvents = [nameof(SearchHandler.Query), nameof(SearchHandler.SelectedItem)])]
 [assembly: GenerateComponent(typeof(SelectableItemsView),
-    GenericProperties = [nameof(SelectableItemsView.SelectedItem)],
     PropertyChangedEvents = [nameof(SelectableItemsView.SelectedItem), nameof(SelectableItemsView.SelectedItems)])]
 [assembly: GenerateComponent(typeof(Shadow),
     Exclude = [nameof(Shadow.Brush)])]

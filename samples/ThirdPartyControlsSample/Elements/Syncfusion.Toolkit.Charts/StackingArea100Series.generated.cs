@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingArea100Series" /> is a collection of data points, where the areas are stacked on top of each other to represent a percentage of the total for each category.
     /// </summary>
-    public partial class StackingArea100Series : StackingAreaSeries
+    public partial class StackingArea100Series<T> : StackingAreaSeries<T>
     {
         static StackingArea100Series()
         {

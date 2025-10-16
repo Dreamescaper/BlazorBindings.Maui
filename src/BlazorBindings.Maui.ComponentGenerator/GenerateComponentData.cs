@@ -12,7 +12,8 @@ public class GenerateComponentSettings
     public HashSet<string> ContentProperties { get; set; } = [];
     public HashSet<string> NonContentProperties { get; set; } = [];
     public string[] PropertyChangedEvents { get; set; } = [];
-    public Dictionary<string, INamedTypeSymbol> GenericProperties { get; set; } = [];
+    public Dictionary<string, INamedTypeSymbol?> GenericProperties { get; set; } = [];
     public Dictionary<string, string> Aliases { get; set; } = [];
     public bool IsGeneric { get; set; }
+    public bool? MakeItemsGeneric { get; set; }
 }

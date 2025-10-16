@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingSeriesBase" /> is a base class for stacking chart series, including <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingColumnSeries" />,<see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingColumn100Series" />,<see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingLineSeries" />, <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingLine100Series" />, <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingAreaSeries" />, and <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingArea100Series" />.
     /// </summary>
-    public abstract partial class StackingSeriesBase : XYDataSeries
+    public abstract partial class StackingSeriesBase<T> : XYDataSeries<T>
     {
         static StackingSeriesBase()
         {

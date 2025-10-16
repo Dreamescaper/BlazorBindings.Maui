@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.PolarAreaSeries" /> is a series that displays data in terms of values and angles using a filled polygon shape. It allows for visually comparing several quantitative or qualitative aspects of a situation.
     /// </summary>
-    public partial class PolarAreaSeries : PolarSeries
+    public partial class PolarAreaSeries<T> : PolarSeries<T>
     {
         static PolarAreaSeries()
         {

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
 using SMTC = Syncfusion.Maui.Toolkit.Charts;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -21,7 +22,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Provides the pyramid chart with a unique style of data representation that is more UI-visualising and user-friendly.
     /// </summary>
-    public partial class SfPyramidChart : ChartBase
+    public partial class SfPyramidChart<T> : ChartBase
     {
         static SfPyramidChart()
         {
@@ -48,7 +49,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// <value>
         /// It accepts the data points collections and its default value is null.
         /// </value>
-        [Parameter] public object ItemsSource { get; set; }
+        [Parameter] public IList<T> ItemsSource { get; set; }
         /// <summary>
         /// Gets or sets a legend icon that will be displayed in the associated legend item.
         /// </summary>
@@ -175,7 +176,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (object)value;
+                        ItemsSource = (IList<T>)value;
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;

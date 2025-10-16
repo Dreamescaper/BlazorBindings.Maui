@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// <see cref="T:Syncfusion.Maui.Toolkit.Charts.CartesianSeries" /> is the base class for all cartesian based series such as column, line, area, and so on.
     /// </summary>
-    public abstract partial class CartesianSeries : ChartSeries
+    public abstract partial class CartesianSeries<T> : ChartSeries<T>
     {
         static CartesianSeries()
         {

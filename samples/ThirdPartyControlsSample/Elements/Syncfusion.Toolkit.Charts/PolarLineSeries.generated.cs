@@ -19,7 +19,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.PolarLineSeries" /> is a series that displays data in terms of values and angles by using a collection of straight lines. It allows for the visually comparing several quantitative or qualitative aspects of a situation.
     /// </summary>
-    public partial class PolarLineSeries : PolarSeries
+    public partial class PolarLineSeries<T> : PolarSeries<T>
     {
         static PolarLineSeries()
         {

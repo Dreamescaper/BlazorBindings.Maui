@@ -20,7 +20,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.StackingColumnSeries" /> is a chart type that shows a set of vertical bars stacked on top of each other to represent data point values.
     /// </summary>
-    public partial class StackingColumnSeries : StackingSeriesBase
+    public partial class StackingColumnSeries<T> : StackingSeriesBase<T>
     {
         static StackingColumnSeries()
         {

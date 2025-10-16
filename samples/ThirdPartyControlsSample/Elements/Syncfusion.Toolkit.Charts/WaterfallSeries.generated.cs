@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// The <see cref="T:Syncfusion.Maui.Toolkit.Charts.WaterfallSeries" /> shows that an initial value is affected by a series of intermediate positive or negative values, leading to a final value.
     /// </summary>
-    public partial class WaterfallSeries : XYDataSeries
+    public partial class WaterfallSeries<T> : XYDataSeries<T>
     {
         static WaterfallSeries()
         {
