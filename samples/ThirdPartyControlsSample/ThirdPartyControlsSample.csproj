@@ -49,8 +49,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-rc.2.25504.7" />
-		<PackageReference Include="CommunityToolkit.Maui" Version="11.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="13.0.0" />
 		<PackageReference Include="Material.Components.Maui" Version="0.1.2-beta" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.1" />
 		<PackageReference Include="Syncfusion.Maui.Toolkit" Version="1.0.7" />
@@ -60,6 +60,10 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.10" />
 	</ItemGroup>
 
 </Project>

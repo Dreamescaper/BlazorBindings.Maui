@@ -95,6 +95,11 @@ public class Program
             {
                 var typeSymbol = a.ConstructorArguments.First().Value as INamedTypeSymbol;
 
+                if (typeSymbol is { IsUnboundGenericType: true })
+                {
+                    typeSymbol = typeSymbol.OriginalDefinition;
+                }
+
                 var propertiesAliases = GetNamedArgumentValues(a, "Aliases")
                     .Select(v => v.Split(':'))
                     .ToDictionary(v => v[0], v => v[1]);
@@ -115,7 +120,7 @@ public class Program
                     GenericProperties = GetNamedArgumentValues(a, "GenericProperties").Select(v => v.Split(':')).ToDictionary(v => v[0],
                         v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
                     Aliases = propertiesAliases,
-                    IsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool? ?? false,
+                    IsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool? ?? typeSymbol.IsGenericType,
                     MakeItemsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "MakeItemsGeneric").Value.Value as bool?
                 };
             })

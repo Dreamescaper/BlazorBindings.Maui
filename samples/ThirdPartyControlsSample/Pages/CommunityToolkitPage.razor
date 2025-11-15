@@ -34,7 +34,6 @@
 
     async Task ShowPopup()
     {
-        popupResult = (string)await Navigation.ShowCommunityToolkitPopupAsync<CommunityToolkitPopup>();
+        popupResult = await Navigation.ShowCommunityToolkitPopupAsync<CommunityToolkitPopup, string>();
     }
-
 }

@@ -10,6 +10,7 @@ using BlazorBindings.Maui.Elements;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using SMTN = Syncfusion.Maui.Toolkit.NavigationDrawer;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the easing function that controls the acceleration and deceleration of the drawer's open and close animations.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="T:Microsoft.Maui.Easing" /> values and the default value is Easing.Linear.
+        /// </value>
+        [Parameter] public Easing AnimationEasing { get; set; }
         /// <summary>
         /// Gets or sets a value that can be used to customize the background color of the drawer.
         /// </summary>
@@ -137,6 +145,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
         {
             switch (name)
             {
+                case nameof(AnimationEasing):
+                    if (!Equals(AnimationEasing, value))
+                    {
+                        AnimationEasing = (Easing)value;
+                        NativeControl.AnimationEasing = AnimationEasing;
+                    }
+                    break;
                 case nameof(ContentBackground):
                     if (!Equals(ContentBackground, value))
                     {

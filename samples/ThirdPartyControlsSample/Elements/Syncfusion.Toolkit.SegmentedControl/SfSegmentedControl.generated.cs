@@ -60,6 +60,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// </value>
         [Parameter] public Color DisabledSegmentTextColor { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether the ripple effect animation should be applied to a segment item when it is selected for default and segment template added.
+        /// </summary>
+        /// <value>
+        /// The default value is true.
+        /// </value>
+        [Parameter] public bool? EnableRippleEffect { get; set; }
+        /// <summary>
         /// Gets or sets a collection used to generate the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentItem" /> in the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentedControl" />.
         /// </summary>
         /// <value>
@@ -101,6 +108,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// The index of the selected item defaults to <c>null</c>, indicating that no item is currently selected.
         /// </value>
         [Parameter] public Nullable<int> SelectedIndex { get; set; }
+        /// <summary>
+        /// Gets or sets the selection behavior of segment items, allowing either single selection or single deselection.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentSelectionMode" /> is <see cref="F:Syncfusion.Maui.Toolkit.SegmentedControl.SegmentSelectionMode.Single" />.
+        /// </value>
+        [Parameter] public SMTS.SegmentSelectionMode? SelectionMode { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether to show separators between segments in the <see cref="T:Syncfusion.Maui.Toolkit.SegmentedControl.SfSegmentedControl" />.
         /// </summary>
@@ -187,6 +201,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
         /// Occurs when the selection within the segment item is changed.
         /// </summary>
         [Parameter] public EventCallback<SMTS.SelectionChangedEventArgs> OnSelectionChanged { get; set; }
+        /// <summary>
+        /// Occurs when tapped on a segment item.
+        /// </summary>
+        [Parameter] public EventCallback<SMTS.SegmentTappedEventArgs> OnTapped { get; set; }
 
         public new SMTS.SfSegmentedControl NativeControl => (SMTS.SfSegmentedControl)((BindableObject)this).NativeControl;
 
@@ -222,6 +240,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                     {
                         DisabledSegmentTextColor = (Color)value;
                         NativeControl.DisabledSegmentTextColor = DisabledSegmentTextColor;
+                    }
+                    break;
+                case nameof(EnableRippleEffect):
+                    if (!Equals(EnableRippleEffect, value))
+                    {
+                        EnableRippleEffect = (bool?)value;
+                        NativeControl.EnableRippleEffect = EnableRippleEffect ?? (bool)SMTS.SfSegmentedControl.EnableRippleEffectProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
@@ -264,6 +289,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                     {
                         SelectedIndex = (Nullable<int>)value;
                         NativeControl.SelectedIndex = SelectedIndex;
+                    }
+                    break;
+                case nameof(SelectionMode):
+                    if (!Equals(SelectionMode, value))
+                    {
+                        SelectionMode = (SMTS.SegmentSelectionMode?)value;
+                        NativeControl.SelectionMode = SelectionMode ?? (SMTS.SegmentSelectionMode)SMTS.SfSegmentedControl.SelectionModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowSeparator):
@@ -320,6 +352,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                         OnSelectionChanged = (EventCallback<SMTS.SelectionChangedEventArgs>)value;
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
+                    }
+                    break;
+                case nameof(OnTapped):
+                    if (!Equals(OnTapped, value))
+                    {
+                        void NativeControlTapped(object sender, SMTS.SegmentTappedEventArgs e) => InvokeEventCallback(OnTapped, e);
+
+                        OnTapped = (EventCallback<SMTS.SegmentTappedEventArgs>)value;
+                        NativeControl.Tapped -= NativeControlTapped;
+                        NativeControl.Tapped += NativeControlTapped;
                     }
                     break;
 

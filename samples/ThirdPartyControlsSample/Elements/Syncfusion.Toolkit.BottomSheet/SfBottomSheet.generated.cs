@@ -37,6 +37,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// </value>
         [Parameter] public SMTB.BottomSheetAllowedState? AllowedState { get; set; }
         /// <summary>
+        /// Gets or sets the duration, in milliseconds, for the opening and closing animations.
+        /// </summary>
+        /// <value>
+        /// It accepts double values, and the default value is 150ms.
+        /// </value>
+        [Parameter] public double? AnimationDuration { get; set; }
+        /// <summary>
         /// Specifies the custom width value (in pixels) for the BottomSheet when ContentWidthMode is set to Custom.
         /// </summary>
         [Parameter] public double? BottomSheetContentWidth { get; set; }
@@ -47,6 +54,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// A <see cref="T:System.Double" /> value representing the height in device-independent units. The default value is 100.
         /// </value>
         [Parameter] public double? CollapsedHeight { get; set; }
+        /// <summary>
+        /// Gets or sets whether the bottom sheet should collapse to its minimum height instead of closing when tapping outside.
+        /// </summary>
+        /// <value>
+        /// It accepts Boolean values, and the default value is <c>false</c>.
+        /// </value>
+        [Parameter] public bool? CollapseOnOverlayTap { get; set; }
         /// <summary>
         /// Gets or sets the padding of the content in SfBottomSheet.
         /// </summary>
@@ -82,6 +96,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// A <see cref="T:System.Double" /> value between 0 and 1. The default value is 1.
         /// </value>
         [Parameter] public double? FullExpandedRatio { get; set; }
+        /// <summary>
+        /// Gets or sets the height of the grabber area in SfBottomSheet.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> value representing the grabber area height. The default value is 30.
+        /// </value>
+        [Parameter] public double? GrabberAreaHeight { get; set; }
         /// <summary>
         /// Gets or sets the background color of the grabber in SfBottomSheet.
         /// </summary>
@@ -205,6 +226,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
                         NativeControl.AllowedState = AllowedState ?? (SMTB.BottomSheetAllowedState)SMTB.SfBottomSheet.AllowedStateProperty.DefaultValue;
                     }
                     break;
+                case nameof(AnimationDuration):
+                    if (!Equals(AnimationDuration, value))
+                    {
+                        AnimationDuration = (double?)value;
+                        NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTB.SfBottomSheet.AnimationDurationProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(BottomSheetContentWidth):
                     if (!Equals(BottomSheetContentWidth, value))
                     {
@@ -217,6 +245,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
                     {
                         CollapsedHeight = (double?)value;
                         NativeControl.CollapsedHeight = CollapsedHeight ?? (double)SMTB.SfBottomSheet.CollapsedHeightProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(CollapseOnOverlayTap):
+                    if (!Equals(CollapseOnOverlayTap, value))
+                    {
+                        CollapseOnOverlayTap = (bool?)value;
+                        NativeControl.CollapseOnOverlayTap = CollapseOnOverlayTap ?? (bool)SMTB.SfBottomSheet.CollapseOnOverlayTapProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContentPadding):
@@ -252,6 +287,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
                     {
                         FullExpandedRatio = (double?)value;
                         NativeControl.FullExpandedRatio = FullExpandedRatio ?? (double)SMTB.SfBottomSheet.FullExpandedRatioProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(GrabberAreaHeight):
+                    if (!Equals(GrabberAreaHeight, value))
+                    {
+                        GrabberAreaHeight = (double?)value;
+                        NativeControl.GrabberAreaHeight = GrabberAreaHeight ?? (double)SMTB.SfBottomSheet.GrabberAreaHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(GrabberBackgroundColor):

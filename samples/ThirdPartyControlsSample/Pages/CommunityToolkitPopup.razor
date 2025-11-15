@@ -1,20 +1,20 @@
 ﻿@using BlazorBindings.Maui.Elements.CommunityToolkit
 
-<Popup @ref="popup">
+<PopupWithResult @ref="popup" T="string">
     <VerticalStackLayout Padding="8">
         <Label>Here's the popup</Label>
         <Label>Enter the value:</Label>
         <Entry @bind-Text="text" />
         <Button Text="Submit" OnClick="Close" />
     </VerticalStackLayout>
-</Popup>
+</PopupWithResult>
 
 @code {
-    Popup popup;
+    PopupWithResult<string> popup;
     string text;
 
-    void Close()
+    async Task Close()
     {
-        popup.NativeControl.Close(text);
+        await popup.NativeControl.CloseAsync(text);
     }
 }

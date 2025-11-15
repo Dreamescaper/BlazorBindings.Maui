@@ -28,6 +28,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         }
 
         /// <summary>
+        /// Gets or sets a value that indicates to displays NaN data points for the series.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.Charts.CartesianSeries.EmptyPointMode" /> values and its default value is <see cref="F:Syncfusion.Maui.Toolkit.Charts.EmptyPointMode.None" />.
+        /// </value>
+        [Parameter] public SMTC.EmptyPointMode? EmptyPointMode { get; set; }
+        /// <summary>
         /// Gets or sets a value that will be displayed in the associated legend item.
         /// </summary>
         /// <value>
@@ -66,6 +73,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </remarks>
         [Parameter] public RenderFragment DataLabelSettings { get; set; }
         /// <summary>
+        /// Gets or sets the configuration for how empty or missing data points are handled and displayed within a chart series.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.Charts.CartesianSeries.EmptyPointSettings" /> values.
+        /// </value>
+        /// <remarks>
+        /// Accepts single EmptyPointSettings element.
+        /// </remarks>
+        [Parameter] public RenderFragment EmptyPointSettings { get; set; }
+        /// <summary>
         /// Gets or sets the DataTemplate to customize the appearance of the corresponding series Trackball labels.
         /// </summary>
         /// <value>
@@ -80,6 +97,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         {
             switch (name)
             {
+                case nameof(EmptyPointMode):
+                    if (!Equals(EmptyPointMode, value))
+                    {
+                        EmptyPointMode = (SMTC.EmptyPointMode?)value;
+                        NativeControl.EmptyPointMode = EmptyPointMode ?? (SMTC.EmptyPointMode)SMTC.CartesianSeries.EmptyPointModeProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(Label):
                     if (!Equals(Label, value))
                     {
@@ -111,6 +135,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(DataLabelSettings):
                     DataLabelSettings = (RenderFragment)value;
                     break;
+                case nameof(EmptyPointSettings):
+                    EmptyPointSettings = (RenderFragment)value;
+                    break;
                 case nameof(TrackballLabelTemplate):
                     TrackballLabelTemplate = (RenderFragment)value;
                     break;
@@ -125,6 +152,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.CartesianSeries>(builder, sequence++, DataLabelSettings, (x, value) => x.DataLabelSettings = (SMTC.CartesianDataLabelSettings)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTC.CartesianSeries>(builder, sequence++, EmptyPointSettings, (x, value) => x.EmptyPointSettings = (SMTC.EmptyPointSettings)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTC.CartesianSeries>(builder, sequence++, TrackballLabelTemplate, (x, template) => x.TrackballLabelTemplate = template);
         }
 

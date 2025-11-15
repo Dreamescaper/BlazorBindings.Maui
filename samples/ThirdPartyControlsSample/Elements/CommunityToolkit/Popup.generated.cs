@@ -7,13 +7,11 @@
 
 using BlazorBindings.Core;
 using BlazorBindings.Maui.Elements;
-using CM = CommunityToolkit.Maui;
 using CMV = CommunityToolkit.Maui.Views;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.Maui.Graphics;
-using MMP = Microsoft.Maui.Primitives;
+using Microsoft.Maui;
+using System;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -21,69 +19,40 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements.CommunityToolkit
 {
     /// <summary>
-    /// Represents a small View that pops up at front the Page. Implements <see cref="T:CommunityToolkit.Maui.Core.IPopup" />.
+    /// Represents a small View that pops up at front the Page.
     /// </summary>
-    public partial class Popup : BlazorBindings.Maui.Elements.Element
+    public partial class Popup : BlazorBindings.Maui.Elements.ContentView
     {
         static Popup()
         {
             RegisterAdditionalHandlers();
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the popup can be dismissed by tapping outside the Popup.
-        /// </summary>
         [Parameter] public bool? CanBeDismissedByTappingOutsideOfPopup { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="P:CommunityToolkit.Maui.Views.Popup.Color" /> of the Popup.
+        /// Sets the horizontal position of the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> when displayed on screen
         /// </summary>
-        [Parameter] public Color Color { get; set; }
+        [Parameter] public new MC.LayoutOptions? HorizontalOptions { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> for positioning the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> horizontally on the screen.
+        /// Sets the margin between the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> and the edge of the window
         /// </summary>
-        [Parameter] public MMP.LayoutAlignment? HorizontalOptions { get; set; }
+        [Parameter] public new Thickness? Margin { get; set; }
         /// <summary>
-        /// Property that represents Resources of Popup.
+        /// Sets the padding between the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> border and the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> content
         /// </summary>
-        [Parameter] public MC.ResourceDictionary Resources { get; set; }
+        [Parameter] public new Thickness? Padding { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="P:CommunityToolkit.Maui.Views.Popup.Size" /> of the Popup Display.
+        /// Sets the vertical position of the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> when displayed on screen
         /// </summary>
-        [Parameter] public Size? Size { get; set; }
+        [Parameter] public new MC.LayoutOptions? VerticalOptions { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="P:CommunityToolkit.Maui.Views.Popup.Style" /> of the Popup.
+        /// Event occurs when <see cref="T:CommunityToolkit.Maui.Views.Popup" /> is opened.
         /// </summary>
-        [Parameter] public MC.Style Style { get; set; }
+        [Parameter] public EventCallback OnOpened { get; set; }
         /// <summary>
-        /// Property that represents Style Class of Popup.
+        /// Event occurs when <see cref="T:CommunityToolkit.Maui.Views.Popup" /> is closed.
         /// </summary>
-        [Parameter] public string StyleClass { get; set; }
-        /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.LayoutOptions" /> for positioning the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> vertically on the screen.
-        /// </summary>
-        [Parameter] public MMP.LayoutAlignment? VerticalOptions { get; set; }
-        /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.View" /> content to render in the Popup.
-        /// </summary>
-        /// <remarks>
-        /// Accepts single View element.
-        /// </remarks>
-        [Parameter] public RenderFragment ChildContent { get; set; }
-        /// <summary>
-        /// Property that represents the Window that's showing the Popup.
-        /// </summary>
-        /// <remarks>
-        /// Accepts single Window element.
-        /// </remarks>
-        [Parameter] public RenderFragment Window { get; set; }
-        /// <summary>
-        /// Dismissed event is invoked when the popup is closed.
-        /// </summary>
-        [Parameter] public EventCallback<CM.Core.PopupClosedEventArgs> OnClosed { get; set; }
-        /// <summary>
-        /// Opened event is invoked when the popup is opened.
-        /// </summary>
-        [Parameter] public EventCallback<CM.Core.PopupOpenedEventArgs> OnOpened { get; set; }
+        [Parameter] public EventCallback OnClosed { get; set; }
 
         public new CMV.Popup NativeControl => (CMV.Popup)((BindableObject)this).NativeControl;
 
@@ -100,79 +69,52 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                         NativeControl.CanBeDismissedByTappingOutsideOfPopup = CanBeDismissedByTappingOutsideOfPopup ?? (bool)CMV.Popup.CanBeDismissedByTappingOutsideOfPopupProperty.DefaultValue;
                     }
                     break;
-                case nameof(Color):
-                    if (!Equals(Color, value))
-                    {
-                        Color = (Color)value;
-                        NativeControl.Color = Color;
-                    }
-                    break;
                 case nameof(HorizontalOptions):
                     if (!Equals(HorizontalOptions, value))
                     {
-                        HorizontalOptions = (MMP.LayoutAlignment?)value;
-                        NativeControl.HorizontalOptions = HorizontalOptions ?? (MMP.LayoutAlignment)CMV.Popup.HorizontalOptionsProperty.DefaultValue;
+                        HorizontalOptions = (MC.LayoutOptions?)value;
+                        NativeControl.HorizontalOptions = HorizontalOptions ?? (MC.LayoutOptions)CMV.Popup.HorizontalOptionsProperty.DefaultValue;
                     }
                     break;
-                case nameof(Resources):
-                    if (!Equals(Resources, value))
+                case nameof(Margin):
+                    if (!Equals(Margin, value))
                     {
-                        Resources = (MC.ResourceDictionary)value;
-                        NativeControl.Resources = Resources;
+                        Margin = (Thickness?)value;
+                        NativeControl.Margin = Margin ?? (Thickness)CMV.Popup.MarginProperty.DefaultValue;
                     }
                     break;
-                case nameof(Size):
-                    if (!Equals(Size, value))
+                case nameof(Padding):
+                    if (!Equals(Padding, value))
                     {
-                        Size = (Size?)value;
-                        NativeControl.Size = Size ?? (Size)CMV.Popup.SizeProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(Style):
-                    if (!Equals(Style, value))
-                    {
-                        Style = (MC.Style)value;
-                        NativeControl.Style = Style;
-                    }
-                    break;
-                case nameof(StyleClass):
-                    if (!Equals(StyleClass, value))
-                    {
-                        StyleClass = (string)value;
-                        NativeControl.StyleClass = AttributeHelper.GetStringList(StyleClass);
+                        Padding = (Thickness?)value;
+                        NativeControl.Padding = Padding ?? (Thickness)CMV.Popup.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalOptions):
                     if (!Equals(VerticalOptions, value))
                     {
-                        VerticalOptions = (MMP.LayoutAlignment?)value;
-                        NativeControl.VerticalOptions = VerticalOptions ?? (MMP.LayoutAlignment)CMV.Popup.VerticalOptionsProperty.DefaultValue;
-                    }
-                    break;
-                case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
-                    break;
-                case nameof(Window):
-                    Window = (RenderFragment)value;
-                    break;
-                case nameof(OnClosed):
-                    if (!Equals(OnClosed, value))
-                    {
-                        void NativeControlClosed(object sender, CM.Core.PopupClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
-
-                        OnClosed = (EventCallback<CM.Core.PopupClosedEventArgs>)value;
-                        NativeControl.Closed -= NativeControlClosed;
-                        NativeControl.Closed += NativeControlClosed;
+                        VerticalOptions = (MC.LayoutOptions?)value;
+                        NativeControl.VerticalOptions = VerticalOptions ?? (MC.LayoutOptions)CMV.Popup.VerticalOptionsProperty.DefaultValue;
                     }
                     break;
                 case nameof(OnOpened):
                     if (!Equals(OnOpened, value))
                     {
-                        void NativeControlOpened(object sender, CM.Core.PopupOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
+                        void NativeControlOpened(object sender, EventArgs e) => InvokeEventCallback(OnOpened);
 
-                        OnOpened = (EventCallback<CM.Core.PopupOpenedEventArgs>)value;
+                        OnOpened = (EventCallback)value;
                         NativeControl.Opened -= NativeControlOpened;
                         NativeControl.Opened += NativeControlOpened;
+                    }
+                    break;
+                case nameof(OnClosed):
+                    if (!Equals(OnClosed, value))
+                    {
+                        void NativeControlClosed(object sender, EventArgs e) => InvokeEventCallback(OnClosed);
+
+                        OnClosed = (EventCallback)value;
+                        NativeControl.Closed -= NativeControlClosed;
+                        NativeControl.Closed += NativeControlClosed;
                     }
                     break;
 
@@ -180,13 +122,6 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     base.HandleParameter(name, value);
                     break;
             }
-        }
-
-        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
-        {
-            base.RenderAdditionalElementContent(builder, ref sequence);
-            RenderTreeBuilderHelper.AddContentProperty<CMV.Popup>(builder, sequence++, ChildContent, (x, value) => x.Content = (MC.View)value);
-            RenderTreeBuilderHelper.AddContentProperty<CMV.Popup>(builder, sequence++, Window, (x, value) => x.Window = (MC.Window)value);
         }
 
         static partial void RegisterAdditionalHandlers();

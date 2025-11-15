@@ -9,6 +9,7 @@ using BlazorBindings.Core;
 using BlazorBindings.Maui.Elements;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui.Graphics;
 using SMTT = Syncfusion.Maui.Toolkit.TabView;
 using System.Threading.Tasks;
@@ -94,6 +95,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// Specifies the color of the tab item's header text. The default value is black.
         /// </value>
         [Parameter] public Color TextColor { get; set; }
+        /// <summary>
+        /// Gets or sets the custom view content for the tab header.
+        /// </summary>
+        /// <value>
+        /// Specifies the custom view content for the tab header. When set, this takes precedence over the Header property. The default value is null.
+        /// </value>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
+        [Parameter] public RenderFragment HeaderContent { get; set; }
 
         public new SMTT.SfTabItem NativeControl => (SMTT.SfTabItem)((BindableObject)this).NativeControl;
 
@@ -173,11 +184,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                         NativeControl.TextColor = TextColor;
                     }
                     break;
+                case nameof(HeaderContent):
+                    HeaderContent = (RenderFragment)value;
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty<SMTT.SfTabItem>(builder, sequence++, HeaderContent, (x, value) => x.HeaderContent = (MC.View)value);
         }
 
         static partial void RegisterAdditionalHandlers();

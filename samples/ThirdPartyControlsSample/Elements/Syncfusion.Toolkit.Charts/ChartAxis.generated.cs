@@ -119,6 +119,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </value>
         [Parameter] public SMTC.AxisElementPosition? LabelsPosition { get; set; }
         /// <summary>
+        /// Gets or sets the value that determines the number of labels to be displayed per 100 pixels.
+        /// </summary>
+        /// <value>
+        /// This property takes the integer value.
+        /// </value>
+        [Parameter] public int? MaximumLabels { get; set; }
+        /// <summary>
         /// Gets or sets the unique name of the axis, which will be used to identify the segment axis of the strip line.
         /// </summary>
         /// <value>
@@ -353,6 +360,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         LabelsPosition = (SMTC.AxisElementPosition?)value;
                         NativeControl.LabelsPosition = LabelsPosition ?? (SMTC.AxisElementPosition)SMTC.ChartAxis.LabelsPositionProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(MaximumLabels):
+                    if (!Equals(MaximumLabels, value))
+                    {
+                        MaximumLabels = (int?)value;
+                        NativeControl.MaximumLabels = MaximumLabels ?? (int)SMTC.ChartAxis.MaximumLabelsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Name):

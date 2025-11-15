@@ -1,5 +1,5 @@
 ﻿using BlazorBindings.Maui;
-using CommunityToolkit.Maui.Views;
+using CommunityToolkit.Maui.Extensions;
 using The49.Maui.BottomSheet;
 using INavigation = BlazorBindings.Maui.INavigation;
 
@@ -7,10 +7,11 @@ namespace ThirdPartyControlsSample.Extensions;
 
 public static class NavigationExtensions
 {
-    public static async Task<object> ShowCommunityToolkitPopupAsync<T>(this INavigation navigation)
+    public static async Task<TResult> ShowCommunityToolkitPopupAsync<TPopup, TResult>(this INavigation navigation)
     {
-        var popup = await ((Navigation)navigation).BuildElement<CommunityToolkit.Maui.Views.Popup>(typeof(T), null);
-        return await Application.Current.MainPage.ShowPopupAsync(popup);
+        var popup = await ((Navigation)navigation).BuildElement<CommunityToolkit.Maui.Views.Popup<TResult>>(typeof(TPopup), null);
+        var result = await Application.Current.MainPage.ShowPopupAsync<TResult>(popup);
+        return result.Result;
     }
 
     public static async Task<object> ShowMDPopupAsync<T>(this INavigation navigation)

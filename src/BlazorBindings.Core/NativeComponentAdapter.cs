@@ -23,6 +23,7 @@ internal sealed class NativeComponentAdapter(
     public string Name { get; internal set; }
 
     [RequiresUnreferencedCode("This method is used for debug only.")]
+    [RequiresDynamicCode("This method is used for debug only.")]
     private string GetDebugName()
     {
         string text = null;

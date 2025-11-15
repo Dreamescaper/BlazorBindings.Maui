@@ -6,7 +6,7 @@ using XCalendar.Maui.Views;
 // CommunityToolkit
 [assembly: GenerateComponent(typeof(CommunityToolkit.Maui.Views.AvatarView), Exclude = [nameof(CommunityToolkit.Maui.Views.AvatarView.CornerRadius)])]
 [assembly: GenerateComponent(typeof(CommunityToolkit.Maui.Views.DrawingView))]
-[assembly: GenerateComponent(typeof(CommunityToolkit.Maui.Views.Popup), Exclude = [nameof(CommunityToolkit.Maui.Views.Popup.Anchor)])]
+[assembly: GenerateComponent(typeof(CommunityToolkit.Maui.Views.Popup<>), Aliases = ["Popup:PopupWithResult"])]
 
 [assembly: GenerateComponent(typeof(CommunityToolkit.Maui.Behaviors.MaskedBehavior))]
 [assembly: GenerateComponent(typeof(CommunityToolkit.Maui.Behaviors.UserStoppedTypingBehavior))]

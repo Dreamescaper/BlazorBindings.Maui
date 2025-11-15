@@ -21,7 +21,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
     /// <summary>
     /// Used to customize the data marker symbol
     /// </summary>
-    public partial class ChartMarkerSettings : BlazorBindings.Maui.Elements.BindableObject
+    public partial class ChartMarkerSettings : BlazorBindings.Maui.Elements.Element
     {
         static ChartMarkerSettings()
         {

@@ -52,11 +52,15 @@
 		<PackageReference Include="SQLitePCLRaw.core" Version="3.0.2" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
 		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="3.0.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-rc.2.25504.7" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.10" />
 	</ItemGroup>
 
 </Project>

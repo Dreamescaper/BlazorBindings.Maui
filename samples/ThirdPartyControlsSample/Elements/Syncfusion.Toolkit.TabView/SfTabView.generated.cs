@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using SMTT = Syncfusion.Maui.Toolkit.TabView;
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 
@@ -31,12 +32,26 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         }
 
         /// <summary>
+        /// Gets or sets the easing function used for tab transition animations.
+        /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Easing" /> function that controls the animation transitions between tabs. This affects both the selection indicator animation and the content transition animation. The default value is <see cref="F:Microsoft.Maui.Easing.Linear" />.
+        /// </value>
+        [Parameter] public Easing AnimationEasing { get; set; }
+        /// <summary>
         /// Gets or sets a value that can be used to modify the duration of content transition in the tab view.
         /// </summary>
         /// <value>
         /// A double value that specifies the duration of the content transition. The default value is 100.
         /// </value>
         [Parameter] public double? ContentTransitionDuration { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether ripple animation should be enabled on the Tab View.
+        /// </summary>
+        /// <value>
+        /// The default value is <c>true</c>.
+        /// </value>
+        [Parameter] public bool? EnableRippleAnimation { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether swiping is enabled in <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />.
         /// </summary>
@@ -108,6 +123,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// </value>
         [Parameter] public SMTT.IndicatorWidthMode? IndicatorWidthMode { get; set; }
         /// <summary>
+        /// Gets or sets a value that indicates whether the center button is enabled in the Tab View.
+        /// </summary>
+        /// <value>
+        /// It accepts the Boolean values, and the default value is false.
+        /// </value>
+        [Parameter] public bool? IsCenterButtonEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets a value that determines whether a transition animation is enabled for the tab content when switching between tabs.
+        /// </summary>
+        /// <value>
+        /// It accepts the Boolean values, and the default value is True.
+        /// </value>
+        [Parameter] public bool? IsContentTransitionEnabled { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether to enable the scroll buttons.
         /// </summary>
         /// <value>
@@ -164,6 +193,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// </value>
         [Parameter] public SMTT.TabBarPlacement? TabBarPlacement { get; set; }
         /// <summary>
+        /// Gets or sets a value that can be used to customize the header position of the MAUI TabView.
+        /// </summary>
+        /// <value>
+        /// It accepts the TabHeaderAlignment values, and the default value is TabHeaderAlignment.Start.
+        /// </value>
+        [Parameter] public SMTT.TabHeaderAlignment? TabHeaderAlignment { get; set; }
+        /// <summary>
         /// Gets or sets the value that can be used to customize the padding of the tab header.
         /// </summary>
         /// <value>
@@ -177,6 +213,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// One of the <see cref="T:Syncfusion.Maui.Toolkit.TabView.TabWidthMode" /> enumeration values that specifies the tab item's width. The default mode is <see cref="F:Syncfusion.Maui.Toolkit.TabView.TabWidthMode.Default" />.
         /// </value>
         [Parameter] public SMTT.TabWidthMode? TabWidthMode { get; set; }
+        /// <summary>
+        /// Gets or sets a value that can be used to customize the appearance of the center button in Tab View.
+        /// </summary>
+        /// <value>
+        /// It accepts the <see cref="P:Syncfusion.Maui.Toolkit.TabView.SfTabView.CenterButtonSettings" /> value.
+        /// </value>
+        /// <remarks>
+        /// Accepts single CenterButtonSettings element.
+        /// </remarks>
+        [Parameter] public RenderFragment CenterButtonSettings { get; set; }
         /// <summary>
         /// Gets or sets the template that is used to display the content.
         /// </summary>
@@ -243,6 +289,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// Occurs when the selection is changing in the <see cref="T:Syncfusion.Maui.Toolkit.TabView.SfTabView" />.
         /// </summary>
         [Parameter] public EventCallback<SMTT.SelectionChangingEventArgs> OnSelectionChanging { get; set; }
+        /// <summary>
+        /// Occurs when the Center button is tapped.
+        /// </summary>
+        [Parameter] public EventCallback OnCenterButtonTapped { get; set; }
 
         public new SMTT.SfTabView NativeControl => (SMTT.SfTabView)((BindableObject)this).NativeControl;
 
@@ -252,11 +302,25 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         {
             switch (name)
             {
+                case nameof(AnimationEasing):
+                    if (!Equals(AnimationEasing, value))
+                    {
+                        AnimationEasing = (Easing)value;
+                        NativeControl.AnimationEasing = AnimationEasing;
+                    }
+                    break;
                 case nameof(ContentTransitionDuration):
                     if (!Equals(ContentTransitionDuration, value))
                     {
                         ContentTransitionDuration = (double?)value;
                         NativeControl.ContentTransitionDuration = ContentTransitionDuration ?? (double)SMTT.SfTabView.ContentTransitionDurationProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(EnableRippleAnimation):
+                    if (!Equals(EnableRippleAnimation, value))
+                    {
+                        EnableRippleAnimation = (bool?)value;
+                        NativeControl.EnableRippleAnimation = EnableRippleAnimation ?? (bool)SMTT.SfTabView.EnableRippleAnimationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableSwiping):
@@ -329,6 +393,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                         NativeControl.IndicatorWidthMode = IndicatorWidthMode ?? (SMTT.IndicatorWidthMode)SMTT.SfTabView.IndicatorWidthModeProperty.DefaultValue;
                     }
                     break;
+                case nameof(IsCenterButtonEnabled):
+                    if (!Equals(IsCenterButtonEnabled, value))
+                    {
+                        IsCenterButtonEnabled = (bool?)value;
+                        NativeControl.IsCenterButtonEnabled = IsCenterButtonEnabled ?? (bool)SMTT.SfTabView.IsCenterButtonEnabledProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsContentTransitionEnabled):
+                    if (!Equals(IsContentTransitionEnabled, value))
+                    {
+                        IsContentTransitionEnabled = (bool?)value;
+                        NativeControl.IsContentTransitionEnabled = IsContentTransitionEnabled ?? (bool)SMTT.SfTabView.IsContentTransitionEnabledProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(IsScrollButtonEnabled):
                     if (!Equals(IsScrollButtonEnabled, value))
                     {
@@ -385,6 +463,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                         NativeControl.TabBarPlacement = TabBarPlacement ?? (SMTT.TabBarPlacement)SMTT.SfTabView.TabBarPlacementProperty.DefaultValue;
                     }
                     break;
+                case nameof(TabHeaderAlignment):
+                    if (!Equals(TabHeaderAlignment, value))
+                    {
+                        TabHeaderAlignment = (SMTT.TabHeaderAlignment?)value;
+                        NativeControl.TabHeaderAlignment = TabHeaderAlignment ?? (SMTT.TabHeaderAlignment)SMTT.SfTabView.TabHeaderAlignmentProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(TabHeaderPadding):
                     if (!Equals(TabHeaderPadding, value))
                     {
@@ -398,6 +483,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                         TabWidthMode = (SMTT.TabWidthMode?)value;
                         NativeControl.TabWidthMode = TabWidthMode ?? (SMTT.TabWidthMode)SMTT.SfTabView.TabWidthModeProperty.DefaultValue;
                     }
+                    break;
+                case nameof(CenterButtonSettings):
+                    CenterButtonSettings = (RenderFragment)value;
                     break;
                 case nameof(ContentItemTemplate):
                     ContentItemTemplate = (RenderFragment)value;
@@ -447,6 +535,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                         NativeControl.SelectionChanging += NativeControlSelectionChanging;
                     }
                     break;
+                case nameof(OnCenterButtonTapped):
+                    if (!Equals(OnCenterButtonTapped, value))
+                    {
+                        void NativeControlCenterButtonTapped(object sender, EventArgs e) => InvokeEventCallback(OnCenterButtonTapped);
+
+                        OnCenterButtonTapped = (EventCallback)value;
+                        NativeControl.CenterButtonTapped -= NativeControlCenterButtonTapped;
+                        NativeControl.CenterButtonTapped += NativeControlCenterButtonTapped;
+                    }
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
@@ -457,6 +555,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty<SMTT.SfTabView>(builder, sequence++, CenterButtonSettings, (x, value) => x.CenterButtonSettings = (SMTT.CenterButtonSettings)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTT.SfTabView>(builder, sequence++, ContentItemTemplate, (x, template) => x.ContentItemTemplate = template);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTT.SfTabView>(builder, sequence++, HeaderItemTemplate, (x, template) => x.HeaderItemTemplate = template);
             RenderTreeBuilderHelper.AddContentProperty<SMTT.SfTabView>(builder, sequence++, IndicatorBackground, (x, value) => x.IndicatorBackground = (MC.Brush)value);

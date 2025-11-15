@@ -49,12 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.10.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-rc.2.25504.7" />
+		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.13.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\BlazorBindings.Maui\BlazorBindings.Maui.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.10" />
 	</ItemGroup>
 
 </Project>

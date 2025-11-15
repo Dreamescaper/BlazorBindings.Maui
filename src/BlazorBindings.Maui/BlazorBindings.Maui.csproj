@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 		<!-- Be careful with updating, as it might cause issues with the version avaible in workloads via $(MauiVersion) -->
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.0-rc.2.25504.7" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
 	</ItemGroup>
 	
 </Project>
