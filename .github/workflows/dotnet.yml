@@ -5,6 +5,17 @@ on:
     branches: [ main, 'v[0-9].**' ]
   pull_request:
     branches: [ main, 'v[0-9].**' ]
+  workflow_dispatch:
+    inputs:
+      publishNuGet:
+        description: 'Publish packages to NuGet.org'
+        type: boolean
+        default: true
+
+# Grant OIDC token permission for Trusted Publishing
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   build:
@@ -40,8 +51,23 @@ jobs:
   publish-to-myget:
     runs-on: windows-2022
     needs: [build]
+    if: ${{ github.event_name != 'workflow_dispatch' }}
     steps:
     - uses: actions/download-artifact@v4
 
     - name: Publish to Myget
       run: dotnet nuget push */*.nupkg -k ${{ secrets.MYGET_TOKEN }} -s https://www.myget.org/F/blazorbindings/api/v2/package
+
+  publish-to-nuget:
+    runs-on: windows-2022
+    needs: [build]
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publishNuGet == 'true' }}
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+    - uses: actions/download-artifact@v4
+
+    - name: Publish to NuGet.org (Trusted Publishing)
+      run: dotnet nuget push */*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
+      # With Trusted Publishing, no API key is needed; ensure repository is registered on NuGet.org
