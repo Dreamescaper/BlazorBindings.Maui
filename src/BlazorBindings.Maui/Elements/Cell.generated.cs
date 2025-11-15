@@ -29,24 +29,15 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the height of the Cell.
         /// </summary>
-        /// <value>
-        /// A double that represents the height of the cell.
-        /// </value>
         [Parameter] public double? Height { get; set; }
         [Parameter] public bool? IsContextActionsLegacyModeEnabled { get; set; }
         /// <summary>
         /// Gets or sets the IsEnabled state of the Cell.
         /// </summary>
-        /// <value>
-        /// A bool. Default is <see langword="true" />.
-        /// </value>
         [Parameter] public bool? IsEnabled { get; set; }
         /// <summary>
         /// Gets a list of menu items to display when the user performs the device-specific context gesture on the Cell.
         /// </summary>
-        /// <value>
-        /// The list of menu items that will be displayed when the user performs the device-specific context gesture on the Cell.
-        /// </value>
         /// <remarks>
         /// Accepts one or more MenuItem elements.
         /// </remarks>

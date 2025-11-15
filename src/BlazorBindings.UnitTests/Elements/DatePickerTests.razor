@@ -4,7 +4,7 @@
 [Test]
 public async Task BindedDateIsUpdatedWhenSelected()
 {
-    DateOnly bindedDate = default;
+    DateOnly? bindedDate = default;
     var datePicker = await Render<MC.DatePicker>(@<DatePicker @bind-Date="bindedDate" />);
 
     datePicker.Date = new DateTime(2023, 01, 12);
@@ -15,7 +15,7 @@ public async Task BindedDateIsUpdatedWhenSelected()
 [Test]
 public async Task SelectedDateIsUpdatedWhenBindedValueChanged()
 {
-    DateOnly bindedDate = default;
+    DateOnly? bindedDate = default;
     var datePicker = await Render<MC.DatePicker>(@<DatePicker @bind-Date="bindedDate" />);
 
     bindedDate = new DateOnly(2023, 01, 12);

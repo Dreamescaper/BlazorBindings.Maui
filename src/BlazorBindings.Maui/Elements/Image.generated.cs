@@ -28,24 +28,15 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the scaling mode for the image.
         /// </summary>
-        /// <value>
-        /// A <see cref="T:Microsoft.Maui.Aspect" /> representing the scaling mode of the image. Default is <see cref="F:Microsoft.Maui.Aspect.AspectFit" />.
-        /// </value>
         [Parameter] public Aspect? Aspect { get; set; }
         [Parameter] public bool? IsAnimationPlaying { get; set; }
         /// <summary>
         /// Gets or sets a Boolean value that, if <see langword="true" /> hints to the rendering engine that it may safely omit drawing visual elements behind the image.
         /// </summary>
-        /// <value>
-        /// The value of the opacity rendering hint.
-        /// </value>
         [Parameter] public bool? IsOpaque { get; set; }
         /// <summary>
         /// Gets or sets the source of the image.
         /// </summary>
-        /// <value>
-        /// An <see cref="T:Microsoft.Maui.Controls.ImageSource" /> representing the image source. Default is null.
-        /// </value>
         [Parameter] public MC.ImageSource Source { get; set; }
 
         public new MC.Image NativeControl => (MC.Image)((BindableObject)this).NativeControl;

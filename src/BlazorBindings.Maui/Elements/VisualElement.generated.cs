@@ -45,8 +45,11 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public Rect? Frame { get; set; }
         /// <summary>
-        /// Gets or sets the desired height override of this element.
+        /// Gets or sets the desired height override of this element in device-independent units.
         /// </summary>
+        /// <value>
+        /// The desired height in device-independent units (DIUs), or -1 if unset.
+        /// </value>
         [Parameter] public double? HeightRequest { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether this element responds to hit testing during user interaction.
@@ -61,20 +64,32 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public bool? IsVisible { get; set; }
         /// <summary>
-        /// Gets or sets the maximum height the element will request during layout.
+        /// Gets or sets the maximum height the element will request during layout in device-independent units.
         /// </summary>
+        /// <value>
+        /// The maximum height in device-independent units (DIUs). The default is <see cref="F:System.Double.PositiveInfinity" />.
+        /// </value>
         [Parameter] public double? MaximumHeightRequest { get; set; }
         /// <summary>
-        /// Gets or sets the maximum width the element will request during layout.
+        /// Gets or sets the maximum width the element will request during layout in device-independent units.
         /// </summary>
+        /// <value>
+        /// The maximum width in device-independent units (DIUs). The default is <see cref="F:System.Double.PositiveInfinity" />.
+        /// </value>
         [Parameter] public double? MaximumWidthRequest { get; set; }
         /// <summary>
-        /// Gets or sets the minimum height the element will request during layout.
+        /// Gets or sets the minimum height the element will request during layout in device-independent units.
         /// </summary>
+        /// <value>
+        /// The minimum height in device-independent units (DIUs), or -1 if unset.
+        /// </value>
         [Parameter] public double? MinimumHeightRequest { get; set; }
         /// <summary>
-        /// Gets or sets the minimum width the element will request during layout.
+        /// Gets or sets the minimum width the element will request during layout in device-independent units.
         /// </summary>
+        /// <value>
+        /// The minimum width in device-independent units (DIUs), or -1 if unset.
+        /// </value>
         [Parameter] public double? MinimumWidthRequest { get; set; }
         /// <summary>
         /// Gets or sets the opacity value applied to the element when it is rendered. The range of this value is 0 to 1; values outside this range will be set to the nearest valid value.
@@ -109,16 +124,25 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public double? ScaleY { get; set; }
         /// <summary>
-        /// Gets or sets the X translation delta of the element.
+        /// Gets or sets the X translation delta of the element in device-independent units.
         /// </summary>
+        /// <value>
+        /// The X translation offset in device-independent units (DIUs).
+        /// </value>
         [Parameter] public double? TranslationX { get; set; }
         /// <summary>
-        /// Gets or sets the Y translation delta of the element.
+        /// Gets or sets the Y translation delta of the element in device-independent units.
         /// </summary>
+        /// <value>
+        /// The Y translation offset in device-independent units (DIUs).
+        /// </value>
         [Parameter] public double? TranslationY { get; set; }
         /// <summary>
-        /// Gets or sets the desired width override of this element.
+        /// Gets or sets the desired width override of this element in device-independent units.
         /// </summary>
+        /// <value>
+        /// The desired width in device-independent units (DIUs), or -1 if unset.
+        /// </value>
         [Parameter] public double? WidthRequest { get; set; }
         /// <summary>
         /// Gets or sets the front-to-back z-index of an element within a layout.

@@ -25,6 +25,10 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
+        /// Gets or sets the mouse buttons that should trigger the pointer events.
+        /// </summary>
+        [Parameter] public MC.ButtonsMask? Buttons { get; set; }
+        /// <summary>
         /// Raised when the pointer enters the view.
         /// </summary>
         [Parameter] public EventCallback<MC.PointerEventArgs> OnPointerEntered { get; set; }
@@ -53,6 +57,13 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(Buttons):
+                    if (!Equals(Buttons, value))
+                    {
+                        Buttons = (MC.ButtonsMask?)value;
+                        NativeControl.Buttons = Buttons ?? (MC.ButtonsMask)MC.PointerGestureRecognizer.ButtonsProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(OnPointerEntered):
                     if (!Equals(OnPointerEntered, value))
                     {

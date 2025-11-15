@@ -35,6 +35,14 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the horizontal text alignment.
         /// </summary>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
+        /// <summary>
+        /// Determines what the return key on the on-screen keyboard should look like.
+        /// </summary>
+        [Parameter] public ReturnType? ReturnType { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the search icon in the <see cref="T:Microsoft.Maui.Controls.SearchBar" />.
+        /// </summary>
+        [Parameter] public Color SearchIconColor { get; set; }
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
         [Parameter] public EventCallback OnSearchButtonPressed { get; set; }
 
@@ -58,6 +66,20 @@ namespace BlazorBindings.Maui.Elements
                     {
                         HorizontalTextAlignment = (TextAlignment?)value;
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.SearchBar.HorizontalTextAlignmentProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(ReturnType):
+                    if (!Equals(ReturnType, value))
+                    {
+                        ReturnType = (ReturnType?)value;
+                        NativeControl.ReturnType = ReturnType ?? (ReturnType)MC.SearchBar.ReturnTypeProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SearchIconColor):
+                    if (!Equals(SearchIconColor, value))
+                    {
+                        SearchIconColor = (Color)value;
+                        NativeControl.SearchIconColor = SearchIconColor;
                     }
                     break;
                 case nameof(VerticalTextAlignment):

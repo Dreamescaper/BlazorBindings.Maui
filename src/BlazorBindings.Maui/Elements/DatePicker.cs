@@ -5,7 +5,7 @@ namespace BlazorBindings.Maui.Elements;
 public partial class DatePicker
 {
     [Parameter] public DateOnly? Date { get; set; }
-    [Parameter] public EventCallback<DateOnly> DateChanged { get; set; }
+    [Parameter] public EventCallback<DateOnly?> DateChanged { get; set; }
     [Parameter] public DateOnly? MaximumDate { get; set; }
     [Parameter] public DateOnly? MinimumDate { get; set; }
 
@@ -17,21 +17,21 @@ public partial class DatePicker
                 if (!Equals(Date, value))
                 {
                     Date = (DateOnly?)value;
-                    NativeControl.Date = Date?.ToDateTime(TimeOnly.MinValue) ?? (DateTime)MC.DatePicker.DateProperty.DefaultValue;
+                    NativeControl.Date = Date?.ToDateTime(TimeOnly.MinValue);
                 }
                 return true;
             case nameof(MaximumDate):
                 if (!Equals(MaximumDate, value))
                 {
                     MaximumDate = (DateOnly?)value;
-                    NativeControl.MaximumDate = MaximumDate?.ToDateTime(TimeOnly.MinValue) ?? (DateTime)MC.DatePicker.MaximumDateProperty.DefaultValue;
+                    NativeControl.MaximumDate = MaximumDate?.ToDateTime(TimeOnly.MinValue);
                 }
                 return true;
             case nameof(MinimumDate):
                 if (!Equals(MinimumDate, value))
                 {
                     MinimumDate = (DateOnly?)value;
-                    NativeControl.MinimumDate = MinimumDate?.ToDateTime(TimeOnly.MinValue) ?? (DateTime)MC.DatePicker.MinimumDateProperty.DefaultValue;
+                    NativeControl.MinimumDate = MinimumDate?.ToDateTime(TimeOnly.MinValue);
                 }
                 return true;
             case nameof(DateChanged):
@@ -39,12 +39,12 @@ public partial class DatePicker
                 {
                     void NativeControlDateSelected(object sender, MC.DateChangedEventArgs e)
                     {
-                        var value = DateOnly.FromDateTime(NativeControl.Date);
+                        var value = e.NewDate is null ? (DateOnly?)null : DateOnly.FromDateTime(e.NewDate.Value);
                         Date = value;
                         InvokeEventCallback(DateChanged, value);
                     }
 
-                    DateChanged = (EventCallback<DateOnly>)value;
+                    DateChanged = (EventCallback<DateOnly?>)value;
                     NativeControl.DateSelected -= NativeControlDateSelected;
                     NativeControl.DateSelected += NativeControlDateSelected;
                 }

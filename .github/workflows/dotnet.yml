@@ -14,11 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0        
+        fetch-depth: 0
     - name: Install .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '9.0.x'
+        dotnet-version: '10.0.x'
     - name: Install MAUI
       run: dotnet workload install maui
     - name: Restore dependencies
@@ -42,6 +42,6 @@ jobs:
     needs: [build]
     steps:
     - uses: actions/download-artifact@v4
-    
+
     - name: Publish to Myget
       run: dotnet nuget push */*.nupkg -k ${{ secrets.MYGET_TOKEN }} -s https://www.myget.org/F/blazorbindings/api/v2/package

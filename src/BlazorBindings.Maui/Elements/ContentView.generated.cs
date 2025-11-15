@@ -9,6 +9,7 @@ using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.Maui;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -25,6 +26,10 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the safe area edges to obey for this content view. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// </summary>
+        [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>
         /// Gets or sets the content of the ContentView.
         /// </summary>
@@ -44,6 +49,13 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(SafeAreaEdges):
+                    if (!Equals(SafeAreaEdges, value))
+                    {
+                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.ContentView.SafeAreaEdgesProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(ChildContent):
                     ChildContent = (RenderFragment)value;
                     break;

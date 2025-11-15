@@ -28,6 +28,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         }
 
         /// <summary>
+        /// Gets or sets the <see cref="P:Syncfusion.Maui.Toolkit.Charts.DoughnutSeries.CapStyle" /> value, that represents the shape of the start and end points of a doughnut segment.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="P:Syncfusion.Maui.Toolkit.Charts.DoughnutSeries.CapStyle" /> values, and its default value is <see cref="F:Syncfusion.Maui.Toolkit.Charts.CapStyle.BothFlat" />
+        /// </value>
+        [Parameter] public SMTC.CapStyle? CapStyle { get; set; }
+        /// <summary>
+        /// Gets or sets a value to adjust spacing between segments
+        /// </summary>
+        /// <value>
+        /// It accepts <c>double</c> values, and the default value is 0. Here, the value is between 0 and 1.
+        /// </value>
+        [Parameter] public double? GapRatio { get; set; }
+        /// <summary>
         /// Gets or sets a value that can be used to define the inner circle.
         /// </summary>
         /// <value>
@@ -53,6 +67,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         {
             switch (name)
             {
+                case nameof(CapStyle):
+                    if (!Equals(CapStyle, value))
+                    {
+                        CapStyle = (SMTC.CapStyle?)value;
+                        NativeControl.CapStyle = CapStyle ?? (SMTC.CapStyle)SMTC.DoughnutSeries.CapStyleProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(GapRatio):
+                    if (!Equals(GapRatio, value))
+                    {
+                        GapRatio = (double?)value;
+                        NativeControl.GapRatio = GapRatio ?? (double)SMTC.DoughnutSeries.GapRatioProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(InnerRadius):
                     if (!Equals(InnerRadius, value))
                     {

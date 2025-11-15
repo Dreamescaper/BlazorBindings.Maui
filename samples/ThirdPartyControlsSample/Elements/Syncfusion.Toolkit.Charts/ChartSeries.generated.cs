@@ -83,6 +83,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </value>
         [Parameter] public SMTC.ChartLegendIconType? LegendIcon { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether the chart series should listen for changes in properties.
+        /// </summary>
+        /// <value>
+        /// A boolean value that specifies if property change events should be listened to. The default value is <c>false</c>.
+        /// </value>
+        [Parameter] public bool? ListenPropertyChange { get; set; }
+        /// <summary>
         /// Gets or sets opacity of the chart series.
         /// </summary>
         /// <value>
@@ -209,6 +216,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         LegendIcon = (SMTC.ChartLegendIconType?)value;
                         NativeControl.LegendIcon = LegendIcon ?? (SMTC.ChartLegendIconType)SMTC.ChartSeries.LegendIconProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(ListenPropertyChange):
+                    if (!Equals(ListenPropertyChange, value))
+                    {
+                        ListenPropertyChange = (bool?)value;
+                        NativeControl.ListenPropertyChange = ListenPropertyChange ?? (bool)SMTC.ChartSeries.ListenPropertyChangeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Opacity):

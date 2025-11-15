@@ -24,6 +24,12 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the corner radius for the round rectangle.
+        /// </summary>
+        /// <value>
+        /// A <see cref="P:Microsoft.Maui.Controls.Shapes.RoundRectangle.CornerRadius" /> value that specifies the radius for each corner of the round rectangle.
+        /// </value>
         [Parameter] public CornerRadius? CornerRadius { get; set; }
 
         public new MCS.RoundRectangle NativeControl => (MCS.RoundRectangle)((BindableObject)this).NativeControl;

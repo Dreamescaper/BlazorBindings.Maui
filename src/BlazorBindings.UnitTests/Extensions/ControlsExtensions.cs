@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 using System.Reflection;
 
 namespace BlazorBindings.UnitTests.Extensions;
@@ -7,7 +8,8 @@ public static class ControlsExtensions
 {
     public static T GetTemplateContent<T>(this TemplatedView view) where T : View
     {
-        return (T)((ContentView)view.Children[0]).Content;
+        var child = ((IVisualTreeElement)view).GetVisualChildren()[0];
+        return (T)((ContentView)child).Content;
     }
 
     public static T GetTemplateContent<T>(this object templateRoot) where T : View

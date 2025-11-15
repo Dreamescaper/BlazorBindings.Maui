@@ -34,7 +34,6 @@ using System.Runtime.CompilerServices;
         nameof(Element.Handler), nameof(Element.HandlerChanged), nameof(Element.HandlerChanging) ])]
 [assembly: GenerateComponent(typeof(Entry), IsGeneric = true)]
 [assembly: GenerateComponent(typeof(FlyoutPage), Exclude = [nameof(FlyoutPage.Detail)])]
-[assembly: GenerateComponent(typeof(Frame))]
 [assembly: GenerateComponent(typeof(Grid), Exclude = [nameof(Grid.ColumnDefinitions), nameof(Grid.RowDefinitions)])]
 [assembly: GenerateComponent(typeof(GroupableItemsView),
     Exclude = [nameof(GroupableItemsView.GroupFooterTemplate), nameof(GroupableItemsView.GroupHeaderTemplate), nameof(GroupableItemsView.IsGrouped)])]
@@ -46,16 +45,9 @@ using System.Runtime.CompilerServices;
     ContentProperties = [nameof(ItemsView.EmptyView)],
     Exclude = [nameof(ItemsView.EmptyViewTemplate), nameof(ItemsView.ItemsSource)], // ItemsSource mapped manually
     MakeItemsGeneric = true)]
-[assembly: GenerateComponent(typeof(ListView),
-    Exclude = [nameof(ListView.ItemTemplate), nameof(ListView.Header), nameof(ListView.Footer)],
-    GenericProperties = [
-        $"{nameof(ListView.GroupHeaderTemplate)}:System.Object",
-        nameof(ListView.GroupDisplayBinding),
-        nameof(ListView.GroupShortNameBinding)],
-    Aliases = [
-        $"{nameof(ListView.HeaderTemplate)}:Header",
-        $"{nameof(ListView.FooterTemplate)}:Footer" ])]
-[assembly: GenerateComponent(typeof(Picker), PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
+[assembly: GenerateComponent(typeof(Picker),
+    GenericProperties = [nameof(Picker.ItemsSource), nameof(Picker.SelectedItem), nameof(Picker.ItemDisplayBinding)],
+    PropertyChangedEvents = [nameof(Picker.SelectedItem)])]
 [assembly: GenerateComponent(typeof(RadioButton),
     Exclude = [nameof(RadioButton.Value), nameof(RadioButton.Content)])]
 [assembly: GenerateComponent(typeof(RefreshView),
@@ -89,7 +81,6 @@ using System.Runtime.CompilerServices;
 [assembly: GenerateComponent(typeof(SwipeView))]
 [assembly: GenerateComponent(typeof(SwipeItems), Exclude = [nameof(SwipeItems.CollectionChanged)])]
 [assembly: GenerateComponent(typeof(TabbedPage), Exclude = [nameof(TabbedPage.ItemsSource), nameof(TabbedPage.ItemTemplate)])]
-[assembly: GenerateComponent(typeof(TableView), Exclude = [nameof(TableView.Root)])]
 [assembly: GenerateComponent(typeof(TableRoot))]
 [assembly: GenerateComponent(typeof(TableSection))]
 [assembly: GenerateComponent(typeof(TableSectionBase))]
@@ -99,9 +90,6 @@ using System.Runtime.CompilerServices;
     Exclude = [nameof(VisualElement.BackgroundColor), nameof(VisualElement.Triggers)])]
 [assembly: GenerateComponent(typeof(WebView), NonContentProperties = [nameof(WebView.Source)])]
 [assembly: GenerateComponent(typeof(KeyboardAccelerator))]
-
-[assembly: GenerateComponent(typeof(EntryCell),
-    PropertyChangedEvents = [nameof(EntryCell.Text)])]
 
 // Compatibility
 [assembly: GenerateComponent(typeof(Microsoft.Maui.Controls.Compatibility.Layout))]

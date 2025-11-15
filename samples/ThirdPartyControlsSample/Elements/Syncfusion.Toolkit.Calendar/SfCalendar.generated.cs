@@ -15,6 +15,7 @@ using Microsoft.Maui.Graphics;
 using SMTC = Syncfusion.Maui.Toolkit.Calendar;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -88,6 +89,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// </value>
         [Parameter] public SMTC.CalendarIdentifier? Identifier { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether the calendar popup is open or not.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.IsOpen" /> is "False".
+        /// </value>
+        [Parameter] public bool? IsOpen { get; set; }
+        /// <summary>
         /// Gets or sets the maximum display date to restrict the visible dates in the SfCalendar.
         /// </summary>
         /// <value>
@@ -101,6 +109,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.MinimumDate" /> is <see cref="F:System.DateTime.MinValue" />.
         /// </value>
         [Parameter] public DateTime? MinimumDate { get; set; }
+        /// <summary>
+        /// Gets or sets the calendar mode.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.Mode" /> is <see cref="F:Syncfusion.Maui.Toolkit.Calendar.CalendarMode.Default" />.
+        /// </value>
+        [Parameter] public SMTC.CalendarMode? Mode { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether the allow navigation by tapping adjacent month dates.
         /// </summary>
@@ -122,6 +137,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.RangeSelectionDirection" /> is <see cref="F:Syncfusion.Maui.Toolkit.Calendar.CalendarRangeSelectionDirection.Default" />.
         /// </value>
         [Parameter] public SMTC.CalendarRangeSelectionDirection? RangeSelectionDirection { get; set; }
+        /// <summary>
+        /// Gets or sets the relative position of the calendar popup.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.RelativePosition" /> is <see cref="F:Syncfusion.Maui.Toolkit.Calendar.CalendarRelativePosition.AlignTop" />.
+        /// </value>
+        [Parameter] public SMTC.CalendarRelativePosition? RelativePosition { get; set; }
         /// <summary>
         /// Gets or sets the function to decide whether the cell is selectable or not in the calendar.
         /// </summary>
@@ -247,6 +269,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// </summary>
         [Parameter] public RenderFragment MonthViewHeaderTemplate { get; set; }
         /// <summary>
+        /// Gets or sets the view relative to which the calendar dialog should be displayed based on the RelativePosition. <seealso cref="P:Syncfusion.Maui.Toolkit.Calendar.SfCalendar.RelativePosition" />
+        /// </summary>
+        /// <remarks>
+        /// Accepts single View element.
+        /// </remarks>
+        [Parameter] public RenderFragment RelativeView { get; set; }
+        /// <summary>
         /// Gets or sets the value that describes the highlight of selection based on selection mode of the calendar. 1. Highlight the selected date in single selection mode. 2. Highlight the selected dates in multiple selection mode. 3. Highlight the in between dates on range selection mode.
         /// </summary>
         /// <value>
@@ -256,6 +285,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// Accepts single Brush element.
         /// </remarks>
         [Parameter] public RenderFragment SelectionBackground { get; set; }
+        /// <summary>
+        /// Gets or sets the Selection cell template
+        /// </summary>
+        [Parameter] public RenderFragment SelectionCellTemplate { get; set; }
         /// <summary>
         /// Gets or sets the value that describes the highlight for range start date of calendar.
         /// </summary>
@@ -311,6 +344,22 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// Occurs whenever the cancel button tapped on calendar. It reset the selected values to confirmed selected values.
         /// </summary>
         [Parameter] public EventCallback OnActionButtonCanceled { get; set; }
+        /// <summary>
+        /// Occurs after the calendar popup is opened.
+        /// </summary>
+        [Parameter] public EventCallback OnCalendarPopupOpened { get; set; }
+        /// <summary>
+        /// Occurs when the calendar popup is closed.
+        /// </summary>
+        [Parameter] public EventCallback OnCalendarPopupClosed { get; set; }
+        /// <summary>
+        /// Occurs when the calendar popup is closing.
+        /// </summary>
+        [Parameter] public EventCallback<CancelEventArgs> OnCalendarPopupClosing { get; set; }
+        /// <summary>
+        /// Occurs when the calendar popup is opening.
+        /// </summary>
+        [Parameter] public EventCallback<CancelEventArgs> OnCalendarPopupOpening { get; set; }
 
         public new SMTC.SfCalendar NativeControl => (SMTC.SfCalendar)((BindableObject)this).NativeControl;
 
@@ -376,6 +425,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                         NativeControl.Identifier = Identifier ?? (SMTC.CalendarIdentifier)SMTC.SfCalendar.IdentifierProperty.DefaultValue;
                     }
                     break;
+                case nameof(IsOpen):
+                    if (!Equals(IsOpen, value))
+                    {
+                        IsOpen = (bool?)value;
+                        NativeControl.IsOpen = IsOpen ?? (bool)SMTC.SfCalendar.IsOpenProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(MaximumDate):
                     if (!Equals(MaximumDate, value))
                     {
@@ -388,6 +444,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         MinimumDate = (DateTime?)value;
                         NativeControl.MinimumDate = MinimumDate ?? (DateTime)SMTC.SfCalendar.MinimumDateProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(Mode):
+                    if (!Equals(Mode, value))
+                    {
+                        Mode = (SMTC.CalendarMode?)value;
+                        NativeControl.Mode = Mode ?? (SMTC.CalendarMode)SMTC.SfCalendar.ModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(NavigateToAdjacentMonth):
@@ -409,6 +472,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         RangeSelectionDirection = (SMTC.CalendarRangeSelectionDirection?)value;
                         NativeControl.RangeSelectionDirection = RangeSelectionDirection ?? (SMTC.CalendarRangeSelectionDirection)SMTC.SfCalendar.RangeSelectionDirectionProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(RelativePosition):
+                    if (!Equals(RelativePosition, value))
+                    {
+                        RelativePosition = (SMTC.CalendarRelativePosition?)value;
+                        NativeControl.RelativePosition = RelativePosition ?? (SMTC.CalendarRelativePosition)SMTC.SfCalendar.RelativePositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectableDayPredicate):
@@ -520,8 +590,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(MonthViewHeaderTemplate):
                     MonthViewHeaderTemplate = (RenderFragment)value;
                     break;
+                case nameof(RelativeView):
+                    RelativeView = (RenderFragment)value;
+                    break;
                 case nameof(SelectionBackground):
                     SelectionBackground = (RenderFragment)value;
+                    break;
+                case nameof(SelectionCellTemplate):
+                    SelectionCellTemplate = (RenderFragment)value;
                     break;
                 case nameof(StartRangeSelectionBackground):
                     StartRangeSelectionBackground = (RenderFragment)value;
@@ -607,6 +683,46 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                         NativeControl.ActionButtonCanceled += NativeControlActionButtonCanceled;
                     }
                     break;
+                case nameof(OnCalendarPopupOpened):
+                    if (!Equals(OnCalendarPopupOpened, value))
+                    {
+                        void NativeControlCalendarPopupOpened(object sender, EventArgs e) => InvokeEventCallback(OnCalendarPopupOpened);
+
+                        OnCalendarPopupOpened = (EventCallback)value;
+                        NativeControl.CalendarPopupOpened -= NativeControlCalendarPopupOpened;
+                        NativeControl.CalendarPopupOpened += NativeControlCalendarPopupOpened;
+                    }
+                    break;
+                case nameof(OnCalendarPopupClosed):
+                    if (!Equals(OnCalendarPopupClosed, value))
+                    {
+                        void NativeControlCalendarPopupClosed(object sender, EventArgs e) => InvokeEventCallback(OnCalendarPopupClosed);
+
+                        OnCalendarPopupClosed = (EventCallback)value;
+                        NativeControl.CalendarPopupClosed -= NativeControlCalendarPopupClosed;
+                        NativeControl.CalendarPopupClosed += NativeControlCalendarPopupClosed;
+                    }
+                    break;
+                case nameof(OnCalendarPopupClosing):
+                    if (!Equals(OnCalendarPopupClosing, value))
+                    {
+                        void NativeControlCalendarPopupClosing(object sender, CancelEventArgs e) => InvokeEventCallback(OnCalendarPopupClosing, e);
+
+                        OnCalendarPopupClosing = (EventCallback<CancelEventArgs>)value;
+                        NativeControl.CalendarPopupClosing -= NativeControlCalendarPopupClosing;
+                        NativeControl.CalendarPopupClosing += NativeControlCalendarPopupClosing;
+                    }
+                    break;
+                case nameof(OnCalendarPopupOpening):
+                    if (!Equals(OnCalendarPopupOpening, value))
+                    {
+                        void NativeControlCalendarPopupOpening(object sender, CancelEventArgs e) => InvokeEventCallback(OnCalendarPopupOpening, e);
+
+                        OnCalendarPopupOpening = (EventCallback<CancelEventArgs>)value;
+                        NativeControl.CalendarPopupOpening -= NativeControlCalendarPopupOpening;
+                        NativeControl.CalendarPopupOpening += NativeControlCalendarPopupOpening;
+                    }
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
@@ -623,7 +739,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, HeaderView, (x, value) => x.HeaderView = (SMTC.CalendarHeaderView)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, MonthView, (x, value) => x.MonthView = (SMTC.CalendarMonthView)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTC.SfCalendar>(builder, sequence++, MonthViewHeaderTemplate, (x, template) => x.MonthViewHeaderTemplate = template);
+            RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, RelativeView, (x, value) => x.RelativeView = (MC.View)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, SelectionBackground, (x, value) => x.SelectionBackground = (MC.Brush)value);
+            RenderTreeBuilderHelper.AddDataTemplateProperty<SMTC.SfCalendar>(builder, sequence++, SelectionCellTemplate, (x, template) => x.SelectionCellTemplate = template);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, StartRangeSelectionBackground, (x, value) => x.StartRangeSelectionBackground = (MC.Brush)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, TodayHighlightBrush, (x, value) => x.TodayHighlightBrush = (MC.Brush)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCalendar>(builder, sequence++, YearView, (x, value) => x.YearView = (SMTC.CalendarYearView)value);

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// An item in a toolbar or displayed on a <see cref="T:Microsoft.Maui.Controls.Page" />.
+    /// An item in a toolbar or displayed on a Page.
     /// </summary>
     public partial class ToolbarItem : MenuItem
     {
@@ -25,11 +25,11 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates on which of the primary, secondary, or default toolbar surfaces to display this <see cref="T:Microsoft.Maui.Controls.ToolbarItem" /> element.
+        /// Gets or sets a value that indicates on which of the primary, secondary, or default toolbar surfaces to display this ToolbarItem element.
         /// </summary>
         [Parameter] public MC.ToolbarItemOrder? Order { get; set; }
         /// <summary>
-        /// Gets or sets the priority of this <see cref="T:Microsoft.Maui.Controls.ToolbarItem" /> element.
+        /// Gets or sets the priority of this ToolbarItem element.
         /// </summary>
         [Parameter] public int? Priority { get; set; }
 

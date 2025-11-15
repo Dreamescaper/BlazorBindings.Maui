@@ -25,6 +25,10 @@ namespace BlazorBindings.Maui.Elements
         }
 
         [Parameter] public Thickness? Padding { get; set; }
+        /// <summary>
+        /// Gets or sets the safe area edges to obey for this border. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// </summary>
+        [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         [Parameter] public Color StrokeColor { get; set; }
         [Parameter] public double? StrokeDashOffset { get; set; }
         [Parameter] public MC.Shapes.PenLineCap? StrokeLineCap { get; set; }
@@ -57,6 +61,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         Padding = (Thickness?)value;
                         NativeControl.Padding = Padding ?? (Thickness)MC.Border.PaddingProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SafeAreaEdges):
+                    if (!Equals(SafeAreaEdges, value))
+                    {
+                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.Border.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):

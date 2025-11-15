@@ -1,13 +1,13 @@
-﻿<Frame BackgroundColor="Colors.Gray"
-       CornerRadius="5"
-       Margin="5" 
-       MinimumHeightRequest="24"
-       MinimumWidthRequest="24"
-       HorizontalOptions="LayoutOptions.Center">
+﻿<Border BackgroundColor="Colors.Gray"
+        CornerRadius="5"
+        Margin="5"
+        MinimumHeightRequest="24"
+        MinimumWidthRequest="24"
+        HorizontalOptions="LayoutOptions.Center">
 
     <Label Text="@Value.ToString()" />
-</Frame>
+</Border>
 
 @code {
-[Parameter] public int Value { get; set; }
+    [Parameter] public int Value { get; set; }
 }

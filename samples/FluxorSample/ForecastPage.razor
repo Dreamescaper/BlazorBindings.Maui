@@ -12,13 +12,13 @@
 
         @foreach (var forecast in WeatherState.Value.Forecasts)
     {
-        <Frame CornerRadius="10" BackgroundColor="Colors.Orange">
+        <Border CornerRadius="10" BackgroundColor="Colors.Orange">
                 <VerticalStackLayout>
                     <Label FontSize="10" Text="@forecast.Date.ToShortDateString()" />
                     <Label FontSize="14" Text="@forecast.Summary" />
                     <Label FontSize="10" Text=@($"{forecast.TemperatureC}°") />
                 </VerticalStackLayout>
-            </Frame>
+            </Border>
     }
 
     </VerticalStackLayout>

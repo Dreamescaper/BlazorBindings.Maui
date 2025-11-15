@@ -42,11 +42,9 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the size of the font for the text in the picker.
         /// </summary>
-        /// <value>
-        /// A <see langword="double" /> that indicates the size of the font.
-        /// </value>
         [Parameter] public double? FontSize { get; set; }
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
+        [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
         /// Gets or sets a binding that selects the property that will be displayed for each object in the list of items.
         /// </summary>
@@ -58,9 +56,6 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the index of the selected item of the picker.
         /// </summary>
-        /// <value>
-        /// An 0-based index representing the selected item in the list. Default is -1.
-        /// </value>
         [Parameter] public int? SelectedIndex { get; set; }
         /// <summary>
         /// Gets or sets the selected item.
@@ -73,14 +68,13 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the title for the Picker.
         /// </summary>
-        /// <value>
-        /// A string.
-        /// </value>
         [Parameter] public string Title { get; set; }
         [Parameter] public Color TitleColor { get; set; }
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
         [Parameter] public EventCallback<T> SelectedItemChanged { get; set; }
         [Parameter] public EventCallback<int> SelectedIndexChanged { get; set; }
+        [Parameter] public EventCallback<MC.PickerOpenedEventArgs> OnOpened { get; set; }
+        [Parameter] public EventCallback<MC.PickerClosedEventArgs> OnClosed { get; set; }
 
         public new MC.Picker NativeControl => (MC.Picker)((BindableObject)this).NativeControl;
 
@@ -130,6 +124,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         HorizontalTextAlignment = (TextAlignment?)value;
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.Picker.HorizontalTextAlignmentProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsOpen):
+                    if (!Equals(IsOpen, value))
+                    {
+                        IsOpen = (bool?)value;
+                        NativeControl.IsOpen = IsOpen ?? (bool)MC.Picker.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemDisplayBinding):
@@ -219,6 +220,26 @@ namespace BlazorBindings.Maui.Elements
                         SelectedIndexChanged = (EventCallback<int>)value;
                         NativeControl.SelectedIndexChanged -= NativeControlSelectedIndexChanged;
                         NativeControl.SelectedIndexChanged += NativeControlSelectedIndexChanged;
+                    }
+                    break;
+                case nameof(OnOpened):
+                    if (!Equals(OnOpened, value))
+                    {
+                        void NativeControlOpened(object sender, MC.PickerOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
+
+                        OnOpened = (EventCallback<MC.PickerOpenedEventArgs>)value;
+                        NativeControl.Opened -= NativeControlOpened;
+                        NativeControl.Opened += NativeControlOpened;
+                    }
+                    break;
+                case nameof(OnClosed):
+                    if (!Equals(OnClosed, value))
+                    {
+                        void NativeControlClosed(object sender, MC.PickerClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
+
+                        OnClosed = (EventCallback<MC.PickerClosedEventArgs>)value;
+                        NativeControl.Closed -= NativeControlClosed;
+                        NativeControl.Closed += NativeControlClosed;
                     }
                     break;
 

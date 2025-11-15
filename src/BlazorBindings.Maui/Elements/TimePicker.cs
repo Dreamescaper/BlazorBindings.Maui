@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements;
@@ -6,7 +5,7 @@ namespace BlazorBindings.Maui.Elements;
 public partial class TimePicker
 {
     [Parameter] public TimeOnly? Time { get; set; }
-    [Parameter] public EventCallback<TimeOnly> TimeChanged { get; set; }
+    [Parameter] public EventCallback<TimeOnly?> TimeChanged { get; set; }
 
     protected override bool HandleAdditionalParameter(string name, object value)
     {
@@ -16,7 +15,7 @@ public partial class TimePicker
                 if (!Equals(Time, value))
                 {
                     Time = (TimeOnly?)value;
-                    NativeControl.Time = Time?.ToTimeSpan() ?? (TimeSpan)MC.TimePicker.TimeProperty.DefaultValue;
+                    NativeControl.Time = Time?.ToTimeSpan();
                 }
                 return true;
             case nameof(TimeChanged):
@@ -24,12 +23,12 @@ public partial class TimePicker
                 {
                     void NativeControlTimeSelected(object sender, MC.TimeChangedEventArgs e)
                     {
-                        var value = TimeOnly.FromTimeSpan(e.NewTime);
+                        var value = e.NewTime is null ? (TimeOnly?)null : TimeOnly.FromTimeSpan(e.NewTime.Value);
                         Time = value;
                         InvokeEventCallback(TimeChanged, value);
                     }
 
-                    TimeChanged = (EventCallback<TimeOnly>)value;
+                    TimeChanged = (EventCallback<TimeOnly?>)value;
                     NativeControl.TimeSelected -= NativeControlTimeSelected;
                     NativeControl.TimeSelected += NativeControlTimeSelected;
                 }

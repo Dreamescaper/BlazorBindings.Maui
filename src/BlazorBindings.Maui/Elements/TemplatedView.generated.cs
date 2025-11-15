@@ -9,6 +9,7 @@ using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.Maui;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -26,6 +27,18 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
+        /// Gets or sets a value that controls whether child elements inherit the input transparency of this layout when the transparency is <see langword="true" />.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to cause child elements to inherit the input transparency of this layout, when this layout's <see cref="P:Microsoft.Maui.Controls.VisualElement.InputTransparent" /> property is <see langword="true" />. <see langword="false" /> to cause child elements to ignore the input transparency of this layout.
+        /// </value>
+        [Parameter] public new bool? CascadeInputTransparent { get; set; }
+        /// <summary>
+        /// Gets or sets a value which determines if the layout should clip its children to its bounds. The default value is <see langword="false" />.
+        /// </summary>
+        [Parameter] public new bool? IsClippedToBounds { get; set; }
+        [Parameter] public new Thickness? Padding { get; set; }
+        /// <summary>
         /// Gets or sets the control template that is used to display content.
         /// </summary>
         [Parameter] public RenderFragment ControlTemplate { get; set; }
@@ -38,6 +51,27 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(CascadeInputTransparent):
+                    if (!Equals(CascadeInputTransparent, value))
+                    {
+                        CascadeInputTransparent = (bool?)value;
+                        NativeControl.CascadeInputTransparent = CascadeInputTransparent ?? (bool)MC.TemplatedView.CascadeInputTransparentProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsClippedToBounds):
+                    if (!Equals(IsClippedToBounds, value))
+                    {
+                        IsClippedToBounds = (bool?)value;
+                        NativeControl.IsClippedToBounds = IsClippedToBounds ?? (bool)MC.TemplatedView.IsClippedToBoundsProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(Padding):
+                    if (!Equals(Padding, value))
+                    {
+                        Padding = (Thickness?)value;
+                        NativeControl.Padding = Padding ?? (Thickness)MC.TemplatedView.PaddingProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(ControlTemplate):
                     ControlTemplate = (RenderFragment)value;
                     break;

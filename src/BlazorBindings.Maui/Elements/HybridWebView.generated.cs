@@ -30,6 +30,18 @@ namespace BlazorBindings.Maui.Elements
         /// Raised when a raw message is received from the web view. Raw messages are strings that have no additional processing.
         /// </summary>
         [Parameter] public EventCallback<MC.HybridWebViewRawMessageReceivedEventArgs> OnRawMessageReceived { get; set; }
+        /// <summary>
+        /// Raised when the web view is initializing. This event allows the application to perform additional configuration.
+        /// </summary>
+        [Parameter] public EventCallback<MC.WebViewInitializingEventArgs> OnWebViewInitializing { get; set; }
+        /// <summary>
+        /// Raised when the web view has been initialized.
+        /// </summary>
+        [Parameter] public EventCallback<MC.WebViewInitializedEventArgs> OnWebViewInitialized { get; set; }
+        /// <summary>
+        /// Raised when a web resource is requested. This event allows the application to intercept the request and provide a custom response. The event handler can set the <see cref="P:Microsoft.Maui.Controls.WebViewWebResourceRequestedEventArgs.Handled" /> property to true to indicate that the request has been handled and no further processing is needed. If the event handler does set this property to true, it must also call the <see cref="M:Microsoft.Maui.Controls.WebViewWebResourceRequestedEventArgs.SetResponse(System.Int32,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.IO.Stream)" /> or <see cref="M:Microsoft.Maui.Controls.WebViewWebResourceRequestedEventArgs.SetResponse(System.Int32,System.String,System.Collections.Generic.IReadOnlyDictionary{System.String,System.String},System.Threading.Tasks.Task{System.IO.Stream})" /> method to provide a response to the request.
+        /// </summary>
+        [Parameter] public EventCallback<MC.WebViewWebResourceRequestedEventArgs> OnWebResourceRequested { get; set; }
 
         public new MC.HybridWebView NativeControl => (MC.HybridWebView)((BindableObject)this).NativeControl;
 
@@ -61,6 +73,36 @@ namespace BlazorBindings.Maui.Elements
                         OnRawMessageReceived = (EventCallback<MC.HybridWebViewRawMessageReceivedEventArgs>)value;
                         NativeControl.RawMessageReceived -= NativeControlRawMessageReceived;
                         NativeControl.RawMessageReceived += NativeControlRawMessageReceived;
+                    }
+                    break;
+                case nameof(OnWebViewInitializing):
+                    if (!Equals(OnWebViewInitializing, value))
+                    {
+                        void NativeControlWebViewInitializing(object sender, MC.WebViewInitializingEventArgs e) => InvokeEventCallback(OnWebViewInitializing, e);
+
+                        OnWebViewInitializing = (EventCallback<MC.WebViewInitializingEventArgs>)value;
+                        NativeControl.WebViewInitializing -= NativeControlWebViewInitializing;
+                        NativeControl.WebViewInitializing += NativeControlWebViewInitializing;
+                    }
+                    break;
+                case nameof(OnWebViewInitialized):
+                    if (!Equals(OnWebViewInitialized, value))
+                    {
+                        void NativeControlWebViewInitialized(object sender, MC.WebViewInitializedEventArgs e) => InvokeEventCallback(OnWebViewInitialized, e);
+
+                        OnWebViewInitialized = (EventCallback<MC.WebViewInitializedEventArgs>)value;
+                        NativeControl.WebViewInitialized -= NativeControlWebViewInitialized;
+                        NativeControl.WebViewInitialized += NativeControlWebViewInitialized;
+                    }
+                    break;
+                case nameof(OnWebResourceRequested):
+                    if (!Equals(OnWebResourceRequested, value))
+                    {
+                        void NativeControlWebResourceRequested(object sender, MC.WebViewWebResourceRequestedEventArgs e) => InvokeEventCallback(OnWebResourceRequested, e);
+
+                        OnWebResourceRequested = (EventCallback<MC.WebViewWebResourceRequestedEventArgs>)value;
+                        NativeControl.WebResourceRequested -= NativeControlWebResourceRequested;
+                        NativeControl.WebResourceRequested += NativeControlWebResourceRequested;
                     }
                     break;
 

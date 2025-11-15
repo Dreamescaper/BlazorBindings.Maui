@@ -30,6 +30,9 @@ namespace BlazorBindings.Maui.Elements
         /// Gets a value that indicates whether the font for the date picker text is bold, italic, or neither.
         /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
+        /// <summary>
+        /// Gets or sets whether the font size is automatically scaled based on the operating system's accessibility settings.
+        /// </summary>
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
         /// <summary>
         /// Gets or sets the font family for the picker text.
@@ -38,21 +41,18 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the size of the font for the text in the picker.
         /// </summary>
-        /// <value>
-        /// A <see langword="double" /> that indicates the size of the font.
-        /// </value>
         [Parameter] public double? FontSize { get; set; }
         /// <summary>
         /// The format of the date to display to the user. This is a dependency property.
         /// </summary>
-        /// <value>
-        /// A valid date format.
-        /// </value>
         [Parameter] public string Format { get; set; }
+        [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
         /// Gets or sets the text color for the date picker.
         /// </summary>
         [Parameter] public Color TextColor { get; set; }
+        [Parameter] public EventCallback<MC.DatePickerOpenedEventArgs> OnOpened { get; set; }
+        [Parameter] public EventCallback<MC.DatePickerClosedEventArgs> OnClosed { get; set; }
 
         public new MC.DatePicker NativeControl => (MC.DatePicker)((BindableObject)this).NativeControl;
 
@@ -104,11 +104,38 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.Format = Format;
                     }
                     break;
+                case nameof(IsOpen):
+                    if (!Equals(IsOpen, value))
+                    {
+                        IsOpen = (bool?)value;
+                        NativeControl.IsOpen = IsOpen ?? (bool)MC.DatePicker.IsOpenProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
                         TextColor = (Color)value;
                         NativeControl.TextColor = TextColor;
+                    }
+                    break;
+                case nameof(OnOpened):
+                    if (!Equals(OnOpened, value))
+                    {
+                        void NativeControlOpened(object sender, MC.DatePickerOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
+
+                        OnOpened = (EventCallback<MC.DatePickerOpenedEventArgs>)value;
+                        NativeControl.Opened -= NativeControlOpened;
+                        NativeControl.Opened += NativeControlOpened;
+                    }
+                    break;
+                case nameof(OnClosed):
+                    if (!Equals(OnClosed, value))
+                    {
+                        void NativeControlClosed(object sender, MC.DatePickerClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
+
+                        OnClosed = (EventCallback<MC.DatePickerClosedEventArgs>)value;
+                        NativeControl.Closed -= NativeControlClosed;
+                        NativeControl.Closed += NativeControlClosed;
                     }
                     break;
 
