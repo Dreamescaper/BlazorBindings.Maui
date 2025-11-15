@@ -61,7 +61,7 @@ jobs:
   publish-to-nuget:
     runs-on: windows-2022
     needs: [build]
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publishNuGet == 'true' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publishNuGet == true }}
     permissions:
       contents: read
       id-token: write
