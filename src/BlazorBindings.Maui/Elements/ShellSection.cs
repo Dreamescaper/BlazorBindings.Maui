@@ -63,19 +63,4 @@ public partial class ShellSection : ShellGroupItem, IContainerElementHandler
         };
         return contentToAdd;
     }
-
-    private MC.ShellContent GetContentForChild(object child)
-    {
-        return child switch
-        {
-            MC.TemplatedPage childAsTemplatedPage => GetContentForTemplatePage(childAsTemplatedPage),
-            MC.ShellContent childAsShellContent => childAsShellContent,
-            _ => null
-        };
-    }
-
-    private MC.ShellContent GetContentForTemplatePage(MC.TemplatedPage childAsTemplatedPage)
-    {
-        return NativeControl.Items.FirstOrDefault(content => content.Content == childAsTemplatedPage);
-    }
 }

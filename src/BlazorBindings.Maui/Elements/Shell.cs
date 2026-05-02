@@ -238,43 +238,4 @@ public partial class Shell : Page, IContainerElementHandler
             _ => throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support adding a child (child type is '{child.GetType().FullName}').")
         };
     }
-
-    private MC.ShellItem GetItemForElement(object child)
-    {
-        return child switch
-        {
-            MC.TemplatedPage childAsTemplatedPage => GetItemForTemplatedPage(childAsTemplatedPage),
-            MC.ShellContent childAsShellContent => GetItemForContent(childAsShellContent),
-            MC.ShellSection childAsShellSection => GetItemForSection(childAsShellSection),
-            MC.MenuItem childAsMenuItem => GetItemForMenuItem(childAsMenuItem),
-            MC.ShellItem childAsShellItem => childAsShellItem,
-            _ => null
-        };
-    }
-
-    private MC.ShellItem GetItemForTemplatedPage(MC.TemplatedPage childAsTemplatedPage)
-    {
-        return NativeControl.Items
-            .FirstOrDefault(item => item.Items
-                .Any(section => section.Items.Any(content => content.Content == childAsTemplatedPage)));
-    }
-
-    private MC.ShellItem GetItemForContent(MC.ShellContent childAsShellContent)
-    {
-        return NativeControl.Items
-            .FirstOrDefault(item => item.Items
-                .Any(section => section.Items.Contains(childAsShellContent)));
-    }
-
-    private MC.ShellItem GetItemForSection(MC.ShellSection childAsShellSection)
-    {
-        return NativeControl.Items.FirstOrDefault(item => item.Items.Contains(childAsShellSection));
-    }
-
-    private MC.ShellItem GetItemForMenuItem(MC.MenuItem childAsMenuItem)
-    {
-        // MenuItem is wrapped in ShellMenuItem, which is internal type.
-        // ShellMenuItems sets itself as MenuItem parent.
-        return NativeControl.Items.FirstOrDefault(item => item == childAsMenuItem.Parent);
-    }
 }

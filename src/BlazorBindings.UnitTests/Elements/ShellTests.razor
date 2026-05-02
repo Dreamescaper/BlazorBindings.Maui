@@ -198,6 +198,97 @@
         Assert.That(sectionPages.Select(i => i.Title), Is.EqualTo(["Page4", "Page5"]));
 
         Assert.That(shell.CurrentItem.Title, Is.EqualTo("Page1"));
+    }   
+    
+    [Test]
+    public async Task RemoveShellPages()
+    {
+        int hideSection = -1;
+
+        var shell = await Render<MC.Shell>(
+    @<Shell>
+        @if (hideSection != 1) 
+        {
+            <PageContent Title="Page1" />
+        }
+
+        @if (hideSection != 2) 
+        {
+            <ShellContent Title="Page2">
+                <PageContent Title="Page2" />
+            </ShellContent>
+        }
+
+        @if (hideSection != 3) 
+        {
+            <PageContent Title="Page3" />
+        }
+
+        @if (hideSection != 4) 
+        {
+            <ShellSection Title="Section">
+                <PageContent Title="Page4" />
+                <PageContent Title="Page5" />
+            </ShellSection>
+        }
+
+        @if (hideSection != 5) 
+        {
+            <ContentPage Title="Page6" />
+        }
+
+        @if (hideSection != 6)
+        {
+            <MenuItem Text="Menu" />
+        }
+
+        @if (hideSection != 7) 
+        {
+            <TabBar Title="Tab">
+                <PageContent Title="Page7" />
+                <PageContent Title="Page8" />
+            </TabBar>
+        }
+
+        @if (hideSection != 8) 
+        {
+            <PageContent Title="Page9" />
+        }
+    </Shell>
+    );
+
+        AssertItemRemoved(1,
+            ["Page2", "Page3", "Section", "Page6", "Menu", "Tab", "Page9"]);
+        AssertItemRemoved(2,
+            ["Page1", "Page3", "Section", "Page6", "Menu", "Tab", "Page9"]);
+        AssertItemRemoved(3,
+            ["Page1", "Page2", "Section", "Page6", "Menu", "Tab", "Page9"]);
+        AssertItemRemoved(4,
+            ["Page1", "Page2", "Page3", "Page6", "Menu", "Tab", "Page9"]);
+        AssertItemRemoved(5,
+            ["Page1", "Page2", "Page3", "Section", "Menu", "Tab", "Page9"]);
+        AssertItemRemoved(6,
+            ["Page1", "Page2", "Page3", "Section", "Page6", "Tab", "Page9"]);
+        AssertItemRemoved(7,
+            ["Page1", "Page2", "Page3", "Section", "Page6", "Menu", "Page9"]);
+        AssertItemRemoved(8,
+            ["Page1", "Page2", "Page3", "Section", "Page6", "Menu", "Tab"]);
+
+        void AssertItemRemoved(int section, string[] expected)
+        {
+            hideSection = section;
+            StateHasChanged();
+
+            Assert.That(shell.Items.Select(i => i.Title), Is.EqualTo(expected),
+                $"Unexpected result after removing section {section}.");
+            
+            hideSection = -1;
+            StateHasChanged();
+
+            Assert.That(shell.Items.Select(i => i.Title),
+                Is.EqualTo(["Page1", "Page2", "Page3", "Section", "Page6", "Menu", "Tab", "Page9"]),
+                "Unexpected result after reverting all pages.");
+        }
     }
 
     [Test]
