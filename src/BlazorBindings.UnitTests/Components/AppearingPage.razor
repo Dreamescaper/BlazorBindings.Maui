@@ -1,0 +1,9 @@
+<ContentPage Title="@Title" OnAppearing="@(() => AppearingPages.Add(Title))">
+    <Label Text="@Title" />
+</ContentPage>
+
+@code {
+    [Parameter] public string Title { get; set; }
+
+    [Parameter] public List<string> AppearingPages { get; set; }
+}

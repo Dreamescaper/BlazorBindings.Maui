@@ -199,4 +199,48 @@
 
         Assert.That(shell.CurrentItem.Title, Is.EqualTo("Page1"));
     }
+
+    [Test]
+    public async Task RemovingShellPagesDoesNotInvokeAppearingForHiddenPages()
+    {
+        bool loggedIn = true;
+        var appearingPages = new List<string>();
+
+        var shell = await Render<MC.Shell>(
+    @<Shell>
+        <TabBar>
+            @if (!loggedIn)
+        {
+            <AppearingPage Title="Login" AppearingPages="appearingPages" />
+        }
+        else
+        {
+            <AppearingPage Title="Page1" AppearingPages="appearingPages" />
+            <AppearingPage Title="Page2" AppearingPages="appearingPages" />
+            <AppearingPage Title="Page3" AppearingPages="appearingPages" />
+        }
+        </TabBar>
+    </Shell>
+    );
+
+        var window = new MC.Window(shell);
+        SetParent(window, MC.Application.Current);
+        shell.SendAppearing();
+        Assert.That(appearingPages, Is.EqualTo(["Page1"]));
+
+        appearingPages.Clear();
+
+        loggedIn = false;
+        StateHasChanged();
+
+        Assert.That(shell.Items.Single().Items.Select(i => i.Title), Is.EqualTo(["Login"]));
+        Assert.That(appearingPages, Is.EqualTo(["Login"]));
+    }
+
+    private static void SetParent(MC.Element element, MC.Element parent)
+    {
+        typeof(MC.Element)
+            .GetMethod("SetParent", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
+            .Invoke(element, [parent]);
+    }
 }
