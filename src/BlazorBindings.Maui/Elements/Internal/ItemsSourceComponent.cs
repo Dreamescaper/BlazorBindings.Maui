@@ -67,15 +67,13 @@ internal class ItemsSourceComponent<TControl, TItem> : NativeControlComponentBas
         _observableCollection.Insert(physicalSiblingIndex, (TItem)child);
     }
 
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex)
     {
-        Debug.Assert(Equals(_observableCollection[physicalSiblingIndex], child));
         _observableCollection.RemoveAt(physicalSiblingIndex);
     }
 
-    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object newChild)
     {
-        Debug.Assert(Equals(_observableCollection[physicalSiblingIndex], oldChild));
         if (!Equals(_observableCollection[physicalSiblingIndex], newChild))
             _observableCollection[physicalSiblingIndex] = (TItem)newChild;
     }

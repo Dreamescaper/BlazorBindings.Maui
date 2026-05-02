@@ -53,7 +53,7 @@ internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlCo
     void INonPhysicalChild.RemoveFromParent(object parentElement) { }
     object IElementHandler.TargetElement => null;
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex) { }
 }
 
 // In order to be able to render the item synchronously, we need to have an item upfront, before the render.

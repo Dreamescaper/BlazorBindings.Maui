@@ -28,19 +28,13 @@ public class TestContainerComponent : NativeControlComponentBase, IElementHandle
         _targetElement.Children = _targetElement.Children.Insert(physicalSiblingIndex, child.Cast<TestTargetElement>());
     }
 
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex)
     {
-        if (!Equals(_targetElement.Children[physicalSiblingIndex], child))
-            throw new InvalidOperationException("Unexpected child to remove.");
-
         _targetElement.Children = _targetElement.Children.RemoveAt(physicalSiblingIndex);
     }
 
-    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object newChild)
     {
-        if (!Equals(_targetElement.Children[physicalSiblingIndex], oldChild))
-            throw new InvalidOperationException("Unexpected child to remove.");
-
         _targetElement.Children = _targetElement.Children.SetItem(physicalSiblingIndex, newChild.Cast<TestTargetElement>());
     }
 
