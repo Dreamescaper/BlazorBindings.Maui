@@ -14,15 +14,15 @@ public interface IContainerElementHandler : IElementHandler
             RemoveChild(index);
     }
 
-    void AddRange(int index, IReadOnlyList<object> children)
+    void AddRange(int index, ReadOnlySpan<object> children)
     {
-        for (var i = 0; i < children.Count; i++)
+        for (var i = 0; i < children.Length; i++)
             AddChild(children[i], index + i);
     }
 
-    void ReplaceRange(int index, int count, IReadOnlyList<object> newChildren)
+    void ReplaceRange(int index, int count, ReadOnlySpan<object> newChildren)
     {
-        var replacementsCount = Math.Min(count, newChildren.Count);
+        var replacementsCount = Math.Min(count, newChildren.Length);
 
         for (var i = 0; i < replacementsCount; i++)
         {
@@ -31,8 +31,8 @@ public interface IContainerElementHandler : IElementHandler
 
         if (count > replacementsCount)
             RemoveRange(index + replacementsCount, count - replacementsCount);
-        else if (newChildren.Count > replacementsCount)
-            AddRange(index + replacementsCount, newChildren.Skip(replacementsCount).ToArray());
+        else if (newChildren.Length > replacementsCount)
+            AddRange(index + replacementsCount, newChildren.Slice(replacementsCount));
     }
 
     void ReplaceChild(int physicalSiblingIndex, object newChild)

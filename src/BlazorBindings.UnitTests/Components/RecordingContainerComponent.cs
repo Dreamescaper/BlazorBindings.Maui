@@ -31,11 +31,11 @@ public class RecordingContainerComponent : NativeControlComponentBase, IElementH
         _targetElement.Children[physicalSiblingIndex] = newChild.Cast<RecordingChildTarget>();
     }
 
-    void IContainerElementHandler.AddRange(int index, IReadOnlyList<object> children)
+    void IContainerElementHandler.AddRange(int index, ReadOnlySpan<object> children)
     {
-        _targetElement.Operations.Add(new("AddRange", index, children.Count, children.Select(child => child.Cast<RecordingChildTarget>().Id).ToArray()));
+        _targetElement.Operations.Add(new("AddRange", index, children.Length, children.ToArray().Select(child => child.Cast<RecordingChildTarget>().Id).ToArray()));
 
-        for (var i = 0; i < children.Count; i++)
+        for (var i = 0; i < children.Length; i++)
             _targetElement.Children.Insert(index + i, children[i].Cast<RecordingChildTarget>());
     }
 
@@ -47,11 +47,11 @@ public class RecordingContainerComponent : NativeControlComponentBase, IElementH
             _targetElement.Children.RemoveAt(index);
     }
 
-    void IContainerElementHandler.ReplaceRange(int index, int count, IReadOnlyList<object> newChildren)
+    void IContainerElementHandler.ReplaceRange(int index, int count, ReadOnlySpan<object> newChildren)
     {
-        _targetElement.Operations.Add(new("ReplaceRange", index, count, newChildren.Select(child => child.Cast<RecordingChildTarget>().Id).ToArray()));
+        _targetElement.Operations.Add(new("ReplaceRange", index, count, newChildren.ToArray().Select(child => child.Cast<RecordingChildTarget>().Id).ToArray()));
 
-        var replacementsCount = Math.Min(count, newChildren.Count);
+        var replacementsCount = Math.Min(count, newChildren.Length);
 
         for (var i = 0; i < replacementsCount; i++)
             _targetElement.Children[index + i] = newChildren[i].Cast<RecordingChildTarget>();
@@ -59,7 +59,7 @@ public class RecordingContainerComponent : NativeControlComponentBase, IElementH
         for (var i = replacementsCount; i < count; i++)
             _targetElement.Children.RemoveAt(index + replacementsCount);
 
-        for (var i = replacementsCount; i < newChildren.Count; i++)
+        for (var i = replacementsCount; i < newChildren.Length; i++)
             _targetElement.Children.Insert(index + i, newChildren[i].Cast<RecordingChildTarget>());
     }
 

@@ -162,7 +162,7 @@
         new ElementManager().ReplaceChildElementRange(
             component,
             3,
-            [
+            (ReadOnlySpan<object>)[
                 new RecordingChildTarget { Id = 4 },
                 new RecordingChildTarget { Id = 5 },
                 new RecordingChildTarget { Id = 6 }

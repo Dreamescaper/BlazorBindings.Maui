@@ -64,14 +64,14 @@ public class ElementManager
 
     public virtual void AddChildElementRange(
         IElementHandler parentHandler,
-        IReadOnlyList<object> children,
+        ReadOnlySpan<object> children,
         int physicalSiblingIndex)
     {
-        if (children.Count == 0)
+        if (children.Length == 0)
             return;
 
         var container = GetContainer(parentHandler);
-        if (children.Count == 1)
+        if (children.Length == 1)
             container.AddChild(children[0], physicalSiblingIndex);
         else
             container.AddRange(physicalSiblingIndex, children);
@@ -95,7 +95,7 @@ public class ElementManager
     public virtual void ReplaceChildElementRange(
         IElementHandler parentHandler,
         int removedChildrenCount,
-        IReadOnlyList<object> newChildren,
+        ReadOnlySpan<object> newChildren,
         int physicalSiblingIndex)
     {
         if (removedChildrenCount == 0)
@@ -104,14 +104,14 @@ public class ElementManager
             return;
         }
 
-        if (newChildren.Count == 0)
+        if (newChildren.Length == 0)
         {
             RemoveChildElementRange(parentHandler, removedChildrenCount, physicalSiblingIndex);
             return;
         }
 
         var container = GetContainer(parentHandler);
-        if (removedChildrenCount == 1 && newChildren.Count == 1)
+        if (removedChildrenCount == 1 && newChildren.Length == 1)
             container.ReplaceChild(physicalSiblingIndex, newChildren[0]);
         else
             container.ReplaceRange(physicalSiblingIndex, removedChildrenCount, newChildren);

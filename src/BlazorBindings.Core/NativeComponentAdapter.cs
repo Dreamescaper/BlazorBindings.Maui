@@ -109,33 +109,9 @@ internal sealed class NativeComponentAdapter(
         if (_pendingEdits == null)
             return;
 
-        PendingEditRange pendingRange = new();
-        List<object> replacementRangeNewChildren = null;
+        var pendingRange = new PendingEditRange();
+        var replacementRangeNewChildren = new ValueListBuilder<object>();
 
-        void ApplyPendingRange()
-        {
-            if (pendingRange.Type == null)
-                return;
-
-            if (pendingRange.Type == PendingEditType.Remove)
-            {
-                Renderer.ElementManager.RemoveChildElementRange(_targetElement, pendingRange.Count, pendingRange.Index);
-            }
-            else if (pendingRange.Type == PendingEditType.Add)
-            {
-                Renderer.ElementManager.AddChildElementRange(_targetElement, pendingRange.NewElements, pendingRange.Index);
-            }
-
-            pendingRange.Clear();
-        }
-
-        void AddToPendingRange(PendingEditType type, int index, object newElement = null)
-        {
-            if (!pendingRange.CanAppend(type, index))
-                ApplyPendingRange();
-
-            pendingRange.Append(type, index, newElement);
-        }
 
         for (var i = 0; i < _pendingEdits.Count; i++)
         {
@@ -143,44 +119,67 @@ internal sealed class NativeComponentAdapter(
 
             if (TryGetReplacementRange(i, ref replacementRangeNewChildren, out var replacementRangeEndIndex, out var replacementIndex, out var removedChildrenCount))
             {
-                ApplyPendingRange();
-                Renderer.ElementManager.ReplaceChildElementRange(_targetElement, removedChildrenCount, replacementRangeNewChildren, replacementIndex);
+                ApplyPendingRange(ref pendingRange, Renderer.ElementManager, _targetElement);
+                Renderer.ElementManager.ReplaceChildElementRange(_targetElement, removedChildrenCount, replacementRangeNewChildren.AsSpan(), replacementIndex);
                 i = replacementRangeEndIndex;
-                replacementRangeNewChildren.Clear();
+                replacementRangeNewChildren.Length = 0;
             }
             else if (edit.Type == PendingEditType.Remove)
             {
                 if (edit.Element._targetElement is INonPhysicalChild)
                 {
-                    ApplyPendingRange();
+                    ApplyPendingRange(ref pendingRange, Renderer.ElementManager, _targetElement);
                     Renderer.ElementManager.RemoveChildElement(_targetElement, edit.Element._targetElement, edit.Index);
                 }
                 else
                 {
-                    AddToPendingRange(PendingEditType.Remove, edit.Index);
+                    AddToPendingRange(ref pendingRange, PendingEditType.Remove, edit.Index, Renderer.ElementManager, _targetElement);
                 }
             }
             else if (edit.Type == PendingEditType.Add)
             {
                 if (edit.Element._targetElement is INonPhysicalChild)
                 {
-                    ApplyPendingRange();
+                    ApplyPendingRange(ref pendingRange, Renderer.ElementManager, _targetElement);
                     Renderer.ElementManager.AddChildElement(_targetElement, edit.Element._targetElement, edit.Index);
                 }
                 else
                 {
-                    AddToPendingRange(PendingEditType.Add, edit.Index, edit.Element._targetElement.TargetElement);
+                    AddToPendingRange(ref pendingRange, PendingEditType.Add, edit.Index, Renderer.ElementManager, _targetElement, edit.Element._targetElement.TargetElement);
                 }
             }
         }
 
-        ApplyPendingRange();
+        ApplyPendingRange(ref pendingRange, Renderer.ElementManager, _targetElement);
+        pendingRange.Dispose();
+        replacementRangeNewChildren.Dispose();
         _pendingEdits.Clear();
+
+        static void ApplyPendingRange(ref PendingEditRange pendingRange, ElementManager mgr, IElementHandler target)
+        {
+            if (pendingRange.Type == null)
+                return;
+
+            if (pendingRange.Type == PendingEditType.Remove)
+                mgr.RemoveChildElementRange(target, pendingRange.Count, pendingRange.Index);
+            else if (pendingRange.Type == PendingEditType.Add)
+                mgr.AddChildElementRange(target, pendingRange.NewElements, pendingRange.Index);
+
+            pendingRange.Clear();
+        }
+
+        static void AddToPendingRange(ref PendingEditRange pendingRange, PendingEditType type, int index, ElementManager mgr, IElementHandler target, object newElement = null)
+        {
+            if (!pendingRange.CanAppend(type, index))
+                ApplyPendingRange(ref pendingRange, mgr, target);
+
+            pendingRange.Append(type, index, newElement);
+        }
     }
 
     private bool TryGetReplacementRange(
         int startIndex,
-        ref List<object> newChildren,
+        ref ValueListBuilder<object> newChildren,
         out int endIndex,
         out int replacementIndex,
         out int removedChildrenCount)
@@ -220,10 +219,9 @@ internal sealed class NativeComponentAdapter(
             expectedAddIndex++;
         }
 
-        newChildren ??= new(addEndIndex - addStartIndex);
-        newChildren.Clear();
+        newChildren.Length = 0;
         for (var i = addStartIndex; i < addEndIndex; i++)
-            newChildren.Add(_pendingEdits[i].Element._targetElement.TargetElement);
+            newChildren.Append(_pendingEdits[i].Element._targetElement.TargetElement);
 
         endIndex = addEndIndex - 1;
         return true;
@@ -569,14 +567,14 @@ internal sealed class NativeComponentAdapter(
 
     record struct PendingEdit(PendingEditType Type, int Index, NativeComponentAdapter Element);
 
-    private struct PendingEditRange
+    private ref struct PendingEditRange
     {
         public PendingEditType? Type { get; private set; }
         public int Index { get; private set; }
         public int Count { get; private set; }
-        private List<object> _newElements;
+        private ValueListBuilder<object> _newElements;
 
-        public readonly IReadOnlyList<object> NewElements => _newElements;
+        public ReadOnlySpan<object> NewElements => _newElements.AsSpan();
 
         public bool CanAppend(PendingEditType type, int index)
         {
@@ -601,10 +599,7 @@ internal sealed class NativeComponentAdapter(
             Count++;
 
             if (type == PendingEditType.Add)
-            {
-                _newElements ??= [];
-                _newElements.Add(newElement);
-            }
+                _newElements.Append(newElement);
         }
 
         public void Clear()
@@ -612,8 +607,10 @@ internal sealed class NativeComponentAdapter(
             Type = null;
             Index = 0;
             Count = 0;
-            _newElements?.Clear();
+            _newElements.Length = 0;
         }
+
+        public void Dispose() => _newElements.Dispose();
     }
 
     enum PendingEditType { Add, Remove }
