@@ -32,15 +32,13 @@ internal class ListContentPropertyComponent<TControl, TItem> : NativeControlComp
         _propertyItems.Insert(physicalSiblingIndex, child.Cast<TItem>());
     }
 
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex)
     {
-        Debug.Assert(_propertyItems[physicalSiblingIndex] == child);
-        _propertyItems.Remove(child.Cast<TItem>());
+        _propertyItems.RemoveAt(physicalSiblingIndex);
     }
 
-    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object newChild)
     {
-        Debug.Assert(_propertyItems[physicalSiblingIndex] == oldChild);
         _propertyItems[physicalSiblingIndex] = newChild.Cast<TItem>();
     }
 }

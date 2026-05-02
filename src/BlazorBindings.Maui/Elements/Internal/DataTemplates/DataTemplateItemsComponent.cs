@@ -49,5 +49,5 @@ internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlCompon
     void INonPhysicalChild.RemoveFromParent(object parentElement) { }
     object IElementHandler.TargetElement => null;
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex) { }
 }

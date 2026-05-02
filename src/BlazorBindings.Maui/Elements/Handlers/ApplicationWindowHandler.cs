@@ -18,19 +18,13 @@ internal class ApplicationWindowHandler : IContainerElementHandler
         };
     }
 
-    public void ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    public void ReplaceChild(int physicalSiblingIndex, object newChild)
     {
-        if (oldChild is MC.Window)
-            throw new InvalidOperationException("Removing application root window is not supported.");
-
         TargetElement.Page = newChild.Cast<MC.Page>();
     }
 
-    public void RemoveChild(object child, int physicalSiblingIndex)
+    public void RemoveChild(int physicalSiblingIndex)
     {
-        if (child is MC.Window)
-            throw new InvalidOperationException("Removing application root window is not supported.");
-
         TargetElement.Page = null;
     }
 

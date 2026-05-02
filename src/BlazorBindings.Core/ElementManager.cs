@@ -44,7 +44,7 @@ public class ElementManager
         }
         else if (parentHandler is IContainerElementHandler parent)
         {
-            parent.RemoveChild(childHandler.TargetElement, physicalSiblingIndex);
+            parent.RemoveChild(physicalSiblingIndex);
         }
         else
         {
@@ -59,9 +59,65 @@ public class ElementManager
         if (oldChild is INonPhysicalChild || newChild is INonPhysicalChild)
             throw new NotSupportedException("NonPhysicalChild elements cannot be replaced.");
 
-        if (parentHandler is not IContainerElementHandler container)
-            throw new InvalidOperationException($"Handler of type '{parentHandler.GetType().FullName}' does not support replacing child elements.");
-
-        container.ReplaceChild(physicalSiblingIndex, oldChild.TargetElement, newChild.TargetElement);
+        GetContainer(parentHandler).ReplaceChild(physicalSiblingIndex, newChild.TargetElement);
     }
+
+    public virtual void AddChildElementRange(
+        IElementHandler parentHandler,
+        ReadOnlySpan<object> children,
+        int physicalSiblingIndex)
+    {
+        if (children.Length == 0)
+            return;
+
+        var container = GetContainer(parentHandler);
+        if (children.Length == 1)
+            container.AddChild(children[0], physicalSiblingIndex);
+        else
+            container.AddRange(physicalSiblingIndex, children);
+    }
+
+    public virtual void RemoveChildElementRange(
+        IElementHandler parentHandler,
+        int count,
+        int physicalSiblingIndex)
+    {
+        if (count == 0)
+            return;
+
+        var container = GetContainer(parentHandler);
+        if (count == 1)
+            container.RemoveChild(physicalSiblingIndex);
+        else
+            container.RemoveRange(physicalSiblingIndex, count);
+    }
+
+    public virtual void ReplaceChildElementRange(
+        IElementHandler parentHandler,
+        int removedChildrenCount,
+        ReadOnlySpan<object> newChildren,
+        int physicalSiblingIndex)
+    {
+        if (removedChildrenCount == 0)
+        {
+            AddChildElementRange(parentHandler, newChildren, physicalSiblingIndex);
+            return;
+        }
+
+        if (newChildren.Length == 0)
+        {
+            RemoveChildElementRange(parentHandler, removedChildrenCount, physicalSiblingIndex);
+            return;
+        }
+
+        var container = GetContainer(parentHandler);
+        if (removedChildrenCount == 1 && newChildren.Length == 1)
+            container.ReplaceChild(physicalSiblingIndex, newChildren[0]);
+        else
+            container.ReplaceRange(physicalSiblingIndex, removedChildrenCount, newChildren);
+    }
+
+    private static IContainerElementHandler GetContainer(IElementHandler parentHandler)
+        => parentHandler as IContainerElementHandler
+            ?? throw new InvalidOperationException($"Handler of type '{parentHandler.GetType().FullName}' does not support adding/removing child elements.");
 }

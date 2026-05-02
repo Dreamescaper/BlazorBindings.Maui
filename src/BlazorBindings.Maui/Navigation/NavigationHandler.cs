@@ -60,9 +60,10 @@ internal class NavigationHandler(MC.INavigation navigation, NavigationTarget tar
         page.ParentChanged -= ParentChanged;
     }
 
-    public async void RemoveChild(object child, int physicalSiblingIndex)
+    public async void RemoveChild(int physicalSiblingIndex)
     {
-        await RemoveChildAsync((MC.Page)child);
+        if (_currentPage != null)
+            await RemoveChildAsync(_currentPage);
     }
 
     public async void AddChild(object child, int physicalSiblingIndex)

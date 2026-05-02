@@ -65,6 +65,6 @@ internal class ControlTemplateItemsComponent<T> : NativeControlComponentBase, IC
 
     void INonPhysicalChild.RemoveFromParent(object parentElement) { }
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex) { }
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex) { }
     object IElementHandler.TargetElement => null;
 }

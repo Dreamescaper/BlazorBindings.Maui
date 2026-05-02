@@ -41,15 +41,13 @@ public partial class ShellContent : BaseShellItem, IContainerElementHandler
         NativeControl.Content = child;
     }
 
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex)
     {
-        Debug.Assert(NativeControl.Content == child);
         NativeControl.Content = null;
     }
 
-    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object newChild)
     {
-        Debug.Assert(NativeControl.Content == oldChild);
         NativeControl.Content = newChild;
     }
 
