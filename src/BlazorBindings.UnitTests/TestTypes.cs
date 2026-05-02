@@ -24,7 +24,7 @@ static class TestApplication
 
     public static MC.Application Create() => Create<ApplicationFromTestAssembly>();
 
-    public static T Create<T>() where T : MC.Application, new()
+    public static T Create<T>(bool createWindow = true) where T : MC.Application, new()
     {
         var mauiApp = TestServiceProvider
             .CreateMauiAppBuilder()
@@ -40,7 +40,10 @@ static class TestApplication
             VirtualView = application
         };
 
-        application.CreateWindow(new ActivationState(mauiContext));
+        if (createWindow)
+        {
+            application.CreateWindow(new ActivationState(mauiContext));
+        }
 
         DependencyService.RegisterSingleton(new TestSystemResources());
 

@@ -55,7 +55,7 @@ public class BlazorBindingsApplicationTests
 
     private static Application CreateApplication<T>() where T : IComponent
     {
-        var application = TestApplication.Create<BlazorBindingsApplication<T>>();
+        var application = TestApplication.Create<BlazorBindingsApplication<T>>(createWindow: false);
         ((IApplication)application).CreateWindow(new ActivationState(application.Handler.MauiContext));
         return application;
     }
@@ -64,7 +64,7 @@ public class BlazorBindingsApplicationTests
         where TMain : IComponent
         where TWrapper : IComponent
     {
-        var application = TestApplication.Create<BlazorBindingsApplicationWithWrapper<TMain, TWrapper>>();
+        var application = TestApplication.Create<BlazorBindingsApplicationWithWrapper<TMain, TWrapper>>(createWindow: false);
         ((IApplication)application).CreateWindow(new ActivationState(application.Handler.MauiContext));
         return application;
     }
