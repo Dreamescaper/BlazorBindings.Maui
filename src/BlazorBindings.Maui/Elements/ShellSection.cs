@@ -40,17 +40,12 @@ public partial class ShellSection : ShellGroupItem, IContainerElementHandler
         }
     }
 
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex)
     {
-        ArgumentNullException.ThrowIfNull(child);
-
-        MC.ShellContent contentToRemove = GetContentForChild(child)
-            ?? throw new NotSupportedException($"Control of type '{GetType().FullName}' doesn't support removing a child (child type is '{child.GetType().FullName}').");
-
-        NativeControl.Items.Remove(contentToRemove);
+        NativeControl.Items.RemoveAt(physicalSiblingIndex);
     }
 
-    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object oldChild, object newChild)
+    void IContainerElementHandler.ReplaceChild(int physicalSiblingIndex, object newChild)
     {
         var contentToAdd = GetContentToAdd(newChild);
         NativeControl.Items[physicalSiblingIndex] = contentToAdd;

@@ -33,9 +33,9 @@ public class RootContainerHandler : IContainerElementHandler, INonPhysicalChild
         _taskCompletionSource?.TrySetResult(child);
     }
 
-    void IContainerElementHandler.RemoveChild(object child, int physicalSiblingIndex)
+    void IContainerElementHandler.RemoveChild(int physicalSiblingIndex)
     {
-        Elements.Remove(child);
+        Elements.RemoveAt(physicalSiblingIndex);
     }
 
     // Because this is a 'fake' container element, all matters related to physical trees

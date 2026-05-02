@@ -109,32 +109,124 @@ internal sealed class NativeComponentAdapter(
         if (_pendingEdits == null)
             return;
 
+        PendingEditRange pendingRange = new();
+        List<object> replacementRangeNewChildren = null;
+
+        void ApplyPendingRange()
+        {
+            if (pendingRange.Type == null)
+                return;
+
+            if (pendingRange.Type == PendingEditType.Remove)
+            {
+                Renderer.ElementManager.RemoveChildElementRange(_targetElement, pendingRange.Count, pendingRange.Index);
+            }
+            else if (pendingRange.Type == PendingEditType.Add)
+            {
+                Renderer.ElementManager.AddChildElementRange(_targetElement, pendingRange.NewElements, pendingRange.Index);
+            }
+
+            pendingRange.Clear();
+        }
+
+        void AddToPendingRange(PendingEditType type, int index, object newElement = null)
+        {
+            if (!pendingRange.CanAppend(type, index))
+                ApplyPendingRange();
+
+            pendingRange.Append(type, index, newElement);
+        }
+
         for (var i = 0; i < _pendingEdits.Count; i++)
         {
             var edit = _pendingEdits[i];
-            var nextEdit = _pendingEdits.ElementAtOrDefault(i + 1);
 
-            // If we have two consequent edits (Add -> Remove or Remove -> Add) for the same index,
-            // and non of them are INonPhysicalChild elements,
-            // we try to replace them instead of adding and removing separately.
-            if (nextEdit.Index == edit.Index
-                && edit is { Type: EditType.Remove, Element._targetElement: not INonPhysicalChild }
-                && nextEdit is { Type: EditType.Add, Element._targetElement: not INonPhysicalChild })
+            if (TryGetReplacementRange(i, ref replacementRangeNewChildren, out var replacementRangeEndIndex, out var replacementIndex, out var removedChildrenCount))
             {
-                Renderer.ElementManager.ReplaceChildElement(_targetElement, edit.Element._targetElement, nextEdit.Element._targetElement, edit.Index);
-                i++;
+                ApplyPendingRange();
+                Renderer.ElementManager.ReplaceChildElementRange(_targetElement, removedChildrenCount, replacementRangeNewChildren, replacementIndex);
+                i = replacementRangeEndIndex;
+                replacementRangeNewChildren.Clear();
             }
-            else if (edit.Type == EditType.Remove)
+            else if (edit.Type == PendingEditType.Remove)
             {
-                Renderer.ElementManager.RemoveChildElement(_targetElement, edit.Element._targetElement, edit.Index);
+                if (edit.Element._targetElement is INonPhysicalChild)
+                {
+                    ApplyPendingRange();
+                    Renderer.ElementManager.RemoveChildElement(_targetElement, edit.Element._targetElement, edit.Index);
+                }
+                else
+                {
+                    AddToPendingRange(PendingEditType.Remove, edit.Index);
+                }
             }
-            else if (edit.Type == EditType.Add)
+            else if (edit.Type == PendingEditType.Add)
             {
-                Renderer.ElementManager.AddChildElement(_targetElement, edit.Element._targetElement, edit.Index);
+                if (edit.Element._targetElement is INonPhysicalChild)
+                {
+                    ApplyPendingRange();
+                    Renderer.ElementManager.AddChildElement(_targetElement, edit.Element._targetElement, edit.Index);
+                }
+                else
+                {
+                    AddToPendingRange(PendingEditType.Add, edit.Index, edit.Element._targetElement.TargetElement);
+                }
             }
         }
 
+        ApplyPendingRange();
         _pendingEdits.Clear();
+    }
+
+    private bool TryGetReplacementRange(
+        int startIndex,
+        ref List<object> newChildren,
+        out int endIndex,
+        out int replacementIndex,
+        out int removedChildrenCount)
+    {
+        endIndex = startIndex;
+        replacementIndex = -1;
+        removedChildrenCount = 0;
+
+        var edit = _pendingEdits[startIndex];
+        if (edit is not { Type: PendingEditType.Remove, Element._targetElement: not INonPhysicalChild })
+            return false;
+
+        replacementIndex = edit.Index;
+        var addStartIndex = startIndex;
+        while (addStartIndex < _pendingEdits.Count
+            && _pendingEdits[addStartIndex] is { Type: PendingEditType.Remove, Element._targetElement: not INonPhysicalChild } removal
+            && removal.Index == replacementIndex)
+        {
+            removedChildrenCount++;
+            addStartIndex++;
+        }
+
+        if (addStartIndex == _pendingEdits.Count)
+            return false;
+
+        var firstAdd = _pendingEdits[addStartIndex];
+        if (firstAdd is not { Type: PendingEditType.Add, Element._targetElement: not INonPhysicalChild } || firstAdd.Index != replacementIndex)
+            return false;
+
+        var addEndIndex = addStartIndex;
+        var expectedAddIndex = replacementIndex;
+        while (addEndIndex < _pendingEdits.Count
+            && _pendingEdits[addEndIndex] is { Type: PendingEditType.Add, Element._targetElement: not INonPhysicalChild } addition
+            && addition.Index == expectedAddIndex)
+        {
+            addEndIndex++;
+            expectedAddIndex++;
+        }
+
+        newChildren ??= new(addEndIndex - addStartIndex);
+        newChildren.Clear();
+        for (var i = addStartIndex; i < addEndIndex; i++)
+            newChildren.Add(_pendingEdits[i].Element._targetElement.TargetElement);
+
+        endIndex = addEndIndex - 1;
+        return true;
     }
 
     private void AddPendingRemoval(NativeComponentAdapter childToRemove, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
@@ -144,7 +236,7 @@ internal sealed class NativeComponentAdapter(
 
         if (targetEdits.Count == 0)
         {
-            targetEdits.Add(new(EditType.Remove, index, childToRemove));
+            targetEdits.Add(new(PendingEditType.Remove, index, childToRemove));
             return;
         }
 
@@ -156,7 +248,7 @@ internal sealed class NativeComponentAdapter(
         {
             var previousEdit = targetEdits[i - 1];
 
-            if (previousEdit.Type == EditType.Remove)
+            if (previousEdit.Type == PendingEditType.Remove)
                 break;
 
             if (previousEdit.Index < index - 1)
@@ -166,8 +258,8 @@ internal sealed class NativeComponentAdapter(
             // But if there's already a Remove edit before that Add edit, with a matching index, 
             // we don't need to put another Remove there.
             if (i >= 2
-                && previousEdit.Type == EditType.Add
-                && targetEdits[i - 2] is { Type: EditType.Remove } previousRemoval
+                && previousEdit.Type == PendingEditType.Add
+                && targetEdits[i - 2] is { Type: PendingEditType.Remove } previousRemoval
                 && previousRemoval.Index == previousEdit.Index)
             {
                 break;
@@ -180,7 +272,7 @@ internal sealed class NativeComponentAdapter(
                 targetEdits[i - 1] = previousEdit with { Index = previousEdit.Index - 1 };
         }
 
-        targetEdits.Insert(i, new(EditType.Remove, index, childToRemove));
+        targetEdits.Insert(i, new(PendingEditType.Remove, index, childToRemove));
     }
 
     private void AddPendingAddition(NativeComponentAdapter childToAdd, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
@@ -210,7 +302,7 @@ internal sealed class NativeComponentAdapter(
         {
             var previousEdit = targetEdits[i - 1];
 
-            if (previousEdit.Type != EditType.Add)
+            if (previousEdit.Type != PendingEditType.Add)
                 break;
 
             if (previousEdit.Index < index)
@@ -220,7 +312,7 @@ internal sealed class NativeComponentAdapter(
             targetEdits[i - 1] = previousEdit with { Index = previousEdit.Index + 1 };
         }
 
-        targetEdits.Insert(i, new(EditType.Add, index, childToAdd));
+        targetEdits.Insert(i, new(PendingEditType.Add, index, childToAdd));
         adaptersWithPendingEdits.Add(PhysicalTarget);
     }
 
@@ -475,6 +567,54 @@ internal sealed class NativeComponentAdapter(
         return obj?.GetType().Name;
     }
 
-    record struct PendingEdit(EditType Type, int Index, NativeComponentAdapter Element);
-    enum EditType { Add, Remove }
+    record struct PendingEdit(PendingEditType Type, int Index, NativeComponentAdapter Element);
+
+    private struct PendingEditRange
+    {
+        public PendingEditType? Type { get; private set; }
+        public int Index { get; private set; }
+        public int Count { get; private set; }
+        private List<object> _newElements;
+
+        public readonly IReadOnlyList<object> NewElements => _newElements;
+
+        public bool CanAppend(PendingEditType type, int index)
+        {
+            if (Type == null)
+                return true;
+
+            if (Type != type)
+                return false;
+
+            return type switch
+            {
+                PendingEditType.Add => index == Index + Count,
+                PendingEditType.Remove => index == Index,
+                _ => false
+            };
+        }
+
+        public void Append(PendingEditType type, int index, object newElement)
+        {
+            Type ??= type;
+            Index = Count > 0 ? Index : index;
+            Count++;
+
+            if (type == PendingEditType.Add)
+            {
+                _newElements ??= [];
+                _newElements.Add(newElement);
+            }
+        }
+
+        public void Clear()
+        {
+            Type = null;
+            Index = 0;
+            Count = 0;
+            _newElements?.Clear();
+        }
+    }
+
+    enum PendingEditType { Add, Remove }
 }
