@@ -13,11 +13,18 @@ namespace BlazorBindings.UnitTests;
 
 static class TestApplication
 {
-    class ApplicationFromTestAssembly : MC.Application;
+    class ApplicationFromTestAssembly : MC.Application
+    {
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            return new Window();
+        }
+
+    }
 
     public static MC.Application Create() => Create<ApplicationFromTestAssembly>();
 
-    public static T Create<T>() where T : MC.Application, new()
+    public static T Create<T>(bool createWindow = true) where T : MC.Application, new()
     {
         var mauiApp = TestServiceProvider
             .CreateMauiAppBuilder()
@@ -25,12 +32,18 @@ static class TestApplication
             .Build();
 
         var application = mauiApp.Services.GetRequiredService<IApplication>();
+        var mauiContext = new MauiContext(mauiApp.Services);
 
         application.Handler = new TestHandler
         {
-            MauiContext = new MauiContext(mauiApp.Services),
+            MauiContext = mauiContext,
             VirtualView = application
         };
+
+        if (createWindow)
+        {
+            application.CreateWindow(new ActivationState(mauiContext));
+        }
 
         DependencyService.RegisterSingleton(new TestSystemResources());
 

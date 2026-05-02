@@ -64,26 +64,4 @@ public partial class ShellItem : ShellGroupItem, IContainerElementHandler
         };
         return sectionToAdd;
     }
-
-    private MC.ShellSection GetSectionForElement(object child)
-    {
-        return child switch
-        {
-            MC.TemplatedPage childAsTemplatedPage => GetSectionForTemplatedPage(childAsTemplatedPage),
-            MC.ShellContent childAsShellContent => GetSectionForContent(childAsShellContent),
-            MC.ShellSection childAsShellSection => childAsShellSection,
-            _ => null
-        };
-    }
-
-    private MC.ShellSection GetSectionForContent(MC.ShellContent shellContent)
-    {
-        return NativeControl.Items.FirstOrDefault(section => section.Items.Contains(shellContent));
-    }
-
-    private MC.ShellSection GetSectionForTemplatedPage(MC.TemplatedPage templatedPage)
-    {
-        return NativeControl.Items
-            .FirstOrDefault(section => section.Items.Any(content => content.Content == templatedPage));
-    }
 }
