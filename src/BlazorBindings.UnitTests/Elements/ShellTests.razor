@@ -201,15 +201,51 @@
     }
 
     [Test]
-    public async Task RemovingShellPagesDoesNotInvokeAppearingForHiddenPages()
+    public async Task RemovingShellPagesDoesNotInvokeAppearingForHiddenPages_FirstCurrent()
+    {
+        bool loggedIn = true;
+        var appearingPages = new List<string>();
+
+        // Using keys so that rendered wouldn't try to update exising page insterad of replacing one.
+        // In real world different pages would probably have different component types.
+        var shell = await Render<MC.Shell>(
+    @<Shell>
+        @if (!loggedIn)
+        {
+            <AppearingPage @key="0" Title="Login" AppearingPages="appearingPages" />
+        }
+        else
+        {
+            <AppearingPage Title="Page1" AppearingPages="appearingPages" />
+            <AppearingPage Title="Page2" AppearingPages="appearingPages" />
+            <AppearingPage Title="Page3" AppearingPages="appearingPages" />
+        }
+    </Shell>
+    );
+
+        MC.Application.Current.Windows[0].Page = shell;
+
+        shell.SendAppearing();
+        Assert.That(appearingPages, Is.EqualTo(["Page1"]));
+
+        appearingPages.Clear();
+
+        loggedIn = false;
+        StateHasChanged();
+
+        Assert.That(shell.Items.SelectMany(i => i.Items.Select(i => i.Title)), Is.EqualTo(["Login"]));
+        Assert.That(appearingPages, Is.EqualTo(["Login"]));
+    }
+
+    [Test]
+    public async Task RemovingShellPagesDoesNotInvokeAppearingForHiddenPages_SecondCurrent()
     {
         bool loggedIn = true;
         var appearingPages = new List<string>();
 
         var shell = await Render<MC.Shell>(
     @<Shell>
-        <TabBar>
-            @if (!loggedIn)
+        @if (!loggedIn)
         {
             <AppearingPage Title="Login" AppearingPages="appearingPages" />
         }
@@ -219,12 +255,43 @@
             <AppearingPage Title="Page2" AppearingPages="appearingPages" />
             <AppearingPage Title="Page3" AppearingPages="appearingPages" />
         }
-        </TabBar>
+    </Shell>
+    );
+        shell.CurrentItem = shell.Items[1];
+        MC.Application.Current.Windows[0].Page = shell;
+
+        shell.SendAppearing();
+        Assert.That(appearingPages, Is.EqualTo(["Page2"]));
+
+        appearingPages.Clear();
+
+        loggedIn = false;
+        StateHasChanged();
+
+        Assert.That(shell.Items.SelectMany(i => i.Items.Select(i => i.Title)), Is.EqualTo(["Login"]));
+        Assert.That(appearingPages, Is.EqualTo(["Login"]));
+    }
+
+    [Test]
+    public async Task RemovingShellPagesDoesNotInvokeAppearingForHiddenPages_RemovePartOfItemsFromStart()
+    {
+        bool loggedIn = true;
+        var appearingPages = new List<string>();
+
+        var shell = await Render<MC.Shell>(
+    @<Shell>
+        @if (loggedIn)
+        {
+            <AppearingPage Title="Page1" AppearingPages="appearingPages" />
+        }
+
+        <AppearingPage Title="Page2" AppearingPages="appearingPages" />
+        <AppearingPage Title="Page3" AppearingPages="appearingPages" />
     </Shell>
     );
 
-        var window = new MC.Window(shell);
-        SetParent(window, MC.Application.Current);
+        MC.Application.Current.Windows[0].Page = shell;
+
         shell.SendAppearing();
         Assert.That(appearingPages, Is.EqualTo(["Page1"]));
 
@@ -233,14 +300,41 @@
         loggedIn = false;
         StateHasChanged();
 
-        Assert.That(shell.Items.Single().Items.Select(i => i.Title), Is.EqualTo(["Login"]));
-        Assert.That(appearingPages, Is.EqualTo(["Login"]));
+        Assert.That(shell.Items.SelectMany(i => i.Items.Select(i => i.Title)), Is.EqualTo(["Page2", "Page3"]));
+        Assert.That(appearingPages, Is.EqualTo(["Page2"]));
     }
 
-    private static void SetParent(MC.Element element, MC.Element parent)
+    [Test]
+    public async Task RemovingShellPagesDoesNotInvokeAppearingForHiddenPages_RemovePartOfItemsFromEnd()
     {
-        typeof(MC.Element)
-            .GetMethod("SetParent", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-            .Invoke(element, [parent]);
+        bool loggedIn = true;
+        var appearingPages = new List<string>();
+
+        var shell = await Render<MC.Shell>(
+    @<Shell>
+        <AppearingPage Title="Page1" AppearingPages="appearingPages" />
+
+        @if (loggedIn)
+        {
+            <AppearingPage Title="Page2" AppearingPages="appearingPages" />
+            <AppearingPage Title="Page3" AppearingPages="appearingPages" />
+            <AppearingPage Title="Page4" AppearingPages="appearingPages" />
+        }
+    </Shell>
+    );
+
+        shell.CurrentItem = shell.Items[2];
+        MC.Application.Current.Windows[0].Page = shell;
+
+        shell.SendAppearing();
+        Assert.That(appearingPages, Is.EqualTo(["Page3"]));
+
+        appearingPages.Clear();
+
+        loggedIn = false;
+        StateHasChanged();
+
+        Assert.That(shell.Items.SelectMany(i => i.Items.Select(i => i.Title)), Is.EqualTo(["Page1"]));
+        Assert.That(appearingPages, Is.EqualTo(["Page1"]));
     }
 }
