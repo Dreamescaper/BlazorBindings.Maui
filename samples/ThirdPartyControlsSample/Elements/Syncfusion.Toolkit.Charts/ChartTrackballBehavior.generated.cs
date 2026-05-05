@@ -104,46 +104,46 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ActivationMode):
                     if (!Equals(ActivationMode, value))
                     {
-                        ActivationMode = (SMTC.ChartTrackballActivationMode?)value;
+                        ActivationMode = CastParameter<SMTC.ChartTrackballActivationMode?>(value, name);
                         NativeControl.ActivationMode = ActivationMode ?? (SMTC.ChartTrackballActivationMode)SMTC.ChartTrackballBehavior.ActivationModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(DisplayMode):
                     if (!Equals(DisplayMode, value))
                     {
-                        DisplayMode = (SMTC.LabelDisplayMode?)value;
+                        DisplayMode = CastParameter<SMTC.LabelDisplayMode?>(value, name);
                         NativeControl.DisplayMode = DisplayMode ?? (SMTC.LabelDisplayMode)SMTC.ChartTrackballBehavior.DisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowLabel):
                     if (!Equals(ShowLabel, value))
                     {
-                        ShowLabel = (bool?)value;
+                        ShowLabel = CastParameter<bool?>(value, name);
                         NativeControl.ShowLabel = ShowLabel ?? (bool)SMTC.ChartTrackballBehavior.ShowLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowLine):
                     if (!Equals(ShowLine, value))
                     {
-                        ShowLine = (bool?)value;
+                        ShowLine = CastParameter<bool?>(value, name);
                         NativeControl.ShowLine = ShowLine ?? (bool)SMTC.ChartTrackballBehavior.ShowLineProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowMarkers):
                     if (!Equals(ShowMarkers, value))
                     {
-                        ShowMarkers = (bool?)value;
+                        ShowMarkers = CastParameter<bool?>(value, name);
                         NativeControl.ShowMarkers = ShowMarkers ?? (bool)SMTC.ChartTrackballBehavior.ShowMarkersProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelStyle):
-                    LabelStyle = (RenderFragment)value;
+                    LabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LineStyle):
-                    LineStyle = (RenderFragment)value;
+                    LineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MarkerSettings):
-                    MarkerSettings = (RenderFragment)value;
+                    MarkerSettings = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

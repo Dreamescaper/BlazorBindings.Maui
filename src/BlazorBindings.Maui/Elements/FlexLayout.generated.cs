@@ -61,42 +61,42 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(AlignContent):
                     if (!Equals(AlignContent, value))
                     {
-                        AlignContent = (FlexAlignContent?)value;
+                        AlignContent = CastParameter<FlexAlignContent?>(value, name);
                         NativeControl.AlignContent = AlignContent ?? (FlexAlignContent)MC.FlexLayout.AlignContentProperty.DefaultValue;
                     }
                     break;
                 case nameof(AlignItems):
                     if (!Equals(AlignItems, value))
                     {
-                        AlignItems = (FlexAlignItems?)value;
+                        AlignItems = CastParameter<FlexAlignItems?>(value, name);
                         NativeControl.AlignItems = AlignItems ?? (FlexAlignItems)MC.FlexLayout.AlignItemsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Direction):
                     if (!Equals(Direction, value))
                     {
-                        Direction = (FlexDirection?)value;
+                        Direction = CastParameter<FlexDirection?>(value, name);
                         NativeControl.Direction = Direction ?? (FlexDirection)MC.FlexLayout.DirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(JustifyContent):
                     if (!Equals(JustifyContent, value))
                     {
-                        JustifyContent = (FlexJustify?)value;
+                        JustifyContent = CastParameter<FlexJustify?>(value, name);
                         NativeControl.JustifyContent = JustifyContent ?? (FlexJustify)MC.FlexLayout.JustifyContentProperty.DefaultValue;
                     }
                     break;
                 case nameof(Position):
                     if (!Equals(Position, value))
                     {
-                        Position = (FlexPosition?)value;
+                        Position = CastParameter<FlexPosition?>(value, name);
                         NativeControl.Position = Position ?? (FlexPosition)MC.FlexLayout.PositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(Wrap):
                     if (!Equals(Wrap, value))
                     {
-                        Wrap = (FlexWrap?)value;
+                        Wrap = CastParameter<FlexWrap?>(value, name);
                         NativeControl.Wrap = Wrap ?? (FlexWrap)MC.FlexLayout.WrapProperty.DefaultValue;
                     }
                     break;

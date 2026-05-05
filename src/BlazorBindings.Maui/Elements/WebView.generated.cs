@@ -61,21 +61,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Cookies):
                     if (!Equals(Cookies, value))
                     {
-                        Cookies = (CookieContainer)value;
+                        Cookies = CastParameter<CookieContainer>(value, name);
                         NativeControl.Cookies = Cookies;
                     }
                     break;
                 case nameof(Source):
                     if (!Equals(Source, value))
                     {
-                        Source = (MC.WebViewSource)value;
+                        Source = CastParameter<MC.WebViewSource>(value, name);
                         NativeControl.Source = Source;
                     }
                     break;
                 case nameof(UserAgent):
                     if (!Equals(UserAgent, value))
                     {
-                        UserAgent = (string)value;
+                        UserAgent = CastParameter<string>(value, name);
                         NativeControl.UserAgent = UserAgent;
                     }
                     break;
@@ -84,7 +84,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlNavigated(object sender, MC.WebNavigatedEventArgs e) => InvokeEventCallback(OnNavigated, e);
 
-                        OnNavigated = (EventCallback<MC.WebNavigatedEventArgs>)value;
+                        OnNavigated = CastParameter<EventCallback<MC.WebNavigatedEventArgs>>(value, name);
                         NativeControl.Navigated -= NativeControlNavigated;
                         NativeControl.Navigated += NativeControlNavigated;
                     }
@@ -94,7 +94,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlNavigating(object sender, MC.WebNavigatingEventArgs e) => InvokeEventCallback(OnNavigating, e);
 
-                        OnNavigating = (EventCallback<MC.WebNavigatingEventArgs>)value;
+                        OnNavigating = CastParameter<EventCallback<MC.WebNavigatingEventArgs>>(value, name);
                         NativeControl.Navigating -= NativeControlNavigating;
                         NativeControl.Navigating += NativeControlNavigating;
                     }
@@ -104,7 +104,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlProcessTerminated(object sender, MC.WebViewProcessTerminatedEventArgs e) => InvokeEventCallback(OnProcessTerminated, e);
 
-                        OnProcessTerminated = (EventCallback<MC.WebViewProcessTerminatedEventArgs>)value;
+                        OnProcessTerminated = CastParameter<EventCallback<MC.WebViewProcessTerminatedEventArgs>>(value, name);
                         NativeControl.ProcessTerminated -= NativeControlProcessTerminated;
                         NativeControl.ProcessTerminated += NativeControlProcessTerminated;
                     }

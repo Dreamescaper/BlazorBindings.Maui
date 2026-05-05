@@ -54,119 +54,119 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ActiveIndicatorColor):
                     if (!Equals(ActiveIndicatorColor, value))
                     {
-                        ActiveIndicatorColor = (Color)value;
+                        ActiveIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.ActiveIndicatorColor = ActiveIndicatorColor;
                     }
                     break;
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(ContentType):
                     if (!Equals(ContentType, value))
                     {
-                        ContentType = (Type)value;
+                        ContentType = CastParameter<Type>(value, name);
                         NativeControl.ContentType = ContentType;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.NavigationDrawerItem.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.NavigationDrawerItem.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.NavigationDrawerItem.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(IconData):
                     if (!Equals(IconData, value))
                     {
-                        IconData = (string)value;
+                        IconData = CastParameter<string>(value, name);
                         NativeControl.IconData = IconData;
                     }
                     break;
                 case nameof(IconKind):
                     if (!Equals(IconKind, value))
                     {
-                        IconKind = (global::IconPacks.Material.IconKind?)value;
+                        IconKind = CastParameter<global::IconPacks.Material.IconKind?>(value, name);
                         NativeControl.IconKind = IconKind ?? (global::IconPacks.Material.IconKind)MCM.NavigationDrawerItem.IconKindProperty.DefaultValue;
                     }
                     break;
                 case nameof(IconSource):
                     if (!Equals(IconSource, value))
                     {
-                        IconSource = (global::SkiaSharp.SKPicture)value;
+                        IconSource = CastParameter<global::SkiaSharp.SKPicture>(value, name);
                         NativeControl.IconSource = IconSource;
                     }
                     break;
                 case nameof(IsActived):
                     if (!Equals(IsActived, value))
                     {
-                        IsActived = (bool?)value;
+                        IsActived = CastParameter<bool?>(value, name);
                         NativeControl.IsActived = IsActived ?? (bool)MCM.NavigationDrawerItem.IsActivedProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsExtended):
                     if (!Equals(IsExtended, value))
                     {
-                        IsExtended = (bool?)value;
+                        IsExtended = CastParameter<bool?>(value, name);
                         NativeControl.IsExtended = IsExtended ?? (bool)MCM.NavigationDrawerItem.IsExtendedProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;

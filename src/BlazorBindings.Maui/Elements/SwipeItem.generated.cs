@@ -38,14 +38,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColor = BackgroundColor;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)MC.SwipeItem.IsVisibleProperty.DefaultValue;
                     }
                     break;
@@ -54,7 +54,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlInvoked(object sender, EventArgs e) => InvokeEventCallback(OnInvoked);
 
-                        OnInvoked = (EventCallback)value;
+                        OnInvoked = CastParameter<EventCallback>(value, name);
                         NativeControl.Invoked -= NativeControlInvoked;
                         NativeControl.Invoked += NativeControlInvoked;
                     }

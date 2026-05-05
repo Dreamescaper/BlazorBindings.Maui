@@ -99,50 +99,50 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(CancelButtonText):
                     if (!Equals(CancelButtonText, value))
                     {
-                        CancelButtonText = (string)value;
+                        CancelButtonText = CastParameter<string>(value, name);
                         NativeControl.CancelButtonText = CancelButtonText;
                     }
                     break;
                 case nameof(DividerColor):
                     if (!Equals(DividerColor, value))
                     {
-                        DividerColor = (Color)value;
+                        DividerColor = CastParameter<Color>(value, name);
                         NativeControl.DividerColor = DividerColor;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTP.PickerFooterView.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(OkButtonText):
                     if (!Equals(OkButtonText, value))
                     {
-                        OkButtonText = (string)value;
+                        OkButtonText = CastParameter<string>(value, name);
                         NativeControl.OkButtonText = OkButtonText;
                     }
                     break;
                 case nameof(ShowOkButton):
                     if (!Equals(ShowOkButton, value))
                     {
-                        ShowOkButton = (bool?)value;
+                        ShowOkButton = CastParameter<bool?>(value, name);
                         NativeControl.ShowOkButton = ShowOkButton ?? (bool)SMTP.PickerFooterView.ShowOkButtonProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

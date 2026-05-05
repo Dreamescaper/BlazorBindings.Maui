@@ -42,7 +42,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                 case nameof(GroupMemberPath):
                     if (!Equals(GroupMemberPath, value))
                     {
-                        GroupMemberPath = (string)value;
+                        GroupMemberPath = CastParameter<string>(value, name);
                         NativeControl.GroupMemberPath = GroupMemberPath;
                     }
                     break;

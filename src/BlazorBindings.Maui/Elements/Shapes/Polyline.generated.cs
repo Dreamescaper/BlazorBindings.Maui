@@ -36,7 +36,7 @@ namespace BlazorBindings.Maui.Elements.Shapes
                 case nameof(FillRule):
                     if (!Equals(FillRule, value))
                     {
-                        FillRule = (MCS.FillRule?)value;
+                        FillRule = CastParameter<MCS.FillRule?>(value, name);
                         NativeControl.FillRule = FillRule ?? (MCS.FillRule)MCS.Polyline.FillRuleProperty.DefaultValue;
                     }
                     break;

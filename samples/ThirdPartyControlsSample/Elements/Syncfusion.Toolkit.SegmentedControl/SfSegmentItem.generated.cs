@@ -86,64 +86,64 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(ImageSize):
                     if (!Equals(ImageSize, value))
                     {
-                        ImageSize = (double?)value;
+                        ImageSize = CastParameter<double?>(value, name);
                         NativeControl.ImageSize = ImageSize ?? (double)SMTS.SfSegmentItem.ImageSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSource):
                     if (!Equals(ImageSource, value))
                     {
-                        ImageSource = (MC.ImageSource)value;
+                        ImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ImageSource = ImageSource;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)SMTS.SfSegmentItem.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedSegmentBackgroundColor):
                     if (!Equals(SelectedSegmentBackgroundColor, value))
                     {
-                        SelectedSegmentBackgroundColor = (Color)value;
+                        SelectedSegmentBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.SelectedSegmentBackground = SelectedSegmentBackgroundColor;
                     }
                     break;
                 case nameof(SelectedSegmentTextColor):
                     if (!Equals(SelectedSegmentTextColor, value))
                     {
-                        SelectedSegmentTextColor = (Color)value;
+                        SelectedSegmentTextColor = CastParameter<Color>(value, name);
                         NativeControl.SelectedSegmentTextColor = SelectedSegmentTextColor;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTS.SfSegmentItem.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

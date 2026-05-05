@@ -127,78 +127,78 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(DayHeaderText):
                     if (!Equals(DayHeaderText, value))
                     {
-                        DayHeaderText = (string)value;
+                        DayHeaderText = CastParameter<string>(value, name);
                         NativeControl.DayHeaderText = DayHeaderText;
                     }
                     break;
                 case nameof(DividerColor):
                     if (!Equals(DividerColor, value))
                     {
-                        DividerColor = (Color)value;
+                        DividerColor = CastParameter<Color>(value, name);
                         NativeControl.DividerColor = DividerColor;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTP.DateTimePickerColumnHeaderView.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(HourHeaderText):
                     if (!Equals(HourHeaderText, value))
                     {
-                        HourHeaderText = (string)value;
+                        HourHeaderText = CastParameter<string>(value, name);
                         NativeControl.HourHeaderText = HourHeaderText;
                     }
                     break;
                 case nameof(MeridiemHeaderText):
                     if (!Equals(MeridiemHeaderText, value))
                     {
-                        MeridiemHeaderText = (string)value;
+                        MeridiemHeaderText = CastParameter<string>(value, name);
                         NativeControl.MeridiemHeaderText = MeridiemHeaderText;
                     }
                     break;
                 case nameof(MinuteHeaderText):
                     if (!Equals(MinuteHeaderText, value))
                     {
-                        MinuteHeaderText = (string)value;
+                        MinuteHeaderText = CastParameter<string>(value, name);
                         NativeControl.MinuteHeaderText = MinuteHeaderText;
                     }
                     break;
                 case nameof(MonthHeaderText):
                     if (!Equals(MonthHeaderText, value))
                     {
-                        MonthHeaderText = (string)value;
+                        MonthHeaderText = CastParameter<string>(value, name);
                         NativeControl.MonthHeaderText = MonthHeaderText;
                     }
                     break;
                 case nameof(SecondHeaderText):
                     if (!Equals(SecondHeaderText, value))
                     {
-                        SecondHeaderText = (string)value;
+                        SecondHeaderText = CastParameter<string>(value, name);
                         NativeControl.SecondHeaderText = SecondHeaderText;
                     }
                     break;
                 case nameof(YearHeaderText):
                     if (!Equals(YearHeaderText, value))
                     {
-                        YearHeaderText = (string)value;
+                        YearHeaderText = CastParameter<string>(value, name);
                         NativeControl.YearHeaderText = YearHeaderText;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

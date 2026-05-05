@@ -47,14 +47,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTS.SunburstLegend.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Placement):
                     if (!Equals(Placement, value))
                     {
-                        Placement = (SMT.LegendPlacement?)value;
+                        Placement = CastParameter<SMT.LegendPlacement?>(value, name);
                         NativeControl.Placement = Placement ?? (SMT.LegendPlacement)SMTS.SunburstLegend.PlacementProperty.DefaultValue;
                     }
                     break;

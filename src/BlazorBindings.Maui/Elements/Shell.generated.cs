@@ -116,107 +116,107 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(FlyoutBackdropColor):
                     if (!Equals(FlyoutBackdropColor, value))
                     {
-                        FlyoutBackdropColor = (Color)value;
+                        FlyoutBackdropColor = CastParameter<Color>(value, name);
                         NativeControl.FlyoutBackdrop = FlyoutBackdropColor;
                     }
                     break;
                 case nameof(FlyoutBackgroundColor):
                     if (!Equals(FlyoutBackgroundColor, value))
                     {
-                        FlyoutBackgroundColor = (Color)value;
+                        FlyoutBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.FlyoutBackgroundColor = FlyoutBackgroundColor;
                     }
                     break;
                 case nameof(FlyoutBackgroundImage):
                     if (!Equals(FlyoutBackgroundImage, value))
                     {
-                        FlyoutBackgroundImage = (MC.ImageSource)value;
+                        FlyoutBackgroundImage = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.FlyoutBackgroundImage = FlyoutBackgroundImage;
                     }
                     break;
                 case nameof(FlyoutBackgroundImageAspect):
                     if (!Equals(FlyoutBackgroundImageAspect, value))
                     {
-                        FlyoutBackgroundImageAspect = (Aspect?)value;
+                        FlyoutBackgroundImageAspect = CastParameter<Aspect?>(value, name);
                         NativeControl.FlyoutBackgroundImageAspect = FlyoutBackgroundImageAspect ?? (Aspect)MC.Shell.FlyoutBackgroundImageAspectProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutBehavior):
                     if (!Equals(FlyoutBehavior, value))
                     {
-                        FlyoutBehavior = (FlyoutBehavior?)value;
+                        FlyoutBehavior = CastParameter<FlyoutBehavior?>(value, name);
                         NativeControl.FlyoutBehavior = FlyoutBehavior ?? (FlyoutBehavior)MC.Shell.FlyoutBehaviorProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutHeaderBehavior):
                     if (!Equals(FlyoutHeaderBehavior, value))
                     {
-                        FlyoutHeaderBehavior = (MC.FlyoutHeaderBehavior?)value;
+                        FlyoutHeaderBehavior = CastParameter<MC.FlyoutHeaderBehavior?>(value, name);
                         NativeControl.FlyoutHeaderBehavior = FlyoutHeaderBehavior ?? (MC.FlyoutHeaderBehavior)MC.Shell.FlyoutHeaderBehaviorProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutHeight):
                     if (!Equals(FlyoutHeight, value))
                     {
-                        FlyoutHeight = (double?)value;
+                        FlyoutHeight = CastParameter<double?>(value, name);
                         NativeControl.FlyoutHeight = FlyoutHeight ?? (double)MC.Shell.FlyoutHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutIcon):
                     if (!Equals(FlyoutIcon, value))
                     {
-                        FlyoutIcon = (MC.ImageSource)value;
+                        FlyoutIcon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.FlyoutIcon = FlyoutIcon;
                     }
                     break;
                 case nameof(FlyoutIsPresented):
                     if (!Equals(FlyoutIsPresented, value))
                     {
-                        FlyoutIsPresented = (bool?)value;
+                        FlyoutIsPresented = CastParameter<bool?>(value, name);
                         NativeControl.FlyoutIsPresented = FlyoutIsPresented ?? (bool)MC.Shell.FlyoutIsPresentedProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutVerticalScrollMode):
                     if (!Equals(FlyoutVerticalScrollMode, value))
                     {
-                        FlyoutVerticalScrollMode = (MC.ScrollMode?)value;
+                        FlyoutVerticalScrollMode = CastParameter<MC.ScrollMode?>(value, name);
                         NativeControl.FlyoutVerticalScrollMode = FlyoutVerticalScrollMode ?? (MC.ScrollMode)MC.Shell.FlyoutVerticalScrollModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutWidth):
                     if (!Equals(FlyoutWidth, value))
                     {
-                        FlyoutWidth = (double?)value;
+                        FlyoutWidth = CastParameter<double?>(value, name);
                         NativeControl.FlyoutWidth = FlyoutWidth ?? (double)MC.Shell.FlyoutWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlyoutBackdrop):
-                    FlyoutBackdrop = (RenderFragment)value;
+                    FlyoutBackdrop = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FlyoutBackground):
-                    FlyoutBackground = (RenderFragment)value;
+                    FlyoutBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FlyoutContent):
-                    FlyoutContent = (RenderFragment)value;
+                    FlyoutContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FlyoutFooter):
-                    FlyoutFooter = (RenderFragment)value;
+                    FlyoutFooter = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FlyoutHeader):
-                    FlyoutHeader = (RenderFragment)value;
+                    FlyoutHeader = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
+                    ItemTemplate = CastParameter<RenderFragment<MC.BaseShellItem>>(value, name);
                     break;
                 case nameof(MenuItemTemplate):
-                    MenuItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
+                    MenuItemTemplate = CastParameter<RenderFragment<MC.BaseShellItem>>(value, name);
                     break;
                 case nameof(OnNavigated):
                     if (!Equals(OnNavigated, value))
                     {
                         void NativeControlNavigated(object sender, MC.ShellNavigatedEventArgs e) => InvokeEventCallback(OnNavigated, e);
 
-                        OnNavigated = (EventCallback<MC.ShellNavigatedEventArgs>)value;
+                        OnNavigated = CastParameter<EventCallback<MC.ShellNavigatedEventArgs>>(value, name);
                         NativeControl.Navigated -= NativeControlNavigated;
                         NativeControl.Navigated += NativeControlNavigated;
                     }
@@ -226,7 +226,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlNavigating(object sender, MC.ShellNavigatingEventArgs e) => InvokeEventCallback(OnNavigating, e);
 
-                        OnNavigating = (EventCallback<MC.ShellNavigatingEventArgs>)value;
+                        OnNavigating = CastParameter<EventCallback<MC.ShellNavigatingEventArgs>>(value, name);
                         NativeControl.Navigating -= NativeControlNavigating;
                         NativeControl.Navigating += NativeControlNavigating;
                     }

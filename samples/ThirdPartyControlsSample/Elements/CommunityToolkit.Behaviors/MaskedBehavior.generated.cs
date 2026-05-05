@@ -46,14 +46,14 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
                 case nameof(Mask):
                     if (!Equals(Mask, value))
                     {
-                        Mask = (string)value;
+                        Mask = CastParameter<string>(value, name);
                         NativeControl.Mask = Mask;
                     }
                     break;
                 case nameof(UnmaskedCharacter):
                     if (!Equals(UnmaskedCharacter, value))
                     {
-                        UnmaskedCharacter = (char?)value;
+                        UnmaskedCharacter = CastParameter<char?>(value, name);
                         NativeControl.UnmaskedCharacter = UnmaskedCharacter ?? (char)CMB.MaskedBehavior.UnmaskedCharacterProperty.DefaultValue;
                     }
                     break;

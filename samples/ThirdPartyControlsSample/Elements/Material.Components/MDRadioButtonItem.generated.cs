@@ -47,70 +47,70 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.RadioButtonItem.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.RadioButtonItem.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.RadioButtonItem.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(IsSelected):
                     if (!Equals(IsSelected, value))
                     {
-                        IsSelected = (bool?)value;
+                        IsSelected = CastParameter<bool?>(value, name);
                         NativeControl.IsSelected = IsSelected ?? (bool)MCM.RadioButtonItem.IsSelectedProperty.DefaultValue;
                     }
                     break;
                 case nameof(OnColor):
                     if (!Equals(OnColor, value))
                     {
-                        OnColor = (Color)value;
+                        OnColor = CastParameter<Color>(value, name);
                         NativeControl.OnColor = OnColor;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
@@ -124,7 +124,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(IsSelectedChanged, value);
                         }
 
-                        IsSelectedChanged = (EventCallback<bool>)value;
+                        IsSelectedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.SelectedChanged -= NativeControlSelectedChanged;
                         NativeControl.SelectedChanged += NativeControlSelectedChanged;
                     }

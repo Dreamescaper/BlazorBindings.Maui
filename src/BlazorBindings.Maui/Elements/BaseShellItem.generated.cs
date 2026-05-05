@@ -76,49 +76,49 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(FlyoutIcon):
                     if (!Equals(FlyoutIcon, value))
                     {
-                        FlyoutIcon = (MC.ImageSource)value;
+                        FlyoutIcon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.FlyoutIcon = FlyoutIcon;
                     }
                     break;
                 case nameof(FlyoutItemIsVisible):
                     if (!Equals(FlyoutItemIsVisible, value))
                     {
-                        FlyoutItemIsVisible = (bool?)value;
+                        FlyoutItemIsVisible = CastParameter<bool?>(value, name);
                         NativeControl.FlyoutItemIsVisible = FlyoutItemIsVisible ?? (bool)MC.BaseShellItem.FlyoutItemIsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Icon):
                     if (!Equals(Icon, value))
                     {
-                        Icon = (MC.ImageSource)value;
+                        Icon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.Icon = Icon;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.BaseShellItem.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)MC.BaseShellItem.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Route):
                     if (!Equals(Route, value))
                     {
-                        Route = (string)value;
+                        Route = CastParameter<string>(value, name);
                         NativeControl.Route = Route;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
@@ -127,7 +127,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlAppearing(object sender, EventArgs e) => InvokeEventCallback(OnAppearing);
 
-                        OnAppearing = (EventCallback)value;
+                        OnAppearing = CastParameter<EventCallback>(value, name);
                         NativeControl.Appearing -= NativeControlAppearing;
                         NativeControl.Appearing += NativeControlAppearing;
                     }
@@ -137,7 +137,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDisappearing(object sender, EventArgs e) => InvokeEventCallback(OnDisappearing);
 
-                        OnDisappearing = (EventCallback)value;
+                        OnDisappearing = CastParameter<EventCallback>(value, name);
                         NativeControl.Disappearing -= NativeControlDisappearing;
                         NativeControl.Disappearing += NativeControlDisappearing;
                     }

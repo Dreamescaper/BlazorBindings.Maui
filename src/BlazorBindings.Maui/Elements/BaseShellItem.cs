@@ -14,7 +14,7 @@ public partial class BaseShellItem : NavigableElement
     {
         if (name == nameof(ItemTemplate))
         {
-            ItemTemplate = (RenderFragment<MC.BaseShellItem>)value;
+            ItemTemplate = CastParameter<RenderFragment<MC.BaseShellItem>>(value, name);
             return true;
         }
 

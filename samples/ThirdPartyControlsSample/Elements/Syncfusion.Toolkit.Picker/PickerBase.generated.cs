@@ -159,100 +159,100 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(ColumnDividerColor):
                     if (!Equals(ColumnDividerColor, value))
                     {
-                        ColumnDividerColor = (Color)value;
+                        ColumnDividerColor = CastParameter<Color>(value, name);
                         NativeControl.ColumnDividerColor = ColumnDividerColor;
                     }
                     break;
                 case nameof(EnableLooping):
                     if (!Equals(EnableLooping, value))
                     {
-                        EnableLooping = (bool?)value;
+                        EnableLooping = CastParameter<bool?>(value, name);
                         NativeControl.EnableLooping = EnableLooping ?? (bool)SMTP.PickerBase.EnableLoopingProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)SMTP.PickerBase.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemHeight):
                     if (!Equals(ItemHeight, value))
                     {
-                        ItemHeight = (double?)value;
+                        ItemHeight = CastParameter<double?>(value, name);
                         NativeControl.ItemHeight = ItemHeight ?? (double)SMTP.PickerBase.ItemHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(Mode):
                     if (!Equals(Mode, value))
                     {
-                        Mode = (SMTP.PickerMode?)value;
+                        Mode = CastParameter<SMTP.PickerMode?>(value, name);
                         NativeControl.Mode = Mode ?? (SMTP.PickerMode)SMTP.PickerBase.ModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(PopupHeight):
                     if (!Equals(PopupHeight, value))
                     {
-                        PopupHeight = (double?)value;
+                        PopupHeight = CastParameter<double?>(value, name);
                         NativeControl.PopupHeight = PopupHeight ?? (double)SMTP.PickerBase.PopupHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(PopupWidth):
                     if (!Equals(PopupWidth, value))
                     {
-                        PopupWidth = (double?)value;
+                        PopupWidth = CastParameter<double?>(value, name);
                         NativeControl.PopupWidth = PopupWidth ?? (double)SMTP.PickerBase.PopupWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(RelativePosition):
                     if (!Equals(RelativePosition, value))
                     {
-                        RelativePosition = (SMTP.PickerRelativePosition?)value;
+                        RelativePosition = CastParameter<SMTP.PickerRelativePosition?>(value, name);
                         NativeControl.RelativePosition = RelativePosition ?? (SMTP.PickerRelativePosition)SMTP.PickerBase.RelativePositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedTextStyle):
                     if (!Equals(SelectedTextStyle, value))
                     {
-                        SelectedTextStyle = (SMTP.PickerTextStyle)value;
+                        SelectedTextStyle = CastParameter<SMTP.PickerTextStyle>(value, name);
                         NativeControl.SelectedTextStyle = SelectedTextStyle;
                     }
                     break;
                 case nameof(TextDisplayMode):
                     if (!Equals(TextDisplayMode, value))
                     {
-                        TextDisplayMode = (SMTP.PickerTextDisplayMode?)value;
+                        TextDisplayMode = CastParameter<SMTP.PickerTextDisplayMode?>(value, name);
                         NativeControl.TextDisplayMode = TextDisplayMode ?? (SMTP.PickerTextDisplayMode)SMTP.PickerBase.TextDisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ColumnHeaderTemplate):
-                    ColumnHeaderTemplate = (RenderFragment)value;
+                    ColumnHeaderTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FooterTemplate):
-                    FooterTemplate = (RenderFragment)value;
+                    FooterTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FooterView):
-                    FooterView = (RenderFragment)value;
+                    FooterView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderTemplate):
-                    HeaderTemplate = (RenderFragment)value;
+                    HeaderTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RelativeView):
-                    RelativeView = (RenderFragment)value;
+                    RelativeView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionView):
-                    SelectionView = (RenderFragment)value;
+                    SelectionView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnOkButtonClicked):
                     if (!Equals(OnOkButtonClicked, value))
                     {
                         void NativeControlOkButtonClicked(object sender, EventArgs e) => InvokeEventCallback(OnOkButtonClicked);
 
-                        OnOkButtonClicked = (EventCallback)value;
+                        OnOkButtonClicked = CastParameter<EventCallback>(value, name);
                         NativeControl.OkButtonClicked -= NativeControlOkButtonClicked;
                         NativeControl.OkButtonClicked += NativeControlOkButtonClicked;
                     }
@@ -262,7 +262,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         void NativeControlCancelButtonClicked(object sender, EventArgs e) => InvokeEventCallback(OnCancelButtonClicked);
 
-                        OnCancelButtonClicked = (EventCallback)value;
+                        OnCancelButtonClicked = CastParameter<EventCallback>(value, name);
                         NativeControl.CancelButtonClicked -= NativeControlCancelButtonClicked;
                         NativeControl.CancelButtonClicked += NativeControlCancelButtonClicked;
                     }
@@ -272,7 +272,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         void NativeControlOpened(object sender, EventArgs e) => InvokeEventCallback(OnOpened);
 
-                        OnOpened = (EventCallback)value;
+                        OnOpened = CastParameter<EventCallback>(value, name);
                         NativeControl.Opened -= NativeControlOpened;
                         NativeControl.Opened += NativeControlOpened;
                     }
@@ -282,7 +282,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         void NativeControlClosed(object sender, EventArgs e) => InvokeEventCallback(OnClosed);
 
-                        OnClosed = (EventCallback)value;
+                        OnClosed = CastParameter<EventCallback>(value, name);
                         NativeControl.Closed -= NativeControlClosed;
                         NativeControl.Closed += NativeControlClosed;
                     }
@@ -292,7 +292,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         void NativeControlClosing(object sender, CancelEventArgs e) => InvokeEventCallback(OnClosing, e);
 
-                        OnClosing = (EventCallback<CancelEventArgs>)value;
+                        OnClosing = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.Closing -= NativeControlClosing;
                         NativeControl.Closing += NativeControlClosing;
                     }

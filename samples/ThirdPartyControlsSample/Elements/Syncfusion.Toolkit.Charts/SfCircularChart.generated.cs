@@ -47,7 +47,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
             switch (name)
             {
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

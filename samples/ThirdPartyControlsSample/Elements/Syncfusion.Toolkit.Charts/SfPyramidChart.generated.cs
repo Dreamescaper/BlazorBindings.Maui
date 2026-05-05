@@ -162,90 +162,90 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EnableTooltip):
                     if (!Equals(EnableTooltip, value))
                     {
-                        EnableTooltip = (bool?)value;
+                        EnableTooltip = CastParameter<bool?>(value, name);
                         NativeControl.EnableTooltip = EnableTooltip ?? (bool)SMTC.SfPyramidChart.EnableTooltipProperty.DefaultValue;
                     }
                     break;
                 case nameof(GapRatio):
                     if (!Equals(GapRatio, value))
                     {
-                        GapRatio = (double?)value;
+                        GapRatio = CastParameter<double?>(value, name);
                         NativeControl.GapRatio = GapRatio ?? (double)SMTC.SfPyramidChart.GapRatioProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(LegendIcon):
                     if (!Equals(LegendIcon, value))
                     {
-                        LegendIcon = (SMTC.ChartLegendIconType?)value;
+                        LegendIcon = CastParameter<SMTC.ChartLegendIconType?>(value, name);
                         NativeControl.LegendIcon = LegendIcon ?? (SMTC.ChartLegendIconType)SMTC.SfPyramidChart.LegendIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(Mode):
                     if (!Equals(Mode, value))
                     {
-                        Mode = (SMTC.PyramidMode?)value;
+                        Mode = CastParameter<SMTC.PyramidMode?>(value, name);
                         NativeControl.Mode = Mode ?? (SMTC.PyramidMode)SMTC.SfPyramidChart.ModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowDataLabels):
                     if (!Equals(ShowDataLabels, value))
                     {
-                        ShowDataLabels = (bool?)value;
+                        ShowDataLabels = CastParameter<bool?>(value, name);
                         NativeControl.ShowDataLabels = ShowDataLabels ?? (bool)SMTC.SfPyramidChart.ShowDataLabelsProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.SfPyramidChart.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(XBindingPath):
                     if (!Equals(XBindingPath, value))
                     {
-                        XBindingPath = (string)value;
+                        XBindingPath = CastParameter<string>(value, name);
                         NativeControl.XBindingPath = XBindingPath;
                     }
                     break;
                 case nameof(YBindingPath):
                     if (!Equals(YBindingPath, value))
                     {
-                        YBindingPath = (string)value;
+                        YBindingPath = CastParameter<string>(value, name);
                         NativeControl.YBindingPath = YBindingPath;
                     }
                     break;
                 case nameof(DataLabelSettings):
-                    DataLabelSettings = (RenderFragment)value;
+                    DataLabelSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LabelTemplate):
-                    LabelTemplate = (RenderFragment)value;
+                    LabelTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PaletteBrushes):
-                    PaletteBrushes = (RenderFragment)value;
+                    PaletteBrushes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionBehavior):
-                    SelectionBehavior = (RenderFragment)value;
+                    SelectionBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TooltipTemplate):
-                    TooltipTemplate = (RenderFragment)value;
+                    TooltipTemplate = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

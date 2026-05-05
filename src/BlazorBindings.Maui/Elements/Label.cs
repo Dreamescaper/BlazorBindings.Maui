@@ -16,7 +16,7 @@ public partial class Label : View, IHandleChildContentText, IContainerElementHan
     {
         if (name == nameof(ChildContent))
         {
-            ChildContent = (RenderFragment)value;
+            ChildContent = CastParameter<RenderFragment>(value, name);
             return true;
         }
         else

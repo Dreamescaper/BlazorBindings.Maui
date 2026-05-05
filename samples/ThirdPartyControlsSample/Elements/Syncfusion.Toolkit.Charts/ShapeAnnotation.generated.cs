@@ -111,53 +111,53 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.ShapeAnnotation.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(X2):
                     if (!Equals(X2, value))
                     {
-                        X2 = (object)value;
+                        X2 = CastParameter<object>(value, name);
                         NativeControl.X2 = X2;
                     }
                     break;
                 case nameof(Y2):
                     if (!Equals(Y2, value))
                     {
-                        Y2 = (double?)value;
+                        Y2 = CastParameter<double?>(value, name);
                         NativeControl.Y2 = Y2 ?? (double)SMTC.ShapeAnnotation.Y2Property.DefaultValue;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LabelStyle):
-                    LabelStyle = (RenderFragment)value;
+                    LabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

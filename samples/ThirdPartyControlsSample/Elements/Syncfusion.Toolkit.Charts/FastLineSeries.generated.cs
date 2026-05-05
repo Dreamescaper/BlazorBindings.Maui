@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EnableAntiAliasing):
                     if (!Equals(EnableAntiAliasing, value))
                     {
-                        EnableAntiAliasing = (bool?)value;
+                        EnableAntiAliasing = CastParameter<bool?>(value, name);
                         NativeControl.EnableAntiAliasing = EnableAntiAliasing ?? (bool)SMTC.FastLineSeries.EnableAntiAliasingProperty.DefaultValue;
                     }
                     break;

@@ -63,19 +63,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(HorizontalAlignment):
                     if (!Equals(HorizontalAlignment, value))
                     {
-                        HorizontalAlignment = (SMTC.ChartAlignment?)value;
+                        HorizontalAlignment = CastParameter<SMTC.ChartAlignment?>(value, name);
                         NativeControl.HorizontalAlignment = HorizontalAlignment ?? (SMTC.ChartAlignment)SMTC.ViewAnnotation.HorizontalAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalAlignment):
                     if (!Equals(VerticalAlignment, value))
                     {
-                        VerticalAlignment = (SMTC.ChartAlignment?)value;
+                        VerticalAlignment = CastParameter<SMTC.ChartAlignment?>(value, name);
                         NativeControl.VerticalAlignment = VerticalAlignment ?? (SMTC.ChartAlignment)SMTC.ViewAnnotation.VerticalAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(View):
-                    View = (RenderFragment)value;
+                    View = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

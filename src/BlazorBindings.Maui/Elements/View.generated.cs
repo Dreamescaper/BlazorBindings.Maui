@@ -56,26 +56,26 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(HorizontalOptions):
                     if (!Equals(HorizontalOptions, value))
                     {
-                        HorizontalOptions = (MC.LayoutOptions?)value;
+                        HorizontalOptions = CastParameter<MC.LayoutOptions?>(value, name);
                         NativeControl.HorizontalOptions = HorizontalOptions ?? (MC.LayoutOptions)MC.View.HorizontalOptionsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Margin):
                     if (!Equals(Margin, value))
                     {
-                        Margin = (Thickness?)value;
+                        Margin = CastParameter<Thickness?>(value, name);
                         NativeControl.Margin = Margin ?? (Thickness)MC.View.MarginProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalOptions):
                     if (!Equals(VerticalOptions, value))
                     {
-                        VerticalOptions = (MC.LayoutOptions?)value;
+                        VerticalOptions = CastParameter<MC.LayoutOptions?>(value, name);
                         NativeControl.VerticalOptions = VerticalOptions ?? (MC.LayoutOptions)MC.View.VerticalOptionsProperty.DefaultValue;
                     }
                     break;
                 case nameof(GestureRecognizers):
-                    GestureRecognizers = (RenderFragment)value;
+                    GestureRecognizers = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

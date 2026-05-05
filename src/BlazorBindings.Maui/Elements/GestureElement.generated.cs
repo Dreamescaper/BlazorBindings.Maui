@@ -42,7 +42,7 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(GestureRecognizers):
-                    GestureRecognizers = (RenderFragment)value;
+                    GestureRecognizers = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

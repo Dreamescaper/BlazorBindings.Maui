@@ -121,71 +121,71 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Buttons
                 case nameof(BackgroundImageAspect):
                     if (!Equals(BackgroundImageAspect, value))
                     {
-                        BackgroundImageAspect = (Aspect?)value;
+                        BackgroundImageAspect = CastParameter<Aspect?>(value, name);
                         NativeControl.BackgroundImageAspect = BackgroundImageAspect ?? (Aspect)SMTB.SfButton.BackgroundImageAspectProperty.DefaultValue;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTB.SfButton.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(DashArray):
                     if (!Equals(DashArray, value))
                     {
-                        DashArray = (float[])value;
+                        DashArray = CastParameter<float[]>(value, name);
                         NativeControl.DashArray = DashArray;
                     }
                     break;
                 case nameof(IsCheckable):
                     if (!Equals(IsCheckable, value))
                     {
-                        IsCheckable = (bool?)value;
+                        IsCheckable = CastParameter<bool?>(value, name);
                         NativeControl.IsCheckable = IsCheckable ?? (bool)SMTB.SfButton.IsCheckableProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsChecked):
                     if (!Equals(IsChecked, value))
                     {
-                        IsChecked = (bool?)value;
+                        IsChecked = CastParameter<bool?>(value, name);
                         NativeControl.IsChecked = IsChecked ?? (bool)SMTB.SfButton.IsCheckedProperty.DefaultValue;
                     }
                     break;
                 case nameof(LineBreakMode):
                     if (!Equals(LineBreakMode, value))
                     {
-                        LineBreakMode = (LineBreakMode?)value;
+                        LineBreakMode = CastParameter<LineBreakMode?>(value, name);
                         NativeControl.LineBreakMode = LineBreakMode ?? (LineBreakMode)SMTB.SfButton.LineBreakModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)SMTB.SfButton.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(TextTransform):
                     if (!Equals(TextTransform, value))
                     {
-                        TextTransform = (TextTransform?)value;
+                        TextTransform = CastParameter<TextTransform?>(value, name);
                         NativeControl.TextTransform = TextTransform ?? (TextTransform)SMTB.SfButton.TextTransformProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

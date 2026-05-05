@@ -50,28 +50,28 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Aspect):
                     if (!Equals(Aspect, value))
                     {
-                        Aspect = (Aspect?)value;
+                        Aspect = CastParameter<Aspect?>(value, name);
                         NativeControl.Aspect = Aspect ?? (Aspect)MC.Image.AspectProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsAnimationPlaying):
                     if (!Equals(IsAnimationPlaying, value))
                     {
-                        IsAnimationPlaying = (bool?)value;
+                        IsAnimationPlaying = CastParameter<bool?>(value, name);
                         NativeControl.IsAnimationPlaying = IsAnimationPlaying ?? (bool)MC.Image.IsAnimationPlayingProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpaque):
                     if (!Equals(IsOpaque, value))
                     {
-                        IsOpaque = (bool?)value;
+                        IsOpaque = CastParameter<bool?>(value, name);
                         NativeControl.IsOpaque = IsOpaque ?? (bool)MC.Image.IsOpaqueProperty.DefaultValue;
                     }
                     break;
                 case nameof(Source):
                     if (!Equals(Source, value))
                     {
-                        Source = (MC.ImageSource)value;
+                        Source = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.Source = Source;
                     }
                     break;

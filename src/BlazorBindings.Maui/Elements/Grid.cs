@@ -43,17 +43,19 @@ public partial class Grid
             case nameof(ColumnDefinitions):
                 if (!Equals(ColumnDefinitions, value))
                 {
-                    var columnDefinitions = (MC.ColumnDefinitionCollection)ColumnDefinitionConverter.ConvertFromInvariantString((string)value);
+                    var columnDefinitionsText = CastParameter<string>(value, name);
+                    var columnDefinitions = (MC.ColumnDefinitionCollection)ColumnDefinitionConverter.ConvertFromInvariantString(columnDefinitionsText);
                     NativeControl.ColumnDefinitions = columnDefinitions;
-                    ColumnDefinitions = (string)value;
+                    ColumnDefinitions = columnDefinitionsText;
                 }
                 return true;
             case nameof(RowDefinitions):
                 if (!Equals(RowDefinitions, value))
                 {
-                    var rowDefinitions = (MC.RowDefinitionCollection)RowDefinitionConverter.ConvertFromInvariantString((string)value);
+                    var rowDefinitionsText = CastParameter<string>(value, name);
+                    var rowDefinitions = (MC.RowDefinitionCollection)RowDefinitionConverter.ConvertFromInvariantString(rowDefinitionsText);
                     NativeControl.RowDefinitions = rowDefinitions;
-                    RowDefinitions = (string)value;
+                    RowDefinitions = rowDefinitionsText;
                 }
                 return true;
             default:

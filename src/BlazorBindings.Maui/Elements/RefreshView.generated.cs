@@ -42,21 +42,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IsRefreshEnabled):
                     if (!Equals(IsRefreshEnabled, value))
                     {
-                        IsRefreshEnabled = (bool?)value;
+                        IsRefreshEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsRefreshEnabled = IsRefreshEnabled ?? (bool)MC.RefreshView.IsRefreshEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsRefreshing):
                     if (!Equals(IsRefreshing, value))
                     {
-                        IsRefreshing = (bool?)value;
+                        IsRefreshing = CastParameter<bool?>(value, name);
                         NativeControl.IsRefreshing = IsRefreshing ?? (bool)MC.RefreshView.IsRefreshingProperty.DefaultValue;
                     }
                     break;
                 case nameof(RefreshColor):
                     if (!Equals(RefreshColor, value))
                     {
-                        RefreshColor = (Color)value;
+                        RefreshColor = CastParameter<Color>(value, name);
                         NativeControl.RefreshColor = RefreshColor;
                     }
                     break;
@@ -73,7 +73,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        IsRefreshingChanged = (EventCallback<bool>)value;
+                        IsRefreshingChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }

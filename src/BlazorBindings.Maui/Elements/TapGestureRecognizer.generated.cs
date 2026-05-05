@@ -45,14 +45,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Buttons):
                     if (!Equals(Buttons, value))
                     {
-                        Buttons = (MC.ButtonsMask?)value;
+                        Buttons = CastParameter<MC.ButtonsMask?>(value, name);
                         NativeControl.Buttons = Buttons ?? (MC.ButtonsMask)MC.TapGestureRecognizer.ButtonsProperty.DefaultValue;
                     }
                     break;
                 case nameof(NumberOfTapsRequired):
                     if (!Equals(NumberOfTapsRequired, value))
                     {
-                        NumberOfTapsRequired = (int?)value;
+                        NumberOfTapsRequired = CastParameter<int?>(value, name);
                         NativeControl.NumberOfTapsRequired = NumberOfTapsRequired ?? (int)MC.TapGestureRecognizer.NumberOfTapsRequiredProperty.DefaultValue;
                     }
                     break;
@@ -61,7 +61,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlTapped(object sender, MC.TappedEventArgs e) => InvokeEventCallback(OnTapped, e);
 
-                        OnTapped = (EventCallback<MC.TappedEventArgs>)value;
+                        OnTapped = CastParameter<EventCallback<MC.TappedEventArgs>>(value, name);
                         NativeControl.Tapped -= NativeControlTapped;
                         NativeControl.Tapped += NativeControlTapped;
                     }

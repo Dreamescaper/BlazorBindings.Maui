@@ -86,35 +86,35 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                 case nameof(HorizontalCardSpacing):
                     if (!Equals(HorizontalCardSpacing, value))
                     {
-                        HorizontalCardSpacing = (int?)value;
+                        HorizontalCardSpacing = CastParameter<int?>(value, name);
                         NativeControl.HorizontalCardSpacing = HorizontalCardSpacing ?? (int)SMTC.SfCardLayout.HorizontalCardSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowSwipedCard):
                     if (!Equals(ShowSwipedCard, value))
                     {
-                        ShowSwipedCard = (bool?)value;
+                        ShowSwipedCard = CastParameter<bool?>(value, name);
                         NativeControl.ShowSwipedCard = ShowSwipedCard ?? (bool)SMTC.SfCardLayout.ShowSwipedCardProperty.DefaultValue;
                     }
                     break;
                 case nameof(SwipeDirection):
                     if (!Equals(SwipeDirection, value))
                     {
-                        SwipeDirection = (SMTC.CardSwipeDirection?)value;
+                        SwipeDirection = CastParameter<SMTC.CardSwipeDirection?>(value, name);
                         NativeControl.SwipeDirection = SwipeDirection ?? (SMTC.CardSwipeDirection)SMTC.SfCardLayout.SwipeDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalCardSpacing):
                     if (!Equals(VerticalCardSpacing, value))
                     {
-                        VerticalCardSpacing = (int?)value;
+                        VerticalCardSpacing = CastParameter<int?>(value, name);
                         NativeControl.VerticalCardSpacing = VerticalCardSpacing ?? (int)SMTC.SfCardLayout.VerticalCardSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(VisibleIndex):
                     if (!Equals(VisibleIndex, value))
                     {
-                        VisibleIndex = (Nullable<int>)value;
+                        VisibleIndex = CastParameter<Nullable<int>>(value, name);
                         NativeControl.VisibleIndex = VisibleIndex;
                     }
                     break;
@@ -123,7 +123,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                     {
                         void NativeControlTapped(object sender, MC.TappedEventArgs e) => InvokeEventCallback(OnTapped, e);
 
-                        OnTapped = (EventCallback<MC.TappedEventArgs>)value;
+                        OnTapped = CastParameter<EventCallback<MC.TappedEventArgs>>(value, name);
                         NativeControl.Tapped -= NativeControlTapped;
                         NativeControl.Tapped += NativeControlTapped;
                     }
@@ -138,7 +138,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                             InvokeEventCallback(VisibleIndexChanged, value);
                         }
 
-                        VisibleIndexChanged = (EventCallback<Nullable<int>>)value;
+                        VisibleIndexChanged = CastParameter<EventCallback<Nullable<int>>>(value, name);
                         NativeControl.VisibleIndexChanged -= NativeControlVisibleIndexChanged;
                         NativeControl.VisibleIndexChanged += NativeControlVisibleIndexChanged;
                     }
@@ -148,7 +148,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                     {
                         void NativeControlVisibleIndexChanging(object sender, SMTC.CardVisibleIndexChangingEventArgs e) => InvokeEventCallback(OnVisibleIndexChanging, e);
 
-                        OnVisibleIndexChanging = (EventCallback<SMTC.CardVisibleIndexChangingEventArgs>)value;
+                        OnVisibleIndexChanging = CastParameter<EventCallback<SMTC.CardVisibleIndexChangingEventArgs>>(value, name);
                         NativeControl.VisibleIndexChanging -= NativeControlVisibleIndexChanging;
                         NativeControl.VisibleIndexChanging += NativeControlVisibleIndexChanging;
                     }

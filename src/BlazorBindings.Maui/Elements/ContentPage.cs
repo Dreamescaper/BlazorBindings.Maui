@@ -69,7 +69,7 @@ public partial class ContentPage : TemplatedPage
             case nameof(NavBarIsVisible):
                 if (!Equals(NavBarIsVisible, value))
                 {
-                    NavBarIsVisible = (bool?)value;
+                    NavBarIsVisible = CastParameter<bool?>(value, name);
                     MC.Shell.SetNavBarIsVisible(NativeControl, NavBarIsVisible ?? true);
                     MC.NavigationPage.SetHasNavigationBar(NativeControl, NavBarIsVisible ?? true);
                 }
@@ -77,35 +77,35 @@ public partial class ContentPage : TemplatedPage
             case nameof(NavBarHasShadow):
                 if (!Equals(NavBarHasShadow, value))
                 {
-                    NavBarHasShadow = (bool?)value;
+                    NavBarHasShadow = CastParameter<bool?>(value, name);
                     MC.Shell.SetNavBarHasShadow(NativeControl, NavBarHasShadow ?? true);
                 }
                 return true;
             case nameof(TabBarIsVisible):
                 if (!Equals(TabBarIsVisible, value))
                 {
-                    TabBarIsVisible = (bool?)value;
+                    TabBarIsVisible = CastParameter<bool?>(value, name);
                     MC.Shell.SetTabBarIsVisible(NativeControl, TabBarIsVisible ?? true);
                 }
                 return true;
             case nameof(ShellPresentationMode):
                 if (!Equals(ShellPresentationMode, value))
                 {
-                    ShellPresentationMode = (MC.PresentationMode?)value;
+                    ShellPresentationMode = CastParameter<MC.PresentationMode?>(value, name);
                     MC.Shell.SetPresentationMode(NativeControl, ShellPresentationMode ?? (MC.PresentationMode)MC.Shell.PresentationModeProperty.DefaultValue);
                 }
                 return true;
             case nameof(TitleColor):
                 if (!Equals(TitleColor, value))
                 {
-                    TitleColor = (Color)value;
+                    TitleColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTitleColor(NativeControl, TitleColor);
                 }
                 return true;
             case nameof(BackButtonText):
                 if (!Equals(BackButtonText, value))
                 {
-                    BackButtonText = (string)value;
+                    BackButtonText = CastParameter<string>(value, name);
                     MC.NavigationPage.SetBackButtonTitle(NativeControl, BackButtonText);
                     GetBackButtonBehavior().TextOverride = BackButtonText;
                 }
@@ -113,7 +113,7 @@ public partial class ContentPage : TemplatedPage
             case nameof(BackButtonVisible):
                 if (!Equals(BackButtonVisible, value))
                 {
-                    BackButtonVisible = (bool?)value;
+                    BackButtonVisible = CastParameter<bool?>(value, name);
                     MC.NavigationPage.SetHasBackButton(NativeControl, BackButtonVisible ?? true);
                     GetBackButtonBehavior().IsVisible = BackButtonVisible ?? true;
                 }
@@ -121,17 +121,17 @@ public partial class ContentPage : TemplatedPage
             case nameof(OnBackButtonPressed):
                 if (!Equals(OnBackButtonPressed, value))
                 {
-                    OnBackButtonPressed = (EventCallback)value;
+                    OnBackButtonPressed = CastParameter<EventCallback>(value, name);
                     GetBackButtonBehavior().Command = OnBackButtonPressed.HasDelegate
                         ? new EventCallbackCommand(() => InvokeEventCallback(OnBackButtonPressed))
                         : null;
                 }
                 return true;
             case nameof(TitleView):
-                TitleView = (RenderFragment)value;
+                TitleView = CastParameter<RenderFragment>(value, name);
                 return true;
             case nameof(ShellSearchHandler):
-                ShellSearchHandler = (RenderFragment)value;
+                ShellSearchHandler = CastParameter<RenderFragment>(value, name);
                 return true;
         }
 

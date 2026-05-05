@@ -44,14 +44,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Order):
                     if (!Equals(Order, value))
                     {
-                        Order = (MC.ToolbarItemOrder?)value;
+                        Order = CastParameter<MC.ToolbarItemOrder?>(value, name);
                         NativeControl.Order = Order ?? default;
                     }
                     break;
                 case nameof(Priority):
                     if (!Equals(Priority, value))
                     {
-                        Priority = (int?)value;
+                        Priority = CastParameter<int?>(value, name);
                         NativeControl.Priority = Priority ?? default;
                     }
                     break;

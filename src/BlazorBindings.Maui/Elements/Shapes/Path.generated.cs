@@ -42,10 +42,10 @@ namespace BlazorBindings.Maui.Elements.Shapes
             switch (name)
             {
                 case nameof(Data):
-                    Data = (RenderFragment)value;
+                    Data = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RenderTransform):
-                    RenderTransform = (RenderFragment)value;
+                    RenderTransform = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

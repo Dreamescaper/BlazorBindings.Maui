@@ -11,7 +11,7 @@ public partial class Element
     {
         if (name == nameof(ContextFlyout))
         {
-            ContextFlyout = (RenderFragment)value;
+            ContextFlyout = CastParameter<RenderFragment>(value, name);
             return true;
         }
 

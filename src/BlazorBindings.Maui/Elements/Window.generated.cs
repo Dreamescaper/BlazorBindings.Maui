@@ -76,99 +76,99 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(FlowDirection):
                     if (!Equals(FlowDirection, value))
                     {
-                        FlowDirection = (FlowDirection?)value;
+                        FlowDirection = CastParameter<FlowDirection?>(value, name);
                         NativeControl.FlowDirection = FlowDirection ?? (FlowDirection)MC.Window.FlowDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)MC.Window.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsMaximizable):
                     if (!Equals(IsMaximizable, value))
                     {
-                        IsMaximizable = (bool?)value;
+                        IsMaximizable = CastParameter<bool?>(value, name);
                         NativeControl.IsMaximizable = IsMaximizable ?? (bool)MC.Window.IsMaximizableProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsMinimizable):
                     if (!Equals(IsMinimizable, value))
                     {
-                        IsMinimizable = (bool?)value;
+                        IsMinimizable = CastParameter<bool?>(value, name);
                         NativeControl.IsMinimizable = IsMinimizable ?? (bool)MC.Window.IsMinimizableProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumHeight):
                     if (!Equals(MaximumHeight, value))
                     {
-                        MaximumHeight = (double?)value;
+                        MaximumHeight = CastParameter<double?>(value, name);
                         NativeControl.MaximumHeight = MaximumHeight ?? (double)MC.Window.MaximumHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumWidth):
                     if (!Equals(MaximumWidth, value))
                     {
-                        MaximumWidth = (double?)value;
+                        MaximumWidth = CastParameter<double?>(value, name);
                         NativeControl.MaximumWidth = MaximumWidth ?? (double)MC.Window.MaximumWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumHeight):
                     if (!Equals(MinimumHeight, value))
                     {
-                        MinimumHeight = (double?)value;
+                        MinimumHeight = CastParameter<double?>(value, name);
                         NativeControl.MinimumHeight = MinimumHeight ?? (double)MC.Window.MinimumHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumWidth):
                     if (!Equals(MinimumWidth, value))
                     {
-                        MinimumWidth = (double?)value;
+                        MinimumWidth = CastParameter<double?>(value, name);
                         NativeControl.MinimumWidth = MinimumWidth ?? (double)MC.Window.MinimumWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)MC.Window.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(X):
                     if (!Equals(X, value))
                     {
-                        X = (double?)value;
+                        X = CastParameter<double?>(value, name);
                         NativeControl.X = X ?? (double)MC.Window.XProperty.DefaultValue;
                     }
                     break;
                 case nameof(Y):
                     if (!Equals(Y, value))
                     {
-                        Y = (double?)value;
+                        Y = CastParameter<double?>(value, name);
                         NativeControl.Y = Y ?? (double)MC.Window.YProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TitleBar):
-                    TitleBar = (RenderFragment)value;
+                    TitleBar = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSizeChanged):
                     if (!Equals(OnSizeChanged, value))
                     {
                         void NativeControlSizeChanged(object sender, EventArgs e) => InvokeEventCallback(OnSizeChanged);
 
-                        OnSizeChanged = (EventCallback)value;
+                        OnSizeChanged = CastParameter<EventCallback>(value, name);
                         NativeControl.SizeChanged -= NativeControlSizeChanged;
                         NativeControl.SizeChanged += NativeControlSizeChanged;
                     }
@@ -178,7 +178,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlModalPopped(object sender, MC.ModalPoppedEventArgs e) => InvokeEventCallback(OnModalPopped, e);
 
-                        OnModalPopped = (EventCallback<MC.ModalPoppedEventArgs>)value;
+                        OnModalPopped = CastParameter<EventCallback<MC.ModalPoppedEventArgs>>(value, name);
                         NativeControl.ModalPopped -= NativeControlModalPopped;
                         NativeControl.ModalPopped += NativeControlModalPopped;
                     }
@@ -188,7 +188,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlModalPopping(object sender, MC.ModalPoppingEventArgs e) => InvokeEventCallback(OnModalPopping, e);
 
-                        OnModalPopping = (EventCallback<MC.ModalPoppingEventArgs>)value;
+                        OnModalPopping = CastParameter<EventCallback<MC.ModalPoppingEventArgs>>(value, name);
                         NativeControl.ModalPopping -= NativeControlModalPopping;
                         NativeControl.ModalPopping += NativeControlModalPopping;
                     }
@@ -198,7 +198,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlModalPushed(object sender, MC.ModalPushedEventArgs e) => InvokeEventCallback(OnModalPushed, e);
 
-                        OnModalPushed = (EventCallback<MC.ModalPushedEventArgs>)value;
+                        OnModalPushed = CastParameter<EventCallback<MC.ModalPushedEventArgs>>(value, name);
                         NativeControl.ModalPushed -= NativeControlModalPushed;
                         NativeControl.ModalPushed += NativeControlModalPushed;
                     }
@@ -208,7 +208,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlModalPushing(object sender, MC.ModalPushingEventArgs e) => InvokeEventCallback(OnModalPushing, e);
 
-                        OnModalPushing = (EventCallback<MC.ModalPushingEventArgs>)value;
+                        OnModalPushing = CastParameter<EventCallback<MC.ModalPushingEventArgs>>(value, name);
                         NativeControl.ModalPushing -= NativeControlModalPushing;
                         NativeControl.ModalPushing += NativeControlModalPushing;
                     }
@@ -218,7 +218,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPopCanceled(object sender, EventArgs e) => InvokeEventCallback(OnPopCanceled);
 
-                        OnPopCanceled = (EventCallback)value;
+                        OnPopCanceled = CastParameter<EventCallback>(value, name);
                         NativeControl.PopCanceled -= NativeControlPopCanceled;
                         NativeControl.PopCanceled += NativeControlPopCanceled;
                     }
@@ -228,7 +228,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlCreated(object sender, EventArgs e) => InvokeEventCallback(OnCreated);
 
-                        OnCreated = (EventCallback)value;
+                        OnCreated = CastParameter<EventCallback>(value, name);
                         NativeControl.Created -= NativeControlCreated;
                         NativeControl.Created += NativeControlCreated;
                     }
@@ -238,7 +238,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlResumed(object sender, EventArgs e) => InvokeEventCallback(OnResumed);
 
-                        OnResumed = (EventCallback)value;
+                        OnResumed = CastParameter<EventCallback>(value, name);
                         NativeControl.Resumed -= NativeControlResumed;
                         NativeControl.Resumed += NativeControlResumed;
                     }
@@ -248,7 +248,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlActivated(object sender, EventArgs e) => InvokeEventCallback(OnActivated);
 
-                        OnActivated = (EventCallback)value;
+                        OnActivated = CastParameter<EventCallback>(value, name);
                         NativeControl.Activated -= NativeControlActivated;
                         NativeControl.Activated += NativeControlActivated;
                     }
@@ -258,7 +258,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDeactivated(object sender, EventArgs e) => InvokeEventCallback(OnDeactivated);
 
-                        OnDeactivated = (EventCallback)value;
+                        OnDeactivated = CastParameter<EventCallback>(value, name);
                         NativeControl.Deactivated -= NativeControlDeactivated;
                         NativeControl.Deactivated += NativeControlDeactivated;
                     }
@@ -268,7 +268,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlStopped(object sender, EventArgs e) => InvokeEventCallback(OnStopped);
 
-                        OnStopped = (EventCallback)value;
+                        OnStopped = CastParameter<EventCallback>(value, name);
                         NativeControl.Stopped -= NativeControlStopped;
                         NativeControl.Stopped += NativeControlStopped;
                     }
@@ -278,7 +278,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDestroying(object sender, EventArgs e) => InvokeEventCallback(OnDestroying);
 
-                        OnDestroying = (EventCallback)value;
+                        OnDestroying = CastParameter<EventCallback>(value, name);
                         NativeControl.Destroying -= NativeControlDestroying;
                         NativeControl.Destroying += NativeControlDestroying;
                     }
@@ -288,7 +288,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlBackgrounding(object sender, MC.BackgroundingEventArgs e) => InvokeEventCallback(OnBackgrounding, e);
 
-                        OnBackgrounding = (EventCallback<MC.BackgroundingEventArgs>)value;
+                        OnBackgrounding = CastParameter<EventCallback<MC.BackgroundingEventArgs>>(value, name);
                         NativeControl.Backgrounding -= NativeControlBackgrounding;
                         NativeControl.Backgrounding += NativeControlBackgrounding;
                     }
@@ -298,7 +298,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDisplayDensityChanged(object sender, MC.DisplayDensityChangedEventArgs e) => InvokeEventCallback(OnDisplayDensityChanged, e);
 
-                        OnDisplayDensityChanged = (EventCallback<MC.DisplayDensityChangedEventArgs>)value;
+                        OnDisplayDensityChanged = CastParameter<EventCallback<MC.DisplayDensityChangedEventArgs>>(value, name);
                         NativeControl.DisplayDensityChanged -= NativeControlDisplayDensityChanged;
                         NativeControl.DisplayDensityChanged += NativeControlDisplayDensityChanged;
                     }

@@ -66,23 +66,23 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
             switch (name)
             {
                 case nameof(ColumnHeaderView):
-                    ColumnHeaderView = (RenderFragment)value;
+                    ColumnHeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Columns):
-                    Columns = (RenderFragment)value;
+                    Columns = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderView):
-                    HeaderView = (RenderFragment)value;
+                    HeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment)value;
+                    ItemTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTP.PickerSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTP.PickerSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTP.PickerSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }

@@ -57,35 +57,35 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CancelButtonColor):
                     if (!Equals(CancelButtonColor, value))
                     {
-                        CancelButtonColor = (Color)value;
+                        CancelButtonColor = CastParameter<Color>(value, name);
                         NativeControl.CancelButtonColor = CancelButtonColor;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.SearchBar.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(ReturnType):
                     if (!Equals(ReturnType, value))
                     {
-                        ReturnType = (ReturnType?)value;
+                        ReturnType = CastParameter<ReturnType?>(value, name);
                         NativeControl.ReturnType = ReturnType ?? (ReturnType)MC.SearchBar.ReturnTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SearchIconColor):
                     if (!Equals(SearchIconColor, value))
                     {
-                        SearchIconColor = (Color)value;
+                        SearchIconColor = CastParameter<Color>(value, name);
                         NativeControl.SearchIconColor = SearchIconColor;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)MC.SearchBar.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
@@ -94,7 +94,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlSearchButtonPressed(object sender, EventArgs e) => InvokeEventCallback(OnSearchButtonPressed);
 
-                        OnSearchButtonPressed = (EventCallback)value;
+                        OnSearchButtonPressed = CastParameter<EventCallback>(value, name);
                         NativeControl.SearchButtonPressed -= NativeControlSearchButtonPressed;
                         NativeControl.SearchButtonPressed += NativeControlSearchButtonPressed;
                     }

@@ -22,12 +22,12 @@ public partial class ShellContent : BaseShellItem, IContainerElementHandler
     {
         if (name == nameof(ChildContent))
         {
-            ChildContent = (RenderFragment)value;
+            ChildContent = CastParameter<RenderFragment>(value, name);
             return true;
         }
         if (name == nameof(ContentTemplate))
         {
-            ContentTemplate = (RenderFragment)value;
+            ContentTemplate = CastParameter<RenderFragment>(value, name);
             return true;
         }
         else

@@ -42,7 +42,7 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(KeyboardAccelerators):
-                    KeyboardAccelerators = (RenderFragment)value;
+                    KeyboardAccelerators = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

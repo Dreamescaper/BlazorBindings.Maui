@@ -43,42 +43,42 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ActiveIndicatorColor):
                     if (!Equals(ActiveIndicatorColor, value))
                     {
-                        ActiveIndicatorColor = (Color)value;
+                        ActiveIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.ActiveIndicatorColor = ActiveIndicatorColor;
                     }
                     break;
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (float?)value;
+                        AnimationDuration = CastParameter<float?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (float)MCM.ProgressIndicator.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(ControlState):
                     if (!Equals(ControlState, value))
                     {
-                        ControlState = (MCM.ControlState?)value;
+                        ControlState = CastParameter<MCM.ControlState?>(value, name);
                         NativeControl.ControlState = ControlState ?? default;
                     }
                     break;
                 case nameof(IndicatorType):
                     if (!Equals(IndicatorType, value))
                     {
-                        IndicatorType = (MCM.IndicatorType?)value;
+                        IndicatorType = CastParameter<MCM.IndicatorType?>(value, name);
                         NativeControl.IndicatorType = IndicatorType ?? (MCM.IndicatorType)MCM.ProgressIndicator.IndicatorTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Percent):
                     if (!Equals(Percent, value))
                     {
-                        Percent = (float?)value;
+                        Percent = CastParameter<float?>(value, name);
                         NativeControl.Percent = Percent ?? (float)MCM.ProgressIndicator.PercentProperty.DefaultValue;
                     }
                     break;
@@ -92,7 +92,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(PercentChanged, value);
                         }
 
-                        PercentChanged = (EventCallback<float>)value;
+                        PercentChanged = CastParameter<EventCallback<float>>(value, name);
                         NativeControl.PercentChanged -= NativeControlPercentChanged;
                         NativeControl.PercentChanged += NativeControlPercentChanged;
                     }

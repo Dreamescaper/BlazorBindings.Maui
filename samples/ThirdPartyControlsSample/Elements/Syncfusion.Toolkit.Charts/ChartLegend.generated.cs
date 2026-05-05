@@ -92,39 +92,39 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ChartLegend.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Placement):
                     if (!Equals(Placement, value))
                     {
-                        Placement = (SMT.LegendPlacement?)value;
+                        Placement = CastParameter<SMT.LegendPlacement?>(value, name);
                         NativeControl.Placement = Placement ?? (SMT.LegendPlacement)SMTC.ChartLegend.PlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(ToggleSeriesVisibility):
                     if (!Equals(ToggleSeriesVisibility, value))
                     {
-                        ToggleSeriesVisibility = (bool?)value;
+                        ToggleSeriesVisibility = CastParameter<bool?>(value, name);
                         NativeControl.ToggleSeriesVisibility = ToggleSeriesVisibility ?? (bool)SMTC.ChartLegend.ToggleSeriesVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsLayout):
-                    ItemsLayout = (RenderFragment)value;
+                    ItemsLayout = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment)value;
+                    ItemTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LabelStyle):
-                    LabelStyle = (RenderFragment)value;
+                    LabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnLegendItemCreated):
                     if (!Equals(OnLegendItemCreated, value))
                     {
                         void NativeControlLegendItemCreated(object sender, SMT.LegendItemEventArgs e) => InvokeEventCallback(OnLegendItemCreated, e);
 
-                        OnLegendItemCreated = (EventCallback<SMT.LegendItemEventArgs>)value;
+                        OnLegendItemCreated = CastParameter<EventCallback<SMT.LegendItemEventArgs>>(value, name);
                         NativeControl.LegendItemCreated -= NativeControlLegendItemCreated;
                         NativeControl.LegendItemCreated += NativeControlLegendItemCreated;
                     }

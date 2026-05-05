@@ -79,35 +79,35 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
                 case nameof(CloseButtonColor):
                     if (!Equals(CloseButtonColor, value))
                     {
-                        CloseButtonColor = (Color)value;
+                        CloseButtonColor = CastParameter<Color>(value, name);
                         NativeControl.CloseButtonColor = CloseButtonColor;
                     }
                     break;
                 case nameof(CloseButtonPath):
                     if (!Equals(CloseButtonPath, value))
                     {
-                        CloseButtonPath = (string)value;
+                        CloseButtonPath = CastParameter<string>(value, name);
                         NativeControl.CloseButtonPath = CloseButtonPath;
                     }
                     break;
                 case nameof(SelectionIndicatorColor):
                     if (!Equals(SelectionIndicatorColor, value))
                     {
-                        SelectionIndicatorColor = (Color)value;
+                        SelectionIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionIndicatorColor = SelectionIndicatorColor;
                     }
                     break;
                 case nameof(ShowCloseButton):
                     if (!Equals(ShowCloseButton, value))
                     {
-                        ShowCloseButton = (bool?)value;
+                        ShowCloseButton = CastParameter<bool?>(value, name);
                         NativeControl.ShowCloseButton = ShowCloseButton ?? (bool)SMTC.SfChip.ShowCloseButtonProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowSelectionIndicator):
                     if (!Equals(ShowSelectionIndicator, value))
                     {
-                        ShowSelectionIndicator = (bool?)value;
+                        ShowSelectionIndicator = CastParameter<bool?>(value, name);
                         NativeControl.ShowSelectionIndicator = ShowSelectionIndicator ?? (bool)SMTC.SfChip.ShowSelectionIndicatorProperty.DefaultValue;
                     }
                     break;
@@ -116,7 +116,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
                     {
                         void NativeControlCloseButtonClicked(object sender, EventArgs e) => InvokeEventCallback(OnCloseButtonClicked);
 
-                        OnCloseButtonClicked = (EventCallback)value;
+                        OnCloseButtonClicked = CastParameter<EventCallback>(value, name);
                         NativeControl.CloseButtonClicked -= NativeControlCloseButtonClicked;
                         NativeControl.CloseButtonClicked += NativeControlCloseButtonClicked;
                     }

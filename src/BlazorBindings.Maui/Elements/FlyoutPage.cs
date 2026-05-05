@@ -12,7 +12,7 @@ public partial class FlyoutPage : Page
     {
         if (name == nameof(Detail))
         {
-            Detail = (RenderFragment)value;
+            Detail = CastParameter<RenderFragment>(value, name);
             return true;
         }
 

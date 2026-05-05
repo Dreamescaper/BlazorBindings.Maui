@@ -36,14 +36,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Color):
                     if (!Equals(Color, value))
                     {
-                        Color = (Color)value;
+                        Color = CastParameter<Color>(value, name);
                         NativeControl.Color = Color;
                     }
                     break;
                 case nameof(Offset):
                     if (!Equals(Offset, value))
                     {
-                        Offset = (float?)value;
+                        Offset = CastParameter<float?>(value, name);
                         NativeControl.Offset = Offset ?? (float)MC.GradientStop.OffsetProperty.DefaultValue;
                     }
                     break;

@@ -52,14 +52,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Direction):
                     if (!Equals(Direction, value))
                     {
-                        Direction = (SwipeDirection?)value;
+                        Direction = CastParameter<SwipeDirection?>(value, name);
                         NativeControl.Direction = Direction ?? (SwipeDirection)MC.SwipeGestureRecognizer.DirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(Threshold):
                     if (!Equals(Threshold, value))
                     {
-                        Threshold = (uint?)value;
+                        Threshold = CastParameter<uint?>(value, name);
                         NativeControl.Threshold = Threshold ?? (uint)MC.SwipeGestureRecognizer.ThresholdProperty.DefaultValue;
                     }
                     break;
@@ -68,7 +68,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlSwiped(object sender, MC.SwipedEventArgs e) => InvokeEventCallback(OnSwiped, e);
 
-                        OnSwiped = (EventCallback<MC.SwipedEventArgs>)value;
+                        OnSwiped = CastParameter<EventCallback<MC.SwipedEventArgs>>(value, name);
                         NativeControl.Swiped -= NativeControlSwiped;
                         NativeControl.Swiped += NativeControlSwiped;
                     }

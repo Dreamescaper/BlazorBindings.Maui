@@ -41,7 +41,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(TouchPoints):
                     if (!Equals(TouchPoints, value))
                     {
-                        TouchPoints = (int?)value;
+                        TouchPoints = CastParameter<int?>(value, name);
                         NativeControl.TouchPoints = TouchPoints ?? (int)MC.PanGestureRecognizer.TouchPointsProperty.DefaultValue;
                     }
                     break;
@@ -50,7 +50,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPanUpdated(object sender, MC.PanUpdatedEventArgs e) => InvokeEventCallback(OnPanUpdated, e);
 
-                        OnPanUpdated = (EventCallback<MC.PanUpdatedEventArgs>)value;
+                        OnPanUpdated = CastParameter<EventCallback<MC.PanUpdatedEventArgs>>(value, name);
                         NativeControl.PanUpdated -= NativeControlPanUpdated;
                         NativeControl.PanUpdated += NativeControlPanUpdated;
                     }

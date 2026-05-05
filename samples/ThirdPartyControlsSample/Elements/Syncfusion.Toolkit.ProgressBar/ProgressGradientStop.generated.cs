@@ -53,14 +53,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.ProgressBar
                 case nameof(Color):
                     if (!Equals(Color, value))
                     {
-                        Color = (Color)value;
+                        Color = CastParameter<Color>(value, name);
                         NativeControl.Color = Color;
                     }
                     break;
                 case nameof(Value):
                     if (!Equals(Value, value))
                     {
-                        Value = (double?)value;
+                        Value = CastParameter<double?>(value, name);
                         NativeControl.Value = Value ?? (double)SMTP.ProgressGradientStop.ValueProperty.DefaultValue;
                     }
                     break;

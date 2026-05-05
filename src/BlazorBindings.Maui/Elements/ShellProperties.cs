@@ -32,7 +32,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
             switch (parameterValue.Name)
             {
                 case nameof(NavBarIsVisible):
-                    var navBarVisible = (bool?)parameterValue.Value;
+                    var navBarVisible = CastParameter<bool?>(parameterValue.Value, parameterValue.Name);
                     if (navBarVisible != NavBarIsVisible)
                     {
                         NavBarIsVisible = navBarVisible;
@@ -40,7 +40,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(NavBarHasShadow):
-                    var navBarHasShadow = (bool?)parameterValue.Value;
+                    var navBarHasShadow = CastParameter<bool?>(parameterValue.Value, parameterValue.Name);
                     if (navBarHasShadow != NavBarHasShadow)
                     {
                         NavBarHasShadow = navBarHasShadow;
@@ -48,7 +48,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TabBarIsVisible):
-                    var tabBarIsVisible = (bool?)parameterValue.Value;
+                    var tabBarIsVisible = CastParameter<bool?>(parameterValue.Value, parameterValue.Name);
                     if (tabBarIsVisible != TabBarIsVisible)
                     {
                         TabBarIsVisible = tabBarIsVisible;
@@ -56,7 +56,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(BackgroundColor):
-                    var backgroundColor = (Color)parameterValue.Value;
+                    var backgroundColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (backgroundColor != BackgroundColor)
                     {
                         BackgroundColor = backgroundColor;
@@ -64,7 +64,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(DisabledColor):
-                    var disabledColor = (Color)parameterValue.Value;
+                    var disabledColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (disabledColor != DisabledColor)
                     {
                         DisabledColor = disabledColor;
@@ -72,7 +72,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(ForegroundColor):
-                    var foregroundColor = (Color)parameterValue.Value;
+                    var foregroundColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (foregroundColor != ForegroundColor)
                     {
                         ForegroundColor = foregroundColor;
@@ -80,7 +80,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TabBarBackgroundColor):
-                    var tabBarBackgroundColor = (Color)parameterValue.Value;
+                    var tabBarBackgroundColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (tabBarBackgroundColor != TabBarBackgroundColor)
                     {
                         TabBarBackgroundColor = tabBarBackgroundColor;
@@ -88,7 +88,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TabBarDisabledColor):
-                    var tabBarDisabledColor = (Color)parameterValue.Value;
+                    var tabBarDisabledColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (tabBarDisabledColor != TabBarDisabledColor)
                     {
                         TabBarDisabledColor = tabBarDisabledColor;
@@ -96,7 +96,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TabBarForegroundColor):
-                    var tabBarForegroundColor = (Color)parameterValue.Value;
+                    var tabBarForegroundColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (tabBarForegroundColor != TabBarForegroundColor)
                     {
                         TabBarForegroundColor = tabBarForegroundColor;
@@ -104,7 +104,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TabBarTitleColor):
-                    var tabBarTitleColor = (Color)parameterValue.Value;
+                    var tabBarTitleColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (tabBarTitleColor != TabBarTitleColor)
                     {
                         TabBarTitleColor = tabBarTitleColor;
@@ -112,7 +112,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TabBarUnselectedColor):
-                    var tabBarUnselectedColor = (Color)parameterValue.Value;
+                    var tabBarUnselectedColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (tabBarUnselectedColor != TabBarUnselectedColor)
                     {
                         TabBarUnselectedColor = tabBarUnselectedColor;
@@ -120,7 +120,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(TitleColor):
-                    var titleColor = (Color)parameterValue.Value;
+                    var titleColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (titleColor != TitleColor)
                     {
                         TitleColor = titleColor;
@@ -128,7 +128,7 @@ public class ShellProperties : NativeControlComponentBase, IElementHandler, INon
                     }
                     break;
                 case nameof(UnselectedColor):
-                    var unselectedColor = (Color)parameterValue.Value;
+                    var unselectedColor = CastParameter<Color>(parameterValue.Value, parameterValue.Name);
                     if (unselectedColor != UnselectedColor)
                     {
                         UnselectedColor = unselectedColor;

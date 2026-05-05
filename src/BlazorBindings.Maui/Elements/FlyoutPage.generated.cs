@@ -43,26 +43,26 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(FlyoutLayoutBehavior):
                     if (!Equals(FlyoutLayoutBehavior, value))
                     {
-                        FlyoutLayoutBehavior = (MC.FlyoutLayoutBehavior?)value;
+                        FlyoutLayoutBehavior = CastParameter<MC.FlyoutLayoutBehavior?>(value, name);
                         NativeControl.FlyoutLayoutBehavior = FlyoutLayoutBehavior ?? (MC.FlyoutLayoutBehavior)MC.FlyoutPage.FlyoutLayoutBehaviorProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsGestureEnabled):
                     if (!Equals(IsGestureEnabled, value))
                     {
-                        IsGestureEnabled = (bool?)value;
+                        IsGestureEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsGestureEnabled = IsGestureEnabled ?? (bool)MC.FlyoutPage.IsGestureEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsPresented):
                     if (!Equals(IsPresented, value))
                     {
-                        IsPresented = (bool?)value;
+                        IsPresented = CastParameter<bool?>(value, name);
                         NativeControl.IsPresented = IsPresented ?? (bool)MC.FlyoutPage.IsPresentedProperty.DefaultValue;
                     }
                     break;
                 case nameof(Flyout):
-                    Flyout = (RenderFragment)value;
+                    Flyout = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(IsPresentedChanged):
                     if (!Equals(IsPresentedChanged, value))
@@ -74,7 +74,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(IsPresentedChanged, value);
                         }
 
-                        IsPresentedChanged = (EventCallback<bool>)value;
+                        IsPresentedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.IsPresentedChanged -= NativeControlIsPresentedChanged;
                         NativeControl.IsPresentedChanged += NativeControlIsPresentedChanged;
                     }

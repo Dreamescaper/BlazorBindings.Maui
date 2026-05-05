@@ -3,6 +3,26 @@
 
 @code {
 [Test]
+public void InvalidParameterValueThrowsDetailedException()
+{
+    var attributes = new Dictionary<string, object>
+    {
+        [nameof(BlazorBindings.Maui.Elements.View.HorizontalOptions)] = "invalid"
+    };
+
+    var ex = Assert.ThrowsAsync<ArgumentException>(async () => await Render<MC.View>(@<BoxView @attributes="attributes" />));
+
+    Assert.Multiple(() =>
+    {
+        Assert.That(ex.ParamName, Is.EqualTo(nameof(BlazorBindings.Maui.Elements.View.HorizontalOptions)));
+        Assert.That(ex.Message, Does.Contain(nameof(BlazorBindings.Maui.Elements.View.HorizontalOptions)));
+        Assert.That(ex.Message, Does.Contain("invalid"));
+        Assert.That(ex.Message, Does.Contain("Microsoft.Maui.Controls.LayoutOptions"));
+        Assert.That(ex.Message, Does.Contain("System.String"));
+    });
+}
+
+[Test]
 public async Task OnTapInvokesCallback()
 {
     bool tapped = false;

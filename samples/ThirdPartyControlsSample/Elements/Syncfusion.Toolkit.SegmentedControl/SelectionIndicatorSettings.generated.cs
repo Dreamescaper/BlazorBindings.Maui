@@ -85,40 +85,40 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(SelectionIndicatorPlacement):
                     if (!Equals(SelectionIndicatorPlacement, value))
                     {
-                        SelectionIndicatorPlacement = (SMTS.SelectionIndicatorPlacement?)value;
+                        SelectionIndicatorPlacement = CastParameter<SMTS.SelectionIndicatorPlacement?>(value, name);
                         NativeControl.SelectionIndicatorPlacement = SelectionIndicatorPlacement ?? (SMTS.SelectionIndicatorPlacement)SMTS.SelectionIndicatorSettings.SelectionIndicatorPlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
                     if (!Equals(Stroke, value))
                     {
-                        Stroke = (Color)value;
+                        Stroke = CastParameter<Color>(value, name);
                         NativeControl.Stroke = Stroke;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)SMTS.SelectionIndicatorSettings.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -54,7 +54,7 @@ internal class RenderFragmentPropertyInfo : GeneratedPropertyInfo
     public override string GetHandlePropertyCase()
     {
         return $@"                case nameof({ComponentPropertyName}):
-                    {ComponentPropertyName} = ({ComponentType})value;
+                    {ComponentPropertyName} = CastParameter<{ComponentType}>(value, name);
                     break;
 ";
     }

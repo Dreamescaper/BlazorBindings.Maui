@@ -36,7 +36,7 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                 case nameof(Ratio):
                     if (!Equals(Ratio, value))
                     {
-                        Ratio = (float?)value;
+                        Ratio = CastParameter<float?>(value, name);
                         NativeControl.Ratio = Ratio ?? (float)TMB.RatioDetent.RatioProperty.DefaultValue;
                     }
                     break;

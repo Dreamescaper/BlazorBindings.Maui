@@ -91,32 +91,32 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Accordion
                 case nameof(HeaderBackgroundColor):
                     if (!Equals(HeaderBackgroundColor, value))
                     {
-                        HeaderBackgroundColor = (Color)value;
+                        HeaderBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.HeaderBackground = HeaderBackgroundColor;
                     }
                     break;
                 case nameof(HeaderIconColor):
                     if (!Equals(HeaderIconColor, value))
                     {
-                        HeaderIconColor = (Color)value;
+                        HeaderIconColor = CastParameter<Color>(value, name);
                         NativeControl.HeaderIconColor = HeaderIconColor;
                     }
                     break;
                 case nameof(IsExpanded):
                     if (!Equals(IsExpanded, value))
                     {
-                        IsExpanded = (bool?)value;
+                        IsExpanded = CastParameter<bool?>(value, name);
                         NativeControl.IsExpanded = IsExpanded ?? (bool)SMTA.AccordionItem.IsExpandedProperty.DefaultValue;
                     }
                     break;
                 case nameof(Content):
-                    Content = (RenderFragment)value;
+                    Content = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Header):
-                    Header = (RenderFragment)value;
+                    Header = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderBackground):
-                    HeaderBackground = (RenderFragment)value;
+                    HeaderBackground = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -93,28 +93,28 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(GridLineType):
                     if (!Equals(GridLineType, value))
                     {
-                        GridLineType = (SMTC.PolarChartGridLineType?)value;
+                        GridLineType = CastParameter<SMTC.PolarChartGridLineType?>(value, name);
                         NativeControl.GridLineType = GridLineType ?? (SMTC.PolarChartGridLineType)SMTC.SfPolarChart.GridLineTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartAngle):
                     if (!Equals(StartAngle, value))
                     {
-                        StartAngle = (SMTC.ChartPolarAngle?)value;
+                        StartAngle = CastParameter<SMTC.ChartPolarAngle?>(value, name);
                         NativeControl.StartAngle = StartAngle ?? (SMTC.ChartPolarAngle)SMTC.SfPolarChart.StartAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(PaletteBrushes):
-                    PaletteBrushes = (RenderFragment)value;
+                    PaletteBrushes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PrimaryAxis):
-                    PrimaryAxis = (RenderFragment)value;
+                    PrimaryAxis = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SecondaryAxis):
-                    SecondaryAxis = (RenderFragment)value;
+                    SecondaryAxis = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

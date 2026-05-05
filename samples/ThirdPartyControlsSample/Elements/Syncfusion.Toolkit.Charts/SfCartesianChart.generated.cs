@@ -169,47 +169,47 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EnableSideBySideSeriesPlacement):
                     if (!Equals(EnableSideBySideSeriesPlacement, value))
                     {
-                        EnableSideBySideSeriesPlacement = (bool?)value;
+                        EnableSideBySideSeriesPlacement = CastParameter<bool?>(value, name);
                         NativeControl.EnableSideBySideSeriesPlacement = EnableSideBySideSeriesPlacement ?? (bool)SMTC.SfCartesianChart.EnableSideBySideSeriesPlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsTransposed):
                     if (!Equals(IsTransposed, value))
                     {
-                        IsTransposed = (bool?)value;
+                        IsTransposed = CastParameter<bool?>(value, name);
                         NativeControl.IsTransposed = IsTransposed ?? (bool)SMTC.SfCartesianChart.IsTransposedProperty.DefaultValue;
                     }
                     break;
                 case nameof(Annotations):
-                    Annotations = (RenderFragment)value;
+                    Annotations = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PaletteBrushes):
-                    PaletteBrushes = (RenderFragment)value;
+                    PaletteBrushes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionBehavior):
-                    SelectionBehavior = (RenderFragment)value;
+                    SelectionBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackballBehavior):
-                    TrackballBehavior = (RenderFragment)value;
+                    TrackballBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(XAxes):
-                    XAxes = (RenderFragment)value;
+                    XAxes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(YAxes):
-                    YAxes = (RenderFragment)value;
+                    YAxes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ZoomPanBehavior):
-                    ZoomPanBehavior = (RenderFragment)value;
+                    ZoomPanBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnTrackballCreated):
                     if (!Equals(OnTrackballCreated, value))
                     {
                         void NativeControlTrackballCreated(object sender, SMTC.TrackballEventArgs e) => InvokeEventCallback(OnTrackballCreated, e);
 
-                        OnTrackballCreated = (EventCallback<SMTC.TrackballEventArgs>)value;
+                        OnTrackballCreated = CastParameter<EventCallback<SMTC.TrackballEventArgs>>(value, name);
                         NativeControl.TrackballCreated -= NativeControlTrackballCreated;
                         NativeControl.TrackballCreated += NativeControlTrackballCreated;
                     }
@@ -219,7 +219,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlZoomStart(object sender, SMTC.ChartZoomStartEventArgs e) => InvokeEventCallback(OnZoomStart, e);
 
-                        OnZoomStart = (EventCallback<SMTC.ChartZoomStartEventArgs>)value;
+                        OnZoomStart = CastParameter<EventCallback<SMTC.ChartZoomStartEventArgs>>(value, name);
                         NativeControl.ZoomStart -= NativeControlZoomStart;
                         NativeControl.ZoomStart += NativeControlZoomStart;
                     }
@@ -229,7 +229,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlZoomDelta(object sender, SMTC.ChartZoomDeltaEventArgs e) => InvokeEventCallback(OnZoomDelta, e);
 
-                        OnZoomDelta = (EventCallback<SMTC.ChartZoomDeltaEventArgs>)value;
+                        OnZoomDelta = CastParameter<EventCallback<SMTC.ChartZoomDeltaEventArgs>>(value, name);
                         NativeControl.ZoomDelta -= NativeControlZoomDelta;
                         NativeControl.ZoomDelta += NativeControlZoomDelta;
                     }
@@ -239,7 +239,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlZoomEnd(object sender, SMTC.ChartZoomEventArgs e) => InvokeEventCallback(OnZoomEnd, e);
 
-                        OnZoomEnd = (EventCallback<SMTC.ChartZoomEventArgs>)value;
+                        OnZoomEnd = CastParameter<EventCallback<SMTC.ChartZoomEventArgs>>(value, name);
                         NativeControl.ZoomEnd -= NativeControlZoomEnd;
                         NativeControl.ZoomEnd += NativeControlZoomEnd;
                     }
@@ -249,7 +249,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlSelectionZoomStart(object sender, SMTC.ChartSelectionZoomEventArgs e) => InvokeEventCallback(OnSelectionZoomStart, e);
 
-                        OnSelectionZoomStart = (EventCallback<SMTC.ChartSelectionZoomEventArgs>)value;
+                        OnSelectionZoomStart = CastParameter<EventCallback<SMTC.ChartSelectionZoomEventArgs>>(value, name);
                         NativeControl.SelectionZoomStart -= NativeControlSelectionZoomStart;
                         NativeControl.SelectionZoomStart += NativeControlSelectionZoomStart;
                     }
@@ -259,7 +259,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlSelectionZoomDelta(object sender, SMTC.ChartSelectionZoomDeltaEventArgs e) => InvokeEventCallback(OnSelectionZoomDelta, e);
 
-                        OnSelectionZoomDelta = (EventCallback<SMTC.ChartSelectionZoomDeltaEventArgs>)value;
+                        OnSelectionZoomDelta = CastParameter<EventCallback<SMTC.ChartSelectionZoomDeltaEventArgs>>(value, name);
                         NativeControl.SelectionZoomDelta -= NativeControlSelectionZoomDelta;
                         NativeControl.SelectionZoomDelta += NativeControlSelectionZoomDelta;
                     }
@@ -269,7 +269,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlSelectionZoomEnd(object sender, SMTC.ChartSelectionZoomEventArgs e) => InvokeEventCallback(OnSelectionZoomEnd, e);
 
-                        OnSelectionZoomEnd = (EventCallback<SMTC.ChartSelectionZoomEventArgs>)value;
+                        OnSelectionZoomEnd = CastParameter<EventCallback<SMTC.ChartSelectionZoomEventArgs>>(value, name);
                         NativeControl.SelectionZoomEnd -= NativeControlSelectionZoomEnd;
                         NativeControl.SelectionZoomEnd += NativeControlSelectionZoomEnd;
                     }
@@ -279,7 +279,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlScroll(object sender, SMTC.ChartScrollEventArgs e) => InvokeEventCallback(OnScroll, e);
 
-                        OnScroll = (EventCallback<SMTC.ChartScrollEventArgs>)value;
+                        OnScroll = CastParameter<EventCallback<SMTC.ChartScrollEventArgs>>(value, name);
                         NativeControl.Scroll -= NativeControlScroll;
                         NativeControl.Scroll += NativeControlScroll;
                     }
@@ -289,7 +289,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlResetZoom(object sender, SMTC.ChartResetZoomEventArgs e) => InvokeEventCallback(OnResetZoom, e);
 
-                        OnResetZoom = (EventCallback<SMTC.ChartResetZoomEventArgs>)value;
+                        OnResetZoom = CastParameter<EventCallback<SMTC.ChartResetZoomEventArgs>>(value, name);
                         NativeControl.ResetZoom -= NativeControlResetZoom;
                         NativeControl.ResetZoom += NativeControlResetZoom;
                     }

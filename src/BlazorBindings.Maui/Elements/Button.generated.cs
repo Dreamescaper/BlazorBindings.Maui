@@ -111,105 +111,105 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(BorderColor):
                     if (!Equals(BorderColor, value))
                     {
-                        BorderColor = (Color)value;
+                        BorderColor = CastParameter<Color>(value, name);
                         NativeControl.BorderColor = BorderColor;
                     }
                     break;
                 case nameof(BorderWidth):
                     if (!Equals(BorderWidth, value))
                     {
-                        BorderWidth = (double?)value;
+                        BorderWidth = CastParameter<double?>(value, name);
                         NativeControl.BorderWidth = BorderWidth ?? (double)MC.Button.BorderWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(CharacterSpacing):
                     if (!Equals(CharacterSpacing, value))
                     {
-                        CharacterSpacing = (double?)value;
+                        CharacterSpacing = CastParameter<double?>(value, name);
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.Button.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContentLayout):
                     if (!Equals(ContentLayout, value))
                     {
-                        ContentLayout = (MC.Button.ButtonContentLayout)value;
+                        ContentLayout = CastParameter<MC.Button.ButtonContentLayout>(value, name);
                         NativeControl.ContentLayout = ContentLayout;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (int?)value;
+                        CornerRadius = CastParameter<int?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (int)MC.Button.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.Button.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.Button.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)MC.Button.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSource):
                     if (!Equals(ImageSource, value))
                     {
-                        ImageSource = (MC.ImageSource)value;
+                        ImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ImageSource = ImageSource;
                     }
                     break;
                 case nameof(LineBreakMode):
                     if (!Equals(LineBreakMode, value))
                     {
-                        LineBreakMode = (LineBreakMode?)value;
+                        LineBreakMode = CastParameter<LineBreakMode?>(value, name);
                         NativeControl.LineBreakMode = LineBreakMode ?? (LineBreakMode)MC.Button.LineBreakModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MC.Button.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(TextTransform):
                     if (!Equals(TextTransform, value))
                     {
-                        TextTransform = (TextTransform?)value;
+                        TextTransform = CastParameter<TextTransform?>(value, name);
                         NativeControl.TextTransform = TextTransform ?? (TextTransform)MC.Button.TextTransformProperty.DefaultValue;
                     }
                     break;
@@ -218,7 +218,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlClicked(object sender, EventArgs e) => InvokeEventCallback(OnClick);
 
-                        OnClick = (EventCallback)value;
+                        OnClick = CastParameter<EventCallback>(value, name);
                         NativeControl.Clicked -= NativeControlClicked;
                         NativeControl.Clicked += NativeControlClicked;
                     }
@@ -228,7 +228,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPressed(object sender, EventArgs e) => InvokeEventCallback(OnPress);
 
-                        OnPress = (EventCallback)value;
+                        OnPress = CastParameter<EventCallback>(value, name);
                         NativeControl.Pressed -= NativeControlPressed;
                         NativeControl.Pressed += NativeControlPressed;
                     }
@@ -238,7 +238,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlReleased(object sender, EventArgs e) => InvokeEventCallback(OnRelease);
 
-                        OnRelease = (EventCallback)value;
+                        OnRelease = CastParameter<EventCallback>(value, name);
                         NativeControl.Released -= NativeControlReleased;
                         NativeControl.Released += NativeControlReleased;
                     }

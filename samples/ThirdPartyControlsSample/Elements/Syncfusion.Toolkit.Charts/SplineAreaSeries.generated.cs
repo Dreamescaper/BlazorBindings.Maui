@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTC.SplineType?)value;
+                        Type = CastParameter<SMTC.SplineType?>(value, name);
                         NativeControl.Type = Type ?? (SMTC.SplineType)SMTC.SplineAreaSeries.TypeProperty.DefaultValue;
                     }
                     break;

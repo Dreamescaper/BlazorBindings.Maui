@@ -54,28 +54,28 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IsToggled):
                     if (!Equals(IsToggled, value))
                     {
-                        IsToggled = (bool?)value;
+                        IsToggled = CastParameter<bool?>(value, name);
                         NativeControl.IsToggled = IsToggled ?? (bool)MC.Switch.IsToggledProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffColor):
                     if (!Equals(OffColor, value))
                     {
-                        OffColor = (Color)value;
+                        OffColor = CastParameter<Color>(value, name);
                         NativeControl.OffColor = OffColor;
                     }
                     break;
                 case nameof(OnColor):
                     if (!Equals(OnColor, value))
                     {
-                        OnColor = (Color)value;
+                        OnColor = CastParameter<Color>(value, name);
                         NativeControl.OnColor = OnColor;
                     }
                     break;
                 case nameof(ThumbColor):
                     if (!Equals(ThumbColor, value))
                     {
-                        ThumbColor = (Color)value;
+                        ThumbColor = CastParameter<Color>(value, name);
                         NativeControl.ThumbColor = ThumbColor;
                     }
                     break;
@@ -89,7 +89,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(IsToggledChanged, value);
                         }
 
-                        IsToggledChanged = (EventCallback<bool>)value;
+                        IsToggledChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.Toggled -= NativeControlToggled;
                         NativeControl.Toggled += NativeControlToggled;
                     }

@@ -68,66 +68,66 @@ namespace BlazorBindings.Maui.Elements.XCalendar
                 case nameof(DayNameHorizontalSpacing):
                     if (!Equals(DayNameHorizontalSpacing, value))
                     {
-                        DayNameHorizontalSpacing = (double?)value;
+                        DayNameHorizontalSpacing = CastParameter<double?>(value, name);
                         NativeControl.DayNameHorizontalSpacing = DayNameHorizontalSpacing ?? (double)XMV.CalendarView.DayNameHorizontalSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(DayNamesHeightRequest):
                     if (!Equals(DayNamesHeightRequest, value))
                     {
-                        DayNamesHeightRequest = (double?)value;
+                        DayNamesHeightRequest = CastParameter<double?>(value, name);
                         NativeControl.DayNamesHeightRequest = DayNamesHeightRequest ?? (double)XMV.CalendarView.DayNamesHeightRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(DayNameVerticalSpacing):
                     if (!Equals(DayNameVerticalSpacing, value))
                     {
-                        DayNameVerticalSpacing = (double?)value;
+                        DayNameVerticalSpacing = CastParameter<double?>(value, name);
                         NativeControl.DayNameVerticalSpacing = DayNameVerticalSpacing ?? (double)XMV.CalendarView.DayNameVerticalSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Days):
                     if (!Equals(Days, value))
                     {
-                        Days = (IEnumerable<object>)value;
+                        Days = CastParameter<IEnumerable<object>>(value, name);
                         NativeControl.Days = Days;
                     }
                     break;
                 case nameof(DaysOfWeek):
                     if (!Equals(DaysOfWeek, value))
                     {
-                        DaysOfWeek = (IList<DayOfWeek>)value;
+                        DaysOfWeek = CastParameter<IList<DayOfWeek>>(value, name);
                         NativeControl.DaysOfWeek = DaysOfWeek;
                     }
                     break;
                 case nameof(DaysViewHeightRequest):
                     if (!Equals(DaysViewHeightRequest, value))
                     {
-                        DaysViewHeightRequest = (double?)value;
+                        DaysViewHeightRequest = CastParameter<double?>(value, name);
                         NativeControl.DaysViewHeightRequest = DaysViewHeightRequest ?? (double)XMV.CalendarView.DaysViewHeightRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(NavigatedDate):
                     if (!Equals(NavigatedDate, value))
                     {
-                        NavigatedDate = (DateTime?)value;
+                        NavigatedDate = CastParameter<DateTime?>(value, name);
                         NativeControl.NavigatedDate = NavigatedDate ?? (DateTime)XMV.CalendarView.NavigatedDateProperty.DefaultValue;
                     }
                     break;
                 case nameof(DayNamesTemplate):
-                    DayNamesTemplate = (RenderFragment)value;
+                    DayNamesTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DayNameTemplate):
-                    DayNameTemplate = (RenderFragment<global::XCalendar.Core.Interfaces.ICalendarDay>)value;
+                    DayNameTemplate = CastParameter<RenderFragment<global::XCalendar.Core.Interfaces.ICalendarDay>>(value, name);
                     break;
                 case nameof(DaysViewTemplate):
-                    DaysViewTemplate = (RenderFragment)value;
+                    DaysViewTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DayTemplate):
-                    DayTemplate = (RenderFragment<global::XCalendar.Core.Interfaces.ICalendarDay>)value;
+                    DayTemplate = CastParameter<RenderFragment<global::XCalendar.Core.Interfaces.ICalendarDay>>(value, name);
                     break;
                 case nameof(NavigationViewTemplate):
-                    NavigationViewTemplate = (RenderFragment)value;
+                    NavigationViewTemplate = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

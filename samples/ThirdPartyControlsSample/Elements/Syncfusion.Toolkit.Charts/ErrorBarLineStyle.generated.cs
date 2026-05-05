@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(StrokeCap):
                     if (!Equals(StrokeCap, value))
                     {
-                        StrokeCap = (SMTC.ErrorBarStrokeCap?)value;
+                        StrokeCap = CastParameter<SMTC.ErrorBarStrokeCap?>(value, name);
                         NativeControl.StrokeCap = StrokeCap ?? (SMTC.ErrorBarStrokeCap)SMTC.ErrorBarLineStyle.StrokeCapProperty.DefaultValue;
                     }
                     break;

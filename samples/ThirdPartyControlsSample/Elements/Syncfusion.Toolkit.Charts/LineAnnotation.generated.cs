@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(LineCap):
                     if (!Equals(LineCap, value))
                     {
-                        LineCap = (SMTC.ChartLineCap?)value;
+                        LineCap = CastParameter<SMTC.ChartLineCap?>(value, name);
                         NativeControl.LineCap = LineCap ?? (SMTC.ChartLineCap)SMTC.LineAnnotation.LineCapProperty.DefaultValue;
                     }
                     break;

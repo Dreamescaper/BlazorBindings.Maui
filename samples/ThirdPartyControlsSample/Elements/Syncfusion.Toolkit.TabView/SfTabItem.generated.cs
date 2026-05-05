@@ -117,75 +117,75 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)SMTT.SfTabItem.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)SMTT.SfTabItem.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)SMTT.SfTabItem.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Header):
                     if (!Equals(Header, value))
                     {
-                        Header = (string)value;
+                        Header = CastParameter<string>(value, name);
                         NativeControl.Header = Header;
                     }
                     break;
                 case nameof(ImagePosition):
                     if (!Equals(ImagePosition, value))
                     {
-                        ImagePosition = (SMTT.TabImagePosition?)value;
+                        ImagePosition = CastParameter<SMTT.TabImagePosition?>(value, name);
                         NativeControl.ImagePosition = ImagePosition ?? (SMTT.TabImagePosition)SMTT.SfTabItem.ImagePositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSize):
                     if (!Equals(ImageSize, value))
                     {
-                        ImageSize = (double?)value;
+                        ImageSize = CastParameter<double?>(value, name);
                         NativeControl.ImageSize = ImageSize ?? (double)SMTT.SfTabItem.ImageSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSource):
                     if (!Equals(ImageSource, value))
                     {
-                        ImageSource = (MC.ImageSource)value;
+                        ImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ImageSource = ImageSource;
                     }
                     break;
                 case nameof(ImageTextSpacing):
                     if (!Equals(ImageTextSpacing, value))
                     {
-                        ImageTextSpacing = (double?)value;
+                        ImageTextSpacing = CastParameter<double?>(value, name);
                         NativeControl.ImageTextSpacing = ImageTextSpacing ?? (double)SMTT.SfTabItem.ImageTextSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(HeaderContent):
-                    HeaderContent = (RenderFragment)value;
+                    HeaderContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

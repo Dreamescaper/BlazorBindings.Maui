@@ -41,14 +41,14 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnCollectionChanged):
                     if (!Equals(OnCollectionChanged, value))
                     {
                         void NativeControlCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => InvokeEventCallback(OnCollectionChanged, e);
 
-                        OnCollectionChanged = (EventCallback<NotifyCollectionChangedEventArgs>)value;
+                        OnCollectionChanged = CastParameter<EventCallback<NotifyCollectionChangedEventArgs>>(value, name);
                         NativeControl.CollectionChanged -= NativeControlCollectionChanged;
                         NativeControl.CollectionChanged += NativeControlCollectionChanged;
                     }

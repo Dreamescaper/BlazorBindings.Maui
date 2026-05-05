@@ -45,21 +45,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(AutoSize):
                     if (!Equals(AutoSize, value))
                     {
-                        AutoSize = (MC.EditorAutoSizeOption?)value;
+                        AutoSize = CastParameter<MC.EditorAutoSizeOption?>(value, name);
                         NativeControl.AutoSize = AutoSize ?? (MC.EditorAutoSizeOption)MC.Editor.AutoSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.Editor.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)MC.Editor.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
@@ -68,7 +68,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlCompleted(object sender, EventArgs e) => InvokeEventCallback(OnCompleted);
 
-                        OnCompleted = (EventCallback)value;
+                        OnCompleted = CastParameter<EventCallback>(value, name);
                         NativeControl.Completed -= NativeControlCompleted;
                         NativeControl.Completed += NativeControlCompleted;
                     }

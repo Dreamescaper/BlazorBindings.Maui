@@ -79,54 +79,54 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CascadeInputTransparent):
                     if (!Equals(CascadeInputTransparent, value))
                     {
-                        CascadeInputTransparent = (bool?)value;
+                        CascadeInputTransparent = CastParameter<bool?>(value, name);
                         NativeControl.CascadeInputTransparent = CascadeInputTransparent ?? (bool)MC.ScrollView.CascadeInputTransparentProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalScrollBarVisibility):
                     if (!Equals(HorizontalScrollBarVisibility, value))
                     {
-                        HorizontalScrollBarVisibility = (ScrollBarVisibility?)value;
+                        HorizontalScrollBarVisibility = CastParameter<ScrollBarVisibility?>(value, name);
                         NativeControl.HorizontalScrollBarVisibility = HorizontalScrollBarVisibility ?? (ScrollBarVisibility)MC.ScrollView.HorizontalScrollBarVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(Orientation):
                     if (!Equals(Orientation, value))
                     {
-                        Orientation = (ScrollOrientation?)value;
+                        Orientation = CastParameter<ScrollOrientation?>(value, name);
                         NativeControl.Orientation = Orientation ?? (ScrollOrientation)MC.ScrollView.OrientationProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MC.ScrollView.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(SafeAreaEdges):
                     if (!Equals(SafeAreaEdges, value))
                     {
-                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        SafeAreaEdges = CastParameter<SafeAreaEdges?>(value, name);
                         NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.ScrollView.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalScrollBarVisibility):
                     if (!Equals(VerticalScrollBarVisibility, value))
                     {
-                        VerticalScrollBarVisibility = (ScrollBarVisibility?)value;
+                        VerticalScrollBarVisibility = CastParameter<ScrollBarVisibility?>(value, name);
                         NativeControl.VerticalScrollBarVisibility = VerticalScrollBarVisibility ?? (ScrollBarVisibility)MC.ScrollView.VerticalScrollBarVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnScrolled):
                     if (!Equals(OnScrolled, value))
                     {
                         void NativeControlScrolled(object sender, MC.ScrolledEventArgs e) => InvokeEventCallback(OnScrolled, e);
 
-                        OnScrolled = (EventCallback<MC.ScrolledEventArgs>)value;
+                        OnScrolled = CastParameter<EventCallback<MC.ScrolledEventArgs>>(value, name);
                         NativeControl.Scrolled -= NativeControlScrolled;
                         NativeControl.Scrolled += NativeControlScrolled;
                     }

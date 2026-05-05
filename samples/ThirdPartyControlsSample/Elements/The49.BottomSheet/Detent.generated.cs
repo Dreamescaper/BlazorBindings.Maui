@@ -36,14 +36,14 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                 case nameof(IsDefault):
                     if (!Equals(IsDefault, value))
                     {
-                        IsDefault = (bool?)value;
+                        IsDefault = CastParameter<bool?>(value, name);
                         NativeControl.IsDefault = IsDefault ?? (bool)TMB.Detent.IsDefaultProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)TMB.Detent.IsEnabledProperty.DefaultValue;
                     }
                     break;

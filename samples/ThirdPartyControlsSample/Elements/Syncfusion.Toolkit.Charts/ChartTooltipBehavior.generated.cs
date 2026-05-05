@@ -100,54 +100,54 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(Duration):
                     if (!Equals(Duration, value))
                     {
-                        Duration = (int?)value;
+                        Duration = CastParameter<int?>(value, name);
                         NativeControl.Duration = Duration ?? (int)SMTC.ChartTooltipBehavior.DurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)SMTC.ChartTooltipBehavior.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)SMTC.ChartTooltipBehavior.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Margin):
                     if (!Equals(Margin, value))
                     {
-                        Margin = (Thickness?)value;
+                        Margin = CastParameter<Thickness?>(value, name);
                         NativeControl.Margin = Margin ?? (Thickness)SMTC.ChartTooltipBehavior.MarginProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

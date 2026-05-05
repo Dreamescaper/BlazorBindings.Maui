@@ -77,39 +77,39 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                 case nameof(NegativePointsFillColor):
                     if (!Equals(NegativePointsFillColor, value))
                     {
-                        NegativePointsFillColor = (Color)value;
+                        NegativePointsFillColor = CastParameter<Color>(value, name);
                         NativeControl.NegativePointsFill = NegativePointsFillColor;
                     }
                     break;
                 case nameof(NeutralPointFillColor):
                     if (!Equals(NeutralPointFillColor, value))
                     {
-                        NeutralPointFillColor = (Color)value;
+                        NeutralPointFillColor = CastParameter<Color>(value, name);
                         NativeControl.NeutralPointFill = NeutralPointFillColor;
                     }
                     break;
                 case nameof(PositivePointsFillColor):
                     if (!Equals(PositivePointsFillColor, value))
                     {
-                        PositivePointsFillColor = (Color)value;
+                        PositivePointsFillColor = CastParameter<Color>(value, name);
                         NativeControl.PositivePointsFill = PositivePointsFillColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTS.SfSparkWinLossChart.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(NegativePointsFill):
-                    NegativePointsFill = (RenderFragment)value;
+                    NegativePointsFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(NeutralPointFill):
-                    NeutralPointFill = (RenderFragment)value;
+                    NeutralPointFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PositivePointsFill):
-                    PositivePointsFill = (RenderFragment)value;
+                    PositivePointsFill = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

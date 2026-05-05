@@ -73,35 +73,35 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Angle):
                     if (!Equals(Angle, value))
                     {
-                        Angle = (double?)value;
+                        Angle = CastParameter<double?>(value, name);
                         NativeControl.Angle = Angle ?? (double)SMTC.ChartPlotBandLabelStyle.AngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (SMTC.ChartLabelAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<SMTC.ChartLabelAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (SMTC.ChartLabelAlignment)SMTC.ChartPlotBandLabelStyle.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffsetX):
                     if (!Equals(OffsetX, value))
                     {
-                        OffsetX = (double?)value;
+                        OffsetX = CastParameter<double?>(value, name);
                         NativeControl.OffsetX = OffsetX ?? (double)SMTC.ChartPlotBandLabelStyle.OffsetXProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffsetY):
                     if (!Equals(OffsetY, value))
                     {
-                        OffsetY = (double?)value;
+                        OffsetY = CastParameter<double?>(value, name);
                         NativeControl.OffsetY = OffsetY ?? (double)SMTC.ChartPlotBandLabelStyle.OffsetYProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (SMTC.ChartLabelAlignment?)value;
+                        VerticalTextAlignment = CastParameter<SMTC.ChartLabelAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (SMTC.ChartLabelAlignment)SMTC.ChartPlotBandLabelStyle.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;

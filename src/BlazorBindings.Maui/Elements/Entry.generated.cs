@@ -62,35 +62,35 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(ClearButtonVisibility):
                     if (!Equals(ClearButtonVisibility, value))
                     {
-                        ClearButtonVisibility = (ClearButtonVisibility?)value;
+                        ClearButtonVisibility = CastParameter<ClearButtonVisibility?>(value, name);
                         NativeControl.ClearButtonVisibility = ClearButtonVisibility ?? (ClearButtonVisibility)MC.Entry.ClearButtonVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.Entry.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsPassword):
                     if (!Equals(IsPassword, value))
                     {
-                        IsPassword = (bool?)value;
+                        IsPassword = CastParameter<bool?>(value, name);
                         NativeControl.IsPassword = IsPassword ?? (bool)MC.Entry.IsPasswordProperty.DefaultValue;
                     }
                     break;
                 case nameof(ReturnType):
                     if (!Equals(ReturnType, value))
                     {
-                        ReturnType = (ReturnType?)value;
+                        ReturnType = CastParameter<ReturnType?>(value, name);
                         NativeControl.ReturnType = ReturnType ?? (ReturnType)MC.Entry.ReturnTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)MC.Entry.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
@@ -99,7 +99,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlCompleted(object sender, EventArgs e) => InvokeEventCallback(OnCompleted);
 
-                        OnCompleted = (EventCallback)value;
+                        OnCompleted = CastParameter<EventCallback>(value, name);
                         NativeControl.Completed -= NativeControlCompleted;
                         NativeControl.Completed += NativeControlCompleted;
                     }

@@ -60,7 +60,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Buttons):
                     if (!Equals(Buttons, value))
                     {
-                        Buttons = (MC.ButtonsMask?)value;
+                        Buttons = CastParameter<MC.ButtonsMask?>(value, name);
                         NativeControl.Buttons = Buttons ?? (MC.ButtonsMask)MC.PointerGestureRecognizer.ButtonsProperty.DefaultValue;
                     }
                     break;
@@ -69,7 +69,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPointerEntered(object sender, MC.PointerEventArgs e) => InvokeEventCallback(OnPointerEntered, e);
 
-                        OnPointerEntered = (EventCallback<MC.PointerEventArgs>)value;
+                        OnPointerEntered = CastParameter<EventCallback<MC.PointerEventArgs>>(value, name);
                         NativeControl.PointerEntered -= NativeControlPointerEntered;
                         NativeControl.PointerEntered += NativeControlPointerEntered;
                     }
@@ -79,7 +79,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPointerExited(object sender, MC.PointerEventArgs e) => InvokeEventCallback(OnPointerExited, e);
 
-                        OnPointerExited = (EventCallback<MC.PointerEventArgs>)value;
+                        OnPointerExited = CastParameter<EventCallback<MC.PointerEventArgs>>(value, name);
                         NativeControl.PointerExited -= NativeControlPointerExited;
                         NativeControl.PointerExited += NativeControlPointerExited;
                     }
@@ -89,7 +89,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPointerMoved(object sender, MC.PointerEventArgs e) => InvokeEventCallback(OnPointerMoved, e);
 
-                        OnPointerMoved = (EventCallback<MC.PointerEventArgs>)value;
+                        OnPointerMoved = CastParameter<EventCallback<MC.PointerEventArgs>>(value, name);
                         NativeControl.PointerMoved -= NativeControlPointerMoved;
                         NativeControl.PointerMoved += NativeControlPointerMoved;
                     }
@@ -99,7 +99,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPointerPressed(object sender, MC.PointerEventArgs e) => InvokeEventCallback(OnPointerPressed, e);
 
-                        OnPointerPressed = (EventCallback<MC.PointerEventArgs>)value;
+                        OnPointerPressed = CastParameter<EventCallback<MC.PointerEventArgs>>(value, name);
                         NativeControl.PointerPressed -= NativeControlPointerPressed;
                         NativeControl.PointerPressed += NativeControlPointerPressed;
                     }
@@ -109,7 +109,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPointerReleased(object sender, MC.PointerEventArgs e) => InvokeEventCallback(OnPointerReleased, e);
 
-                        OnPointerReleased = (EventCallback<MC.PointerEventArgs>)value;
+                        OnPointerReleased = CastParameter<EventCallback<MC.PointerEventArgs>>(value, name);
                         NativeControl.PointerReleased -= NativeControlPointerReleased;
                         NativeControl.PointerReleased += NativeControlPointerReleased;
                     }

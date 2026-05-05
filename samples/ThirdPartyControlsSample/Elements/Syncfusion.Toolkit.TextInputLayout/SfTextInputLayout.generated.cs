@@ -225,195 +225,195 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TextInputLayout
                 case nameof(CharMaxLength):
                     if (!Equals(CharMaxLength, value))
                     {
-                        CharMaxLength = (int?)value;
+                        CharMaxLength = CastParameter<int?>(value, name);
                         NativeControl.CharMaxLength = CharMaxLength ?? (int)SMTT.SfTextInputLayout.CharMaxLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContainerBackgroundColor):
                     if (!Equals(ContainerBackgroundColor, value))
                     {
-                        ContainerBackgroundColor = (Color)value;
+                        ContainerBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.ContainerBackground = ContainerBackgroundColor;
                     }
                     break;
                 case nameof(ContainerType):
                     if (!Equals(ContainerType, value))
                     {
-                        ContainerType = (SMTT.ContainerType?)value;
+                        ContainerType = CastParameter<SMTT.ContainerType?>(value, name);
                         NativeControl.ContainerType = ContainerType ?? (SMTT.ContainerType)SMTT.SfTextInputLayout.ContainerTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableFloating):
                     if (!Equals(EnableFloating, value))
                     {
-                        EnableFloating = (bool?)value;
+                        EnableFloating = CastParameter<bool?>(value, name);
                         NativeControl.EnableFloating = EnableFloating ?? (bool)SMTT.SfTextInputLayout.EnableFloatingProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableHintAnimation):
                     if (!Equals(EnableHintAnimation, value))
                     {
-                        EnableHintAnimation = (bool?)value;
+                        EnableHintAnimation = CastParameter<bool?>(value, name);
                         NativeControl.EnableHintAnimation = EnableHintAnimation ?? (bool)SMTT.SfTextInputLayout.EnableHintAnimationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnablePasswordVisibilityToggle):
                     if (!Equals(EnablePasswordVisibilityToggle, value))
                     {
-                        EnablePasswordVisibilityToggle = (bool?)value;
+                        EnablePasswordVisibilityToggle = CastParameter<bool?>(value, name);
                         NativeControl.EnablePasswordVisibilityToggle = EnablePasswordVisibilityToggle ?? (bool)SMTT.SfTextInputLayout.EnablePasswordVisibilityToggleProperty.DefaultValue;
                     }
                     break;
                 case nameof(ErrorText):
                     if (!Equals(ErrorText, value))
                     {
-                        ErrorText = (string)value;
+                        ErrorText = CastParameter<string>(value, name);
                         NativeControl.ErrorText = ErrorText;
                     }
                     break;
                 case nameof(FocusedStrokeThickness):
                     if (!Equals(FocusedStrokeThickness, value))
                     {
-                        FocusedStrokeThickness = (double?)value;
+                        FocusedStrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.FocusedStrokeThickness = FocusedStrokeThickness ?? (double)SMTT.SfTextInputLayout.FocusedStrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasError):
                     if (!Equals(HasError, value))
                     {
-                        HasError = (bool?)value;
+                        HasError = CastParameter<bool?>(value, name);
                         NativeControl.HasError = HasError ?? (bool)SMTT.SfTextInputLayout.HasErrorProperty.DefaultValue;
                     }
                     break;
                 case nameof(HelperText):
                     if (!Equals(HelperText, value))
                     {
-                        HelperText = (string)value;
+                        HelperText = CastParameter<string>(value, name);
                         NativeControl.HelperText = HelperText;
                     }
                     break;
                 case nameof(Hint):
                     if (!Equals(Hint, value))
                     {
-                        Hint = (string)value;
+                        Hint = CastParameter<string>(value, name);
                         NativeControl.Hint = Hint;
                     }
                     break;
                 case nameof(InputViewPadding):
                     if (!Equals(InputViewPadding, value))
                     {
-                        InputViewPadding = (Thickness?)value;
+                        InputViewPadding = CastParameter<Thickness?>(value, name);
                         NativeControl.InputViewPadding = InputViewPadding ?? (Thickness)SMTT.SfTextInputLayout.InputViewPaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)SMTT.SfTextInputLayout.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsHintAlwaysFloated):
                     if (!Equals(IsHintAlwaysFloated, value))
                     {
-                        IsHintAlwaysFloated = (bool?)value;
+                        IsHintAlwaysFloated = CastParameter<bool?>(value, name);
                         NativeControl.IsHintAlwaysFloated = IsHintAlwaysFloated ?? (bool)SMTT.SfTextInputLayout.IsHintAlwaysFloatedProperty.DefaultValue;
                     }
                     break;
                 case nameof(LeadingViewPosition):
                     if (!Equals(LeadingViewPosition, value))
                     {
-                        LeadingViewPosition = (SMTT.ViewPosition?)value;
+                        LeadingViewPosition = CastParameter<SMTT.ViewPosition?>(value, name);
                         NativeControl.LeadingViewPosition = LeadingViewPosition ?? (SMTT.ViewPosition)SMTT.SfTextInputLayout.LeadingViewPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(OutlineCornerRadius):
                     if (!Equals(OutlineCornerRadius, value))
                     {
-                        OutlineCornerRadius = (double?)value;
+                        OutlineCornerRadius = CastParameter<double?>(value, name);
                         NativeControl.OutlineCornerRadius = OutlineCornerRadius ?? (double)SMTT.SfTextInputLayout.OutlineCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(ReserveSpaceForAssistiveLabels):
                     if (!Equals(ReserveSpaceForAssistiveLabels, value))
                     {
-                        ReserveSpaceForAssistiveLabels = (bool?)value;
+                        ReserveSpaceForAssistiveLabels = CastParameter<bool?>(value, name);
                         NativeControl.ReserveSpaceForAssistiveLabels = ReserveSpaceForAssistiveLabels ?? (bool)SMTT.SfTextInputLayout.ReserveSpaceForAssistiveLabelsProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowHelperText):
                     if (!Equals(ShowHelperText, value))
                     {
-                        ShowHelperText = (bool?)value;
+                        ShowHelperText = CastParameter<bool?>(value, name);
                         NativeControl.ShowHelperText = ShowHelperText ?? (bool)SMTT.SfTextInputLayout.ShowHelperTextProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowHint):
                     if (!Equals(ShowHint, value))
                     {
-                        ShowHint = (bool?)value;
+                        ShowHint = CastParameter<bool?>(value, name);
                         NativeControl.ShowHint = ShowHint ?? (bool)SMTT.SfTextInputLayout.ShowHintProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowLeadingView):
                     if (!Equals(ShowLeadingView, value))
                     {
-                        ShowLeadingView = (bool?)value;
+                        ShowLeadingView = CastParameter<bool?>(value, name);
                         NativeControl.ShowLeadingView = ShowLeadingView ?? (bool)SMTT.SfTextInputLayout.ShowLeadingViewProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowTrailingView):
                     if (!Equals(ShowTrailingView, value))
                     {
-                        ShowTrailingView = (bool?)value;
+                        ShowTrailingView = CastParameter<bool?>(value, name);
                         NativeControl.ShowTrailingView = ShowTrailingView ?? (bool)SMTT.SfTextInputLayout.ShowTrailingViewProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
                     if (!Equals(Stroke, value))
                     {
-                        Stroke = (Color)value;
+                        Stroke = CastParameter<Color>(value, name);
                         NativeControl.Stroke = Stroke;
                     }
                     break;
                 case nameof(TrailingViewPosition):
                     if (!Equals(TrailingViewPosition, value))
                     {
-                        TrailingViewPosition = (SMTT.ViewPosition?)value;
+                        TrailingViewPosition = CastParameter<SMTT.ViewPosition?>(value, name);
                         NativeControl.TrailingViewPosition = TrailingViewPosition ?? (SMTT.ViewPosition)SMTT.SfTextInputLayout.TrailingViewPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(UnfocusedStrokeThickness):
                     if (!Equals(UnfocusedStrokeThickness, value))
                     {
-                        UnfocusedStrokeThickness = (double?)value;
+                        UnfocusedStrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.UnfocusedStrokeThickness = UnfocusedStrokeThickness ?? (double)SMTT.SfTextInputLayout.UnfocusedStrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContainerBackground):
-                    ContainerBackground = (RenderFragment)value;
+                    ContainerBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ErrorLabelStyle):
-                    ErrorLabelStyle = (RenderFragment)value;
+                    ErrorLabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HelperLabelStyle):
-                    HelperLabelStyle = (RenderFragment)value;
+                    HelperLabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HintLabelStyle):
-                    HintLabelStyle = (RenderFragment)value;
+                    HintLabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LeadingView):
-                    LeadingView = (RenderFragment)value;
+                    LeadingView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrailingView):
-                    TrailingView = (RenderFragment)value;
+                    TrailingView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnPasswordVisibilityToggled):
                     if (!Equals(OnPasswordVisibilityToggled, value))
                     {
                         void NativeControlPasswordVisibilityToggled(object sender, SMTT.PasswordVisibilityToggledEventArgs e) => InvokeEventCallback(OnPasswordVisibilityToggled, e);
 
-                        OnPasswordVisibilityToggled = (EventCallback<SMTT.PasswordVisibilityToggledEventArgs>)value;
+                        OnPasswordVisibilityToggled = CastParameter<EventCallback<SMTT.PasswordVisibilityToggledEventArgs>>(value, name);
                         NativeControl.PasswordVisibilityToggled -= NativeControlPasswordVisibilityToggled;
                         NativeControl.PasswordVisibilityToggled += NativeControlPasswordVisibilityToggled;
                     }

@@ -51,54 +51,54 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (double?)value;
+                        CornerRadius = CastParameter<double?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (double)TMB.BottomSheet.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(HandleColor):
                     if (!Equals(HandleColor, value))
                     {
-                        HandleColor = (Color)value;
+                        HandleColor = CastParameter<Color>(value, name);
                         NativeControl.HandleColor = HandleColor;
                     }
                     break;
                 case nameof(HasBackdrop):
                     if (!Equals(HasBackdrop, value))
                     {
-                        HasBackdrop = (bool?)value;
+                        HasBackdrop = CastParameter<bool?>(value, name);
                         NativeControl.HasBackdrop = HasBackdrop ?? (bool)TMB.BottomSheet.HasBackdropProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasHandle):
                     if (!Equals(HasHandle, value))
                     {
-                        HasHandle = (bool?)value;
+                        HasHandle = CastParameter<bool?>(value, name);
                         NativeControl.HasHandle = HasHandle ?? (bool)TMB.BottomSheet.HasHandleProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsCancelable):
                     if (!Equals(IsCancelable, value))
                     {
-                        IsCancelable = (bool?)value;
+                        IsCancelable = CastParameter<bool?>(value, name);
                         NativeControl.IsCancelable = IsCancelable ?? (bool)TMB.BottomSheet.IsCancelableProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedDetent):
                     if (!Equals(SelectedDetent, value))
                     {
-                        SelectedDetent = (TMB.Detent)value;
+                        SelectedDetent = CastParameter<TMB.Detent>(value, name);
                         NativeControl.SelectedDetent = SelectedDetent;
                     }
                     break;
                 case nameof(Detents):
-                    Detents = (RenderFragment)value;
+                    Detents = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnDismissed):
                     if (!Equals(OnDismissed, value))
                     {
                         void NativeControlDismissed(object sender, TMB.DismissOrigin e) => InvokeEventCallback(OnDismissed, e);
 
-                        OnDismissed = (EventCallback<TMB.DismissOrigin>)value;
+                        OnDismissed = CastParameter<EventCallback<TMB.DismissOrigin>>(value, name);
                         NativeControl.Dismissed -= NativeControlDismissed;
                         NativeControl.Dismissed += NativeControlDismissed;
                     }
@@ -108,7 +108,7 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                     {
                         void NativeControlShowing(object sender, EventArgs e) => InvokeEventCallback(OnShowing);
 
-                        OnShowing = (EventCallback)value;
+                        OnShowing = CastParameter<EventCallback>(value, name);
                         NativeControl.Showing -= NativeControlShowing;
                         NativeControl.Showing += NativeControlShowing;
                     }
@@ -118,7 +118,7 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                     {
                         void NativeControlShown(object sender, EventArgs e) => InvokeEventCallback(OnShown);
 
-                        OnShown = (EventCallback)value;
+                        OnShown = CastParameter<EventCallback>(value, name);
                         NativeControl.Shown -= NativeControlShown;
                         NativeControl.Shown += NativeControlShown;
                     }

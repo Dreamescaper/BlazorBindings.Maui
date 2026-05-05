@@ -102,50 +102,50 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                 case nameof(DisplayMode):
                     if (!Equals(DisplayMode, value))
                     {
-                        DisplayMode = (SMTS.SunburstSelectionDisplayMode?)value;
+                        DisplayMode = CastParameter<SMTS.SunburstSelectionDisplayMode?>(value, name);
                         NativeControl.DisplayMode = DisplayMode ?? (SMTS.SunburstSelectionDisplayMode)SMTS.SunburstSelectionSettings.DisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(Opacity):
                     if (!Equals(Opacity, value))
                     {
-                        Opacity = (double?)value;
+                        Opacity = CastParameter<double?>(value, name);
                         NativeControl.Opacity = Opacity ?? (double)SMTS.SunburstSelectionSettings.OpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTS.SunburstSelectionSettings.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTS.SunburstSelectionType?)value;
+                        Type = CastParameter<SMTS.SunburstSelectionType?>(value, name);
                         NativeControl.Type = Type ?? (SMTS.SunburstSelectionType)SMTS.SunburstSelectionSettings.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -52,64 +52,64 @@ namespace BlazorBindings.Maui.Elements.Shapes
                 case nameof(Aspect):
                     if (!Equals(Aspect, value))
                     {
-                        Aspect = (MC.Stretch?)value;
+                        Aspect = CastParameter<MC.Stretch?>(value, name);
                         NativeControl.Aspect = Aspect ?? (MC.Stretch)MCS.Shape.AspectProperty.DefaultValue;
                     }
                     break;
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeDashOffset):
                     if (!Equals(StrokeDashOffset, value))
                     {
-                        StrokeDashOffset = (double?)value;
+                        StrokeDashOffset = CastParameter<double?>(value, name);
                         NativeControl.StrokeDashOffset = StrokeDashOffset ?? (double)MCS.Shape.StrokeDashOffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeLineCap):
                     if (!Equals(StrokeLineCap, value))
                     {
-                        StrokeLineCap = (MCS.PenLineCap?)value;
+                        StrokeLineCap = CastParameter<MCS.PenLineCap?>(value, name);
                         NativeControl.StrokeLineCap = StrokeLineCap ?? (MCS.PenLineCap)MCS.Shape.StrokeLineCapProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeLineJoin):
                     if (!Equals(StrokeLineJoin, value))
                     {
-                        StrokeLineJoin = (MCS.PenLineJoin?)value;
+                        StrokeLineJoin = CastParameter<MCS.PenLineJoin?>(value, name);
                         NativeControl.StrokeLineJoin = StrokeLineJoin ?? (MCS.PenLineJoin)MCS.Shape.StrokeLineJoinProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeMiterLimit):
                     if (!Equals(StrokeMiterLimit, value))
                     {
-                        StrokeMiterLimit = (double?)value;
+                        StrokeMiterLimit = CastParameter<double?>(value, name);
                         NativeControl.StrokeMiterLimit = StrokeMiterLimit ?? (double)MCS.Shape.StrokeMiterLimitProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)MCS.Shape.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

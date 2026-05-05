@@ -86,40 +86,40 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)SMTC.ChartSelectionBehavior.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndexes):
                     if (!Equals(SelectedIndexes, value))
                     {
-                        SelectedIndexes = (List<int>)value;
+                        SelectedIndexes = CastParameter<List<int>>(value, name);
                         NativeControl.SelectedIndexes = SelectedIndexes;
                     }
                     break;
                 case nameof(SelectionColor):
                     if (!Equals(SelectionColor, value))
                     {
-                        SelectionColor = (Color)value;
+                        SelectionColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionBrush = SelectionColor;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTC.ChartSelectionType?)value;
+                        Type = CastParameter<SMTC.ChartSelectionType?>(value, name);
                         NativeControl.Type = Type ?? (SMTC.ChartSelectionType)SMTC.ChartSelectionBehavior.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionBrush):
-                    SelectionBrush = (RenderFragment)value;
+                    SelectionBrush = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanging):
                     if (!Equals(OnSelectionChanging, value))
                     {
                         void NativeControlSelectionChanging(object sender, SMTC.ChartSelectionChangingEventArgs e) => InvokeEventCallback(OnSelectionChanging, e);
 
-                        OnSelectionChanging = (EventCallback<SMTC.ChartSelectionChangingEventArgs>)value;
+                        OnSelectionChanging = CastParameter<EventCallback<SMTC.ChartSelectionChangingEventArgs>>(value, name);
                         NativeControl.SelectionChanging -= NativeControlSelectionChanging;
                         NativeControl.SelectionChanging += NativeControlSelectionChanging;
                     }
@@ -129,7 +129,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlSelectionChanged(object sender, SMTC.ChartSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTC.ChartSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTC.ChartSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }

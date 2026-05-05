@@ -43,7 +43,7 @@ namespace BlazorBindings.Maui.Elements.Shapes
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)MCS.RoundRectangle.CornerRadiusProperty.DefaultValue;
                     }
                     break;

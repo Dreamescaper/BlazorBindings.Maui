@@ -99,46 +99,46 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(DateFormat):
                     if (!Equals(DateFormat, value))
                     {
-                        DateFormat = (string)value;
+                        DateFormat = CastParameter<string>(value, name);
                         NativeControl.DateFormat = DateFormat;
                     }
                     break;
                 case nameof(DividerColor):
                     if (!Equals(DividerColor, value))
                     {
-                        DividerColor = (Color)value;
+                        DividerColor = CastParameter<Color>(value, name);
                         NativeControl.DividerColor = DividerColor;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTP.DateTimePickerHeaderView.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(TimeFormat):
                     if (!Equals(TimeFormat, value))
                     {
-                        TimeFormat = (string)value;
+                        TimeFormat = CastParameter<string>(value, name);
                         NativeControl.TimeFormat = TimeFormat;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionTextStyle):
-                    SelectionTextStyle = (RenderFragment)value;
+                    SelectionTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

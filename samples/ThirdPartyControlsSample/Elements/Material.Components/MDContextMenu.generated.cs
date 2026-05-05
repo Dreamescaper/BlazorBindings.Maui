@@ -44,26 +44,26 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(VisibleItemCount):
                     if (!Equals(VisibleItemCount, value))
                     {
-                        VisibleItemCount = (int?)value;
+                        VisibleItemCount = CastParameter<int?>(value, name);
                         NativeControl.VisibleItemCount = VisibleItemCount ?? (int)MCM.ContextMenu.VisibleItemCountProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

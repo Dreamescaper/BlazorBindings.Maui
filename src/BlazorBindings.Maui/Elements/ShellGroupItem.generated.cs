@@ -40,7 +40,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(FlyoutDisplayOptions):
                     if (!Equals(FlyoutDisplayOptions, value))
                     {
-                        FlyoutDisplayOptions = (MC.FlyoutDisplayOptions?)value;
+                        FlyoutDisplayOptions = CastParameter<MC.FlyoutDisplayOptions?>(value, name);
                         NativeControl.FlyoutDisplayOptions = FlyoutDisplayOptions ?? (MC.FlyoutDisplayOptions)MC.ShellGroupItem.FlyoutDisplayOptionsProperty.DefaultValue;
                     }
                     break;

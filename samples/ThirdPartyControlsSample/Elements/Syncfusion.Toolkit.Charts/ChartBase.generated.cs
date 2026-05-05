@@ -85,21 +85,21 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (object)value;
+                        Title = CastParameter<object>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(InteractiveBehavior):
-                    InteractiveBehavior = (RenderFragment)value;
+                    InteractiveBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Legend):
-                    Legend = (RenderFragment)value;
+                    Legend = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PlotAreaBackgroundView):
-                    PlotAreaBackgroundView = (RenderFragment)value;
+                    PlotAreaBackgroundView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TooltipBehavior):
-                    TooltipBehavior = (RenderFragment)value;
+                    TooltipBehavior = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

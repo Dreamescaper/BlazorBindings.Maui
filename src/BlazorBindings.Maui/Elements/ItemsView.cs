@@ -21,7 +21,7 @@ public abstract partial class ItemsView<T>
             case nameof(ItemsSource):
                 if (!Equals(ItemsSource, value))
                 {
-                    ItemsSource = (IEnumerable<T>)value;
+                    ItemsSource = CastParameter<IEnumerable<T>>(value, name);
 
                     if (AssignItemsSourceDirectly)
                         NativeControl.ItemsSource = ItemsSource;
@@ -29,11 +29,11 @@ public abstract partial class ItemsView<T>
                 return true;
 
             case nameof(ItemKeySelector):
-                ItemKeySelector = (Func<T, object>)value;
+                ItemKeySelector = CastParameter<Func<T, object>>(value, name);
                 return true;
 
             case nameof(ItemTemplateSelector):
-                ItemTemplateSelector = (RenderFragment<T>)value;
+                ItemTemplateSelector = CastParameter<RenderFragment<T>>(value, name);
                 return true;
         }
 

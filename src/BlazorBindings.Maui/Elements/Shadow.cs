@@ -12,7 +12,7 @@ public partial class Shadow
         {
             if (!Equals(Color, value))
             {
-                Color = (Color)value;
+                Color = CastParameter<Color>(value, name);
                 NativeControl.Brush = Color;
             }
 

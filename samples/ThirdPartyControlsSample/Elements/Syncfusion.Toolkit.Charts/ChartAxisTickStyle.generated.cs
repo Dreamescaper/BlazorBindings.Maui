@@ -71,26 +71,26 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.ChartAxisTickStyle.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(TickSize):
                     if (!Equals(TickSize, value))
                     {
-                        TickSize = (double?)value;
+                        TickSize = CastParameter<double?>(value, name);
                         NativeControl.TickSize = TickSize ?? (double)SMTC.ChartAxisTickStyle.TickSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

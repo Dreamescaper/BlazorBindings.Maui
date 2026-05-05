@@ -47,43 +47,43 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(HorizontalScrollBarVisibility):
                     if (!Equals(HorizontalScrollBarVisibility, value))
                     {
-                        HorizontalScrollBarVisibility = (ScrollBarVisibility?)value;
+                        HorizontalScrollBarVisibility = CastParameter<ScrollBarVisibility?>(value, name);
                         NativeControl.HorizontalScrollBarVisibility = HorizontalScrollBarVisibility ?? (ScrollBarVisibility)MC.ItemsView.HorizontalScrollBarVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsUpdatingScrollMode):
                     if (!Equals(ItemsUpdatingScrollMode, value))
                     {
-                        ItemsUpdatingScrollMode = (MC.ItemsUpdatingScrollMode?)value;
+                        ItemsUpdatingScrollMode = CastParameter<MC.ItemsUpdatingScrollMode?>(value, name);
                         NativeControl.ItemsUpdatingScrollMode = ItemsUpdatingScrollMode ?? (MC.ItemsUpdatingScrollMode)MC.ItemsView.ItemsUpdatingScrollModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(RemainingItemsThreshold):
                     if (!Equals(RemainingItemsThreshold, value))
                     {
-                        RemainingItemsThreshold = (int?)value;
+                        RemainingItemsThreshold = CastParameter<int?>(value, name);
                         NativeControl.RemainingItemsThreshold = RemainingItemsThreshold ?? (int)MC.ItemsView.RemainingItemsThresholdProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalScrollBarVisibility):
                     if (!Equals(VerticalScrollBarVisibility, value))
                     {
-                        VerticalScrollBarVisibility = (ScrollBarVisibility?)value;
+                        VerticalScrollBarVisibility = CastParameter<ScrollBarVisibility?>(value, name);
                         NativeControl.VerticalScrollBarVisibility = VerticalScrollBarVisibility ?? (ScrollBarVisibility)MC.ItemsView.VerticalScrollBarVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(EmptyView):
-                    EmptyView = (RenderFragment)value;
+                    EmptyView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment<T>)value;
+                    ItemTemplate = CastParameter<RenderFragment<T>>(value, name);
                     break;
                 case nameof(OnScrollToRequested):
                     if (!Equals(OnScrollToRequested, value))
                     {
                         void NativeControlScrollToRequested(object sender, MC.ScrollToRequestEventArgs e) => InvokeEventCallback(OnScrollToRequested, e);
 
-                        OnScrollToRequested = (EventCallback<MC.ScrollToRequestEventArgs>)value;
+                        OnScrollToRequested = CastParameter<EventCallback<MC.ScrollToRequestEventArgs>>(value, name);
                         NativeControl.ScrollToRequested -= NativeControlScrollToRequested;
                         NativeControl.ScrollToRequested += NativeControlScrollToRequested;
                     }
@@ -93,7 +93,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlScrolled(object sender, MC.ItemsViewScrolledEventArgs e) => InvokeEventCallback(OnScrolled, e);
 
-                        OnScrolled = (EventCallback<MC.ItemsViewScrolledEventArgs>)value;
+                        OnScrolled = CastParameter<EventCallback<MC.ItemsViewScrolledEventArgs>>(value, name);
                         NativeControl.Scrolled -= NativeControlScrolled;
                         NativeControl.Scrolled += NativeControlScrolled;
                     }
@@ -103,7 +103,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlRemainingItemsThresholdReached(object sender, EventArgs e) => InvokeEventCallback(OnRemainingItemsThresholdReached);
 
-                        OnRemainingItemsThresholdReached = (EventCallback)value;
+                        OnRemainingItemsThresholdReached = CastParameter<EventCallback>(value, name);
                         NativeControl.RemainingItemsThresholdReached -= NativeControlRemainingItemsThresholdReached;
                         NativeControl.RemainingItemsThresholdReached += NativeControlRemainingItemsThresholdReached;
                     }

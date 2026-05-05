@@ -39,28 +39,28 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(HorizontalSpacing):
                     if (!Equals(HorizontalSpacing, value))
                     {
-                        HorizontalSpacing = (double?)value;
+                        HorizontalSpacing = CastParameter<double?>(value, name);
                         NativeControl.HorizontalSpacing = HorizontalSpacing ?? (double)MCM.WrapLayout.HorizontalSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Orientation):
                     if (!Equals(Orientation, value))
                     {
-                        Orientation = (MC.StackOrientation?)value;
+                        Orientation = CastParameter<MC.StackOrientation?>(value, name);
                         NativeControl.Orientation = Orientation ?? (MC.StackOrientation)MCM.WrapLayout.OrientationProperty.DefaultValue;
                     }
                     break;
                 case nameof(Spacing):
                     if (!Equals(Spacing, value))
                     {
-                        Spacing = (double?)value;
+                        Spacing = CastParameter<double?>(value, name);
                         NativeControl.Spacing = Spacing ?? (double)MCM.WrapLayout.SpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalSpacing):
                     if (!Equals(VerticalSpacing, value))
                     {
-                        VerticalSpacing = (double?)value;
+                        VerticalSpacing = CastParameter<double?>(value, name);
                         NativeControl.VerticalSpacing = VerticalSpacing ?? (double)MCM.WrapLayout.VerticalSpacingProperty.DefaultValue;
                     }
                     break;

@@ -36,14 +36,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(EndPoint):
                     if (!Equals(EndPoint, value))
                     {
-                        EndPoint = (Point?)value;
+                        EndPoint = CastParameter<Point?>(value, name);
                         NativeControl.EndPoint = EndPoint ?? (Point)MC.LinearGradientBrush.EndPointProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartPoint):
                     if (!Equals(StartPoint, value))
                     {
-                        StartPoint = (Point?)value;
+                        StartPoint = CastParameter<Point?>(value, name);
                         NativeControl.StartPoint = StartPoint ?? (Point)MC.LinearGradientBrush.StartPointProperty.DefaultValue;
                     }
                     break;

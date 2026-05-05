@@ -55,19 +55,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(Icon):
                     if (!Equals(Icon, value))
                     {
-                        Icon = (SMTC.CalendarIcon?)value;
+                        Icon = CastParameter<SMTC.CalendarIcon?>(value, name);
                         NativeControl.Icon = Icon ?? default;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

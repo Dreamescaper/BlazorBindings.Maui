@@ -54,14 +54,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(DefaultFile):
                     if (!Equals(DefaultFile, value))
                     {
-                        DefaultFile = (string)value;
+                        DefaultFile = CastParameter<string>(value, name);
                         NativeControl.DefaultFile = DefaultFile;
                     }
                     break;
                 case nameof(HybridRoot):
                     if (!Equals(HybridRoot, value))
                     {
-                        HybridRoot = (string)value;
+                        HybridRoot = CastParameter<string>(value, name);
                         NativeControl.HybridRoot = HybridRoot;
                     }
                     break;
@@ -70,7 +70,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlRawMessageReceived(object sender, MC.HybridWebViewRawMessageReceivedEventArgs e) => InvokeEventCallback(OnRawMessageReceived, e);
 
-                        OnRawMessageReceived = (EventCallback<MC.HybridWebViewRawMessageReceivedEventArgs>)value;
+                        OnRawMessageReceived = CastParameter<EventCallback<MC.HybridWebViewRawMessageReceivedEventArgs>>(value, name);
                         NativeControl.RawMessageReceived -= NativeControlRawMessageReceived;
                         NativeControl.RawMessageReceived += NativeControlRawMessageReceived;
                     }
@@ -80,7 +80,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlWebViewInitializing(object sender, MC.WebViewInitializingEventArgs e) => InvokeEventCallback(OnWebViewInitializing, e);
 
-                        OnWebViewInitializing = (EventCallback<MC.WebViewInitializingEventArgs>)value;
+                        OnWebViewInitializing = CastParameter<EventCallback<MC.WebViewInitializingEventArgs>>(value, name);
                         NativeControl.WebViewInitializing -= NativeControlWebViewInitializing;
                         NativeControl.WebViewInitializing += NativeControlWebViewInitializing;
                     }
@@ -90,7 +90,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlWebViewInitialized(object sender, MC.WebViewInitializedEventArgs e) => InvokeEventCallback(OnWebViewInitialized, e);
 
-                        OnWebViewInitialized = (EventCallback<MC.WebViewInitializedEventArgs>)value;
+                        OnWebViewInitialized = CastParameter<EventCallback<MC.WebViewInitializedEventArgs>>(value, name);
                         NativeControl.WebViewInitialized -= NativeControlWebViewInitialized;
                         NativeControl.WebViewInitialized += NativeControlWebViewInitialized;
                     }
@@ -100,7 +100,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlWebResourceRequested(object sender, MC.WebViewWebResourceRequestedEventArgs e) => InvokeEventCallback(OnWebResourceRequested, e);
 
-                        OnWebResourceRequested = (EventCallback<MC.WebViewWebResourceRequestedEventArgs>)value;
+                        OnWebResourceRequested = CastParameter<EventCallback<MC.WebViewWebResourceRequestedEventArgs>>(value, name);
                         NativeControl.WebResourceRequested -= NativeControlWebResourceRequested;
                         NativeControl.WebResourceRequested += NativeControlWebResourceRequested;
                     }

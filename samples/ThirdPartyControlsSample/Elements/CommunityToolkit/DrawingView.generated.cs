@@ -82,42 +82,42 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                 case nameof(DrawAction):
                     if (!Equals(DrawAction, value))
                     {
-                        DrawAction = (Action<ICanvas, RectF>)value;
+                        DrawAction = CastParameter<Action<ICanvas, RectF>>(value, name);
                         NativeControl.DrawAction = DrawAction;
                     }
                     break;
                 case nameof(IsMultiLineModeEnabled):
                     if (!Equals(IsMultiLineModeEnabled, value))
                     {
-                        IsMultiLineModeEnabled = (bool?)value;
+                        IsMultiLineModeEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsMultiLineModeEnabled = IsMultiLineModeEnabled ?? (bool)CMV.DrawingView.IsMultiLineModeEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(LineColor):
                     if (!Equals(LineColor, value))
                     {
-                        LineColor = (Color)value;
+                        LineColor = CastParameter<Color>(value, name);
                         NativeControl.LineColor = LineColor;
                     }
                     break;
                 case nameof(Lines):
                     if (!Equals(Lines, value))
                     {
-                        Lines = (ObservableCollection<CM.Core.IDrawingLine>)value;
+                        Lines = CastParameter<ObservableCollection<CM.Core.IDrawingLine>>(value, name);
                         NativeControl.Lines = Lines;
                     }
                     break;
                 case nameof(LineWidth):
                     if (!Equals(LineWidth, value))
                     {
-                        LineWidth = (float?)value;
+                        LineWidth = CastParameter<float?>(value, name);
                         NativeControl.LineWidth = LineWidth ?? (float)CMV.DrawingView.LineWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShouldClearOnFinish):
                     if (!Equals(ShouldClearOnFinish, value))
                     {
-                        ShouldClearOnFinish = (bool?)value;
+                        ShouldClearOnFinish = CastParameter<bool?>(value, name);
                         NativeControl.ShouldClearOnFinish = ShouldClearOnFinish ?? (bool)CMV.DrawingView.ShouldClearOnFinishProperty.DefaultValue;
                     }
                     break;
@@ -126,7 +126,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     {
                         void NativeControlDrawingLineCompleted(object sender, CM.Core.DrawingLineCompletedEventArgs e) => InvokeEventCallback(OnDrawingLineCompleted, e);
 
-                        OnDrawingLineCompleted = (EventCallback<CM.Core.DrawingLineCompletedEventArgs>)value;
+                        OnDrawingLineCompleted = CastParameter<EventCallback<CM.Core.DrawingLineCompletedEventArgs>>(value, name);
                         NativeControl.DrawingLineCompleted -= NativeControlDrawingLineCompleted;
                         NativeControl.DrawingLineCompleted += NativeControlDrawingLineCompleted;
                     }
@@ -136,7 +136,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     {
                         void NativeControlDrawingLineStarted(object sender, CM.Core.DrawingLineStartedEventArgs e) => InvokeEventCallback(OnDrawingLineStarted, e);
 
-                        OnDrawingLineStarted = (EventCallback<CM.Core.DrawingLineStartedEventArgs>)value;
+                        OnDrawingLineStarted = CastParameter<EventCallback<CM.Core.DrawingLineStartedEventArgs>>(value, name);
                         NativeControl.DrawingLineStarted -= NativeControlDrawingLineStarted;
                         NativeControl.DrawingLineStarted += NativeControlDrawingLineStarted;
                     }
@@ -146,7 +146,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     {
                         void NativeControlDrawingLineCancelled(object sender, EventArgs e) => InvokeEventCallback(OnDrawingLineCancelled);
 
-                        OnDrawingLineCancelled = (EventCallback)value;
+                        OnDrawingLineCancelled = CastParameter<EventCallback>(value, name);
                         NativeControl.DrawingLineCancelled -= NativeControlDrawingLineCancelled;
                         NativeControl.DrawingLineCancelled += NativeControlDrawingLineCancelled;
                     }
@@ -156,7 +156,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     {
                         void NativeControlPointDrawn(object sender, CM.Core.PointDrawnEventArgs e) => InvokeEventCallback(OnPointDrawn, e);
 
-                        OnPointDrawn = (EventCallback<CM.Core.PointDrawnEventArgs>)value;
+                        OnPointDrawn = CastParameter<EventCallback<CM.Core.PointDrawnEventArgs>>(value, name);
                         NativeControl.PointDrawn -= NativeControlPointDrawn;
                         NativeControl.PointDrawn += NativeControlPointDrawn;
                     }

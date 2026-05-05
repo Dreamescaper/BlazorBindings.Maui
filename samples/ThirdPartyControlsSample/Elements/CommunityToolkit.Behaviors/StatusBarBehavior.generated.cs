@@ -52,21 +52,21 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
                 case nameof(ApplyOn):
                     if (!Equals(ApplyOn, value))
                     {
-                        ApplyOn = (CMB.StatusBarApplyOn?)value;
+                        ApplyOn = CastParameter<CMB.StatusBarApplyOn?>(value, name);
                         NativeControl.ApplyOn = ApplyOn ?? (CMB.StatusBarApplyOn)CMB.StatusBarBehavior.ApplyOnProperty.DefaultValue;
                     }
                     break;
                 case nameof(StatusBarColor):
                     if (!Equals(StatusBarColor, value))
                     {
-                        StatusBarColor = (Color)value;
+                        StatusBarColor = CastParameter<Color>(value, name);
                         NativeControl.StatusBarColor = StatusBarColor;
                     }
                     break;
                 case nameof(StatusBarStyle):
                     if (!Equals(StatusBarStyle, value))
                     {
-                        StatusBarStyle = (CM.Core.StatusBarStyle?)value;
+                        StatusBarStyle = CastParameter<CM.Core.StatusBarStyle?>(value, name);
                         NativeControl.StatusBarStyle = StatusBarStyle ?? (CM.Core.StatusBarStyle)CMB.StatusBarBehavior.StatusBarStyleProperty.DefaultValue;
                     }
                     break;

@@ -54,26 +54,26 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CascadeInputTransparent):
                     if (!Equals(CascadeInputTransparent, value))
                     {
-                        CascadeInputTransparent = (bool?)value;
+                        CascadeInputTransparent = CastParameter<bool?>(value, name);
                         NativeControl.CascadeInputTransparent = CascadeInputTransparent ?? (bool)MC.TemplatedView.CascadeInputTransparentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsClippedToBounds):
                     if (!Equals(IsClippedToBounds, value))
                     {
-                        IsClippedToBounds = (bool?)value;
+                        IsClippedToBounds = CastParameter<bool?>(value, name);
                         NativeControl.IsClippedToBounds = IsClippedToBounds ?? (bool)MC.TemplatedView.IsClippedToBoundsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MC.TemplatedView.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ControlTemplate):
-                    ControlTemplate = (RenderFragment)value;
+                    ControlTemplate = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

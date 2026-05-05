@@ -40,7 +40,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Orientation):
                     if (!Equals(Orientation, value))
                     {
-                        Orientation = (MC.StackOrientation?)value;
+                        Orientation = CastParameter<MC.StackOrientation?>(value, name);
                         NativeControl.Orientation = Orientation ?? (MC.StackOrientation)MC.StackLayout.OrientationProperty.DefaultValue;
                     }
                     break;

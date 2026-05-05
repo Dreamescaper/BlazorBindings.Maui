@@ -37,7 +37,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlInvoked(object sender, EventArgs e) => InvokeEventCallback(OnInvoked);
 
-                        OnInvoked = (EventCallback)value;
+                        OnInvoked = CastParameter<EventCallback>(value, name);
                         NativeControl.Invoked -= NativeControlInvoked;
                         NativeControl.Invoked += NativeControlInvoked;
                     }

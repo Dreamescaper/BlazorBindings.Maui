@@ -153,110 +153,110 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTT.CenterButtonSettings.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(DisplayMode):
                     if (!Equals(DisplayMode, value))
                     {
-                        DisplayMode = (SMTT.CenterButtonDisplayMode?)value;
+                        DisplayMode = CastParameter<SMTT.CenterButtonDisplayMode?>(value, name);
                         NativeControl.DisplayMode = DisplayMode ?? (SMTT.CenterButtonDisplayMode)SMTT.CenterButtonSettings.DisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)SMTT.CenterButtonSettings.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)SMTT.CenterButtonSettings.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)SMTT.CenterButtonSettings.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTT.CenterButtonSettings.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSize):
                     if (!Equals(ImageSize, value))
                     {
-                        ImageSize = (double?)value;
+                        ImageSize = CastParameter<double?>(value, name);
                         NativeControl.ImageSize = ImageSize ?? (double)SMTT.CenterButtonSettings.ImageSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSource):
                     if (!Equals(ImageSource, value))
                     {
-                        ImageSource = (MC.ImageSource)value;
+                        ImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ImageSource = ImageSource;
                     }
                     break;
                 case nameof(Stroke):
                     if (!Equals(Stroke, value))
                     {
-                        Stroke = (Color)value;
+                        Stroke = CastParameter<Color>(value, name);
                         NativeControl.Stroke = Stroke;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)SMTT.CenterButtonSettings.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTT.CenterButtonSettings.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

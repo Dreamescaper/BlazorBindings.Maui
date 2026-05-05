@@ -84,49 +84,49 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Maximum):
                     if (!Equals(Maximum, value))
                     {
-                        Maximum = (double?)value;
+                        Maximum = CastParameter<double?>(value, name);
                         NativeControl.Maximum = Maximum ?? (double)MC.Slider.MaximumProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumTrackColor):
                     if (!Equals(MaximumTrackColor, value))
                     {
-                        MaximumTrackColor = (Color)value;
+                        MaximumTrackColor = CastParameter<Color>(value, name);
                         NativeControl.MaximumTrackColor = MaximumTrackColor;
                     }
                     break;
                 case nameof(Minimum):
                     if (!Equals(Minimum, value))
                     {
-                        Minimum = (double?)value;
+                        Minimum = CastParameter<double?>(value, name);
                         NativeControl.Minimum = Minimum ?? (double)MC.Slider.MinimumProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumTrackColor):
                     if (!Equals(MinimumTrackColor, value))
                     {
-                        MinimumTrackColor = (Color)value;
+                        MinimumTrackColor = CastParameter<Color>(value, name);
                         NativeControl.MinimumTrackColor = MinimumTrackColor;
                     }
                     break;
                 case nameof(ThumbColor):
                     if (!Equals(ThumbColor, value))
                     {
-                        ThumbColor = (Color)value;
+                        ThumbColor = CastParameter<Color>(value, name);
                         NativeControl.ThumbColor = ThumbColor;
                     }
                     break;
                 case nameof(ThumbImageSource):
                     if (!Equals(ThumbImageSource, value))
                     {
-                        ThumbImageSource = (MC.ImageSource)value;
+                        ThumbImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ThumbImageSource = ThumbImageSource;
                     }
                     break;
                 case nameof(Value):
                     if (!Equals(Value, value))
                     {
-                        Value = (double?)value;
+                        Value = CastParameter<double?>(value, name);
                         NativeControl.Value = Value ?? (double)MC.Slider.ValueProperty.DefaultValue;
                     }
                     break;
@@ -140,7 +140,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(ValueChanged, value);
                         }
 
-                        ValueChanged = (EventCallback<double>)value;
+                        ValueChanged = CastParameter<EventCallback<double>>(value, name);
                         NativeControl.ValueChanged -= NativeControlValueChanged;
                         NativeControl.ValueChanged += NativeControlValueChanged;
                     }
@@ -150,7 +150,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDragStarted(object sender, EventArgs e) => InvokeEventCallback(OnDragStarted);
 
-                        OnDragStarted = (EventCallback)value;
+                        OnDragStarted = CastParameter<EventCallback>(value, name);
                         NativeControl.DragStarted -= NativeControlDragStarted;
                         NativeControl.DragStarted += NativeControlDragStarted;
                     }
@@ -160,7 +160,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDragCompleted(object sender, EventArgs e) => InvokeEventCallback(OnDragCompleted);
 
-                        OnDragCompleted = (EventCallback)value;
+                        OnDragCompleted = CastParameter<EventCallback>(value, name);
                         NativeControl.DragCompleted -= NativeControlDragCompleted;
                         NativeControl.DragCompleted += NativeControlDragCompleted;
                     }

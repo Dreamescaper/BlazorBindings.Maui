@@ -121,75 +121,75 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.ProgressBar
                 case nameof(ProgressCornerRadius):
                     if (!Equals(ProgressCornerRadius, value))
                     {
-                        ProgressCornerRadius = (CornerRadius?)value;
+                        ProgressCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.ProgressCornerRadius = ProgressCornerRadius ?? (CornerRadius)SMTP.SfLinearProgressBar.ProgressCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressHeight):
                     if (!Equals(ProgressHeight, value))
                     {
-                        ProgressHeight = (double?)value;
+                        ProgressHeight = CastParameter<double?>(value, name);
                         NativeControl.ProgressHeight = ProgressHeight ?? (double)SMTP.SfLinearProgressBar.ProgressHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressPadding):
                     if (!Equals(ProgressPadding, value))
                     {
-                        ProgressPadding = (double?)value;
+                        ProgressPadding = CastParameter<double?>(value, name);
                         NativeControl.ProgressPadding = ProgressPadding ?? (double)SMTP.SfLinearProgressBar.ProgressPaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondaryAnimationDuration):
                     if (!Equals(SecondaryAnimationDuration, value))
                     {
-                        SecondaryAnimationDuration = (double?)value;
+                        SecondaryAnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.SecondaryAnimationDuration = SecondaryAnimationDuration ?? (double)SMTP.SfLinearProgressBar.SecondaryAnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondaryProgress):
                     if (!Equals(SecondaryProgress, value))
                     {
-                        SecondaryProgress = (double?)value;
+                        SecondaryProgress = CastParameter<double?>(value, name);
                         NativeControl.SecondaryProgress = SecondaryProgress ?? (double)SMTP.SfLinearProgressBar.SecondaryProgressProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondaryProgressCornerRadius):
                     if (!Equals(SecondaryProgressCornerRadius, value))
                     {
-                        SecondaryProgressCornerRadius = (CornerRadius?)value;
+                        SecondaryProgressCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.SecondaryProgressCornerRadius = SecondaryProgressCornerRadius ?? (CornerRadius)SMTP.SfLinearProgressBar.SecondaryProgressCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondaryProgressFillColor):
                     if (!Equals(SecondaryProgressFillColor, value))
                     {
-                        SecondaryProgressFillColor = (Color)value;
+                        SecondaryProgressFillColor = CastParameter<Color>(value, name);
                         NativeControl.SecondaryProgressFill = SecondaryProgressFillColor;
                     }
                     break;
                 case nameof(SecondaryProgressHeight):
                     if (!Equals(SecondaryProgressHeight, value))
                     {
-                        SecondaryProgressHeight = (double?)value;
+                        SecondaryProgressHeight = CastParameter<double?>(value, name);
                         NativeControl.SecondaryProgressHeight = SecondaryProgressHeight ?? (double)SMTP.SfLinearProgressBar.SecondaryProgressHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackCornerRadius):
                     if (!Equals(TrackCornerRadius, value))
                     {
-                        TrackCornerRadius = (CornerRadius?)value;
+                        TrackCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.TrackCornerRadius = TrackCornerRadius ?? (CornerRadius)SMTP.SfLinearProgressBar.TrackCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackHeight):
                     if (!Equals(TrackHeight, value))
                     {
-                        TrackHeight = (double?)value;
+                        TrackHeight = CastParameter<double?>(value, name);
                         NativeControl.TrackHeight = TrackHeight ?? (double)SMTP.SfLinearProgressBar.TrackHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondaryProgressFill):
-                    SecondaryProgressFill = (RenderFragment)value;
+                    SecondaryProgressFill = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -122,112 +122,112 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CharacterSpacing):
                     if (!Equals(CharacterSpacing, value))
                     {
-                        CharacterSpacing = (double?)value;
+                        CharacterSpacing = CastParameter<double?>(value, name);
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.InputView.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(CursorPosition):
                     if (!Equals(CursorPosition, value))
                     {
-                        CursorPosition = (int?)value;
+                        CursorPosition = CastParameter<int?>(value, name);
                         NativeControl.CursorPosition = CursorPosition ?? (int)MC.InputView.CursorPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.InputView.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.InputView.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)MC.InputView.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsReadOnly):
                     if (!Equals(IsReadOnly, value))
                     {
-                        IsReadOnly = (bool?)value;
+                        IsReadOnly = CastParameter<bool?>(value, name);
                         NativeControl.IsReadOnly = IsReadOnly ?? (bool)MC.InputView.IsReadOnlyProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsSpellCheckEnabled):
                     if (!Equals(IsSpellCheckEnabled, value))
                     {
-                        IsSpellCheckEnabled = (bool?)value;
+                        IsSpellCheckEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsSpellCheckEnabled = IsSpellCheckEnabled ?? (bool)MC.InputView.IsSpellCheckEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsTextPredictionEnabled):
                     if (!Equals(IsTextPredictionEnabled, value))
                     {
-                        IsTextPredictionEnabled = (bool?)value;
+                        IsTextPredictionEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsTextPredictionEnabled = IsTextPredictionEnabled ?? (bool)MC.InputView.IsTextPredictionEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(Keyboard):
                     if (!Equals(Keyboard, value))
                     {
-                        Keyboard = (Keyboard)value;
+                        Keyboard = CastParameter<Keyboard>(value, name);
                         NativeControl.Keyboard = Keyboard;
                     }
                     break;
                 case nameof(MaxLength):
                     if (!Equals(MaxLength, value))
                     {
-                        MaxLength = (int?)value;
+                        MaxLength = CastParameter<int?>(value, name);
                         NativeControl.MaxLength = MaxLength ?? (int)MC.InputView.MaxLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Placeholder):
                     if (!Equals(Placeholder, value))
                     {
-                        Placeholder = (string)value;
+                        Placeholder = CastParameter<string>(value, name);
                         NativeControl.Placeholder = Placeholder;
                     }
                     break;
                 case nameof(PlaceholderColor):
                     if (!Equals(PlaceholderColor, value))
                     {
-                        PlaceholderColor = (Color)value;
+                        PlaceholderColor = CastParameter<Color>(value, name);
                         NativeControl.PlaceholderColor = PlaceholderColor;
                     }
                     break;
                 case nameof(SelectionLength):
                     if (!Equals(SelectionLength, value))
                     {
-                        SelectionLength = (int?)value;
+                        SelectionLength = CastParameter<int?>(value, name);
                         NativeControl.SelectionLength = SelectionLength ?? (int)MC.InputView.SelectionLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(TextTransform):
                     if (!Equals(TextTransform, value))
                     {
-                        TextTransform = (TextTransform?)value;
+                        TextTransform = CastParameter<TextTransform?>(value, name);
                         NativeControl.TextTransform = TextTransform ?? (TextTransform)MC.InputView.TextTransformProperty.DefaultValue;
                     }
                     break;

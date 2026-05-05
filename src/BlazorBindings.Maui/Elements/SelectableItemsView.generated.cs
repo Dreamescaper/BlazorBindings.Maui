@@ -41,21 +41,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(SelectedItem):
                     if (!Equals(SelectedItem, value))
                     {
-                        SelectedItem = (T)value;
+                        SelectedItem = CastParameter<T>(value, name);
                         NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(SelectedItems):
                     if (!Equals(SelectedItems, value))
                     {
-                        SelectedItems = (IList<object>)value;
+                        SelectedItems = CastParameter<IList<object>>(value, name);
                         NativeControl.SelectedItems = SelectedItems;
                     }
                     break;
                 case nameof(SelectionMode):
                     if (!Equals(SelectionMode, value))
                     {
-                        SelectionMode = (MC.SelectionMode?)value;
+                        SelectionMode = CastParameter<MC.SelectionMode?>(value, name);
                         NativeControl.SelectionMode = SelectionMode ?? (MC.SelectionMode)MC.SelectableItemsView.SelectionModeProperty.DefaultValue;
                     }
                     break;
@@ -72,7 +72,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        SelectedItemChanged = (EventCallback<T>)value;
+                        SelectedItemChanged = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }
@@ -90,7 +90,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        SelectedItemsChanged = (EventCallback<IList<object>>)value;
+                        SelectedItemsChanged = CastParameter<EventCallback<IList<object>>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }
@@ -100,7 +100,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlSelectionChanged(object sender, MC.SelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<MC.SelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<MC.SelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }

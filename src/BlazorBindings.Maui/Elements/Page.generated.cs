@@ -89,43 +89,43 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(BackgroundImageSource):
                     if (!Equals(BackgroundImageSource, value))
                     {
-                        BackgroundImageSource = (MC.ImageSource)value;
+                        BackgroundImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.BackgroundImageSource = BackgroundImageSource;
                     }
                     break;
                 case nameof(IconImageSource):
                     if (!Equals(IconImageSource, value))
                     {
-                        IconImageSource = (MC.ImageSource)value;
+                        IconImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.IconImageSource = IconImageSource;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MC.Page.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(MenuBarItems):
-                    MenuBarItems = (RenderFragment)value;
+                    MenuBarItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ToolbarItems):
-                    ToolbarItems = (RenderFragment)value;
+                    ToolbarItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnAppearing):
                     if (!Equals(OnAppearing, value))
                     {
                         void NativeControlAppearing(object sender, EventArgs e) => InvokeEventCallback(OnAppearing);
 
-                        OnAppearing = (EventCallback)value;
+                        OnAppearing = CastParameter<EventCallback>(value, name);
                         NativeControl.Appearing -= NativeControlAppearing;
                         NativeControl.Appearing += NativeControlAppearing;
                     }
@@ -135,7 +135,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDisappearing(object sender, EventArgs e) => InvokeEventCallback(OnDisappearing);
 
-                        OnDisappearing = (EventCallback)value;
+                        OnDisappearing = CastParameter<EventCallback>(value, name);
                         NativeControl.Disappearing -= NativeControlDisappearing;
                         NativeControl.Disappearing += NativeControlDisappearing;
                     }
@@ -145,7 +145,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlNavigatedTo(object sender, MC.NavigatedToEventArgs e) => InvokeEventCallback(OnNavigatedTo, e);
 
-                        OnNavigatedTo = (EventCallback<MC.NavigatedToEventArgs>)value;
+                        OnNavigatedTo = CastParameter<EventCallback<MC.NavigatedToEventArgs>>(value, name);
                         NativeControl.NavigatedTo -= NativeControlNavigatedTo;
                         NativeControl.NavigatedTo += NativeControlNavigatedTo;
                     }
@@ -155,7 +155,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlNavigatingFrom(object sender, MC.NavigatingFromEventArgs e) => InvokeEventCallback(OnNavigatingFrom, e);
 
-                        OnNavigatingFrom = (EventCallback<MC.NavigatingFromEventArgs>)value;
+                        OnNavigatingFrom = CastParameter<EventCallback<MC.NavigatingFromEventArgs>>(value, name);
                         NativeControl.NavigatingFrom -= NativeControlNavigatingFrom;
                         NativeControl.NavigatingFrom += NativeControlNavigatingFrom;
                     }
@@ -165,7 +165,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlNavigatedFrom(object sender, MC.NavigatedFromEventArgs e) => InvokeEventCallback(OnNavigatedFrom, e);
 
-                        OnNavigatedFrom = (EventCallback<MC.NavigatedFromEventArgs>)value;
+                        OnNavigatedFrom = CastParameter<EventCallback<MC.NavigatedFromEventArgs>>(value, name);
                         NativeControl.NavigatedFrom -= NativeControlNavigatedFrom;
                         NativeControl.NavigatedFrom += NativeControlNavigatedFrom;
                     }

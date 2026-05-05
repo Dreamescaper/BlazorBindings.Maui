@@ -59,21 +59,21 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(LabelAlignment):
                     if (!Equals(LabelAlignment, value))
                     {
-                        LabelAlignment = (SMTC.ChartAxisLabelAlignment?)value;
+                        LabelAlignment = CastParameter<SMTC.ChartAxisLabelAlignment?>(value, name);
                         NativeControl.LabelAlignment = LabelAlignment ?? (SMTC.ChartAxisLabelAlignment)SMTC.ChartAxisLabelStyle.LabelAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaxWidth):
                     if (!Equals(MaxWidth, value))
                     {
-                        MaxWidth = (double?)value;
+                        MaxWidth = CastParameter<double?>(value, name);
                         NativeControl.MaxWidth = MaxWidth ?? (double)SMTC.ChartAxisLabelStyle.MaxWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(WrappedLabelAlignment):
                     if (!Equals(WrappedLabelAlignment, value))
                     {
-                        WrappedLabelAlignment = (SMTC.ChartAxisLabelAlignment?)value;
+                        WrappedLabelAlignment = CastParameter<SMTC.ChartAxisLabelAlignment?>(value, name);
                         NativeControl.WrappedLabelAlignment = WrappedLabelAlignment ?? (SMTC.ChartAxisLabelAlignment)SMTC.ChartAxisLabelStyle.WrappedLabelAlignmentProperty.DefaultValue;
                     }
                     break;

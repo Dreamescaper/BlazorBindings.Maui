@@ -46,61 +46,61 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Count):
                     if (!Equals(Count, value))
                     {
-                        Count = (int?)value;
+                        Count = CastParameter<int?>(value, name);
                         NativeControl.Count = Count ?? (int)MC.IndicatorView.CountProperty.DefaultValue;
                     }
                     break;
                 case nameof(HideSingle):
                     if (!Equals(HideSingle, value))
                     {
-                        HideSingle = (bool?)value;
+                        HideSingle = CastParameter<bool?>(value, name);
                         NativeControl.HideSingle = HideSingle ?? (bool)MC.IndicatorView.HideSingleProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorColor):
                     if (!Equals(IndicatorColor, value))
                     {
-                        IndicatorColor = (Color)value;
+                        IndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.IndicatorColor = IndicatorColor;
                     }
                     break;
                 case nameof(IndicatorSize):
                     if (!Equals(IndicatorSize, value))
                     {
-                        IndicatorSize = (double?)value;
+                        IndicatorSize = CastParameter<double?>(value, name);
                         NativeControl.IndicatorSize = IndicatorSize ?? (double)MC.IndicatorView.IndicatorSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorsShape):
                     if (!Equals(IndicatorsShape, value))
                     {
-                        IndicatorsShape = (MC.IndicatorShape?)value;
+                        IndicatorsShape = CastParameter<MC.IndicatorShape?>(value, name);
                         NativeControl.IndicatorsShape = IndicatorsShape ?? (MC.IndicatorShape)MC.IndicatorView.IndicatorsShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumVisible):
                     if (!Equals(MaximumVisible, value))
                     {
-                        MaximumVisible = (int?)value;
+                        MaximumVisible = CastParameter<int?>(value, name);
                         NativeControl.MaximumVisible = MaximumVisible ?? (int)MC.IndicatorView.MaximumVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Position):
                     if (!Equals(Position, value))
                     {
-                        Position = (int?)value;
+                        Position = CastParameter<int?>(value, name);
                         NativeControl.Position = Position ?? (int)MC.IndicatorView.PositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndicatorColor):
                     if (!Equals(SelectedIndicatorColor, value))
                     {
-                        SelectedIndicatorColor = (Color)value;
+                        SelectedIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.SelectedIndicatorColor = SelectedIndicatorColor;
                     }
                     break;
                 case nameof(IndicatorTemplate):
-                    IndicatorTemplate = (RenderFragment)value;
+                    IndicatorTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PositionChanged):
                     if (!Equals(PositionChanged, value))
@@ -115,7 +115,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        PositionChanged = (EventCallback<int>)value;
+                        PositionChanged = CastParameter<EventCallback<int>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }

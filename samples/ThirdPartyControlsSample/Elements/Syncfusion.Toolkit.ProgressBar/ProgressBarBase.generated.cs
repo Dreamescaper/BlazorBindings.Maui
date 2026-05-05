@@ -169,102 +169,102 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.ProgressBar
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTP.ProgressBarBase.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnimationEasing):
                     if (!Equals(AnimationEasing, value))
                     {
-                        AnimationEasing = (Easing)value;
+                        AnimationEasing = CastParameter<Easing>(value, name);
                         NativeControl.AnimationEasing = AnimationEasing;
                     }
                     break;
                 case nameof(IndeterminateAnimationDuration):
                     if (!Equals(IndeterminateAnimationDuration, value))
                     {
-                        IndeterminateAnimationDuration = (double?)value;
+                        IndeterminateAnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.IndeterminateAnimationDuration = IndeterminateAnimationDuration ?? (double)SMTP.ProgressBarBase.IndeterminateAnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndeterminateAnimationEasing):
                     if (!Equals(IndeterminateAnimationEasing, value))
                     {
-                        IndeterminateAnimationEasing = (Easing)value;
+                        IndeterminateAnimationEasing = CastParameter<Easing>(value, name);
                         NativeControl.IndeterminateAnimationEasing = IndeterminateAnimationEasing;
                     }
                     break;
                 case nameof(IndeterminateIndicatorWidthFactor):
                     if (!Equals(IndeterminateIndicatorWidthFactor, value))
                     {
-                        IndeterminateIndicatorWidthFactor = (double?)value;
+                        IndeterminateIndicatorWidthFactor = CastParameter<double?>(value, name);
                         NativeControl.IndeterminateIndicatorWidthFactor = IndeterminateIndicatorWidthFactor ?? (double)SMTP.ProgressBarBase.IndeterminateIndicatorWidthFactorProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsIndeterminate):
                     if (!Equals(IsIndeterminate, value))
                     {
-                        IsIndeterminate = (bool?)value;
+                        IsIndeterminate = CastParameter<bool?>(value, name);
                         NativeControl.IsIndeterminate = IsIndeterminate ?? (bool)SMTP.ProgressBarBase.IsIndeterminateProperty.DefaultValue;
                     }
                     break;
                 case nameof(Maximum):
                     if (!Equals(Maximum, value))
                     {
-                        Maximum = (double?)value;
+                        Maximum = CastParameter<double?>(value, name);
                         NativeControl.Maximum = Maximum ?? (double)SMTP.ProgressBarBase.MaximumProperty.DefaultValue;
                     }
                     break;
                 case nameof(Minimum):
                     if (!Equals(Minimum, value))
                     {
-                        Minimum = (double?)value;
+                        Minimum = CastParameter<double?>(value, name);
                         NativeControl.Minimum = Minimum ?? (double)SMTP.ProgressBarBase.MinimumProperty.DefaultValue;
                     }
                     break;
                 case nameof(Progress):
                     if (!Equals(Progress, value))
                     {
-                        Progress = (double?)value;
+                        Progress = CastParameter<double?>(value, name);
                         NativeControl.Progress = Progress ?? (double)SMTP.ProgressBarBase.ProgressProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressFillColor):
                     if (!Equals(ProgressFillColor, value))
                     {
-                        ProgressFillColor = (Color)value;
+                        ProgressFillColor = CastParameter<Color>(value, name);
                         NativeControl.ProgressFill = ProgressFillColor;
                     }
                     break;
                 case nameof(SegmentCount):
                     if (!Equals(SegmentCount, value))
                     {
-                        SegmentCount = (int?)value;
+                        SegmentCount = CastParameter<int?>(value, name);
                         NativeControl.SegmentCount = SegmentCount ?? (int)SMTP.ProgressBarBase.SegmentCountProperty.DefaultValue;
                     }
                     break;
                 case nameof(SegmentGapWidth):
                     if (!Equals(SegmentGapWidth, value))
                     {
-                        SegmentGapWidth = (double?)value;
+                        SegmentGapWidth = CastParameter<double?>(value, name);
                         NativeControl.SegmentGapWidth = SegmentGapWidth ?? (double)SMTP.ProgressBarBase.SegmentGapWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackFillColor):
                     if (!Equals(TrackFillColor, value))
                     {
-                        TrackFillColor = (Color)value;
+                        TrackFillColor = CastParameter<Color>(value, name);
                         NativeControl.TrackFill = TrackFillColor;
                     }
                     break;
                 case nameof(GradientStops):
-                    GradientStops = (RenderFragment)value;
+                    GradientStops = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ProgressFill):
-                    ProgressFill = (RenderFragment)value;
+                    ProgressFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackFill):
-                    TrackFill = (RenderFragment)value;
+                    TrackFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ProgressChanged):
                     if (!Equals(ProgressChanged, value))
@@ -276,7 +276,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.ProgressBar
                             InvokeEventCallback(ProgressChanged, value);
                         }
 
-                        ProgressChanged = (EventCallback<double>)value;
+                        ProgressChanged = CastParameter<EventCallback<double>>(value, name);
                         NativeControl.ProgressChanged -= NativeControlProgressChanged;
                         NativeControl.ProgressChanged += NativeControlProgressChanged;
                     }
@@ -286,7 +286,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.ProgressBar
                     {
                         void NativeControlProgressCompleted(object sender, SMTP.ProgressValueEventArgs e) => InvokeEventCallback(OnProgressCompleted, e);
 
-                        OnProgressCompleted = (EventCallback<SMTP.ProgressValueEventArgs>)value;
+                        OnProgressCompleted = CastParameter<EventCallback<SMTP.ProgressValueEventArgs>>(value, name);
                         NativeControl.ProgressCompleted -= NativeControlProgressCompleted;
                         NativeControl.ProgressCompleted += NativeControlProgressCompleted;
                     }

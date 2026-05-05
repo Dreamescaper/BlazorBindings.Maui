@@ -148,88 +148,88 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
                 case nameof(AnimationEasing):
                     if (!Equals(AnimationEasing, value))
                     {
-                        AnimationEasing = (Easing)value;
+                        AnimationEasing = CastParameter<Easing>(value, name);
                         NativeControl.AnimationEasing = AnimationEasing;
                     }
                     break;
                 case nameof(ContentBackground):
                     if (!Equals(ContentBackground, value))
                     {
-                        ContentBackground = (Color)value;
+                        ContentBackground = CastParameter<Color>(value, name);
                         NativeControl.ContentBackground = ContentBackground;
                     }
                     break;
                 case nameof(DrawerFooterHeight):
                     if (!Equals(DrawerFooterHeight, value))
                     {
-                        DrawerFooterHeight = (double?)value;
+                        DrawerFooterHeight = CastParameter<double?>(value, name);
                         NativeControl.DrawerFooterHeight = DrawerFooterHeight ?? (double)SMTN.DrawerSettings.DrawerFooterHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(DrawerHeaderHeight):
                     if (!Equals(DrawerHeaderHeight, value))
                     {
-                        DrawerHeaderHeight = (double?)value;
+                        DrawerHeaderHeight = CastParameter<double?>(value, name);
                         NativeControl.DrawerHeaderHeight = DrawerHeaderHeight ?? (double)SMTN.DrawerSettings.DrawerHeaderHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(DrawerHeight):
                     if (!Equals(DrawerHeight, value))
                     {
-                        DrawerHeight = (double?)value;
+                        DrawerHeight = CastParameter<double?>(value, name);
                         NativeControl.DrawerHeight = DrawerHeight ?? (double)SMTN.DrawerSettings.DrawerHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(DrawerWidth):
                     if (!Equals(DrawerWidth, value))
                     {
-                        DrawerWidth = (double?)value;
+                        DrawerWidth = CastParameter<double?>(value, name);
                         NativeControl.DrawerWidth = DrawerWidth ?? (double)SMTN.DrawerSettings.DrawerWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Duration):
                     if (!Equals(Duration, value))
                     {
-                        Duration = (double?)value;
+                        Duration = CastParameter<double?>(value, name);
                         NativeControl.Duration = Duration ?? (double)SMTN.DrawerSettings.DurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableSwipeGesture):
                     if (!Equals(EnableSwipeGesture, value))
                     {
-                        EnableSwipeGesture = (bool?)value;
+                        EnableSwipeGesture = CastParameter<bool?>(value, name);
                         NativeControl.EnableSwipeGesture = EnableSwipeGesture ?? (bool)SMTN.DrawerSettings.EnableSwipeGestureProperty.DefaultValue;
                     }
                     break;
                 case nameof(Position):
                     if (!Equals(Position, value))
                     {
-                        Position = (SMTN.Position?)value;
+                        Position = CastParameter<SMTN.Position?>(value, name);
                         NativeControl.Position = Position ?? (SMTN.Position)SMTN.DrawerSettings.PositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(TouchThreshold):
                     if (!Equals(TouchThreshold, value))
                     {
-                        TouchThreshold = (double?)value;
+                        TouchThreshold = CastParameter<double?>(value, name);
                         NativeControl.TouchThreshold = TouchThreshold ?? (double)SMTN.DrawerSettings.TouchThresholdProperty.DefaultValue;
                     }
                     break;
                 case nameof(Transition):
                     if (!Equals(Transition, value))
                     {
-                        Transition = (SMTN.Transition?)value;
+                        Transition = CastParameter<SMTN.Transition?>(value, name);
                         NativeControl.Transition = Transition ?? (SMTN.Transition)SMTN.DrawerSettings.TransitionProperty.DefaultValue;
                     }
                     break;
                 case nameof(DrawerContentView):
-                    DrawerContentView = (RenderFragment)value;
+                    DrawerContentView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DrawerFooterView):
-                    DrawerFooterView = (RenderFragment)value;
+                    DrawerFooterView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DrawerHeaderView):
-                    DrawerHeaderView = (RenderFragment)value;
+                    DrawerHeaderView = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

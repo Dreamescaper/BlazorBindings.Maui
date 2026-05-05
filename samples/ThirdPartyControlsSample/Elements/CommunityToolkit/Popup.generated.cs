@@ -65,35 +65,35 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                 case nameof(CanBeDismissedByTappingOutsideOfPopup):
                     if (!Equals(CanBeDismissedByTappingOutsideOfPopup, value))
                     {
-                        CanBeDismissedByTappingOutsideOfPopup = (bool?)value;
+                        CanBeDismissedByTappingOutsideOfPopup = CastParameter<bool?>(value, name);
                         NativeControl.CanBeDismissedByTappingOutsideOfPopup = CanBeDismissedByTappingOutsideOfPopup ?? (bool)CMV.Popup.CanBeDismissedByTappingOutsideOfPopupProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalOptions):
                     if (!Equals(HorizontalOptions, value))
                     {
-                        HorizontalOptions = (MC.LayoutOptions?)value;
+                        HorizontalOptions = CastParameter<MC.LayoutOptions?>(value, name);
                         NativeControl.HorizontalOptions = HorizontalOptions ?? (MC.LayoutOptions)CMV.Popup.HorizontalOptionsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Margin):
                     if (!Equals(Margin, value))
                     {
-                        Margin = (Thickness?)value;
+                        Margin = CastParameter<Thickness?>(value, name);
                         NativeControl.Margin = Margin ?? (Thickness)CMV.Popup.MarginProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)CMV.Popup.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalOptions):
                     if (!Equals(VerticalOptions, value))
                     {
-                        VerticalOptions = (MC.LayoutOptions?)value;
+                        VerticalOptions = CastParameter<MC.LayoutOptions?>(value, name);
                         NativeControl.VerticalOptions = VerticalOptions ?? (MC.LayoutOptions)CMV.Popup.VerticalOptionsProperty.DefaultValue;
                     }
                     break;
@@ -102,7 +102,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     {
                         void NativeControlOpened(object sender, EventArgs e) => InvokeEventCallback(OnOpened);
 
-                        OnOpened = (EventCallback)value;
+                        OnOpened = CastParameter<EventCallback>(value, name);
                         NativeControl.Opened -= NativeControlOpened;
                         NativeControl.Opened += NativeControlOpened;
                     }
@@ -112,7 +112,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     {
                         void NativeControlClosed(object sender, EventArgs e) => InvokeEventCallback(OnClosed);
 
-                        OnClosed = (EventCallback)value;
+                        OnClosed = CastParameter<EventCallback>(value, name);
                         NativeControl.Closed -= NativeControlClosed;
                         NativeControl.Closed += NativeControlClosed;
                     }

@@ -38,22 +38,22 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(ItemSizingStrategy):
                     if (!Equals(ItemSizingStrategy, value))
                     {
-                        ItemSizingStrategy = (MC.ItemSizingStrategy?)value;
+                        ItemSizingStrategy = CastParameter<MC.ItemSizingStrategy?>(value, name);
                         NativeControl.ItemSizingStrategy = ItemSizingStrategy ?? (MC.ItemSizingStrategy)MC.StructuredItemsView.ItemSizingStrategyProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsLayout):
                     if (!Equals(ItemsLayout, value))
                     {
-                        ItemsLayout = (MC.IItemsLayout)value;
+                        ItemsLayout = CastParameter<MC.IItemsLayout>(value, name);
                         NativeControl.ItemsLayout = ItemsLayout;
                     }
                     break;
                 case nameof(Footer):
-                    Footer = (RenderFragment)value;
+                    Footer = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Header):
-                    Header = (RenderFragment)value;
+                    Header = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

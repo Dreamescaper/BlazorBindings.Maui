@@ -47,47 +47,47 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ActiveIndicatorColor):
                     if (!Equals(ActiveIndicatorColor, value))
                     {
-                        ActiveIndicatorColor = (Color)value;
+                        ActiveIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.ActiveIndicatorColor = ActiveIndicatorColor;
                     }
                     break;
                 case nameof(ActiveIndicatorShape):
                     if (!Equals(ActiveIndicatorShape, value))
                     {
-                        ActiveIndicatorShape = (MCM.Tokens.Shape?)value;
+                        ActiveIndicatorShape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.ActiveIndicatorShape = ActiveIndicatorShape ?? (MCM.Tokens.Shape)MCM.Tabs.ActiveIndicatorShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasIcon):
                     if (!Equals(HasIcon, value))
                     {
-                        HasIcon = (bool?)value;
+                        HasIcon = CastParameter<bool?>(value, name);
                         NativeControl.HasIcon = HasIcon ?? (bool)MCM.Tabs.HasIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasLabel):
                     if (!Equals(HasLabel, value))
                     {
-                        HasLabel = (bool?)value;
+                        HasLabel = CastParameter<bool?>(value, name);
                         NativeControl.HasLabel = HasLabel ?? (bool)MCM.Tabs.HasLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)MCM.Tabs.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectedItemChanged):
                     if (!Equals(OnSelectedItemChanged, value))
                     {
                         void NativeControlSelectedItemChanged(object sender, MC.SelectedItemChangedEventArgs e) => InvokeEventCallback(OnSelectedItemChanged, e);
 
-                        OnSelectedItemChanged = (EventCallback<MC.SelectedItemChangedEventArgs>)value;
+                        OnSelectedItemChanged = CastParameter<EventCallback<MC.SelectedItemChangedEventArgs>>(value, name);
                         NativeControl.SelectedItemChanged -= NativeControlSelectedItemChanged;
                         NativeControl.SelectedItemChanged += NativeControlSelectedItemChanged;
                     }

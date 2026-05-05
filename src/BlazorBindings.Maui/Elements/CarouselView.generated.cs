@@ -47,56 +47,56 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CurrentItem):
                     if (!Equals(CurrentItem, value))
                     {
-                        CurrentItem = (T)value;
+                        CurrentItem = CastParameter<T>(value, name);
                         NativeControl.CurrentItem = CurrentItem;
                     }
                     break;
                 case nameof(IsBounceEnabled):
                     if (!Equals(IsBounceEnabled, value))
                     {
-                        IsBounceEnabled = (bool?)value;
+                        IsBounceEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsBounceEnabled = IsBounceEnabled ?? (bool)MC.CarouselView.IsBounceEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsScrollAnimated):
                     if (!Equals(IsScrollAnimated, value))
                     {
-                        IsScrollAnimated = (bool?)value;
+                        IsScrollAnimated = CastParameter<bool?>(value, name);
                         NativeControl.IsScrollAnimated = IsScrollAnimated ?? (bool)MC.CarouselView.IsScrollAnimatedProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsSwipeEnabled):
                     if (!Equals(IsSwipeEnabled, value))
                     {
-                        IsSwipeEnabled = (bool?)value;
+                        IsSwipeEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsSwipeEnabled = IsSwipeEnabled ?? (bool)MC.CarouselView.IsSwipeEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsLayout):
                     if (!Equals(ItemsLayout, value))
                     {
-                        ItemsLayout = (MC.LinearItemsLayout)value;
+                        ItemsLayout = CastParameter<MC.LinearItemsLayout>(value, name);
                         NativeControl.ItemsLayout = ItemsLayout;
                     }
                     break;
                 case nameof(Loop):
                     if (!Equals(Loop, value))
                     {
-                        Loop = (bool?)value;
+                        Loop = CastParameter<bool?>(value, name);
                         NativeControl.Loop = Loop ?? (bool)MC.CarouselView.LoopProperty.DefaultValue;
                     }
                     break;
                 case nameof(PeekAreaInsets):
                     if (!Equals(PeekAreaInsets, value))
                     {
-                        PeekAreaInsets = (Thickness?)value;
+                        PeekAreaInsets = CastParameter<Thickness?>(value, name);
                         NativeControl.PeekAreaInsets = PeekAreaInsets ?? (Thickness)MC.CarouselView.PeekAreaInsetsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Position):
                     if (!Equals(Position, value))
                     {
-                        Position = (int?)value;
+                        Position = CastParameter<int?>(value, name);
                         NativeControl.Position = Position ?? (int)MC.CarouselView.PositionProperty.DefaultValue;
                     }
                     break;
@@ -110,7 +110,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(CurrentItemChanged, value);
                         }
 
-                        CurrentItemChanged = (EventCallback<T>)value;
+                        CurrentItemChanged = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.CurrentItemChanged -= NativeControlCurrentItemChanged;
                         NativeControl.CurrentItemChanged += NativeControlCurrentItemChanged;
                     }
@@ -125,7 +125,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(PositionChanged, value);
                         }
 
-                        PositionChanged = (EventCallback<int>)value;
+                        PositionChanged = CastParameter<EventCallback<int>>(value, name);
                         NativeControl.PositionChanged -= NativeControlPositionChanged;
                         NativeControl.PositionChanged += NativeControlPositionChanged;
                     }

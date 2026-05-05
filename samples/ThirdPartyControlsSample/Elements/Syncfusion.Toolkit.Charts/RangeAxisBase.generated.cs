@@ -79,29 +79,29 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EdgeLabelsVisibilityMode):
                     if (!Equals(EdgeLabelsVisibilityMode, value))
                     {
-                        EdgeLabelsVisibilityMode = (SMTC.EdgeLabelsVisibilityMode?)value;
+                        EdgeLabelsVisibilityMode = CastParameter<SMTC.EdgeLabelsVisibilityMode?>(value, name);
                         NativeControl.EdgeLabelsVisibilityMode = EdgeLabelsVisibilityMode ?? (SMTC.EdgeLabelsVisibilityMode)SMTC.RangeAxisBase.EdgeLabelsVisibilityModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinorTicksPerInterval):
                     if (!Equals(MinorTicksPerInterval, value))
                     {
-                        MinorTicksPerInterval = (int?)value;
+                        MinorTicksPerInterval = CastParameter<int?>(value, name);
                         NativeControl.MinorTicksPerInterval = MinorTicksPerInterval ?? (int)SMTC.RangeAxisBase.MinorTicksPerIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowMinorGridLines):
                     if (!Equals(ShowMinorGridLines, value))
                     {
-                        ShowMinorGridLines = (bool?)value;
+                        ShowMinorGridLines = CastParameter<bool?>(value, name);
                         NativeControl.ShowMinorGridLines = ShowMinorGridLines ?? (bool)SMTC.RangeAxisBase.ShowMinorGridLinesProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinorGridLineStyle):
-                    MinorGridLineStyle = (RenderFragment)value;
+                    MinorGridLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MinorTickStyle):
-                    MinorTickStyle = (RenderFragment)value;
+                    MinorTickStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

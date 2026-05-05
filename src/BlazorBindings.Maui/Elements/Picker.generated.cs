@@ -87,105 +87,105 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CharacterSpacing):
                     if (!Equals(CharacterSpacing, value))
                     {
-                        CharacterSpacing = (double?)value;
+                        CharacterSpacing = CastParameter<double?>(value, name);
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.Picker.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.Picker.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.Picker.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)MC.Picker.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.Picker.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)MC.Picker.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemDisplayBinding):
                     if (!Equals(ItemDisplayBinding, value))
                     {
-                        ItemDisplayBinding = (Func<T, string>)value;
+                        ItemDisplayBinding = CastParameter<Func<T, string>>(value, name);
                         NativeControl.ItemDisplayBinding = AttributeHelper.GetBinding(ItemDisplayBinding);
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = AttributeHelper.GetIList(ItemsSource);
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)MC.Picker.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedItem):
                     if (!Equals(SelectedItem, value))
                     {
-                        SelectedItem = (T)value;
+                        SelectedItem = CastParameter<T>(value, name);
                         NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(TitleColor):
                     if (!Equals(TitleColor, value))
                     {
-                        TitleColor = (Color)value;
+                        TitleColor = CastParameter<Color>(value, name);
                         NativeControl.TitleColor = TitleColor;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)MC.Picker.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
@@ -202,7 +202,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        SelectedItemChanged = (EventCallback<T>)value;
+                        SelectedItemChanged = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }
@@ -217,7 +217,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(SelectedIndexChanged, value);
                         }
 
-                        SelectedIndexChanged = (EventCallback<int>)value;
+                        SelectedIndexChanged = CastParameter<EventCallback<int>>(value, name);
                         NativeControl.SelectedIndexChanged -= NativeControlSelectedIndexChanged;
                         NativeControl.SelectedIndexChanged += NativeControlSelectedIndexChanged;
                     }
@@ -227,7 +227,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlOpened(object sender, MC.PickerOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
 
-                        OnOpened = (EventCallback<MC.PickerOpenedEventArgs>)value;
+                        OnOpened = CastParameter<EventCallback<MC.PickerOpenedEventArgs>>(value, name);
                         NativeControl.Opened -= NativeControlOpened;
                         NativeControl.Opened += NativeControlOpened;
                     }
@@ -237,7 +237,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlClosed(object sender, MC.PickerClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
 
-                        OnClosed = (EventCallback<MC.PickerClosedEventArgs>)value;
+                        OnClosed = CastParameter<EventCallback<MC.PickerClosedEventArgs>>(value, name);
                         NativeControl.Closed -= NativeControlClosed;
                         NativeControl.Closed += NativeControlClosed;
                     }

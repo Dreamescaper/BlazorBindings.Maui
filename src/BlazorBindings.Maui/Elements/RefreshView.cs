@@ -25,7 +25,7 @@ public partial class RefreshView : ContentView
                     }
                 }
 
-                OnRefreshing = (EventCallback)value;
+                OnRefreshing = CastParameter<EventCallback>(value, name);
                 NativeControl.Refreshing -= NativeControlRefreshing;
                 NativeControl.Refreshing += NativeControlRefreshing;
             }

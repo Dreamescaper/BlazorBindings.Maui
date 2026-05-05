@@ -41,19 +41,19 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Mode):
                     if (!Equals(Mode, value))
                     {
-                        Mode = (SwipeMode?)value;
+                        Mode = CastParameter<SwipeMode?>(value, name);
                         NativeControl.Mode = Mode ?? (SwipeMode)MC.SwipeItems.ModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SwipeBehaviorOnInvoked):
                     if (!Equals(SwipeBehaviorOnInvoked, value))
                     {
-                        SwipeBehaviorOnInvoked = (SwipeBehaviorOnInvoked?)value;
+                        SwipeBehaviorOnInvoked = CastParameter<SwipeBehaviorOnInvoked?>(value, name);
                         NativeControl.SwipeBehaviorOnInvoked = SwipeBehaviorOnInvoked ?? (SwipeBehaviorOnInvoked)MC.SwipeItems.SwipeBehaviorOnInvokedProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

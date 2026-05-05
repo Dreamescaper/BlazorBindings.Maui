@@ -188,141 +188,141 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
                 case nameof(BackgroundImageSource):
                     if (!Equals(BackgroundImageSource, value))
                     {
-                        BackgroundImageSource = (MC.ImageSource)value;
+                        BackgroundImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.BackgroundImageSource = BackgroundImageSource;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMT.ButtonBase.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableRippleEffect):
                     if (!Equals(EnableRippleEffect, value))
                     {
-                        EnableRippleEffect = (bool?)value;
+                        EnableRippleEffect = CastParameter<bool?>(value, name);
                         NativeControl.EnableRippleEffect = EnableRippleEffect ?? (bool)SMT.ButtonBase.EnableRippleEffectProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)SMT.ButtonBase.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)SMT.ButtonBase.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)SMT.ButtonBase.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)SMT.ButtonBase.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageAlignment):
                     if (!Equals(ImageAlignment, value))
                     {
-                        ImageAlignment = (SMT.Chips.Alignment?)value;
+                        ImageAlignment = CastParameter<SMT.Chips.Alignment?>(value, name);
                         NativeControl.ImageAlignment = ImageAlignment ?? (SMT.Chips.Alignment)SMT.ButtonBase.ImageAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSize):
                     if (!Equals(ImageSize, value))
                     {
-                        ImageSize = (double?)value;
+                        ImageSize = CastParameter<double?>(value, name);
                         NativeControl.ImageSize = ImageSize ?? (double)SMT.ButtonBase.ImageSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ImageSource):
                     if (!Equals(ImageSource, value))
                     {
-                        ImageSource = (MC.ImageSource)value;
+                        ImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ImageSource = ImageSource;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)SMT.ButtonBase.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowIcon):
                     if (!Equals(ShowIcon, value))
                     {
-                        ShowIcon = (bool?)value;
+                        ShowIcon = CastParameter<bool?>(value, name);
                         NativeControl.ShowIcon = ShowIcon ?? (bool)SMT.ButtonBase.ShowIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)SMT.ButtonBase.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)SMT.ButtonBase.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnClick):
                     if (!Equals(OnClick, value))
                     {
                         void NativeControlClicked(object sender, EventArgs e) => InvokeEventCallback(OnClick);
 
-                        OnClick = (EventCallback)value;
+                        OnClick = CastParameter<EventCallback>(value, name);
                         NativeControl.Clicked -= NativeControlClicked;
                         NativeControl.Clicked += NativeControlClicked;
                     }

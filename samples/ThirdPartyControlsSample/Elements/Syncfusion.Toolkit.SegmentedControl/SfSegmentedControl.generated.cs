@@ -217,139 +217,139 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                 case nameof(AutoScrollToSelectedSegment):
                     if (!Equals(AutoScrollToSelectedSegment, value))
                     {
-                        AutoScrollToSelectedSegment = (bool?)value;
+                        AutoScrollToSelectedSegment = CastParameter<bool?>(value, name);
                         NativeControl.AutoScrollToSelectedSegment = AutoScrollToSelectedSegment ?? (bool)SMTS.SfSegmentedControl.AutoScrollToSelectedSegmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTS.SfSegmentedControl.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(DisabledSegmentBackgroundColor):
                     if (!Equals(DisabledSegmentBackgroundColor, value))
                     {
-                        DisabledSegmentBackgroundColor = (Color)value;
+                        DisabledSegmentBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.DisabledSegmentBackground = DisabledSegmentBackgroundColor;
                     }
                     break;
                 case nameof(DisabledSegmentTextColor):
                     if (!Equals(DisabledSegmentTextColor, value))
                     {
-                        DisabledSegmentTextColor = (Color)value;
+                        DisabledSegmentTextColor = CastParameter<Color>(value, name);
                         NativeControl.DisabledSegmentTextColor = DisabledSegmentTextColor;
                     }
                     break;
                 case nameof(EnableRippleEffect):
                     if (!Equals(EnableRippleEffect, value))
                     {
-                        EnableRippleEffect = (bool?)value;
+                        EnableRippleEffect = CastParameter<bool?>(value, name);
                         NativeControl.EnableRippleEffect = EnableRippleEffect ?? (bool)SMTS.SfSegmentedControl.EnableRippleEffectProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(SegmentBackgroundColor):
                     if (!Equals(SegmentBackgroundColor, value))
                     {
-                        SegmentBackgroundColor = (Color)value;
+                        SegmentBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.SegmentBackground = SegmentBackgroundColor;
                     }
                     break;
                 case nameof(SegmentCornerRadius):
                     if (!Equals(SegmentCornerRadius, value))
                     {
-                        SegmentCornerRadius = (CornerRadius?)value;
+                        SegmentCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.SegmentCornerRadius = SegmentCornerRadius ?? (CornerRadius)SMTS.SfSegmentedControl.SegmentCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(SegmentHeight):
                     if (!Equals(SegmentHeight, value))
                     {
-                        SegmentHeight = (double?)value;
+                        SegmentHeight = CastParameter<double?>(value, name);
                         NativeControl.SegmentHeight = SegmentHeight ?? (double)SMTS.SfSegmentedControl.SegmentHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(SegmentWidth):
                     if (!Equals(SegmentWidth, value))
                     {
-                        SegmentWidth = (double?)value;
+                        SegmentWidth = CastParameter<double?>(value, name);
                         NativeControl.SegmentWidth = SegmentWidth ?? (double)SMTS.SfSegmentedControl.SegmentWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (Nullable<int>)value;
+                        SelectedIndex = CastParameter<Nullable<int>>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex;
                     }
                     break;
                 case nameof(SelectionMode):
                     if (!Equals(SelectionMode, value))
                     {
-                        SelectionMode = (SMTS.SegmentSelectionMode?)value;
+                        SelectionMode = CastParameter<SMTS.SegmentSelectionMode?>(value, name);
                         NativeControl.SelectionMode = SelectionMode ?? (SMTS.SegmentSelectionMode)SMTS.SfSegmentedControl.SelectionModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowSeparator):
                     if (!Equals(ShowSeparator, value))
                     {
-                        ShowSeparator = (bool?)value;
+                        ShowSeparator = CastParameter<bool?>(value, name);
                         NativeControl.ShowSeparator = ShowSeparator ?? (bool)SMTS.SfSegmentedControl.ShowSeparatorProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)SMTS.SfSegmentedControl.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(VisibleSegmentsCount):
                     if (!Equals(VisibleSegmentsCount, value))
                     {
-                        VisibleSegmentsCount = (int?)value;
+                        VisibleSegmentsCount = CastParameter<int?>(value, name);
                         NativeControl.VisibleSegmentsCount = VisibleSegmentsCount ?? (int)SMTS.SfSegmentedControl.VisibleSegmentsCountProperty.DefaultValue;
                     }
                     break;
                 case nameof(DisabledSegmentBackground):
-                    DisabledSegmentBackground = (RenderFragment)value;
+                    DisabledSegmentBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SegmentBackground):
-                    SegmentBackground = (RenderFragment)value;
+                    SegmentBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SegmentTemplate):
-                    SegmentTemplate = (RenderFragment)value;
+                    SegmentTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionIndicatorSettings):
-                    SelectionIndicatorSettings = (RenderFragment)value;
+                    SelectionIndicatorSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTS.SelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTS.SelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTS.SelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -359,7 +359,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SegmentedControl
                     {
                         void NativeControlTapped(object sender, SMTS.SegmentTappedEventArgs e) => InvokeEventCallback(OnTapped, e);
 
-                        OnTapped = (EventCallback<SMTS.SegmentTappedEventArgs>)value;
+                        OnTapped = CastParameter<EventCallback<SMTS.SegmentTappedEventArgs>>(value, name);
                         NativeControl.Tapped -= NativeControlTapped;
                         NativeControl.Tapped += NativeControlTapped;
                     }

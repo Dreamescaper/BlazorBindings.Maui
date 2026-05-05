@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(BarAlignment):
                     if (!Equals(BarAlignment, value))
                     {
-                        BarAlignment = (SMTC.DataLabelAlignment?)value;
+                        BarAlignment = CastParameter<SMTC.DataLabelAlignment?>(value, name);
                         NativeControl.BarAlignment = BarAlignment ?? (SMTC.DataLabelAlignment)SMTC.CartesianDataLabelSettings.BarAlignmentProperty.DefaultValue;
                     }
                     break;

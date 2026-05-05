@@ -63,19 +63,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Interval):
                     if (!Equals(Interval, value))
                     {
-                        Interval = (double?)value;
+                        Interval = CastParameter<double?>(value, name);
                         NativeControl.Interval = Interval ?? (double)SMTC.DateTimeCategoryAxis.IntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(IntervalType):
                     if (!Equals(IntervalType, value))
                     {
-                        IntervalType = (SMTC.DateTimeIntervalType?)value;
+                        IntervalType = CastParameter<SMTC.DateTimeIntervalType?>(value, name);
                         NativeControl.IntervalType = IntervalType ?? (SMTC.DateTimeIntervalType)SMTC.DateTimeCategoryAxis.IntervalTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(PlotBands):
-                    PlotBands = (RenderFragment)value;
+                    PlotBands = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

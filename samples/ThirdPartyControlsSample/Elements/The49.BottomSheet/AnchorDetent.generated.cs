@@ -38,7 +38,7 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
             switch (name)
             {
                 case nameof(Anchor):
-                    Anchor = (RenderFragment)value;
+                    Anchor = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -15,7 +15,7 @@ internal class InitializedContentView : ContentView
     {
         if (name == nameof(NativeControl))
         {
-            NativeControl = (MC.ContentView)value;
+            NativeControl = CastParameter<MC.ContentView>(value, name);
         }
         else
         {

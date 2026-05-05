@@ -52,14 +52,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Color):
                     if (!Equals(Color, value))
                     {
-                        Color = (Color)value;
+                        Color = CastParameter<Color>(value, name);
                         NativeControl.Color = Color;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)MC.BoxView.CornerRadiusProperty.DefaultValue;
                     }
                     break;

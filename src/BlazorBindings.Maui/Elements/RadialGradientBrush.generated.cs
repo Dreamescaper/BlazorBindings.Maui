@@ -36,14 +36,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Center):
                     if (!Equals(Center, value))
                     {
-                        Center = (Point?)value;
+                        Center = CastParameter<Point?>(value, name);
                         NativeControl.Center = Center ?? (Point)MC.RadialGradientBrush.CenterProperty.DefaultValue;
                     }
                     break;
                 case nameof(Radius):
                     if (!Equals(Radius, value))
                     {
-                        Radius = (double?)value;
+                        Radius = CastParameter<double?>(value, name);
                         NativeControl.Radius = Radius ?? (double)MC.RadialGradientBrush.RadiusProperty.DefaultValue;
                     }
                     break;

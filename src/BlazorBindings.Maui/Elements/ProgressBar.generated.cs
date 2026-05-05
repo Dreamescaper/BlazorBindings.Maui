@@ -51,14 +51,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Progress):
                     if (!Equals(Progress, value))
                     {
-                        Progress = (double?)value;
+                        Progress = CastParameter<double?>(value, name);
                         NativeControl.Progress = Progress ?? (double)MC.ProgressBar.ProgressProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressColor):
                     if (!Equals(ProgressColor, value))
                     {
-                        ProgressColor = (Color)value;
+                        ProgressColor = CastParameter<Color>(value, name);
                         NativeControl.ProgressColor = ProgressColor;
                     }
                     break;

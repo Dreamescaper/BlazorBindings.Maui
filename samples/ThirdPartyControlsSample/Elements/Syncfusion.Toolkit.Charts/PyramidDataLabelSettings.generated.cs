@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Context):
                     if (!Equals(Context, value))
                     {
-                        Context = (SMTC.PyramidDataLabelContext?)value;
+                        Context = CastParameter<SMTC.PyramidDataLabelContext?>(value, name);
                         NativeControl.Context = Context ?? (SMTC.PyramidDataLabelContext)SMTC.PyramidDataLabelSettings.ContextProperty.DefaultValue;
                     }
                     break;

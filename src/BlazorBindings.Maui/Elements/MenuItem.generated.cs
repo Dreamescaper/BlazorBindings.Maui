@@ -51,28 +51,28 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IconImageSource):
                     if (!Equals(IconImageSource, value))
                     {
-                        IconImageSource = (MC.ImageSource)value;
+                        IconImageSource = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.IconImageSource = IconImageSource;
                     }
                     break;
                 case nameof(IsDestructive):
                     if (!Equals(IsDestructive, value))
                     {
-                        IsDestructive = (bool?)value;
+                        IsDestructive = CastParameter<bool?>(value, name);
                         NativeControl.IsDestructive = IsDestructive ?? (bool)MC.MenuItem.IsDestructiveProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.MenuItem.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
@@ -81,7 +81,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlClicked(object sender, EventArgs e) => InvokeEventCallback(OnClick);
 
-                        OnClick = (EventCallback)value;
+                        OnClick = CastParameter<EventCallback>(value, name);
                         NativeControl.Clicked -= NativeControlClicked;
                         NativeControl.Clicked += NativeControlClicked;
                     }

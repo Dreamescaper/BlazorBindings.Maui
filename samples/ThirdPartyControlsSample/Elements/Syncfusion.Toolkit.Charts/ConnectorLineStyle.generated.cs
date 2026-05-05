@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ConnectorType):
                     if (!Equals(ConnectorType, value))
                     {
-                        ConnectorType = (SMTC.ConnectorType?)value;
+                        ConnectorType = CastParameter<SMTC.ConnectorType?>(value, name);
                         NativeControl.ConnectorType = ConnectorType ?? (SMTC.ConnectorType)SMTC.ConnectorLineStyle.ConnectorTypeProperty.DefaultValue;
                     }
                     break;

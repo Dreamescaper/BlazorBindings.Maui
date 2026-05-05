@@ -112,68 +112,68 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.ProgressBar
                 case nameof(EndAngle):
                     if (!Equals(EndAngle, value))
                     {
-                        EndAngle = (double?)value;
+                        EndAngle = CastParameter<double?>(value, name);
                         NativeControl.EndAngle = EndAngle ?? (double)SMTP.SfCircularProgressBar.EndAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressCornerStyle):
                     if (!Equals(ProgressCornerStyle, value))
                     {
-                        ProgressCornerStyle = (SMTP.CornerStyle?)value;
+                        ProgressCornerStyle = CastParameter<SMTP.CornerStyle?>(value, name);
                         NativeControl.ProgressCornerStyle = ProgressCornerStyle ?? (SMTP.CornerStyle)SMTP.SfCircularProgressBar.ProgressCornerStyleProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressRadiusFactor):
                     if (!Equals(ProgressRadiusFactor, value))
                     {
-                        ProgressRadiusFactor = (double?)value;
+                        ProgressRadiusFactor = CastParameter<double?>(value, name);
                         NativeControl.ProgressRadiusFactor = ProgressRadiusFactor ?? (double)SMTP.SfCircularProgressBar.ProgressRadiusFactorProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressThickness):
                     if (!Equals(ProgressThickness, value))
                     {
-                        ProgressThickness = (double?)value;
+                        ProgressThickness = CastParameter<double?>(value, name);
                         NativeControl.ProgressThickness = ProgressThickness ?? (double)SMTP.SfCircularProgressBar.ProgressThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartAngle):
                     if (!Equals(StartAngle, value))
                     {
-                        StartAngle = (double?)value;
+                        StartAngle = CastParameter<double?>(value, name);
                         NativeControl.StartAngle = StartAngle ?? (double)SMTP.SfCircularProgressBar.StartAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(ThicknessUnit):
                     if (!Equals(ThicknessUnit, value))
                     {
-                        ThicknessUnit = (SMTP.SizeUnit?)value;
+                        ThicknessUnit = CastParameter<SMTP.SizeUnit?>(value, name);
                         NativeControl.ThicknessUnit = ThicknessUnit ?? (SMTP.SizeUnit)SMTP.SfCircularProgressBar.ThicknessUnitProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackCornerStyle):
                     if (!Equals(TrackCornerStyle, value))
                     {
-                        TrackCornerStyle = (SMTP.CornerStyle?)value;
+                        TrackCornerStyle = CastParameter<SMTP.CornerStyle?>(value, name);
                         NativeControl.TrackCornerStyle = TrackCornerStyle ?? (SMTP.CornerStyle)SMTP.SfCircularProgressBar.TrackCornerStyleProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackRadiusFactor):
                     if (!Equals(TrackRadiusFactor, value))
                     {
-                        TrackRadiusFactor = (double?)value;
+                        TrackRadiusFactor = CastParameter<double?>(value, name);
                         NativeControl.TrackRadiusFactor = TrackRadiusFactor ?? (double)SMTP.SfCircularProgressBar.TrackRadiusFactorProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackThickness):
                     if (!Equals(TrackThickness, value))
                     {
-                        TrackThickness = (double?)value;
+                        TrackThickness = CastParameter<double?>(value, name);
                         NativeControl.TrackThickness = TrackThickness ?? (double)SMTP.SfCircularProgressBar.TrackThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:
