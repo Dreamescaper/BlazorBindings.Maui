@@ -52,10 +52,13 @@ public abstract class NativeControlComponentBase : IComponent
             return default;
 
         var parameterValueString = value?.ToString() ?? "<null>";
+        var requiredType = Nullable.GetUnderlyingType(typeof(T)) is { } underlyingType
+            ? $"{underlyingType.Name}?"
+            : typeof(T).Name;
 
         throw new ArgumentException(
             $"Cannot set parameter '{parameterName}' to value '{parameterValueString}' for component '{GetType()?.Name}'. " +
-            $"Required type: {typeof(T).Name}. Actual type: {value?.GetType()?.Name}.",
+            $"Required type: {requiredType}. Actual type: {value?.GetType()?.Name}.",
             parameterName);
     }
 

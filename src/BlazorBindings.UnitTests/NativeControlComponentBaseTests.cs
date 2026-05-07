@@ -7,7 +7,7 @@ public class NativeControlComponentBaseTests
     [Test]
     public void CastParameterReturnsTypedValue()
     {
-        var value = TestComponent.CastParameterValue<int?>(42, "Count");
+        var value = new TestComponent().CastParameterValue<int?>(42, "Count");
 
         Assert.That(value, Is.EqualTo(42));
     }
@@ -15,7 +15,7 @@ public class NativeControlComponentBaseTests
     [Test]
     public void CastParameterAllowsNullForNullableTypes()
     {
-        var value = TestComponent.CastParameterValue<int?>(null, "Count");
+        var value = new TestComponent().CastParameterValue<int?>(null, "Count");
 
         Assert.That(value, Is.Null);
     }
@@ -23,21 +23,22 @@ public class NativeControlComponentBaseTests
     [Test]
     public void CastParameterThrowsWithParameterDetails()
     {
-        var ex = Assert.Throws<ArgumentException>(() => TestComponent.CastParameterValue<int>("abc", "Count"));
+        var ex = Assert.Throws<ArgumentException>(() => new TestComponent().CastParameterValue<int>("abc", "Count"));
 
-        Assert.Multiple(() =>
+        using (Assert.EnterMultipleScope())
         {
             Assert.That(ex.ParamName, Is.EqualTo("Count"));
             Assert.That(ex.Message, Does.Contain("Count"));
             Assert.That(ex.Message, Does.Contain("abc"));
-            Assert.That(ex.Message, Does.Contain("System.Int32"));
-            Assert.That(ex.Message, Does.Contain("System.String"));
-        });
+            Assert.That(ex.Message, Does.Contain("TestComponent"));
+            Assert.That(ex.Message, Does.Contain("Int32"));
+            Assert.That(ex.Message, Does.Contain("String"));
+        }
     }
 
     private sealed class TestComponent : NativeControlComponentBase
     {
-        public static T CastParameterValue<T>(object value, string parameterName)
+        public T CastParameterValue<T>(object value, string parameterName)
             => CastParameter<T>(value, parameterName);
     }
 }
