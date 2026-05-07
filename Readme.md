@@ -7,6 +7,8 @@
 
 Check out the documentation for how to build your first app: https://dreamescaper.github.io/MobileBlazorBindingsDocs
 
+If you are using BlazorBindings.Maui in your own project, see [AGENTS.md](AGENTS.md) for project guidance intended for AI coding assistants and contributors working with BlazorBindings.Maui apps.
+
 ## What is it?
 
 Maui Blazor Bindings enable developers to build native and hybrid mobile apps using C# and .NET for Android, iOS, Windows, macOS, and Tizen using familiar web programming patterns. This means you can use the Blazor programming model and Razor syntax to define UI components and behaviors of an application. The UI components that are included are based on MAUI native UI controls, which results in beautiful native mobile apps.
