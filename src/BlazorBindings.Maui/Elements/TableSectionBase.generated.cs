@@ -41,14 +41,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;

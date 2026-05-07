@@ -89,47 +89,47 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(AutoScrollingDeltaType):
                     if (!Equals(AutoScrollingDeltaType, value))
                     {
-                        AutoScrollingDeltaType = (SMTC.DateTimeIntervalType?)value;
+                        AutoScrollingDeltaType = CastParameter<SMTC.DateTimeIntervalType?>(value, name);
                         NativeControl.AutoScrollingDeltaType = AutoScrollingDeltaType ?? (SMTC.DateTimeIntervalType)SMTC.DateTimeAxis.AutoScrollingDeltaTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Interval):
                     if (!Equals(Interval, value))
                     {
-                        Interval = (double?)value;
+                        Interval = CastParameter<double?>(value, name);
                         NativeControl.Interval = Interval ?? (double)SMTC.DateTimeAxis.IntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(IntervalType):
                     if (!Equals(IntervalType, value))
                     {
-                        IntervalType = (SMTC.DateTimeIntervalType?)value;
+                        IntervalType = CastParameter<SMTC.DateTimeIntervalType?>(value, name);
                         NativeControl.IntervalType = IntervalType ?? (SMTC.DateTimeIntervalType)SMTC.DateTimeAxis.IntervalTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Maximum):
                     if (!Equals(Maximum, value))
                     {
-                        Maximum = (Nullable<DateTime>)value;
+                        Maximum = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.Maximum = Maximum;
                     }
                     break;
                 case nameof(Minimum):
                     if (!Equals(Minimum, value))
                     {
-                        Minimum = (Nullable<DateTime>)value;
+                        Minimum = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.Minimum = Minimum;
                     }
                     break;
                 case nameof(RangePadding):
                     if (!Equals(RangePadding, value))
                     {
-                        RangePadding = (SMTC.DateTimeRangePadding?)value;
+                        RangePadding = CastParameter<SMTC.DateTimeRangePadding?>(value, name);
                         NativeControl.RangePadding = RangePadding ?? (SMTC.DateTimeRangePadding)SMTC.DateTimeAxis.RangePaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(PlotBands):
-                    PlotBands = (RenderFragment)value;
+                    PlotBands = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

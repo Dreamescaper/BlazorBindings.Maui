@@ -36,7 +36,7 @@ namespace BlazorBindings.Maui.Elements.Shapes
                 case nameof(Value):
                     if (!Equals(Value, value))
                     {
-                        Value = (MCS.Matrix?)value;
+                        Value = CastParameter<MCS.Matrix?>(value, name);
                         NativeControl.Value = Value ?? (MCS.Matrix)MCS.Transform.ValueProperty.DefaultValue;
                     }
                     break;

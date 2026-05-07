@@ -59,131 +59,131 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ActiveIndicatorColor):
                     if (!Equals(ActiveIndicatorColor, value))
                     {
-                        ActiveIndicatorColor = (Color)value;
+                        ActiveIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.ActiveIndicatorColor = ActiveIndicatorColor;
                     }
                     break;
                 case nameof(ActiveIndicatorOpacity):
                     if (!Equals(ActiveIndicatorOpacity, value))
                     {
-                        ActiveIndicatorOpacity = (float?)value;
+                        ActiveIndicatorOpacity = CastParameter<float?>(value, name);
                         NativeControl.ActiveIndicatorOpacity = ActiveIndicatorOpacity ?? (float)MCM.TabItem.ActiveIndicatorOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(ActiveIndicatorShape):
                     if (!Equals(ActiveIndicatorShape, value))
                     {
-                        ActiveIndicatorShape = (MCM.Tokens.Shape?)value;
+                        ActiveIndicatorShape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.ActiveIndicatorShape = ActiveIndicatorShape ?? (MCM.Tokens.Shape)MCM.TabItem.ActiveIndicatorShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.TabItem.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.TabItem.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.TabItem.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(HasIcon):
                     if (!Equals(HasIcon, value))
                     {
-                        HasIcon = (bool?)value;
+                        HasIcon = CastParameter<bool?>(value, name);
                         NativeControl.HasIcon = HasIcon ?? (bool)MCM.TabItem.HasIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasLabel):
                     if (!Equals(HasLabel, value))
                     {
-                        HasLabel = (bool?)value;
+                        HasLabel = CastParameter<bool?>(value, name);
                         NativeControl.HasLabel = HasLabel ?? (bool)MCM.TabItem.HasLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(IconData):
                     if (!Equals(IconData, value))
                     {
-                        IconData = (string)value;
+                        IconData = CastParameter<string>(value, name);
                         NativeControl.IconData = IconData;
                     }
                     break;
                 case nameof(IconKind):
                     if (!Equals(IconKind, value))
                     {
-                        IconKind = (global::IconPacks.Material.IconKind?)value;
+                        IconKind = CastParameter<global::IconPacks.Material.IconKind?>(value, name);
                         NativeControl.IconKind = IconKind ?? (global::IconPacks.Material.IconKind)MCM.TabItem.IconKindProperty.DefaultValue;
                     }
                     break;
                 case nameof(IconSource):
                     if (!Equals(IconSource, value))
                     {
-                        IconSource = (global::SkiaSharp.SKPicture)value;
+                        IconSource = CastParameter<global::SkiaSharp.SKPicture>(value, name);
                         NativeControl.IconSource = IconSource;
                     }
                     break;
                 case nameof(IsActived):
                     if (!Equals(IsActived, value))
                     {
-                        IsActived = (bool?)value;
+                        IsActived = CastParameter<bool?>(value, name);
                         NativeControl.IsActived = IsActived ?? (bool)MCM.TabItem.IsActivedProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

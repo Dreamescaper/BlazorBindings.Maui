@@ -81,29 +81,29 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.EmptyPointSettings.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

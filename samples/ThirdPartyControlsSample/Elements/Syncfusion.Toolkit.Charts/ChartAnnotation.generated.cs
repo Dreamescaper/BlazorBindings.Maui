@@ -79,42 +79,42 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(CoordinateUnit):
                     if (!Equals(CoordinateUnit, value))
                     {
-                        CoordinateUnit = (SMTC.ChartCoordinateUnit?)value;
+                        CoordinateUnit = CastParameter<SMTC.ChartCoordinateUnit?>(value, name);
                         NativeControl.CoordinateUnit = CoordinateUnit ?? (SMTC.ChartCoordinateUnit)SMTC.ChartAnnotation.CoordinateUnitProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ChartAnnotation.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(X1):
                     if (!Equals(X1, value))
                     {
-                        X1 = (object)value;
+                        X1 = CastParameter<object>(value, name);
                         NativeControl.X1 = X1;
                     }
                     break;
                 case nameof(XAxisName):
                     if (!Equals(XAxisName, value))
                     {
-                        XAxisName = (string)value;
+                        XAxisName = CastParameter<string>(value, name);
                         NativeControl.XAxisName = XAxisName;
                     }
                     break;
                 case nameof(Y1):
                     if (!Equals(Y1, value))
                     {
-                        Y1 = (double?)value;
+                        Y1 = CastParameter<double?>(value, name);
                         NativeControl.Y1 = Y1 ?? (double)SMTC.ChartAnnotation.Y1Property.DefaultValue;
                     }
                     break;
                 case nameof(YAxisName):
                     if (!Equals(YAxisName, value))
                     {
-                        YAxisName = (string)value;
+                        YAxisName = CastParameter<string>(value, name);
                         NativeControl.YAxisName = YAxisName;
                     }
                     break;

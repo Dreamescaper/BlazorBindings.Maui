@@ -56,21 +56,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(AutomationId):
                     if (!Equals(AutomationId, value))
                     {
-                        AutomationId = (string)value;
+                        AutomationId = CastParameter<string>(value, name);
                         NativeControl.AutomationId = AutomationId;
                     }
                     break;
                 case nameof(ClassId):
                     if (!Equals(ClassId, value))
                     {
-                        ClassId = (string)value;
+                        ClassId = CastParameter<string>(value, name);
                         NativeControl.ClassId = ClassId;
                     }
                     break;
                 case nameof(StyleId):
                     if (!Equals(StyleId, value))
                     {
-                        StyleId = (string)value;
+                        StyleId = CastParameter<string>(value, name);
                         NativeControl.StyleId = StyleId;
                     }
                     break;

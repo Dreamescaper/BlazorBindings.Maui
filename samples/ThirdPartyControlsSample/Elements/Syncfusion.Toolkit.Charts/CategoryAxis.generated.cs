@@ -67,26 +67,26 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ArrangeByIndex):
                     if (!Equals(ArrangeByIndex, value))
                     {
-                        ArrangeByIndex = (bool?)value;
+                        ArrangeByIndex = CastParameter<bool?>(value, name);
                         NativeControl.ArrangeByIndex = ArrangeByIndex ?? (bool)SMTC.CategoryAxis.ArrangeByIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(Interval):
                     if (!Equals(Interval, value))
                     {
-                        Interval = (double?)value;
+                        Interval = CastParameter<double?>(value, name);
                         NativeControl.Interval = Interval ?? (double)SMTC.CategoryAxis.IntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelPlacement):
                     if (!Equals(LabelPlacement, value))
                     {
-                        LabelPlacement = (SMTC.LabelPlacement?)value;
+                        LabelPlacement = CastParameter<SMTC.LabelPlacement?>(value, name);
                         NativeControl.LabelPlacement = LabelPlacement ?? (SMTC.LabelPlacement)SMTC.CategoryAxis.LabelPlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(PlotBands):
-                    PlotBands = (RenderFragment)value;
+                    PlotBands = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

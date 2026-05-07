@@ -14,7 +14,7 @@ public partial class Span : GestureElement, IHandleChildContentText
     {
         if (name == nameof(ChildContent))
         {
-            ChildContent = (RenderFragment)value;
+            ChildContent = CastParameter<RenderFragment>(value, name);
             return true;
         }
 

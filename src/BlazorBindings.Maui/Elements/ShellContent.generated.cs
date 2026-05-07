@@ -42,7 +42,7 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(MenuItems):
-                    MenuItems = (RenderFragment)value;
+                    MenuItems = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -62,19 +62,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(LabelPlacement):
                     if (!Equals(LabelPlacement, value))
                     {
-                        LabelPlacement = (SMTC.DataLabelPlacement?)value;
+                        LabelPlacement = CastParameter<SMTC.DataLabelPlacement?>(value, name);
                         NativeControl.LabelPlacement = LabelPlacement ?? (SMTC.DataLabelPlacement)SMTC.ChartDataLabelSettings.LabelPlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(UseSeriesPalette):
                     if (!Equals(UseSeriesPalette, value))
                     {
-                        UseSeriesPalette = (bool?)value;
+                        UseSeriesPalette = CastParameter<bool?>(value, name);
                         NativeControl.UseSeriesPalette = UseSeriesPalette ?? (bool)SMTC.ChartDataLabelSettings.UseSeriesPaletteProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelStyle):
-                    LabelStyle = (RenderFragment)value;
+                    LabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

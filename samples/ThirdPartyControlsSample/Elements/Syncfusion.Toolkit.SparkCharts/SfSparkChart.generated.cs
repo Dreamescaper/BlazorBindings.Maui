@@ -87,64 +87,64 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                 case nameof(AxisOrigin):
                     if (!Equals(AxisOrigin, value))
                     {
-                        AxisOrigin = (double?)value;
+                        AxisOrigin = CastParameter<double?>(value, name);
                         NativeControl.AxisOrigin = AxisOrigin ?? (double)SMTS.SfSparkChart.AxisOriginProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(MaximumYValue):
                     if (!Equals(MaximumYValue, value))
                     {
-                        MaximumYValue = (double?)value;
+                        MaximumYValue = CastParameter<double?>(value, name);
                         NativeControl.MaximumYValue = MaximumYValue ?? (double)SMTS.SfSparkChart.MaximumYValueProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumYValue):
                     if (!Equals(MinimumYValue, value))
                     {
-                        MinimumYValue = (double?)value;
+                        MinimumYValue = CastParameter<double?>(value, name);
                         NativeControl.MinimumYValue = MinimumYValue ?? (double)SMTS.SfSparkChart.MinimumYValueProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)SMTS.SfSparkChart.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowAxis):
                     if (!Equals(ShowAxis, value))
                     {
-                        ShowAxis = (bool?)value;
+                        ShowAxis = CastParameter<bool?>(value, name);
                         NativeControl.ShowAxis = ShowAxis ?? (bool)SMTS.SfSparkChart.ShowAxisProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(YBindingPath):
                     if (!Equals(YBindingPath, value))
                     {
-                        YBindingPath = (string)value;
+                        YBindingPath = CastParameter<string>(value, name);
                         NativeControl.YBindingPath = YBindingPath;
                     }
                     break;
                 case nameof(AxisLineStyle):
-                    AxisLineStyle = (RenderFragment)value;
+                    AxisLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

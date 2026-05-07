@@ -47,29 +47,29 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(DisplayMode):
                     if (!Equals(DisplayMode, value))
                     {
-                        DisplayMode = (MCM.DrawerDisplayMode?)value;
+                        DisplayMode = CastParameter<MCM.DrawerDisplayMode?>(value, name);
                         NativeControl.DisplayMode = DisplayMode ?? (MCM.DrawerDisplayMode)MCM.SplitView.DisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsPaneOpen):
                     if (!Equals(IsPaneOpen, value))
                     {
-                        IsPaneOpen = (bool?)value;
+                        IsPaneOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsPaneOpen = IsPaneOpen ?? (bool)MCM.SplitView.IsPaneOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(Content):
-                    Content = (RenderFragment)value;
+                    Content = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnContentChanged):
                     if (!Equals(OnContentChanged, value))
                     {
                         void NativeControlContentChanged(object sender, MCM.Core.ValueChangedEventArgs e) => InvokeEventCallback(OnContentChanged, e);
 
-                        OnContentChanged = (EventCallback<MCM.Core.ValueChangedEventArgs>)value;
+                        OnContentChanged = CastParameter<EventCallback<MCM.Core.ValueChangedEventArgs>>(value, name);
                         NativeControl.ContentChanged -= NativeControlContentChanged;
                         NativeControl.ContentChanged += NativeControlContentChanged;
                     }

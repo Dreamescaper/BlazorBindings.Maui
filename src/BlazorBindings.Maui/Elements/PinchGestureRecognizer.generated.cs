@@ -39,7 +39,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPinchUpdated(object sender, MC.PinchGestureUpdatedEventArgs e) => InvokeEventCallback(OnPinchUpdated, e);
 
-                        OnPinchUpdated = (EventCallback<MC.PinchGestureUpdatedEventArgs>)value;
+                        OnPinchUpdated = CastParameter<EventCallback<MC.PinchGestureUpdatedEventArgs>>(value, name);
                         NativeControl.PinchUpdated -= NativeControlPinchUpdated;
                         NativeControl.PinchUpdated += NativeControlPinchUpdated;
                     }

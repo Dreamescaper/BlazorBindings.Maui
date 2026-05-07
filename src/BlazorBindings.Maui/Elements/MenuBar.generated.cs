@@ -40,12 +40,12 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.MenuBar.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

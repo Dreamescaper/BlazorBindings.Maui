@@ -37,7 +37,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(AllowDrop):
                     if (!Equals(AllowDrop, value))
                     {
-                        AllowDrop = (bool?)value;
+                        AllowDrop = CastParameter<bool?>(value, name);
                         NativeControl.AllowDrop = AllowDrop ?? (bool)MC.DropGestureRecognizer.AllowDropProperty.DefaultValue;
                     }
                     break;
@@ -46,7 +46,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDragLeave(object sender, MC.DragEventArgs e) => InvokeEventCallback(OnDragLeave, e);
 
-                        OnDragLeave = (EventCallback<MC.DragEventArgs>)value;
+                        OnDragLeave = CastParameter<EventCallback<MC.DragEventArgs>>(value, name);
                         NativeControl.DragLeave -= NativeControlDragLeave;
                         NativeControl.DragLeave += NativeControlDragLeave;
                     }
@@ -56,7 +56,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDragOver(object sender, MC.DragEventArgs e) => InvokeEventCallback(OnDragOver, e);
 
-                        OnDragOver = (EventCallback<MC.DragEventArgs>)value;
+                        OnDragOver = CastParameter<EventCallback<MC.DragEventArgs>>(value, name);
                         NativeControl.DragOver -= NativeControlDragOver;
                         NativeControl.DragOver += NativeControlDragOver;
                     }
@@ -66,7 +66,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDrop(object sender, MC.DropEventArgs e) => InvokeEventCallback(OnDrop, e);
 
-                        OnDrop = (EventCallback<MC.DropEventArgs>)value;
+                        OnDrop = CastParameter<EventCallback<MC.DropEventArgs>>(value, name);
                         NativeControl.Drop -= NativeControlDrop;
                         NativeControl.Drop += NativeControlDrop;
                     }

@@ -149,112 +149,112 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.OtpInput
                 case nameof(AutoFocus):
                     if (!Equals(AutoFocus, value))
                     {
-                        AutoFocus = (bool?)value;
+                        AutoFocus = CastParameter<bool?>(value, name);
                         NativeControl.AutoFocus = AutoFocus ?? (bool)SMTO.SfOtpInput.AutoFocusProperty.DefaultValue;
                     }
                     break;
                 case nameof(BoxHeight):
                     if (!Equals(BoxHeight, value))
                     {
-                        BoxHeight = (double?)value;
+                        BoxHeight = CastParameter<double?>(value, name);
                         NativeControl.BoxHeight = BoxHeight ?? (double)SMTO.SfOtpInput.BoxHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(BoxWidth):
                     if (!Equals(BoxWidth, value))
                     {
-                        BoxWidth = (double?)value;
+                        BoxWidth = CastParameter<double?>(value, name);
                         NativeControl.BoxWidth = BoxWidth ?? (double)SMTO.SfOtpInput.BoxWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(InputBackground):
                     if (!Equals(InputBackground, value))
                     {
-                        InputBackground = (Color)value;
+                        InputBackground = CastParameter<Color>(value, name);
                         NativeControl.InputBackground = InputBackground;
                     }
                     break;
                 case nameof(InputState):
                     if (!Equals(InputState, value))
                     {
-                        InputState = (SMTO.OtpInputState?)value;
+                        InputState = CastParameter<SMTO.OtpInputState?>(value, name);
                         NativeControl.InputState = InputState ?? (SMTO.OtpInputState)SMTO.SfOtpInput.InputStateProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)SMTO.SfOtpInput.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(Length):
                     if (!Equals(Length, value))
                     {
-                        Length = (double?)value;
+                        Length = CastParameter<double?>(value, name);
                         NativeControl.Length = Length ?? (double)SMTO.SfOtpInput.LengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaskCharacter):
                     if (!Equals(MaskCharacter, value))
                     {
-                        MaskCharacter = (char?)value;
+                        MaskCharacter = CastParameter<char?>(value, name);
                         NativeControl.MaskCharacter = MaskCharacter ?? (char)SMTO.SfOtpInput.MaskCharacterProperty.DefaultValue;
                     }
                     break;
                 case nameof(Placeholder):
                     if (!Equals(Placeholder, value))
                     {
-                        Placeholder = (string)value;
+                        Placeholder = CastParameter<string>(value, name);
                         NativeControl.Placeholder = Placeholder;
                     }
                     break;
                 case nameof(PlaceholderColor):
                     if (!Equals(PlaceholderColor, value))
                     {
-                        PlaceholderColor = (Color)value;
+                        PlaceholderColor = CastParameter<Color>(value, name);
                         NativeControl.PlaceholderColor = PlaceholderColor;
                     }
                     break;
                 case nameof(Separator):
                     if (!Equals(Separator, value))
                     {
-                        Separator = (string)value;
+                        Separator = CastParameter<string>(value, name);
                         NativeControl.Separator = Separator;
                     }
                     break;
                 case nameof(Stroke):
                     if (!Equals(Stroke, value))
                     {
-                        Stroke = (Color)value;
+                        Stroke = CastParameter<Color>(value, name);
                         NativeControl.Stroke = Stroke;
                     }
                     break;
                 case nameof(StylingMode):
                     if (!Equals(StylingMode, value))
                     {
-                        StylingMode = (SMTO.OtpInputStyle?)value;
+                        StylingMode = CastParameter<SMTO.OtpInputStyle?>(value, name);
                         NativeControl.StylingMode = StylingMode ?? (SMTO.OtpInputStyle)SMTO.SfOtpInput.StylingModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTO.OtpInputType?)value;
+                        Type = CastParameter<SMTO.OtpInputType?>(value, name);
                         NativeControl.Type = Type ?? (SMTO.OtpInputType)SMTO.SfOtpInput.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Value):
                     if (!Equals(Value, value))
                     {
-                        Value = (string)value;
+                        Value = CastParameter<string>(value, name);
                         NativeControl.Value = Value;
                     }
                     break;
@@ -268,7 +268,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.OtpInput
                             InvokeEventCallback(ValueChanged, value);
                         }
 
-                        ValueChanged = (EventCallback<string>)value;
+                        ValueChanged = CastParameter<EventCallback<string>>(value, name);
                         NativeControl.ValueChanged -= NativeControlValueChanged;
                         NativeControl.ValueChanged += NativeControlValueChanged;
                     }

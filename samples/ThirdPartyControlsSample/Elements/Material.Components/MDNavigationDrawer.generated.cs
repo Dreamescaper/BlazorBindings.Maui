@@ -54,71 +54,71 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(DisplayMode):
                     if (!Equals(DisplayMode, value))
                     {
-                        DisplayMode = (MCM.DrawerDisplayMode?)value;
+                        DisplayMode = CastParameter<MCM.DrawerDisplayMode?>(value, name);
                         NativeControl.DisplayMode = DisplayMode ?? (MCM.DrawerDisplayMode)MCM.NavigationDrawer.DisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasToolBar):
                     if (!Equals(HasToolBar, value))
                     {
-                        HasToolBar = (bool?)value;
+                        HasToolBar = CastParameter<bool?>(value, name);
                         NativeControl.HasToolBar = HasToolBar ?? (bool)MCM.NavigationDrawer.HasToolBarProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsPaneOpen):
                     if (!Equals(IsPaneOpen, value))
                     {
-                        IsPaneOpen = (bool?)value;
+                        IsPaneOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsPaneOpen = IsPaneOpen ?? (bool)MCM.NavigationDrawer.IsPaneOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(PaneBackGroundColour):
                     if (!Equals(PaneBackGroundColour, value))
                     {
-                        PaneBackGroundColour = (Color)value;
+                        PaneBackGroundColour = CastParameter<Color>(value, name);
                         NativeControl.PaneBackGroundColour = PaneBackGroundColour;
                     }
                     break;
                 case nameof(PaneWidth):
                     if (!Equals(PaneWidth, value))
                     {
-                        PaneWidth = (double?)value;
+                        PaneWidth = CastParameter<double?>(value, name);
                         NativeControl.PaneWidth = PaneWidth ?? (double)MCM.NavigationDrawer.PaneWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(SwitchIcon):
                     if (!Equals(SwitchIcon, value))
                     {
-                        SwitchIcon = (global::IconPacks.Material.IconKind?)value;
+                        SwitchIcon = CastParameter<global::IconPacks.Material.IconKind?>(value, name);
                         NativeControl.SwitchIcon = SwitchIcon ?? (global::IconPacks.Material.IconKind)MCM.NavigationDrawer.SwitchIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(ToolBarBackGroundColour):
                     if (!Equals(ToolBarBackGroundColour, value))
                     {
-                        ToolBarBackGroundColour = (Color)value;
+                        ToolBarBackGroundColour = CastParameter<Color>(value, name);
                         NativeControl.ToolBarBackGroundColour = ToolBarBackGroundColour;
                     }
                     break;
                 case nameof(FooterItems):
-                    FooterItems = (RenderFragment)value;
+                    FooterItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectedItemChanged):
                     if (!Equals(OnSelectedItemChanged, value))
                     {
                         void NativeControlSelectedItemChanged(object sender, MC.SelectedItemChangedEventArgs e) => InvokeEventCallback(OnSelectedItemChanged, e);
 
-                        OnSelectedItemChanged = (EventCallback<MC.SelectedItemChangedEventArgs>)value;
+                        OnSelectedItemChanged = CastParameter<EventCallback<MC.SelectedItemChangedEventArgs>>(value, name);
                         NativeControl.SelectedItemChanged -= NativeControlSelectedItemChanged;
                         NativeControl.SelectedItemChanged += NativeControlSelectedItemChanged;
                     }

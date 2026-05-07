@@ -220,240 +220,240 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Popup
                 case nameof(AcceptButtonBackgroundColor):
                     if (!Equals(AcceptButtonBackgroundColor, value))
                     {
-                        AcceptButtonBackgroundColor = (Color)value;
+                        AcceptButtonBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.AcceptButtonBackground = AcceptButtonBackgroundColor;
                     }
                     break;
                 case nameof(AcceptButtonTextColor):
                     if (!Equals(AcceptButtonTextColor, value))
                     {
-                        AcceptButtonTextColor = (Color)value;
+                        AcceptButtonTextColor = CastParameter<Color>(value, name);
                         NativeControl.AcceptButtonTextColor = AcceptButtonTextColor;
                     }
                     break;
                 case nameof(BlurIntensity):
                     if (!Equals(BlurIntensity, value))
                     {
-                        BlurIntensity = (SMTP.PopupBlurIntensity?)value;
+                        BlurIntensity = CastParameter<SMTP.PopupBlurIntensity?>(value, name);
                         NativeControl.BlurIntensity = BlurIntensity ?? (SMTP.PopupBlurIntensity)SMTP.PopupStyle.BlurIntensityProperty.DefaultValue;
                     }
                     break;
                 case nameof(BlurRadius):
                     if (!Equals(BlurRadius, value))
                     {
-                        BlurRadius = (float?)value;
+                        BlurRadius = CastParameter<float?>(value, name);
                         NativeControl.BlurRadius = BlurRadius ?? (float)SMTP.PopupStyle.BlurRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(CloseButtonIcon):
                     if (!Equals(CloseButtonIcon, value))
                     {
-                        CloseButtonIcon = (MC.ImageSource)value;
+                        CloseButtonIcon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.CloseButtonIcon = CloseButtonIcon;
                     }
                     break;
                 case nameof(CloseIconColor):
                     if (!Equals(CloseIconColor, value))
                     {
-                        CloseIconColor = (Color)value;
+                        CloseIconColor = CastParameter<Color>(value, name);
                         NativeControl.CloseIconColor = CloseIconColor;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTP.PopupStyle.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(DeclineButtonBackgroundColor):
                     if (!Equals(DeclineButtonBackgroundColor, value))
                     {
-                        DeclineButtonBackgroundColor = (Color)value;
+                        DeclineButtonBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.DeclineButtonBackground = DeclineButtonBackgroundColor;
                     }
                     break;
                 case nameof(DeclineButtonTextColor):
                     if (!Equals(DeclineButtonTextColor, value))
                     {
-                        DeclineButtonTextColor = (Color)value;
+                        DeclineButtonTextColor = CastParameter<Color>(value, name);
                         NativeControl.DeclineButtonTextColor = DeclineButtonTextColor;
                     }
                     break;
                 case nameof(FooterBackgroundColor):
                     if (!Equals(FooterBackgroundColor, value))
                     {
-                        FooterBackgroundColor = (Color)value;
+                        FooterBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.FooterBackground = FooterBackgroundColor;
                     }
                     break;
                 case nameof(FooterButtonCornerRadius):
                     if (!Equals(FooterButtonCornerRadius, value))
                     {
-                        FooterButtonCornerRadius = (CornerRadius?)value;
+                        FooterButtonCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.FooterButtonCornerRadius = FooterButtonCornerRadius ?? (CornerRadius)SMTP.PopupStyle.FooterButtonCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(FooterFontAttribute):
                     if (!Equals(FooterFontAttribute, value))
                     {
-                        FooterFontAttribute = (MC.FontAttributes?)value;
+                        FooterFontAttribute = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FooterFontAttribute = FooterFontAttribute ?? (MC.FontAttributes)SMTP.PopupStyle.FooterFontAttributeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FooterFontFamily):
                     if (!Equals(FooterFontFamily, value))
                     {
-                        FooterFontFamily = (string)value;
+                        FooterFontFamily = CastParameter<string>(value, name);
                         NativeControl.FooterFontFamily = FooterFontFamily;
                     }
                     break;
                 case nameof(FooterFontSize):
                     if (!Equals(FooterFontSize, value))
                     {
-                        FooterFontSize = (double?)value;
+                        FooterFontSize = CastParameter<double?>(value, name);
                         NativeControl.FooterFontSize = FooterFontSize ?? (double)SMTP.PopupStyle.FooterFontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HasShadow):
                     if (!Equals(HasShadow, value))
                     {
-                        HasShadow = (bool?)value;
+                        HasShadow = CastParameter<bool?>(value, name);
                         NativeControl.HasShadow = HasShadow ?? (bool)SMTP.PopupStyle.HasShadowProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderBackgroundColor):
                     if (!Equals(HeaderBackgroundColor, value))
                     {
-                        HeaderBackgroundColor = (Color)value;
+                        HeaderBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.HeaderBackground = HeaderBackgroundColor;
                     }
                     break;
                 case nameof(HeaderFontAttribute):
                     if (!Equals(HeaderFontAttribute, value))
                     {
-                        HeaderFontAttribute = (MC.FontAttributes?)value;
+                        HeaderFontAttribute = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.HeaderFontAttribute = HeaderFontAttribute ?? (MC.FontAttributes)SMTP.PopupStyle.HeaderFontAttributeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderFontFamily):
                     if (!Equals(HeaderFontFamily, value))
                     {
-                        HeaderFontFamily = (string)value;
+                        HeaderFontFamily = CastParameter<string>(value, name);
                         NativeControl.HeaderFontFamily = HeaderFontFamily;
                     }
                     break;
                 case nameof(HeaderFontSize):
                     if (!Equals(HeaderFontSize, value))
                     {
-                        HeaderFontSize = (double?)value;
+                        HeaderFontSize = CastParameter<double?>(value, name);
                         NativeControl.HeaderFontSize = HeaderFontSize ?? (double)SMTP.PopupStyle.HeaderFontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderTextAlignment):
                     if (!Equals(HeaderTextAlignment, value))
                     {
-                        HeaderTextAlignment = (TextAlignment?)value;
+                        HeaderTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HeaderTextAlignment = HeaderTextAlignment ?? (TextAlignment)SMTP.PopupStyle.HeaderTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderTextColor):
                     if (!Equals(HeaderTextColor, value))
                     {
-                        HeaderTextColor = (Color)value;
+                        HeaderTextColor = CastParameter<Color>(value, name);
                         NativeControl.HeaderTextColor = HeaderTextColor;
                     }
                     break;
                 case nameof(MessageBackgroundColor):
                     if (!Equals(MessageBackgroundColor, value))
                     {
-                        MessageBackgroundColor = (Color)value;
+                        MessageBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.MessageBackground = MessageBackgroundColor;
                     }
                     break;
                 case nameof(MessageFontAttribute):
                     if (!Equals(MessageFontAttribute, value))
                     {
-                        MessageFontAttribute = (MC.FontAttributes?)value;
+                        MessageFontAttribute = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.MessageFontAttribute = MessageFontAttribute ?? (MC.FontAttributes)SMTP.PopupStyle.MessageFontAttributeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MessageFontFamily):
                     if (!Equals(MessageFontFamily, value))
                     {
-                        MessageFontFamily = (string)value;
+                        MessageFontFamily = CastParameter<string>(value, name);
                         NativeControl.MessageFontFamily = MessageFontFamily;
                     }
                     break;
                 case nameof(MessageFontSize):
                     if (!Equals(MessageFontSize, value))
                     {
-                        MessageFontSize = (double?)value;
+                        MessageFontSize = CastParameter<double?>(value, name);
                         NativeControl.MessageFontSize = MessageFontSize ?? (double)SMTP.PopupStyle.MessageFontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MessageTextAlignment):
                     if (!Equals(MessageTextAlignment, value))
                     {
-                        MessageTextAlignment = (TextAlignment?)value;
+                        MessageTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.MessageTextAlignment = MessageTextAlignment ?? (TextAlignment)SMTP.PopupStyle.MessageTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(MessageTextColor):
                     if (!Equals(MessageTextColor, value))
                     {
-                        MessageTextColor = (Color)value;
+                        MessageTextColor = CastParameter<Color>(value, name);
                         NativeControl.MessageTextColor = MessageTextColor;
                     }
                     break;
                 case nameof(OverlayColorColor):
                     if (!Equals(OverlayColorColor, value))
                     {
-                        OverlayColorColor = (Color)value;
+                        OverlayColorColor = CastParameter<Color>(value, name);
                         NativeControl.OverlayColor = OverlayColorColor;
                     }
                     break;
                 case nameof(PopupBackgroundColor):
                     if (!Equals(PopupBackgroundColor, value))
                     {
-                        PopupBackgroundColor = (Color)value;
+                        PopupBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.PopupBackground = PopupBackgroundColor;
                     }
                     break;
                 case nameof(Stroke):
                     if (!Equals(Stroke, value))
                     {
-                        Stroke = (Color)value;
+                        Stroke = CastParameter<Color>(value, name);
                         NativeControl.Stroke = Stroke;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (int?)value;
+                        StrokeThickness = CastParameter<int?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (int)SMTP.PopupStyle.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(AcceptButtonBackground):
-                    AcceptButtonBackground = (RenderFragment)value;
+                    AcceptButtonBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DeclineButtonBackground):
-                    DeclineButtonBackground = (RenderFragment)value;
+                    DeclineButtonBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FooterBackground):
-                    FooterBackground = (RenderFragment)value;
+                    FooterBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderBackground):
-                    HeaderBackground = (RenderFragment)value;
+                    HeaderBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MessageBackground):
-                    MessageBackground = (RenderFragment)value;
+                    MessageBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OverlayColor):
-                    OverlayColor = (RenderFragment)value;
+                    OverlayColor = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PopupBackground):
-                    PopupBackground = (RenderFragment)value;
+                    PopupBackground = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

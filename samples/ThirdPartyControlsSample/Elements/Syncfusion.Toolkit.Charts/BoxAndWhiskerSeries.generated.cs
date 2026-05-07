@@ -99,54 +99,54 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(BoxPlotMode):
                     if (!Equals(BoxPlotMode, value))
                     {
-                        BoxPlotMode = (SMTC.BoxPlotMode?)value;
+                        BoxPlotMode = CastParameter<SMTC.BoxPlotMode?>(value, name);
                         NativeControl.BoxPlotMode = BoxPlotMode ?? (SMTC.BoxPlotMode)SMTC.BoxAndWhiskerSeries.BoxPlotModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(OutlierShapeType):
                     if (!Equals(OutlierShapeType, value))
                     {
-                        OutlierShapeType = (SMTC.ShapeType?)value;
+                        OutlierShapeType = CastParameter<SMTC.ShapeType?>(value, name);
                         NativeControl.OutlierShapeType = OutlierShapeType ?? (SMTC.ShapeType)SMTC.BoxAndWhiskerSeries.OutlierShapeTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowMedian):
                     if (!Equals(ShowMedian, value))
                     {
-                        ShowMedian = (bool?)value;
+                        ShowMedian = CastParameter<bool?>(value, name);
                         NativeControl.ShowMedian = ShowMedian ?? (bool)SMTC.BoxAndWhiskerSeries.ShowMedianProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowOutlier):
                     if (!Equals(ShowOutlier, value))
                     {
-                        ShowOutlier = (bool?)value;
+                        ShowOutlier = CastParameter<bool?>(value, name);
                         NativeControl.ShowOutlier = ShowOutlier ?? (bool)SMTC.BoxAndWhiskerSeries.ShowOutlierProperty.DefaultValue;
                     }
                     break;
                 case nameof(Spacing):
                     if (!Equals(Spacing, value))
                     {
-                        Spacing = (double?)value;
+                        Spacing = CastParameter<double?>(value, name);
                         NativeControl.Spacing = Spacing ?? (double)SMTC.BoxAndWhiskerSeries.SpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTC.BoxAndWhiskerSeries.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

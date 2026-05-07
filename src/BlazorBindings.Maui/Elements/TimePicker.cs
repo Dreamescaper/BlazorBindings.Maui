@@ -14,7 +14,7 @@ public partial class TimePicker
             case nameof(Time):
                 if (!Equals(Time, value))
                 {
-                    Time = (TimeOnly?)value;
+                    Time = CastParameter<TimeOnly?>(value, name);
                     NativeControl.Time = Time?.ToTimeSpan();
                 }
                 return true;
@@ -28,7 +28,7 @@ public partial class TimePicker
                         InvokeEventCallback(TimeChanged, value);
                     }
 
-                    TimeChanged = (EventCallback<TimeOnly?>)value;
+                    TimeChanged = CastParameter<EventCallback<TimeOnly?>>(value, name);
                     NativeControl.TimeSelected -= NativeControlTimeSelected;
                     NativeControl.TimeSelected += NativeControlTimeSelected;
                 }

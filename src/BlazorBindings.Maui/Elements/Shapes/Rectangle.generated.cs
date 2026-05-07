@@ -37,14 +37,14 @@ namespace BlazorBindings.Maui.Elements.Shapes
                 case nameof(RadiusX):
                     if (!Equals(RadiusX, value))
                     {
-                        RadiusX = (double?)value;
+                        RadiusX = CastParameter<double?>(value, name);
                         NativeControl.RadiusX = RadiusX ?? (double)MCS.Rectangle.RadiusXProperty.DefaultValue;
                     }
                     break;
                 case nameof(RadiusY):
                     if (!Equals(RadiusY, value))
                     {
-                        RadiusY = (double?)value;
+                        RadiusY = CastParameter<double?>(value, name);
                         NativeControl.RadiusY = RadiusY ?? (double)MCS.Rectangle.RadiusYProperty.DefaultValue;
                     }
                     break;

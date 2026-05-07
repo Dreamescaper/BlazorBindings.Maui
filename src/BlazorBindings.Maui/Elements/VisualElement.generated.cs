@@ -215,189 +215,189 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(AnchorX):
                     if (!Equals(AnchorX, value))
                     {
-                        AnchorX = (double?)value;
+                        AnchorX = CastParameter<double?>(value, name);
                         NativeControl.AnchorX = AnchorX ?? (double)MC.VisualElement.AnchorXProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnchorY):
                     if (!Equals(AnchorY, value))
                     {
-                        AnchorY = (double?)value;
+                        AnchorY = CastParameter<double?>(value, name);
                         NativeControl.AnchorY = AnchorY ?? (double)MC.VisualElement.AnchorYProperty.DefaultValue;
                     }
                     break;
                 case nameof(FlowDirection):
                     if (!Equals(FlowDirection, value))
                     {
-                        FlowDirection = (FlowDirection?)value;
+                        FlowDirection = CastParameter<FlowDirection?>(value, name);
                         NativeControl.FlowDirection = FlowDirection ?? (FlowDirection)MC.VisualElement.FlowDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(Frame):
                     if (!Equals(Frame, value))
                     {
-                        Frame = (Rect?)value;
+                        Frame = CastParameter<Rect?>(value, name);
                         NativeControl.Frame = Frame ?? default;
                     }
                     break;
                 case nameof(HeightRequest):
                     if (!Equals(HeightRequest, value))
                     {
-                        HeightRequest = (double?)value;
+                        HeightRequest = CastParameter<double?>(value, name);
                         NativeControl.HeightRequest = HeightRequest ?? (double)MC.VisualElement.HeightRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(InputTransparent):
                     if (!Equals(InputTransparent, value))
                     {
-                        InputTransparent = (bool?)value;
+                        InputTransparent = CastParameter<bool?>(value, name);
                         NativeControl.InputTransparent = InputTransparent ?? (bool)MC.VisualElement.InputTransparentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.VisualElement.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)MC.VisualElement.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumHeightRequest):
                     if (!Equals(MaximumHeightRequest, value))
                     {
-                        MaximumHeightRequest = (double?)value;
+                        MaximumHeightRequest = CastParameter<double?>(value, name);
                         NativeControl.MaximumHeightRequest = MaximumHeightRequest ?? (double)MC.VisualElement.MaximumHeightRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumWidthRequest):
                     if (!Equals(MaximumWidthRequest, value))
                     {
-                        MaximumWidthRequest = (double?)value;
+                        MaximumWidthRequest = CastParameter<double?>(value, name);
                         NativeControl.MaximumWidthRequest = MaximumWidthRequest ?? (double)MC.VisualElement.MaximumWidthRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumHeightRequest):
                     if (!Equals(MinimumHeightRequest, value))
                     {
-                        MinimumHeightRequest = (double?)value;
+                        MinimumHeightRequest = CastParameter<double?>(value, name);
                         NativeControl.MinimumHeightRequest = MinimumHeightRequest ?? (double)MC.VisualElement.MinimumHeightRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumWidthRequest):
                     if (!Equals(MinimumWidthRequest, value))
                     {
-                        MinimumWidthRequest = (double?)value;
+                        MinimumWidthRequest = CastParameter<double?>(value, name);
                         NativeControl.MinimumWidthRequest = MinimumWidthRequest ?? (double)MC.VisualElement.MinimumWidthRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(Opacity):
                     if (!Equals(Opacity, value))
                     {
-                        Opacity = (double?)value;
+                        Opacity = CastParameter<double?>(value, name);
                         NativeControl.Opacity = Opacity ?? (double)MC.VisualElement.OpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(Resources):
                     if (!Equals(Resources, value))
                     {
-                        Resources = (MC.ResourceDictionary)value;
+                        Resources = CastParameter<MC.ResourceDictionary>(value, name);
                         NativeControl.Resources = Resources;
                     }
                     break;
                 case nameof(Rotation):
                     if (!Equals(Rotation, value))
                     {
-                        Rotation = (double?)value;
+                        Rotation = CastParameter<double?>(value, name);
                         NativeControl.Rotation = Rotation ?? (double)MC.VisualElement.RotationProperty.DefaultValue;
                     }
                     break;
                 case nameof(RotationX):
                     if (!Equals(RotationX, value))
                     {
-                        RotationX = (double?)value;
+                        RotationX = CastParameter<double?>(value, name);
                         NativeControl.RotationX = RotationX ?? (double)MC.VisualElement.RotationXProperty.DefaultValue;
                     }
                     break;
                 case nameof(RotationY):
                     if (!Equals(RotationY, value))
                     {
-                        RotationY = (double?)value;
+                        RotationY = CastParameter<double?>(value, name);
                         NativeControl.RotationY = RotationY ?? (double)MC.VisualElement.RotationYProperty.DefaultValue;
                     }
                     break;
                 case nameof(Scale):
                     if (!Equals(Scale, value))
                     {
-                        Scale = (double?)value;
+                        Scale = CastParameter<double?>(value, name);
                         NativeControl.Scale = Scale ?? (double)MC.VisualElement.ScaleProperty.DefaultValue;
                     }
                     break;
                 case nameof(ScaleX):
                     if (!Equals(ScaleX, value))
                     {
-                        ScaleX = (double?)value;
+                        ScaleX = CastParameter<double?>(value, name);
                         NativeControl.ScaleX = ScaleX ?? (double)MC.VisualElement.ScaleXProperty.DefaultValue;
                     }
                     break;
                 case nameof(ScaleY):
                     if (!Equals(ScaleY, value))
                     {
-                        ScaleY = (double?)value;
+                        ScaleY = CastParameter<double?>(value, name);
                         NativeControl.ScaleY = ScaleY ?? (double)MC.VisualElement.ScaleYProperty.DefaultValue;
                     }
                     break;
                 case nameof(TranslationX):
                     if (!Equals(TranslationX, value))
                     {
-                        TranslationX = (double?)value;
+                        TranslationX = CastParameter<double?>(value, name);
                         NativeControl.TranslationX = TranslationX ?? (double)MC.VisualElement.TranslationXProperty.DefaultValue;
                     }
                     break;
                 case nameof(TranslationY):
                     if (!Equals(TranslationY, value))
                     {
-                        TranslationY = (double?)value;
+                        TranslationY = CastParameter<double?>(value, name);
                         NativeControl.TranslationY = TranslationY ?? (double)MC.VisualElement.TranslationYProperty.DefaultValue;
                     }
                     break;
                 case nameof(WidthRequest):
                     if (!Equals(WidthRequest, value))
                     {
-                        WidthRequest = (double?)value;
+                        WidthRequest = CastParameter<double?>(value, name);
                         NativeControl.WidthRequest = WidthRequest ?? (double)MC.VisualElement.WidthRequestProperty.DefaultValue;
                     }
                     break;
                 case nameof(ZIndex):
                     if (!Equals(ZIndex, value))
                     {
-                        ZIndex = (int?)value;
+                        ZIndex = CastParameter<int?>(value, name);
                         NativeControl.ZIndex = ZIndex ?? (int)MC.VisualElement.ZIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Behaviors):
-                    Behaviors = (RenderFragment)value;
+                    Behaviors = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Clip):
-                    Clip = (RenderFragment)value;
+                    Clip = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Shadow):
-                    Shadow = (RenderFragment)value;
+                    Shadow = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnChildrenReordered):
                     if (!Equals(OnChildrenReordered, value))
                     {
                         void NativeControlChildrenReordered(object sender, EventArgs e) => InvokeEventCallback(OnChildrenReordered);
 
-                        OnChildrenReordered = (EventCallback)value;
+                        OnChildrenReordered = CastParameter<EventCallback>(value, name);
                         NativeControl.ChildrenReordered -= NativeControlChildrenReordered;
                         NativeControl.ChildrenReordered += NativeControlChildrenReordered;
                     }
@@ -407,7 +407,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlFocused(object sender, MC.FocusEventArgs e) => InvokeEventCallback(OnFocused, e);
 
-                        OnFocused = (EventCallback<MC.FocusEventArgs>)value;
+                        OnFocused = CastParameter<EventCallback<MC.FocusEventArgs>>(value, name);
                         NativeControl.Focused -= NativeControlFocused;
                         NativeControl.Focused += NativeControlFocused;
                     }
@@ -417,7 +417,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlMeasureInvalidated(object sender, EventArgs e) => InvokeEventCallback(OnMeasureInvalidated);
 
-                        OnMeasureInvalidated = (EventCallback)value;
+                        OnMeasureInvalidated = CastParameter<EventCallback>(value, name);
                         NativeControl.MeasureInvalidated -= NativeControlMeasureInvalidated;
                         NativeControl.MeasureInvalidated += NativeControlMeasureInvalidated;
                     }
@@ -427,7 +427,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlSizeChanged(object sender, EventArgs e) => InvokeEventCallback(OnSizeChanged);
 
-                        OnSizeChanged = (EventCallback)value;
+                        OnSizeChanged = CastParameter<EventCallback>(value, name);
                         NativeControl.SizeChanged -= NativeControlSizeChanged;
                         NativeControl.SizeChanged += NativeControlSizeChanged;
                     }
@@ -437,7 +437,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlUnfocused(object sender, MC.FocusEventArgs e) => InvokeEventCallback(OnUnfocused, e);
 
-                        OnUnfocused = (EventCallback<MC.FocusEventArgs>)value;
+                        OnUnfocused = CastParameter<EventCallback<MC.FocusEventArgs>>(value, name);
                         NativeControl.Unfocused -= NativeControlUnfocused;
                         NativeControl.Unfocused += NativeControlUnfocused;
                     }
@@ -447,7 +447,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlLoaded(object sender, EventArgs e) => InvokeEventCallback(OnLoaded);
 
-                        OnLoaded = (EventCallback)value;
+                        OnLoaded = CastParameter<EventCallback>(value, name);
                         NativeControl.Loaded -= NativeControlLoaded;
                         NativeControl.Loaded += NativeControlLoaded;
                     }
@@ -457,7 +457,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlUnloaded(object sender, EventArgs e) => InvokeEventCallback(OnUnloaded);
 
-                        OnUnloaded = (EventCallback)value;
+                        OnUnloaded = CastParameter<EventCallback>(value, name);
                         NativeControl.Unloaded -= NativeControlUnloaded;
                         NativeControl.Unloaded += NativeControlUnloaded;
                     }

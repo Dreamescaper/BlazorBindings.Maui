@@ -66,28 +66,28 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Angle):
                     if (!Equals(Angle, value))
                     {
-                        Angle = (double?)value;
+                        Angle = CastParameter<double?>(value, name);
                         NativeControl.Angle = Angle ?? (double)SMTC.ChartDataLabelStyle.AngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelPadding):
                     if (!Equals(LabelPadding, value))
                     {
-                        LabelPadding = (double?)value;
+                        LabelPadding = CastParameter<double?>(value, name);
                         NativeControl.LabelPadding = LabelPadding ?? (double)SMTC.ChartDataLabelStyle.LabelPaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffsetX):
                     if (!Equals(OffsetX, value))
                     {
-                        OffsetX = (double?)value;
+                        OffsetX = CastParameter<double?>(value, name);
                         NativeControl.OffsetX = OffsetX ?? (double)SMTC.ChartDataLabelStyle.OffsetXProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffsetY):
                     if (!Equals(OffsetY, value))
                     {
-                        OffsetY = (double?)value;
+                        OffsetY = CastParameter<double?>(value, name);
                         NativeControl.OffsetY = OffsetY ?? (double)SMTC.ChartDataLabelStyle.OffsetYProperty.DefaultValue;
                     }
                     break;

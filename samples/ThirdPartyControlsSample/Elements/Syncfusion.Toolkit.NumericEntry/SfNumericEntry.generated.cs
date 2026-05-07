@@ -261,190 +261,190 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
                 case nameof(AllowNull):
                     if (!Equals(AllowNull, value))
                     {
-                        AllowNull = (bool?)value;
+                        AllowNull = CastParameter<bool?>(value, name);
                         NativeControl.AllowNull = AllowNull ?? (bool)SMTN.SfNumericEntry.AllowNullProperty.DefaultValue;
                     }
                     break;
                 case nameof(ClearButtonColor):
                     if (!Equals(ClearButtonColor, value))
                     {
-                        ClearButtonColor = (Color)value;
+                        ClearButtonColor = CastParameter<Color>(value, name);
                         NativeControl.ClearButtonColor = ClearButtonColor;
                     }
                     break;
                 case nameof(Culture):
                     if (!Equals(Culture, value))
                     {
-                        Culture = (CultureInfo)value;
+                        Culture = CastParameter<CultureInfo>(value, name);
                         NativeControl.Culture = Culture;
                     }
                     break;
                 case nameof(CursorPosition):
                     if (!Equals(CursorPosition, value))
                     {
-                        CursorPosition = (int?)value;
+                        CursorPosition = CastParameter<int?>(value, name);
                         NativeControl.CursorPosition = CursorPosition ?? (int)SMTN.SfNumericEntry.CursorPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(CustomFormat):
                     if (!Equals(CustomFormat, value))
                     {
-                        CustomFormat = (string)value;
+                        CustomFormat = CastParameter<string>(value, name);
                         NativeControl.CustomFormat = CustomFormat;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)SMTN.SfNumericEntry.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)SMTN.SfNumericEntry.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)SMTN.SfNumericEntry.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)SMTN.SfNumericEntry.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsEditable):
                     if (!Equals(IsEditable, value))
                     {
-                        IsEditable = (bool?)value;
+                        IsEditable = CastParameter<bool?>(value, name);
                         NativeControl.IsEditable = IsEditable ?? (bool)SMTN.SfNumericEntry.IsEditableProperty.DefaultValue;
                     }
                     break;
                 case nameof(Maximum):
                     if (!Equals(Maximum, value))
                     {
-                        Maximum = (double?)value;
+                        Maximum = CastParameter<double?>(value, name);
                         NativeControl.Maximum = Maximum ?? (double)SMTN.SfNumericEntry.MaximumProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumNumberDecimalDigits):
                     if (!Equals(MaximumNumberDecimalDigits, value))
                     {
-                        MaximumNumberDecimalDigits = (int?)value;
+                        MaximumNumberDecimalDigits = CastParameter<int?>(value, name);
                         NativeControl.MaximumNumberDecimalDigits = MaximumNumberDecimalDigits ?? (int)SMTN.SfNumericEntry.MaximumNumberDecimalDigitsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Minimum):
                     if (!Equals(Minimum, value))
                     {
-                        Minimum = (double?)value;
+                        Minimum = CastParameter<double?>(value, name);
                         NativeControl.Minimum = Minimum ?? (double)SMTN.SfNumericEntry.MinimumProperty.DefaultValue;
                     }
                     break;
                 case nameof(PercentDisplayMode):
                     if (!Equals(PercentDisplayMode, value))
                     {
-                        PercentDisplayMode = (SMTN.PercentDisplayMode?)value;
+                        PercentDisplayMode = CastParameter<SMTN.PercentDisplayMode?>(value, name);
                         NativeControl.PercentDisplayMode = PercentDisplayMode ?? (SMTN.PercentDisplayMode)SMTN.SfNumericEntry.PercentDisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Placeholder):
                     if (!Equals(Placeholder, value))
                     {
-                        Placeholder = (string)value;
+                        Placeholder = CastParameter<string>(value, name);
                         NativeControl.Placeholder = Placeholder;
                     }
                     break;
                 case nameof(PlaceholderColor):
                     if (!Equals(PlaceholderColor, value))
                     {
-                        PlaceholderColor = (Color)value;
+                        PlaceholderColor = CastParameter<Color>(value, name);
                         NativeControl.PlaceholderColor = PlaceholderColor;
                     }
                     break;
                 case nameof(ReturnType):
                     if (!Equals(ReturnType, value))
                     {
-                        ReturnType = (ReturnType?)value;
+                        ReturnType = CastParameter<ReturnType?>(value, name);
                         NativeControl.ReturnType = ReturnType ?? (ReturnType)SMTN.SfNumericEntry.ReturnTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionLength):
                     if (!Equals(SelectionLength, value))
                     {
-                        SelectionLength = (int?)value;
+                        SelectionLength = CastParameter<int?>(value, name);
                         NativeControl.SelectionLength = SelectionLength ?? (int)SMTN.SfNumericEntry.SelectionLengthProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowBorder):
                     if (!Equals(ShowBorder, value))
                     {
-                        ShowBorder = (bool?)value;
+                        ShowBorder = CastParameter<bool?>(value, name);
                         NativeControl.ShowBorder = ShowBorder ?? (bool)SMTN.SfNumericEntry.ShowBorderProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowClearButton):
                     if (!Equals(ShowClearButton, value))
                     {
-                        ShowClearButton = (bool?)value;
+                        ShowClearButton = CastParameter<bool?>(value, name);
                         NativeControl.ShowClearButton = ShowClearButton ?? (bool)SMTN.SfNumericEntry.ShowClearButtonProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(Value):
                     if (!Equals(Value, value))
                     {
-                        Value = (Nullable<double>)value;
+                        Value = CastParameter<Nullable<double>>(value, name);
                         NativeControl.Value = Value;
                     }
                     break;
                 case nameof(ValueChangeMode):
                     if (!Equals(ValueChangeMode, value))
                     {
-                        ValueChangeMode = (SMTN.ValueChangeMode?)value;
+                        ValueChangeMode = CastParameter<SMTN.ValueChangeMode?>(value, name);
                         NativeControl.ValueChangeMode = ValueChangeMode ?? (SMTN.ValueChangeMode)SMTN.SfNumericEntry.ValueChangeModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)SMTN.SfNumericEntry.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(ClearButtonPath):
-                    ClearButtonPath = (RenderFragment)value;
+                    ClearButtonPath = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ValueChanged):
                     if (!Equals(ValueChanged, value))
@@ -456,7 +456,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
                             InvokeEventCallback(ValueChanged, value);
                         }
 
-                        ValueChanged = (EventCallback<Nullable<double>>)value;
+                        ValueChanged = CastParameter<EventCallback<Nullable<double>>>(value, name);
                         NativeControl.ValueChanged -= NativeControlValueChanged;
                         NativeControl.ValueChanged += NativeControlValueChanged;
                     }
@@ -466,7 +466,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
                     {
                         void NativeControlCompleted(object sender, EventArgs e) => InvokeEventCallback(OnCompleted);
 
-                        OnCompleted = (EventCallback)value;
+                        OnCompleted = CastParameter<EventCallback>(value, name);
                         NativeControl.Completed -= NativeControlCompleted;
                         NativeControl.Completed += NativeControlCompleted;
                     }
@@ -476,7 +476,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
                     {
                         void NativeControlFocused(object sender, MC.FocusEventArgs e) => InvokeEventCallback(OnFocused, e);
 
-                        OnFocused = (EventCallback<MC.FocusEventArgs>)value;
+                        OnFocused = CastParameter<EventCallback<MC.FocusEventArgs>>(value, name);
                         NativeControl.Focused -= NativeControlFocused;
                         NativeControl.Focused += NativeControlFocused;
                     }
@@ -486,7 +486,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericEntry
                     {
                         void NativeControlUnfocused(object sender, MC.FocusEventArgs e) => InvokeEventCallback(OnUnfocused, e);
 
-                        OnUnfocused = (EventCallback<MC.FocusEventArgs>)value;
+                        OnUnfocused = CastParameter<EventCallback<MC.FocusEventArgs>>(value, name);
                         NativeControl.Unfocused -= NativeControlUnfocused;
                         NativeControl.Unfocused += NativeControlUnfocused;
                     }

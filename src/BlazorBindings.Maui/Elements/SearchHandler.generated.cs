@@ -143,215 +143,215 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(AutomationId):
                     if (!Equals(AutomationId, value))
                     {
-                        AutomationId = (string)value;
+                        AutomationId = CastParameter<string>(value, name);
                         NativeControl.AutomationId = AutomationId;
                     }
                     break;
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColor = BackgroundColor;
                     }
                     break;
                 case nameof(CancelButtonColor):
                     if (!Equals(CancelButtonColor, value))
                     {
-                        CancelButtonColor = (Color)value;
+                        CancelButtonColor = CastParameter<Color>(value, name);
                         NativeControl.CancelButtonColor = CancelButtonColor;
                     }
                     break;
                 case nameof(CharacterSpacing):
                     if (!Equals(CharacterSpacing, value))
                     {
-                        CharacterSpacing = (double?)value;
+                        CharacterSpacing = CastParameter<double?>(value, name);
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.SearchHandler.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ClearIcon):
                     if (!Equals(ClearIcon, value))
                     {
-                        ClearIcon = (MC.ImageSource)value;
+                        ClearIcon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ClearIcon = ClearIcon;
                     }
                     break;
                 case nameof(ClearIconHelpText):
                     if (!Equals(ClearIconHelpText, value))
                     {
-                        ClearIconHelpText = (string)value;
+                        ClearIconHelpText = CastParameter<string>(value, name);
                         NativeControl.ClearIconHelpText = ClearIconHelpText;
                     }
                     break;
                 case nameof(ClearIconName):
                     if (!Equals(ClearIconName, value))
                     {
-                        ClearIconName = (string)value;
+                        ClearIconName = CastParameter<string>(value, name);
                         NativeControl.ClearIconName = ClearIconName;
                     }
                     break;
                 case nameof(ClearPlaceholderEnabled):
                     if (!Equals(ClearPlaceholderEnabled, value))
                     {
-                        ClearPlaceholderEnabled = (bool?)value;
+                        ClearPlaceholderEnabled = CastParameter<bool?>(value, name);
                         NativeControl.ClearPlaceholderEnabled = ClearPlaceholderEnabled ?? (bool)MC.SearchHandler.ClearPlaceholderEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ClearPlaceholderHelpText):
                     if (!Equals(ClearPlaceholderHelpText, value))
                     {
-                        ClearPlaceholderHelpText = (string)value;
+                        ClearPlaceholderHelpText = CastParameter<string>(value, name);
                         NativeControl.ClearPlaceholderHelpText = ClearPlaceholderHelpText;
                     }
                     break;
                 case nameof(ClearPlaceholderIcon):
                     if (!Equals(ClearPlaceholderIcon, value))
                     {
-                        ClearPlaceholderIcon = (MC.ImageSource)value;
+                        ClearPlaceholderIcon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.ClearPlaceholderIcon = ClearPlaceholderIcon;
                     }
                     break;
                 case nameof(ClearPlaceholderName):
                     if (!Equals(ClearPlaceholderName, value))
                     {
-                        ClearPlaceholderName = (string)value;
+                        ClearPlaceholderName = CastParameter<string>(value, name);
                         NativeControl.ClearPlaceholderName = ClearPlaceholderName;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.SearchHandler.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.SearchHandler.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)MC.SearchHandler.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MC.SearchHandler.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsSearchEnabled):
                     if (!Equals(IsSearchEnabled, value))
                     {
-                        IsSearchEnabled = (bool?)value;
+                        IsSearchEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsSearchEnabled = IsSearchEnabled ?? (bool)MC.SearchHandler.IsSearchEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IEnumerable<T>)value;
+                        ItemsSource = CastParameter<IEnumerable<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(Keyboard):
                     if (!Equals(Keyboard, value))
                     {
-                        Keyboard = (Keyboard)value;
+                        Keyboard = CastParameter<Keyboard>(value, name);
                         NativeControl.Keyboard = Keyboard;
                     }
                     break;
                 case nameof(Placeholder):
                     if (!Equals(Placeholder, value))
                     {
-                        Placeholder = (string)value;
+                        Placeholder = CastParameter<string>(value, name);
                         NativeControl.Placeholder = Placeholder;
                     }
                     break;
                 case nameof(PlaceholderColor):
                     if (!Equals(PlaceholderColor, value))
                     {
-                        PlaceholderColor = (Color)value;
+                        PlaceholderColor = CastParameter<Color>(value, name);
                         NativeControl.PlaceholderColor = PlaceholderColor;
                     }
                     break;
                 case nameof(Query):
                     if (!Equals(Query, value))
                     {
-                        Query = (string)value;
+                        Query = CastParameter<string>(value, name);
                         NativeControl.Query = Query;
                     }
                     break;
                 case nameof(QueryIcon):
                     if (!Equals(QueryIcon, value))
                     {
-                        QueryIcon = (MC.ImageSource)value;
+                        QueryIcon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.QueryIcon = QueryIcon;
                     }
                     break;
                 case nameof(QueryIconHelpText):
                     if (!Equals(QueryIconHelpText, value))
                     {
-                        QueryIconHelpText = (string)value;
+                        QueryIconHelpText = CastParameter<string>(value, name);
                         NativeControl.QueryIconHelpText = QueryIconHelpText;
                     }
                     break;
                 case nameof(QueryIconName):
                     if (!Equals(QueryIconName, value))
                     {
-                        QueryIconName = (string)value;
+                        QueryIconName = CastParameter<string>(value, name);
                         NativeControl.QueryIconName = QueryIconName;
                     }
                     break;
                 case nameof(SearchBoxVisibility):
                     if (!Equals(SearchBoxVisibility, value))
                     {
-                        SearchBoxVisibility = (MC.SearchBoxVisibility?)value;
+                        SearchBoxVisibility = CastParameter<MC.SearchBoxVisibility?>(value, name);
                         NativeControl.SearchBoxVisibility = SearchBoxVisibility ?? (MC.SearchBoxVisibility)MC.SearchHandler.SearchBoxVisibilityProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowsResults):
                     if (!Equals(ShowsResults, value))
                     {
-                        ShowsResults = (bool?)value;
+                        ShowsResults = CastParameter<bool?>(value, name);
                         NativeControl.ShowsResults = ShowsResults ?? (bool)MC.SearchHandler.ShowsResultsProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(TextTransform):
                     if (!Equals(TextTransform, value))
                     {
-                        TextTransform = (TextTransform?)value;
+                        TextTransform = CastParameter<TextTransform?>(value, name);
                         NativeControl.TextTransform = TextTransform ?? (TextTransform)MC.SearchHandler.TextTransformProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)MC.SearchHandler.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment<T>)value;
+                    ItemTemplate = CastParameter<RenderFragment<T>>(value, name);
                     break;
                 case nameof(QueryChanged):
                     if (!Equals(QueryChanged, value))
@@ -366,7 +366,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        QueryChanged = (EventCallback<string>)value;
+                        QueryChanged = CastParameter<EventCallback<string>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }
@@ -384,7 +384,7 @@ namespace BlazorBindings.Maui.Elements
                             }
                         }
 
-                        SelectedItemChanged = (EventCallback<T>)value;
+                        SelectedItemChanged = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                         NativeControl.PropertyChanged += NativeControlPropertyChanged;
                     }
@@ -394,7 +394,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlFocused(object sender, EventArgs e) => InvokeEventCallback(OnFocused);
 
-                        OnFocused = (EventCallback)value;
+                        OnFocused = CastParameter<EventCallback>(value, name);
                         NativeControl.Focused -= NativeControlFocused;
                         NativeControl.Focused += NativeControlFocused;
                     }
@@ -404,7 +404,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlUnfocused(object sender, EventArgs e) => InvokeEventCallback(OnUnfocused);
 
-                        OnUnfocused = (EventCallback)value;
+                        OnUnfocused = CastParameter<EventCallback>(value, name);
                         NativeControl.Unfocused -= NativeControlUnfocused;
                         NativeControl.Unfocused += NativeControlUnfocused;
                     }

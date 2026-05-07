@@ -111,63 +111,63 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                 case nameof(BorderColor):
                     if (!Equals(BorderColor, value))
                     {
-                        BorderColor = (Color)value;
+                        BorderColor = CastParameter<Color>(value, name);
                         NativeControl.BorderColor = BorderColor;
                     }
                     break;
                 case nameof(BorderWidth):
                     if (!Equals(BorderWidth, value))
                     {
-                        BorderWidth = (double?)value;
+                        BorderWidth = CastParameter<double?>(value, name);
                         NativeControl.BorderWidth = BorderWidth ?? (double)SMTC.SfCardView.BorderWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTC.SfCardView.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(FadeOutOnSwiping):
                     if (!Equals(FadeOutOnSwiping, value))
                     {
-                        FadeOutOnSwiping = (bool?)value;
+                        FadeOutOnSwiping = CastParameter<bool?>(value, name);
                         NativeControl.FadeOutOnSwiping = FadeOutOnSwiping ?? (bool)SMTC.SfCardView.FadeOutOnSwipingProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorColor):
                     if (!Equals(IndicatorColor, value))
                     {
-                        IndicatorColor = (Color)value;
+                        IndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.IndicatorColor = IndicatorColor;
                     }
                     break;
                 case nameof(IndicatorPosition):
                     if (!Equals(IndicatorPosition, value))
                     {
-                        IndicatorPosition = (SMTC.CardIndicatorPosition?)value;
+                        IndicatorPosition = CastParameter<SMTC.CardIndicatorPosition?>(value, name);
                         NativeControl.IndicatorPosition = IndicatorPosition ?? (SMTC.CardIndicatorPosition)SMTC.SfCardView.IndicatorPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorThickness):
                     if (!Equals(IndicatorThickness, value))
                     {
-                        IndicatorThickness = (double?)value;
+                        IndicatorThickness = CastParameter<double?>(value, name);
                         NativeControl.IndicatorThickness = IndicatorThickness ?? (double)SMTC.SfCardView.IndicatorThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsDismissed):
                     if (!Equals(IsDismissed, value))
                     {
-                        IsDismissed = (bool?)value;
+                        IsDismissed = CastParameter<bool?>(value, name);
                         NativeControl.IsDismissed = IsDismissed ?? (bool)SMTC.SfCardView.IsDismissedProperty.DefaultValue;
                     }
                     break;
                 case nameof(SwipeToDismiss):
                     if (!Equals(SwipeToDismiss, value))
                     {
-                        SwipeToDismiss = (bool?)value;
+                        SwipeToDismiss = CastParameter<bool?>(value, name);
                         NativeControl.SwipeToDismiss = SwipeToDismiss ?? (bool)SMTC.SfCardView.SwipeToDismissProperty.DefaultValue;
                     }
                     break;
@@ -181,7 +181,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                             InvokeEventCallback(IsDismissedChanged, value);
                         }
 
-                        IsDismissedChanged = (EventCallback<bool>)value;
+                        IsDismissedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.Dismissed -= NativeControlDismissed;
                         NativeControl.Dismissed += NativeControlDismissed;
                     }
@@ -191,7 +191,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Cards
                     {
                         void NativeControlDismissing(object sender, SMTC.CardDismissingEventArgs e) => InvokeEventCallback(OnDismissing, e);
 
-                        OnDismissing = (EventCallback<SMTC.CardDismissingEventArgs>)value;
+                        OnDismissing = CastParameter<EventCallback<SMTC.CardDismissingEventArgs>>(value, name);
                         NativeControl.Dismissing -= NativeControlDismissing;
                         NativeControl.Dismissing += NativeControlDismissing;
                     }

@@ -164,70 +164,70 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(DisabledDatesBackgroundColor):
                     if (!Equals(DisabledDatesBackgroundColor, value))
                     {
-                        DisabledDatesBackgroundColor = (Color)value;
+                        DisabledDatesBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.DisabledDatesBackground = DisabledDatesBackgroundColor;
                     }
                     break;
                 case nameof(LeadingDatesBackgroundColor):
                     if (!Equals(LeadingDatesBackgroundColor, value))
                     {
-                        LeadingDatesBackgroundColor = (Color)value;
+                        LeadingDatesBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.LeadingDatesBackground = LeadingDatesBackgroundColor;
                     }
                     break;
                 case nameof(MonthFormat):
                     if (!Equals(MonthFormat, value))
                     {
-                        MonthFormat = (string)value;
+                        MonthFormat = CastParameter<string>(value, name);
                         NativeControl.MonthFormat = MonthFormat;
                     }
                     break;
                 case nameof(TodayBackgroundColor):
                     if (!Equals(TodayBackgroundColor, value))
                     {
-                        TodayBackgroundColor = (Color)value;
+                        TodayBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.TodayBackground = TodayBackgroundColor;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(CellTemplate):
-                    CellTemplate = (RenderFragment)value;
+                    CellTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DisabledDatesBackground):
-                    DisabledDatesBackground = (RenderFragment)value;
+                    DisabledDatesBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DisabledDatesTextStyle):
-                    DisabledDatesTextStyle = (RenderFragment)value;
+                    DisabledDatesTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LeadingDatesBackground):
-                    LeadingDatesBackground = (RenderFragment)value;
+                    LeadingDatesBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LeadingDatesTextStyle):
-                    LeadingDatesTextStyle = (RenderFragment)value;
+                    LeadingDatesTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RangeTextStyle):
-                    RangeTextStyle = (RenderFragment)value;
+                    RangeTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionTextStyle):
-                    SelectionTextStyle = (RenderFragment)value;
+                    SelectionTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TodayBackground):
-                    TodayBackground = (RenderFragment)value;
+                    TodayBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TodayTextStyle):
-                    TodayTextStyle = (RenderFragment)value;
+                    TodayTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

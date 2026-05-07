@@ -75,42 +75,42 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)SMTS.SunburstDataLabelSettings.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)SMTS.SunburstDataLabelSettings.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(OverFlowMode):
                     if (!Equals(OverFlowMode, value))
                     {
-                        OverFlowMode = (SMTS.SunburstLabelOverflowMode?)value;
+                        OverFlowMode = CastParameter<SMTS.SunburstLabelOverflowMode?>(value, name);
                         NativeControl.OverFlowMode = OverFlowMode ?? (SMTS.SunburstLabelOverflowMode)SMTS.SunburstDataLabelSettings.OverFlowModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(RotationMode):
                     if (!Equals(RotationMode, value))
                     {
-                        RotationMode = (SMTS.SunburstLabelRotationMode?)value;
+                        RotationMode = CastParameter<SMTS.SunburstLabelRotationMode?>(value, name);
                         NativeControl.RotationMode = RotationMode ?? (SMTS.SunburstLabelRotationMode)SMTS.SunburstDataLabelSettings.RotationModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;

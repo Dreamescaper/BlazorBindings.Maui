@@ -78,33 +78,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(PointHeight):
                     if (!Equals(PointHeight, value))
                     {
-                        PointHeight = (double?)value;
+                        PointHeight = CastParameter<double?>(value, name);
                         NativeControl.PointHeight = PointHeight ?? (double)SMTC.ScatterSeries.PointHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(PointWidth):
                     if (!Equals(PointWidth, value))
                     {
-                        PointWidth = (double?)value;
+                        PointWidth = CastParameter<double?>(value, name);
                         NativeControl.PointWidth = PointWidth ?? (double)SMTC.ScatterSeries.PointWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTC.ShapeType?)value;
+                        Type = CastParameter<SMTC.ShapeType?>(value, name);
                         NativeControl.Type = Type ?? (SMTC.ShapeType)SMTC.ScatterSeries.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

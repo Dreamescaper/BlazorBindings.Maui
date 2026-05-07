@@ -51,98 +51,98 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ControlState):
                     if (!Equals(ControlState, value))
                     {
-                        ControlState = (MCM.ControlState?)value;
+                        ControlState = CastParameter<MCM.ControlState?>(value, name);
                         NativeControl.ControlState = ControlState ?? default;
                     }
                     break;
                 case nameof(HasIcon):
                     if (!Equals(HasIcon, value))
                     {
-                        HasIcon = (bool?)value;
+                        HasIcon = CastParameter<bool?>(value, name);
                         NativeControl.HasIcon = HasIcon ?? (bool)MCM.Switch.HasIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(IconColor):
                     if (!Equals(IconColor, value))
                     {
-                        IconColor = (Color)value;
+                        IconColor = CastParameter<Color>(value, name);
                         NativeControl.IconColor = IconColor;
                     }
                     break;
                 case nameof(IconOpacity):
                     if (!Equals(IconOpacity, value))
                     {
-                        IconOpacity = (float?)value;
+                        IconOpacity = CastParameter<float?>(value, name);
                         NativeControl.IconOpacity = IconOpacity ?? (float)MCM.Switch.IconOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsChecked):
                     if (!Equals(IsChecked, value))
                     {
-                        IsChecked = (bool?)value;
+                        IsChecked = CastParameter<bool?>(value, name);
                         NativeControl.IsChecked = IsChecked ?? (bool)MCM.Switch.IsCheckedProperty.DefaultValue;
                     }
                     break;
                 case nameof(OutlineColor):
                     if (!Equals(OutlineColor, value))
                     {
-                        OutlineColor = (Color)value;
+                        OutlineColor = CastParameter<Color>(value, name);
                         NativeControl.OutlineColor = OutlineColor;
                     }
                     break;
                 case nameof(OutlineWidth):
                     if (!Equals(OutlineWidth, value))
                     {
-                        OutlineWidth = (int?)value;
+                        OutlineWidth = CastParameter<int?>(value, name);
                         NativeControl.OutlineWidth = OutlineWidth ?? (int)MCM.Switch.OutlineWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(Shape):
                     if (!Equals(Shape, value))
                     {
-                        Shape = (MCM.Tokens.Shape?)value;
+                        Shape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.Shape = Shape ?? (MCM.Tokens.Shape)MCM.Switch.ShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(ThumbColor):
                     if (!Equals(ThumbColor, value))
                     {
-                        ThumbColor = (Color)value;
+                        ThumbColor = CastParameter<Color>(value, name);
                         NativeControl.ThumbColor = ThumbColor;
                     }
                     break;
                 case nameof(ThumbOpacity):
                     if (!Equals(ThumbOpacity, value))
                     {
-                        ThumbOpacity = (float?)value;
+                        ThumbOpacity = CastParameter<float?>(value, name);
                         NativeControl.ThumbOpacity = ThumbOpacity ?? (float)MCM.Switch.ThumbOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackColor):
                     if (!Equals(TrackColor, value))
                     {
-                        TrackColor = (Color)value;
+                        TrackColor = CastParameter<Color>(value, name);
                         NativeControl.TrackColor = TrackColor;
                     }
                     break;
                 case nameof(TrackOpacity):
                     if (!Equals(TrackOpacity, value))
                     {
-                        TrackOpacity = (float?)value;
+                        TrackOpacity = CastParameter<float?>(value, name);
                         NativeControl.TrackOpacity = TrackOpacity ?? (float)MCM.Switch.TrackOpacityProperty.DefaultValue;
                     }
                     break;
@@ -156,7 +156,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(IsCheckedChanged, value);
                         }
 
-                        IsCheckedChanged = (EventCallback<bool>)value;
+                        IsCheckedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.CheckedChanged -= NativeControlCheckedChanged;
                         NativeControl.CheckedChanged += NativeControlCheckedChanged;
                     }

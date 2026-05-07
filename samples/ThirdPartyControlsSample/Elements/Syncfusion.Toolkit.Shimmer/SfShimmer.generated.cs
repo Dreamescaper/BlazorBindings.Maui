@@ -116,64 +116,64 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Shimmer
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTS.SfShimmer.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(IsActive):
                     if (!Equals(IsActive, value))
                     {
-                        IsActive = (bool?)value;
+                        IsActive = CastParameter<bool?>(value, name);
                         NativeControl.IsActive = IsActive ?? (bool)SMTS.SfShimmer.IsActiveProperty.DefaultValue;
                     }
                     break;
                 case nameof(RepeatCount):
                     if (!Equals(RepeatCount, value))
                     {
-                        RepeatCount = (int?)value;
+                        RepeatCount = CastParameter<int?>(value, name);
                         NativeControl.RepeatCount = RepeatCount ?? (int)SMTS.SfShimmer.RepeatCountProperty.DefaultValue;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTS.ShimmerType?)value;
+                        Type = CastParameter<SMTS.ShimmerType?>(value, name);
                         NativeControl.Type = Type ?? (SMTS.ShimmerType)SMTS.SfShimmer.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(WaveColor):
                     if (!Equals(WaveColor, value))
                     {
-                        WaveColor = (Color)value;
+                        WaveColor = CastParameter<Color>(value, name);
                         NativeControl.WaveColor = WaveColor;
                     }
                     break;
                 case nameof(WaveDirection):
                     if (!Equals(WaveDirection, value))
                     {
-                        WaveDirection = (SMTS.ShimmerWaveDirection?)value;
+                        WaveDirection = CastParameter<SMTS.ShimmerWaveDirection?>(value, name);
                         NativeControl.WaveDirection = WaveDirection ?? (SMTS.ShimmerWaveDirection)SMTS.SfShimmer.WaveDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(WaveWidth):
                     if (!Equals(WaveWidth, value))
                     {
-                        WaveWidth = (double?)value;
+                        WaveWidth = CastParameter<double?>(value, name);
                         NativeControl.WaveWidth = WaveWidth ?? (double)SMTS.SfShimmer.WaveWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(CustomView):
-                    CustomView = (RenderFragment)value;
+                    CustomView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

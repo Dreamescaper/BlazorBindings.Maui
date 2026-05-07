@@ -53,21 +53,21 @@ namespace BlazorBindings.Maui.Elements.Compatibility
                 case nameof(CascadeInputTransparent):
                     if (!Equals(CascadeInputTransparent, value))
                     {
-                        CascadeInputTransparent = (bool?)value;
+                        CascadeInputTransparent = CastParameter<bool?>(value, name);
                         NativeControl.CascadeInputTransparent = CascadeInputTransparent ?? (bool)MCC.Layout.CascadeInputTransparentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsClippedToBounds):
                     if (!Equals(IsClippedToBounds, value))
                     {
-                        IsClippedToBounds = (bool?)value;
+                        IsClippedToBounds = CastParameter<bool?>(value, name);
                         NativeControl.IsClippedToBounds = IsClippedToBounds ?? (bool)MCC.Layout.IsClippedToBoundsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MCC.Layout.PaddingProperty.DefaultValue;
                     }
                     break;

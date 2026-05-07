@@ -13,7 +13,7 @@ public partial class RadioButton : TemplatedView
         switch (name)
         {
             case nameof(Text):
-                Text = (string)value;
+                Text = CastParameter<string>(value, name);
                 NativeControl.Content = Text;
                 return true;
             case nameof(Value):

@@ -37,14 +37,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Color):
                     if (!Equals(Color, value))
                     {
-                        Color = (Color)value;
+                        Color = CastParameter<Color>(value, name);
                         NativeControl.Color = Color;
                     }
                     break;
                 case nameof(IsChecked):
                     if (!Equals(IsChecked, value))
                     {
-                        IsChecked = (bool?)value;
+                        IsChecked = CastParameter<bool?>(value, name);
                         NativeControl.IsChecked = IsChecked ?? (bool)MC.CheckBox.IsCheckedProperty.DefaultValue;
                     }
                     break;
@@ -58,7 +58,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(IsCheckedChanged, value);
                         }
 
-                        IsCheckedChanged = (EventCallback<bool>)value;
+                        IsCheckedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.CheckedChanged -= NativeControlCheckedChanged;
                         NativeControl.CheckedChanged += NativeControlCheckedChanged;
                     }

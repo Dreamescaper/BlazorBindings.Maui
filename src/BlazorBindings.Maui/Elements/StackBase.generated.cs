@@ -33,7 +33,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Spacing):
                     if (!Equals(Spacing, value))
                     {
-                        Spacing = (double?)value;
+                        Spacing = CastParameter<double?>(value, name);
                         NativeControl.Spacing = Spacing ?? (double)MC.StackBase.SpacingProperty.DefaultValue;
                     }
                     break;

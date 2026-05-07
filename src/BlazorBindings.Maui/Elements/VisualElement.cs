@@ -16,7 +16,7 @@ public abstract partial class VisualElement
         {
             if (!Equals(BackgroundColor, value))
             {
-                BackgroundColor = (Color)value;
+                BackgroundColor = CastParameter<Color>(value, name);
                 NativeControl.BackgroundColor = BackgroundColor;
             }
             return true;

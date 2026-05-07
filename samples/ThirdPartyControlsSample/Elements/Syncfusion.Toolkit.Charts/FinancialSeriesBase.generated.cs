@@ -115,64 +115,64 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(BearishFillColor):
                     if (!Equals(BearishFillColor, value))
                     {
-                        BearishFillColor = (Color)value;
+                        BearishFillColor = CastParameter<Color>(value, name);
                         NativeControl.BearishFill = BearishFillColor;
                     }
                     break;
                 case nameof(BullishFillColor):
                     if (!Equals(BullishFillColor, value))
                     {
-                        BullishFillColor = (Color)value;
+                        BullishFillColor = CastParameter<Color>(value, name);
                         NativeControl.BullishFill = BullishFillColor;
                     }
                     break;
                 case nameof(Close):
                     if (!Equals(Close, value))
                     {
-                        Close = (string)value;
+                        Close = CastParameter<string>(value, name);
                         NativeControl.Close = Close;
                     }
                     break;
                 case nameof(High):
                     if (!Equals(High, value))
                     {
-                        High = (string)value;
+                        High = CastParameter<string>(value, name);
                         NativeControl.High = High;
                     }
                     break;
                 case nameof(Low):
                     if (!Equals(Low, value))
                     {
-                        Low = (string)value;
+                        Low = CastParameter<string>(value, name);
                         NativeControl.Low = Low;
                     }
                     break;
                 case nameof(Open):
                     if (!Equals(Open, value))
                     {
-                        Open = (string)value;
+                        Open = CastParameter<string>(value, name);
                         NativeControl.Open = Open;
                     }
                     break;
                 case nameof(Spacing):
                     if (!Equals(Spacing, value))
                     {
-                        Spacing = (double?)value;
+                        Spacing = CastParameter<double?>(value, name);
                         NativeControl.Spacing = Spacing ?? (double)SMTC.FinancialSeriesBase.SpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTC.FinancialSeriesBase.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(BearishFill):
-                    BearishFill = (RenderFragment)value;
+                    BearishFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(BullishFill):
-                    BullishFill = (RenderFragment)value;
+                    BullishFill = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -108,54 +108,54 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Accordion
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTA.SfAccordion.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnimationEasing):
                     if (!Equals(AnimationEasing, value))
                     {
-                        AnimationEasing = (SMT.Expander.ExpanderAnimationEasing?)value;
+                        AnimationEasing = CastParameter<SMT.Expander.ExpanderAnimationEasing?>(value, name);
                         NativeControl.AnimationEasing = AnimationEasing ?? (SMT.Expander.ExpanderAnimationEasing)SMTA.SfAccordion.AnimationEasingProperty.DefaultValue;
                     }
                     break;
                 case nameof(AutoScrollPosition):
                     if (!Equals(AutoScrollPosition, value))
                     {
-                        AutoScrollPosition = (SMTA.AccordionAutoScrollPosition?)value;
+                        AutoScrollPosition = CastParameter<SMTA.AccordionAutoScrollPosition?>(value, name);
                         NativeControl.AutoScrollPosition = AutoScrollPosition ?? (SMTA.AccordionAutoScrollPosition)SMTA.SfAccordion.AutoScrollPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(ExpandMode):
                     if (!Equals(ExpandMode, value))
                     {
-                        ExpandMode = (SMTA.AccordionExpandMode?)value;
+                        ExpandMode = CastParameter<SMTA.AccordionExpandMode?>(value, name);
                         NativeControl.ExpandMode = ExpandMode ?? (SMTA.AccordionExpandMode)SMTA.SfAccordion.ExpandModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderIconPosition):
                     if (!Equals(HeaderIconPosition, value))
                     {
-                        HeaderIconPosition = (SMT.Expander.ExpanderIconPosition?)value;
+                        HeaderIconPosition = CastParameter<SMT.Expander.ExpanderIconPosition?>(value, name);
                         NativeControl.HeaderIconPosition = HeaderIconPosition ?? (SMT.Expander.ExpanderIconPosition)SMTA.SfAccordion.HeaderIconPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemSpacing):
                     if (!Equals(ItemSpacing, value))
                     {
-                        ItemSpacing = (double?)value;
+                        ItemSpacing = CastParameter<double?>(value, name);
                         NativeControl.ItemSpacing = ItemSpacing ?? (double)SMTA.SfAccordion.ItemSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Items):
-                    Items = (RenderFragment)value;
+                    Items = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnExpanding):
                     if (!Equals(OnExpanding, value))
                     {
                         void NativeControlExpanding(object sender, SMTA.ExpandingAndCollapsingEventArgs e) => InvokeEventCallback(OnExpanding, e);
 
-                        OnExpanding = (EventCallback<SMTA.ExpandingAndCollapsingEventArgs>)value;
+                        OnExpanding = CastParameter<EventCallback<SMTA.ExpandingAndCollapsingEventArgs>>(value, name);
                         NativeControl.Expanding -= NativeControlExpanding;
                         NativeControl.Expanding += NativeControlExpanding;
                     }
@@ -165,7 +165,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Accordion
                     {
                         void NativeControlExpanded(object sender, SMTA.ExpandedAndCollapsedEventArgs e) => InvokeEventCallback(OnExpanded, e);
 
-                        OnExpanded = (EventCallback<SMTA.ExpandedAndCollapsedEventArgs>)value;
+                        OnExpanded = CastParameter<EventCallback<SMTA.ExpandedAndCollapsedEventArgs>>(value, name);
                         NativeControl.Expanded -= NativeControlExpanded;
                         NativeControl.Expanded += NativeControlExpanded;
                     }
@@ -175,7 +175,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Accordion
                     {
                         void NativeControlCollapsing(object sender, SMTA.ExpandingAndCollapsingEventArgs e) => InvokeEventCallback(OnCollapsing, e);
 
-                        OnCollapsing = (EventCallback<SMTA.ExpandingAndCollapsingEventArgs>)value;
+                        OnCollapsing = CastParameter<EventCallback<SMTA.ExpandingAndCollapsingEventArgs>>(value, name);
                         NativeControl.Collapsing -= NativeControlCollapsing;
                         NativeControl.Collapsing += NativeControlCollapsing;
                     }
@@ -185,7 +185,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Accordion
                     {
                         void NativeControlCollapsed(object sender, SMTA.ExpandedAndCollapsedEventArgs e) => InvokeEventCallback(OnCollapsed, e);
 
-                        OnCollapsed = (EventCallback<SMTA.ExpandedAndCollapsedEventArgs>)value;
+                        OnCollapsed = CastParameter<EventCallback<SMTA.ExpandedAndCollapsedEventArgs>>(value, name);
                         NativeControl.Collapsed -= NativeControlCollapsed;
                         NativeControl.Collapsed += NativeControlCollapsed;
                     }

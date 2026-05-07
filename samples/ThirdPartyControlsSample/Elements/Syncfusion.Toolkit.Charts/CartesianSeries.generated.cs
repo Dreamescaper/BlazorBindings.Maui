@@ -100,46 +100,46 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EmptyPointMode):
                     if (!Equals(EmptyPointMode, value))
                     {
-                        EmptyPointMode = (SMTC.EmptyPointMode?)value;
+                        EmptyPointMode = CastParameter<SMTC.EmptyPointMode?>(value, name);
                         NativeControl.EmptyPointMode = EmptyPointMode ?? (SMTC.EmptyPointMode)SMTC.CartesianSeries.EmptyPointModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Label):
                     if (!Equals(Label, value))
                     {
-                        Label = (string)value;
+                        Label = CastParameter<string>(value, name);
                         NativeControl.Label = Label;
                     }
                     break;
                 case nameof(ShowTrackballLabel):
                     if (!Equals(ShowTrackballLabel, value))
                     {
-                        ShowTrackballLabel = (bool?)value;
+                        ShowTrackballLabel = CastParameter<bool?>(value, name);
                         NativeControl.ShowTrackballLabel = ShowTrackballLabel ?? (bool)SMTC.CartesianSeries.ShowTrackballLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(XAxisName):
                     if (!Equals(XAxisName, value))
                     {
-                        XAxisName = (string)value;
+                        XAxisName = CastParameter<string>(value, name);
                         NativeControl.XAxisName = XAxisName;
                     }
                     break;
                 case nameof(YAxisName):
                     if (!Equals(YAxisName, value))
                     {
-                        YAxisName = (string)value;
+                        YAxisName = CastParameter<string>(value, name);
                         NativeControl.YAxisName = YAxisName;
                     }
                     break;
                 case nameof(DataLabelSettings):
-                    DataLabelSettings = (RenderFragment)value;
+                    DataLabelSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(EmptyPointSettings):
-                    EmptyPointSettings = (RenderFragment)value;
+                    EmptyPointSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackballLabelTemplate):
-                    TrackballLabelTemplate = (RenderFragment)value;
+                    TrackballLabelTemplate = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -215,127 +215,127 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTS.SfSunburstChart.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableAnimation):
                     if (!Equals(EnableAnimation, value))
                     {
-                        EnableAnimation = (bool?)value;
+                        EnableAnimation = CastParameter<bool?>(value, name);
                         NativeControl.EnableAnimation = EnableAnimation ?? (bool)SMTS.SfSunburstChart.EnableAnimationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableTooltip):
                     if (!Equals(EnableTooltip, value))
                     {
-                        EnableTooltip = (bool?)value;
+                        EnableTooltip = CastParameter<bool?>(value, name);
                         NativeControl.EnableTooltip = EnableTooltip ?? (bool)SMTS.SfSunburstChart.EnableTooltipProperty.DefaultValue;
                     }
                     break;
                 case nameof(EndAngle):
                     if (!Equals(EndAngle, value))
                     {
-                        EndAngle = (double?)value;
+                        EndAngle = CastParameter<double?>(value, name);
                         NativeControl.EndAngle = EndAngle ?? (double)SMTS.SfSunburstChart.EndAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(InnerRadius):
                     if (!Equals(InnerRadius, value))
                     {
-                        InnerRadius = (double?)value;
+                        InnerRadius = CastParameter<double?>(value, name);
                         NativeControl.InnerRadius = InnerRadius ?? (double)SMTS.SfSunburstChart.InnerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(Radius):
                     if (!Equals(Radius, value))
                     {
-                        Radius = (double?)value;
+                        Radius = CastParameter<double?>(value, name);
                         NativeControl.Radius = Radius ?? (double)SMTS.SfSunburstChart.RadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowLabels):
                     if (!Equals(ShowLabels, value))
                     {
-                        ShowLabels = (bool?)value;
+                        ShowLabels = CastParameter<bool?>(value, name);
                         NativeControl.ShowLabels = ShowLabels ?? (bool)SMTS.SfSunburstChart.ShowLabelsProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartAngle):
                     if (!Equals(StartAngle, value))
                     {
-                        StartAngle = (double?)value;
+                        StartAngle = CastParameter<double?>(value, name);
                         NativeControl.StartAngle = StartAngle ?? (double)SMTS.SfSunburstChart.StartAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTS.SfSunburstChart.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (object)value;
+                        Title = CastParameter<object>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(ValueMemberPath):
                     if (!Equals(ValueMemberPath, value))
                     {
-                        ValueMemberPath = (string)value;
+                        ValueMemberPath = CastParameter<string>(value, name);
                         NativeControl.ValueMemberPath = ValueMemberPath;
                     }
                     break;
                 case nameof(CenterView):
-                    CenterView = (RenderFragment)value;
+                    CenterView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DataLabelSettings):
-                    DataLabelSettings = (RenderFragment)value;
+                    DataLabelSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Legend):
-                    Legend = (RenderFragment)value;
+                    Legend = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Levels):
-                    Levels = (RenderFragment)value;
+                    Levels = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PaletteBrushes):
-                    PaletteBrushes = (RenderFragment)value;
+                    PaletteBrushes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionSettings):
-                    SelectionSettings = (RenderFragment)value;
+                    SelectionSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TooltipSettings):
-                    TooltipSettings = (RenderFragment)value;
+                    TooltipSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TooltipTemplate):
-                    TooltipTemplate = (RenderFragment)value;
+                    TooltipTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTS.SunburstSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTS.SunburstSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTS.SunburstSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -345,7 +345,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                     {
                         void NativeControlSelectionChanging(object sender, SMTS.SunburstSelectionChangingEventArgs e) => InvokeEventCallback(OnSelectionChanging, e);
 
-                        OnSelectionChanging = (EventCallback<SMTS.SunburstSelectionChangingEventArgs>)value;
+                        OnSelectionChanging = CastParameter<EventCallback<SMTS.SunburstSelectionChangingEventArgs>>(value, name);
                         NativeControl.SelectionChanging -= NativeControlSelectionChanging;
                         NativeControl.SelectionChanging += NativeControlSelectionChanging;
                     }

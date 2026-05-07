@@ -79,33 +79,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTC.ColumnSeries.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(Spacing):
                     if (!Equals(Spacing, value))
                     {
-                        Spacing = (double?)value;
+                        Spacing = CastParameter<double?>(value, name);
                         NativeControl.Spacing = Spacing ?? (double)SMTC.ColumnSeries.SpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTC.ColumnSeries.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

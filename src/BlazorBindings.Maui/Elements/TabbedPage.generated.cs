@@ -67,50 +67,50 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(BarBackgroundColor):
                     if (!Equals(BarBackgroundColor, value))
                     {
-                        BarBackgroundColor = (Color)value;
+                        BarBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.BarBackgroundColor = BarBackgroundColor;
                     }
                     break;
                 case nameof(BarTextColor):
                     if (!Equals(BarTextColor, value))
                     {
-                        BarTextColor = (Color)value;
+                        BarTextColor = CastParameter<Color>(value, name);
                         NativeControl.BarTextColor = BarTextColor;
                     }
                     break;
                 case nameof(SelectedItem):
                     if (!Equals(SelectedItem, value))
                     {
-                        SelectedItem = (object)value;
+                        SelectedItem = CastParameter<object>(value, name);
                         NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(SelectedTabColor):
                     if (!Equals(SelectedTabColor, value))
                     {
-                        SelectedTabColor = (Color)value;
+                        SelectedTabColor = CastParameter<Color>(value, name);
                         NativeControl.SelectedTabColor = SelectedTabColor;
                     }
                     break;
                 case nameof(UnselectedTabColor):
                     if (!Equals(UnselectedTabColor, value))
                     {
-                        UnselectedTabColor = (Color)value;
+                        UnselectedTabColor = CastParameter<Color>(value, name);
                         NativeControl.UnselectedTabColor = UnselectedTabColor;
                     }
                     break;
                 case nameof(BarBackground):
-                    BarBackground = (RenderFragment)value;
+                    BarBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnCurrentPageChanged):
                     if (!Equals(OnCurrentPageChanged, value))
                     {
                         void NativeControlCurrentPageChanged(object sender, EventArgs e) => InvokeEventCallback(OnCurrentPageChanged);
 
-                        OnCurrentPageChanged = (EventCallback)value;
+                        OnCurrentPageChanged = CastParameter<EventCallback>(value, name);
                         NativeControl.CurrentPageChanged -= NativeControlCurrentPageChanged;
                         NativeControl.CurrentPageChanged += NativeControlCurrentPageChanged;
                     }
@@ -120,7 +120,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPagesChanged(object sender, NotifyCollectionChangedEventArgs e) => InvokeEventCallback(OnPagesChanged, e);
 
-                        OnPagesChanged = (EventCallback<NotifyCollectionChangedEventArgs>)value;
+                        OnPagesChanged = CastParameter<EventCallback<NotifyCollectionChangedEventArgs>>(value, name);
                         NativeControl.PagesChanged -= NativeControlPagesChanged;
                         NativeControl.PagesChanged += NativeControlPagesChanged;
                     }

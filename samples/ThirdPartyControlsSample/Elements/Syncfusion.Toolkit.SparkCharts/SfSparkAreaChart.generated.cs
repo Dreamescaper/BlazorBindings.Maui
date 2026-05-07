@@ -121,79 +121,79 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(FirstPointFillColor):
                     if (!Equals(FirstPointFillColor, value))
                     {
-                        FirstPointFillColor = (Color)value;
+                        FirstPointFillColor = CastParameter<Color>(value, name);
                         NativeControl.FirstPointFill = FirstPointFillColor;
                     }
                     break;
                 case nameof(HighPointFillColor):
                     if (!Equals(HighPointFillColor, value))
                     {
-                        HighPointFillColor = (Color)value;
+                        HighPointFillColor = CastParameter<Color>(value, name);
                         NativeControl.HighPointFill = HighPointFillColor;
                     }
                     break;
                 case nameof(LastPointFillColor):
                     if (!Equals(LastPointFillColor, value))
                     {
-                        LastPointFillColor = (Color)value;
+                        LastPointFillColor = CastParameter<Color>(value, name);
                         NativeControl.LastPointFill = LastPointFillColor;
                     }
                     break;
                 case nameof(LowPointFillColor):
                     if (!Equals(LowPointFillColor, value))
                     {
-                        LowPointFillColor = (Color)value;
+                        LowPointFillColor = CastParameter<Color>(value, name);
                         NativeControl.LowPointFill = LowPointFillColor;
                     }
                     break;
                 case nameof(NegativePointsFillColor):
                     if (!Equals(NegativePointsFillColor, value))
                     {
-                        NegativePointsFillColor = (Color)value;
+                        NegativePointsFillColor = CastParameter<Color>(value, name);
                         NativeControl.NegativePointsFill = NegativePointsFillColor;
                     }
                     break;
                 case nameof(ShowMarkers):
                     if (!Equals(ShowMarkers, value))
                     {
-                        ShowMarkers = (bool?)value;
+                        ShowMarkers = CastParameter<bool?>(value, name);
                         NativeControl.ShowMarkers = ShowMarkers ?? (bool)SMTS.SfSparkAreaChart.ShowMarkersProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTS.SfSparkAreaChart.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FirstPointFill):
-                    FirstPointFill = (RenderFragment)value;
+                    FirstPointFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HighPointFill):
-                    HighPointFill = (RenderFragment)value;
+                    HighPointFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LastPointFill):
-                    LastPointFill = (RenderFragment)value;
+                    LastPointFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LowPointFill):
-                    LowPointFill = (RenderFragment)value;
+                    LowPointFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MarkerSettings):
-                    MarkerSettings = (RenderFragment)value;
+                    MarkerSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(NegativePointsFill):
-                    NegativePointsFill = (RenderFragment)value;
+                    NegativePointsFill = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -51,14 +51,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.XYDataSeries.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(YBindingPath):
                     if (!Equals(YBindingPath, value))
                     {
-                        YBindingPath = (string)value;
+                        YBindingPath = CastParameter<string>(value, name);
                         NativeControl.YBindingPath = YBindingPath;
                     }
                     break;

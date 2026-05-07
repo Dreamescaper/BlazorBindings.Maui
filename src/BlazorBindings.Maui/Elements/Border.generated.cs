@@ -59,67 +59,67 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MC.Border.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(SafeAreaEdges):
                     if (!Equals(SafeAreaEdges, value))
                     {
-                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        SafeAreaEdges = CastParameter<SafeAreaEdges?>(value, name);
                         NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.Border.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeDashOffset):
                     if (!Equals(StrokeDashOffset, value))
                     {
-                        StrokeDashOffset = (double?)value;
+                        StrokeDashOffset = CastParameter<double?>(value, name);
                         NativeControl.StrokeDashOffset = StrokeDashOffset ?? (double)MC.Border.StrokeDashOffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeLineCap):
                     if (!Equals(StrokeLineCap, value))
                     {
-                        StrokeLineCap = (MC.Shapes.PenLineCap?)value;
+                        StrokeLineCap = CastParameter<MC.Shapes.PenLineCap?>(value, name);
                         NativeControl.StrokeLineCap = StrokeLineCap ?? (MC.Shapes.PenLineCap)MC.Border.StrokeLineCapProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeLineJoin):
                     if (!Equals(StrokeLineJoin, value))
                     {
-                        StrokeLineJoin = (MC.Shapes.PenLineJoin?)value;
+                        StrokeLineJoin = CastParameter<MC.Shapes.PenLineJoin?>(value, name);
                         NativeControl.StrokeLineJoin = StrokeLineJoin ?? (MC.Shapes.PenLineJoin)MC.Border.StrokeLineJoinProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeMiterLimit):
                     if (!Equals(StrokeMiterLimit, value))
                     {
-                        StrokeMiterLimit = (double?)value;
+                        StrokeMiterLimit = CastParameter<double?>(value, name);
                         NativeControl.StrokeMiterLimit = StrokeMiterLimit ?? (double)MC.Border.StrokeMiterLimitProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeThickness):
                     if (!Equals(StrokeThickness, value))
                     {
-                        StrokeThickness = (double?)value;
+                        StrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.StrokeThickness = StrokeThickness ?? (double)MC.Border.StrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(StrokeShape):
-                    StrokeShape = (RenderFragment)value;
+                    StrokeShape = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

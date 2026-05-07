@@ -52,14 +52,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(CapLineSize):
                     if (!Equals(CapLineSize, value))
                     {
-                        CapLineSize = (double?)value;
+                        CapLineSize = CastParameter<double?>(value, name);
                         NativeControl.CapLineSize = CapLineSize ?? (double)SMTC.ErrorBarCapLineStyle.CapLineSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ErrorBarCapLineStyle.IsVisibleProperty.DefaultValue;
                     }
                     break;

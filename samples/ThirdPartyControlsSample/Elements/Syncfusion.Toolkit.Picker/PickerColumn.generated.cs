@@ -75,42 +75,42 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(DisplayMemberPath):
                     if (!Equals(DisplayMemberPath, value))
                     {
-                        DisplayMemberPath = (string)value;
+                        DisplayMemberPath = CastParameter<string>(value, name);
                         NativeControl.DisplayMemberPath = DisplayMemberPath;
                     }
                     break;
                 case nameof(HeaderText):
                     if (!Equals(HeaderText, value))
                     {
-                        HeaderText = (string)value;
+                        HeaderText = CastParameter<string>(value, name);
                         NativeControl.HeaderText = HeaderText;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)SMTP.PickerColumn.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedItem):
                     if (!Equals(SelectedItem, value))
                     {
-                        SelectedItem = (T)value;
+                        SelectedItem = CastParameter<T>(value, name);
                         NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTP.PickerColumn.WidthProperty.DefaultValue;
                     }
                     break;

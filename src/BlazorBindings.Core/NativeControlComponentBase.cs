@@ -43,6 +43,25 @@ public abstract class NativeControlComponentBase : IComponent
         && ReferenceEquals(GetReceiver(ref e1), GetReceiver(ref other))
         && Equals(GetDelegate(ref e1), GetDelegate(ref other));
 
+    protected T? CastParameter<T>(object? value, string parameterName)
+    {
+        if (value is T typedValue)
+            return typedValue;
+
+        if (value is null && default(T) is null)
+            return default;
+
+        var parameterValueString = value?.ToString() ?? "<null>";
+        var requiredType = Nullable.GetUnderlyingType(typeof(T)) is { } underlyingType
+            ? $"{underlyingType.Name}?"
+            : typeof(T).Name;
+
+        throw new ArgumentException(
+            $"Cannot set parameter '{parameterName}' to value '{parameterValueString}' for component '{GetType()?.Name}'. " +
+            $"Required type: {requiredType}. Actual type: {value?.GetType()?.Name}.",
+            parameterName);
+    }
+
     protected virtual void BuildRenderTree(RenderTreeBuilder builder)
     {
         if (_eventCallbackException != null)

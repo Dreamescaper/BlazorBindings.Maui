@@ -218,130 +218,130 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
                 case nameof(Angle):
                     if (!Equals(Angle, value))
                     {
-                        Angle = (int?)value;
+                        Angle = CastParameter<int?>(value, name);
                         NativeControl.Angle = Angle ?? (int)SMTE.SfEffectsView.AngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(AutoResetEffects):
                     if (!Equals(AutoResetEffects, value))
                     {
-                        AutoResetEffects = (SMTE.AutoResetEffects?)value;
+                        AutoResetEffects = CastParameter<SMTE.AutoResetEffects?>(value, name);
                         NativeControl.AutoResetEffects = AutoResetEffects ?? (SMTE.AutoResetEffects)SMTE.SfEffectsView.AutoResetEffectsProperty.DefaultValue;
                     }
                     break;
                 case nameof(FadeOutRipple):
                     if (!Equals(FadeOutRipple, value))
                     {
-                        FadeOutRipple = (bool?)value;
+                        FadeOutRipple = CastParameter<bool?>(value, name);
                         NativeControl.FadeOutRipple = FadeOutRipple ?? (bool)SMTE.SfEffectsView.FadeOutRippleProperty.DefaultValue;
                     }
                     break;
                 case nameof(HighlightBackgroundColor):
                     if (!Equals(HighlightBackgroundColor, value))
                     {
-                        HighlightBackgroundColor = (Color)value;
+                        HighlightBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.HighlightBackground = HighlightBackgroundColor;
                     }
                     break;
                 case nameof(InitialRippleFactor):
                     if (!Equals(InitialRippleFactor, value))
                     {
-                        InitialRippleFactor = (double?)value;
+                        InitialRippleFactor = CastParameter<double?>(value, name);
                         NativeControl.InitialRippleFactor = InitialRippleFactor ?? (double)SMTE.SfEffectsView.InitialRippleFactorProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsSelected):
                     if (!Equals(IsSelected, value))
                     {
-                        IsSelected = (bool?)value;
+                        IsSelected = CastParameter<bool?>(value, name);
                         NativeControl.IsSelected = IsSelected ?? (bool)SMTE.SfEffectsView.IsSelectedProperty.DefaultValue;
                     }
                     break;
                 case nameof(LongPressEffects):
                     if (!Equals(LongPressEffects, value))
                     {
-                        LongPressEffects = (SMTE.SfEffects?)value;
+                        LongPressEffects = CastParameter<SMTE.SfEffects?>(value, name);
                         NativeControl.LongPressEffects = LongPressEffects ?? (SMTE.SfEffects)SMTE.SfEffectsView.LongPressEffectsProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleAnimationDuration):
                     if (!Equals(RippleAnimationDuration, value))
                     {
-                        RippleAnimationDuration = (double?)value;
+                        RippleAnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.RippleAnimationDuration = RippleAnimationDuration ?? (double)SMTE.SfEffectsView.RippleAnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleBackgroundColor):
                     if (!Equals(RippleBackgroundColor, value))
                     {
-                        RippleBackgroundColor = (Color)value;
+                        RippleBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.RippleBackground = RippleBackgroundColor;
                     }
                     break;
                 case nameof(RotationAnimationDuration):
                     if (!Equals(RotationAnimationDuration, value))
                     {
-                        RotationAnimationDuration = (double?)value;
+                        RotationAnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.RotationAnimationDuration = RotationAnimationDuration ?? (double)SMTE.SfEffectsView.RotationAnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(ScaleAnimationDuration):
                     if (!Equals(ScaleAnimationDuration, value))
                     {
-                        ScaleAnimationDuration = (double?)value;
+                        ScaleAnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.ScaleAnimationDuration = ScaleAnimationDuration ?? (double)SMTE.SfEffectsView.ScaleAnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(ScaleFactor):
                     if (!Equals(ScaleFactor, value))
                     {
-                        ScaleFactor = (double?)value;
+                        ScaleFactor = CastParameter<double?>(value, name);
                         NativeControl.ScaleFactor = ScaleFactor ?? (double)SMTE.SfEffectsView.ScaleFactorProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionBackgroundColor):
                     if (!Equals(SelectionBackgroundColor, value))
                     {
-                        SelectionBackgroundColor = (Color)value;
+                        SelectionBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionBackground = SelectionBackgroundColor;
                     }
                     break;
                 case nameof(ShouldIgnoreTouches):
                     if (!Equals(ShouldIgnoreTouches, value))
                     {
-                        ShouldIgnoreTouches = (bool?)value;
+                        ShouldIgnoreTouches = CastParameter<bool?>(value, name);
                         NativeControl.ShouldIgnoreTouches = ShouldIgnoreTouches ?? (bool)SMTE.SfEffectsView.ShouldIgnoreTouchesProperty.DefaultValue;
                     }
                     break;
                 case nameof(TouchDownEffects):
                     if (!Equals(TouchDownEffects, value))
                     {
-                        TouchDownEffects = (SMTE.SfEffects?)value;
+                        TouchDownEffects = CastParameter<SMTE.SfEffects?>(value, name);
                         NativeControl.TouchDownEffects = TouchDownEffects ?? (SMTE.SfEffects)SMTE.SfEffectsView.TouchDownEffectsProperty.DefaultValue;
                     }
                     break;
                 case nameof(TouchUpEffects):
                     if (!Equals(TouchUpEffects, value))
                     {
-                        TouchUpEffects = (SMTE.SfEffects?)value;
+                        TouchUpEffects = CastParameter<SMTE.SfEffects?>(value, name);
                         NativeControl.TouchUpEffects = TouchUpEffects ?? (SMTE.SfEffects)SMTE.SfEffectsView.TouchUpEffectsProperty.DefaultValue;
                     }
                     break;
                 case nameof(HighlightBackground):
-                    HighlightBackground = (RenderFragment)value;
+                    HighlightBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RippleBackground):
-                    RippleBackground = (RenderFragment)value;
+                    RippleBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionBackground):
-                    SelectionBackground = (RenderFragment)value;
+                    SelectionBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnAnimationCompleted):
                     if (!Equals(OnAnimationCompleted, value))
                     {
                         void NativeControlAnimationCompleted(object sender, EventArgs e) => InvokeEventCallback(OnAnimationCompleted);
 
-                        OnAnimationCompleted = (EventCallback)value;
+                        OnAnimationCompleted = CastParameter<EventCallback>(value, name);
                         NativeControl.AnimationCompleted -= NativeControlAnimationCompleted;
                         NativeControl.AnimationCompleted += NativeControlAnimationCompleted;
                     }
@@ -351,7 +351,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
                     {
                         void NativeControlSelectionChanged(object sender, EventArgs e) => InvokeEventCallback(OnSelectionChanged);
 
-                        OnSelectionChanged = (EventCallback)value;
+                        OnSelectionChanged = CastParameter<EventCallback>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -361,7 +361,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
                     {
                         void NativeControlTouchDown(object sender, EventArgs e) => InvokeEventCallback(OnTouchDown);
 
-                        OnTouchDown = (EventCallback)value;
+                        OnTouchDown = CastParameter<EventCallback>(value, name);
                         NativeControl.TouchDown -= NativeControlTouchDown;
                         NativeControl.TouchDown += NativeControlTouchDown;
                     }
@@ -371,7 +371,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
                     {
                         void NativeControlTouchUp(object sender, EventArgs e) => InvokeEventCallback(OnTouchUp);
 
-                        OnTouchUp = (EventCallback)value;
+                        OnTouchUp = CastParameter<EventCallback>(value, name);
                         NativeControl.TouchUp -= NativeControlTouchUp;
                         NativeControl.TouchUp += NativeControlTouchUp;
                     }
@@ -381,7 +381,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.EffectsView
                     {
                         void NativeControlLongPressed(object sender, EventArgs e) => InvokeEventCallback(OnLongPressed);
 
-                        OnLongPressed = (EventCallback)value;
+                        OnLongPressed = CastParameter<EventCallback>(value, name);
                         NativeControl.LongPressed -= NativeControlLongPressed;
                         NativeControl.LongPressed += NativeControlLongPressed;
                     }

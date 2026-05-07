@@ -43,7 +43,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Drawable):
                     if (!Equals(Drawable, value))
                     {
-                        Drawable = (IDrawable)value;
+                        Drawable = CastParameter<IDrawable>(value, name);
                         NativeControl.Drawable = Drawable;
                     }
                     break;
@@ -52,7 +52,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlStartHoverInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnStartHoverInteraction, e);
 
-                        OnStartHoverInteraction = (EventCallback<MC.TouchEventArgs>)value;
+                        OnStartHoverInteraction = CastParameter<EventCallback<MC.TouchEventArgs>>(value, name);
                         NativeControl.StartHoverInteraction -= NativeControlStartHoverInteraction;
                         NativeControl.StartHoverInteraction += NativeControlStartHoverInteraction;
                     }
@@ -62,7 +62,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlMoveHoverInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnMoveHoverInteraction, e);
 
-                        OnMoveHoverInteraction = (EventCallback<MC.TouchEventArgs>)value;
+                        OnMoveHoverInteraction = CastParameter<EventCallback<MC.TouchEventArgs>>(value, name);
                         NativeControl.MoveHoverInteraction -= NativeControlMoveHoverInteraction;
                         NativeControl.MoveHoverInteraction += NativeControlMoveHoverInteraction;
                     }
@@ -72,7 +72,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlEndHoverInteraction(object sender, EventArgs e) => InvokeEventCallback(OnEndHoverInteraction);
 
-                        OnEndHoverInteraction = (EventCallback)value;
+                        OnEndHoverInteraction = CastParameter<EventCallback>(value, name);
                         NativeControl.EndHoverInteraction -= NativeControlEndHoverInteraction;
                         NativeControl.EndHoverInteraction += NativeControlEndHoverInteraction;
                     }
@@ -82,7 +82,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlStartInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnStartInteraction, e);
 
-                        OnStartInteraction = (EventCallback<MC.TouchEventArgs>)value;
+                        OnStartInteraction = CastParameter<EventCallback<MC.TouchEventArgs>>(value, name);
                         NativeControl.StartInteraction -= NativeControlStartInteraction;
                         NativeControl.StartInteraction += NativeControlStartInteraction;
                     }
@@ -92,7 +92,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDragInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnDragInteraction, e);
 
-                        OnDragInteraction = (EventCallback<MC.TouchEventArgs>)value;
+                        OnDragInteraction = CastParameter<EventCallback<MC.TouchEventArgs>>(value, name);
                         NativeControl.DragInteraction -= NativeControlDragInteraction;
                         NativeControl.DragInteraction += NativeControlDragInteraction;
                     }
@@ -102,7 +102,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlEndInteraction(object sender, MC.TouchEventArgs e) => InvokeEventCallback(OnEndInteraction, e);
 
-                        OnEndInteraction = (EventCallback<MC.TouchEventArgs>)value;
+                        OnEndInteraction = CastParameter<EventCallback<MC.TouchEventArgs>>(value, name);
                         NativeControl.EndInteraction -= NativeControlEndInteraction;
                         NativeControl.EndInteraction += NativeControlEndInteraction;
                     }
@@ -112,7 +112,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlCancelInteraction(object sender, EventArgs e) => InvokeEventCallback(OnCancelInteraction);
 
-                        OnCancelInteraction = (EventCallback)value;
+                        OnCancelInteraction = CastParameter<EventCallback>(value, name);
                         NativeControl.CancelInteraction -= NativeControlCancelInteraction;
                         NativeControl.CancelInteraction += NativeControlCancelInteraction;
                     }

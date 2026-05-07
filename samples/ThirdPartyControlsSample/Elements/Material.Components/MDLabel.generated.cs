@@ -48,77 +48,77 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.Label.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.Label.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.Label.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (TextAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (TextAlignment)MCM.Label.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MCM.Label.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Shape):
                     if (!Equals(Shape, value))
                     {
-                        Shape = (MCM.Tokens.Shape?)value;
+                        Shape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.Shape = Shape ?? (MCM.Tokens.Shape)MCM.Label.ShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (TextAlignment?)value;
+                        VerticalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (TextAlignment)MCM.Label.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;

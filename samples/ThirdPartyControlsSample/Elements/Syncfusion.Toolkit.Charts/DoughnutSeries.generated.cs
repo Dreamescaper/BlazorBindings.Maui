@@ -70,26 +70,26 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(CapStyle):
                     if (!Equals(CapStyle, value))
                     {
-                        CapStyle = (SMTC.CapStyle?)value;
+                        CapStyle = CastParameter<SMTC.CapStyle?>(value, name);
                         NativeControl.CapStyle = CapStyle ?? (SMTC.CapStyle)SMTC.DoughnutSeries.CapStyleProperty.DefaultValue;
                     }
                     break;
                 case nameof(GapRatio):
                     if (!Equals(GapRatio, value))
                     {
-                        GapRatio = (double?)value;
+                        GapRatio = CastParameter<double?>(value, name);
                         NativeControl.GapRatio = GapRatio ?? (double)SMTC.DoughnutSeries.GapRatioProperty.DefaultValue;
                     }
                     break;
                 case nameof(InnerRadius):
                     if (!Equals(InnerRadius, value))
                     {
-                        InnerRadius = (double?)value;
+                        InnerRadius = CastParameter<double?>(value, name);
                         NativeControl.InnerRadius = InnerRadius ?? (double)SMTC.DoughnutSeries.InnerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(CenterView):
-                    CenterView = (RenderFragment)value;
+                    CenterView = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

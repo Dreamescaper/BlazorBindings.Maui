@@ -12,7 +12,7 @@ public partial class CarouselView<T> : IHandleAfterRender
     {
         if (name == nameof(IndicatorView))
         {
-            IndicatorView = (Func<IndicatorView>)value;
+            IndicatorView = CastParameter<Func<IndicatorView>>(value, name);
             return true;
         }
 

@@ -42,26 +42,26 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.MenuBarItem.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(Priority):
                     if (!Equals(Priority, value))
                     {
-                        Priority = (int?)value;
+                        Priority = CastParameter<int?>(value, name);
                         NativeControl.Priority = Priority ?? default;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

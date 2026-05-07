@@ -45,40 +45,40 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(DismissOnOutside):
                     if (!Equals(DismissOnOutside, value))
                     {
-                        DismissOnOutside = (bool?)value;
+                        DismissOnOutside = CastParameter<bool?>(value, name);
                         NativeControl.DismissOnOutside = DismissOnOutside ?? (bool)MCM.Popup.DismissOnOutsideProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalOptions):
                     if (!Equals(HorizontalOptions, value))
                     {
-                        HorizontalOptions = (MC.LayoutAlignment?)value;
+                        HorizontalOptions = CastParameter<MC.LayoutAlignment?>(value, name);
                         NativeControl.HorizontalOptions = HorizontalOptions ?? (MC.LayoutAlignment)MCM.Popup.HorizontalOptionsProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffsetX):
                     if (!Equals(OffsetX, value))
                     {
-                        OffsetX = (int?)value;
+                        OffsetX = CastParameter<int?>(value, name);
                         NativeControl.OffsetX = OffsetX ?? (int)MCM.Popup.OffsetXProperty.DefaultValue;
                     }
                     break;
                 case nameof(OffsetY):
                     if (!Equals(OffsetY, value))
                     {
-                        OffsetY = (int?)value;
+                        OffsetY = CastParameter<int?>(value, name);
                         NativeControl.OffsetY = OffsetY ?? (int)MCM.Popup.OffsetYProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalOptions):
                     if (!Equals(VerticalOptions, value))
                     {
-                        VerticalOptions = (MC.LayoutAlignment?)value;
+                        VerticalOptions = CastParameter<MC.LayoutAlignment?>(value, name);
                         NativeControl.VerticalOptions = VerticalOptions ?? (MC.LayoutAlignment)MCM.Popup.VerticalOptionsProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

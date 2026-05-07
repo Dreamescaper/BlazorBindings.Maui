@@ -45,14 +45,14 @@ namespace BlazorBindings.Maui.Elements.Material.Components
             switch (name)
             {
                 case nameof(ContextMenu):
-                    ContextMenu = (RenderFragment)value;
+                    ContextMenu = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnPress):
                     if (!Equals(OnPress, value))
                     {
                         void NativeControlPressed(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnPress, e);
 
-                        OnPress = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnPress = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.Pressed -= NativeControlPressed;
                         NativeControl.Pressed += NativeControlPressed;
                     }
@@ -62,7 +62,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlMoved(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnMoved, e);
 
-                        OnMoved = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnMoved = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.Moved -= NativeControlMoved;
                         NativeControl.Moved += NativeControlMoved;
                     }
@@ -72,7 +72,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlReleased(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnRelease, e);
 
-                        OnRelease = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnRelease = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.Released -= NativeControlReleased;
                         NativeControl.Released += NativeControlReleased;
                     }
@@ -82,7 +82,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlLongPressed(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnLongPressed, e);
 
-                        OnLongPressed = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnLongPressed = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.LongPressed -= NativeControlLongPressed;
                         NativeControl.LongPressed += NativeControlLongPressed;
                     }
@@ -92,7 +92,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlClicked(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnClick, e);
 
-                        OnClick = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnClick = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.Clicked -= NativeControlClicked;
                         NativeControl.Clicked += NativeControlClicked;
                     }
@@ -102,7 +102,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlEntered(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnEntered, e);
 
-                        OnEntered = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnEntered = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.Entered -= NativeControlEntered;
                         NativeControl.Entered += NativeControlEntered;
                     }
@@ -112,7 +112,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlExited(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnExited, e);
 
-                        OnExited = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnExited = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.Exited -= NativeControlExited;
                         NativeControl.Exited += NativeControlExited;
                     }

@@ -13,7 +13,7 @@ public partial class Polygon : Shape
         {
             if (!Equals(value, Points))
             {
-                Points = (string)value;
+                Points = CastParameter<string>(value, name);
                 NativeControl.Points = AttributeHelper.StringToPointCollection(Points);
             }
             return true;

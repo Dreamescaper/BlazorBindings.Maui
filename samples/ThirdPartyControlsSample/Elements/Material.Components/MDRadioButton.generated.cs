@@ -42,12 +42,12 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)MCM.RadioButton.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectedIndexChanged):
                     if (!Equals(SelectedIndexChanged, value))
@@ -59,7 +59,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(SelectedIndexChanged, value);
                         }
 
-                        SelectedIndexChanged = (EventCallback<int>)value;
+                        SelectedIndexChanged = CastParameter<EventCallback<int>>(value, name);
                         NativeControl.SelectedIndexChanged -= NativeControlSelectedIndexChanged;
                         NativeControl.SelectedIndexChanged += NativeControlSelectedIndexChanged;
                     }

@@ -80,42 +80,42 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ExplodeAll):
                     if (!Equals(ExplodeAll, value))
                     {
-                        ExplodeAll = (bool?)value;
+                        ExplodeAll = CastParameter<bool?>(value, name);
                         NativeControl.ExplodeAll = ExplodeAll ?? (bool)SMTC.PieSeries.ExplodeAllProperty.DefaultValue;
                     }
                     break;
                 case nameof(ExplodeIndex):
                     if (!Equals(ExplodeIndex, value))
                     {
-                        ExplodeIndex = (int?)value;
+                        ExplodeIndex = CastParameter<int?>(value, name);
                         NativeControl.ExplodeIndex = ExplodeIndex ?? (int)SMTC.PieSeries.ExplodeIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(ExplodeOnTouch):
                     if (!Equals(ExplodeOnTouch, value))
                     {
-                        ExplodeOnTouch = (bool?)value;
+                        ExplodeOnTouch = CastParameter<bool?>(value, name);
                         NativeControl.ExplodeOnTouch = ExplodeOnTouch ?? (bool)SMTC.PieSeries.ExplodeOnTouchProperty.DefaultValue;
                     }
                     break;
                 case nameof(ExplodeRadius):
                     if (!Equals(ExplodeRadius, value))
                     {
-                        ExplodeRadius = (double?)value;
+                        ExplodeRadius = CastParameter<double?>(value, name);
                         NativeControl.ExplodeRadius = ExplodeRadius ?? (double)SMTC.PieSeries.ExplodeRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(GroupMode):
                     if (!Equals(GroupMode, value))
                     {
-                        GroupMode = (SMTC.PieGroupMode?)value;
+                        GroupMode = CastParameter<SMTC.PieGroupMode?>(value, name);
                         NativeControl.GroupMode = GroupMode ?? (SMTC.PieGroupMode)SMTC.PieSeries.GroupModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(GroupTo):
                     if (!Equals(GroupTo, value))
                     {
-                        GroupTo = (double?)value;
+                        GroupTo = CastParameter<double?>(value, name);
                         NativeControl.GroupTo = GroupTo ?? (double)SMTC.PieSeries.GroupToProperty.DefaultValue;
                     }
                     break;

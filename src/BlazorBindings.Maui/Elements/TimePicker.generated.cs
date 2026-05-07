@@ -68,56 +68,56 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CharacterSpacing):
                     if (!Equals(CharacterSpacing, value))
                     {
-                        CharacterSpacing = (double?)value;
+                        CharacterSpacing = CastParameter<double?>(value, name);
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.TimePicker.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.TimePicker.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.TimePicker.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)MC.TimePicker.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Format):
                     if (!Equals(Format, value))
                     {
-                        Format = (string)value;
+                        Format = CastParameter<string>(value, name);
                         NativeControl.Format = Format;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)MC.TimePicker.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
@@ -126,7 +126,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlOpened(object sender, MC.TimePickerOpenedEventArgs e) => InvokeEventCallback(OnOpened, e);
 
-                        OnOpened = (EventCallback<MC.TimePickerOpenedEventArgs>)value;
+                        OnOpened = CastParameter<EventCallback<MC.TimePickerOpenedEventArgs>>(value, name);
                         NativeControl.Opened -= NativeControlOpened;
                         NativeControl.Opened += NativeControlOpened;
                     }
@@ -136,7 +136,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlClosed(object sender, MC.TimePickerClosedEventArgs e) => InvokeEventCallback(OnClosed, e);
 
-                        OnClosed = (EventCallback<MC.TimePickerClosedEventArgs>)value;
+                        OnClosed = CastParameter<EventCallback<MC.TimePickerClosedEventArgs>>(value, name);
                         NativeControl.Closed -= NativeControlClosed;
                         NativeControl.Closed += NativeControlClosed;
                     }

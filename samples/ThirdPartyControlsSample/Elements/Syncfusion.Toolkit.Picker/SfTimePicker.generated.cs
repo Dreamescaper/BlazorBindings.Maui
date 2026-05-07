@@ -112,71 +112,71 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(BlackoutTimes):
                     if (!Equals(BlackoutTimes, value))
                     {
-                        BlackoutTimes = (ObservableCollection<TimeSpan>)value;
+                        BlackoutTimes = CastParameter<ObservableCollection<TimeSpan>>(value, name);
                         NativeControl.BlackoutTimes = BlackoutTimes;
                     }
                     break;
                 case nameof(Format):
                     if (!Equals(Format, value))
                     {
-                        Format = (SMTP.PickerTimeFormat?)value;
+                        Format = CastParameter<SMTP.PickerTimeFormat?>(value, name);
                         NativeControl.Format = Format ?? (SMTP.PickerTimeFormat)SMTP.SfTimePicker.FormatProperty.DefaultValue;
                     }
                     break;
                 case nameof(HourInterval):
                     if (!Equals(HourInterval, value))
                     {
-                        HourInterval = (int?)value;
+                        HourInterval = CastParameter<int?>(value, name);
                         NativeControl.HourInterval = HourInterval ?? (int)SMTP.SfTimePicker.HourIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumTime):
                     if (!Equals(MaximumTime, value))
                     {
-                        MaximumTime = (TimeSpan?)value;
+                        MaximumTime = CastParameter<TimeSpan?>(value, name);
                         NativeControl.MaximumTime = MaximumTime ?? (TimeSpan)SMTP.SfTimePicker.MaximumTimeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumTime):
                     if (!Equals(MinimumTime, value))
                     {
-                        MinimumTime = (TimeSpan?)value;
+                        MinimumTime = CastParameter<TimeSpan?>(value, name);
                         NativeControl.MinimumTime = MinimumTime ?? (TimeSpan)SMTP.SfTimePicker.MinimumTimeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinuteInterval):
                     if (!Equals(MinuteInterval, value))
                     {
-                        MinuteInterval = (int?)value;
+                        MinuteInterval = CastParameter<int?>(value, name);
                         NativeControl.MinuteInterval = MinuteInterval ?? (int)SMTP.SfTimePicker.MinuteIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondInterval):
                     if (!Equals(SecondInterval, value))
                     {
-                        SecondInterval = (int?)value;
+                        SecondInterval = CastParameter<int?>(value, name);
                         NativeControl.SecondInterval = SecondInterval ?? (int)SMTP.SfTimePicker.SecondIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedTime):
                     if (!Equals(SelectedTime, value))
                     {
-                        SelectedTime = (Nullable<TimeSpan>)value;
+                        SelectedTime = CastParameter<Nullable<TimeSpan>>(value, name);
                         NativeControl.SelectedTime = SelectedTime;
                     }
                     break;
                 case nameof(ColumnHeaderView):
-                    ColumnHeaderView = (RenderFragment)value;
+                    ColumnHeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderView):
-                    HeaderView = (RenderFragment)value;
+                    HeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTP.TimePickerSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTP.TimePickerSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTP.TimePickerSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }

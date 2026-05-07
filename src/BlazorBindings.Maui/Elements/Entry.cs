@@ -15,7 +15,7 @@ public partial class Entry<T>
             case nameof(Text):
                 if (!Equals(Text, value))
                 {
-                    Text = (T)value;
+                    Text = CastParameter<T>(value, name);
                     UpdateText(Text);
                 }
                 return true;
@@ -23,7 +23,7 @@ public partial class Entry<T>
             case nameof(TextChanged):
                 if (!Equals(TextChanged, value))
                 {
-                    TextChanged = (EventCallback<T>)value;
+                    TextChanged = CastParameter<EventCallback<T>>(value, name);
                     NativeControl.TextChanged -= NativeControlTextChanged;
                     NativeControl.TextChanged += NativeControlTextChanged;
 

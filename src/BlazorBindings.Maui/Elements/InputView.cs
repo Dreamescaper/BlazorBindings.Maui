@@ -23,7 +23,7 @@ public partial class InputView
             case nameof(Text):
                 if (!Equals(Text, value))
                 {
-                    Text = (string)value;
+                    Text = CastParameter<string>(value, name);
                     NativeControl.Text = Text;
                 }
                 return true;
@@ -38,7 +38,7 @@ public partial class InputView
                         InvokeEventCallback(TextChanged, value);
                     }
 
-                    TextChanged = (EventCallback<string>)value;
+                    TextChanged = CastParameter<EventCallback<string>>(value, name);
                     NativeControl.TextChanged -= NativeControlTextChanged;
                     NativeControl.TextChanged += NativeControlTextChanged;
                 }

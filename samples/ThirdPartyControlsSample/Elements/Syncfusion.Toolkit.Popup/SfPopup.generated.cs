@@ -228,213 +228,213 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Popup
                 case nameof(AbsoluteX):
                     if (!Equals(AbsoluteX, value))
                     {
-                        AbsoluteX = (int?)value;
+                        AbsoluteX = CastParameter<int?>(value, name);
                         NativeControl.AbsoluteX = AbsoluteX ?? (int)SMTP.SfPopup.AbsoluteXProperty.DefaultValue;
                     }
                     break;
                 case nameof(AbsoluteY):
                     if (!Equals(AbsoluteY, value))
                     {
-                        AbsoluteY = (int?)value;
+                        AbsoluteY = CastParameter<int?>(value, name);
                         NativeControl.AbsoluteY = AbsoluteY ?? (int)SMTP.SfPopup.AbsoluteYProperty.DefaultValue;
                     }
                     break;
                 case nameof(AcceptButtonText):
                     if (!Equals(AcceptButtonText, value))
                     {
-                        AcceptButtonText = (string)value;
+                        AcceptButtonText = CastParameter<string>(value, name);
                         NativeControl.AcceptButtonText = AcceptButtonText;
                     }
                     break;
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTP.SfPopup.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnimationEasing):
                     if (!Equals(AnimationEasing, value))
                     {
-                        AnimationEasing = (SMTP.PopupAnimationEasing?)value;
+                        AnimationEasing = CastParameter<SMTP.PopupAnimationEasing?>(value, name);
                         NativeControl.AnimationEasing = AnimationEasing ?? (SMTP.PopupAnimationEasing)SMTP.SfPopup.AnimationEasingProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnimationMode):
                     if (!Equals(AnimationMode, value))
                     {
-                        AnimationMode = (SMTP.PopupAnimationMode?)value;
+                        AnimationMode = CastParameter<SMTP.PopupAnimationMode?>(value, name);
                         NativeControl.AnimationMode = AnimationMode ?? (SMTP.PopupAnimationMode)SMTP.SfPopup.AnimationModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(AppearanceMode):
                     if (!Equals(AppearanceMode, value))
                     {
-                        AppearanceMode = (SMTP.PopupButtonAppearanceMode?)value;
+                        AppearanceMode = CastParameter<SMTP.PopupButtonAppearanceMode?>(value, name);
                         NativeControl.AppearanceMode = AppearanceMode ?? (SMTP.PopupButtonAppearanceMode)SMTP.SfPopup.AppearanceModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(AutoCloseDuration):
                     if (!Equals(AutoCloseDuration, value))
                     {
-                        AutoCloseDuration = (int?)value;
+                        AutoCloseDuration = CastParameter<int?>(value, name);
                         NativeControl.AutoCloseDuration = AutoCloseDuration ?? (int)SMTP.SfPopup.AutoCloseDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(AutoSizeMode):
                     if (!Equals(AutoSizeMode, value))
                     {
-                        AutoSizeMode = (SMTP.PopupAutoSizeMode?)value;
+                        AutoSizeMode = CastParameter<SMTP.PopupAutoSizeMode?>(value, name);
                         NativeControl.AutoSizeMode = AutoSizeMode ?? (SMTP.PopupAutoSizeMode)SMTP.SfPopup.AutoSizeModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(DeclineButtonText):
                     if (!Equals(DeclineButtonText, value))
                     {
-                        DeclineButtonText = (string)value;
+                        DeclineButtonText = CastParameter<string>(value, name);
                         NativeControl.DeclineButtonText = DeclineButtonText;
                     }
                     break;
                 case nameof(FooterHeight):
                     if (!Equals(FooterHeight, value))
                     {
-                        FooterHeight = (int?)value;
+                        FooterHeight = CastParameter<int?>(value, name);
                         NativeControl.FooterHeight = FooterHeight ?? (int)SMTP.SfPopup.FooterHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderHeight):
                     if (!Equals(HeaderHeight, value))
                     {
-                        HeaderHeight = (int?)value;
+                        HeaderHeight = CastParameter<int?>(value, name);
                         NativeControl.HeaderHeight = HeaderHeight ?? (int)SMTP.SfPopup.HeaderHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderTitle):
                     if (!Equals(HeaderTitle, value))
                     {
-                        HeaderTitle = (string)value;
+                        HeaderTitle = CastParameter<string>(value, name);
                         NativeControl.HeaderTitle = HeaderTitle;
                     }
                     break;
                 case nameof(IgnoreActionBar):
                     if (!Equals(IgnoreActionBar, value))
                     {
-                        IgnoreActionBar = (bool?)value;
+                        IgnoreActionBar = CastParameter<bool?>(value, name);
                         NativeControl.IgnoreActionBar = IgnoreActionBar ?? (bool)SMTP.SfPopup.IgnoreActionBarProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsFullScreen):
                     if (!Equals(IsFullScreen, value))
                     {
-                        IsFullScreen = (bool?)value;
+                        IsFullScreen = CastParameter<bool?>(value, name);
                         NativeControl.IsFullScreen = IsFullScreen ?? (bool)SMTP.SfPopup.IsFullScreenProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)SMTP.SfPopup.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(Message):
                     if (!Equals(Message, value))
                     {
-                        Message = (string)value;
+                        Message = CastParameter<string>(value, name);
                         NativeControl.Message = Message;
                     }
                     break;
                 case nameof(OverlayMode):
                     if (!Equals(OverlayMode, value))
                     {
-                        OverlayMode = (SMTP.PopupOverlayMode?)value;
+                        OverlayMode = CastParameter<SMTP.PopupOverlayMode?>(value, name);
                         NativeControl.OverlayMode = OverlayMode ?? (SMTP.PopupOverlayMode)SMTP.SfPopup.OverlayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)SMTP.SfPopup.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(RelativePosition):
                     if (!Equals(RelativePosition, value))
                     {
-                        RelativePosition = (SMTP.PopupRelativePosition?)value;
+                        RelativePosition = CastParameter<SMTP.PopupRelativePosition?>(value, name);
                         NativeControl.RelativePosition = RelativePosition ?? (SMTP.PopupRelativePosition)SMTP.SfPopup.RelativePositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowCloseButton):
                     if (!Equals(ShowCloseButton, value))
                     {
-                        ShowCloseButton = (bool?)value;
+                        ShowCloseButton = CastParameter<bool?>(value, name);
                         NativeControl.ShowCloseButton = ShowCloseButton ?? (bool)SMTP.SfPopup.ShowCloseButtonProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowFooter):
                     if (!Equals(ShowFooter, value))
                     {
-                        ShowFooter = (bool?)value;
+                        ShowFooter = CastParameter<bool?>(value, name);
                         NativeControl.ShowFooter = ShowFooter ?? (bool)SMTP.SfPopup.ShowFooterProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowHeader):
                     if (!Equals(ShowHeader, value))
                     {
-                        ShowHeader = (bool?)value;
+                        ShowHeader = CastParameter<bool?>(value, name);
                         NativeControl.ShowHeader = ShowHeader ?? (bool)SMTP.SfPopup.ShowHeaderProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowOverlayAlways):
                     if (!Equals(ShowOverlayAlways, value))
                     {
-                        ShowOverlayAlways = (bool?)value;
+                        ShowOverlayAlways = CastParameter<bool?>(value, name);
                         NativeControl.ShowOverlayAlways = ShowOverlayAlways ?? (bool)SMTP.SfPopup.ShowOverlayAlwaysProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartX):
                     if (!Equals(StartX, value))
                     {
-                        StartX = (int?)value;
+                        StartX = CastParameter<int?>(value, name);
                         NativeControl.StartX = StartX ?? (int)SMTP.SfPopup.StartXProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartY):
                     if (!Equals(StartY, value))
                     {
-                        StartY = (int?)value;
+                        StartY = CastParameter<int?>(value, name);
                         NativeControl.StartY = StartY ?? (int)SMTP.SfPopup.StartYProperty.DefaultValue;
                     }
                     break;
                 case nameof(StaysOpen):
                     if (!Equals(StaysOpen, value))
                     {
-                        StaysOpen = (bool?)value;
+                        StaysOpen = CastParameter<bool?>(value, name);
                         NativeControl.StaysOpen = StaysOpen ?? (bool)SMTP.SfPopup.StaysOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContentTemplate):
-                    ContentTemplate = (RenderFragment)value;
+                    ContentTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FooterTemplate):
-                    FooterTemplate = (RenderFragment)value;
+                    FooterTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderTemplate):
-                    HeaderTemplate = (RenderFragment)value;
+                    HeaderTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PopupStyle):
-                    PopupStyle = (RenderFragment)value;
+                    PopupStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RelativeView):
-                    RelativeView = (RenderFragment)value;
+                    RelativeView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnOpened):
                     if (!Equals(OnOpened, value))
                     {
                         void NativeControlOpened(object sender, EventArgs e) => InvokeEventCallback(OnOpened);
 
-                        OnOpened = (EventCallback)value;
+                        OnOpened = CastParameter<EventCallback>(value, name);
                         NativeControl.Opened -= NativeControlOpened;
                         NativeControl.Opened += NativeControlOpened;
                     }
@@ -444,7 +444,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Popup
                     {
                         void NativeControlClosed(object sender, EventArgs e) => InvokeEventCallback(OnClosed);
 
-                        OnClosed = (EventCallback)value;
+                        OnClosed = CastParameter<EventCallback>(value, name);
                         NativeControl.Closed -= NativeControlClosed;
                         NativeControl.Closed += NativeControlClosed;
                     }
@@ -454,7 +454,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Popup
                     {
                         void NativeControlOpening(object sender, CancelEventArgs e) => InvokeEventCallback(OnOpening, e);
 
-                        OnOpening = (EventCallback<CancelEventArgs>)value;
+                        OnOpening = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.Opening -= NativeControlOpening;
                         NativeControl.Opening += NativeControlOpening;
                     }
@@ -464,7 +464,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Popup
                     {
                         void NativeControlClosing(object sender, CancelEventArgs e) => InvokeEventCallback(OnClosing, e);
 
-                        OnClosing = (EventCallback<CancelEventArgs>)value;
+                        OnClosing = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.Closing -= NativeControlClosing;
                         NativeControl.Closing += NativeControlClosing;
                     }

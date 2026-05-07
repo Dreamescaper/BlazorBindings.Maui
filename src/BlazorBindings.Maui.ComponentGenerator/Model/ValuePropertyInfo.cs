@@ -27,7 +27,7 @@ internal class ValuePropertyInfo : GeneratedPropertyInfo
         return $@"                case nameof({propName}):
                     if (!Equals({propName}, value))
                     {{
-                        {propName} = ({ComponentType})value;
+                        {propName} = CastParameter<{ComponentType}>(value, name);
                         NativeControl.{mauiPropertyName} = {GetConvertedProperty(MauiProperty.Type, propName)};
                     }}
                     break;

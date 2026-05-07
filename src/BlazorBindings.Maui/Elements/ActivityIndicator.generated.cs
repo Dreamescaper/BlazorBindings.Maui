@@ -51,14 +51,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Color):
                     if (!Equals(Color, value))
                     {
-                        Color = (Color)value;
+                        Color = CastParameter<Color>(value, name);
                         NativeControl.Color = Color;
                     }
                     break;
                 case nameof(IsRunning):
                     if (!Equals(IsRunning, value))
                     {
-                        IsRunning = (bool?)value;
+                        IsRunning = CastParameter<bool?>(value, name);
                         NativeControl.IsRunning = IsRunning ?? (bool)MC.ActivityIndicator.IsRunningProperty.DefaultValue;
                     }
                     break;

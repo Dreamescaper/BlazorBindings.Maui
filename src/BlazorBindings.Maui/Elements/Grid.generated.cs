@@ -44,14 +44,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(ColumnSpacing):
                     if (!Equals(ColumnSpacing, value))
                     {
-                        ColumnSpacing = (double?)value;
+                        ColumnSpacing = CastParameter<double?>(value, name);
                         NativeControl.ColumnSpacing = ColumnSpacing ?? (double)MC.Grid.ColumnSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(RowSpacing):
                     if (!Equals(RowSpacing, value))
                     {
-                        RowSpacing = (double?)value;
+                        RowSpacing = CastParameter<double?>(value, name);
                         NativeControl.RowSpacing = RowSpacing ?? (double)MC.Grid.RowSpacingProperty.DefaultValue;
                     }
                     break;

@@ -39,28 +39,28 @@ namespace BlazorBindings.Maui.Elements.Shapes
                 case nameof(X1):
                     if (!Equals(X1, value))
                     {
-                        X1 = (double?)value;
+                        X1 = CastParameter<double?>(value, name);
                         NativeControl.X1 = X1 ?? (double)MCS.Line.X1Property.DefaultValue;
                     }
                     break;
                 case nameof(X2):
                     if (!Equals(X2, value))
                     {
-                        X2 = (double?)value;
+                        X2 = CastParameter<double?>(value, name);
                         NativeControl.X2 = X2 ?? (double)MCS.Line.X2Property.DefaultValue;
                     }
                     break;
                 case nameof(Y1):
                     if (!Equals(Y1, value))
                     {
-                        Y1 = (double?)value;
+                        Y1 = CastParameter<double?>(value, name);
                         NativeControl.Y1 = Y1 ?? (double)MCS.Line.Y1Property.DefaultValue;
                     }
                     break;
                 case nameof(Y2):
                     if (!Equals(Y2, value))
                     {
-                        Y2 = (double?)value;
+                        Y2 = CastParameter<double?>(value, name);
                         NativeControl.Y2 = Y2 ?? (double)MCS.Line.Y2Property.DefaultValue;
                     }
                     break;

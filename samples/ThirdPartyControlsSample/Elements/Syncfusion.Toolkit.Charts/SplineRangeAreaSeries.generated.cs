@@ -63,19 +63,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ShowMarkers):
                     if (!Equals(ShowMarkers, value))
                     {
-                        ShowMarkers = (bool?)value;
+                        ShowMarkers = CastParameter<bool?>(value, name);
                         NativeControl.ShowMarkers = ShowMarkers ?? (bool)SMTC.SplineRangeAreaSeries.ShowMarkersProperty.DefaultValue;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTC.SplineType?)value;
+                        Type = CastParameter<SMTC.SplineType?>(value, name);
                         NativeControl.Type = Type ?? (SMTC.SplineType)SMTC.SplineRangeAreaSeries.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(MarkerSettings):
-                    MarkerSettings = (RenderFragment)value;
+                    MarkerSettings = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

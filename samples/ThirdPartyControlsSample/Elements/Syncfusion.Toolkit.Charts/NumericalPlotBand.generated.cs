@@ -59,21 +59,21 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(End):
                     if (!Equals(End, value))
                     {
-                        End = (double?)value;
+                        End = CastParameter<double?>(value, name);
                         NativeControl.End = End ?? (double)SMTC.NumericalPlotBand.EndProperty.DefaultValue;
                     }
                     break;
                 case nameof(RepeatUntil):
                     if (!Equals(RepeatUntil, value))
                     {
-                        RepeatUntil = (double?)value;
+                        RepeatUntil = CastParameter<double?>(value, name);
                         NativeControl.RepeatUntil = RepeatUntil ?? (double)SMTC.NumericalPlotBand.RepeatUntilProperty.DefaultValue;
                     }
                     break;
                 case nameof(Start):
                     if (!Equals(Start, value))
                     {
-                        Start = (double?)value;
+                        Start = CastParameter<double?>(value, name);
                         NativeControl.Start = Start ?? (double)SMTC.NumericalPlotBand.StartProperty.DefaultValue;
                     }
                     break;

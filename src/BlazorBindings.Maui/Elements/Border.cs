@@ -20,7 +20,7 @@ public partial class Border
                 if (StrokeShape != null)
                     throw new InvalidOperationException("It is not allowed to set both CornerRadius and StrokeShape properties.");
 
-                CornerRadius = (CornerRadius?)value;
+                CornerRadius = CastParameter<CornerRadius?>(value, name);
 
                 if (NativeControl.StrokeShape is not MC.Shapes.RoundRectangle roundRectangle)
                 {

@@ -61,7 +61,7 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
                     {{
                         void {localFunctionName}(object sender, {GetTypeNameAndAddNamespace(GetEventArgType(EventSymbol.Type))} e){localFunctionBody}
 
-                        {ComponentPropertyName} = ({ComponentType})value;
+                        {ComponentPropertyName} = CastParameter<{ComponentType}>(value, name);
                         NativeControl.{eventName} -= {localFunctionName};
                         NativeControl.{eventName} += {localFunctionName};
                     }}

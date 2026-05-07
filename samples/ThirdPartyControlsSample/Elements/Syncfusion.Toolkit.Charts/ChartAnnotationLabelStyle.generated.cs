@@ -52,14 +52,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(HorizontalTextAlignment):
                     if (!Equals(HorizontalTextAlignment, value))
                     {
-                        HorizontalTextAlignment = (SMTC.ChartLabelAlignment?)value;
+                        HorizontalTextAlignment = CastParameter<SMTC.ChartLabelAlignment?>(value, name);
                         NativeControl.HorizontalTextAlignment = HorizontalTextAlignment ?? (SMTC.ChartLabelAlignment)SMTC.ChartAnnotationLabelStyle.HorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalTextAlignment):
                     if (!Equals(VerticalTextAlignment, value))
                     {
-                        VerticalTextAlignment = (SMTC.ChartLabelAlignment?)value;
+                        VerticalTextAlignment = CastParameter<SMTC.ChartLabelAlignment?>(value, name);
                         NativeControl.VerticalTextAlignment = VerticalTextAlignment ?? (SMTC.ChartLabelAlignment)SMTC.ChartAnnotationLabelStyle.VerticalTextAlignmentProperty.DefaultValue;
                     }
                     break;

@@ -157,91 +157,91 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.PullToRefresh
                 case nameof(CanRestrictChildTouch):
                     if (!Equals(CanRestrictChildTouch, value))
                     {
-                        CanRestrictChildTouch = (bool?)value;
+                        CanRestrictChildTouch = CastParameter<bool?>(value, name);
                         NativeControl.CanRestrictChildTouch = CanRestrictChildTouch ?? (bool)SMTP.SfPullToRefresh.CanRestrictChildTouchProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsRefreshing):
                     if (!Equals(IsRefreshing, value))
                     {
-                        IsRefreshing = (bool?)value;
+                        IsRefreshing = CastParameter<bool?>(value, name);
                         NativeControl.IsRefreshing = IsRefreshing ?? (bool)SMTP.SfPullToRefresh.IsRefreshingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressBackgroundColor):
                     if (!Equals(ProgressBackgroundColor, value))
                     {
-                        ProgressBackgroundColor = (Color)value;
+                        ProgressBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.ProgressBackground = ProgressBackgroundColor;
                     }
                     break;
                 case nameof(ProgressColor):
                     if (!Equals(ProgressColor, value))
                     {
-                        ProgressColor = (Color)value;
+                        ProgressColor = CastParameter<Color>(value, name);
                         NativeControl.ProgressColor = ProgressColor;
                     }
                     break;
                 case nameof(ProgressThickness):
                     if (!Equals(ProgressThickness, value))
                     {
-                        ProgressThickness = (double?)value;
+                        ProgressThickness = CastParameter<double?>(value, name);
                         NativeControl.ProgressThickness = ProgressThickness ?? (double)SMTP.SfPullToRefresh.ProgressThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(PullingThreshold):
                     if (!Equals(PullingThreshold, value))
                     {
-                        PullingThreshold = (double?)value;
+                        PullingThreshold = CastParameter<double?>(value, name);
                         NativeControl.PullingThreshold = PullingThreshold ?? (double)SMTP.SfPullToRefresh.PullingThresholdProperty.DefaultValue;
                     }
                     break;
                 case nameof(RefreshViewHeight):
                     if (!Equals(RefreshViewHeight, value))
                     {
-                        RefreshViewHeight = (double?)value;
+                        RefreshViewHeight = CastParameter<double?>(value, name);
                         NativeControl.RefreshViewHeight = RefreshViewHeight ?? (double)SMTP.SfPullToRefresh.RefreshViewHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(RefreshViewThreshold):
                     if (!Equals(RefreshViewThreshold, value))
                     {
-                        RefreshViewThreshold = (double?)value;
+                        RefreshViewThreshold = CastParameter<double?>(value, name);
                         NativeControl.RefreshViewThreshold = RefreshViewThreshold ?? (double)SMTP.SfPullToRefresh.RefreshViewThresholdProperty.DefaultValue;
                     }
                     break;
                 case nameof(RefreshViewWidth):
                     if (!Equals(RefreshViewWidth, value))
                     {
-                        RefreshViewWidth = (double?)value;
+                        RefreshViewWidth = CastParameter<double?>(value, name);
                         NativeControl.RefreshViewWidth = RefreshViewWidth ?? (double)SMTP.SfPullToRefresh.RefreshViewWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(TransitionMode):
                     if (!Equals(TransitionMode, value))
                     {
-                        TransitionMode = (SMTP.PullToRefreshTransitionType?)value;
+                        TransitionMode = CastParameter<SMTP.PullToRefreshTransitionType?>(value, name);
                         NativeControl.TransitionMode = TransitionMode ?? (SMTP.PullToRefreshTransitionType)SMTP.SfPullToRefresh.TransitionModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ProgressBackground):
-                    ProgressBackground = (RenderFragment)value;
+                    ProgressBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PullableContent):
-                    PullableContent = (RenderFragment)value;
+                    PullableContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PullingViewTemplate):
-                    PullingViewTemplate = (RenderFragment)value;
+                    PullingViewTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RefreshingViewTemplate):
-                    RefreshingViewTemplate = (RenderFragment)value;
+                    RefreshingViewTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnPulling):
                     if (!Equals(OnPulling, value))
                     {
                         void NativeControlPulling(object sender, SMTP.PullingEventArgs e) => InvokeEventCallback(OnPulling, e);
 
-                        OnPulling = (EventCallback<SMTP.PullingEventArgs>)value;
+                        OnPulling = CastParameter<EventCallback<SMTP.PullingEventArgs>>(value, name);
                         NativeControl.Pulling -= NativeControlPulling;
                         NativeControl.Pulling += NativeControlPulling;
                     }
@@ -256,7 +256,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.PullToRefresh
                             InvokeEventCallback(IsRefreshingChanged, value);
                         }
 
-                        IsRefreshingChanged = (EventCallback<bool>)value;
+                        IsRefreshingChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.Refreshing -= NativeControlRefreshing;
                         NativeControl.Refreshing += NativeControlRefreshing;
                     }
@@ -266,7 +266,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.PullToRefresh
                     {
                         void NativeControlRefreshed(object sender, EventArgs e) => InvokeEventCallback(OnRefreshed);
 
-                        OnRefreshed = (EventCallback)value;
+                        OnRefreshed = CastParameter<EventCallback>(value, name);
                         NativeControl.Refreshed -= NativeControlRefreshed;
                         NativeControl.Refreshed += NativeControlRefreshed;
                     }

@@ -6,7 +6,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
-internal class DataTemplateItemComponent<T> : ComponentBase
+internal class DataTemplateItemComponent<T> : NativeControlComponentBase
 {
     private object _item;
 
@@ -21,13 +21,13 @@ internal class DataTemplateItemComponent<T> : ComponentBase
             switch (parValue.Name)
             {
                 case nameof(Template):
-                    Template = (RenderFragment<T>)parValue.Value;
+                    Template = CastParameter<RenderFragment<T>>(parValue.Value, parValue.Name);
                     break;
 
                 case nameof(ContentView):
                     if (ContentView == null)
                     {
-                        ContentView = (MC.BindableObject)parValue.Value;
+                        ContentView = CastParameter<MC.BindableObject>(parValue.Value, parValue.Name);
                         OnContentViewSet();
                     }
                     else

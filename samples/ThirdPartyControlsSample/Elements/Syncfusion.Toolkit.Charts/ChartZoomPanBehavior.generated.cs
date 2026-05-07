@@ -130,78 +130,78 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EnableDirectionalZooming):
                     if (!Equals(EnableDirectionalZooming, value))
                     {
-                        EnableDirectionalZooming = (bool?)value;
+                        EnableDirectionalZooming = CastParameter<bool?>(value, name);
                         NativeControl.EnableDirectionalZooming = EnableDirectionalZooming ?? (bool)SMTC.ChartZoomPanBehavior.EnableDirectionalZoomingProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableDoubleTap):
                     if (!Equals(EnableDoubleTap, value))
                     {
-                        EnableDoubleTap = (bool?)value;
+                        EnableDoubleTap = CastParameter<bool?>(value, name);
                         NativeControl.EnableDoubleTap = EnableDoubleTap ?? (bool)SMTC.ChartZoomPanBehavior.EnableDoubleTapProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnablePanning):
                     if (!Equals(EnablePanning, value))
                     {
-                        EnablePanning = (bool?)value;
+                        EnablePanning = CastParameter<bool?>(value, name);
                         NativeControl.EnablePanning = EnablePanning ?? (bool)SMTC.ChartZoomPanBehavior.EnablePanningProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnablePinchZooming):
                     if (!Equals(EnablePinchZooming, value))
                     {
-                        EnablePinchZooming = (bool?)value;
+                        EnablePinchZooming = CastParameter<bool?>(value, name);
                         NativeControl.EnablePinchZooming = EnablePinchZooming ?? (bool)SMTC.ChartZoomPanBehavior.EnablePinchZoomingProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableSelectionZooming):
                     if (!Equals(EnableSelectionZooming, value))
                     {
-                        EnableSelectionZooming = (bool?)value;
+                        EnableSelectionZooming = CastParameter<bool?>(value, name);
                         NativeControl.EnableSelectionZooming = EnableSelectionZooming ?? (bool)SMTC.ChartZoomPanBehavior.EnableSelectionZoomingProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumZoomLevel):
                     if (!Equals(MaximumZoomLevel, value))
                     {
-                        MaximumZoomLevel = (double?)value;
+                        MaximumZoomLevel = CastParameter<double?>(value, name);
                         NativeControl.MaximumZoomLevel = MaximumZoomLevel ?? (double)SMTC.ChartZoomPanBehavior.MaximumZoomLevelProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionRectFillColor):
                     if (!Equals(SelectionRectFillColor, value))
                     {
-                        SelectionRectFillColor = (Color)value;
+                        SelectionRectFillColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionRectFill = SelectionRectFillColor;
                     }
                     break;
                 case nameof(SelectionRectStrokeColor):
                     if (!Equals(SelectionRectStrokeColor, value))
                     {
-                        SelectionRectStrokeColor = (Color)value;
+                        SelectionRectStrokeColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionRectStroke = SelectionRectStrokeColor;
                     }
                     break;
                 case nameof(SelectionRectStrokeWidth):
                     if (!Equals(SelectionRectStrokeWidth, value))
                     {
-                        SelectionRectStrokeWidth = (double?)value;
+                        SelectionRectStrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.SelectionRectStrokeWidth = SelectionRectStrokeWidth ?? (double)SMTC.ChartZoomPanBehavior.SelectionRectStrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(ZoomMode):
                     if (!Equals(ZoomMode, value))
                     {
-                        ZoomMode = (SMTC.ZoomMode?)value;
+                        ZoomMode = CastParameter<SMTC.ZoomMode?>(value, name);
                         NativeControl.ZoomMode = ZoomMode ?? (SMTC.ZoomMode)SMTC.ChartZoomPanBehavior.ZoomModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionRectFill):
-                    SelectionRectFill = (RenderFragment)value;
+                    SelectionRectFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionRectStroke):
-                    SelectionRectStroke = (RenderFragment)value;
+                    SelectionRectStroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

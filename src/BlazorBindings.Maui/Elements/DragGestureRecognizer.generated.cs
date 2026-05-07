@@ -48,7 +48,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CanDrag):
                     if (!Equals(CanDrag, value))
                     {
-                        CanDrag = (bool?)value;
+                        CanDrag = CastParameter<bool?>(value, name);
                         NativeControl.CanDrag = CanDrag ?? (bool)MC.DragGestureRecognizer.CanDragProperty.DefaultValue;
                     }
                     break;
@@ -57,7 +57,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDropCompleted(object sender, MC.DropCompletedEventArgs e) => InvokeEventCallback(OnDropCompleted, e);
 
-                        OnDropCompleted = (EventCallback<MC.DropCompletedEventArgs>)value;
+                        OnDropCompleted = CastParameter<EventCallback<MC.DropCompletedEventArgs>>(value, name);
                         NativeControl.DropCompleted -= NativeControlDropCompleted;
                         NativeControl.DropCompleted += NativeControlDropCompleted;
                     }
@@ -67,7 +67,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDragStarting(object sender, MC.DragStartingEventArgs e) => InvokeEventCallback(OnDragStarting, e);
 
-                        OnDragStarting = (EventCallback<MC.DragStartingEventArgs>)value;
+                        OnDragStarting = CastParameter<EventCallback<MC.DragStartingEventArgs>>(value, name);
                         NativeControl.DragStarting -= NativeControlDragStarting;
                         NativeControl.DragStarting += NativeControlDragStarting;
                     }

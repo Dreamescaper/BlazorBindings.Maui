@@ -119,60 +119,60 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(AllowAutoSum):
                     if (!Equals(AllowAutoSum, value))
                     {
-                        AllowAutoSum = (bool?)value;
+                        AllowAutoSum = CastParameter<bool?>(value, name);
                         NativeControl.AllowAutoSum = AllowAutoSum ?? (bool)SMTC.WaterfallSeries.AllowAutoSumProperty.DefaultValue;
                     }
                     break;
                 case nameof(NegativePointsColor):
                     if (!Equals(NegativePointsColor, value))
                     {
-                        NegativePointsColor = (Color)value;
+                        NegativePointsColor = CastParameter<Color>(value, name);
                         NativeControl.NegativePointsBrush = NegativePointsColor;
                     }
                     break;
                 case nameof(ShowConnectorLine):
                     if (!Equals(ShowConnectorLine, value))
                     {
-                        ShowConnectorLine = (bool?)value;
+                        ShowConnectorLine = CastParameter<bool?>(value, name);
                         NativeControl.ShowConnectorLine = ShowConnectorLine ?? default;
                     }
                     break;
                 case nameof(Spacing):
                     if (!Equals(Spacing, value))
                     {
-                        Spacing = (double?)value;
+                        Spacing = CastParameter<double?>(value, name);
                         NativeControl.Spacing = Spacing ?? (double)SMTC.WaterfallSeries.SpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(SummaryBindingPath):
                     if (!Equals(SummaryBindingPath, value))
                     {
-                        SummaryBindingPath = (string)value;
+                        SummaryBindingPath = CastParameter<string>(value, name);
                         NativeControl.SummaryBindingPath = SummaryBindingPath;
                     }
                     break;
                 case nameof(SummaryPointsColor):
                     if (!Equals(SummaryPointsColor, value))
                     {
-                        SummaryPointsColor = (Color)value;
+                        SummaryPointsColor = CastParameter<Color>(value, name);
                         NativeControl.SummaryPointsBrush = SummaryPointsColor;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTC.WaterfallSeries.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(ConnectorLineStyle):
-                    ConnectorLineStyle = (RenderFragment)value;
+                    ConnectorLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(NegativePointsBrush):
-                    NegativePointsBrush = (RenderFragment)value;
+                    NegativePointsBrush = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SummaryPointsBrush):
-                    SummaryPointsBrush = (RenderFragment)value;
+                    SummaryPointsBrush = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

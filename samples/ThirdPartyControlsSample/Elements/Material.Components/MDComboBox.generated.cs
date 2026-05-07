@@ -63,145 +63,145 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ActiveIndicatorColor):
                     if (!Equals(ActiveIndicatorColor, value))
                     {
-                        ActiveIndicatorColor = (Color)value;
+                        ActiveIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.ActiveIndicatorColor = ActiveIndicatorColor;
                     }
                     break;
                 case nameof(ActiveIndicatorHeight):
                     if (!Equals(ActiveIndicatorHeight, value))
                     {
-                        ActiveIndicatorHeight = (int?)value;
+                        ActiveIndicatorHeight = CastParameter<int?>(value, name);
                         NativeControl.ActiveIndicatorHeight = ActiveIndicatorHeight ?? (int)MCM.ComboBox.ActiveIndicatorHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ActiveIndicatorOpacity):
                     if (!Equals(ActiveIndicatorOpacity, value))
                     {
-                        ActiveIndicatorOpacity = (float?)value;
+                        ActiveIndicatorOpacity = CastParameter<float?>(value, name);
                         NativeControl.ActiveIndicatorOpacity = ActiveIndicatorOpacity ?? (float)MCM.ComboBox.ActiveIndicatorOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.ComboBox.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.ComboBox.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.ComboBox.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(IsOutline):
                     if (!Equals(IsOutline, value))
                     {
-                        IsOutline = (bool?)value;
+                        IsOutline = CastParameter<bool?>(value, name);
                         NativeControl.IsOutline = IsOutline ?? (bool)MCM.ComboBox.IsOutlineProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList)value;
+                        ItemsSource = CastParameter<IList>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(LabelText):
                     if (!Equals(LabelText, value))
                     {
-                        LabelText = (string)value;
+                        LabelText = CastParameter<string>(value, name);
                         NativeControl.LabelText = LabelText;
                     }
                     break;
                 case nameof(LabelTextColor):
                     if (!Equals(LabelTextColor, value))
                     {
-                        LabelTextColor = (Color)value;
+                        LabelTextColor = CastParameter<Color>(value, name);
                         NativeControl.LabelTextColor = LabelTextColor;
                     }
                     break;
                 case nameof(LabelTextOpacity):
                     if (!Equals(LabelTextOpacity, value))
                     {
-                        LabelTextOpacity = (float?)value;
+                        LabelTextOpacity = CastParameter<float?>(value, name);
                         NativeControl.LabelTextOpacity = LabelTextOpacity ?? (float)MCM.ComboBox.LabelTextOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(OutlineColor):
                     if (!Equals(OutlineColor, value))
                     {
-                        OutlineColor = (Color)value;
+                        OutlineColor = CastParameter<Color>(value, name);
                         NativeControl.OutlineColor = OutlineColor;
                     }
                     break;
                 case nameof(OutlineWidth):
                     if (!Equals(OutlineWidth, value))
                     {
-                        OutlineWidth = (int?)value;
+                        OutlineWidth = CastParameter<int?>(value, name);
                         NativeControl.OutlineWidth = OutlineWidth ?? (int)MCM.ComboBox.OutlineWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)MCM.ComboBox.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(Shape):
                     if (!Equals(Shape, value))
                     {
-                        Shape = (MCM.Tokens.Shape?)value;
+                        Shape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.Shape = Shape ?? (MCM.Tokens.Shape)MCM.ComboBox.ShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectedIndexChanged):
                     if (!Equals(SelectedIndexChanged, value))
@@ -213,7 +213,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(SelectedIndexChanged, value);
                         }
 
-                        SelectedIndexChanged = (EventCallback<int>)value;
+                        SelectedIndexChanged = CastParameter<EventCallback<int>>(value, name);
                         NativeControl.SelectedIndexChanged -= NativeControlSelectedIndexChanged;
                         NativeControl.SelectedIndexChanged += NativeControlSelectedIndexChanged;
                     }

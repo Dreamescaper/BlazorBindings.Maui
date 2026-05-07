@@ -119,60 +119,60 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(CapStyle):
                     if (!Equals(CapStyle, value))
                     {
-                        CapStyle = (SMTC.CapStyle?)value;
+                        CapStyle = CastParameter<SMTC.CapStyle?>(value, name);
                         NativeControl.CapStyle = CapStyle ?? (SMTC.CapStyle)SMTC.RadialBarSeries.CapStyleProperty.DefaultValue;
                     }
                     break;
                 case nameof(GapRatio):
                     if (!Equals(GapRatio, value))
                     {
-                        GapRatio = (double?)value;
+                        GapRatio = CastParameter<double?>(value, name);
                         NativeControl.GapRatio = GapRatio ?? (double)SMTC.RadialBarSeries.GapRatioProperty.DefaultValue;
                     }
                     break;
                 case nameof(InnerRadius):
                     if (!Equals(InnerRadius, value))
                     {
-                        InnerRadius = (double?)value;
+                        InnerRadius = CastParameter<double?>(value, name);
                         NativeControl.InnerRadius = InnerRadius ?? (double)SMTC.RadialBarSeries.InnerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumValue):
                     if (!Equals(MaximumValue, value))
                     {
-                        MaximumValue = (double?)value;
+                        MaximumValue = CastParameter<double?>(value, name);
                         NativeControl.MaximumValue = MaximumValue ?? (double)SMTC.RadialBarSeries.MaximumValueProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrackFillColor):
                     if (!Equals(TrackFillColor, value))
                     {
-                        TrackFillColor = (Color)value;
+                        TrackFillColor = CastParameter<Color>(value, name);
                         NativeControl.TrackFill = TrackFillColor;
                     }
                     break;
                 case nameof(TrackStrokeColor):
                     if (!Equals(TrackStrokeColor, value))
                     {
-                        TrackStrokeColor = (Color)value;
+                        TrackStrokeColor = CastParameter<Color>(value, name);
                         NativeControl.TrackStroke = TrackStrokeColor;
                     }
                     break;
                 case nameof(TrackStrokeWidth):
                     if (!Equals(TrackStrokeWidth, value))
                     {
-                        TrackStrokeWidth = (double?)value;
+                        TrackStrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.TrackStrokeWidth = TrackStrokeWidth ?? (double)SMTC.RadialBarSeries.TrackStrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(CenterView):
-                    CenterView = (RenderFragment)value;
+                    CenterView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackFill):
-                    TrackFill = (RenderFragment)value;
+                    TrackFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackStroke):
-                    TrackStroke = (RenderFragment)value;
+                    TrackStroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

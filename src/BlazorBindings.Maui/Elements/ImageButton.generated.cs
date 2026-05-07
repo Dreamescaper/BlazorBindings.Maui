@@ -46,49 +46,49 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Aspect):
                     if (!Equals(Aspect, value))
                     {
-                        Aspect = (Aspect?)value;
+                        Aspect = CastParameter<Aspect?>(value, name);
                         NativeControl.Aspect = Aspect ?? (Aspect)MC.ImageButton.AspectProperty.DefaultValue;
                     }
                     break;
                 case nameof(BorderColor):
                     if (!Equals(BorderColor, value))
                     {
-                        BorderColor = (Color)value;
+                        BorderColor = CastParameter<Color>(value, name);
                         NativeControl.BorderColor = BorderColor;
                     }
                     break;
                 case nameof(BorderWidth):
                     if (!Equals(BorderWidth, value))
                     {
-                        BorderWidth = (double?)value;
+                        BorderWidth = CastParameter<double?>(value, name);
                         NativeControl.BorderWidth = BorderWidth ?? (double)MC.ImageButton.BorderWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (int?)value;
+                        CornerRadius = CastParameter<int?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (int)MC.ImageButton.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpaque):
                     if (!Equals(IsOpaque, value))
                     {
-                        IsOpaque = (bool?)value;
+                        IsOpaque = CastParameter<bool?>(value, name);
                         NativeControl.IsOpaque = IsOpaque ?? (bool)MC.ImageButton.IsOpaqueProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MC.ImageButton.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Source):
                     if (!Equals(Source, value))
                     {
-                        Source = (MC.ImageSource)value;
+                        Source = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.Source = Source;
                     }
                     break;
@@ -97,7 +97,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlClicked(object sender, EventArgs e) => InvokeEventCallback(OnClick);
 
-                        OnClick = (EventCallback)value;
+                        OnClick = CastParameter<EventCallback>(value, name);
                         NativeControl.Clicked -= NativeControlClicked;
                         NativeControl.Clicked += NativeControlClicked;
                     }
@@ -107,7 +107,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlPressed(object sender, EventArgs e) => InvokeEventCallback(OnPress);
 
-                        OnPress = (EventCallback)value;
+                        OnPress = CastParameter<EventCallback>(value, name);
                         NativeControl.Pressed -= NativeControlPressed;
                         NativeControl.Pressed += NativeControlPressed;
                     }
@@ -117,7 +117,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlReleased(object sender, EventArgs e) => InvokeEventCallback(OnRelease);
 
-                        OnRelease = (EventCallback)value;
+                        OnRelease = CastParameter<EventCallback>(value, name);
                         NativeControl.Released -= NativeControlReleased;
                         NativeControl.Released += NativeControlReleased;
                     }

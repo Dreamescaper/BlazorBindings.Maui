@@ -78,50 +78,50 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTS.SparkChartMarkerSettings.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShapeType):
                     if (!Equals(ShapeType, value))
                     {
-                        ShapeType = (SMTS.SparkChartMarkerShape?)value;
+                        ShapeType = CastParameter<SMTS.SparkChartMarkerShape?>(value, name);
                         NativeControl.ShapeType = ShapeType ?? (SMTS.SparkChartMarkerShape)SMTS.SparkChartMarkerSettings.ShapeTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTS.SparkChartMarkerSettings.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTS.SparkChartMarkerSettings.WidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

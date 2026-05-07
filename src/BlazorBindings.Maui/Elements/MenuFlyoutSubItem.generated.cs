@@ -37,7 +37,7 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

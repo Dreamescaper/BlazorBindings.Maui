@@ -24,7 +24,7 @@ public class RadioButtonGroup<T> : StackLayout
             case nameof(SelectedValue):
                 if (!Equals(SelectedValue, value))
                 {
-                    SelectedValue = (T)value;
+                    SelectedValue = CastParameter<T>(value, name);
                     MC.RadioButtonGroup.SetSelectedValue(NativeControl, SelectedValue);
                 }
                 break;
@@ -41,7 +41,7 @@ public class RadioButtonGroup<T> : StackLayout
                         }
                     }
 
-                    SelectedValueChanged = (EventCallback<T>)value;
+                    SelectedValueChanged = CastParameter<EventCallback<T>>(value, name);
                     NativeControl.PropertyChanged -= NativeControlPropertyChanged;
                     NativeControl.PropertyChanged += NativeControlPropertyChanged;
                 }

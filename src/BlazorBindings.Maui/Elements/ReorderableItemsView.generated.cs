@@ -48,7 +48,7 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(CanReorderItems):
                     if (!Equals(CanReorderItems, value))
                     {
-                        CanReorderItems = (bool?)value;
+                        CanReorderItems = CastParameter<bool?>(value, name);
                         NativeControl.CanReorderItems = CanReorderItems ?? (bool)MC.ReorderableItemsView.CanReorderItemsProperty.DefaultValue;
                     }
                     break;
@@ -57,7 +57,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlReorderCompleted(object sender, EventArgs e) => InvokeEventCallback(OnReorderCompleted);
 
-                        OnReorderCompleted = (EventCallback)value;
+                        OnReorderCompleted = CastParameter<EventCallback>(value, name);
                         NativeControl.ReorderCompleted -= NativeControlReorderCompleted;
                         NativeControl.ReorderCompleted += NativeControlReorderCompleted;
                     }

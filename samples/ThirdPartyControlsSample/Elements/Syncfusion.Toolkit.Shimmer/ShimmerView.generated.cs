@@ -42,7 +42,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Shimmer
                 case nameof(ShapeType):
                     if (!Equals(ShapeType, value))
                     {
-                        ShapeType = (SMTS.ShimmerShapeType?)value;
+                        ShapeType = CastParameter<SMTS.ShimmerShapeType?>(value, name);
                         NativeControl.ShapeType = ShapeType ?? (SMTS.ShimmerShapeType)SMTS.ShimmerView.ShapeTypeProperty.DefaultValue;
                     }
                     break;

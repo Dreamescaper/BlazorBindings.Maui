@@ -140,99 +140,99 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(BlackoutDateTimes):
                     if (!Equals(BlackoutDateTimes, value))
                     {
-                        BlackoutDateTimes = (ObservableCollection<DateTime>)value;
+                        BlackoutDateTimes = CastParameter<ObservableCollection<DateTime>>(value, name);
                         NativeControl.BlackoutDateTimes = BlackoutDateTimes;
                     }
                     break;
                 case nameof(DateFormat):
                     if (!Equals(DateFormat, value))
                     {
-                        DateFormat = (SMTP.PickerDateFormat?)value;
+                        DateFormat = CastParameter<SMTP.PickerDateFormat?>(value, name);
                         NativeControl.DateFormat = DateFormat ?? (SMTP.PickerDateFormat)SMTP.SfDateTimePicker.DateFormatProperty.DefaultValue;
                     }
                     break;
                 case nameof(DayInterval):
                     if (!Equals(DayInterval, value))
                     {
-                        DayInterval = (int?)value;
+                        DayInterval = CastParameter<int?>(value, name);
                         NativeControl.DayInterval = DayInterval ?? (int)SMTP.SfDateTimePicker.DayIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(HourInterval):
                     if (!Equals(HourInterval, value))
                     {
-                        HourInterval = (int?)value;
+                        HourInterval = CastParameter<int?>(value, name);
                         NativeControl.HourInterval = HourInterval ?? (int)SMTP.SfDateTimePicker.HourIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumDate):
                     if (!Equals(MaximumDate, value))
                     {
-                        MaximumDate = (DateTime?)value;
+                        MaximumDate = CastParameter<DateTime?>(value, name);
                         NativeControl.MaximumDate = MaximumDate ?? (DateTime)SMTP.SfDateTimePicker.MaximumDateProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumDate):
                     if (!Equals(MinimumDate, value))
                     {
-                        MinimumDate = (DateTime?)value;
+                        MinimumDate = CastParameter<DateTime?>(value, name);
                         NativeControl.MinimumDate = MinimumDate ?? (DateTime)SMTP.SfDateTimePicker.MinimumDateProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinuteInterval):
                     if (!Equals(MinuteInterval, value))
                     {
-                        MinuteInterval = (int?)value;
+                        MinuteInterval = CastParameter<int?>(value, name);
                         NativeControl.MinuteInterval = MinuteInterval ?? (int)SMTP.SfDateTimePicker.MinuteIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(MonthInterval):
                     if (!Equals(MonthInterval, value))
                     {
-                        MonthInterval = (int?)value;
+                        MonthInterval = CastParameter<int?>(value, name);
                         NativeControl.MonthInterval = MonthInterval ?? (int)SMTP.SfDateTimePicker.MonthIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(SecondInterval):
                     if (!Equals(SecondInterval, value))
                     {
-                        SecondInterval = (int?)value;
+                        SecondInterval = CastParameter<int?>(value, name);
                         NativeControl.SecondInterval = SecondInterval ?? (int)SMTP.SfDateTimePicker.SecondIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedDate):
                     if (!Equals(SelectedDate, value))
                     {
-                        SelectedDate = (Nullable<DateTime>)value;
+                        SelectedDate = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.SelectedDate = SelectedDate;
                     }
                     break;
                 case nameof(TimeFormat):
                     if (!Equals(TimeFormat, value))
                     {
-                        TimeFormat = (SMTP.PickerTimeFormat?)value;
+                        TimeFormat = CastParameter<SMTP.PickerTimeFormat?>(value, name);
                         NativeControl.TimeFormat = TimeFormat ?? (SMTP.PickerTimeFormat)SMTP.SfDateTimePicker.TimeFormatProperty.DefaultValue;
                     }
                     break;
                 case nameof(YearInterval):
                     if (!Equals(YearInterval, value))
                     {
-                        YearInterval = (int?)value;
+                        YearInterval = CastParameter<int?>(value, name);
                         NativeControl.YearInterval = YearInterval ?? (int)SMTP.SfDateTimePicker.YearIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(ColumnHeaderView):
-                    ColumnHeaderView = (RenderFragment)value;
+                    ColumnHeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderView):
-                    HeaderView = (RenderFragment)value;
+                    HeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTP.DateTimePickerSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTP.DateTimePickerSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTP.DateTimePickerSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }

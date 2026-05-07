@@ -56,33 +56,33 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? default;
                     }
                     break;
                 case nameof(IsContextActionsLegacyModeEnabled):
                     if (!Equals(IsContextActionsLegacyModeEnabled, value))
                     {
-                        IsContextActionsLegacyModeEnabled = (bool?)value;
+                        IsContextActionsLegacyModeEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsContextActionsLegacyModeEnabled = IsContextActionsLegacyModeEnabled ?? default;
                     }
                     break;
                 case nameof(IsEnabled):
                     if (!Equals(IsEnabled, value))
                     {
-                        IsEnabled = (bool?)value;
+                        IsEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsEnabled = IsEnabled ?? (bool)MC.Cell.IsEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContextActions):
-                    ContextActions = (RenderFragment)value;
+                    ContextActions = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnAppearing):
                     if (!Equals(OnAppearing, value))
                     {
                         void NativeControlAppearing(object sender, EventArgs e) => InvokeEventCallback(OnAppearing);
 
-                        OnAppearing = (EventCallback)value;
+                        OnAppearing = CastParameter<EventCallback>(value, name);
                         NativeControl.Appearing -= NativeControlAppearing;
                         NativeControl.Appearing += NativeControlAppearing;
                     }
@@ -92,7 +92,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlDisappearing(object sender, EventArgs e) => InvokeEventCallback(OnDisappearing);
 
-                        OnDisappearing = (EventCallback)value;
+                        OnDisappearing = CastParameter<EventCallback>(value, name);
                         NativeControl.Disappearing -= NativeControlDisappearing;
                         NativeControl.Disappearing += NativeControlDisappearing;
                     }
@@ -102,7 +102,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlTapped(object sender, EventArgs e) => InvokeEventCallback(OnTapped);
 
-                        OnTapped = (EventCallback)value;
+                        OnTapped = CastParameter<EventCallback>(value, name);
                         NativeControl.Tapped -= NativeControlTapped;
                         NativeControl.Tapped += NativeControlTapped;
                     }

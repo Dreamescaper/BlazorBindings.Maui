@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Context):
                     if (!Equals(Context, value))
                     {
-                        Context = (SMTC.FunnelDataLabelContext?)value;
+                        Context = CastParameter<SMTC.FunnelDataLabelContext?>(value, name);
                         NativeControl.Context = Context ?? (SMTC.FunnelDataLabelContext)SMTC.FunnelDataLabelSettings.ContextProperty.DefaultValue;
                     }
                     break;

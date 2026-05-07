@@ -54,119 +54,119 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(Elevation):
                     if (!Equals(Elevation, value))
                     {
-                        Elevation = (MCM.Tokens.Elevation?)value;
+                        Elevation = CastParameter<MCM.Tokens.Elevation?>(value, name);
                         NativeControl.Elevation = Elevation ?? (MCM.Tokens.Elevation)MCM.Button.ElevationProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.Button.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.Button.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.Button.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(IconData):
                     if (!Equals(IconData, value))
                     {
-                        IconData = (string)value;
+                        IconData = CastParameter<string>(value, name);
                         NativeControl.IconData = IconData;
                     }
                     break;
                 case nameof(IconKind):
                     if (!Equals(IconKind, value))
                     {
-                        IconKind = (global::IconPacks.Material.IconKind?)value;
+                        IconKind = CastParameter<global::IconPacks.Material.IconKind?>(value, name);
                         NativeControl.IconKind = IconKind ?? (global::IconPacks.Material.IconKind)MCM.Button.IconKindProperty.DefaultValue;
                     }
                     break;
                 case nameof(IconSource):
                     if (!Equals(IconSource, value))
                     {
-                        IconSource = (global::SkiaSharp.SKPicture)value;
+                        IconSource = CastParameter<global::SkiaSharp.SKPicture>(value, name);
                         NativeControl.IconSource = IconSource;
                     }
                     break;
                 case nameof(OutlineColor):
                     if (!Equals(OutlineColor, value))
                     {
-                        OutlineColor = (Color)value;
+                        OutlineColor = CastParameter<Color>(value, name);
                         NativeControl.OutlineColor = OutlineColor;
                     }
                     break;
                 case nameof(OutlineWidth):
                     if (!Equals(OutlineWidth, value))
                     {
-                        OutlineWidth = (int?)value;
+                        OutlineWidth = CastParameter<int?>(value, name);
                         NativeControl.OutlineWidth = OutlineWidth ?? (int)MCM.Button.OutlineWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? (Thickness)MCM.Button.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(Shape):
                     if (!Equals(Shape, value))
                     {
-                        Shape = (MCM.Tokens.Shape?)value;
+                        Shape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.Shape = Shape ?? (MCM.Tokens.Shape)MCM.Button.ShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;

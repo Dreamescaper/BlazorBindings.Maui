@@ -22,7 +22,7 @@ public abstract partial class View : VisualElement
                 if (!Equals(value, OnTap))
                 {
                     HandleTap();
-                    OnTap = (EventCallback<MC.TappedEventArgs>)value;
+                    OnTap = CastParameter<EventCallback<MC.TappedEventArgs>>(value, name);
                 }
                 return true;
 
@@ -30,7 +30,7 @@ public abstract partial class View : VisualElement
                 if (!Equals(value, OnDoubleTap))
                 {
                     HandleDoubleTap();
-                    OnDoubleTap = (EventCallback<MC.TappedEventArgs>)value;
+                    OnDoubleTap = CastParameter<EventCallback<MC.TappedEventArgs>>(value, name);
                 }
                 return true;
 
@@ -38,7 +38,7 @@ public abstract partial class View : VisualElement
                 if (!Equals(value, OnSwipe))
                 {
                     HandleSwipe();
-                    OnSwipe = (EventCallback<SwipedEventArgs>)value;
+                    OnSwipe = CastParameter<EventCallback<SwipedEventArgs>>(value, name);
                 }
                 return true;
 
@@ -46,7 +46,7 @@ public abstract partial class View : VisualElement
                 if (!Equals(value, OnPinchUpdate))
                 {
                     HandlePinch();
-                    OnPinchUpdate = (EventCallback<PinchGestureUpdatedEventArgs>)value;
+                    OnPinchUpdate = CastParameter<EventCallback<PinchGestureUpdatedEventArgs>>(value, name);
                 }
                 return true;
 
@@ -54,7 +54,7 @@ public abstract partial class View : VisualElement
                 if (!Equals(value, OnPanUpdate))
                 {
                     HandlePan();
-                    OnPanUpdate = (EventCallback<PanUpdatedEventArgs>)value;
+                    OnPanUpdate = CastParameter<EventCallback<PanUpdatedEventArgs>>(value, name);
                 }
                 return true;
 

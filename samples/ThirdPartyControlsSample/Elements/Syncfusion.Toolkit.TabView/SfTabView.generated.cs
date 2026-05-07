@@ -305,212 +305,212 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                 case nameof(AnimationEasing):
                     if (!Equals(AnimationEasing, value))
                     {
-                        AnimationEasing = (Easing)value;
+                        AnimationEasing = CastParameter<Easing>(value, name);
                         NativeControl.AnimationEasing = AnimationEasing;
                     }
                     break;
                 case nameof(ContentTransitionDuration):
                     if (!Equals(ContentTransitionDuration, value))
                     {
-                        ContentTransitionDuration = (double?)value;
+                        ContentTransitionDuration = CastParameter<double?>(value, name);
                         NativeControl.ContentTransitionDuration = ContentTransitionDuration ?? (double)SMTT.SfTabView.ContentTransitionDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableRippleAnimation):
                     if (!Equals(EnableRippleAnimation, value))
                     {
-                        EnableRippleAnimation = (bool?)value;
+                        EnableRippleAnimation = CastParameter<bool?>(value, name);
                         NativeControl.EnableRippleAnimation = EnableRippleAnimation ?? (bool)SMTT.SfTabView.EnableRippleAnimationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableSwiping):
                     if (!Equals(EnableSwiping, value))
                     {
-                        EnableSwiping = (bool?)value;
+                        EnableSwiping = CastParameter<bool?>(value, name);
                         NativeControl.EnableSwiping = EnableSwiping ?? (bool)SMTT.SfTabView.EnableSwipingProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableVirtualization):
                     if (!Equals(EnableVirtualization, value))
                     {
-                        EnableVirtualization = (bool?)value;
+                        EnableVirtualization = CastParameter<bool?>(value, name);
                         NativeControl.EnableVirtualization = EnableVirtualization ?? (bool)SMTT.SfTabView.EnableVirtualizationProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)SMTT.SfTabView.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderDisplayMode):
                     if (!Equals(HeaderDisplayMode, value))
                     {
-                        HeaderDisplayMode = (SMTT.TabBarDisplayMode?)value;
+                        HeaderDisplayMode = CastParameter<SMTT.TabBarDisplayMode?>(value, name);
                         NativeControl.HeaderDisplayMode = HeaderDisplayMode ?? (SMTT.TabBarDisplayMode)SMTT.SfTabView.HeaderDisplayModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderHorizontalTextAlignment):
                     if (!Equals(HeaderHorizontalTextAlignment, value))
                     {
-                        HeaderHorizontalTextAlignment = (TextAlignment?)value;
+                        HeaderHorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HeaderHorizontalTextAlignment = HeaderHorizontalTextAlignment ?? (TextAlignment)SMTT.SfTabView.HeaderHorizontalTextAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorBackgroundColor):
                     if (!Equals(IndicatorBackgroundColor, value))
                     {
-                        IndicatorBackgroundColor = (Color)value;
+                        IndicatorBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.IndicatorBackground = IndicatorBackgroundColor;
                     }
                     break;
                 case nameof(IndicatorCornerRadius):
                     if (!Equals(IndicatorCornerRadius, value))
                     {
-                        IndicatorCornerRadius = (CornerRadius?)value;
+                        IndicatorCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.IndicatorCornerRadius = IndicatorCornerRadius ?? (CornerRadius)SMTT.SfTabView.IndicatorCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorPlacement):
                     if (!Equals(IndicatorPlacement, value))
                     {
-                        IndicatorPlacement = (SMTT.TabIndicatorPlacement?)value;
+                        IndicatorPlacement = CastParameter<SMTT.TabIndicatorPlacement?>(value, name);
                         NativeControl.IndicatorPlacement = IndicatorPlacement ?? (SMTT.TabIndicatorPlacement)SMTT.SfTabView.IndicatorPlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorStrokeThickness):
                     if (!Equals(IndicatorStrokeThickness, value))
                     {
-                        IndicatorStrokeThickness = (double?)value;
+                        IndicatorStrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.IndicatorStrokeThickness = IndicatorStrokeThickness ?? (double)SMTT.SfTabView.IndicatorStrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorWidthMode):
                     if (!Equals(IndicatorWidthMode, value))
                     {
-                        IndicatorWidthMode = (SMTT.IndicatorWidthMode?)value;
+                        IndicatorWidthMode = CastParameter<SMTT.IndicatorWidthMode?>(value, name);
                         NativeControl.IndicatorWidthMode = IndicatorWidthMode ?? (SMTT.IndicatorWidthMode)SMTT.SfTabView.IndicatorWidthModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsCenterButtonEnabled):
                     if (!Equals(IsCenterButtonEnabled, value))
                     {
-                        IsCenterButtonEnabled = (bool?)value;
+                        IsCenterButtonEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsCenterButtonEnabled = IsCenterButtonEnabled ?? (bool)SMTT.SfTabView.IsCenterButtonEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsContentTransitionEnabled):
                     if (!Equals(IsContentTransitionEnabled, value))
                     {
-                        IsContentTransitionEnabled = (bool?)value;
+                        IsContentTransitionEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsContentTransitionEnabled = IsContentTransitionEnabled ?? (bool)SMTT.SfTabView.IsContentTransitionEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsScrollButtonEnabled):
                     if (!Equals(IsScrollButtonEnabled, value))
                     {
-                        IsScrollButtonEnabled = (bool?)value;
+                        IsScrollButtonEnabled = CastParameter<bool?>(value, name);
                         NativeControl.IsScrollButtonEnabled = IsScrollButtonEnabled ?? (bool)SMTT.SfTabView.IsScrollButtonEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList)value;
+                        ItemsSource = CastParameter<IList>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(ScrollButtonBackgroundColor):
                     if (!Equals(ScrollButtonBackgroundColor, value))
                     {
-                        ScrollButtonBackgroundColor = (Color)value;
+                        ScrollButtonBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.ScrollButtonBackground = ScrollButtonBackgroundColor;
                     }
                     break;
                 case nameof(ScrollButtonColor):
                     if (!Equals(ScrollButtonColor, value))
                     {
-                        ScrollButtonColor = (Color)value;
+                        ScrollButtonColor = CastParameter<Color>(value, name);
                         NativeControl.ScrollButtonColor = ScrollButtonColor;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)SMTT.SfTabView.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(TabBarBackgroundColor):
                     if (!Equals(TabBarBackgroundColor, value))
                     {
-                        TabBarBackgroundColor = (Color)value;
+                        TabBarBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.TabBarBackground = TabBarBackgroundColor;
                     }
                     break;
                 case nameof(TabBarHeight):
                     if (!Equals(TabBarHeight, value))
                     {
-                        TabBarHeight = (double?)value;
+                        TabBarHeight = CastParameter<double?>(value, name);
                         NativeControl.TabBarHeight = TabBarHeight ?? (double)SMTT.SfTabView.TabBarHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(TabBarPlacement):
                     if (!Equals(TabBarPlacement, value))
                     {
-                        TabBarPlacement = (SMTT.TabBarPlacement?)value;
+                        TabBarPlacement = CastParameter<SMTT.TabBarPlacement?>(value, name);
                         NativeControl.TabBarPlacement = TabBarPlacement ?? (SMTT.TabBarPlacement)SMTT.SfTabView.TabBarPlacementProperty.DefaultValue;
                     }
                     break;
                 case nameof(TabHeaderAlignment):
                     if (!Equals(TabHeaderAlignment, value))
                     {
-                        TabHeaderAlignment = (SMTT.TabHeaderAlignment?)value;
+                        TabHeaderAlignment = CastParameter<SMTT.TabHeaderAlignment?>(value, name);
                         NativeControl.TabHeaderAlignment = TabHeaderAlignment ?? (SMTT.TabHeaderAlignment)SMTT.SfTabView.TabHeaderAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(TabHeaderPadding):
                     if (!Equals(TabHeaderPadding, value))
                     {
-                        TabHeaderPadding = (Thickness?)value;
+                        TabHeaderPadding = CastParameter<Thickness?>(value, name);
                         NativeControl.TabHeaderPadding = TabHeaderPadding ?? (Thickness)SMTT.SfTabView.TabHeaderPaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(TabWidthMode):
                     if (!Equals(TabWidthMode, value))
                     {
-                        TabWidthMode = (SMTT.TabWidthMode?)value;
+                        TabWidthMode = CastParameter<SMTT.TabWidthMode?>(value, name);
                         NativeControl.TabWidthMode = TabWidthMode ?? (SMTT.TabWidthMode)SMTT.SfTabView.TabWidthModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(CenterButtonSettings):
-                    CenterButtonSettings = (RenderFragment)value;
+                    CenterButtonSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ContentItemTemplate):
-                    ContentItemTemplate = (RenderFragment)value;
+                    ContentItemTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderItemTemplate):
-                    HeaderItemTemplate = (RenderFragment)value;
+                    HeaderItemTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(IndicatorBackground):
-                    IndicatorBackground = (RenderFragment)value;
+                    IndicatorBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ScrollButtonBackground):
-                    ScrollButtonBackground = (RenderFragment)value;
+                    ScrollButtonBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TabBarBackground):
-                    TabBarBackground = (RenderFragment)value;
+                    TabBarBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTT.TabSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTT.TabSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTT.TabSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -520,7 +520,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                     {
                         void NativeControlTabItemTapped(object sender, SMTT.TabItemTappedEventArgs e) => InvokeEventCallback(OnTabItemTapped, e);
 
-                        OnTabItemTapped = (EventCallback<SMTT.TabItemTappedEventArgs>)value;
+                        OnTabItemTapped = CastParameter<EventCallback<SMTT.TabItemTappedEventArgs>>(value, name);
                         NativeControl.TabItemTapped -= NativeControlTabItemTapped;
                         NativeControl.TabItemTapped += NativeControlTabItemTapped;
                     }
@@ -530,7 +530,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                     {
                         void NativeControlSelectionChanging(object sender, SMTT.SelectionChangingEventArgs e) => InvokeEventCallback(OnSelectionChanging, e);
 
-                        OnSelectionChanging = (EventCallback<SMTT.SelectionChangingEventArgs>)value;
+                        OnSelectionChanging = CastParameter<EventCallback<SMTT.SelectionChangingEventArgs>>(value, name);
                         NativeControl.SelectionChanging -= NativeControlSelectionChanging;
                         NativeControl.SelectionChanging += NativeControlSelectionChanging;
                     }
@@ -540,7 +540,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                     {
                         void NativeControlCenterButtonTapped(object sender, EventArgs e) => InvokeEventCallback(OnCenterButtonTapped);
 
-                        OnCenterButtonTapped = (EventCallback)value;
+                        OnCenterButtonTapped = CastParameter<EventCallback>(value, name);
                         NativeControl.CenterButtonTapped -= NativeControlCenterButtonTapped;
                         NativeControl.CenterButtonTapped += NativeControlCenterButtonTapped;
                     }

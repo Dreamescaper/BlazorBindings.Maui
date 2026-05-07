@@ -47,21 +47,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(@class):
                     if (!Equals(@class, value))
                     {
-                        @class = (string)value;
+                        @class = CastParameter<string>(value, name);
                         NativeControl.@class = AttributeHelper.GetStringList(@class);
                     }
                     break;
                 case nameof(Style):
                     if (!Equals(Style, value))
                     {
-                        Style = (MC.Style)value;
+                        Style = CastParameter<MC.Style>(value, name);
                         NativeControl.Style = Style;
                     }
                     break;
                 case nameof(StyleClass):
                     if (!Equals(StyleClass, value))
                     {
-                        StyleClass = (string)value;
+                        StyleClass = CastParameter<string>(value, name);
                         NativeControl.StyleClass = AttributeHelper.GetStringList(StyleClass);
                     }
                     break;

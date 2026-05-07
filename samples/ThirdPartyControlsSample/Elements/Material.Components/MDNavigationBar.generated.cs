@@ -43,26 +43,26 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(HasLabel):
                     if (!Equals(HasLabel, value))
                     {
-                        HasLabel = (bool?)value;
+                        HasLabel = CastParameter<bool?>(value, name);
                         NativeControl.HasLabel = HasLabel ?? (bool)MCM.NavigationBar.HasLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)MCM.NavigationBar.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectedItemChanged):
                     if (!Equals(OnSelectedItemChanged, value))
                     {
                         void NativeControlSelectedItemChanged(object sender, MC.SelectedItemChangedEventArgs e) => InvokeEventCallback(OnSelectedItemChanged, e);
 
-                        OnSelectedItemChanged = (EventCallback<MC.SelectedItemChangedEventArgs>)value;
+                        OnSelectedItemChanged = CastParameter<EventCallback<MC.SelectedItemChangedEventArgs>>(value, name);
                         NativeControl.SelectedItemChanged -= NativeControlSelectedItemChanged;
                         NativeControl.SelectedItemChanged += NativeControlSelectedItemChanged;
                     }

@@ -81,29 +81,29 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(HistogramInterval):
                     if (!Equals(HistogramInterval, value))
                     {
-                        HistogramInterval = (double?)value;
+                        HistogramInterval = CastParameter<double?>(value, name);
                         NativeControl.HistogramInterval = HistogramInterval ?? (double)SMTC.HistogramSeries.HistogramIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowNormalDistributionCurve):
                     if (!Equals(ShowNormalDistributionCurve, value))
                     {
-                        ShowNormalDistributionCurve = (bool?)value;
+                        ShowNormalDistributionCurve = CastParameter<bool?>(value, name);
                         NativeControl.ShowNormalDistributionCurve = ShowNormalDistributionCurve ?? (bool)SMTC.HistogramSeries.ShowNormalDistributionCurveProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(CurveStyle):
-                    CurveStyle = (RenderFragment)value;
+                    CurveStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

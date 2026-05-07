@@ -101,50 +101,50 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EndAngle):
                     if (!Equals(EndAngle, value))
                     {
-                        EndAngle = (double?)value;
+                        EndAngle = CastParameter<double?>(value, name);
                         NativeControl.EndAngle = EndAngle ?? (double)SMTC.CircularSeries.EndAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(Radius):
                     if (!Equals(Radius, value))
                     {
-                        Radius = (double?)value;
+                        Radius = CastParameter<double?>(value, name);
                         NativeControl.Radius = Radius ?? (double)SMTC.CircularSeries.RadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartAngle):
                     if (!Equals(StartAngle, value))
                     {
-                        StartAngle = (double?)value;
+                        StartAngle = CastParameter<double?>(value, name);
                         NativeControl.StartAngle = StartAngle ?? (double)SMTC.CircularSeries.StartAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.CircularSeries.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(YBindingPath):
                     if (!Equals(YBindingPath, value))
                     {
-                        YBindingPath = (string)value;
+                        YBindingPath = CastParameter<string>(value, name);
                         NativeControl.YBindingPath = YBindingPath;
                     }
                     break;
                 case nameof(DataLabelSettings):
-                    DataLabelSettings = (RenderFragment)value;
+                    DataLabelSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

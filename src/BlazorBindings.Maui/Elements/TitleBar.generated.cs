@@ -80,42 +80,42 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(Icon):
                     if (!Equals(Icon, value))
                     {
-                        Icon = (MC.ImageSource)value;
+                        Icon = CastParameter<MC.ImageSource>(value, name);
                         NativeControl.Icon = Icon;
                     }
                     break;
                 case nameof(Subtitle):
                     if (!Equals(Subtitle, value))
                     {
-                        Subtitle = (string)value;
+                        Subtitle = CastParameter<string>(value, name);
                         NativeControl.Subtitle = Subtitle;
                     }
                     break;
                 case nameof(Title):
                     if (!Equals(Title, value))
                     {
-                        Title = (string)value;
+                        Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
                     }
                     break;
                 case nameof(Content):
-                    Content = (RenderFragment)value;
+                    Content = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LeadingContent):
-                    LeadingContent = (RenderFragment)value;
+                    LeadingContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PassthroughElements):
-                    PassthroughElements = (RenderFragment)value;
+                    PassthroughElements = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrailingContent):
-                    TrailingContent = (RenderFragment)value;
+                    TrailingContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

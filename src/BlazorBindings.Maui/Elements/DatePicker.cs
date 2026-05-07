@@ -16,21 +16,21 @@ public partial class DatePicker
             case nameof(Date):
                 if (!Equals(Date, value))
                 {
-                    Date = (DateOnly?)value;
+                    Date = CastParameter<DateOnly?>(value, name);
                     NativeControl.Date = Date?.ToDateTime(TimeOnly.MinValue);
                 }
                 return true;
             case nameof(MaximumDate):
                 if (!Equals(MaximumDate, value))
                 {
-                    MaximumDate = (DateOnly?)value;
+                    MaximumDate = CastParameter<DateOnly?>(value, name);
                     NativeControl.MaximumDate = MaximumDate?.ToDateTime(TimeOnly.MinValue);
                 }
                 return true;
             case nameof(MinimumDate):
                 if (!Equals(MinimumDate, value))
                 {
-                    MinimumDate = (DateOnly?)value;
+                    MinimumDate = CastParameter<DateOnly?>(value, name);
                     NativeControl.MinimumDate = MinimumDate?.ToDateTime(TimeOnly.MinValue);
                 }
                 return true;
@@ -44,7 +44,7 @@ public partial class DatePicker
                         InvokeEventCallback(DateChanged, value);
                     }
 
-                    DateChanged = (EventCallback<DateOnly?>)value;
+                    DateChanged = CastParameter<EventCallback<DateOnly?>>(value, name);
                     NativeControl.DateSelected -= NativeControlDateSelected;
                     NativeControl.DateSelected += NativeControlDateSelected;
                 }

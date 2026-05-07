@@ -45,14 +45,14 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Key):
                     if (!Equals(Key, value))
                     {
-                        Key = (string)value;
+                        Key = CastParameter<string>(value, name);
                         NativeControl.Key = Key;
                     }
                     break;
                 case nameof(Modifiers):
                     if (!Equals(Modifiers, value))
                     {
-                        Modifiers = (KeyboardAcceleratorModifiers?)value;
+                        Modifiers = CastParameter<KeyboardAcceleratorModifiers?>(value, name);
                         NativeControl.Modifiers = Modifiers ?? (KeyboardAcceleratorModifiers)MC.KeyboardAccelerator.ModifiersProperty.DefaultValue;
                     }
                     break;

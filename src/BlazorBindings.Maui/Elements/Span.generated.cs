@@ -80,84 +80,84 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColor = BackgroundColor;
                     }
                     break;
                 case nameof(CharacterSpacing):
                     if (!Equals(CharacterSpacing, value))
                     {
-                        CharacterSpacing = (double?)value;
+                        CharacterSpacing = CastParameter<double?>(value, name);
                         NativeControl.CharacterSpacing = CharacterSpacing ?? (double)MC.Span.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):
                     if (!Equals(FontAttributes, value))
                     {
-                        FontAttributes = (MC.FontAttributes?)value;
+                        FontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.FontAttributes = FontAttributes ?? (MC.FontAttributes)MC.Span.FontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAutoScalingEnabled):
                     if (!Equals(FontAutoScalingEnabled, value))
                     {
-                        FontAutoScalingEnabled = (bool?)value;
+                        FontAutoScalingEnabled = CastParameter<bool?>(value, name);
                         NativeControl.FontAutoScalingEnabled = FontAutoScalingEnabled ?? (bool)MC.Span.FontAutoScalingEnabledProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (double?)value;
+                        FontSize = CastParameter<double?>(value, name);
                         NativeControl.FontSize = FontSize ?? (double)MC.Span.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(LineHeight):
                     if (!Equals(LineHeight, value))
                     {
-                        LineHeight = (double?)value;
+                        LineHeight = CastParameter<double?>(value, name);
                         NativeControl.LineHeight = LineHeight ?? (double)MC.Span.LineHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(Style):
                     if (!Equals(Style, value))
                     {
-                        Style = (MC.Style)value;
+                        Style = CastParameter<MC.Style>(value, name);
                         NativeControl.Style = Style;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
-                        TextColor = (Color)value;
+                        TextColor = CastParameter<Color>(value, name);
                         NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(TextDecorations):
                     if (!Equals(TextDecorations, value))
                     {
-                        TextDecorations = (TextDecorations?)value;
+                        TextDecorations = CastParameter<TextDecorations?>(value, name);
                         NativeControl.TextDecorations = TextDecorations ?? (TextDecorations)MC.Span.TextDecorationsProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextTransform):
                     if (!Equals(TextTransform, value))
                     {
-                        TextTransform = (TextTransform?)value;
+                        TextTransform = CastParameter<TextTransform?>(value, name);
                         NativeControl.TextTransform = TextTransform ?? (TextTransform)MC.Span.TextTransformProperty.DefaultValue;
                     }
                     break;

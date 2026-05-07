@@ -108,13 +108,13 @@ public partial class Shell : Page, IContainerElementHandler
         switch (name)
         {
             case nameof(ChildContent):
-                ChildContent = (RenderFragment)value;
+                ChildContent = CastParameter<RenderFragment>(value, name);
                 return true;
 
             case nameof(BackgroundColor):
                 if (!Equals(BackgroundColor, value))
                 {
-                    BackgroundColor = (Color)value;
+                    BackgroundColor = CastParameter<Color>(value, name);
                     MC.Shell.SetBackgroundColor(NativeControl, BackgroundColor);
                 }
                 return true;
@@ -122,7 +122,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(DisabledColor):
                 if (!Equals(DisabledColor, value))
                 {
-                    DisabledColor = (Color)value;
+                    DisabledColor = CastParameter<Color>(value, name);
                     MC.Shell.SetDisabledColor(NativeControl, DisabledColor);
                 }
                 return true;
@@ -130,7 +130,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(ForegroundColor):
                 if (!Equals(ForegroundColor, value))
                 {
-                    ForegroundColor = (Color)value;
+                    ForegroundColor = CastParameter<Color>(value, name);
                     MC.Shell.SetForegroundColor(NativeControl, ForegroundColor);
                 }
                 return true;
@@ -138,7 +138,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(TitleColor):
                 if (!Equals(TitleColor, value))
                 {
-                    TitleColor = (Color)value;
+                    TitleColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTitleColor(NativeControl, TitleColor);
                 }
                 return true;
@@ -146,7 +146,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(UnselectedColor):
                 if (!Equals(UnselectedColor, value))
                 {
-                    UnselectedColor = (Color)value;
+                    UnselectedColor = CastParameter<Color>(value, name);
                     MC.Shell.SetUnselectedColor(NativeControl, UnselectedColor);
                 }
                 return true;
@@ -154,7 +154,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(TabBarTitleColor):
                 if (!Equals(TabBarTitleColor, value))
                 {
-                    TabBarTitleColor = (Color)value;
+                    TabBarTitleColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTabBarTitleColor(NativeControl, TabBarTitleColor);
                 }
                 return true;
@@ -162,7 +162,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(TabBarBackgroundColor):
                 if (!Equals(TabBarBackgroundColor, value))
                 {
-                    TabBarBackgroundColor = (Color)value;
+                    TabBarBackgroundColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTabBarBackgroundColor(NativeControl, TabBarBackgroundColor);
                 }
                 return true;
@@ -170,7 +170,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(TabBarDisabledColor):
                 if (!Equals(TabBarDisabledColor, value))
                 {
-                    TabBarDisabledColor = (Color)value;
+                    TabBarDisabledColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTabBarDisabledColor(NativeControl, TabBarDisabledColor);
                 }
                 return true;
@@ -178,7 +178,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(TabBarForegroundColor):
                 if (!Equals(TabBarForegroundColor, value))
                 {
-                    TabBarForegroundColor = (Color)value;
+                    TabBarForegroundColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTabBarForegroundColor(NativeControl, TabBarForegroundColor);
                 }
                 return true;
@@ -186,7 +186,7 @@ public partial class Shell : Page, IContainerElementHandler
             case nameof(TabBarUnselectedColor):
                 if (!Equals(TabBarUnselectedColor, value))
                 {
-                    TabBarUnselectedColor = (Color)value;
+                    TabBarUnselectedColor = CastParameter<Color>(value, name);
                     MC.Shell.SetTabBarUnselectedColor(NativeControl, TabBarUnselectedColor);
                 }
                 return true;

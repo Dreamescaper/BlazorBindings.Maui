@@ -37,21 +37,21 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Offset):
                     if (!Equals(Offset, value))
                     {
-                        Offset = (Point?)value;
+                        Offset = CastParameter<Point?>(value, name);
                         NativeControl.Offset = Offset ?? (Point)MC.Shadow.OffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(Opacity):
                     if (!Equals(Opacity, value))
                     {
-                        Opacity = (float?)value;
+                        Opacity = CastParameter<float?>(value, name);
                         NativeControl.Opacity = Opacity ?? (float)MC.Shadow.OpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(Radius):
                     if (!Equals(Radius, value))
                     {
-                        Radius = (float?)value;
+                        Radius = CastParameter<float?>(value, name);
                         NativeControl.Radius = Radius ?? (float)MC.Shadow.RadiusProperty.DefaultValue;
                     }
                     break;

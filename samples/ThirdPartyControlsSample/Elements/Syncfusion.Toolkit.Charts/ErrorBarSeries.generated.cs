@@ -135,70 +135,70 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(HorizontalDirection):
                     if (!Equals(HorizontalDirection, value))
                     {
-                        HorizontalDirection = (SMTC.ErrorBarDirection?)value;
+                        HorizontalDirection = CastParameter<SMTC.ErrorBarDirection?>(value, name);
                         NativeControl.HorizontalDirection = HorizontalDirection ?? (SMTC.ErrorBarDirection)SMTC.ErrorBarSeries.HorizontalDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalErrorPath):
                     if (!Equals(HorizontalErrorPath, value))
                     {
-                        HorizontalErrorPath = (string)value;
+                        HorizontalErrorPath = CastParameter<string>(value, name);
                         NativeControl.HorizontalErrorPath = HorizontalErrorPath;
                     }
                     break;
                 case nameof(HorizontalErrorValue):
                     if (!Equals(HorizontalErrorValue, value))
                     {
-                        HorizontalErrorValue = (double?)value;
+                        HorizontalErrorValue = CastParameter<double?>(value, name);
                         NativeControl.HorizontalErrorValue = HorizontalErrorValue ?? (double)SMTC.ErrorBarSeries.HorizontalErrorValueProperty.DefaultValue;
                     }
                     break;
                 case nameof(Mode):
                     if (!Equals(Mode, value))
                     {
-                        Mode = (SMTC.ErrorBarMode?)value;
+                        Mode = CastParameter<SMTC.ErrorBarMode?>(value, name);
                         NativeControl.Mode = Mode ?? (SMTC.ErrorBarMode)SMTC.ErrorBarSeries.ModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Type):
                     if (!Equals(Type, value))
                     {
-                        Type = (SMTC.ErrorBarType?)value;
+                        Type = CastParameter<SMTC.ErrorBarType?>(value, name);
                         NativeControl.Type = Type ?? (SMTC.ErrorBarType)SMTC.ErrorBarSeries.TypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalDirection):
                     if (!Equals(VerticalDirection, value))
                     {
-                        VerticalDirection = (SMTC.ErrorBarDirection?)value;
+                        VerticalDirection = CastParameter<SMTC.ErrorBarDirection?>(value, name);
                         NativeControl.VerticalDirection = VerticalDirection ?? (SMTC.ErrorBarDirection)SMTC.ErrorBarSeries.VerticalDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalErrorPath):
                     if (!Equals(VerticalErrorPath, value))
                     {
-                        VerticalErrorPath = (string)value;
+                        VerticalErrorPath = CastParameter<string>(value, name);
                         NativeControl.VerticalErrorPath = VerticalErrorPath;
                     }
                     break;
                 case nameof(VerticalErrorValue):
                     if (!Equals(VerticalErrorValue, value))
                     {
-                        VerticalErrorValue = (double?)value;
+                        VerticalErrorValue = CastParameter<double?>(value, name);
                         NativeControl.VerticalErrorValue = VerticalErrorValue ?? (double)SMTC.ErrorBarSeries.VerticalErrorValueProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalCapLineStyle):
-                    HorizontalCapLineStyle = (RenderFragment)value;
+                    HorizontalCapLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HorizontalLineStyle):
-                    HorizontalLineStyle = (RenderFragment)value;
+                    HorizontalLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(VerticalCapLineStyle):
-                    VerticalCapLineStyle = (RenderFragment)value;
+                    VerticalCapLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(VerticalLineStyle):
-                    VerticalLineStyle = (RenderFragment)value;
+                    VerticalLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

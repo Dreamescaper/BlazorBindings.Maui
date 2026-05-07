@@ -66,28 +66,28 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTC.EllipseAnnotation.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(HorizontalAlignment):
                     if (!Equals(HorizontalAlignment, value))
                     {
-                        HorizontalAlignment = (SMTC.ChartAlignment?)value;
+                        HorizontalAlignment = CastParameter<SMTC.ChartAlignment?>(value, name);
                         NativeControl.HorizontalAlignment = HorizontalAlignment ?? (SMTC.ChartAlignment)SMTC.EllipseAnnotation.HorizontalAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(VerticalAlignment):
                     if (!Equals(VerticalAlignment, value))
                     {
-                        VerticalAlignment = (SMTC.ChartAlignment?)value;
+                        VerticalAlignment = CastParameter<SMTC.ChartAlignment?>(value, name);
                         NativeControl.VerticalAlignment = VerticalAlignment ?? (SMTC.ChartAlignment)SMTC.EllipseAnnotation.VerticalAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(Width):
                     if (!Equals(Width, value))
                     {
-                        Width = (double?)value;
+                        Width = CastParameter<double?>(value, name);
                         NativeControl.Width = Width ?? (double)SMTC.EllipseAnnotation.WidthProperty.DefaultValue;
                     }
                     break;

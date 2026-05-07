@@ -270,181 +270,181 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
                 case nameof(ChipBackgroundColor):
                     if (!Equals(ChipBackgroundColor, value))
                     {
-                        ChipBackgroundColor = (Color)value;
+                        ChipBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.ChipBackground = ChipBackgroundColor;
                     }
                     break;
                 case nameof(ChipCornerRadius):
                     if (!Equals(ChipCornerRadius, value))
                     {
-                        ChipCornerRadius = (CornerRadius?)value;
+                        ChipCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.ChipCornerRadius = ChipCornerRadius ?? (CornerRadius)SMTC.SfChipGroup.ChipCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipFontAttributes):
                     if (!Equals(ChipFontAttributes, value))
                     {
-                        ChipFontAttributes = (MC.FontAttributes?)value;
+                        ChipFontAttributes = CastParameter<MC.FontAttributes?>(value, name);
                         NativeControl.ChipFontAttributes = ChipFontAttributes ?? (MC.FontAttributes)SMTC.SfChipGroup.ChipFontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipFontFamily):
                     if (!Equals(ChipFontFamily, value))
                     {
-                        ChipFontFamily = (string)value;
+                        ChipFontFamily = CastParameter<string>(value, name);
                         NativeControl.ChipFontFamily = ChipFontFamily;
                     }
                     break;
                 case nameof(ChipImageSize):
                     if (!Equals(ChipImageSize, value))
                     {
-                        ChipImageSize = (double?)value;
+                        ChipImageSize = CastParameter<double?>(value, name);
                         NativeControl.ChipImageSize = ChipImageSize ?? (double)SMTC.SfChipGroup.ChipImageSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipPadding):
                     if (!Equals(ChipPadding, value))
                     {
-                        ChipPadding = (Thickness?)value;
+                        ChipPadding = CastParameter<Thickness?>(value, name);
                         NativeControl.ChipPadding = ChipPadding ?? (Thickness)SMTC.SfChipGroup.ChipPaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipStrokeColor):
                     if (!Equals(ChipStrokeColor, value))
                     {
-                        ChipStrokeColor = (Color)value;
+                        ChipStrokeColor = CastParameter<Color>(value, name);
                         NativeControl.ChipStroke = ChipStrokeColor;
                     }
                     break;
                 case nameof(ChipStrokeThickness):
                     if (!Equals(ChipStrokeThickness, value))
                     {
-                        ChipStrokeThickness = (double?)value;
+                        ChipStrokeThickness = CastParameter<double?>(value, name);
                         NativeControl.ChipStrokeThickness = ChipStrokeThickness ?? (double)SMTC.SfChipGroup.ChipStrokeThicknessProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipTextColor):
                     if (!Equals(ChipTextColor, value))
                     {
-                        ChipTextColor = (Color)value;
+                        ChipTextColor = CastParameter<Color>(value, name);
                         NativeControl.ChipTextColor = ChipTextColor;
                     }
                     break;
                 case nameof(ChipTextSize):
                     if (!Equals(ChipTextSize, value))
                     {
-                        ChipTextSize = (double?)value;
+                        ChipTextSize = CastParameter<double?>(value, name);
                         NativeControl.ChipTextSize = ChipTextSize ?? (double)SMTC.SfChipGroup.ChipTextSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipType):
                     if (!Equals(ChipType, value))
                     {
-                        ChipType = (SMTC.SfChipsType?)value;
+                        ChipType = CastParameter<SMTC.SfChipsType?>(value, name);
                         NativeControl.ChipType = ChipType ?? (SMTC.SfChipsType)SMTC.SfChipGroup.ChipTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChoiceMode):
                     if (!Equals(ChoiceMode, value))
                     {
-                        ChoiceMode = (SMTC.ChoiceMode?)value;
+                        ChoiceMode = CastParameter<SMTC.ChoiceMode?>(value, name);
                         NativeControl.ChoiceMode = ChoiceMode ?? (SMTC.ChoiceMode)SMTC.SfChipGroup.ChoiceModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(CloseButtonColor):
                     if (!Equals(CloseButtonColor, value))
                     {
-                        CloseButtonColor = (Color)value;
+                        CloseButtonColor = CastParameter<Color>(value, name);
                         NativeControl.CloseButtonColor = CloseButtonColor;
                     }
                     break;
                 case nameof(DisplayMemberPath):
                     if (!Equals(DisplayMemberPath, value))
                     {
-                        DisplayMemberPath = (string)value;
+                        DisplayMemberPath = CastParameter<string>(value, name);
                         NativeControl.DisplayMemberPath = DisplayMemberPath;
                     }
                     break;
                 case nameof(ImageMemberPath):
                     if (!Equals(ImageMemberPath, value))
                     {
-                        ImageMemberPath = (string)value;
+                        ImageMemberPath = CastParameter<string>(value, name);
                         NativeControl.ImageMemberPath = ImageMemberPath;
                     }
                     break;
                 case nameof(ItemHeight):
                     if (!Equals(ItemHeight, value))
                     {
-                        ItemHeight = (double?)value;
+                        ItemHeight = CastParameter<double?>(value, name);
                         NativeControl.ItemHeight = ItemHeight ?? (double)SMTC.SfChipGroup.ItemHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList)value;
+                        ItemsSource = CastParameter<IList>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(SelectedChipBackgroundColor):
                     if (!Equals(SelectedChipBackgroundColor, value))
                     {
-                        SelectedChipBackgroundColor = (Color)value;
+                        SelectedChipBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.SelectedChipBackground = SelectedChipBackgroundColor;
                     }
                     break;
                 case nameof(SelectedChipTextColor):
                     if (!Equals(SelectedChipTextColor, value))
                     {
-                        SelectedChipTextColor = (Color)value;
+                        SelectedChipTextColor = CastParameter<Color>(value, name);
                         NativeControl.SelectedChipTextColor = SelectedChipTextColor;
                     }
                     break;
                 case nameof(SelectedItem):
                     if (!Equals(SelectedItem, value))
                     {
-                        SelectedItem = (object)value;
+                        SelectedItem = CastParameter<object>(value, name);
                         NativeControl.SelectedItem = SelectedItem;
                     }
                     break;
                 case nameof(SelectionIndicatorColor):
                     if (!Equals(SelectionIndicatorColor, value))
                     {
-                        SelectionIndicatorColor = (Color)value;
+                        SelectionIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionIndicatorColor = SelectionIndicatorColor;
                     }
                     break;
                 case nameof(ShowIcon):
                     if (!Equals(ShowIcon, value))
                     {
-                        ShowIcon = (bool?)value;
+                        ShowIcon = CastParameter<bool?>(value, name);
                         NativeControl.ShowIcon = ShowIcon ?? (bool)SMTC.SfChipGroup.ShowIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChipBackground):
-                    ChipBackground = (RenderFragment)value;
+                    ChipBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChipLayout):
-                    ChipLayout = (RenderFragment)value;
+                    ChipLayout = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChipStroke):
-                    ChipStroke = (RenderFragment)value;
+                    ChipStroke = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(InputView):
-                    InputView = (RenderFragment)value;
+                    InputView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment)value;
+                    ItemTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnChipClicked):
                     if (!Equals(OnChipClicked, value))
                     {
                         void NativeControlChipClicked(object sender, EventArgs e) => InvokeEventCallback(OnChipClicked);
 
-                        OnChipClicked = (EventCallback)value;
+                        OnChipClicked = CastParameter<EventCallback>(value, name);
                         NativeControl.ChipClicked -= NativeControlChipClicked;
                         NativeControl.ChipClicked += NativeControlChipClicked;
                     }
@@ -454,7 +454,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
                     {
                         void NativeControlSelectionChanging(object sender, SMTC.SelectionChangingEventArgs e) => InvokeEventCallback(OnSelectionChanging, e);
 
-                        OnSelectionChanging = (EventCallback<SMTC.SelectionChangingEventArgs>)value;
+                        OnSelectionChanging = CastParameter<EventCallback<SMTC.SelectionChangingEventArgs>>(value, name);
                         NativeControl.SelectionChanging -= NativeControlSelectionChanging;
                         NativeControl.SelectionChanging += NativeControlSelectionChanging;
                     }
@@ -464,7 +464,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
                     {
                         void NativeControlSelectionChanged(object sender, SMTC.SelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTC.SelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTC.SelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -474,7 +474,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Chips
                     {
                         void NativeControlItemRemoved(object sender, SMTC.SelectionChangedEventArgs e) => InvokeEventCallback(OnItemRemoved, e);
 
-                        OnItemRemoved = (EventCallback<SMTC.SelectionChangedEventArgs>)value;
+                        OnItemRemoved = CastParameter<EventCallback<SMTC.SelectionChangedEventArgs>>(value, name);
                         NativeControl.ItemRemoved -= NativeControlItemRemoved;
                         NativeControl.ItemRemoved += NativeControlItemRemoved;
                     }

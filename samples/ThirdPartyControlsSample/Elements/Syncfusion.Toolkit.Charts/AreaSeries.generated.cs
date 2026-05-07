@@ -74,22 +74,22 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ShowMarkers):
                     if (!Equals(ShowMarkers, value))
                     {
-                        ShowMarkers = (bool?)value;
+                        ShowMarkers = CastParameter<bool?>(value, name);
                         NativeControl.ShowMarkers = ShowMarkers ?? (bool)SMTC.AreaSeries.ShowMarkersProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(MarkerSettings):
-                    MarkerSettings = (RenderFragment)value;
+                    MarkerSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -244,130 +244,130 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(DisabledDatesBackgroundColor):
                     if (!Equals(DisabledDatesBackgroundColor, value))
                     {
-                        DisabledDatesBackgroundColor = (Color)value;
+                        DisabledDatesBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.DisabledDatesBackground = DisabledDatesBackgroundColor;
                     }
                     break;
                 case nameof(FirstDayOfWeek):
                     if (!Equals(FirstDayOfWeek, value))
                     {
-                        FirstDayOfWeek = (DayOfWeek?)value;
+                        FirstDayOfWeek = CastParameter<DayOfWeek?>(value, name);
                         NativeControl.FirstDayOfWeek = FirstDayOfWeek ?? (DayOfWeek)SMTC.CalendarMonthView.FirstDayOfWeekProperty.DefaultValue;
                     }
                     break;
                 case nameof(NumberOfVisibleWeeks):
                     if (!Equals(NumberOfVisibleWeeks, value))
                     {
-                        NumberOfVisibleWeeks = (int?)value;
+                        NumberOfVisibleWeeks = CastParameter<int?>(value, name);
                         NativeControl.NumberOfVisibleWeeks = NumberOfVisibleWeeks ?? (int)SMTC.CalendarMonthView.NumberOfVisibleWeeksProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowWeekNumber):
                     if (!Equals(ShowWeekNumber, value))
                     {
-                        ShowWeekNumber = (bool?)value;
+                        ShowWeekNumber = CastParameter<bool?>(value, name);
                         NativeControl.ShowWeekNumber = ShowWeekNumber ?? (bool)SMTC.CalendarMonthView.ShowWeekNumberProperty.DefaultValue;
                     }
                     break;
                 case nameof(SpecialDatesBackgroundColor):
                     if (!Equals(SpecialDatesBackgroundColor, value))
                     {
-                        SpecialDatesBackgroundColor = (Color)value;
+                        SpecialDatesBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.SpecialDatesBackground = SpecialDatesBackgroundColor;
                     }
                     break;
                 case nameof(SpecialDayPredicate):
                     if (!Equals(SpecialDayPredicate, value))
                     {
-                        SpecialDayPredicate = (Func<DateTime, SMTC.CalendarIconDetails>)value;
+                        SpecialDayPredicate = CastParameter<Func<DateTime, SMTC.CalendarIconDetails>>(value, name);
                         NativeControl.SpecialDayPredicate = SpecialDayPredicate;
                     }
                     break;
                 case nameof(TodayBackgroundColor):
                     if (!Equals(TodayBackgroundColor, value))
                     {
-                        TodayBackgroundColor = (Color)value;
+                        TodayBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.TodayBackground = TodayBackgroundColor;
                     }
                     break;
                 case nameof(TrailingLeadingDatesBackgroundColor):
                     if (!Equals(TrailingLeadingDatesBackgroundColor, value))
                     {
-                        TrailingLeadingDatesBackgroundColor = (Color)value;
+                        TrailingLeadingDatesBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.TrailingLeadingDatesBackground = TrailingLeadingDatesBackgroundColor;
                     }
                     break;
                 case nameof(WeekendDatesBackgroundColor):
                     if (!Equals(WeekendDatesBackgroundColor, value))
                     {
-                        WeekendDatesBackgroundColor = (Color)value;
+                        WeekendDatesBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.WeekendDatesBackground = WeekendDatesBackgroundColor;
                     }
                     break;
                 case nameof(WeekendDays):
                     if (!Equals(WeekendDays, value))
                     {
-                        WeekendDays = (List<DayOfWeek>)value;
+                        WeekendDays = CastParameter<List<DayOfWeek>>(value, name);
                         NativeControl.WeekendDays = WeekendDays;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(CellTemplate):
-                    CellTemplate = (RenderFragment)value;
+                    CellTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DisabledDatesBackground):
-                    DisabledDatesBackground = (RenderFragment)value;
+                    DisabledDatesBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DisabledDatesTextStyle):
-                    DisabledDatesTextStyle = (RenderFragment)value;
+                    DisabledDatesTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderView):
-                    HeaderView = (RenderFragment)value;
+                    HeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RangeTextStyle):
-                    RangeTextStyle = (RenderFragment)value;
+                    RangeTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionTextStyle):
-                    SelectionTextStyle = (RenderFragment)value;
+                    SelectionTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SpecialDatesBackground):
-                    SpecialDatesBackground = (RenderFragment)value;
+                    SpecialDatesBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SpecialDatesTextStyle):
-                    SpecialDatesTextStyle = (RenderFragment)value;
+                    SpecialDatesTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TodayBackground):
-                    TodayBackground = (RenderFragment)value;
+                    TodayBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TodayTextStyle):
-                    TodayTextStyle = (RenderFragment)value;
+                    TodayTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrailingLeadingDatesBackground):
-                    TrailingLeadingDatesBackground = (RenderFragment)value;
+                    TrailingLeadingDatesBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrailingLeadingDatesTextStyle):
-                    TrailingLeadingDatesTextStyle = (RenderFragment)value;
+                    TrailingLeadingDatesTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(WeekendDatesBackground):
-                    WeekendDatesBackground = (RenderFragment)value;
+                    WeekendDatesBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(WeekendDatesTextStyle):
-                    WeekendDatesTextStyle = (RenderFragment)value;
+                    WeekendDatesTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(WeekNumberStyle):
-                    WeekNumberStyle = (RenderFragment)value;
+                    WeekNumberStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

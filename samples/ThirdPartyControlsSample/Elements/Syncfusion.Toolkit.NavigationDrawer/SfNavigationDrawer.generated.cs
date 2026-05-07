@@ -96,29 +96,29 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
                 case nameof(FlowDirection):
                     if (!Equals(FlowDirection, value))
                     {
-                        FlowDirection = (FlowDirection?)value;
+                        FlowDirection = CastParameter<FlowDirection?>(value, name);
                         NativeControl.FlowDirection = FlowDirection ?? (FlowDirection)SMTN.SfNavigationDrawer.FlowDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)SMTN.SfNavigationDrawer.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContentView):
-                    ContentView = (RenderFragment)value;
+                    ContentView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(DrawerSettings):
-                    DrawerSettings = (RenderFragment)value;
+                    DrawerSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnDrawerClosed):
                     if (!Equals(OnDrawerClosed, value))
                     {
                         void NativeControlDrawerClosed(object sender, EventArgs e) => InvokeEventCallback(OnDrawerClosed);
 
-                        OnDrawerClosed = (EventCallback)value;
+                        OnDrawerClosed = CastParameter<EventCallback>(value, name);
                         NativeControl.DrawerClosed -= NativeControlDrawerClosed;
                         NativeControl.DrawerClosed += NativeControlDrawerClosed;
                     }
@@ -128,7 +128,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
                     {
                         void NativeControlDrawerOpened(object sender, EventArgs e) => InvokeEventCallback(OnDrawerOpened);
 
-                        OnDrawerOpened = (EventCallback)value;
+                        OnDrawerOpened = CastParameter<EventCallback>(value, name);
                         NativeControl.DrawerOpened -= NativeControlDrawerOpened;
                         NativeControl.DrawerOpened += NativeControlDrawerOpened;
                     }
@@ -138,7 +138,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
                     {
                         void NativeControlDrawerToggled(object sender, SMTN.ToggledEventArgs e) => InvokeEventCallback(OnDrawerToggled, e);
 
-                        OnDrawerToggled = (EventCallback<SMTN.ToggledEventArgs>)value;
+                        OnDrawerToggled = CastParameter<EventCallback<SMTN.ToggledEventArgs>>(value, name);
                         NativeControl.DrawerToggled -= NativeControlDrawerToggled;
                         NativeControl.DrawerToggled += NativeControlDrawerToggled;
                     }
@@ -148,7 +148,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
                     {
                         void NativeControlDrawerClosing(object sender, CancelEventArgs e) => InvokeEventCallback(OnDrawerClosing, e);
 
-                        OnDrawerClosing = (EventCallback<CancelEventArgs>)value;
+                        OnDrawerClosing = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.DrawerClosing -= NativeControlDrawerClosing;
                         NativeControl.DrawerClosing += NativeControlDrawerClosing;
                     }
@@ -158,7 +158,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NavigationDrawer
                     {
                         void NativeControlDrawerOpening(object sender, CancelEventArgs e) => InvokeEventCallback(OnDrawerOpening, e);
 
-                        OnDrawerOpening = (EventCallback<CancelEventArgs>)value;
+                        OnDrawerOpening = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.DrawerOpening -= NativeControlDrawerOpening;
                         NativeControl.DrawerOpening += NativeControlDrawerOpening;
                     }

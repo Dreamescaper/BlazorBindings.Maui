@@ -85,40 +85,40 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(MaximumRadius):
                     if (!Equals(MaximumRadius, value))
                     {
-                        MaximumRadius = (double?)value;
+                        MaximumRadius = CastParameter<double?>(value, name);
                         NativeControl.MaximumRadius = MaximumRadius ?? (double)SMTC.BubbleSeries.MaximumRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumRadius):
                     if (!Equals(MinimumRadius, value))
                     {
-                        MinimumRadius = (double?)value;
+                        MinimumRadius = CastParameter<double?>(value, name);
                         NativeControl.MinimumRadius = MinimumRadius ?? (double)SMTC.BubbleSeries.MinimumRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowZeroSizeBubbles):
                     if (!Equals(ShowZeroSizeBubbles, value))
                     {
-                        ShowZeroSizeBubbles = (bool?)value;
+                        ShowZeroSizeBubbles = CastParameter<bool?>(value, name);
                         NativeControl.ShowZeroSizeBubbles = ShowZeroSizeBubbles ?? (bool)SMTC.BubbleSeries.ShowZeroSizeBubblesProperty.DefaultValue;
                     }
                     break;
                 case nameof(SizeValuePath):
                     if (!Equals(SizeValuePath, value))
                     {
-                        SizeValuePath = (string)value;
+                        SizeValuePath = CastParameter<string>(value, name);
                         NativeControl.SizeValuePath = SizeValuePath;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

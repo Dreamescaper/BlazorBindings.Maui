@@ -56,12 +56,12 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(ShowAxisLabel):
                     if (!Equals(ShowAxisLabel, value))
                     {
-                        ShowAxisLabel = (bool?)value;
+                        ShowAxisLabel = CastParameter<bool?>(value, name);
                         NativeControl.ShowAxisLabel = ShowAxisLabel ?? (bool)SMTC.HorizontalLineAnnotation.ShowAxisLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(AxisLabelStyle):
-                    AxisLabelStyle = (RenderFragment)value;
+                    AxisLabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

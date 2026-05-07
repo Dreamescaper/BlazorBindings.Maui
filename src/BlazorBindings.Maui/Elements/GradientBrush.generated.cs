@@ -37,14 +37,14 @@ namespace BlazorBindings.Maui.Elements
             switch (name)
             {
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnInvalidateGradientBrushRequested):
                     if (!Equals(OnInvalidateGradientBrushRequested, value))
                     {
                         void NativeControlInvalidateGradientBrushRequested(object sender, EventArgs e) => InvokeEventCallback(OnInvalidateGradientBrushRequested);
 
-                        OnInvalidateGradientBrushRequested = (EventCallback)value;
+                        OnInvalidateGradientBrushRequested = CastParameter<EventCallback>(value, name);
                         NativeControl.InvalidateGradientBrushRequested -= NativeControlInvalidateGradientBrushRequested;
                         NativeControl.InvalidateGradientBrushRequested += NativeControlInvalidateGradientBrushRequested;
                     }

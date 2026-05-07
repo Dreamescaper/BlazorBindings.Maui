@@ -85,36 +85,36 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTC.CalendarHeaderView.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowNavigationArrows):
                     if (!Equals(ShowNavigationArrows, value))
                     {
-                        ShowNavigationArrows = (bool?)value;
+                        ShowNavigationArrows = CastParameter<bool?>(value, name);
                         NativeControl.ShowNavigationArrows = ShowNavigationArrows ?? (bool)SMTC.CalendarHeaderView.ShowNavigationArrowsProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextFormat):
                     if (!Equals(TextFormat, value))
                     {
-                        TextFormat = (string)value;
+                        TextFormat = CastParameter<string>(value, name);
                         NativeControl.TextFormat = TextFormat;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

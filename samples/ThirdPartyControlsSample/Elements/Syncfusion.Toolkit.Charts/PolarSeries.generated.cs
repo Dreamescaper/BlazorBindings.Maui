@@ -93,43 +93,43 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(IsClosed):
                     if (!Equals(IsClosed, value))
                     {
-                        IsClosed = (bool?)value;
+                        IsClosed = CastParameter<bool?>(value, name);
                         NativeControl.IsClosed = IsClosed ?? (bool)SMTC.PolarSeries.IsClosedProperty.DefaultValue;
                     }
                     break;
                 case nameof(Label):
                     if (!Equals(Label, value))
                     {
-                        Label = (string)value;
+                        Label = CastParameter<string>(value, name);
                         NativeControl.Label = Label;
                     }
                     break;
                 case nameof(ShowMarkers):
                     if (!Equals(ShowMarkers, value))
                     {
-                        ShowMarkers = (bool?)value;
+                        ShowMarkers = CastParameter<bool?>(value, name);
                         NativeControl.ShowMarkers = ShowMarkers ?? (bool)SMTC.PolarSeries.ShowMarkersProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.PolarSeries.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(YBindingPath):
                     if (!Equals(YBindingPath, value))
                     {
-                        YBindingPath = (string)value;
+                        YBindingPath = CastParameter<string>(value, name);
                         NativeControl.YBindingPath = YBindingPath;
                     }
                     break;
                 case nameof(DataLabelSettings):
-                    DataLabelSettings = (RenderFragment)value;
+                    DataLabelSettings = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MarkerSettings):
-                    MarkerSettings = (RenderFragment)value;
+                    MarkerSettings = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

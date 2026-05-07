@@ -75,33 +75,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(Interval):
                     if (!Equals(Interval, value))
                     {
-                        Interval = (double?)value;
+                        Interval = CastParameter<double?>(value, name);
                         NativeControl.Interval = Interval ?? (double)SMTC.LogarithmicAxis.IntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(LogarithmicBase):
                     if (!Equals(LogarithmicBase, value))
                     {
-                        LogarithmicBase = (double?)value;
+                        LogarithmicBase = CastParameter<double?>(value, name);
                         NativeControl.LogarithmicBase = LogarithmicBase ?? (double)SMTC.LogarithmicAxis.LogarithmicBaseProperty.DefaultValue;
                     }
                     break;
                 case nameof(Maximum):
                     if (!Equals(Maximum, value))
                     {
-                        Maximum = (Nullable<double>)value;
+                        Maximum = CastParameter<Nullable<double>>(value, name);
                         NativeControl.Maximum = Maximum;
                     }
                     break;
                 case nameof(Minimum):
                     if (!Equals(Minimum, value))
                     {
-                        Minimum = (Nullable<double>)value;
+                        Minimum = CastParameter<Nullable<double>>(value, name);
                         NativeControl.Minimum = Minimum;
                     }
                     break;
                 case nameof(PlotBands):
-                    PlotBands = (RenderFragment)value;
+                    PlotBands = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

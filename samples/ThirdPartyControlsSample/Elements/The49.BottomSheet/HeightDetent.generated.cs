@@ -36,7 +36,7 @@ namespace BlazorBindings.Maui.Elements.The49.BottomSheet
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)TMB.HeightDetent.HeightProperty.DefaultValue;
                     }
                     break;

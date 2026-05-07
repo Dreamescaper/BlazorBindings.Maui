@@ -25,7 +25,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
             switch (parameterValue.Name)
             {
                 case nameof(Column):
-                    var columnValue = (int)parameterValue.Value;
+                    var columnValue = CastParameter<int?>(parameterValue.Value, parameterValue.Name);
                     if (columnValue != Column)
                     {
                         Column = columnValue;
@@ -33,7 +33,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
                     }
                     break;
                 case nameof(Row):
-                    var rowValue = (int)parameterValue.Value;
+                    var rowValue = CastParameter<int?>(parameterValue.Value, parameterValue.Name);
                     if (rowValue != Row)
                     {
                         Row = rowValue;
@@ -41,7 +41,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
                     }
                     break;
                 case nameof(ColumnSpan):
-                    var colSpanValue = (int)parameterValue.Value;
+                    var colSpanValue = CastParameter<int?>(parameterValue.Value, parameterValue.Name);
                     if (colSpanValue != ColumnSpan)
                     {
                         ColumnSpan = colSpanValue;
@@ -49,7 +49,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
                     }
                     break;
                 case nameof(RowSpan):
-                    var rowSpanValue = (int)parameterValue.Value;
+                    var rowSpanValue = CastParameter<int?>(parameterValue.Value, parameterValue.Name);
                     if (rowSpanValue != RowSpan)
                     {
                         RowSpan = rowSpanValue;
@@ -58,7 +58,7 @@ public class GridCell : NativeControlComponentBase, IContainerElementHandler, IN
                     break;
                 case nameof(ChildContent):
                     {
-                        ChildContent = (RenderFragment)parameterValue.Value;
+                        ChildContent = CastParameter<RenderFragment>(parameterValue.Value, parameterValue.Name);
                         break;
                     }
             }

@@ -54,28 +54,28 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Threshold):
                     if (!Equals(Threshold, value))
                     {
-                        Threshold = (double?)value;
+                        Threshold = CastParameter<double?>(value, name);
                         NativeControl.Threshold = Threshold ?? (double)MC.SwipeView.ThresholdProperty.DefaultValue;
                     }
                     break;
                 case nameof(BottomItems):
-                    BottomItems = (RenderFragment)value;
+                    BottomItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LeftItems):
-                    LeftItems = (RenderFragment)value;
+                    LeftItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RightItems):
-                    RightItems = (RenderFragment)value;
+                    RightItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TopItems):
-                    TopItems = (RenderFragment)value;
+                    TopItems = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSwipeStarted):
                     if (!Equals(OnSwipeStarted, value))
                     {
                         void NativeControlSwipeStarted(object sender, MC.SwipeStartedEventArgs e) => InvokeEventCallback(OnSwipeStarted, e);
 
-                        OnSwipeStarted = (EventCallback<MC.SwipeStartedEventArgs>)value;
+                        OnSwipeStarted = CastParameter<EventCallback<MC.SwipeStartedEventArgs>>(value, name);
                         NativeControl.SwipeStarted -= NativeControlSwipeStarted;
                         NativeControl.SwipeStarted += NativeControlSwipeStarted;
                     }
@@ -85,7 +85,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlSwipeChanging(object sender, MC.SwipeChangingEventArgs e) => InvokeEventCallback(OnSwipeChanging, e);
 
-                        OnSwipeChanging = (EventCallback<MC.SwipeChangingEventArgs>)value;
+                        OnSwipeChanging = CastParameter<EventCallback<MC.SwipeChangingEventArgs>>(value, name);
                         NativeControl.SwipeChanging -= NativeControlSwipeChanging;
                         NativeControl.SwipeChanging += NativeControlSwipeChanging;
                     }
@@ -95,7 +95,7 @@ namespace BlazorBindings.Maui.Elements
                     {
                         void NativeControlSwipeEnded(object sender, MC.SwipeEndedEventArgs e) => InvokeEventCallback(OnSwipeEnded, e);
 
-                        OnSwipeEnded = (EventCallback<MC.SwipeEndedEventArgs>)value;
+                        OnSwipeEnded = CastParameter<EventCallback<MC.SwipeEndedEventArgs>>(value, name);
                         NativeControl.SwipeEnded -= NativeControlSwipeEnded;
                         NativeControl.SwipeEnded += NativeControlSwipeEnded;
                     }

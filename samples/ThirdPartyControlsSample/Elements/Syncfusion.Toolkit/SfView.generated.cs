@@ -58,22 +58,22 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
                 case nameof(ClipToBounds):
                     if (!Equals(ClipToBounds, value))
                     {
-                        ClipToBounds = (bool?)value;
+                        ClipToBounds = CastParameter<bool?>(value, name);
                         NativeControl.ClipToBounds = ClipToBounds ?? default;
                     }
                     break;
                 case nameof(Padding):
                     if (!Equals(Padding, value))
                     {
-                        Padding = (Thickness?)value;
+                        Padding = CastParameter<Thickness?>(value, name);
                         NativeControl.Padding = Padding ?? default;
                     }
                     break;
                 case nameof(Children):
-                    Children = (RenderFragment)value;
+                    Children = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

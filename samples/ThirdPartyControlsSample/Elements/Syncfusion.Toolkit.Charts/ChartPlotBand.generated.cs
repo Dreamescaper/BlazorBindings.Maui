@@ -146,88 +146,88 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(AssociatedAxisEnd):
                     if (!Equals(AssociatedAxisEnd, value))
                     {
-                        AssociatedAxisEnd = (object)value;
+                        AssociatedAxisEnd = CastParameter<object>(value, name);
                         NativeControl.AssociatedAxisEnd = AssociatedAxisEnd;
                     }
                     break;
                 case nameof(AssociatedAxisName):
                     if (!Equals(AssociatedAxisName, value))
                     {
-                        AssociatedAxisName = (string)value;
+                        AssociatedAxisName = CastParameter<string>(value, name);
                         NativeControl.AssociatedAxisName = AssociatedAxisName;
                     }
                     break;
                 case nameof(AssociatedAxisStart):
                     if (!Equals(AssociatedAxisStart, value))
                     {
-                        AssociatedAxisStart = (object)value;
+                        AssociatedAxisStart = CastParameter<object>(value, name);
                         NativeControl.AssociatedAxisStart = AssociatedAxisStart;
                     }
                     break;
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(IsRepeatable):
                     if (!Equals(IsRepeatable, value))
                     {
-                        IsRepeatable = (bool?)value;
+                        IsRepeatable = CastParameter<bool?>(value, name);
                         NativeControl.IsRepeatable = IsRepeatable ?? (bool)SMTC.ChartPlotBand.IsRepeatableProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ChartPlotBand.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(RepeatEvery):
                     if (!Equals(RepeatEvery, value))
                     {
-                        RepeatEvery = (double?)value;
+                        RepeatEvery = CastParameter<double?>(value, name);
                         NativeControl.RepeatEvery = RepeatEvery ?? (double)SMTC.ChartPlotBand.RepeatEveryProperty.DefaultValue;
                     }
                     break;
                 case nameof(Size):
                     if (!Equals(Size, value))
                     {
-                        Size = (double?)value;
+                        Size = CastParameter<double?>(value, name);
                         NativeControl.Size = Size ?? (double)SMTC.ChartPlotBand.SizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.ChartPlotBand.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LabelStyle):
-                    LabelStyle = (RenderFragment)value;
+                    LabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -63,19 +63,19 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(LabelPosition):
                     if (!Equals(LabelPosition, value))
                     {
-                        LabelPosition = (SMTC.ChartDataLabelPosition?)value;
+                        LabelPosition = CastParameter<SMTC.ChartDataLabelPosition?>(value, name);
                         NativeControl.LabelPosition = LabelPosition ?? (SMTC.ChartDataLabelPosition)SMTC.CircularDataLabelSettings.LabelPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(SmartLabelAlignment):
                     if (!Equals(SmartLabelAlignment, value))
                     {
-                        SmartLabelAlignment = (SMTC.SmartLabelAlignment?)value;
+                        SmartLabelAlignment = CastParameter<SMTC.SmartLabelAlignment?>(value, name);
                         NativeControl.SmartLabelAlignment = SmartLabelAlignment ?? (SMTC.SmartLabelAlignment)SMTC.CircularDataLabelSettings.SmartLabelAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(ConnectorLineSettings):
-                    ConnectorLineSettings = (RenderFragment)value;
+                    ConnectorLineSettings = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

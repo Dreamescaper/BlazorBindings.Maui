@@ -64,15 +64,15 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

@@ -65,28 +65,28 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(Increment):
                     if (!Equals(Increment, value))
                     {
-                        Increment = (double?)value;
+                        Increment = CastParameter<double?>(value, name);
                         NativeControl.Increment = Increment ?? (double)MC.Stepper.IncrementProperty.DefaultValue;
                     }
                     break;
                 case nameof(Maximum):
                     if (!Equals(Maximum, value))
                     {
-                        Maximum = (double?)value;
+                        Maximum = CastParameter<double?>(value, name);
                         NativeControl.Maximum = Maximum ?? (double)MC.Stepper.MaximumProperty.DefaultValue;
                     }
                     break;
                 case nameof(Minimum):
                     if (!Equals(Minimum, value))
                     {
-                        Minimum = (double?)value;
+                        Minimum = CastParameter<double?>(value, name);
                         NativeControl.Minimum = Minimum ?? (double)MC.Stepper.MinimumProperty.DefaultValue;
                     }
                     break;
                 case nameof(Value):
                     if (!Equals(Value, value))
                     {
-                        Value = (double?)value;
+                        Value = CastParameter<double?>(value, name);
                         NativeControl.Value = Value ?? (double)MC.Stepper.ValueProperty.DefaultValue;
                     }
                     break;
@@ -100,7 +100,7 @@ namespace BlazorBindings.Maui.Elements
                             InvokeEventCallback(ValueChanged, value);
                         }
 
-                        ValueChanged = (EventCallback<double>)value;
+                        ValueChanged = CastParameter<EventCallback<double>>(value, name);
                         NativeControl.ValueChanged -= NativeControlValueChanged;
                         NativeControl.ValueChanged += NativeControlValueChanged;
                     }

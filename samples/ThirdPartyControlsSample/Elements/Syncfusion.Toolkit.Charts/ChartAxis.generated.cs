@@ -274,191 +274,191 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(AutoScrollingDelta):
                     if (!Equals(AutoScrollingDelta, value))
                     {
-                        AutoScrollingDelta = (double?)value;
+                        AutoScrollingDelta = CastParameter<double?>(value, name);
                         NativeControl.AutoScrollingDelta = AutoScrollingDelta ?? (double)SMTC.ChartAxis.AutoScrollingDeltaProperty.DefaultValue;
                     }
                     break;
                 case nameof(AutoScrollingMode):
                     if (!Equals(AutoScrollingMode, value))
                     {
-                        AutoScrollingMode = (SMTC.ChartAutoScrollingMode?)value;
+                        AutoScrollingMode = CastParameter<SMTC.ChartAutoScrollingMode?>(value, name);
                         NativeControl.AutoScrollingMode = AutoScrollingMode ?? (SMTC.ChartAutoScrollingMode)SMTC.ChartAxis.AutoScrollingModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(AxisLineOffset):
                     if (!Equals(AxisLineOffset, value))
                     {
-                        AxisLineOffset = (double?)value;
+                        AxisLineOffset = CastParameter<double?>(value, name);
                         NativeControl.AxisLineOffset = AxisLineOffset ?? (double)SMTC.ChartAxis.AxisLineOffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(CrossAxisName):
                     if (!Equals(CrossAxisName, value))
                     {
-                        CrossAxisName = (string)value;
+                        CrossAxisName = CastParameter<string>(value, name);
                         NativeControl.CrossAxisName = CrossAxisName;
                     }
                     break;
                 case nameof(CrossesAt):
                     if (!Equals(CrossesAt, value))
                     {
-                        CrossesAt = (object)value;
+                        CrossesAt = CastParameter<object>(value, name);
                         NativeControl.CrossesAt = CrossesAt;
                     }
                     break;
                 case nameof(EdgeLabelsDrawingMode):
                     if (!Equals(EdgeLabelsDrawingMode, value))
                     {
-                        EdgeLabelsDrawingMode = (SMTC.EdgeLabelsDrawingMode?)value;
+                        EdgeLabelsDrawingMode = CastParameter<SMTC.EdgeLabelsDrawingMode?>(value, name);
                         NativeControl.EdgeLabelsDrawingMode = EdgeLabelsDrawingMode ?? (SMTC.EdgeLabelsDrawingMode)SMTC.ChartAxis.EdgeLabelsDrawingModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableAutoIntervalOnZooming):
                     if (!Equals(EnableAutoIntervalOnZooming, value))
                     {
-                        EnableAutoIntervalOnZooming = (bool?)value;
+                        EnableAutoIntervalOnZooming = CastParameter<bool?>(value, name);
                         NativeControl.EnableAutoIntervalOnZooming = EnableAutoIntervalOnZooming ?? (bool)SMTC.ChartAxis.EnableAutoIntervalOnZoomingProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsInversed):
                     if (!Equals(IsInversed, value))
                     {
-                        IsInversed = (bool?)value;
+                        IsInversed = CastParameter<bool?>(value, name);
                         NativeControl.IsInversed = IsInversed ?? (bool)SMTC.ChartAxis.IsInversedProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ChartAxis.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelExtent):
                     if (!Equals(LabelExtent, value))
                     {
-                        LabelExtent = (double?)value;
+                        LabelExtent = CastParameter<double?>(value, name);
                         NativeControl.LabelExtent = LabelExtent ?? (double)SMTC.ChartAxis.LabelExtentProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelRotation):
                     if (!Equals(LabelRotation, value))
                     {
-                        LabelRotation = (double?)value;
+                        LabelRotation = CastParameter<double?>(value, name);
                         NativeControl.LabelRotation = LabelRotation ?? (double)SMTC.ChartAxis.LabelRotationProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelsIntersectAction):
                     if (!Equals(LabelsIntersectAction, value))
                     {
-                        LabelsIntersectAction = (SMTC.AxisLabelsIntersectAction?)value;
+                        LabelsIntersectAction = CastParameter<SMTC.AxisLabelsIntersectAction?>(value, name);
                         NativeControl.LabelsIntersectAction = LabelsIntersectAction ?? (SMTC.AxisLabelsIntersectAction)SMTC.ChartAxis.LabelsIntersectActionProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelsPosition):
                     if (!Equals(LabelsPosition, value))
                     {
-                        LabelsPosition = (SMTC.AxisElementPosition?)value;
+                        LabelsPosition = CastParameter<SMTC.AxisElementPosition?>(value, name);
                         NativeControl.LabelsPosition = LabelsPosition ?? (SMTC.AxisElementPosition)SMTC.ChartAxis.LabelsPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumLabels):
                     if (!Equals(MaximumLabels, value))
                     {
-                        MaximumLabels = (int?)value;
+                        MaximumLabels = CastParameter<int?>(value, name);
                         NativeControl.MaximumLabels = MaximumLabels ?? (int)SMTC.ChartAxis.MaximumLabelsProperty.DefaultValue;
                     }
                     break;
                 case nameof(Name):
                     if (!Equals(Name, value))
                     {
-                        Name = (string)value;
+                        Name = CastParameter<string>(value, name);
                         NativeControl.Name = Name;
                     }
                     break;
                 case nameof(PlotOffsetEnd):
                     if (!Equals(PlotOffsetEnd, value))
                     {
-                        PlotOffsetEnd = (double?)value;
+                        PlotOffsetEnd = CastParameter<double?>(value, name);
                         NativeControl.PlotOffsetEnd = PlotOffsetEnd ?? (double)SMTC.ChartAxis.PlotOffsetEndProperty.DefaultValue;
                     }
                     break;
                 case nameof(PlotOffsetStart):
                     if (!Equals(PlotOffsetStart, value))
                     {
-                        PlotOffsetStart = (double?)value;
+                        PlotOffsetStart = CastParameter<double?>(value, name);
                         NativeControl.PlotOffsetStart = PlotOffsetStart ?? (double)SMTC.ChartAxis.PlotOffsetStartProperty.DefaultValue;
                     }
                     break;
                 case nameof(RenderNextToCrossingValue):
                     if (!Equals(RenderNextToCrossingValue, value))
                     {
-                        RenderNextToCrossingValue = (bool?)value;
+                        RenderNextToCrossingValue = CastParameter<bool?>(value, name);
                         NativeControl.RenderNextToCrossingValue = RenderNextToCrossingValue ?? (bool)SMTC.ChartAxis.RenderNextToCrossingValueProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowMajorGridLines):
                     if (!Equals(ShowMajorGridLines, value))
                     {
-                        ShowMajorGridLines = (bool?)value;
+                        ShowMajorGridLines = CastParameter<bool?>(value, name);
                         NativeControl.ShowMajorGridLines = ShowMajorGridLines ?? (bool)SMTC.ChartAxis.ShowMajorGridLinesProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowTrackballLabel):
                     if (!Equals(ShowTrackballLabel, value))
                     {
-                        ShowTrackballLabel = (bool?)value;
+                        ShowTrackballLabel = CastParameter<bool?>(value, name);
                         NativeControl.ShowTrackballLabel = ShowTrackballLabel ?? (bool)SMTC.ChartAxis.ShowTrackballLabelProperty.DefaultValue;
                     }
                     break;
                 case nameof(TickPosition):
                     if (!Equals(TickPosition, value))
                     {
-                        TickPosition = (SMTC.AxisElementPosition?)value;
+                        TickPosition = CastParameter<SMTC.AxisElementPosition?>(value, name);
                         NativeControl.TickPosition = TickPosition ?? (SMTC.AxisElementPosition)SMTC.ChartAxis.TickPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(ZoomFactor):
                     if (!Equals(ZoomFactor, value))
                     {
-                        ZoomFactor = (double?)value;
+                        ZoomFactor = CastParameter<double?>(value, name);
                         NativeControl.ZoomFactor = ZoomFactor ?? (double)SMTC.ChartAxis.ZoomFactorProperty.DefaultValue;
                     }
                     break;
                 case nameof(ZoomPosition):
                     if (!Equals(ZoomPosition, value))
                     {
-                        ZoomPosition = (double?)value;
+                        ZoomPosition = CastParameter<double?>(value, name);
                         NativeControl.ZoomPosition = ZoomPosition ?? (double)SMTC.ChartAxis.ZoomPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(AxisLineStyle):
-                    AxisLineStyle = (RenderFragment)value;
+                    AxisLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LabelStyle):
-                    LabelStyle = (RenderFragment)value;
+                    LabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MajorGridLineStyle):
-                    MajorGridLineStyle = (RenderFragment)value;
+                    MajorGridLineStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MajorTickStyle):
-                    MajorTickStyle = (RenderFragment)value;
+                    MajorTickStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Title):
-                    Title = (RenderFragment)value;
+                    Title = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackballLabelStyle):
-                    TrackballLabelStyle = (RenderFragment)value;
+                    TrackballLabelStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TrackballLabelTemplate):
-                    TrackballLabelTemplate = (RenderFragment)value;
+                    TrackballLabelTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnLabelCreated):
                     if (!Equals(OnLabelCreated, value))
                     {
                         void NativeControlLabelCreated(object sender, SMTC.ChartAxisLabelEventArgs e) => InvokeEventCallback(OnLabelCreated, e);
 
-                        OnLabelCreated = (EventCallback<SMTC.ChartAxisLabelEventArgs>)value;
+                        OnLabelCreated = CastParameter<EventCallback<SMTC.ChartAxisLabelEventArgs>>(value, name);
                         NativeControl.LabelCreated -= NativeControlLabelCreated;
                         NativeControl.LabelCreated += NativeControlLabelCreated;
                     }
@@ -468,7 +468,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         void NativeControlActualRangeChanged(object sender, SMTC.ActualRangeChangedEventArgs e) => InvokeEventCallback(OnActualRangeChanged, e);
 
-                        OnActualRangeChanged = (EventCallback<SMTC.ActualRangeChangedEventArgs>)value;
+                        OnActualRangeChanged = CastParameter<EventCallback<SMTC.ActualRangeChangedEventArgs>>(value, name);
                         NativeControl.ActualRangeChanged -= NativeControlActualRangeChanged;
                         NativeControl.ActualRangeChanged += NativeControlActualRangeChanged;
                     }

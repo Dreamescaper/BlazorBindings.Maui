@@ -78,29 +78,29 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(BackgroundColor):
                     if (!Equals(BackgroundColor, value))
                     {
-                        BackgroundColor = (Color)value;
+                        BackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.Background = BackgroundColor;
                     }
                     break;
                 case nameof(DividerColor):
                     if (!Equals(DividerColor, value))
                     {
-                        DividerColor = (Color)value;
+                        DividerColor = CastParameter<Color>(value, name);
                         NativeControl.DividerColor = DividerColor;
                     }
                     break;
                 case nameof(Height):
                     if (!Equals(Height, value))
                     {
-                        Height = (double?)value;
+                        Height = CastParameter<double?>(value, name);
                         NativeControl.Height = Height ?? (double)SMTP.PickerColumnHeaderView.HeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
-                    TextStyle = (RenderFragment)value;
+                    TextStyle = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

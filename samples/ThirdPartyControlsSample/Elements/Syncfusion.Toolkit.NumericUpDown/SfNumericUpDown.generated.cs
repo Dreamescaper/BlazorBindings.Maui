@@ -96,50 +96,50 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericUpDown
                 case nameof(AutoReverse):
                     if (!Equals(AutoReverse, value))
                     {
-                        AutoReverse = (bool?)value;
+                        AutoReverse = CastParameter<bool?>(value, name);
                         NativeControl.AutoReverse = AutoReverse ?? (bool)SMTN.SfNumericUpDown.AutoReverseProperty.DefaultValue;
                     }
                     break;
                 case nameof(LargeChange):
                     if (!Equals(LargeChange, value))
                     {
-                        LargeChange = (double?)value;
+                        LargeChange = CastParameter<double?>(value, name);
                         NativeControl.LargeChange = LargeChange ?? (double)SMTN.SfNumericUpDown.LargeChangeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SmallChange):
                     if (!Equals(SmallChange, value))
                     {
-                        SmallChange = (double?)value;
+                        SmallChange = CastParameter<double?>(value, name);
                         NativeControl.SmallChange = SmallChange ?? (double)SMTN.SfNumericUpDown.SmallChangeProperty.DefaultValue;
                     }
                     break;
                 case nameof(UpDownButtonAlignment):
                     if (!Equals(UpDownButtonAlignment, value))
                     {
-                        UpDownButtonAlignment = (SMTN.UpDownButtonAlignment?)value;
+                        UpDownButtonAlignment = CastParameter<SMTN.UpDownButtonAlignment?>(value, name);
                         NativeControl.UpDownButtonAlignment = UpDownButtonAlignment ?? (SMTN.UpDownButtonAlignment)SMTN.SfNumericUpDown.UpDownButtonAlignmentProperty.DefaultValue;
                     }
                     break;
                 case nameof(UpDownButtonColor):
                     if (!Equals(UpDownButtonColor, value))
                     {
-                        UpDownButtonColor = (Color)value;
+                        UpDownButtonColor = CastParameter<Color>(value, name);
                         NativeControl.UpDownButtonColor = UpDownButtonColor;
                     }
                     break;
                 case nameof(UpDownPlacementMode):
                     if (!Equals(UpDownPlacementMode, value))
                     {
-                        UpDownPlacementMode = (SMTN.NumericUpDownPlacementMode?)value;
+                        UpDownPlacementMode = CastParameter<SMTN.NumericUpDownPlacementMode?>(value, name);
                         NativeControl.UpDownPlacementMode = UpDownPlacementMode ?? (SMTN.NumericUpDownPlacementMode)SMTN.SfNumericUpDown.UpDownPlacementModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(DownButtonTemplate):
-                    DownButtonTemplate = (RenderFragment)value;
+                    DownButtonTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(UpButtonTemplate):
-                    UpButtonTemplate = (RenderFragment)value;
+                    UpButtonTemplate = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

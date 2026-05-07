@@ -165,101 +165,101 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(EnableAnimation):
                     if (!Equals(EnableAnimation, value))
                     {
-                        EnableAnimation = (bool?)value;
+                        EnableAnimation = CastParameter<bool?>(value, name);
                         NativeControl.EnableAnimation = EnableAnimation ?? (bool)SMTC.ChartSeries.EnableAnimationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableTooltip):
                     if (!Equals(EnableTooltip, value))
                     {
-                        EnableTooltip = (bool?)value;
+                        EnableTooltip = CastParameter<bool?>(value, name);
                         NativeControl.EnableTooltip = EnableTooltip ?? (bool)SMTC.ChartSeries.EnableTooltipProperty.DefaultValue;
                     }
                     break;
                 case nameof(FillColor):
                     if (!Equals(FillColor, value))
                     {
-                        FillColor = (Color)value;
+                        FillColor = CastParameter<Color>(value, name);
                         NativeControl.Fill = FillColor;
                     }
                     break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
-                        IsVisible = (bool?)value;
+                        IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ChartSeries.IsVisibleProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsVisibleOnLegend):
                     if (!Equals(IsVisibleOnLegend, value))
                     {
-                        IsVisibleOnLegend = (bool?)value;
+                        IsVisibleOnLegend = CastParameter<bool?>(value, name);
                         NativeControl.IsVisibleOnLegend = IsVisibleOnLegend ?? (bool)SMTC.ChartSeries.IsVisibleOnLegendProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IList<T>)value;
+                        ItemsSource = CastParameter<IList<T>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(LabelContext):
                     if (!Equals(LabelContext, value))
                     {
-                        LabelContext = (SMTC.LabelContext?)value;
+                        LabelContext = CastParameter<SMTC.LabelContext?>(value, name);
                         NativeControl.LabelContext = LabelContext ?? (SMTC.LabelContext)SMTC.ChartSeries.LabelContextProperty.DefaultValue;
                     }
                     break;
                 case nameof(LegendIcon):
                     if (!Equals(LegendIcon, value))
                     {
-                        LegendIcon = (SMTC.ChartLegendIconType?)value;
+                        LegendIcon = CastParameter<SMTC.ChartLegendIconType?>(value, name);
                         NativeControl.LegendIcon = LegendIcon ?? (SMTC.ChartLegendIconType)SMTC.ChartSeries.LegendIconProperty.DefaultValue;
                     }
                     break;
                 case nameof(ListenPropertyChange):
                     if (!Equals(ListenPropertyChange, value))
                     {
-                        ListenPropertyChange = (bool?)value;
+                        ListenPropertyChange = CastParameter<bool?>(value, name);
                         NativeControl.ListenPropertyChange = ListenPropertyChange ?? (bool)SMTC.ChartSeries.ListenPropertyChangeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Opacity):
                     if (!Equals(Opacity, value))
                     {
-                        Opacity = (double?)value;
+                        Opacity = CastParameter<double?>(value, name);
                         NativeControl.Opacity = Opacity ?? (double)SMTC.ChartSeries.OpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowDataLabels):
                     if (!Equals(ShowDataLabels, value))
                     {
-                        ShowDataLabels = (bool?)value;
+                        ShowDataLabels = CastParameter<bool?>(value, name);
                         NativeControl.ShowDataLabels = ShowDataLabels ?? (bool)SMTC.ChartSeries.ShowDataLabelsProperty.DefaultValue;
                     }
                     break;
                 case nameof(XBindingPath):
                     if (!Equals(XBindingPath, value))
                     {
-                        XBindingPath = (string)value;
+                        XBindingPath = CastParameter<string>(value, name);
                         NativeControl.XBindingPath = XBindingPath;
                     }
                     break;
                 case nameof(Fill):
-                    Fill = (RenderFragment)value;
+                    Fill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(LabelTemplate):
-                    LabelTemplate = (RenderFragment)value;
+                    LabelTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PaletteBrushes):
-                    PaletteBrushes = (RenderFragment)value;
+                    PaletteBrushes = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionBehavior):
-                    SelectionBehavior = (RenderFragment)value;
+                    SelectionBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TooltipTemplate):
-                    TooltipTemplate = (RenderFragment)value;
+                    TooltipTemplate = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

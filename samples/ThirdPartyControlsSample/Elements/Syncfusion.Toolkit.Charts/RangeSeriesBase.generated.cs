@@ -77,33 +77,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(High):
                     if (!Equals(High, value))
                     {
-                        High = (string)value;
+                        High = CastParameter<string>(value, name);
                         NativeControl.High = High;
                     }
                     break;
                 case nameof(Low):
                     if (!Equals(Low, value))
                     {
-                        Low = (string)value;
+                        Low = CastParameter<string>(value, name);
                         NativeControl.Low = Low;
                     }
                     break;
                 case nameof(StrokeColor):
                     if (!Equals(StrokeColor, value))
                     {
-                        StrokeColor = (Color)value;
+                        StrokeColor = CastParameter<Color>(value, name);
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
                 case nameof(StrokeWidth):
                     if (!Equals(StrokeWidth, value))
                     {
-                        StrokeWidth = (double?)value;
+                        StrokeWidth = CastParameter<double?>(value, name);
                         NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.RangeSeriesBase.StrokeWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(Stroke):
-                    Stroke = (RenderFragment)value;
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

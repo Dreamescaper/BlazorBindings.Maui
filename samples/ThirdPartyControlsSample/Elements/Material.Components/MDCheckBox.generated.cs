@@ -47,70 +47,70 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(IsChecked):
                     if (!Equals(IsChecked, value))
                     {
-                        IsChecked = (bool?)value;
+                        IsChecked = CastParameter<bool?>(value, name);
                         NativeControl.IsChecked = IsChecked ?? (bool)MCM.CheckBox.IsCheckedProperty.DefaultValue;
                     }
                     break;
                 case nameof(MarkColor):
                     if (!Equals(MarkColor, value))
                     {
-                        MarkColor = (Color)value;
+                        MarkColor = CastParameter<Color>(value, name);
                         NativeControl.MarkColor = MarkColor;
                     }
                     break;
                 case nameof(MarkOpacity):
                     if (!Equals(MarkOpacity, value))
                     {
-                        MarkOpacity = (float?)value;
+                        MarkOpacity = CastParameter<float?>(value, name);
                         NativeControl.MarkOpacity = MarkOpacity ?? (float)MCM.CheckBox.MarkOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(OnColor):
                     if (!Equals(OnColor, value))
                     {
-                        OnColor = (Color)value;
+                        OnColor = CastParameter<Color>(value, name);
                         NativeControl.OnColor = OnColor;
                     }
                     break;
                 case nameof(OnOpacity):
                     if (!Equals(OnOpacity, value))
                     {
-                        OnOpacity = (float?)value;
+                        OnOpacity = CastParameter<float?>(value, name);
                         NativeControl.OnOpacity = OnOpacity ?? (float)MCM.CheckBox.OnOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(OutlineColor):
                     if (!Equals(OutlineColor, value))
                     {
-                        OutlineColor = (Color)value;
+                        OutlineColor = CastParameter<Color>(value, name);
                         NativeControl.OutlineColor = OutlineColor;
                     }
                     break;
                 case nameof(OutlineWidth):
                     if (!Equals(OutlineWidth, value))
                     {
-                        OutlineWidth = (int?)value;
+                        OutlineWidth = CastParameter<int?>(value, name);
                         NativeControl.OutlineWidth = OutlineWidth ?? (int)MCM.CheckBox.OutlineWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(RippleColor):
                     if (!Equals(RippleColor, value))
                     {
-                        RippleColor = (Color)value;
+                        RippleColor = CastParameter<Color>(value, name);
                         NativeControl.RippleColor = RippleColor;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
@@ -124,7 +124,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(IsCheckedChanged, value);
                         }
 
-                        IsCheckedChanged = (EventCallback<bool>)value;
+                        IsCheckedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.CheckedChanged -= NativeControlCheckedChanged;
                         NativeControl.CheckedChanged += NativeControlCheckedChanged;
                     }

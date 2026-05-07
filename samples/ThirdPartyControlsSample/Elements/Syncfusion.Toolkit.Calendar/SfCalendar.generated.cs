@@ -372,241 +372,241 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                 case nameof(AllowViewNavigation):
                     if (!Equals(AllowViewNavigation, value))
                     {
-                        AllowViewNavigation = (bool?)value;
+                        AllowViewNavigation = CastParameter<bool?>(value, name);
                         NativeControl.AllowViewNavigation = AllowViewNavigation ?? (bool)SMTC.SfCalendar.AllowViewNavigationProperty.DefaultValue;
                     }
                     break;
                 case nameof(CanToggleDaySelection):
                     if (!Equals(CanToggleDaySelection, value))
                     {
-                        CanToggleDaySelection = (bool?)value;
+                        CanToggleDaySelection = CastParameter<bool?>(value, name);
                         NativeControl.CanToggleDaySelection = CanToggleDaySelection ?? (bool)SMTC.SfCalendar.CanToggleDaySelectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTC.SfCalendar.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(DisplayDate):
                     if (!Equals(DisplayDate, value))
                     {
-                        DisplayDate = (DateTime?)value;
+                        DisplayDate = CastParameter<DateTime?>(value, name);
                         NativeControl.DisplayDate = DisplayDate ?? (DateTime)SMTC.SfCalendar.DisplayDateProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnablePastDates):
                     if (!Equals(EnablePastDates, value))
                     {
-                        EnablePastDates = (bool?)value;
+                        EnablePastDates = CastParameter<bool?>(value, name);
                         NativeControl.EnablePastDates = EnablePastDates ?? (bool)SMTC.SfCalendar.EnablePastDatesProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableSwipeSelection):
                     if (!Equals(EnableSwipeSelection, value))
                     {
-                        EnableSwipeSelection = (bool?)value;
+                        EnableSwipeSelection = CastParameter<bool?>(value, name);
                         NativeControl.EnableSwipeSelection = EnableSwipeSelection ?? (bool)SMTC.SfCalendar.EnableSwipeSelectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(EndRangeSelectionBackgroundColor):
                     if (!Equals(EndRangeSelectionBackgroundColor, value))
                     {
-                        EndRangeSelectionBackgroundColor = (Color)value;
+                        EndRangeSelectionBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.EndRangeSelectionBackground = EndRangeSelectionBackgroundColor;
                     }
                     break;
                 case nameof(Identifier):
                     if (!Equals(Identifier, value))
                     {
-                        Identifier = (SMTC.CalendarIdentifier?)value;
+                        Identifier = CastParameter<SMTC.CalendarIdentifier?>(value, name);
                         NativeControl.Identifier = Identifier ?? (SMTC.CalendarIdentifier)SMTC.SfCalendar.IdentifierProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)SMTC.SfCalendar.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(MaximumDate):
                     if (!Equals(MaximumDate, value))
                     {
-                        MaximumDate = (DateTime?)value;
+                        MaximumDate = CastParameter<DateTime?>(value, name);
                         NativeControl.MaximumDate = MaximumDate ?? (DateTime)SMTC.SfCalendar.MaximumDateProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumDate):
                     if (!Equals(MinimumDate, value))
                     {
-                        MinimumDate = (DateTime?)value;
+                        MinimumDate = CastParameter<DateTime?>(value, name);
                         NativeControl.MinimumDate = MinimumDate ?? (DateTime)SMTC.SfCalendar.MinimumDateProperty.DefaultValue;
                     }
                     break;
                 case nameof(Mode):
                     if (!Equals(Mode, value))
                     {
-                        Mode = (SMTC.CalendarMode?)value;
+                        Mode = CastParameter<SMTC.CalendarMode?>(value, name);
                         NativeControl.Mode = Mode ?? (SMTC.CalendarMode)SMTC.SfCalendar.ModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(NavigateToAdjacentMonth):
                     if (!Equals(NavigateToAdjacentMonth, value))
                     {
-                        NavigateToAdjacentMonth = (bool?)value;
+                        NavigateToAdjacentMonth = CastParameter<bool?>(value, name);
                         NativeControl.NavigateToAdjacentMonth = NavigateToAdjacentMonth ?? (bool)SMTC.SfCalendar.NavigateToAdjacentMonthProperty.DefaultValue;
                     }
                     break;
                 case nameof(NavigationDirection):
                     if (!Equals(NavigationDirection, value))
                     {
-                        NavigationDirection = (SMTC.CalendarNavigationDirection?)value;
+                        NavigationDirection = CastParameter<SMTC.CalendarNavigationDirection?>(value, name);
                         NativeControl.NavigationDirection = NavigationDirection ?? (SMTC.CalendarNavigationDirection)SMTC.SfCalendar.NavigationDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(RangeSelectionDirection):
                     if (!Equals(RangeSelectionDirection, value))
                     {
-                        RangeSelectionDirection = (SMTC.CalendarRangeSelectionDirection?)value;
+                        RangeSelectionDirection = CastParameter<SMTC.CalendarRangeSelectionDirection?>(value, name);
                         NativeControl.RangeSelectionDirection = RangeSelectionDirection ?? (SMTC.CalendarRangeSelectionDirection)SMTC.SfCalendar.RangeSelectionDirectionProperty.DefaultValue;
                     }
                     break;
                 case nameof(RelativePosition):
                     if (!Equals(RelativePosition, value))
                     {
-                        RelativePosition = (SMTC.CalendarRelativePosition?)value;
+                        RelativePosition = CastParameter<SMTC.CalendarRelativePosition?>(value, name);
                         NativeControl.RelativePosition = RelativePosition ?? (SMTC.CalendarRelativePosition)SMTC.SfCalendar.RelativePositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectableDayPredicate):
                     if (!Equals(SelectableDayPredicate, value))
                     {
-                        SelectableDayPredicate = (Func<DateTime, bool>)value;
+                        SelectableDayPredicate = CastParameter<Func<DateTime, bool>>(value, name);
                         NativeControl.SelectableDayPredicate = SelectableDayPredicate;
                     }
                     break;
                 case nameof(SelectedDate):
                     if (!Equals(SelectedDate, value))
                     {
-                        SelectedDate = (Nullable<DateTime>)value;
+                        SelectedDate = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.SelectedDate = SelectedDate;
                     }
                     break;
                 case nameof(SelectedDateRange):
                     if (!Equals(SelectedDateRange, value))
                     {
-                        SelectedDateRange = (SMTC.CalendarDateRange)value;
+                        SelectedDateRange = CastParameter<SMTC.CalendarDateRange>(value, name);
                         NativeControl.SelectedDateRange = SelectedDateRange;
                     }
                     break;
                 case nameof(SelectedDateRanges):
                     if (!Equals(SelectedDateRanges, value))
                     {
-                        SelectedDateRanges = (ObservableCollection<SMTC.CalendarDateRange>)value;
+                        SelectedDateRanges = CastParameter<ObservableCollection<SMTC.CalendarDateRange>>(value, name);
                         NativeControl.SelectedDateRanges = SelectedDateRanges;
                     }
                     break;
                 case nameof(SelectedDates):
                     if (!Equals(SelectedDates, value))
                     {
-                        SelectedDates = (ObservableCollection<DateTime>)value;
+                        SelectedDates = CastParameter<ObservableCollection<DateTime>>(value, name);
                         NativeControl.SelectedDates = SelectedDates;
                     }
                     break;
                 case nameof(SelectionBackgroundColor):
                     if (!Equals(SelectionBackgroundColor, value))
                     {
-                        SelectionBackgroundColor = (Color)value;
+                        SelectionBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.SelectionBackground = SelectionBackgroundColor;
                     }
                     break;
                 case nameof(SelectionMode):
                     if (!Equals(SelectionMode, value))
                     {
-                        SelectionMode = (SMTC.CalendarSelectionMode?)value;
+                        SelectionMode = CastParameter<SMTC.CalendarSelectionMode?>(value, name);
                         NativeControl.SelectionMode = SelectionMode ?? (SMTC.CalendarSelectionMode)SMTC.SfCalendar.SelectionModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionShape):
                     if (!Equals(SelectionShape, value))
                     {
-                        SelectionShape = (SMTC.CalendarSelectionShape?)value;
+                        SelectionShape = CastParameter<SMTC.CalendarSelectionShape?>(value, name);
                         NativeControl.SelectionShape = SelectionShape ?? (SMTC.CalendarSelectionShape)SMTC.SfCalendar.SelectionShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowOutOfRangeDates):
                     if (!Equals(ShowOutOfRangeDates, value))
                     {
-                        ShowOutOfRangeDates = (bool?)value;
+                        ShowOutOfRangeDates = CastParameter<bool?>(value, name);
                         NativeControl.ShowOutOfRangeDates = ShowOutOfRangeDates ?? (bool)SMTC.SfCalendar.ShowOutOfRangeDatesProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowTrailingAndLeadingDates):
                     if (!Equals(ShowTrailingAndLeadingDates, value))
                     {
-                        ShowTrailingAndLeadingDates = (bool?)value;
+                        ShowTrailingAndLeadingDates = CastParameter<bool?>(value, name);
                         NativeControl.ShowTrailingAndLeadingDates = ShowTrailingAndLeadingDates ?? (bool)SMTC.SfCalendar.ShowTrailingAndLeadingDatesProperty.DefaultValue;
                     }
                     break;
                 case nameof(StartRangeSelectionBackgroundColor):
                     if (!Equals(StartRangeSelectionBackgroundColor, value))
                     {
-                        StartRangeSelectionBackgroundColor = (Color)value;
+                        StartRangeSelectionBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.StartRangeSelectionBackground = StartRangeSelectionBackgroundColor;
                     }
                     break;
                 case nameof(TodayHighlightColor):
                     if (!Equals(TodayHighlightColor, value))
                     {
-                        TodayHighlightColor = (Color)value;
+                        TodayHighlightColor = CastParameter<Color>(value, name);
                         NativeControl.TodayHighlightBrush = TodayHighlightColor;
                     }
                     break;
                 case nameof(View):
                     if (!Equals(View, value))
                     {
-                        View = (SMTC.CalendarView?)value;
+                        View = CastParameter<SMTC.CalendarView?>(value, name);
                         NativeControl.View = View ?? (SMTC.CalendarView)SMTC.SfCalendar.ViewProperty.DefaultValue;
                     }
                     break;
                 case nameof(EndRangeSelectionBackground):
-                    EndRangeSelectionBackground = (RenderFragment)value;
+                    EndRangeSelectionBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FooterView):
-                    FooterView = (RenderFragment)value;
+                    FooterView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderTemplate):
-                    HeaderTemplate = (RenderFragment)value;
+                    HeaderTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderView):
-                    HeaderView = (RenderFragment)value;
+                    HeaderView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MonthView):
-                    MonthView = (RenderFragment)value;
+                    MonthView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(MonthViewHeaderTemplate):
-                    MonthViewHeaderTemplate = (RenderFragment)value;
+                    MonthViewHeaderTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(RelativeView):
-                    RelativeView = (RenderFragment)value;
+                    RelativeView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionBackground):
-                    SelectionBackground = (RenderFragment)value;
+                    SelectionBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionCellTemplate):
-                    SelectionCellTemplate = (RenderFragment)value;
+                    SelectionCellTemplate = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(StartRangeSelectionBackground):
-                    StartRangeSelectionBackground = (RenderFragment)value;
+                    StartRangeSelectionBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TodayHighlightBrush):
-                    TodayHighlightBrush = (RenderFragment)value;
+                    TodayHighlightBrush = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(YearView):
-                    YearView = (RenderFragment)value;
+                    YearView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ViewChanged):
                     if (!Equals(ViewChanged, value))
@@ -618,7 +618,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                             InvokeEventCallback(ViewChanged, value);
                         }
 
-                        ViewChanged = (EventCallback<SMTC.CalendarView>)value;
+                        ViewChanged = CastParameter<EventCallback<SMTC.CalendarView>>(value, name);
                         NativeControl.ViewChanged -= NativeControlViewChanged;
                         NativeControl.ViewChanged += NativeControlViewChanged;
                     }
@@ -628,7 +628,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlSelectionChanged(object sender, SMTC.CalendarSelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTC.CalendarSelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTC.CalendarSelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -638,7 +638,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlTapped(object sender, SMTC.CalendarTappedEventArgs e) => InvokeEventCallback(OnTapped, e);
 
-                        OnTapped = (EventCallback<SMTC.CalendarTappedEventArgs>)value;
+                        OnTapped = CastParameter<EventCallback<SMTC.CalendarTappedEventArgs>>(value, name);
                         NativeControl.Tapped -= NativeControlTapped;
                         NativeControl.Tapped += NativeControlTapped;
                     }
@@ -648,7 +648,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlDoubleTapped(object sender, SMTC.CalendarDoubleTappedEventArgs e) => InvokeEventCallback(OnDoubleTapped, e);
 
-                        OnDoubleTapped = (EventCallback<SMTC.CalendarDoubleTappedEventArgs>)value;
+                        OnDoubleTapped = CastParameter<EventCallback<SMTC.CalendarDoubleTappedEventArgs>>(value, name);
                         NativeControl.DoubleTapped -= NativeControlDoubleTapped;
                         NativeControl.DoubleTapped += NativeControlDoubleTapped;
                     }
@@ -658,7 +658,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlLongPressed(object sender, SMTC.CalendarLongPressedEventArgs e) => InvokeEventCallback(OnLongPressed, e);
 
-                        OnLongPressed = (EventCallback<SMTC.CalendarLongPressedEventArgs>)value;
+                        OnLongPressed = CastParameter<EventCallback<SMTC.CalendarLongPressedEventArgs>>(value, name);
                         NativeControl.LongPressed -= NativeControlLongPressed;
                         NativeControl.LongPressed += NativeControlLongPressed;
                     }
@@ -668,7 +668,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlActionButtonClicked(object sender, SMTC.CalendarSubmittedEventArgs e) => InvokeEventCallback(OnActionButtonClicked, e);
 
-                        OnActionButtonClicked = (EventCallback<SMTC.CalendarSubmittedEventArgs>)value;
+                        OnActionButtonClicked = CastParameter<EventCallback<SMTC.CalendarSubmittedEventArgs>>(value, name);
                         NativeControl.ActionButtonClicked -= NativeControlActionButtonClicked;
                         NativeControl.ActionButtonClicked += NativeControlActionButtonClicked;
                     }
@@ -678,7 +678,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlActionButtonCanceled(object sender, EventArgs e) => InvokeEventCallback(OnActionButtonCanceled);
 
-                        OnActionButtonCanceled = (EventCallback)value;
+                        OnActionButtonCanceled = CastParameter<EventCallback>(value, name);
                         NativeControl.ActionButtonCanceled -= NativeControlActionButtonCanceled;
                         NativeControl.ActionButtonCanceled += NativeControlActionButtonCanceled;
                     }
@@ -688,7 +688,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlCalendarPopupOpened(object sender, EventArgs e) => InvokeEventCallback(OnCalendarPopupOpened);
 
-                        OnCalendarPopupOpened = (EventCallback)value;
+                        OnCalendarPopupOpened = CastParameter<EventCallback>(value, name);
                         NativeControl.CalendarPopupOpened -= NativeControlCalendarPopupOpened;
                         NativeControl.CalendarPopupOpened += NativeControlCalendarPopupOpened;
                     }
@@ -698,7 +698,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlCalendarPopupClosed(object sender, EventArgs e) => InvokeEventCallback(OnCalendarPopupClosed);
 
-                        OnCalendarPopupClosed = (EventCallback)value;
+                        OnCalendarPopupClosed = CastParameter<EventCallback>(value, name);
                         NativeControl.CalendarPopupClosed -= NativeControlCalendarPopupClosed;
                         NativeControl.CalendarPopupClosed += NativeControlCalendarPopupClosed;
                     }
@@ -708,7 +708,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlCalendarPopupClosing(object sender, CancelEventArgs e) => InvokeEventCallback(OnCalendarPopupClosing, e);
 
-                        OnCalendarPopupClosing = (EventCallback<CancelEventArgs>)value;
+                        OnCalendarPopupClosing = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.CalendarPopupClosing -= NativeControlCalendarPopupClosing;
                         NativeControl.CalendarPopupClosing += NativeControlCalendarPopupClosing;
                     }
@@ -718,7 +718,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         void NativeControlCalendarPopupOpening(object sender, CancelEventArgs e) => InvokeEventCallback(OnCalendarPopupOpening, e);
 
-                        OnCalendarPopupOpening = (EventCallback<CancelEventArgs>)value;
+                        OnCalendarPopupOpening = CastParameter<EventCallback<CancelEventArgs>>(value, name);
                         NativeControl.CalendarPopupOpening -= NativeControlCalendarPopupOpening;
                         NativeControl.CalendarPopupOpening += NativeControlCalendarPopupOpening;
                     }

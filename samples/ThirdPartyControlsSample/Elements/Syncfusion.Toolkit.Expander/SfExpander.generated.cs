@@ -128,60 +128,60 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Expander
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTE.SfExpander.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnimationEasing):
                     if (!Equals(AnimationEasing, value))
                     {
-                        AnimationEasing = (SMTE.ExpanderAnimationEasing?)value;
+                        AnimationEasing = CastParameter<SMTE.ExpanderAnimationEasing?>(value, name);
                         NativeControl.AnimationEasing = AnimationEasing ?? (SMTE.ExpanderAnimationEasing)SMTE.SfExpander.AnimationEasingProperty.DefaultValue;
                     }
                     break;
                 case nameof(HeaderBackgroundColor):
                     if (!Equals(HeaderBackgroundColor, value))
                     {
-                        HeaderBackgroundColor = (Color)value;
+                        HeaderBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.HeaderBackground = HeaderBackgroundColor;
                     }
                     break;
                 case nameof(HeaderIconColor):
                     if (!Equals(HeaderIconColor, value))
                     {
-                        HeaderIconColor = (Color)value;
+                        HeaderIconColor = CastParameter<Color>(value, name);
                         NativeControl.HeaderIconColor = HeaderIconColor;
                     }
                     break;
                 case nameof(HeaderIconPosition):
                     if (!Equals(HeaderIconPosition, value))
                     {
-                        HeaderIconPosition = (SMTE.ExpanderIconPosition?)value;
+                        HeaderIconPosition = CastParameter<SMTE.ExpanderIconPosition?>(value, name);
                         NativeControl.HeaderIconPosition = HeaderIconPosition ?? (SMTE.ExpanderIconPosition)SMTE.SfExpander.HeaderIconPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsExpanded):
                     if (!Equals(IsExpanded, value))
                     {
-                        IsExpanded = (bool?)value;
+                        IsExpanded = CastParameter<bool?>(value, name);
                         NativeControl.IsExpanded = IsExpanded ?? (bool)SMTE.SfExpander.IsExpandedProperty.DefaultValue;
                     }
                     break;
                 case nameof(Content):
-                    Content = (RenderFragment)value;
+                    Content = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Header):
-                    Header = (RenderFragment)value;
+                    Header = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(HeaderBackground):
-                    HeaderBackground = (RenderFragment)value;
+                    HeaderBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnCollapsed):
                     if (!Equals(OnCollapsed, value))
                     {
                         void NativeControlCollapsed(object sender, SMTE.ExpandedAndCollapsedEventArgs e) => InvokeEventCallback(OnCollapsed, e);
 
-                        OnCollapsed = (EventCallback<SMTE.ExpandedAndCollapsedEventArgs>)value;
+                        OnCollapsed = CastParameter<EventCallback<SMTE.ExpandedAndCollapsedEventArgs>>(value, name);
                         NativeControl.Collapsed -= NativeControlCollapsed;
                         NativeControl.Collapsed += NativeControlCollapsed;
                     }
@@ -191,7 +191,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Expander
                     {
                         void NativeControlCollapsing(object sender, SMTE.ExpandingAndCollapsingEventArgs e) => InvokeEventCallback(OnCollapsing, e);
 
-                        OnCollapsing = (EventCallback<SMTE.ExpandingAndCollapsingEventArgs>)value;
+                        OnCollapsing = CastParameter<EventCallback<SMTE.ExpandingAndCollapsingEventArgs>>(value, name);
                         NativeControl.Collapsing -= NativeControlCollapsing;
                         NativeControl.Collapsing += NativeControlCollapsing;
                     }
@@ -206,7 +206,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Expander
                             InvokeEventCallback(IsExpandedChanged, value);
                         }
 
-                        IsExpandedChanged = (EventCallback<bool>)value;
+                        IsExpandedChanged = CastParameter<EventCallback<bool>>(value, name);
                         NativeControl.Expanded -= NativeControlExpanded;
                         NativeControl.Expanded += NativeControlExpanded;
                     }
@@ -216,7 +216,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Expander
                     {
                         void NativeControlExpanding(object sender, SMTE.ExpandingAndCollapsingEventArgs e) => InvokeEventCallback(OnExpanding, e);
 
-                        OnExpanding = (EventCallback<SMTE.ExpandingAndCollapsingEventArgs>)value;
+                        OnExpanding = CastParameter<EventCallback<SMTE.ExpandingAndCollapsingEventArgs>>(value, name);
                         NativeControl.Expanding -= NativeControlExpanding;
                         NativeControl.Expanding += NativeControlExpanding;
                     }

@@ -7,7 +7,7 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
-internal class SyncDataTemplateItemComponent<T> : ComponentBase
+internal class SyncDataTemplateItemComponent<T> : NativeControlComponentBase
 {
     private T _item;
     private bool _initialValueSet;
@@ -24,13 +24,13 @@ internal class SyncDataTemplateItemComponent<T> : ComponentBase
             switch (parValue.Name)
             {
                 case nameof(Template):
-                    Template = (RenderFragment<T>)parValue.Value;
+                    Template = CastParameter<RenderFragment<T>>(parValue.Value, parValue.Name);
                     break;
 
                 case nameof(InitialItem):
                     if (!_initialValueSet)
                     {
-                        InitialItem = (T)parValue.Value;
+                        InitialItem = CastParameter<T>(parValue.Value, parValue.Name);
                         _item = InitialItem;
                         _initialValueSet = true;
                     }

@@ -56,19 +56,19 @@ namespace BlazorBindings.Maui.Elements
                 case nameof(HideSoftInputOnTapped):
                     if (!Equals(HideSoftInputOnTapped, value))
                     {
-                        HideSoftInputOnTapped = (bool?)value;
+                        HideSoftInputOnTapped = CastParameter<bool?>(value, name);
                         NativeControl.HideSoftInputOnTapped = HideSoftInputOnTapped ?? (bool)MC.ContentPage.HideSoftInputOnTappedProperty.DefaultValue;
                     }
                     break;
                 case nameof(SafeAreaEdges):
                     if (!Equals(SafeAreaEdges, value))
                     {
-                        SafeAreaEdges = (SafeAreaEdges?)value;
+                        SafeAreaEdges = CastParameter<SafeAreaEdges?>(value, name);
                         NativeControl.SafeAreaEdges = SafeAreaEdges ?? (SafeAreaEdges)MC.ContentPage.SafeAreaEdgesProperty.DefaultValue;
                     }
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:

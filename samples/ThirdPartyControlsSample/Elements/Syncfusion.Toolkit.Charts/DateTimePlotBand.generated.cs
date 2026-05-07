@@ -74,35 +74,35 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(End):
                     if (!Equals(End, value))
                     {
-                        End = (Nullable<DateTime>)value;
+                        End = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.End = End;
                     }
                     break;
                 case nameof(RepeatEveryType):
                     if (!Equals(RepeatEveryType, value))
                     {
-                        RepeatEveryType = (SMTC.DateTimeIntervalType?)value;
+                        RepeatEveryType = CastParameter<SMTC.DateTimeIntervalType?>(value, name);
                         NativeControl.RepeatEveryType = RepeatEveryType ?? (SMTC.DateTimeIntervalType)SMTC.DateTimePlotBand.RepeatEveryTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(RepeatUntil):
                     if (!Equals(RepeatUntil, value))
                     {
-                        RepeatUntil = (Nullable<DateTime>)value;
+                        RepeatUntil = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.RepeatUntil = RepeatUntil;
                     }
                     break;
                 case nameof(SizeType):
                     if (!Equals(SizeType, value))
                     {
-                        SizeType = (SMTC.DateTimeIntervalType?)value;
+                        SizeType = CastParameter<SMTC.DateTimeIntervalType?>(value, name);
                         NativeControl.SizeType = SizeType ?? (SMTC.DateTimeIntervalType)SMTC.DateTimePlotBand.SizeTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Start):
                     if (!Equals(Start, value))
                     {
-                        Start = (Nullable<DateTime>)value;
+                        Start = CastParameter<Nullable<DateTime>>(value, name);
                         NativeControl.Start = Start;
                     }
                     break;

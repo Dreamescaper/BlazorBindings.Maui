@@ -222,154 +222,154 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
                 case nameof(AllowedState):
                     if (!Equals(AllowedState, value))
                     {
-                        AllowedState = (SMTB.BottomSheetAllowedState?)value;
+                        AllowedState = CastParameter<SMTB.BottomSheetAllowedState?>(value, name);
                         NativeControl.AllowedState = AllowedState ?? (SMTB.BottomSheetAllowedState)SMTB.SfBottomSheet.AllowedStateProperty.DefaultValue;
                     }
                     break;
                 case nameof(AnimationDuration):
                     if (!Equals(AnimationDuration, value))
                     {
-                        AnimationDuration = (double?)value;
+                        AnimationDuration = CastParameter<double?>(value, name);
                         NativeControl.AnimationDuration = AnimationDuration ?? (double)SMTB.SfBottomSheet.AnimationDurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(BottomSheetContentWidth):
                     if (!Equals(BottomSheetContentWidth, value))
                     {
-                        BottomSheetContentWidth = (double?)value;
+                        BottomSheetContentWidth = CastParameter<double?>(value, name);
                         NativeControl.BottomSheetContentWidth = BottomSheetContentWidth ?? (double)SMTB.SfBottomSheet.BottomSheetContentWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(CollapsedHeight):
                     if (!Equals(CollapsedHeight, value))
                     {
-                        CollapsedHeight = (double?)value;
+                        CollapsedHeight = CastParameter<double?>(value, name);
                         NativeControl.CollapsedHeight = CollapsedHeight ?? (double)SMTB.SfBottomSheet.CollapsedHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(CollapseOnOverlayTap):
                     if (!Equals(CollapseOnOverlayTap, value))
                     {
-                        CollapseOnOverlayTap = (bool?)value;
+                        CollapseOnOverlayTap = CastParameter<bool?>(value, name);
                         NativeControl.CollapseOnOverlayTap = CollapseOnOverlayTap ?? (bool)SMTB.SfBottomSheet.CollapseOnOverlayTapProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContentPadding):
                     if (!Equals(ContentPadding, value))
                     {
-                        ContentPadding = (Thickness?)value;
+                        ContentPadding = CastParameter<Thickness?>(value, name);
                         NativeControl.ContentPadding = ContentPadding ?? (Thickness)SMTB.SfBottomSheet.ContentPaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ContentWidthMode):
                     if (!Equals(ContentWidthMode, value))
                     {
-                        ContentWidthMode = (SMTB.BottomSheetContentWidthMode?)value;
+                        ContentWidthMode = CastParameter<SMTB.BottomSheetContentWidthMode?>(value, name);
                         NativeControl.ContentWidthMode = ContentWidthMode ?? (SMTB.BottomSheetContentWidthMode)SMTB.SfBottomSheet.ContentWidthModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(CornerRadius):
                     if (!Equals(CornerRadius, value))
                     {
-                        CornerRadius = (CornerRadius?)value;
+                        CornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)SMTB.SfBottomSheet.CornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableSwiping):
                     if (!Equals(EnableSwiping, value))
                     {
-                        EnableSwiping = (bool?)value;
+                        EnableSwiping = CastParameter<bool?>(value, name);
                         NativeControl.EnableSwiping = EnableSwiping ?? (bool)SMTB.SfBottomSheet.EnableSwipingProperty.DefaultValue;
                     }
                     break;
                 case nameof(FullExpandedRatio):
                     if (!Equals(FullExpandedRatio, value))
                     {
-                        FullExpandedRatio = (double?)value;
+                        FullExpandedRatio = CastParameter<double?>(value, name);
                         NativeControl.FullExpandedRatio = FullExpandedRatio ?? (double)SMTB.SfBottomSheet.FullExpandedRatioProperty.DefaultValue;
                     }
                     break;
                 case nameof(GrabberAreaHeight):
                     if (!Equals(GrabberAreaHeight, value))
                     {
-                        GrabberAreaHeight = (double?)value;
+                        GrabberAreaHeight = CastParameter<double?>(value, name);
                         NativeControl.GrabberAreaHeight = GrabberAreaHeight ?? (double)SMTB.SfBottomSheet.GrabberAreaHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(GrabberBackgroundColor):
                     if (!Equals(GrabberBackgroundColor, value))
                     {
-                        GrabberBackgroundColor = (Color)value;
+                        GrabberBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.GrabberBackground = GrabberBackgroundColor;
                     }
                     break;
                 case nameof(GrabberCornerRadius):
                     if (!Equals(GrabberCornerRadius, value))
                     {
-                        GrabberCornerRadius = (CornerRadius?)value;
+                        GrabberCornerRadius = CastParameter<CornerRadius?>(value, name);
                         NativeControl.GrabberCornerRadius = GrabberCornerRadius ?? (CornerRadius)SMTB.SfBottomSheet.GrabberCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(GrabberHeight):
                     if (!Equals(GrabberHeight, value))
                     {
-                        GrabberHeight = (double?)value;
+                        GrabberHeight = CastParameter<double?>(value, name);
                         NativeControl.GrabberHeight = GrabberHeight ?? (double)SMTB.SfBottomSheet.GrabberHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(GrabberWidth):
                     if (!Equals(GrabberWidth, value))
                     {
-                        GrabberWidth = (double?)value;
+                        GrabberWidth = CastParameter<double?>(value, name);
                         NativeControl.GrabberWidth = GrabberWidth ?? (double)SMTB.SfBottomSheet.GrabberWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(HalfExpandedRatio):
                     if (!Equals(HalfExpandedRatio, value))
                     {
-                        HalfExpandedRatio = (double?)value;
+                        HalfExpandedRatio = CastParameter<double?>(value, name);
                         NativeControl.HalfExpandedRatio = HalfExpandedRatio ?? (double)SMTB.SfBottomSheet.HalfExpandedRatioProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsModal):
                     if (!Equals(IsModal, value))
                     {
-                        IsModal = (bool?)value;
+                        IsModal = CastParameter<bool?>(value, name);
                         NativeControl.IsModal = IsModal ?? (bool)SMTB.SfBottomSheet.IsModalProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
-                        IsOpen = (bool?)value;
+                        IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)SMTB.SfBottomSheet.IsOpenProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShowGrabber):
                     if (!Equals(ShowGrabber, value))
                     {
-                        ShowGrabber = (bool?)value;
+                        ShowGrabber = CastParameter<bool?>(value, name);
                         NativeControl.ShowGrabber = ShowGrabber ?? (bool)SMTB.SfBottomSheet.ShowGrabberProperty.DefaultValue;
                     }
                     break;
                 case nameof(State):
                     if (!Equals(State, value))
                     {
-                        State = (SMTB.BottomSheetState?)value;
+                        State = CastParameter<SMTB.BottomSheetState?>(value, name);
                         NativeControl.State = State ?? (SMTB.BottomSheetState)SMTB.SfBottomSheet.StateProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
-                    Background = (RenderFragment)value;
+                    Background = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(BottomSheetContent):
-                    BottomSheetContent = (RenderFragment)value;
+                    BottomSheetContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(ChildContent):
-                    ChildContent = (RenderFragment)value;
+                    ChildContent = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(GrabberBackground):
-                    GrabberBackground = (RenderFragment)value;
+                    GrabberBackground = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(StateChanged):
                     if (!Equals(StateChanged, value))
@@ -381,7 +381,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
                             InvokeEventCallback(StateChanged, value);
                         }
 
-                        StateChanged = (EventCallback<SMTB.BottomSheetState>)value;
+                        StateChanged = CastParameter<EventCallback<SMTB.BottomSheetState>>(value, name);
                         NativeControl.StateChanged -= NativeControlStateChanged;
                         NativeControl.StateChanged += NativeControlStateChanged;
                     }

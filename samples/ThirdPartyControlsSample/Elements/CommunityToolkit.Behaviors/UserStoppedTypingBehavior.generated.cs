@@ -50,21 +50,21 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
                 case nameof(MinimumLengthThreshold):
                     if (!Equals(MinimumLengthThreshold, value))
                     {
-                        MinimumLengthThreshold = (int?)value;
+                        MinimumLengthThreshold = CastParameter<int?>(value, name);
                         NativeControl.MinimumLengthThreshold = MinimumLengthThreshold ?? (int)CMB.UserStoppedTypingBehavior.MinimumLengthThresholdProperty.DefaultValue;
                     }
                     break;
                 case nameof(ShouldDismissKeyboardAutomatically):
                     if (!Equals(ShouldDismissKeyboardAutomatically, value))
                     {
-                        ShouldDismissKeyboardAutomatically = (bool?)value;
+                        ShouldDismissKeyboardAutomatically = CastParameter<bool?>(value, name);
                         NativeControl.ShouldDismissKeyboardAutomatically = ShouldDismissKeyboardAutomatically ?? (bool)CMB.UserStoppedTypingBehavior.ShouldDismissKeyboardAutomaticallyProperty.DefaultValue;
                     }
                     break;
                 case nameof(StoppedTypingTimeThreshold):
                     if (!Equals(StoppedTypingTimeThreshold, value))
                     {
-                        StoppedTypingTimeThreshold = (int?)value;
+                        StoppedTypingTimeThreshold = CastParameter<int?>(value, name);
                         NativeControl.StoppedTypingTimeThreshold = StoppedTypingTimeThreshold ?? (int)CMB.UserStoppedTypingBehavior.StoppedTypingTimeThresholdProperty.DefaultValue;
                     }
                     break;

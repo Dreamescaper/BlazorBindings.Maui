@@ -71,231 +71,231 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                 case nameof(ActiveIndicatorColor):
                     if (!Equals(ActiveIndicatorColor, value))
                     {
-                        ActiveIndicatorColor = (Color)value;
+                        ActiveIndicatorColor = CastParameter<Color>(value, name);
                         NativeControl.ActiveIndicatorColor = ActiveIndicatorColor;
                     }
                     break;
                 case nameof(ActiveIndicatorHeight):
                     if (!Equals(ActiveIndicatorHeight, value))
                     {
-                        ActiveIndicatorHeight = (int?)value;
+                        ActiveIndicatorHeight = CastParameter<int?>(value, name);
                         NativeControl.ActiveIndicatorHeight = ActiveIndicatorHeight ?? (int)MCM.TextField.ActiveIndicatorHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ActiveIndicatorOpacity):
                     if (!Equals(ActiveIndicatorOpacity, value))
                     {
-                        ActiveIndicatorOpacity = (float?)value;
+                        ActiveIndicatorOpacity = CastParameter<float?>(value, name);
                         NativeControl.ActiveIndicatorOpacity = ActiveIndicatorOpacity ?? (float)MCM.TextField.ActiveIndicatorOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(BackgroundColour):
                     if (!Equals(BackgroundColour, value))
                     {
-                        BackgroundColour = (Color)value;
+                        BackgroundColour = CastParameter<Color>(value, name);
                         NativeControl.BackgroundColour = BackgroundColour;
                     }
                     break;
                 case nameof(CaretColor):
                     if (!Equals(CaretColor, value))
                     {
-                        CaretColor = (Color)value;
+                        CaretColor = CastParameter<Color>(value, name);
                         NativeControl.CaretColor = CaretColor;
                     }
                     break;
                 case nameof(CaretPosition):
                     if (!Equals(CaretPosition, value))
                     {
-                        CaretPosition = (int?)value;
+                        CaretPosition = CastParameter<int?>(value, name);
                         NativeControl.CaretPosition = CaretPosition ?? (int)MCM.TextField.CaretPositionProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontFamily):
                     if (!Equals(FontFamily, value))
                     {
-                        FontFamily = (string)value;
+                        FontFamily = CastParameter<string>(value, name);
                         NativeControl.FontFamily = FontFamily;
                     }
                     break;
                 case nameof(FontItalic):
                     if (!Equals(FontItalic, value))
                     {
-                        FontItalic = (bool?)value;
+                        FontItalic = CastParameter<bool?>(value, name);
                         NativeControl.FontItalic = FontItalic ?? (bool)MCM.TextField.FontItalicProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontSize):
                     if (!Equals(FontSize, value))
                     {
-                        FontSize = (float?)value;
+                        FontSize = CastParameter<float?>(value, name);
                         NativeControl.FontSize = FontSize ?? (float)MCM.TextField.FontSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontWeight):
                     if (!Equals(FontWeight, value))
                     {
-                        FontWeight = (int?)value;
+                        FontWeight = CastParameter<int?>(value, name);
                         NativeControl.FontWeight = FontWeight ?? (int)MCM.TextField.FontWeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ForegroundColor):
                     if (!Equals(ForegroundColor, value))
                     {
-                        ForegroundColor = (Color)value;
+                        ForegroundColor = CastParameter<Color>(value, name);
                         NativeControl.ForegroundColor = ForegroundColor;
                     }
                     break;
                 case nameof(IconData):
                     if (!Equals(IconData, value))
                     {
-                        IconData = (string)value;
+                        IconData = CastParameter<string>(value, name);
                         NativeControl.IconData = IconData;
                     }
                     break;
                 case nameof(IconKind):
                     if (!Equals(IconKind, value))
                     {
-                        IconKind = (global::IconPacks.Material.IconKind?)value;
+                        IconKind = CastParameter<global::IconPacks.Material.IconKind?>(value, name);
                         NativeControl.IconKind = IconKind ?? (global::IconPacks.Material.IconKind)MCM.TextField.IconKindProperty.DefaultValue;
                     }
                     break;
                 case nameof(IconSource):
                     if (!Equals(IconSource, value))
                     {
-                        IconSource = (global::SkiaSharp.SKPicture)value;
+                        IconSource = CastParameter<global::SkiaSharp.SKPicture>(value, name);
                         NativeControl.IconSource = IconSource;
                     }
                     break;
                 case nameof(InternalFocus):
                     if (!Equals(InternalFocus, value))
                     {
-                        InternalFocus = (bool?)value;
+                        InternalFocus = CastParameter<bool?>(value, name);
                         NativeControl.InternalFocus = InternalFocus ?? (bool)MCM.TextField.InternalFocusProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsError):
                     if (!Equals(IsError, value))
                     {
-                        IsError = (bool?)value;
+                        IsError = CastParameter<bool?>(value, name);
                         NativeControl.IsError = IsError ?? (bool)MCM.TextField.IsErrorProperty.DefaultValue;
                     }
                     break;
                 case nameof(IsOutline):
                     if (!Equals(IsOutline, value))
                     {
-                        IsOutline = (bool?)value;
+                        IsOutline = CastParameter<bool?>(value, name);
                         NativeControl.IsOutline = IsOutline ?? (bool)MCM.TextField.IsOutlineProperty.DefaultValue;
                     }
                     break;
                 case nameof(LabelText):
                     if (!Equals(LabelText, value))
                     {
-                        LabelText = (string)value;
+                        LabelText = CastParameter<string>(value, name);
                         NativeControl.LabelText = LabelText;
                     }
                     break;
                 case nameof(LabelTextColor):
                     if (!Equals(LabelTextColor, value))
                     {
-                        LabelTextColor = (Color)value;
+                        LabelTextColor = CastParameter<Color>(value, name);
                         NativeControl.LabelTextColor = LabelTextColor;
                     }
                     break;
                 case nameof(LabelTextOpacity):
                     if (!Equals(LabelTextOpacity, value))
                     {
-                        LabelTextOpacity = (float?)value;
+                        LabelTextOpacity = CastParameter<float?>(value, name);
                         NativeControl.LabelTextOpacity = LabelTextOpacity ?? (float)MCM.TextField.LabelTextOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(OutlineColor):
                     if (!Equals(OutlineColor, value))
                     {
-                        OutlineColor = (Color)value;
+                        OutlineColor = CastParameter<Color>(value, name);
                         NativeControl.OutlineColor = OutlineColor;
                     }
                     break;
                 case nameof(OutlineWidth):
                     if (!Equals(OutlineWidth, value))
                     {
-                        OutlineWidth = (int?)value;
+                        OutlineWidth = CastParameter<int?>(value, name);
                         NativeControl.OutlineWidth = OutlineWidth ?? (int)MCM.TextField.OutlineWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectionTextRange):
                     if (!Equals(SelectionTextRange, value))
                     {
-                        SelectionTextRange = (global::Topten.RichTextKit.TextRange?)value;
+                        SelectionTextRange = CastParameter<global::Topten.RichTextKit.TextRange?>(value, name);
                         NativeControl.SelectionTextRange = SelectionTextRange ?? (global::Topten.RichTextKit.TextRange)MCM.TextField.SelectionTextRangeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Shape):
                     if (!Equals(Shape, value))
                     {
-                        Shape = (MCM.Tokens.Shape?)value;
+                        Shape = CastParameter<MCM.Tokens.Shape?>(value, name);
                         NativeControl.Shape = Shape ?? (MCM.Tokens.Shape)MCM.TextField.ShapeProperty.DefaultValue;
                     }
                     break;
                 case nameof(StateLayerColor):
                     if (!Equals(StateLayerColor, value))
                     {
-                        StateLayerColor = (Color)value;
+                        StateLayerColor = CastParameter<Color>(value, name);
                         NativeControl.StateLayerColor = StateLayerColor;
                     }
                     break;
                 case nameof(SupportingText):
                     if (!Equals(SupportingText, value))
                     {
-                        SupportingText = (string)value;
+                        SupportingText = CastParameter<string>(value, name);
                         NativeControl.SupportingText = SupportingText;
                     }
                     break;
                 case nameof(SupportingTextColor):
                     if (!Equals(SupportingTextColor, value))
                     {
-                        SupportingTextColor = (Color)value;
+                        SupportingTextColor = CastParameter<Color>(value, name);
                         NativeControl.SupportingTextColor = SupportingTextColor;
                     }
                     break;
                 case nameof(SupportingTextOpacity):
                     if (!Equals(SupportingTextOpacity, value))
                     {
-                        SupportingTextOpacity = (float?)value;
+                        SupportingTextOpacity = CastParameter<float?>(value, name);
                         NativeControl.SupportingTextOpacity = SupportingTextOpacity ?? (float)MCM.TextField.SupportingTextOpacityProperty.DefaultValue;
                     }
                     break;
                 case nameof(Text):
                     if (!Equals(Text, value))
                     {
-                        Text = (string)value;
+                        Text = CastParameter<string>(value, name);
                         NativeControl.Text = Text;
                     }
                     break;
                 case nameof(TrailingIconColor):
                     if (!Equals(TrailingIconColor, value))
                     {
-                        TrailingIconColor = (Color)value;
+                        TrailingIconColor = CastParameter<Color>(value, name);
                         NativeControl.TrailingIconColor = TrailingIconColor;
                     }
                     break;
                 case nameof(TrailingIconData):
                     if (!Equals(TrailingIconData, value))
                     {
-                        TrailingIconData = (string)value;
+                        TrailingIconData = CastParameter<string>(value, name);
                         NativeControl.TrailingIconData = TrailingIconData;
                     }
                     break;
                 case nameof(TrailingIconKind):
                     if (!Equals(TrailingIconKind, value))
                     {
-                        TrailingIconKind = (global::IconPacks.Material.IconKind?)value;
+                        TrailingIconKind = CastParameter<global::IconPacks.Material.IconKind?>(value, name);
                         NativeControl.TrailingIconKind = TrailingIconKind ?? (global::IconPacks.Material.IconKind)MCM.TextField.TrailingIconKindProperty.DefaultValue;
                     }
                     break;
                 case nameof(TrailingIconSource):
                     if (!Equals(TrailingIconSource, value))
                     {
-                        TrailingIconSource = (global::SkiaSharp.SKPicture)value;
+                        TrailingIconSource = CastParameter<global::SkiaSharp.SKPicture>(value, name);
                         NativeControl.TrailingIconSource = TrailingIconSource;
                     }
                     break;
@@ -309,7 +309,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                             InvokeEventCallback(TextChanged, value);
                         }
 
-                        TextChanged = (EventCallback<string>)value;
+                        TextChanged = CastParameter<EventCallback<string>>(value, name);
                         NativeControl.TextChanged -= NativeControlTextChanged;
                         NativeControl.TextChanged += NativeControlTextChanged;
                     }
@@ -319,7 +319,7 @@ namespace BlazorBindings.Maui.Elements.Material.Components
                     {
                         void NativeControlTrailingIconClicked(object sender, global::SkiaSharp.Views.Maui.SKTouchEventArgs e) => InvokeEventCallback(OnTrailingIconClicked, e);
 
-                        OnTrailingIconClicked = (EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>)value;
+                        OnTrailingIconClicked = CastParameter<EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs>>(value, name);
                         NativeControl.TrailingIconClicked -= NativeControlTrailingIconClicked;
                         NativeControl.TrailingIconClicked += NativeControlTrailingIconClicked;
                     }

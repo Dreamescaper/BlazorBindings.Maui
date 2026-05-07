@@ -179,127 +179,127 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
                 case nameof(AllowLoadMore):
                     if (!Equals(AllowLoadMore, value))
                     {
-                        AllowLoadMore = (bool?)value;
+                        AllowLoadMore = CastParameter<bool?>(value, name);
                         NativeControl.AllowLoadMore = AllowLoadMore ?? (bool)SMTC.SfCarousel.AllowLoadMoreProperty.DefaultValue;
                     }
                     break;
                 case nameof(Duration):
                     if (!Equals(Duration, value))
                     {
-                        Duration = (int?)value;
+                        Duration = CastParameter<int?>(value, name);
                         NativeControl.Duration = Duration ?? (int)SMTC.SfCarousel.DurationProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableInteraction):
                     if (!Equals(EnableInteraction, value))
                     {
-                        EnableInteraction = (bool?)value;
+                        EnableInteraction = CastParameter<bool?>(value, name);
                         NativeControl.EnableInteraction = EnableInteraction ?? (bool)SMTC.SfCarousel.EnableInteractionProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableVirtualization):
                     if (!Equals(EnableVirtualization, value))
                     {
-                        EnableVirtualization = (bool?)value;
+                        EnableVirtualization = CastParameter<bool?>(value, name);
                         NativeControl.EnableVirtualization = EnableVirtualization ?? (bool)SMTC.SfCarousel.EnableVirtualizationProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemHeight):
                     if (!Equals(ItemHeight, value))
                     {
-                        ItemHeight = (int?)value;
+                        ItemHeight = CastParameter<int?>(value, name);
                         NativeControl.ItemHeight = ItemHeight ?? (int)SMTC.SfCarousel.ItemHeightProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemSpacing):
                     if (!Equals(ItemSpacing, value))
                     {
-                        ItemSpacing = (int?)value;
+                        ItemSpacing = CastParameter<int?>(value, name);
                         NativeControl.ItemSpacing = ItemSpacing ?? (int)SMTC.SfCarousel.ItemSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
                     if (!Equals(ItemsSource, value))
                     {
-                        ItemsSource = (IEnumerable<object>)value;
+                        ItemsSource = CastParameter<IEnumerable<object>>(value, name);
                         NativeControl.ItemsSource = ItemsSource;
                     }
                     break;
                 case nameof(ItemWidth):
                     if (!Equals(ItemWidth, value))
                     {
-                        ItemWidth = (int?)value;
+                        ItemWidth = CastParameter<int?>(value, name);
                         NativeControl.ItemWidth = ItemWidth ?? (int)SMTC.SfCarousel.ItemWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(LoadMoreItemsCount):
                     if (!Equals(LoadMoreItemsCount, value))
                     {
-                        LoadMoreItemsCount = (int?)value;
+                        LoadMoreItemsCount = CastParameter<int?>(value, name);
                         NativeControl.LoadMoreItemsCount = LoadMoreItemsCount ?? (int)SMTC.SfCarousel.LoadMoreItemsCountProperty.DefaultValue;
                     }
                     break;
                 case nameof(Offset):
                     if (!Equals(Offset, value))
                     {
-                        Offset = (float?)value;
+                        Offset = CastParameter<float?>(value, name);
                         NativeControl.Offset = Offset ?? (float)SMTC.SfCarousel.OffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(RotationAngle):
                     if (!Equals(RotationAngle, value))
                     {
-                        RotationAngle = (int?)value;
+                        RotationAngle = CastParameter<int?>(value, name);
                         NativeControl.RotationAngle = RotationAngle ?? (int)SMTC.SfCarousel.RotationAngleProperty.DefaultValue;
                     }
                     break;
                 case nameof(ScaleOffset):
                     if (!Equals(ScaleOffset, value))
                     {
-                        ScaleOffset = (float?)value;
+                        ScaleOffset = CastParameter<float?>(value, name);
                         NativeControl.ScaleOffset = ScaleOffset ?? (float)SMTC.SfCarousel.ScaleOffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedIndex):
                     if (!Equals(SelectedIndex, value))
                     {
-                        SelectedIndex = (int?)value;
+                        SelectedIndex = CastParameter<int?>(value, name);
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)SMTC.SfCarousel.SelectedIndexProperty.DefaultValue;
                     }
                     break;
                 case nameof(SelectedItemOffset):
                     if (!Equals(SelectedItemOffset, value))
                     {
-                        SelectedItemOffset = (int?)value;
+                        SelectedItemOffset = CastParameter<int?>(value, name);
                         NativeControl.SelectedItemOffset = SelectedItemOffset ?? (int)SMTC.SfCarousel.SelectedItemOffsetProperty.DefaultValue;
                     }
                     break;
                 case nameof(SwipeMovementMode):
                     if (!Equals(SwipeMovementMode, value))
                     {
-                        SwipeMovementMode = (SMTC.SwipeMovementMode?)value;
+                        SwipeMovementMode = CastParameter<SMTC.SwipeMovementMode?>(value, name);
                         NativeControl.SwipeMovementMode = SwipeMovementMode ?? (SMTC.SwipeMovementMode)SMTC.SfCarousel.SwipeMovementModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ViewMode):
                     if (!Equals(ViewMode, value))
                     {
-                        ViewMode = (SMTC.ViewMode?)value;
+                        ViewMode = CastParameter<SMTC.ViewMode?>(value, name);
                         NativeControl.ViewMode = ViewMode ?? (SMTC.ViewMode)SMTC.SfCarousel.ViewModeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemTemplate):
-                    ItemTemplate = (RenderFragment<T>)value;
+                    ItemTemplate = CastParameter<RenderFragment<T>>(value, name);
                     break;
                 case nameof(LoadMoreView):
-                    LoadMoreView = (RenderFragment)value;
+                    LoadMoreView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnSelectionChanged):
                     if (!Equals(OnSelectionChanged, value))
                     {
                         void NativeControlSelectionChanged(object sender, SMTC.SelectionChangedEventArgs e) => InvokeEventCallback(OnSelectionChanged, e);
 
-                        OnSelectionChanged = (EventCallback<SMTC.SelectionChangedEventArgs>)value;
+                        OnSelectionChanged = CastParameter<EventCallback<SMTC.SelectionChangedEventArgs>>(value, name);
                         NativeControl.SelectionChanged -= NativeControlSelectionChanged;
                         NativeControl.SelectionChanged += NativeControlSelectionChanged;
                     }
@@ -309,7 +309,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
                     {
                         void NativeControlSwipeStarted(object sender, SMTC.SwipeStartedEventArgs e) => InvokeEventCallback(OnSwipeStarted, e);
 
-                        OnSwipeStarted = (EventCallback<SMTC.SwipeStartedEventArgs>)value;
+                        OnSwipeStarted = CastParameter<EventCallback<SMTC.SwipeStartedEventArgs>>(value, name);
                         NativeControl.SwipeStarted -= NativeControlSwipeStarted;
                         NativeControl.SwipeStarted += NativeControlSwipeStarted;
                     }
@@ -319,7 +319,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Carousel
                     {
                         void NativeControlSwipeEnded(object sender, EventArgs e) => InvokeEventCallback(OnSwipeEnded);
 
-                        OnSwipeEnded = (EventCallback)value;
+                        OnSwipeEnded = CastParameter<EventCallback>(value, name);
                         NativeControl.SwipeEnded -= NativeControlSwipeEnded;
                         NativeControl.SwipeEnded += NativeControlSwipeEnded;
                     }

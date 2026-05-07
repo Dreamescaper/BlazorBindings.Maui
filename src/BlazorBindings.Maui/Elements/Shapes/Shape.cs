@@ -14,8 +14,8 @@ public abstract partial class Shape : BlazorBindings.Maui.Elements.View
             case nameof(StrokeDashArray):
                 if (!Equals(StrokeDashArray, value))
                 {
-                    NativeControl.StrokeDashArray = AttributeHelper.GetDoubleCollection((string)value);
-                    StrokeDashArray = (string)value;
+                    StrokeDashArray = CastParameter<string>(value, name);
+                    NativeControl.StrokeDashArray = AttributeHelper.GetDoubleCollection(StrokeDashArray);
                 }
                 return true;
             default:
