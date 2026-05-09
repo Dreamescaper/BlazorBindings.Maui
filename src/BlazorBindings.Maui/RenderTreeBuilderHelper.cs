@@ -33,8 +33,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<ContentPropertyComponent<TControl>>(0);
-            builder.AddAttribute(1, nameof(ContentPropertyComponent<TControl>.ChildContent), content);
-            builder.AddAttribute(2, nameof(ContentPropertyComponent<TControl>.SetPropertyAction), setPropertyAction);
+            builder.AddAttribute(1, nameof(ContentPropertyComponent<>.ChildContent), content);
+            builder.AddAttribute(2, nameof(ContentPropertyComponent<>.SetPropertyAction), setPropertyAction);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -64,8 +64,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<ListContentPropertyComponent<TControl, TItem>>(0);
-            builder.AddAttribute(1, nameof(ListContentPropertyComponent<TControl, TItem>.ChildContent), content);
-            builder.AddAttribute(2, nameof(ListContentPropertyComponent<TControl, TItem>.ListPropertyAccessor), listPropertyAccessor);
+            builder.AddAttribute(1, nameof(ListContentPropertyComponent<,>.ChildContent), content);
+            builder.AddAttribute(2, nameof(ListContentPropertyComponent<,>.ListPropertyAccessor), listPropertyAccessor);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -89,13 +89,35 @@ public static class RenderTreeBuilderHelper
         RenderFragment<TItem> template,
         Action<TControl, MC.DataTemplate> setDataTemplateAction)
     {
+        AddDataTemplateProperty<TControl, TItem, MC.ContentView>(builder, sequence, template, setDataTemplateAction);
+    }
+
+    /// <summary>
+    /// Adds a typed data-template property to the render tree by wrapping <paramref name="template"/> in a
+    /// <see cref="MC.DataTemplate"/> and passing it to <paramref name="setDataTemplateAction"/>.
+    /// Each item of type <typeparamref name="TItem"/> is rendered using the supplied <see cref="RenderFragment{TItem}"/>.
+    /// </summary>
+    /// <typeparam name="TControl">The MAUI control type that owns the data-template property.</typeparam>
+    /// <typeparam name="TItem">The type of the data item passed to the template.</typeparam>
+    /// <typeparam name="TTemplateRoot">Due to async nature, BlazorBinding require wrapper control for data template. This type parameter allows to set type of this wrapper control.</typeparam>
+    /// <param name="builder">The <see cref="RenderTreeBuilder"/> to write to.</param>
+    /// <param name="sequence">An integer that represents the position of the instruction in the source code.</param>
+    /// <param name="template">The typed <see cref="RenderFragment{TItem}"/> used to render each item. Nothing is rendered when <see langword="null"/>.</param>
+    /// <param name="setDataTemplateAction">A callback invoked with the owning control and the constructed <see cref="MC.DataTemplate"/>.</param>
+    public static void AddDataTemplateProperty<TControl, TItem, TTemplateRoot>(
+        RenderTreeBuilder builder,
+        int sequence,
+        RenderFragment<TItem> template,
+        Action<TControl, MC.DataTemplate> setDataTemplateAction)
+        where TTemplateRoot : MC.ContentView, new()
+    {
         if (template != null)
         {
             builder.OpenRegion(sequence);
 
-            builder.OpenComponent<DataTemplateItemsComponent<TControl, TItem>>(0);
-            builder.AddAttribute(1, nameof(DataTemplateItemsComponent<TControl, TItem>.SetDataTemplateAction), setDataTemplateAction);
-            builder.AddAttribute(2, nameof(DataTemplateItemsComponent<TControl, TItem>.Template), template);
+            builder.OpenComponent<DataTemplateItemsComponent<TControl, TItem, TTemplateRoot>>(0);
+            builder.AddAttribute(1, nameof(DataTemplateItemsComponent<,,>.SetDataTemplateAction), setDataTemplateAction);
+            builder.AddAttribute(2, nameof(DataTemplateItemsComponent<,,>.Template), template);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -123,8 +145,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<DataTemplateSelectorComponent<TControl, TItem>>(0);
-            builder.AddAttribute(1, nameof(DataTemplateSelectorComponent<TControl, TItem>.SetDataTemplateSelectorAction), setDataTemplateSelectorAction);
-            builder.AddAttribute(2, nameof(DataTemplateSelectorComponent<TControl, TItem>.TemplateSelector), template);
+            builder.AddAttribute(1, nameof(DataTemplateSelectorComponent<,>.SetDataTemplateSelectorAction), setDataTemplateSelectorAction);
+            builder.AddAttribute(2, nameof(DataTemplateSelectorComponent<,>.TemplateSelector), template);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -154,8 +176,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<ControlTemplateItemsComponent<T>>(0);
-            builder.AddAttribute(1, nameof(ControlTemplateItemsComponent<T>.SetDataTemplateAction), setDataTemplateAction);
-            builder.AddAttribute(2, nameof(ControlTemplateItemsComponent<T>.Template), template);
+            builder.AddAttribute(1, nameof(ControlTemplateItemsComponent<>.SetDataTemplateAction), setDataTemplateAction);
+            builder.AddAttribute(2, nameof(ControlTemplateItemsComponent<>.Template), template);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -184,8 +206,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<ControlTemplateItemsComponent<T>>(0);
-            builder.AddAttribute(1, nameof(ControlTemplateItemsComponent<T>.SetControlTemplateAction), setControlTemplateAction);
-            builder.AddAttribute(2, nameof(ControlTemplateItemsComponent<T>.Template), template);
+            builder.AddAttribute(1, nameof(ControlTemplateItemsComponent<>.SetControlTemplateAction), setControlTemplateAction);
+            builder.AddAttribute(2, nameof(ControlTemplateItemsComponent<>.Template), template);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -215,8 +237,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<SyncDataTemplateItemsComponent<TControl, TItem>>(0);
-            builder.AddAttribute(1, nameof(SyncDataTemplateItemsComponent<TControl, TItem>.SetDataTemplateAction), setDataTemplateAction);
-            builder.AddAttribute(2, nameof(SyncDataTemplateItemsComponent<TControl, TItem>.Template), template);
+            builder.AddAttribute(1, nameof(SyncDataTemplateItemsComponent<,>.SetDataTemplateAction), setDataTemplateAction);
+            builder.AddAttribute(2, nameof(SyncDataTemplateItemsComponent<,>.Template), template);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -246,8 +268,8 @@ public static class RenderTreeBuilderHelper
             builder.OpenRegion(sequence);
 
             builder.OpenComponent<SyncControlTemplateItemsComponent<T>>(0);
-            builder.AddAttribute(1, nameof(SyncControlTemplateItemsComponent<T>.SetDataTemplateAction), setDataTemplateAction);
-            builder.AddAttribute(2, nameof(SyncControlTemplateItemsComponent<T>.Template), template);
+            builder.AddAttribute(1, nameof(SyncControlTemplateItemsComponent<>.SetDataTemplateAction), setDataTemplateAction);
+            builder.AddAttribute(2, nameof(SyncControlTemplateItemsComponent<>.Template), template);
             builder.CloseComponent();
 
             builder.CloseRegion();
@@ -281,11 +303,11 @@ public static class RenderTreeBuilderHelper
         builder.OpenRegion(sequence);
 
         builder.OpenComponent<ItemsSourceComponent<TControl, TItem>>(0);
-        builder.AddAttribute(1, nameof(ItemsSourceComponent<TControl, TItem>.Items), items);
-        builder.AddAttribute(2, nameof(ItemsSourceComponent<TControl, TItem>.CollectionSetter), collectionSetter);
+        builder.AddAttribute(1, nameof(ItemsSourceComponent<,>.Items), items);
+        builder.AddAttribute(2, nameof(ItemsSourceComponent<,>.CollectionSetter), collectionSetter);
 
         if (keySelector != null)
-            builder.AddAttribute(3, nameof(ItemsSourceComponent<TControl, TItem>.KeySelector), keySelector);
+            builder.AddAttribute(3, nameof(ItemsSourceComponent<,>.KeySelector), keySelector);
 
         builder.CloseComponent();
 

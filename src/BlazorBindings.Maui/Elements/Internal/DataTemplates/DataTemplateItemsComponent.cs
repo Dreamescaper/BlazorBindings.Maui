@@ -5,7 +5,9 @@ using MC = Microsoft.Maui.Controls;
 
 namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
-internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
+internal class DataTemplateItemsComponent<TControl, TItem, TTemplateRoot>
+    : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
+    where TTemplateRoot : MC.ContentView, new()
 {
     protected override RenderFragment GetChildContent() => builder =>
     {
@@ -29,11 +31,11 @@ internal class DataTemplateItemsComponent<TControl, TItem> : NativeControlCompon
     [Parameter] public Action<TControl, MC.DataTemplate> SetDataTemplateAction { get; set; }
     [Parameter] public RenderFragment<TItem> Template { get; set; }
 
-    private readonly List<MC.ContentView> _itemRoots = [];
+    private readonly List<TTemplateRoot> _itemRoots = [];
 
     public MC.View AddTemplateRoot()
     {
-        var templateRoot = new MC.ContentView();
+        var templateRoot = new TTemplateRoot();
         _itemRoots.Add(templateRoot);
         StateHasChanged();
         return templateRoot;
