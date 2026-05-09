@@ -52,20 +52,8 @@ public abstract class NativeComponentRenderer
         {
             return await Dispatcher.InvokeAsync(async () =>
             {
-                var component = InstantiateComponent(componentType);
-                var componentId = AssignRootComponentId(component);
-
-                _rootComponents.Add((componentId, component));
-
-                var rootAdapter = new NativeComponentAdapter(this, null, knownTargetElement: parent)
-                {
-                    Name = $"RootAdapter attached to {parent.GetType().FullName}",
-                };
-
-                _componentIdToAdapter[componentId] = rootAdapter;
-
-                var parameterView = parameters?.Count > 0 ? ParameterView.FromDictionary(parameters) : ParameterView.Empty;
-                await RenderRootComponentAsync(componentId, parameterView);
+                var (component, renderTask) = StartRenderingComponent(componentType, parent, parameters);
+                await renderTask;
                 return component;
             });
         }
@@ -82,8 +70,57 @@ public abstract class NativeComponentRenderer
     /// </summary>
     public void RemoveRootComponent(IComponent component)
     {
-        var componentId = _rootComponents.LastOrDefault(c => c.Component == component).Id;
-        RemoveRootComponent(componentId);
+        RemoveRootComponent(GetRootComponentId(component));
+    }
+
+    internal (IComponent Component, Task RenderTask) StartRenderingComponent(
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
+        IElementHandler parent,
+        Dictionary<string, object> parameters = null)
+    {
+        Dispatcher.AssertAccess();
+
+        var component = InstantiateComponent(componentType);
+        var componentId = AssignRootComponentId(component);
+
+        _rootComponents.Add((componentId, component));
+
+        var rootAdapter = new NativeComponentAdapter(this, null, knownTargetElement: parent)
+        {
+            Name = $"RootAdapter attached to {parent.GetType().FullName}",
+        };
+
+        _componentIdToAdapter[componentId] = rootAdapter;
+
+        var parameterView = parameters?.Count > 0 ? ParameterView.FromDictionary(parameters) : ParameterView.Empty;
+        var renderTask = RenderRootComponentAsync(componentId, parameterView);
+
+        return (component, renderTask);
+    }
+
+    internal Task UpdateRootComponent(
+        IComponent component,
+        Dictionary<string, object> parameters = null)
+    {
+        return Dispatcher.InvokeAsync(() =>
+        {
+            var componentId = GetRootComponentId(component);
+            var parameterView = parameters?.Count > 0 ? ParameterView.FromDictionary(parameters) : ParameterView.Empty;
+            return RenderRootComponentAsync(componentId, parameterView);
+        });
+    }
+
+    private int GetRootComponentId(IComponent component)
+    {
+        for (var i = _rootComponents.Count - 1; i >= 0; i--)
+        {
+            if (ReferenceEquals(_rootComponents[i].Component, component))
+            {
+                return _rootComponents[i].Id;
+            }
+        }
+
+        throw new InvalidOperationException("The specified component is not a root component.");
     }
 
     protected override Task UpdateDisplayAsync(in RenderBatch renderBatch)
