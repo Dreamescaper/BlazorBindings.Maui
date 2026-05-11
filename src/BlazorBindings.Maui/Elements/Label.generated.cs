@@ -26,6 +26,12 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the character spacing for the label text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the spacing between characters.
+        /// </value>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
         /// Gets a value that indicates whether the font for the label is bold, italic, or neither.
@@ -45,7 +51,7 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
         /// <summary>
-        /// Gets or sets the LineBreakMode for the Label.
+        /// Gets or sets the LineBreakMode for the Label. The default value is <see cref="F:Microsoft.Maui.LineBreakMode.WordWrap" />.
         /// </summary>
         [Parameter] public LineBreakMode? LineBreakMode { get; set; }
         /// <summary>
@@ -56,6 +62,12 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the maximum number of lines allowed in the <see cref="T:Microsoft.Maui.Controls.Label" />.
         /// </summary>
         [Parameter] public int? MaxLines { get; set; }
+        /// <summary>
+        /// Gets or sets the padding for the label.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Thickness" /> structure that represents the padding around the label content.
+        /// </value>
         [Parameter] public Thickness? Padding { get; set; }
         /// <summary>
         /// Gets or sets the text for the Label.
@@ -69,6 +81,12 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the <see cref="T:Microsoft.Maui.TextDecorations" /> applied to <see cref="P:Microsoft.Maui.Controls.Label.Text" />.
         /// </summary>
         [Parameter] public TextDecorations? TextDecorations { get; set; }
+        /// <summary>
+        /// Gets or sets the text transformation applied to the label text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextTransform" /> value that specifies how the text should be transformed.
+        /// </value>
         [Parameter] public TextTransform? TextTransform { get; set; }
         /// <summary>
         /// Determines whether the Label should display plain text or HTML text.

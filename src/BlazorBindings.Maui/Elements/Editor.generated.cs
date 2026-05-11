@@ -29,9 +29,27 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets a value that controls whether the editor will change size to accommodate input as the user enters it.
         /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Controls.EditorAutoSizeOption" /> value. The default is <see cref="F:Microsoft.Maui.Controls.EditorAutoSizeOption.Disabled" />.
+        /// </value>
         [Parameter] public MC.EditorAutoSizeOption? AutoSize { get; set; }
+        /// <summary>
+        /// Gets or sets the horizontal alignment of the text within the editor.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextAlignment" /> value. The default is <see cref="F:Microsoft.Maui.TextAlignment.Start" />.
+        /// </value>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
+        /// <summary>
+        /// Gets or sets the vertical alignment of the text within the editor.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextAlignment" /> value. The default is <see cref="F:Microsoft.Maui.TextAlignment.Start" />.
+        /// </value>
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
+        /// <summary>
+        /// Occurs when the user finalizes the text in the editor with a completion action.
+        /// </summary>
         [Parameter] public EventCallback OnCompleted { get; set; }
 
         public new MC.Editor NativeControl => (MC.Editor)((BindableObject)this).NativeControl;

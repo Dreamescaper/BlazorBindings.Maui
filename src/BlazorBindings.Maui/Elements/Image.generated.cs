@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// <see cref="T:Microsoft.Maui.Controls.View" /> that holds an image.
+    /// A view control that displays an image.
     /// </summary>
     public partial class Image : View
     {
@@ -28,11 +28,23 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the scaling mode for the image.
         /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Aspect" /> value that determines how the image is scaled. The default is <see cref="F:Microsoft.Maui.Aspect.AspectFit" />.
+        /// </value>
         [Parameter] public Aspect? Aspect { get; set; }
+        /// <summary>
+        /// Gets or sets a value that indicates whether animated images should play.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Boolean" /> that indicates whether animated images (such as GIFs) should play. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? IsAnimationPlaying { get; set; }
         /// <summary>
-        /// Gets or sets a Boolean value that, if <see langword="true" /> hints to the rendering engine that it may safely omit drawing visual elements behind the image.
+        /// Gets or sets a Boolean value that hints to the rendering engine that it may safely omit drawing visual elements behind the image.
         /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Boolean" /> that indicates whether the image is opaque. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsOpaque { get; set; }
         /// <summary>
         /// Gets or sets the source of the image.

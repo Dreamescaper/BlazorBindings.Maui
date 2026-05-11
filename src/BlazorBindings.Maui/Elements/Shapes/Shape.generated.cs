@@ -18,6 +18,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// Base class for shape elements, such as <see cref="T:Microsoft.Maui.Controls.Shapes.Ellipse" />, <see cref="T:Microsoft.Maui.Controls.Shapes.Line" />, <see cref="T:Microsoft.Maui.Controls.Shapes.Polygon" />, <see cref="T:Microsoft.Maui.Controls.Shapes.Polyline" />, and <see cref="T:Microsoft.Maui.Controls.Shapes.Rectangle" />.
+    /// </summary>
     public abstract partial class Shape : BlazorBindings.Maui.Elements.View
     {
         static Shape()
@@ -25,18 +28,48 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets how the shape is stretched to fill its allocated space.
+        /// </summary>
         [Parameter] public MC.Stretch? Aspect { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Brush" /> used to paint the shape's interior.
+        /// </summary>
         [Parameter] public Color FillColor { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Brush" /> used to paint the shape's outline.
+        /// </summary>
         [Parameter] public Color StrokeColor { get; set; }
+        /// <summary>
+        /// Gets or sets the distance within the dash pattern where a dash begins.
+        /// </summary>
         [Parameter] public double? StrokeDashOffset { get; set; }
+        /// <summary>
+        /// Gets or sets the type of cap used at the start and end of the shape's outline.
+        /// </summary>
         [Parameter] public MCS.PenLineCap? StrokeLineCap { get; set; }
+        /// <summary>
+        /// Gets or sets the type of join used at the vertices of the shape's outline.
+        /// </summary>
         [Parameter] public MCS.PenLineJoin? StrokeLineJoin { get; set; }
+        /// <summary>
+        /// Gets or sets the limit on the ratio of the miter length to half the stroke thickness.
+        /// </summary>
         [Parameter] public double? StrokeMiterLimit { get; set; }
+        /// <summary>
+        /// Gets or sets the width of the shape's outline.
+        /// </summary>
         [Parameter] public double? StrokeThickness { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Brush" /> used to paint the shape's interior.
+        /// </summary>
         /// <remarks>
         /// Accepts single Brush element.
         /// </remarks>
         [Parameter] public RenderFragment Fill { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Brush" /> used to paint the shape's outline.
+        /// </summary>
         /// <remarks>
         /// Accepts single Brush element.
         /// </remarks>

@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a color and offset within a <see cref="T:Microsoft.Maui.Controls.GradientBrush" />.
+    /// </summary>
     public partial class GradientStop : Element
     {
         static GradientStop()
@@ -22,7 +25,13 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the color of this gradient stop.
+        /// </summary>
         [Parameter] public Color Color { get; set; }
+        /// <summary>
+        /// Gets or sets the position of this gradient stop (0.0 to 1.0).
+        /// </summary>
         [Parameter] public float? Offset { get; set; }
 
         public new MC.GradientStop NativeControl => (MC.GradientStop)((BindableObject)this).NativeControl;

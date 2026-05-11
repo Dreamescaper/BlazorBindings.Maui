@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A <see cref="T:Microsoft.Maui.Controls.GradientBrush" /> that paints an area with a radial gradient.
+    /// </summary>
     public partial class RadialGradientBrush : GradientBrush
     {
         static RadialGradientBrush()
@@ -22,7 +25,13 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the center point of the gradient.
+        /// </summary>
         [Parameter] public Point? Center { get; set; }
+        /// <summary>
+        /// Gets or sets the radius of the gradient.
+        /// </summary>
         [Parameter] public double? Radius { get; set; }
 
         public new MC.RadialGradientBrush NativeControl => (MC.RadialGradientBrush)((BindableObject)this).NativeControl;

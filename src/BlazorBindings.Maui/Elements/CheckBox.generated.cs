@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a control that a user can select or clear.
+    /// </summary>
     public partial class CheckBox : View
     {
         static CheckBox()
@@ -22,8 +25,23 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the color of the checkbox.
+        /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the checkbox. The default is platform-specific.
+        /// </value>
         [Parameter] public Color Color { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="T:Microsoft.Maui.Controls.CheckBox" /> is checked.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the checkbox is checked; otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsChecked { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.CheckBox.IsChecked" /> property changes.
+        /// </summary>
         [Parameter] public EventCallback<bool> IsCheckedChanged { get; set; }
 
         public new MC.CheckBox NativeControl => (MC.CheckBox)((BindableObject)this).NativeControl;

@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A container control that draws a border, background, or both around its child content.
+    /// </summary>
     public partial class Border : View
     {
         static Border()
@@ -24,25 +27,82 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the padding inside the border.
+        /// </summary>
         [Parameter] public Thickness? Padding { get; set; }
         /// <summary>
         /// Gets or sets the safe area edges to obey for this border. The default value is SafeAreaEdges.Default (None - edge to edge).
         /// </summary>
         [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
+        /// <summary>
+        /// Gets or sets the brush used to paint the border stroke.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> used for the border stroke, or <see langword="null" /> if no stroke is set.
+        /// </value>
         [Parameter] public Color StrokeColor { get; set; }
+        /// <summary>
+        /// Gets or sets the distance within the dash pattern where a dash begins.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the offset in device-independent units. The default is 0.0.
+        /// </value>
         [Parameter] public double? StrokeDashOffset { get; set; }
+        /// <summary>
+        /// Gets or sets the shape at the start and end of the border stroke.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Shapes.PenLineCap" /> value. The default is <see cref="F:Microsoft.Maui.Controls.Shapes.PenLineCap.Flat" />.
+        /// </value>
         [Parameter] public MC.Shapes.PenLineCap? StrokeLineCap { get; set; }
+        /// <summary>
+        /// Gets or sets the type of join that is used at the vertices of the border stroke.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Shapes.PenLineJoin" /> value. The default is <see cref="F:Microsoft.Maui.Controls.Shapes.PenLineJoin.Miter" />.
+        /// </value>
         [Parameter] public MC.Shapes.PenLineJoin? StrokeLineJoin { get; set; }
+        /// <summary>
+        /// Gets or sets the limit on the ratio of the miter length to half the stroke thickness.
+        /// </summary>
+        /// <value>
+        /// The default is 10.0.
+        /// </value>
         [Parameter] public double? StrokeMiterLimit { get; set; }
+        /// <summary>
+        /// Gets or sets the thickness of the border stroke.
+        /// </summary>
+        /// <value>
+        /// The stroke thickness in device-independent units. The default is 1.0.
+        /// </value>
         [Parameter] public double? StrokeThickness { get; set; }
+        /// <summary>
+        /// Gets or sets the child content that is placed inside the border.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.View" /> that contains the child content, or <see langword="null" /> if no content is set.
+        /// </value>
         /// <remarks>
         /// Accepts single View element.
         /// </remarks>
         [Parameter] public RenderFragment ChildContent { get; set; }
+        /// <summary>
+        /// Gets or sets the brush used to paint the border stroke.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> used for the border stroke, or <see langword="null" /> if no stroke is set.
+        /// </value>
         /// <remarks>
         /// Accepts single Brush element.
         /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
+        /// <summary>
+        /// Gets or sets the shape of the border.
+        /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Graphics.IShape" /> that defines the border shape, or <see langword="null" /> for the default <see cref="T:Microsoft.Maui.Controls.Shapes.Rectangle" /> shape.
+        /// </value>
         /// <remarks>
         /// Accepts single IShape element.
         /// </remarks>

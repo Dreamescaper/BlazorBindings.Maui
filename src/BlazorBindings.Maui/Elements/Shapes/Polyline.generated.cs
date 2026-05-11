@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// A shape that draws a series of connected straight lines. Unlike <see cref="T:Microsoft.Maui.Controls.Shapes.Polygon" />, a polyline is not automatically closed.
+    /// </summary>
     public partial class Polyline : Shape
     {
         static Polyline()
@@ -23,6 +26,9 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that specifies how the interior of the polyline is determined.
+        /// </summary>
         [Parameter] public MCS.FillRule? FillRule { get; set; }
 
         public new MCS.Polyline NativeControl => (MCS.Polyline)((BindableObject)this).NativeControl;

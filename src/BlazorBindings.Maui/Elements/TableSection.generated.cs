@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A logical and visible section of a <see cref="T:Microsoft.Maui.Controls.TableView" />.
+    /// A logical grouping of cells in a <see cref="T:Microsoft.Maui.Controls.TableView" />.
     /// </summary>
     public partial class TableSection : TableSectionBase
     {

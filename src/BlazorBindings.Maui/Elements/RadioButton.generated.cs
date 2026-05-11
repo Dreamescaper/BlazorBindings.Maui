@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a button that can be selected from a group of radio buttons, where only one button can be selected at a time.
+    /// </summary>
     public partial class RadioButton : TemplatedView
     {
         static RadioButton()
@@ -23,18 +26,93 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the color of the border around the radio button.
+        /// </summary>
+        /// <value>
+        /// The border <see cref="T:Microsoft.Maui.Graphics.Color" />. The default is <see langword="null" />.
+        /// </value>
         [Parameter] public Color BorderColor { get; set; }
+        /// <summary>
+        /// Gets or sets the width of the border around the radio button.
+        /// </summary>
+        /// <value>
+        /// The border width in device-independent units. The default is 0.
+        /// </value>
         [Parameter] public double? BorderWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the spacing between characters in the text.
+        /// </summary>
+        /// <value>
+        /// The character spacing value. The default is 0.0.
+        /// </value>
         [Parameter] public double? CharacterSpacing { get; set; }
+        /// <summary>
+        /// Gets or sets the corner radius of the radio button border.
+        /// </summary>
+        /// <value>
+        /// The corner radius in device-independent units. The default is -1, which indicates the platform default.
+        /// </value>
         [Parameter] public int? CornerRadius { get; set; }
+        /// <summary>
+        /// Gets or sets the font attributes (bold, italic) for the text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.FontAttributes" /> value. The default is <see cref="F:Microsoft.Maui.Controls.FontAttributes.None" />.
+        /// </value>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the font size should scale automatically based on user accessibility settings.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if font auto-scaling is enabled; otherwise, <see langword="false" />. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets the font family for the text.
+        /// </summary>
+        /// <value>
+        /// The font family name. The default is <see langword="null" />, which uses the platform default font.
+        /// </value>
         [Parameter] public string FontFamily { get; set; }
+        /// <summary>
+        /// Gets or sets the size of the font.
+        /// </summary>
+        /// <value>
+        /// The font size. The default is the platform default font size.
+        /// </value>
         [Parameter] public double? FontSize { get; set; }
+        /// <summary>
+        /// Gets or sets the name that identifies which radio buttons are mutually exclusive.
+        /// </summary>
+        /// <value>
+        /// The group name. Radio buttons with the same group name are mutually exclusive. The default is <see langword="null" />.
+        /// </value>
         [Parameter] public string GroupName { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the radio button is checked.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the radio button is checked; otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsChecked { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the text displayed in the radio button.
+        /// </summary>
+        /// <value>
+        /// The text <see cref="T:Microsoft.Maui.Graphics.Color" />. The default is <see langword="null" />, which uses the platform default.
+        /// </value>
         [Parameter] public Color TextColor { get; set; }
+        /// <summary>
+        /// Gets or sets the text transformation to apply to the text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextTransform" /> value. The default is <see cref="F:Microsoft.Maui.TextTransform.None" />.
+        /// </value>
         [Parameter] public TextTransform? TextTransform { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.RadioButton.IsChecked" /> property changes.
+        /// </summary>
         [Parameter] public EventCallback<bool> IsCheckedChanged { get; set; }
 
         public new MC.RadioButton NativeControl => (MC.RadioButton)((BindableObject)this).NativeControl;

@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a view that provides context-specific swipe interactions.
+    /// </summary>
     public partial class SwipeView : ContentView
     {
         static SwipeView()
@@ -22,19 +25,34 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the swipe threshold distance.
+        /// </summary>
         [Parameter] public double? Threshold { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of swipe items on the bottom side.
+        /// </summary>
         /// <remarks>
         /// Accepts one or more ISwipeItem elements.
         /// </remarks>
         [Parameter] public RenderFragment BottomItems { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of swipe items on the left side.
+        /// </summary>
         /// <remarks>
         /// Accepts one or more ISwipeItem elements.
         /// </remarks>
         [Parameter] public RenderFragment LeftItems { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of swipe items on the right side.
+        /// </summary>
         /// <remarks>
         /// Accepts one or more ISwipeItem elements.
         /// </remarks>
         [Parameter] public RenderFragment RightItems { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of swipe items on the top side.
+        /// </summary>
         /// <remarks>
         /// Accepts one or more ISwipeItem elements.
         /// </remarks>

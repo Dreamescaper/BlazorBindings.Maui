@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Corresponds to a <see cref="T:Microsoft.Maui.Controls.ContentPage" /> contained in a <see cref="T:Microsoft.Maui.Controls.ShellSection" />.
+    /// Represents the content displayed within a <see cref="T:Microsoft.Maui.Controls.ShellSection" /> tab.
     /// </summary>
     public partial class ShellContent : BaseShellItem
     {
@@ -26,7 +26,7 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Add <see cref="T:Microsoft.Maui.Controls.MenuItem" /> instances to flyout.
+        /// Gets the collection of menu items associated with this content.
         /// </summary>
         /// <remarks>
         /// Accepts one or more MenuItem elements.

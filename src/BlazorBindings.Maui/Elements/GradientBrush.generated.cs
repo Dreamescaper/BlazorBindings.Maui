@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Base class for brushes that paint an area with a gradient of multiple colors.
+    /// </summary>
     public abstract partial class GradientBrush : Brush
     {
         static GradientBrush()
@@ -23,6 +26,9 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the collection of <see cref="T:Microsoft.Maui.Controls.GradientStop" /> objects that define the gradient colors.
+        /// </summary>
         /// <remarks>
         /// Accepts one or more GradientStop elements.
         /// </remarks>

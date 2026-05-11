@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// The base class for all geometry objects that describe 2D shapes.
+    /// </summary>
     public abstract partial class Geometry : BlazorBindings.Maui.Elements.BindableObject
     {
         static Geometry()

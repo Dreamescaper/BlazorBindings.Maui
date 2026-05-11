@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// Base class for all transforms that can be applied to shapes.
+    /// </summary>
     public partial class Transform : BlazorBindings.Maui.Elements.BindableObject
     {
         static Transform()
@@ -23,6 +26,9 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the transformation matrix.
+        /// </summary>
         [Parameter] public MCS.Matrix? Value { get; set; }
 
         public new MCS.Transform NativeControl => (MCS.Transform)((BindableObject)this).NativeControl;

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Grouped content in a Shell application, navigable by bottom tabs.
+    /// Represents a group of tabs within a <see cref="P:Microsoft.Maui.Controls.ShellSection.ShellItem" />. Contains <see cref="T:Microsoft.Maui.Controls.ShellContent" /> items.
     /// </summary>
     public partial class ShellSection : ShellGroupItem
     {

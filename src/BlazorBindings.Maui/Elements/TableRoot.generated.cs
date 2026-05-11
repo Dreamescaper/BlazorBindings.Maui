@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.TableSection" /> that contains either a table section or the entire table.
+    /// The root element of a <see cref="T:Microsoft.Maui.Controls.TableView" /> that contains <see cref="T:Microsoft.Maui.Controls.TableSection" /> items.
     /// </summary>
     public partial class TableRoot : TableSectionBase
     {

@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> control that provides a toggled value.
+    /// Represents a control that the user can toggle between two states: on or off.
     /// </summary>
     public partial class Switch : View
     {
@@ -26,21 +26,36 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets a Boolean value that indicates whether this <see cref="T:Microsoft.Maui.Controls.Switch" /> element is toggled.
-        /// </summary>
-        [Parameter] public bool? IsToggled { get; set; }
-        /// <summary>
-        /// Gets or sets the color of the toggle switch's track when it is in the off state. If not set, the default color will be used for the off-track appearance.
-        /// </summary>
-        [Parameter] public Color OffColor { get; set; }
-        /// <summary>
-        /// Gets or sets the color of the switch when it is in the "On" position.
+        /// Gets or sets a value indicating whether the switch is in the on position.
         /// </summary>
         /// <value>
-        /// The color of the switch when it is in the "On" position.
+        /// <see langword="true" /> if the switch is on; otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
+        [Parameter] public bool? IsToggled { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the switch track when it is in the off position.
+        /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the track when off. The default is <see langword="null" />, which uses the platform default.
+        /// </value>
+        [Parameter] public Color OffColor { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the switch track when it is in the on position.
+        /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the track when on. The default is <see langword="null" />, which uses the platform default.
         /// </value>
         [Parameter] public Color OnColor { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the switch thumb (the movable circular part).
+        /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the thumb. The default is <see langword="null" />, which uses the platform default.
+        /// </value>
         [Parameter] public Color ThumbColor { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.Switch.IsToggled" /> property changes.
+        /// </summary>
         [Parameter] public EventCallback<bool> IsToggledChanged { get; set; }
 
         public new MC.Switch NativeControl => (MC.Switch)((BindableObject)this).NativeControl;

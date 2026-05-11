@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a group of items within a <see cref="T:Microsoft.Maui.Controls.ShellItem" />. This is an alias for <see cref="T:Microsoft.Maui.Controls.ShellSection" />.
+    /// </summary>
     public partial class Tab : ShellSection
     {
         static Tab()

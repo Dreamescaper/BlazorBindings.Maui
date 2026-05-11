@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A view that displays a visual indicator representing the position within a collection of items.
+    /// </summary>
     public partial class IndicatorView : TemplatedView
     {
         static IndicatorView()
@@ -24,14 +27,68 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the total number of indicators to display.
+        /// </summary>
+        /// <value>
+        /// The total number of indicators. The default is 0.
+        /// </value>
         [Parameter] public int? Count { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the indicator view is hidden when only one item exists.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to hide the indicator view when there is only one item; otherwise, <see langword="false" />. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? HideSingle { get; set; }
+        /// <summary>
+        /// Gets or sets the color of unselected indicators.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Graphics.Color" /> for unselected indicators. The default is <see cref="F:Microsoft.Maui.Graphics.Colors.LightGrey" />.
+        /// </value>
         [Parameter] public Color IndicatorColor { get; set; }
+        /// <summary>
+        /// Gets or sets the size of each indicator.
+        /// </summary>
+        /// <value>
+        /// The size of each indicator in device-independent units. The default is 6.0.
+        /// </value>
         [Parameter] public double? IndicatorSize { get; set; }
+        /// <summary>
+        /// Gets or sets the shape of the indicators.
+        /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Controls.IndicatorShape" /> value. The default is <see cref="F:Microsoft.Maui.Controls.IndicatorShape.Circle" />.
+        /// </value>
         [Parameter] public MC.IndicatorShape? IndicatorsShape { get; set; }
+        /// <summary>
+        /// Gets or sets the maximum number of indicators to display at once.
+        /// </summary>
+        /// <value>
+        /// The maximum number of visible indicators. The default is <see cref="F:System.Int32.MaxValue" />.
+        /// </value>
         [Parameter] public int? MaximumVisible { get; set; }
+        /// <summary>
+        /// Gets or sets the index of the currently selected indicator.
+        /// </summary>
+        /// <value>
+        /// The zero-based index of the current position. The default is 0.
+        /// </value>
         [Parameter] public int? Position { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the selected indicator.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Graphics.Color" /> for the selected indicator. The default is <see cref="F:Microsoft.Maui.Graphics.Colors.Black" />.
+        /// </value>
         [Parameter] public Color SelectedIndicatorColor { get; set; }
+        /// <summary>
+        /// Gets or sets the data template used to display each indicator.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> that defines the appearance of each indicator, or <see langword="null" /> to use the default indicator style.
+        /// </value>
         [Parameter] public RenderFragment IndicatorTemplate { get; set; }
         [Parameter] public EventCallback<int> PositionChanged { get; set; }
 

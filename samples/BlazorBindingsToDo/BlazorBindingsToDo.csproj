@@ -49,10 +49,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
-		<PackageReference Include="SQLitePCLRaw.core" Version="3.0.2" />
+		<PackageReference Include="SQLitePCLRaw.core" Version="3.0.3" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.11" />
-		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="3.0.2" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
+		<PackageReference Include="SQLitePCLRaw.provider.dynamic_cdecl" Version="3.0.3" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -60,7 +60,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.10" />
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.41" />
 	</ItemGroup>
 
 </Project>

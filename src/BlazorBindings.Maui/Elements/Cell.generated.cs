@@ -30,6 +30,9 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the height of the Cell.
         /// </summary>
         [Parameter] public double? Height { get; set; }
+        /// <summary>
+        /// Gets or sets whether context actions use legacy mode. Default is <see langword="false" />.
+        /// </summary>
         [Parameter] public bool? IsContextActionsLegacyModeEnabled { get; set; }
         /// <summary>
         /// Gets or sets the IsEnabled state of the Cell.

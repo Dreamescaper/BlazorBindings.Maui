@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> control that provides a search box.
+    /// Represents a specialized input control for entering search text with a built-in search button and cancel button.
     /// </summary>
     public partial class SearchBar : InputView
     {
@@ -30,10 +30,16 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the color of the cancel button.
         /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the cancel button. The default is <see langword="null" />, which uses the platform default.
+        /// </value>
         [Parameter] public Color CancelButtonColor { get; set; }
         /// <summary>
-        /// Gets or sets the horizontal text alignment.
+        /// Gets or sets the horizontal alignment of the text within the search bar.
         /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextAlignment" /> value. The default is <see cref="F:Microsoft.Maui.TextAlignment.Start" />.
+        /// </value>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
         /// <summary>
         /// Determines what the return key on the on-screen keyboard should look like.
@@ -42,8 +48,20 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the color of the search icon in the <see cref="T:Microsoft.Maui.Controls.SearchBar" />.
         /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the search icon. The default is <see langword="null" />, which uses the platform default.
+        /// </value>
         [Parameter] public Color SearchIconColor { get; set; }
+        /// <summary>
+        /// Gets or sets the vertical alignment of the text within the search bar.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextAlignment" /> value. The default is <see cref="F:Microsoft.Maui.TextAlignment.Start" />.
+        /// </value>
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
+        /// <summary>
+        /// Occurs when the user finalizes the search text by pressing the search/return button on the keyboard.
+        /// </summary>
         [Parameter] public EventCallback OnSearchButtonPressed { get; set; }
 
         public new MC.SearchBar NativeControl => (MC.SearchBar)((BindableObject)this).NativeControl;

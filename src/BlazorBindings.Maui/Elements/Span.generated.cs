@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Represents a section of a <see cref="T:Microsoft.Maui.Controls.FormattedString" />.
+    /// Represents a portion of formatted text for use in a FormattedString.
     /// </summary>
     public partial class Span : GestureElement
     {
@@ -27,46 +27,49 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the Color of the span background.
+        /// Gets or sets the background color for the span.
         /// </summary>
         [Parameter] public Color BackgroundColor { get; set; }
+        /// <summary>
+        /// Gets or sets the character spacing for the span.
+        /// </summary>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
-        /// Gets a value that indicates whether the font for the span is bold, italic, or neither.
+        /// Gets or sets the font attributes for the span.
         /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
         /// <summary>
-        /// Gets the font family to which the font for the text in the span belongs.
+        /// Gets or sets the font family for the span.
         /// </summary>
         [Parameter] public string FontFamily { get; set; }
         /// <summary>
-        /// Gets the size of the font for the text in the span.
+        /// Gets or sets the font size for the span.
         /// </summary>
         [Parameter] public double? FontSize { get; set; }
         /// <summary>
-        /// Gets or sets the multiplier to apply to the default line height when displaying text.
+        /// Gets or sets the line height multiplier for the span.
         /// </summary>
-        /// <value>
-        /// The multiplier to apply to the default line height when displaying text.
-        /// </value>
         [Parameter] public double? LineHeight { get; set; }
         /// <summary>
-        /// Gets or sets the Style to apply to the span.
+        /// Gets or sets the style for the span.
         /// </summary>
         [Parameter] public MC.Style Style { get; set; }
         /// <summary>
-        /// Gets or sets the text of the span.
+        /// Gets or sets the text content of the span.
         /// </summary>
         [Parameter] public string Text { get; set; }
         /// <summary>
-        /// Gets or sets the text color.
+        /// Gets or sets the text color for the span.
         /// </summary>
         [Parameter] public Color TextColor { get; set; }
         /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.TextDecorations" /> applied to this span.
+        /// Gets or sets the text decorations for the span.
         /// </summary>
         [Parameter] public TextDecorations? TextDecorations { get; set; }
+        /// <summary>
+        /// Gets or sets the text transform for the span.
+        /// </summary>
         [Parameter] public TextTransform? TextTransform { get; set; }
 
         public new MC.Span NativeControl => (MC.Span)((BindableObject)this).NativeControl;

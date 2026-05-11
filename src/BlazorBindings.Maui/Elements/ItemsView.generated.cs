@@ -27,11 +27,47 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the visibility of the horizontal scroll bar.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.ScrollBarVisibility" /> value. The default is <see cref="F:Microsoft.Maui.ScrollBarVisibility.Default" />.
+        /// </value>
         [Parameter] public ScrollBarVisibility? HorizontalScrollBarVisibility { get; set; }
+        /// <summary>
+        /// Gets or sets the scroll behavior when items are added, removed, or updated in the collection.
+        /// </summary>
+        /// <value>
+        /// An <see cref="P:Microsoft.Maui.Controls.ItemsView.ItemsUpdatingScrollMode" /> value. The default is <see cref="F:Microsoft.Maui.Controls.ItemsUpdatingScrollMode.KeepItemsInView" />.
+        /// </value>
         [Parameter] public MC.ItemsUpdatingScrollMode? ItemsUpdatingScrollMode { get; set; }
+        /// <summary>
+        /// Gets or sets the number of remaining items in the view that trigger the <see cref="E:Microsoft.Maui.Controls.ItemsView.RemainingItemsThresholdReached" /> event.
+        /// </summary>
+        /// <value>
+        /// The threshold count. Must be -1 or greater. The default is -1 (disabled).
+        /// </value>
         [Parameter] public int? RemainingItemsThreshold { get; set; }
+        /// <summary>
+        /// Gets or sets the visibility of the vertical scroll bar.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.ScrollBarVisibility" /> value. The default is <see cref="F:Microsoft.Maui.ScrollBarVisibility.Default" />.
+        /// </value>
         [Parameter] public ScrollBarVisibility? VerticalScrollBarVisibility { get; set; }
+        /// <summary>
+        /// Gets or sets the view or object to display when the <see cref="P:Microsoft.Maui.Controls.ItemsView.ItemsSource" /> is empty or <see langword="null" />.
+        /// </summary>
+        /// <value>
+        /// The empty view content, which can be a string, view, or any object. Use <see cref="P:Microsoft.Maui.Controls.ItemsView.EmptyViewTemplate" /> to customize rendering.
+        /// </value>
         [Parameter] public RenderFragment EmptyView { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> used to render each item in the collection.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> that defines how items are displayed, or <see langword="null" /> to use default rendering.
+        /// </value>
         [Parameter] public RenderFragment<T> ItemTemplate { get; set; }
         [Parameter] public EventCallback<MC.ScrollToRequestEventArgs> OnScrollToRequested { get; set; }
         [Parameter] public EventCallback<MC.ItemsViewScrolledEventArgs> OnScrolled { get; set; }

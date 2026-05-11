@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// One or more items in the flyout. Contained within a <see cref="T:Microsoft.Maui.Controls.Shell" />.
+    /// Represents a top-level navigation item in a <see cref="T:Microsoft.Maui.Controls.Shell" />. Contains one or more <see cref="T:Microsoft.Maui.Controls.ShellSection" /> items.
     /// </summary>
     public partial class ShellItem : ShellGroupItem
     {

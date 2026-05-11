@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A structured items view that supports item selection.
+    /// </summary>
     public partial class SelectableItemsView<T> : StructuredItemsView<T>
     {
         static SelectableItemsView()
@@ -23,8 +26,26 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the currently selected item when <see cref="P:Microsoft.Maui.Controls.SelectableItemsView.SelectionMode" /> is <see cref="F:Microsoft.Maui.Controls.SelectionMode.Single" />.
+        /// </summary>
+        /// <value>
+        /// The selected data item, or <see langword="null" /> if no item is selected.
+        /// </value>
         [Parameter] public T SelectedItem { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of currently selected items when <see cref="P:Microsoft.Maui.Controls.SelectableItemsView.SelectionMode" /> is <see cref="F:Microsoft.Maui.Controls.SelectionMode.Multiple" />.
+        /// </summary>
+        /// <value>
+        /// A list of selected data items. Never <see langword="null" />; returns an empty list when no items are selected.
+        /// </value>
         [Parameter] public IList<object> SelectedItems { get; set; }
+        /// <summary>
+        /// Gets or sets the selection mode, which determines whether users can select no items, one item, or multiple items.
+        /// </summary>
+        /// <value>
+        /// A <see cref="P:Microsoft.Maui.Controls.SelectableItemsView.SelectionMode" /> value. The default is <see cref="F:Microsoft.Maui.Controls.SelectionMode.None" />.
+        /// </value>
         [Parameter] public MC.SelectionMode? SelectionMode { get; set; }
         [Parameter] public EventCallback<T> SelectedItemChanged { get; set; }
         [Parameter] public EventCallback<IList<object>> SelectedItemsChanged { get; set; }

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Provides tap gesture recognition and events.
+    /// Recognizes tap gestures on the attached element.
     /// </summary>
     public partial class TapGestureRecognizer : GestureRecognizer
     {
@@ -24,14 +24,17 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the button mask that triggers the gesture.
+        /// </summary>
         [Parameter] public MC.ButtonsMask? Buttons { get; set; }
         /// <summary>
-        /// The number of taps required to trigger the callback.
+        /// Gets or sets the number of taps required to trigger the gesture. Default is 1.
         /// </summary>
-        /// <value>
-        /// The number of taps to recognize. The default value is 1.
-        /// </value>
         [Parameter] public int? NumberOfTapsRequired { get; set; }
+        /// <summary>
+        /// Occurs when a tap gesture is recognized on the element.
+        /// </summary>
         [Parameter] public EventCallback<MC.TappedEventArgs> OnTapped { get; set; }
 
         public new MC.TapGestureRecognizer NativeControl => (MC.TapGestureRecognizer)((BindableObject)this).NativeControl;

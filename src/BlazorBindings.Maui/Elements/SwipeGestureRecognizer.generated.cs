@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Recognizer for swipe gestures.
+    /// Recognizes swipe gestures on the attached element.
     /// </summary>
     public partial class SwipeGestureRecognizer : GestureRecognizer
     {
@@ -26,19 +26,16 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the direction of swipes to recognize.
+        /// Gets or sets the direction(s) of swipes to recognize.
         /// </summary>
-        /// <value>
-        /// The direction of swipes to recognize.
-        /// </value>
         [Parameter] public SwipeDirection? Direction { get; set; }
         /// <summary>
-        /// Gets or sets the minimum swipe distance that will cause the gesture to be recognized.
+        /// Gets or sets the minimum distance in pixels the swipe must travel to be recognized. Default is 100.
         /// </summary>
-        /// <value>
-        /// The minimum swipe distance that will cause the gesture to be recognized.
-        /// </value>
         [Parameter] public uint? Threshold { get; set; }
+        /// <summary>
+        /// Occurs when a swipe gesture is recognized on the element.
+        /// </summary>
         [Parameter] public EventCallback<MC.SwipedEventArgs> OnSwiped { get; set; }
 
         public new MC.SwipeGestureRecognizer NativeControl => (MC.SwipeGestureRecognizer)((BindableObject)this).NativeControl;

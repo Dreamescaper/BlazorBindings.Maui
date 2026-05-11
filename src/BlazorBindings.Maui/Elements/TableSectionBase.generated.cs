@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Abstract base class defining a table section.
+    /// Abstract base class for a section in a <see cref="T:Microsoft.Maui.Controls.TableView" />.
     /// </summary>
     public abstract partial class TableSectionBase : BindableObject
     {
@@ -25,9 +25,12 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the text color for the section header.
+        /// </summary>
         [Parameter] public Color TextColor { get; set; }
         /// <summary>
-        /// Gets or sets the title.
+        /// Gets or sets the title for the section.
         /// </summary>
         [Parameter] public string Title { get; set; }
 

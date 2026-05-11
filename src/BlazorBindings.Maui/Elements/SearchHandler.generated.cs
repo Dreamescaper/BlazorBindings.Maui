@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// Default implementation of <see cref="T:Microsoft.Maui.Controls.ISearchHandlerController" />.
+    /// Provides search functionality in a <see cref="T:Microsoft.Maui.Controls.Shell" /> application.
     /// </summary>
     public partial class SearchHandler<T> : BindableObject
     {
@@ -31,100 +31,121 @@ namespace BlazorBindings.Maui.Elements
         }
 
         [Parameter] public string AutomationId { get; set; }
+        /// <summary>
+        /// Gets or sets the background color of the search box.
+        /// </summary>
         [Parameter] public Color BackgroundColor { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the cancel button.
+        /// </summary>
         [Parameter] public Color CancelButtonColor { get; set; }
+        /// <summary>
+        /// Gets or sets the character spacing for the search text.
+        /// </summary>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
-        /// The icon displayed to clear the contents of the search box.
+        /// Gets or sets the icon displayed for the clear button.
         /// </summary>
         [Parameter] public MC.ImageSource ClearIcon { get; set; }
         /// <summary>
-        /// The accessible help text for the clear icon.
+        /// Gets or sets the accessibility help text for the clear icon.
         /// </summary>
         [Parameter] public string ClearIconHelpText { get; set; }
         /// <summary>
-        /// The name of the clear icon for use with screen readers.
+        /// Gets or sets the accessibility name for the clear icon.
         /// </summary>
         [Parameter] public string ClearIconName { get; set; }
         /// <summary>
-        /// Whether the <see cref="P:Microsoft.Maui.Controls.SearchHandler.ClearPlaceholderCommand" /> can be executed.
+        /// Gets or sets a value indicating whether the clear placeholder button is enabled.
         /// </summary>
-        /// <value>
-        /// The default value is `true`.
-        /// </value>
         [Parameter] public bool? ClearPlaceholderEnabled { get; set; }
         /// <summary>
-        /// The accessible help text for the <see cref="P:Microsoft.Maui.Controls.SearchHandler.ClearPlaceholderIcon" />.
+        /// Gets or sets the accessibility help text for the clear placeholder icon.
         /// </summary>
         [Parameter] public string ClearPlaceholderHelpText { get; set; }
         /// <summary>
-        /// The clear placeholder icon displayed when the search box is empty.
+        /// Gets or sets the icon displayed for the clear placeholder button.
         /// </summary>
         [Parameter] public MC.ImageSource ClearPlaceholderIcon { get; set; }
         /// <summary>
-        /// The name of the clear placeholder icon for use with screen readers.
+        /// Gets or sets the accessibility name for the clear placeholder icon.
         /// </summary>
         [Parameter] public string ClearPlaceholderName { get; set; }
+        /// <summary>
+        /// Gets or sets the font attributes for the search text.
+        /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets the font family for the search text.
+        /// </summary>
         [Parameter] public string FontFamily { get; set; }
+        /// <summary>
+        /// Gets or sets the font size for the search text.
+        /// </summary>
         [Parameter] public double? FontSize { get; set; }
+        /// <summary>
+        /// Gets or sets the horizontal alignment of the search text.
+        /// </summary>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
         /// <summary>
-        /// Gets or sets whether the search box is enabled.
+        /// Gets or sets a value indicating whether search is enabled.
         /// </summary>
-        /// <value>
-        /// The default value is `true`.
-        /// </value>
         [Parameter] public bool? IsSearchEnabled { get; set; }
         /// <summary>
-        /// The collection of items to be displayed in the suggestion area. Default is <see langword="null" />.
+        /// Gets or sets the collection of items to display as search suggestions.
         /// </summary>
-        /// <value>
-        /// The default value is `null`.
-        /// </value>
         [Parameter] public IEnumerable<T> ItemsSource { get; set; }
+        /// <summary>
+        /// Gets or sets the keyboard type for the search input.
+        /// </summary>
         [Parameter] public Keyboard Keyboard { get; set; }
         /// <summary>
-        /// The text to display when the search box is empty.
+        /// Gets or sets the text displayed when the search box is empty.
         /// </summary>
         [Parameter] public string Placeholder { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the placeholder text.
+        /// </summary>
         [Parameter] public Color PlaceholderColor { get; set; }
         /// <summary>
-        /// Gets or sets the text of the search box.
+        /// Gets or sets the current search query text.
         /// </summary>
         [Parameter] public string Query { get; set; }
         /// <summary>
-        /// The icon used to indicate that search is available.
+        /// Gets or sets the icon displayed for the search query.
         /// </summary>
         [Parameter] public MC.ImageSource QueryIcon { get; set; }
         /// <summary>
-        /// The accessible help text for the <see cref="P:Microsoft.Maui.Controls.SearchHandler.QueryIcon" />.
+        /// Gets or sets the accessibility help text for the query icon.
         /// </summary>
         [Parameter] public string QueryIconHelpText { get; set; }
         /// <summary>
-        /// The name of the <see cref="P:Microsoft.Maui.Controls.SearchHandler.QueryIcon" /> for use with screen readers.
+        /// Gets or sets the accessibility name for the query icon.
         /// </summary>
         [Parameter] public string QueryIconName { get; set; }
         /// <summary>
-        /// Gets or sets whether the search box is visible.
+        /// Gets or sets the visibility mode of the search box.
         /// </summary>
-        /// <value>
-        /// The default is <see cref="F:Microsoft.Maui.Controls.SearchBoxVisibility.Expanded" /> (visible and expanded).
-        /// </value>
         [Parameter] public MC.SearchBoxVisibility? SearchBoxVisibility { get; set; }
         /// <summary>
-        /// Gets or sets whether search results should be expected in the suggestion area on text entry.
+        /// Gets or sets a value indicating whether search results are displayed.
         /// </summary>
-        /// <value>
-        /// The default value is `false`.
-        /// </value>
         [Parameter] public bool? ShowsResults { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the search text.
+        /// </summary>
         [Parameter] public Color TextColor { get; set; }
+        /// <summary>
+        /// Gets or sets the text transformation applied to the search text.
+        /// </summary>
         [Parameter] public TextTransform? TextTransform { get; set; }
+        /// <summary>
+        /// Gets or sets the vertical alignment of the search text.
+        /// </summary>
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
         /// <summary>
-        /// The <see cref="T:Microsoft.Maui.Controls.DataTemplate" /> to apply to each item in <see cref="P:Microsoft.Maui.Controls.SearchHandler.ItemsSource" />.
+        /// Gets or sets the template for displaying search result items.
         /// </summary>
         [Parameter] public RenderFragment<T> ItemTemplate { get; set; }
         [Parameter] public EventCallback<string> QueryChanged { get; set; }

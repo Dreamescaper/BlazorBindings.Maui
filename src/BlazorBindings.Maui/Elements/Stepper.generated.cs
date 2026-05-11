@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> control that inputs a discrete value, constrained to a range.
+    /// Represents a control that allows a user to incrementally adjust a numeric value by tapping plus or minus buttons.
     /// </summary>
     public partial class Stepper : View
     {
@@ -25,33 +25,36 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the increment by which Value is increased or decreased.
+        /// Gets or sets the amount by which the stepper value changes with each button press.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The increment value. The default is 1.
         /// </value>
         [Parameter] public double? Increment { get; set; }
         /// <summary>
-        /// Gets or sets the maximum selectable value.
+        /// Gets or sets the maximum value of the stepper.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The maximum value. The default is 100.
         /// </value>
         [Parameter] public double? Maximum { get; set; }
         /// <summary>
-        /// Gets or sets the minimum selectabel value.
+        /// Gets or sets the minimum value of the stepper.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The minimum value. The default is 0.
         /// </value>
         [Parameter] public double? Minimum { get; set; }
         /// <summary>
-        /// Gets or sets the current value.
+        /// Gets or sets the current value of the stepper.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The current value, clamped between <see cref="P:Microsoft.Maui.Controls.Stepper.Minimum" /> and <see cref="P:Microsoft.Maui.Controls.Stepper.Maximum" />. The default is 0.
         /// </value>
         [Parameter] public double? Value { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.Stepper.Value" /> property changes.
+        /// </summary>
         [Parameter] public EventCallback<double> ValueChanged { get; set; }
 
         public new MC.Stepper NativeControl => (MC.Stepper)((BindableObject)this).NativeControl;

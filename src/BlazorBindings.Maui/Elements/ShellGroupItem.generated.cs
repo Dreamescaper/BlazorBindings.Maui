@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.BaseShellItem" /> that has <see cref="T:Microsoft.Maui.Controls.FlyoutDisplayOptions" />. Base class for <see cref="T:Microsoft.Maui.Controls.ShellItem" /> and <see cref="T:Microsoft.Maui.Controls.ShellSection" />.
+    /// Base class for grouping Shell items such as <see cref="T:Microsoft.Maui.Controls.ShellItem" /> and <see cref="T:Microsoft.Maui.Controls.ShellSection" />.
     /// </summary>
     public partial class ShellGroupItem : BaseShellItem
     {
@@ -25,7 +25,7 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// AsSingleItem (default) will only display the title of this item in the flyout. AsMultipleItems will create a separate flyout option for each child and <see cref="T:Microsoft.Maui.Controls.MenuItem" />.
+        /// Gets or sets how this item is displayed in the flyout.
         /// </summary>
         [Parameter] public MC.FlyoutDisplayOptions? FlyoutDisplayOptions { get; set; }
 

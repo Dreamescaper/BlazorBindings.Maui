@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// A shape that draws a closed polygon from a series of connected lines.
+    /// </summary>
     public partial class Polygon : Shape
     {
         static Polygon()
@@ -23,6 +26,9 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that specifies how the interior of the polygon is determined.
+        /// </summary>
         [Parameter] public MCS.FillRule? FillRule { get; set; }
 
         public new MCS.Polygon NativeControl => (MCS.Polygon)((BindableObject)this).NativeControl;

@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a collection of <see cref="T:Microsoft.Maui.Controls.ISwipeItem" /> objects used by a <see cref="T:Microsoft.Maui.Controls.SwipeView" />.
+    /// </summary>
     public partial class SwipeItems : Element
     {
         static SwipeItems()
@@ -23,7 +26,13 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates how the swipe items are displayed.
+        /// </summary>
         [Parameter] public SwipeMode? Mode { get; set; }
+        /// <summary>
+        /// Gets or sets the behavior when a swipe item is invoked.
+        /// </summary>
         [Parameter] public SwipeBehaviorOnInvoked? SwipeBehaviorOnInvoked { get; set; }
         /// <remarks>
         /// Accepts one or more ISwipeItem elements.

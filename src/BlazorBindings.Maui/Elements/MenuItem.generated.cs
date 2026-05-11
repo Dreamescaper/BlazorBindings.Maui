@@ -25,6 +25,9 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the image displayed for the menu item.
+        /// </summary>
         [Parameter] public MC.ImageSource IconImageSource { get; set; }
         /// <summary>
         /// Gets or sets a value that indicates whether or not the menu item removes its associated UI element.

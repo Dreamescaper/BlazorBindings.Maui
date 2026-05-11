@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// A shape that can draw complex geometries defined by a <see cref="T:Microsoft.Maui.Controls.Shapes.PathGeometry" />.
+    /// </summary>
     public partial class Path : Shape
     {
         static Path()
@@ -24,10 +27,16 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Shapes.Geometry" /> that specifies the shape to be drawn.
+        /// </summary>
         /// <remarks>
         /// Accepts single Geometry element.
         /// </remarks>
         [Parameter] public RenderFragment Data { get; set; }
+        /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.Shapes.Transform" /> applied to the path geometry.
+        /// </summary>
         /// <remarks>
         /// Accepts single Transform element.
         /// </remarks>

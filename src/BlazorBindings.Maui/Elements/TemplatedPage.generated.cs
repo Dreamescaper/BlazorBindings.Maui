@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A page that displays full-screen content with a control template, and the base class for <see cref="T:Microsoft.Maui.Controls.ContentPage" /> .
+    /// A page that displays content using a control template, and the base class for <see cref="T:Microsoft.Maui.Controls.ContentPage" />.
     /// </summary>
     public partial class TemplatedPage : Page
     {

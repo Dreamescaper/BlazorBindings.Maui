@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a swipe item that displays custom content in a <see cref="T:Microsoft.Maui.Controls.SwipeView" />.
+    /// </summary>
     public partial class SwipeItemView : ContentView
     {
         static SwipeItemView()

@@ -49,8 +49,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.13.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
+		<PackageReference Include="UraniumUI.Icons.FontAwesome" Version="2.15.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -58,7 +58,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.10" />
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.41" />
 	</ItemGroup>
 
 </Project>

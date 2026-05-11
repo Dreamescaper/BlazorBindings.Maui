@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// An items view that supports headers, footers, and configurable item layouts.
+    /// </summary>
     public partial class StructuredItemsView<T> : ItemsView<T>
     {
         static StructuredItemsView()
@@ -22,9 +25,33 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the strategy used to measure and size items in the view.
+        /// </summary>
+        /// <value>
+        /// An <see cref="P:Microsoft.Maui.Controls.StructuredItemsView.ItemSizingStrategy" /> value that determines how items are measured.
+        /// </value>
         [Parameter] public MC.ItemSizingStrategy? ItemSizingStrategy { get; set; }
+        /// <summary>
+        /// Gets or sets the layout strategy used to arrange items in the view.
+        /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Controls.IItemsLayout" /> that defines how items are arranged. The default is a vertical <see cref="T:Microsoft.Maui.Controls.LinearItemsLayout" />.
+        /// </value>
         [Parameter] public MC.IItemsLayout ItemsLayout { get; set; }
+        /// <summary>
+        /// Gets or sets the object to display as the footer of the items view.
+        /// </summary>
+        /// <value>
+        /// The footer content, which can be a string, view, or any object that will be rendered using <see cref="P:Microsoft.Maui.Controls.StructuredItemsView.FooterTemplate" /> if provided.
+        /// </value>
         [Parameter] public RenderFragment Footer { get; set; }
+        /// <summary>
+        /// Gets or sets the object to display as the header of the items view.
+        /// </summary>
+        /// <value>
+        /// The header content, which can be a string, view, or any object that will be rendered using <see cref="P:Microsoft.Maui.Controls.StructuredItemsView.HeaderTemplate" /> if provided.
+        /// </value>
         [Parameter] public RenderFragment Header { get; set; }
 
         public new MC.StructuredItemsView NativeControl => (MC.StructuredItemsView)((BindableObject)this).NativeControl;

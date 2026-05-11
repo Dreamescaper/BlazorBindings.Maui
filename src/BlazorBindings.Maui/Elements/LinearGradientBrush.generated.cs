@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A <see cref="T:Microsoft.Maui.Controls.GradientBrush" /> that paints an area with a linear gradient.
+    /// </summary>
     public partial class LinearGradientBrush : GradientBrush
     {
         static LinearGradientBrush()
@@ -22,7 +25,13 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the ending point of the gradient.
+        /// </summary>
         [Parameter] public Point? EndPoint { get; set; }
+        /// <summary>
+        /// Gets or sets the starting point of the gradient.
+        /// </summary>
         [Parameter] public Point? StartPoint { get; set; }
 
         public new MC.LinearGradientBrush NativeControl => (MC.LinearGradientBrush)((BindableObject)this).NativeControl;

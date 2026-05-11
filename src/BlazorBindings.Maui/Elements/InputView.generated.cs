@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// The base class of a view which can take keyboard input.
+    /// A base class for views that obtain text input from the user.
     /// </summary>
     public abstract partial class InputView : View
     {
@@ -27,10 +27,10 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets a value that indicates the number of device-independent units that should be in between characters in the text displayed by the Entry. Applies to Text and Placeholder.
+        /// Gets or sets the spacing between characters in the input text.
         /// </summary>
         /// <value>
-        /// The number of device-independent units that should be in between characters in the text.
+        /// A <see cref="T:System.Double" /> representing the character spacing.
         /// </value>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
@@ -54,10 +54,10 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public double? FontSize { get; set; }
         /// <summary>
-        /// Gets or sets a value that indicates whether user should be prevented from modifying the text. Default is <see langword="false" />.
+        /// Gets or sets a value indicating whether the user can edit text in this input view.
         /// </summary>
         /// <value>
-        /// If <see langword="true" />, user cannot modify text. Else, <see langword="false" />.
+        /// <see langword="true" /> if the text is read-only; otherwise, <see langword="false" />.
         /// </value>
         [Parameter] public bool? IsReadOnly { get; set; }
         /// <summary>
@@ -75,31 +75,31 @@ namespace BlazorBindings.Maui.Elements
         /// </value>
         [Parameter] public bool? IsTextPredictionEnabled { get; set; }
         /// <summary>
-        /// Gets or sets the Keyboard for the InputView.
+        /// Gets or sets the keyboard type for the input view.
         /// </summary>
         /// <value>
-        /// The <see cref="T:Microsoft.Maui.Keyboard" /> to use for the InputView.
+        /// The <see cref="P:Microsoft.Maui.Controls.InputView.Keyboard" /> to use. The default is <see cref="P:Microsoft.Maui.Keyboard.Default" />.
         /// </value>
         [Parameter] public Keyboard Keyboard { get; set; }
         /// <summary>
-        /// Gets or sets the maximum allowed length of input.
+        /// Gets or sets the maximum number of characters the user can enter.
         /// </summary>
         /// <value>
-        /// An integer in the interval [0,<c>int.MaxValue</c>]. The default value is <c>Int.MaxValue</c>.
+        /// The maximum number of characters. The default is <see cref="F:System.Int32.MaxValue" />.
         /// </value>
         [Parameter] public int? MaxLength { get; set; }
         /// <summary>
-        /// Gets or sets the text that is displayed when the control is empty.
+        /// Gets or sets the placeholder text shown when the input view is empty.
         /// </summary>
         /// <value>
-        /// The text that is displayed when the control is empty.
+        /// The placeholder text.
         /// </value>
         [Parameter] public string Placeholder { get; set; }
         /// <summary>
         /// Gets or sets the color of the placeholder text.
         /// </summary>
         /// <value>
-        /// The color of the placeholder text.
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the placeholder text.
         /// </value>
         [Parameter] public Color PlaceholderColor { get; set; }
         /// <summary>
@@ -107,9 +107,18 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public int? SelectionLength { get; set; }
         /// <summary>
-        /// Gets or sets the text color.
+        /// Gets or sets the color of the input text.
         /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the text.
+        /// </value>
         [Parameter] public Color TextColor { get; set; }
+        /// <summary>
+        /// Gets or sets the text transformation applied to the input text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="P:Microsoft.Maui.Controls.InputView.TextTransform" /> value.
+        /// </value>
         [Parameter] public TextTransform? TextTransform { get; set; }
 
         public new MC.InputView NativeControl => (MC.InputView)((BindableObject)this).NativeControl;

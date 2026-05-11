@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> control that provides time picking.
+    /// A view control that provides time selection.
     /// </summary>
     public partial class TimePicker : View
     {
@@ -25,34 +25,61 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
-        [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
-        /// TGets a value that indicates whether the font for the searchbar text is bold, italic, or neither.
-        /// </summary>
-        [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
-        [Parameter] public bool? FontAutoScalingEnabled { get; set; }
-        /// <summary>
-        /// Gets or sets the font family for the picker text.
-        /// </summary>
-        [Parameter] public string FontFamily { get; set; }
-        /// <summary>
-        /// Gets or sets the size of the font for the text in the picker.
+        /// Gets or sets the character spacing for the time picker text.
         /// </summary>
         /// <value>
-        /// A <see langword="double" /> that indicates the size of the font.
+        /// A <see cref="T:System.Double" /> representing the spacing between characters.
+        /// </value>
+        [Parameter] public double? CharacterSpacing { get; set; }
+        /// <summary>
+        /// Gets or sets a value that indicates whether the font for the time picker text is bold, italic, or neither.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.FontAttributes" /> value.
+        /// </value>
+        [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether font auto-scaling is enabled.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if font auto-scaling is enabled; otherwise, <see langword="false" />.
+        /// </value>
+        [Parameter] public bool? FontAutoScalingEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets the font family for the time picker text.
+        /// </summary>
+        /// <value>
+        /// The name of the font family.
+        /// </value>
+        [Parameter] public string FontFamily { get; set; }
+        /// <summary>
+        /// Gets or sets the size of the font for the text in the time picker.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the font size.
         /// </value>
         [Parameter] public double? FontSize { get; set; }
         /// <summary>
-        /// The format of the time to display to the user.
+        /// Gets or sets the format string for displaying the time.
         /// </summary>
         /// <value>
-        /// A valid time format string.
+        /// A format string compatible with <see cref="M:System.TimeSpan.ToString(System.String)" />. The default is "t" (short time pattern).
         /// </value>
         [Parameter] public string Format { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the time picker is open.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the time picker is open; otherwise, <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
-        /// Gets or sets the text color.
+        /// Gets or sets the text color for the time picker.
         /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the text.
+        /// </value>
         [Parameter] public Color TextColor { get; set; }
         [Parameter] public EventCallback<MC.TimePickerOpenedEventArgs> OnOpened { get; set; }
         [Parameter] public EventCallback<MC.TimePickerClosedEventArgs> OnClosed { get; set; }

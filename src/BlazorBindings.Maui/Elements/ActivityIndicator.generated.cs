@@ -26,17 +26,17 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:Microsoft.Maui.Graphics.Color" /> of the ActivityIndicator.
+        /// Gets or sets the color of the ActivityIndicator.
         /// </summary>
         /// <value>
         /// A <see cref="T:Microsoft.Maui.Graphics.Color" /> used to display the ActivityIndicator.
         /// </value>
         [Parameter] public Color Color { get; set; }
         /// <summary>
-        /// Gets or sets the value indicating if the ActivityIndicator is running.
+        /// Gets or sets a value indicating whether the ActivityIndicator is running (animating).
         /// </summary>
         /// <value>
-        /// A <see cref="T:System.Boolean" /> indicating if the ActivityIndicator is running.
+        /// <see langword="true" /> if the indicator is running; otherwise, <see langword="false" />. The default is <see langword="false" />.
         /// </value>
         [Parameter] public bool? IsRunning { get; set; }
 

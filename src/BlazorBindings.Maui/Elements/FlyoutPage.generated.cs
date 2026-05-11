@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A <see cref="T:Microsoft.Maui.Controls.Page" /> that manages two panes of information: a flyout that presents a menu or navigation, and a detail that presents the selected content.
+    /// </summary>
     public partial class FlyoutPage : Page
     {
         static FlyoutPage()
@@ -23,9 +26,21 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates how the flyout page displays on the screen.
+        /// </summary>
         [Parameter] public MC.FlyoutLayoutBehavior? FlyoutLayoutBehavior { get; set; }
+        /// <summary>
+        /// Gets or sets a value that indicates whether swipe gestures can open the flyout.
+        /// </summary>
         [Parameter] public bool? IsGestureEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets a value that indicates whether the flyout is presented.
+        /// </summary>
         [Parameter] public bool? IsPresented { get; set; }
+        /// <summary>
+        /// Gets or sets the flyout page that is used to present a menu or navigation options.
+        /// </summary>
         /// <remarks>
         /// Accepts single Page element.
         /// </remarks>

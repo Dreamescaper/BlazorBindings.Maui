@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// A <see cref="T:Microsoft.Maui.Controls.Shapes.Shape" /> that draws a rectangle, optionally with rounded corners via <see cref="P:Microsoft.Maui.Controls.Shapes.Rectangle.RadiusX" /> and <see cref="P:Microsoft.Maui.Controls.Shapes.Rectangle.RadiusY" />.
+    /// </summary>
     public partial class Rectangle : Shape
     {
         static Rectangle()
@@ -23,7 +26,13 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the x-axis radius used to round the corners of the rectangle.
+        /// </summary>
         [Parameter] public double? RadiusX { get; set; }
+        /// <summary>
+        /// Gets or sets the y-axis radius used to round the corners of the rectangle.
+        /// </summary>
         [Parameter] public double? RadiusY { get; set; }
 
         public new MCS.Rectangle NativeControl => (MCS.Rectangle)((BindableObject)this).NativeControl;

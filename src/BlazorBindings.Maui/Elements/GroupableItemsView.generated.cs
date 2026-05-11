@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A selectable items view that supports grouping of items.
+    /// </summary>
     public partial class GroupableItemsView<T> : SelectableItemsView<T>
     {
         static GroupableItemsView()

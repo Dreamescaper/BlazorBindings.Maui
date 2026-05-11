@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a container that provides pull-to-refresh functionality for scrollable content.
+    /// </summary>
     public partial class RefreshView : ContentView
     {
         static RefreshView()
@@ -27,7 +30,13 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets a value indicating whether the pull-to-refresh gesture is enabled. When false, the refresh gesture is disabled but child controls remain interactive.
         /// </summary>
         [Parameter] public bool? IsRefreshEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the view is currently refreshing.
+        /// </summary>
         [Parameter] public bool? IsRefreshing { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the refresh indicator.
+        /// </summary>
         [Parameter] public Color RefreshColor { get; set; }
         [Parameter] public EventCallback<bool> IsRefreshingChanged { get; set; }
 

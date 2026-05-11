@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> control that inputs a linear value.
+    /// Represents a horizontal bar that a user can slide to select a value from a continuous range.
     /// </summary>
     public partial class Slider : View
     {
@@ -27,50 +27,65 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the maximum selectable value for the Slider.
+        /// Gets or sets the maximum value of the slider.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The maximum value. The default is 1.
         /// </value>
         [Parameter] public double? Maximum { get; set; }
         /// <summary>
-        /// Gets or sets the color of the portion of the slider track that contains the maximum value of the slider.
+        /// Gets or sets the color of the unfilled portion of the slider track (from current value to maximum).
         /// </summary>
         /// <value>
-        /// Thhe color of the portion of the slider track that contains the maximum value of the slider.
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the maximum track. The default is <see langword="null" />, which uses the platform default.
         /// </value>
         [Parameter] public Color MaximumTrackColor { get; set; }
         /// <summary>
-        /// Gets or sets the minimum selectable value for the Slider.
+        /// Gets or sets the minimum value of the slider.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The minimum value. The default is 0.
         /// </value>
         [Parameter] public double? Minimum { get; set; }
         /// <summary>
-        /// Gets or sets the color of the portion of the slider track that contains the minimum value of the slider.
+        /// Gets or sets the color of the filled portion of the slider track (from minimum to current value).
         /// </summary>
         /// <value>
-        /// Thhe color of the portion of the slider track that contains the minimum value of the slider.
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the minimum track. The default is <see langword="null" />, which uses the platform default.
         /// </value>
         [Parameter] public Color MinimumTrackColor { get; set; }
         /// <summary>
-        /// Gets or sets the color of the slider thumb button.
+        /// Gets or sets the color of the slider thumb (the draggable element).
         /// </summary>
         /// <value>
-        /// The color of the slider thumb button.
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the thumb. The default is <see langword="null" />, which uses the platform default.
         /// </value>
         [Parameter] public Color ThumbColor { get; set; }
-        [Parameter] public MC.ImageSource ThumbImageSource { get; set; }
         /// <summary>
-        /// Gets or sets the current value.
+        /// Gets or sets an <see cref="T:Microsoft.Maui.Controls.ImageSource" /> to use as the slider thumb instead of the platform default.
         /// </summary>
         /// <value>
-        /// A double.
+        /// The <see cref="T:Microsoft.Maui.Controls.ImageSource" /> for the thumb. The default is <see langword="null" />.
+        /// </value>
+        [Parameter] public MC.ImageSource ThumbImageSource { get; set; }
+        /// <summary>
+        /// Gets or sets the current value of the slider.
+        /// </summary>
+        /// <value>
+        /// The current value, clamped between <see cref="P:Microsoft.Maui.Controls.Slider.Minimum" /> and <see cref="P:Microsoft.Maui.Controls.Slider.Maximum" />. The default is 0.
         /// </value>
         [Parameter] public double? Value { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.Slider.Value" /> property changes.
+        /// </summary>
         [Parameter] public EventCallback<double> ValueChanged { get; set; }
+        /// <summary>
+        /// Occurs when the user starts dragging the slider thumb.
+        /// </summary>
         [Parameter] public EventCallback OnDragStarted { get; set; }
+        /// <summary>
+        /// Occurs when the user completes dragging the slider thumb.
+        /// </summary>
         [Parameter] public EventCallback OnDragCompleted { get; set; }
 
         public new MC.Slider NativeControl => (MC.Slider)((BindableObject)this).NativeControl;

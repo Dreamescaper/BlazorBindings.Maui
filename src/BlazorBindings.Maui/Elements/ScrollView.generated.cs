@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// An element capable of scrolling if its Content requires.
+    /// Represents a view that is capable of scrolling if its content requires it.
     /// </summary>
     public partial class ScrollView : BlazorBindings.Maui.Elements.Compatibility.Layout
     {
@@ -34,14 +34,11 @@ namespace BlazorBindings.Maui.Elements
         /// </value>
         [Parameter] public new bool? CascadeInputTransparent { get; set; }
         /// <summary>
-        /// Gets or sets a value that controls when the horizontal scroll bar is visible.
+        /// Gets or sets the horizontal scroll bar visibility.
         /// </summary>
-        /// <value>
-        /// A value that controls when the horizontal scroll bar is visible.
-        /// </value>
         [Parameter] public ScrollBarVisibility? HorizontalScrollBarVisibility { get; set; }
         /// <summary>
-        /// Gets or sets the scrolling direction of the ScrollView.
+        /// Gets or sets the scroll orientation.
         /// </summary>
         [Parameter] public ScrollOrientation? Orientation { get; set; }
         [Parameter] public new Thickness? Padding { get; set; }
@@ -50,18 +47,12 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>
-        /// Gets or sets a value that controls when the vertical scroll bar is visible.
+        /// Gets or sets the vertical scroll bar visibility.
         /// </summary>
-        /// <value>
-        /// A value that controls when the vertical scroll bar is visible.
-        /// </value>
         [Parameter] public ScrollBarVisibility? VerticalScrollBarVisibility { get; set; }
         /// <summary>
-        /// Gets or sets a <see cref="T:Microsoft.Maui.Controls.View" /> to display in the <see cref="T:Microsoft.Maui.Controls.ScrollView" />.
+        /// Gets or sets the content of the scroll view.
         /// </summary>
-        /// <value>
-        /// The <see cref="T:Microsoft.Maui.Controls.View" /> that is displayed.
-        /// </value>
         /// <remarks>
         /// Accepts single View element.
         /// </remarks>

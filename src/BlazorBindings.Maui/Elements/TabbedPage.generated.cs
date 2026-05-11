@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// <see cref="T:Microsoft.Maui.Controls.MultiPage`1" /> that displays an array of tabs across the top of the screen, each of which loads content onto the screen.
+    /// A <see cref="T:Microsoft.Maui.Controls.MultiPage`1" /> that displays an array of tabs across the top of the screen, each of which loads content onto the screen.
     /// </summary>
     public partial class TabbedPage : Page
     {
@@ -29,22 +29,25 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the background color of the bar.
+        /// Gets or sets the background color of the tab bar.
         /// </summary>
-        /// <value>
-        /// The background color of the bar.
-        /// </value>
         [Parameter] public Color BarBackgroundColor { get; set; }
         /// <summary>
-        /// Gets or sets the color of text on the bar.
+        /// Gets or sets the color of the tab bar text.
         /// </summary>
-        /// <value>
-        /// The color of text on the bar.
-        /// </value>
         [Parameter] public Color BarTextColor { get; set; }
         [Parameter] public object SelectedItem { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the selected tab.
+        /// </summary>
         [Parameter] public Color SelectedTabColor { get; set; }
+        /// <summary>
+        /// Gets or sets the color of unselected tabs.
+        /// </summary>
         [Parameter] public Color UnselectedTabColor { get; set; }
+        /// <summary>
+        /// Gets or sets the brush used for the tab bar background.
+        /// </summary>
         /// <remarks>
         /// Accepts single Brush element.
         /// </remarks>

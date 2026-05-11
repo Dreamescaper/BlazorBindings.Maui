@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.ItemsView" /> whose scrollable child views 'snap' into place.
+    /// A view that presents a scrollable collection of items where each item 'snaps' into place after scrolling.
     /// </summary>
     public partial class CarouselView<T> : ItemsView<T>
     {
@@ -25,15 +25,69 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the currently displayed item in the carousel.
+        /// </summary>
+        /// <value>
+        /// The data item currently centered in the carousel, or <see langword="null" /> if no item is selected.
+        /// </value>
         [Parameter] public T CurrentItem { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether bounce effects are enabled when scrolling reaches the end of the carousel.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to enable bounce effects; otherwise, <see langword="false" />. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? IsBounceEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether scrolling between items is animated.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to animate scrolling; otherwise, <see langword="false" />. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? IsScrollAnimated { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether swipe gestures are enabled for navigation.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to enable swipe gestures; otherwise, <see langword="false" />. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? IsSwipeEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets the layout used to arrange items in the carousel.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.LinearItemsLayout" /> that defines the layout direction and snap behavior. The default is a horizontal layout with mandatory single snap points.
+        /// </value>
         [Parameter] public MC.LinearItemsLayout ItemsLayout { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the carousel loops back to the first item after reaching the last item.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the carousel should loop continuously; otherwise, <see langword="false" />. The default is <see langword="true" />.
+        /// </value>
         [Parameter] public bool? Loop { get; set; }
+        /// <summary>
+        /// Gets or sets the amount of space to reserve on each side of the current item to show a peek of adjacent items.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Thickness" /> value defining the peek area insets. The default is 0 on all sides.
+        /// </value>
         [Parameter] public Thickness? PeekAreaInsets { get; set; }
+        /// <summary>
+        /// Gets or sets the index of the currently displayed item in the carousel.
+        /// </summary>
+        /// <value>
+        /// The zero-based index of the current item. The default is 0.
+        /// </value>
         [Parameter] public int? Position { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.CarouselView.CurrentItem" /> changes.
+        /// </summary>
         [Parameter] public EventCallback<T> CurrentItemChanged { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="P:Microsoft.Maui.Controls.CarouselView.Position" /> changes.
+        /// </summary>
         [Parameter] public EventCallback<int> PositionChanged { get; set; }
 
         public new MC.CarouselView NativeControl => (MC.CarouselView)((BindableObject)this).NativeControl;

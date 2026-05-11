@@ -15,6 +15,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> that paints an area with a single solid color.
+    /// </summary>
     public partial class SolidColorBrush : Brush
     {
         static SolidColorBrush()
@@ -22,6 +25,9 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the color of this brush.
+        /// </summary>
         [Parameter] public Color Color { get; set; }
 
         public new MC.SolidColorBrush NativeControl => (MC.SolidColorBrush)((BindableObject)this).NativeControl;

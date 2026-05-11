@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Recognizes drop gestures and handles data transfer during drag and drop operations.
+    /// </summary>
     public partial class DropGestureRecognizer : GestureRecognizer
     {
         static DropGestureRecognizer()
@@ -21,9 +24,21 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the element can accept dropped data.
+        /// </summary>
         [Parameter] public bool? AllowDrop { get; set; }
+        /// <summary>
+        /// Occurs when a dragged element leaves the drop target.
+        /// </summary>
         [Parameter] public EventCallback<MC.DragEventArgs> OnDragLeave { get; set; }
+        /// <summary>
+        /// Occurs when a dragged element is over the drop target.
+        /// </summary>
         [Parameter] public EventCallback<MC.DragEventArgs> OnDragOver { get; set; }
+        /// <summary>
+        /// Occurs when an element is dropped on the drop target.
+        /// </summary>
         [Parameter] public EventCallback<MC.DropEventArgs> OnDrop { get; set; }
 
         public new MC.DropGestureRecognizer NativeControl => (MC.DropGestureRecognizer)((BindableObject)this).NativeControl;

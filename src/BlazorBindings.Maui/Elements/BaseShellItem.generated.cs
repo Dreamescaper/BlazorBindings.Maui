@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.NavigableElement" /> that is the base class for <see cref="T:Microsoft.Maui.Controls.ShellGroupItem" /> and <see cref="T:Microsoft.Maui.Controls.ShellContent" />.
+    /// Base class for Shell navigation items providing common properties like Title, Icon, and Route.
     /// </summary>
     public partial class BaseShellItem : NavigableElement
     {
@@ -26,41 +26,32 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// The icon to use for the item. If this property is unset, it will fallback to using the <see cref="P:Microsoft.Maui.Controls.BaseShellItem.Icon" /> property value.
+        /// Gets or sets the icon displayed for this item in the flyout.
         /// </summary>
-        /// <value>
-        /// A <see cref="T:Microsoft.Maui.Controls.ImageSource" /> that represents an icon.
-        /// </value>
         [Parameter] public MC.ImageSource FlyoutIcon { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this item is visible in the flyout menu.
+        /// </summary>
         [Parameter] public bool? FlyoutItemIsVisible { get; set; }
         /// <summary>
-        /// Defines the icon to display in parts of the chrome that are not the flyout.
+        /// Gets or sets the icon displayed for this item in the tab bar.
         /// </summary>
-        /// <value>
-        /// A <see cref="T:Microsoft.Maui.Controls.ImageSource" /> that represents an icon.
-        /// </value>
         [Parameter] public MC.ImageSource Icon { get; set; }
         /// <summary>
-        /// Defines if the item is selectable in the chrome.
+        /// Gets or sets a value indicating whether this item is enabled.
         /// </summary>
-        /// <value>
-        /// <see langword="true" /> if the item is selectable in the chrome.
-        /// </value>
         [Parameter] public bool? IsEnabled { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this item is visible in the Shell UI.
+        /// </summary>
         [Parameter] public bool? IsVisible { get; set; }
         /// <summary>
-        /// The string used to address the item.
+        /// Gets or sets the route used for URI-based Shell navigation.
         /// </summary>
-        /// <value>
-        /// A unique string that identifies the item.
-        /// </value>
         [Parameter] public string Route { get; set; }
         /// <summary>
-        /// Title to display in the UI.
+        /// Gets or sets the title displayed in the UI for this item.
         /// </summary>
-        /// <value>
-        /// Title to display in the UI.
-        /// </value>
         [Parameter] public string Title { get; set; }
         [Parameter] public EventCallback OnAppearing { get; set; }
         [Parameter] public EventCallback OnDisappearing { get; set; }

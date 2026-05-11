@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> control for picking an element in a list.
+    /// A view control for picking an element from a list.
     /// </summary>
     public partial class Picker<T> : View
     {
@@ -29,21 +29,51 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the character spacing for the picker text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the spacing between characters.
+        /// </value>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
         /// Gets a value that indicates whether the font for the searchbar text is bold, italic, or neither.
         /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether font auto-scaling is enabled.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if font auto-scaling is enabled; otherwise, <see langword="false" />.
+        /// </value>
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
         /// <summary>
         /// Gets or sets the font family for the picker text.
         /// </summary>
+        /// <value>
+        /// The name of the font family.
+        /// </value>
         [Parameter] public string FontFamily { get; set; }
         /// <summary>
         /// Gets or sets the size of the font for the text in the picker.
         /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the font size.
+        /// </value>
         [Parameter] public double? FontSize { get; set; }
+        /// <summary>
+        /// Gets or sets the horizontal text alignment.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextAlignment" /> value representing the horizontal alignment.
+        /// </value>
         [Parameter] public TextAlignment? HorizontalTextAlignment { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the picker is open.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the picker is open; otherwise, <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
         /// Gets or sets a binding that selects the property that will be displayed for each object in the list of items.
@@ -69,7 +99,19 @@ namespace BlazorBindings.Maui.Elements
         /// Gets or sets the title for the Picker.
         /// </summary>
         [Parameter] public string Title { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the title text.
+        /// </summary>
+        /// <value>
+        /// The <see cref="T:Microsoft.Maui.Graphics.Color" /> of the title text.
+        /// </value>
         [Parameter] public Color TitleColor { get; set; }
+        /// <summary>
+        /// Gets or sets the vertical text alignment.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.TextAlignment" /> value representing the vertical alignment.
+        /// </value>
         [Parameter] public TextAlignment? VerticalTextAlignment { get; set; }
         [Parameter] public EventCallback<T> SelectedItemChanged { get; set; }
         [Parameter] public EventCallback<int> SelectedIndexChanged { get; set; }

@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a menu item displayed in a <see cref="T:Microsoft.Maui.Controls.SwipeView" /> when the view is swiped.
+    /// </summary>
     public partial class SwipeItem : MenuItem
     {
         static SwipeItem()
@@ -23,7 +26,13 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the background color of the swipe item.
+        /// </summary>
         [Parameter] public Color BackgroundColor { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this swipe item is visible.
+        /// </summary>
         [Parameter] public bool? IsVisible { get; set; }
         [Parameter] public EventCallback OnInvoked { get; set; }
 

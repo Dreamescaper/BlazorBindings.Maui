@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents the bottom tab bar in a <see cref="T:Microsoft.Maui.Controls.Shell" /> application.
+    /// </summary>
     public partial class TabBar : ShellItem
     {
         static TabBar()

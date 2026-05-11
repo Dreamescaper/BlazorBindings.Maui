@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// A shape that draws an ellipse or circle.
+    /// </summary>
     public partial class Ellipse : Shape
     {
         static Ellipse()

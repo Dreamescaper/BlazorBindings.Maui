@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.Page" /> that displays a single view.
+    /// A <see cref="T:Microsoft.Maui.Controls.Page" /> that displays a single view as its content.
     /// </summary>
     public partial class ContentPage : TemplatedPage
     {
@@ -35,11 +35,8 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>
-        /// Gets or sets the view that contains the content of the Page.
+        /// Gets or sets the view that contains the content of the page.
         /// </summary>
-        /// <value>
-        /// A <see cref="T:Microsoft.Maui.Controls.View" /> subclass, or <see langword="null" />.
-        /// </value>
         /// <remarks>
         /// Accepts single View element.
         /// </remarks>

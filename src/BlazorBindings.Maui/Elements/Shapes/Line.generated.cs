@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.Shapes
 {
+    /// <summary>
+    /// A shape that draws a straight line between two points.
+    /// </summary>
     public partial class Line : Shape
     {
         static Line()
@@ -23,9 +26,21 @@ namespace BlazorBindings.Maui.Elements.Shapes
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the x-coordinate of the line's start point.
+        /// </summary>
         [Parameter] public double? X1 { get; set; }
+        /// <summary>
+        /// Gets or sets the x-coordinate of the line's end point.
+        /// </summary>
         [Parameter] public double? X2 { get; set; }
+        /// <summary>
+        /// Gets or sets the y-coordinate of the line's start point.
+        /// </summary>
         [Parameter] public double? Y1 { get; set; }
+        /// <summary>
+        /// Gets or sets the y-coordinate of the line's end point.
+        /// </summary>
         [Parameter] public double? Y2 { get; set; }
 
         public new MCS.Line NativeControl => (MCS.Line)((BindableObject)this).NativeControl;

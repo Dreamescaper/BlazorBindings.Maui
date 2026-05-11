@@ -17,6 +17,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements
 {
+    /// <summary>
+    /// Represents a button that displays an image and reacts to touch events.
+    /// </summary>
     public partial class ImageButton : View
     {
         static ImageButton()
@@ -24,15 +27,66 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the scaling mode for the image.
+        /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Aspect" /> value that determines how the image is scaled. The default is <see cref="F:Microsoft.Maui.Aspect.AspectFit" />.
+        /// </value>
         [Parameter] public Aspect? Aspect { get; set; }
+        /// <summary>
+        /// Gets or sets the color of the border around the image button.
+        /// </summary>
+        /// <value>
+        /// The color of the border. The default is <see langword="null" />.
+        /// </value>
         [Parameter] public Color BorderColor { get; set; }
+        /// <summary>
+        /// Gets or sets the width of the border around the image button, in device-independent units.
+        /// </summary>
+        /// <value>
+        /// The width of the border. The default is 0.
+        /// </value>
         [Parameter] public double? BorderWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the corner radius for the image button border, in device-independent units.
+        /// </summary>
+        /// <value>
+        /// The corner radius of the border. The default is -1, which indicates the platform default.
+        /// </value>
         [Parameter] public int? CornerRadius { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the image should be rendered as opaque.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the image should be opaque; otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsOpaque { get; set; }
+        /// <summary>
+        /// Gets or sets the padding inside the image button.
+        /// </summary>
+        /// <value>
+        /// The padding around the image. The default is a <see cref="T:Microsoft.Maui.Thickness" /> with all values set to 0.
+        /// </value>
         [Parameter] public Thickness? Padding { get; set; }
+        /// <summary>
+        /// Gets or sets the source of the image to display on the button.
+        /// </summary>
+        /// <value>
+        /// An <see cref="T:Microsoft.Maui.Controls.ImageSource" /> that represents the image. The default is <see langword="null" />.
+        /// </value>
         [Parameter] public MC.ImageSource Source { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="T:Microsoft.Maui.Controls.ImageButton" /> is clicked or tapped.
+        /// </summary>
         [Parameter] public EventCallback OnClick { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="T:Microsoft.Maui.Controls.ImageButton" /> is pressed.
+        /// </summary>
         [Parameter] public EventCallback OnPress { get; set; }
+        /// <summary>
+        /// Occurs when the <see cref="T:Microsoft.Maui.Controls.ImageButton" /> is released.
+        /// </summary>
         [Parameter] public EventCallback OnRelease { get; set; }
 
         public new MC.ImageButton NativeControl => (MC.ImageButton)((BindableObject)this).NativeControl;

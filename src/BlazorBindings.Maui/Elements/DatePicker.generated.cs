@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace BlazorBindings.Maui.Elements
 {
     /// <summary>
-    /// A <see cref="T:Microsoft.Maui.Controls.View" /> that allows date picking.
+    /// A view control that allows date selection.
     /// </summary>
     public partial class DatePicker : View
     {
@@ -25,6 +25,12 @@ namespace BlazorBindings.Maui.Elements
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets the character spacing for the date picker text.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the spacing between characters.
+        /// </value>
         [Parameter] public double? CharacterSpacing { get; set; }
         /// <summary>
         /// Gets a value that indicates whether the font for the date picker text is bold, italic, or neither.
@@ -41,11 +47,20 @@ namespace BlazorBindings.Maui.Elements
         /// <summary>
         /// Gets or sets the size of the font for the text in the picker.
         /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Double" /> representing the font size.
+        /// </value>
         [Parameter] public double? FontSize { get; set; }
         /// <summary>
         /// The format of the date to display to the user. This is a dependency property.
         /// </summary>
         [Parameter] public string Format { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the date picker is open.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if the date picker is open; otherwise, <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
         /// Gets or sets the text color for the date picker.
