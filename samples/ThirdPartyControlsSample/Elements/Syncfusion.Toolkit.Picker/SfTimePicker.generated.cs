@@ -55,6 +55,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public TimeSpan? MaximumTime { get; set; }
         /// <summary>
+        /// Gets or sets the millisecond interval in SfTimePicker.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Picker.SfTimePicker.MilliSecondInterval" /> is 1.
+        /// </value>
+        [Parameter] public int? MilliSecondInterval { get; set; }
+        /// <summary>
         /// Gets or sets the minimum time in SfTimePicker.
         /// </summary>
         /// <value>
@@ -135,6 +142,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         MaximumTime = CastParameter<TimeSpan?>(value, name);
                         NativeControl.MaximumTime = MaximumTime ?? (TimeSpan)SMTP.SfTimePicker.MaximumTimeProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(MilliSecondInterval):
+                    if (!Equals(MilliSecondInterval, value))
+                    {
+                        MilliSecondInterval = CastParameter<int?>(value, name);
+                        NativeControl.MilliSecondInterval = MilliSecondInterval ?? (int)SMTP.SfTimePicker.MilliSecondIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumTime):

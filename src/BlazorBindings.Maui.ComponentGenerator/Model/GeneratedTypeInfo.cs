@@ -180,10 +180,12 @@ public record GeneratedTypeInfo(
         RenderFragmentPropertyInfo.AddContentProperties(properties, this);
         ValuePropertyInfo.AddValueProperties(properties, this);
         EventCallbackPropertyInfo.AddEventCallbackProperties(properties, this);
+        CommandEventCallbackPropertyInfo.AddCommandEventCallbackProperties(properties, this);
 
         properties = properties.Where(p => p is ValuePropertyInfo).OrderBy(p => p.ComponentPropertyName)
             .Concat(properties.OfType<RenderFragmentPropertyInfo>())
             .Concat(properties.OfType<EventCallbackPropertyInfo>())
+            .Concat(properties.OfType<CommandEventCallbackPropertyInfo>())
             .ToList();
 
         return properties;

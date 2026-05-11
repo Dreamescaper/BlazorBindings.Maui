@@ -131,6 +131,14 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
         /// </value>
         [Parameter] public SMTC.CalendarNavigationDirection? NavigationDirection { get; set; }
         /// <summary>
+        /// Gets or sets the height of the popup in the Calendar.
+        /// </summary>
+        [Parameter] public double? PopupHeight { get; set; }
+        /// <summary>
+        /// Gets or sets the width of the popup in the Calendar.
+        /// </summary>
+        [Parameter] public double? PopupWidth { get; set; }
+        /// <summary>
         /// Gets or sets a value determines the range selection direction of the SfCalendar.
         /// </summary>
         /// <value>
@@ -465,6 +473,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Calendar
                     {
                         NavigationDirection = CastParameter<SMTC.CalendarNavigationDirection?>(value, name);
                         NativeControl.NavigationDirection = NavigationDirection ?? (SMTC.CalendarNavigationDirection)SMTC.SfCalendar.NavigationDirectionProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(PopupHeight):
+                    if (!Equals(PopupHeight, value))
+                    {
+                        PopupHeight = CastParameter<double?>(value, name);
+                        NativeControl.PopupHeight = PopupHeight ?? (double)SMTC.SfCalendar.PopupHeightProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(PopupWidth):
+                    if (!Equals(PopupWidth, value))
+                    {
+                        PopupWidth = CastParameter<double?>(value, name);
+                        NativeControl.PopupWidth = PopupWidth ?? (double)SMTC.SfCalendar.PopupWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(RangeSelectionDirection):

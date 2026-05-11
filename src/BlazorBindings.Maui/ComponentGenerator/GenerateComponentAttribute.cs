@@ -225,4 +225,25 @@ public class GenerateComponentAttribute(Type typeToGenerate) : Attribute
     /// </code>
     /// </example>
     public bool MakeItemsGeneric { get; set; }
+
+    /// <summary>
+    /// Maps MAUI <c>ICommand</c> properties to Blazor <c>EventCallback</c> parameters.
+    /// Each entry must follow the format <c>"CommandPropertyName:EventCallbackName"</c>.
+    /// The generator will assign a <c>new Command(...)</c> to the native control's command
+    /// property that invokes the Blazor callback when executed, and set it to <c>null</c>
+    /// when the callback has no delegate.
+    /// </summary>
+    /// <remarks>
+    /// The command property is automatically excluded from the generated value properties so
+    /// it does not appear as a raw <c>ICommand</c> parameter alongside the callback.
+    /// </remarks>
+    /// <example>
+    /// <code>
+    /// [assembly: GenerateComponent(typeof(VirtualizeListView),
+    ///     CommandEvents = ["ThresholdCommand:OnThreshold"])]
+    /// // Generates: [Parameter] public EventCallback OnThreshold { get; set; }
+    /// // Sets:      NativeControl.ThresholdCommand = new Command(() => InvokeEventCallback(OnThreshold));
+    /// </code>
+    /// </example>
+    public string[] CommandEvents { get; set; }
 }

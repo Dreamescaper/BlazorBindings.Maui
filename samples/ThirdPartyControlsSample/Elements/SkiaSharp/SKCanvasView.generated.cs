@@ -16,6 +16,9 @@ using System.Threading.Tasks;
 
 namespace BlazorBindings.Maui.Elements.SkiaSharp
 {
+    /// <summary>
+    /// A .NET MAUI view that can be used to draw 2D graphics using SkiaSharp with software (CPU) rendering.
+    /// </summary>
     public partial class SKCanvasView : BlazorBindings.Maui.Elements.View
     {
         static SKCanvasView()
@@ -23,9 +26,27 @@ namespace BlazorBindings.Maui.Elements.SkiaSharp
             RegisterAdditionalHandlers();
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether touch events are enabled for this view.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> if touch events are enabled; otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? EnableTouchEvents { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the canvas should ignore the device's pixel density scaling.
+        /// </summary>
+        /// <value>
+        /// <see langword="true" /> to ignore pixel scaling and use 1:1 pixel mapping; otherwise, <see langword="false" />. The default is <see langword="false" />.
+        /// </value>
         [Parameter] public bool? IgnorePixelScaling { get; set; }
+        /// <summary>
+        /// Occurs when the surface needs to be painted.
+        /// </summary>
         [Parameter] public EventCallback<global::SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs> OnPaintSurface { get; set; }
+        /// <summary>
+        /// Occurs when a touch event is detected on the view.
+        /// </summary>
         [Parameter] public EventCallback<global::SkiaSharp.Views.Maui.SKTouchEventArgs> OnTouch { get; set; }
 
         public new SVMC.SKCanvasView NativeControl => (SVMC.SKCanvasView)((BindableObject)this).NativeControl;

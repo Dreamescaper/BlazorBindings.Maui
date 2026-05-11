@@ -88,6 +88,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// </value>
         [Parameter] public TextAlignment? HeaderHorizontalTextAlignment { get; set; }
         /// <summary>
+        /// Gets or sets the value that defines the spacing between header items.
+        /// </summary>
+        /// <value>
+        /// It accepts int values and the default value is 36.
+        /// </value>
+        [Parameter] public int? HeaderItemSpacing { get; set; }
+        /// <summary>
         /// Gets or sets a brush that describes the selection indicator's background.
         /// </summary>
         /// <value>
@@ -356,6 +363,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                     {
                         HeaderHorizontalTextAlignment = CastParameter<TextAlignment?>(value, name);
                         NativeControl.HeaderHorizontalTextAlignment = HeaderHorizontalTextAlignment ?? (TextAlignment)SMTT.SfTabView.HeaderHorizontalTextAlignmentProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(HeaderItemSpacing):
+                    if (!Equals(HeaderItemSpacing, value))
+                    {
+                        HeaderItemSpacing = CastParameter<int?>(value, name);
+                        NativeControl.HeaderItemSpacing = HeaderItemSpacing ?? (int)SMTT.SfTabView.HeaderItemSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(IndicatorBackgroundColor):

@@ -121,7 +121,10 @@ public class Program
                         v => v.ElementAtOrDefault(1) is string genericArgName ? compilation.GetTypeByMetadataName(genericArgName) : null),
                     Aliases = propertiesAliases,
                     IsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "IsGeneric").Value.Value as bool? ?? typeSymbol.IsGenericType,
-                    MakeItemsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "MakeItemsGeneric").Value.Value as bool?
+                    MakeItemsGeneric = a.NamedArguments.FirstOrDefault(a => a.Key == "MakeItemsGeneric").Value.Value as bool?,
+                    CommandEvents = GetNamedArgumentValues(a, "CommandEvents")
+                        .Select(v => v.Split(':'))
+                        .ToDictionary(v => v[0], v => v[1])
                 };
             })
             .Where(type => type.TypeSymbol != null)

@@ -35,6 +35,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
         /// </summary>
         [Parameter] public double? AxisOrigin { get; set; }
         /// <summary>
+        /// Gets or sets how the spark chart interprets X-axis values.
+        /// </summary>
+        [Parameter] public SMTS.SparkChartAxisType? AxisType { get; set; }
+        /// <summary>
         /// Gets or sets the collection used to generate the _content of the chart.
         /// </summary>
         [Parameter] public IList<T> ItemsSource { get; set; }
@@ -51,6 +55,27 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
         /// </summary>
         [Parameter] public Thickness? Padding { get; set; }
         /// <summary>
+        /// Gets or sets the end Y value of the highlighted range band.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="T:System.Double" /> values and the default value is <c>double.NaN</c>.
+        /// </value>
+        [Parameter] public double? RangeBandEnd { get; set; }
+        /// <summary>
+        /// Gets or sets the fill brush used to render the range band.
+        /// </summary>
+        /// <value>
+        /// This property takes <see cref="T:Microsoft.Maui.Controls.Brush" /> values and the default value is <c>#E7E0EC"</c>.
+        /// </value>
+        [Parameter] public Color RangeBandFillColor { get; set; }
+        /// <summary>
+        /// Gets or sets the start Y value of the highlighted range band.
+        /// </summary>
+        /// <value>
+        /// It accepts <see cref="T:System.Double" /> values and the default value is <c>double.NaN</c>.
+        /// </value>
+        [Parameter] public double? RangeBandStart { get; set; }
+        /// <summary>
         /// Gets or sets the flag to visible axis.
         /// </summary>
         [Parameter] public bool? ShowAxis { get; set; }
@@ -58,6 +83,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
         /// Gets or sets the brush used to draw the stroke for the chart line, area, column or win-loss.
         /// </summary>
         [Parameter] public Color StrokeColor { get; set; }
+        /// <summary>
+        /// Gets or sets the path to the property used for X-axis values.
+        /// </summary>
+        [Parameter] public string XBindingPath { get; set; }
         /// <summary>
         /// Gets or sets the path to the property used for Y-axis values.
         /// </summary>
@@ -69,6 +98,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
         /// Accepts single SparkChartLineStyle element.
         /// </remarks>
         [Parameter] public RenderFragment AxisLineStyle { get; set; }
+        /// <summary>
+        /// Gets or sets the fill brush used to render the range band.
+        /// </summary>
+        /// <value>
+        /// This property takes <see cref="T:Microsoft.Maui.Controls.Brush" /> values and the default value is <c>#E7E0EC"</c>.
+        /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
+        [Parameter] public RenderFragment RangeBandFill { get; set; }
         /// <summary>
         /// Gets or sets the brush used to draw the stroke for the chart line, area, column or win-loss.
         /// </summary>
@@ -89,6 +128,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                     {
                         AxisOrigin = CastParameter<double?>(value, name);
                         NativeControl.AxisOrigin = AxisOrigin ?? (double)SMTS.SfSparkChart.AxisOriginProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(AxisType):
+                    if (!Equals(AxisType, value))
+                    {
+                        AxisType = CastParameter<SMTS.SparkChartAxisType?>(value, name);
+                        NativeControl.AxisType = AxisType ?? (SMTS.SparkChartAxisType)SMTS.SfSparkChart.AxisTypeProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemsSource):
@@ -119,6 +165,27 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                         NativeControl.Padding = Padding ?? (Thickness)SMTS.SfSparkChart.PaddingProperty.DefaultValue;
                     }
                     break;
+                case nameof(RangeBandEnd):
+                    if (!Equals(RangeBandEnd, value))
+                    {
+                        RangeBandEnd = CastParameter<double?>(value, name);
+                        NativeControl.RangeBandEnd = RangeBandEnd ?? (double)SMTS.SfSparkChart.RangeBandEndProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(RangeBandFillColor):
+                    if (!Equals(RangeBandFillColor, value))
+                    {
+                        RangeBandFillColor = CastParameter<Color>(value, name);
+                        NativeControl.RangeBandFill = RangeBandFillColor;
+                    }
+                    break;
+                case nameof(RangeBandStart):
+                    if (!Equals(RangeBandStart, value))
+                    {
+                        RangeBandStart = CastParameter<double?>(value, name);
+                        NativeControl.RangeBandStart = RangeBandStart ?? (double)SMTS.SfSparkChart.RangeBandStartProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(ShowAxis):
                     if (!Equals(ShowAxis, value))
                     {
@@ -133,6 +200,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                         NativeControl.Stroke = StrokeColor;
                     }
                     break;
+                case nameof(XBindingPath):
+                    if (!Equals(XBindingPath, value))
+                    {
+                        XBindingPath = CastParameter<string>(value, name);
+                        NativeControl.XBindingPath = XBindingPath;
+                    }
+                    break;
                 case nameof(YBindingPath):
                     if (!Equals(YBindingPath, value))
                     {
@@ -142,6 +216,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                     break;
                 case nameof(AxisLineStyle):
                     AxisLineStyle = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(RangeBandFill):
+                    RangeBandFill = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(Stroke):
                     Stroke = CastParameter<RenderFragment>(value, name);
@@ -157,6 +234,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, AxisLineStyle, (x, value) => x.AxisLineStyle = (SMTS.SparkChartLineStyle)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, RangeBandFill, (x, value) => x.RangeBandFill = (MC.Brush)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, Stroke, (x, value) => x.Stroke = (MC.Brush)value);
         }
 

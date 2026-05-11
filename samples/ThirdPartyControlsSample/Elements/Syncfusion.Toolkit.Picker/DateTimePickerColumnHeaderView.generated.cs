@@ -71,6 +71,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public string MeridiemHeaderText { get; set; }
         /// <summary>
+        /// Gets or sets the value to millisecond header text in SfDateTimePicker.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Picker.DateTimePickerColumnHeaderView.MilliSecondHeaderText" /> is "MilliSecond".
+        /// </value>
+        [Parameter] public string MilliSecondHeaderText { get; set; }
+        /// <summary>
         /// Gets or sets the value to minute header text in SfDateTimePicker.
         /// </summary>
         /// <value>
@@ -164,6 +171,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         MeridiemHeaderText = CastParameter<string>(value, name);
                         NativeControl.MeridiemHeaderText = MeridiemHeaderText;
+                    }
+                    break;
+                case nameof(MilliSecondHeaderText):
+                    if (!Equals(MilliSecondHeaderText, value))
+                    {
+                        MilliSecondHeaderText = CastParameter<string>(value, name);
+                        NativeControl.MilliSecondHeaderText = MilliSecondHeaderText;
                     }
                     break;
                 case nameof(MinuteHeaderText):

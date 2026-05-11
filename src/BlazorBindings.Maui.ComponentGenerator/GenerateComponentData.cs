@@ -14,6 +14,8 @@ public class GenerateComponentSettings
     public string[] PropertyChangedEvents { get; set; } = [];
     public Dictionary<string, INamedTypeSymbol?> GenericProperties { get; set; } = [];
     public Dictionary<string, string> Aliases { get; set; } = [];
+    /// <summary>Keys are MAUI command property names, values are the Blazor EventCallback parameter names.</summary>
+    public Dictionary<string, string> CommandEvents { get; set; } = [];
     public bool IsGeneric { get; set; }
     public bool? MakeItemsGeneric { get; set; }
 }

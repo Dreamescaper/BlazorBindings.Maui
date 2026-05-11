@@ -62,6 +62,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public DateTime? MaximumDate { get; set; }
         /// <summary>
+        /// Gets or sets the millisecond interval in SfDateTimePicker.
+        /// </summary>
+        /// <value>
+        /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Picker.SfDateTimePicker.MilliSecondInterval" /> is 1.
+        /// </value>
+        [Parameter] public int? MilliSecondInterval { get; set; }
+        /// <summary>
         /// Gets or sets the minimum date in SfDateTimePicker.
         /// </summary>
         /// <value>
@@ -170,6 +177,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                     {
                         MaximumDate = CastParameter<DateTime?>(value, name);
                         NativeControl.MaximumDate = MaximumDate ?? (DateTime)SMTP.SfDateTimePicker.MaximumDateProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(MilliSecondInterval):
+                    if (!Equals(MilliSecondInterval, value))
+                    {
+                        MilliSecondInterval = CastParameter<int?>(value, name);
+                        NativeControl.MilliSecondInterval = MilliSecondInterval ?? (int)SMTP.SfDateTimePicker.MilliSecondIntervalProperty.DefaultValue;
                     }
                     break;
                 case nameof(MinimumDate):

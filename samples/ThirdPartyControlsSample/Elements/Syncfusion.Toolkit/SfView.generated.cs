@@ -66,7 +66,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit
                     if (!Equals(Padding, value))
                     {
                         Padding = CastParameter<Thickness?>(value, name);
-                        NativeControl.Padding = Padding ?? default;
+                        NativeControl.Padding = Padding ?? (Thickness)SMT.SfView.PaddingProperty.DefaultValue;
                     }
                     break;
                 case nameof(Children):

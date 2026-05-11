@@ -1,4 +1,5 @@
 ﻿using BlazorBindings.Maui.ComponentGenerator;
+using MPowerKit.VirtualizeListView;
 using SkiaSharp.Views.Maui.Controls;
 using The49.Maui.BottomSheet;
 using XCalendar.Maui.Views;
@@ -32,3 +33,7 @@ using XCalendar.Maui.Views;
 
 // Syncfusion
 [assembly: GenerateComponentsFromAssembly(typeof(Syncfusion.Maui.Toolkit.TextInputLayout.SfTextInputLayout))]
+
+[assembly: GenerateComponent(typeof(VirtualizeListView),
+    Exclude = [nameof(VirtualizeListView.LayoutManager)],
+    CommandEvents = ["ThresholdCommand:OnThreshold"])]
