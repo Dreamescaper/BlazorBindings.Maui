@@ -36,4 +36,8 @@ using XCalendar.Maui.Views;
 
 [assembly: GenerateComponent(typeof(VirtualizeListView),
     Exclude = [nameof(VirtualizeListView.LayoutManager)],
-    CommandEvents = ["ThresholdCommand:OnThreshold"])]
+    GenericProperties = [
+        nameof(VirtualizeListView.OnItemTapped), 
+        nameof(VirtualizeListView.OnItemAppearing), 
+        nameof(VirtualizeListView.OnItemDisappearing)],
+    CommandEvents = [$"{nameof(VirtualizeListView.ThresholdCommand)}:OnThreshold"])]

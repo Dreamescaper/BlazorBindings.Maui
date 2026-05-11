@@ -12,6 +12,8 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
 
     public override ISymbol? MemberSymbol => EventSymbol;
 
+    private readonly bool _isGenericEventArg;
+
     public EventCallbackPropertyInfo(
         GeneratedTypeInfo containingType,
         IEventSymbol eventSymbol,
@@ -23,16 +25,9 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
         EventSymbol = eventSymbol;
         BindProperty = bindProperty;
 
-        ComponentType = GetEventCallbackType(containingType, eventSymbol, bindProperty);
-
-        if (BindProperty != null)
-        {
-            ComponentPropertyName = $"{BindProperty.Name}Changed";
-        }
-        else
-        {
-            ComponentPropertyName = GetEventCallbackName(eventSymbol);
-        }
+        var callbackName = bindProperty != null ? $"{bindProperty.Name}Changed" : GetEventCallbackName(eventSymbol);
+        ComponentType = GetEventCallbackType(containingType, eventSymbol, bindProperty, callbackName, out _isGenericEventArg);
+        ComponentPropertyName = callbackName;
     }
 
     public override string GetHandlePropertyCase()
@@ -82,6 +77,10 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
             argument = componentPropertyType == mauiPropertyType
                 ? $"NativeControl.{BindProperty.Name}"
                 : $"NativeControl.{BindProperty.Name} is {componentPropertyType} item ? item : default({componentPropertyType})";
+        }
+        else if (_isGenericEventArg)
+        {
+            argument = "(T)e";
         }
         else
         {
@@ -146,8 +145,10 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
     }
 
 
-    private static string GetEventCallbackType(GeneratedTypeInfo containingType, IEventSymbol eventInfo, IPropertySymbol? bindedProperty)
+    private static string GetEventCallbackType(GeneratedTypeInfo containingType, IEventSymbol eventInfo, IPropertySymbol? bindedProperty, string callbackName, out bool isGenericEventArg)
     {
+        isGenericEventArg = false;
+
         if (bindedProperty != null)
         {
             var typeName = GetComponentPropertyTypeName(bindedProperty, containingType);
@@ -155,6 +156,16 @@ internal class EventCallbackPropertyInfo : GeneratedPropertyInfo
         }
 
         var eventArgType = GetEventArgType(eventInfo.Type);
+
+        // Allow GenericProperties to promote an object-typed event arg to T
+        if (eventArgType.SpecialType == SpecialType.System_Object
+            && containingType.MakePropertyGeneric(callbackName, out var typeArgument))
+        {
+            isGenericEventArg = true;
+            var typeArgumentName = typeArgument is null ? "T" : containingType.GetTypeNameAndAddNamespace(typeArgument);
+            return $"EventCallback<{typeArgumentName}>";
+        }
+
         if (eventArgType.Name != nameof(EventArgs))
         {
             return $"EventCallback<{containingType.GetTypeNameAndAddNamespace(eventArgType)}>";

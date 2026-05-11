@@ -41,9 +41,9 @@ namespace BlazorBindings.Maui.Elements.MPowerKit.VirtualizeListView
         [Parameter] public RenderFragment HeaderTemplate { get; set; }
         [Parameter] public RenderFragment<T> ItemTemplate { get; set; }
         [Parameter] public EventCallback<ValueTuple<double, double>> OnAdjustScrollRequested { get; set; }
-        [Parameter] public EventCallback<object> OnItemAppearing { get; set; }
-        [Parameter] public EventCallback<object> OnItemDisappearing { get; set; }
-        [Parameter] public EventCallback<object> OnItemTapped { get; set; }
+        [Parameter] public EventCallback<T> OnItemAppearing { get; set; }
+        [Parameter] public EventCallback<T> OnItemDisappearing { get; set; }
+        [Parameter] public EventCallback<T> OnItemTapped { get; set; }
         [Parameter] public EventCallback OnThreshold { get; set; }
 
         public new MV.VirtualizeListView NativeControl => (MV.VirtualizeListView)((BindableObject)this).NativeControl;
@@ -145,9 +145,9 @@ namespace BlazorBindings.Maui.Elements.MPowerKit.VirtualizeListView
                 case nameof(OnItemAppearing):
                     if (!Equals(OnItemAppearing, value))
                     {
-                        void NativeControlItemAppearing(object sender, object e) => InvokeEventCallback(OnItemAppearing, e);
+                        void NativeControlItemAppearing(object sender, object e) => InvokeEventCallback(OnItemAppearing, (T)e);
 
-                        OnItemAppearing = CastParameter<EventCallback<object>>(value, name);
+                        OnItemAppearing = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.ItemAppearing -= NativeControlItemAppearing;
                         NativeControl.ItemAppearing += NativeControlItemAppearing;
                     }
@@ -155,9 +155,9 @@ namespace BlazorBindings.Maui.Elements.MPowerKit.VirtualizeListView
                 case nameof(OnItemDisappearing):
                     if (!Equals(OnItemDisappearing, value))
                     {
-                        void NativeControlItemDisappearing(object sender, object e) => InvokeEventCallback(OnItemDisappearing, e);
+                        void NativeControlItemDisappearing(object sender, object e) => InvokeEventCallback(OnItemDisappearing, (T)e);
 
-                        OnItemDisappearing = CastParameter<EventCallback<object>>(value, name);
+                        OnItemDisappearing = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.ItemDisappearing -= NativeControlItemDisappearing;
                         NativeControl.ItemDisappearing += NativeControlItemDisappearing;
                     }
@@ -165,9 +165,9 @@ namespace BlazorBindings.Maui.Elements.MPowerKit.VirtualizeListView
                 case nameof(OnItemTapped):
                     if (!Equals(OnItemTapped, value))
                     {
-                        void NativeControlItemTapped(object sender, object e) => InvokeEventCallback(OnItemTapped, e);
+                        void NativeControlItemTapped(object sender, object e) => InvokeEventCallback(OnItemTapped, (T)e);
 
-                        OnItemTapped = CastParameter<EventCallback<object>>(value, name);
+                        OnItemTapped = CastParameter<EventCallback<T>>(value, name);
                         NativeControl.ItemTapped -= NativeControlItemTapped;
                         NativeControl.ItemTapped += NativeControlItemTapped;
                     }

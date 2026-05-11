@@ -16,12 +16,13 @@ The Component Generator is a .NET global tool (`dotnet-generate-maui-blazor-comp
 
 For each public, non-obsolete, non-excluded property on the MAUI type the generator decides how to expose it:
 
-| MAUI property type | Generated Blazor parameter |
+| MAUI member type | Generated Blazor parameter |
 |---|---|
 | Primitive / value type | `[Parameter] public T Prop { get; set; }` |
 | MAUI `Element` or list of elements | `[Parameter] public RenderFragment Prop { get; set; }` (child content) |
 | MAUI event | `[Parameter] public EventCallback Handler { get; set; }` |
 | Filtered `PropertyChanged` event | `[Parameter] public EventCallback<T> PropChanged { get; set; }` |
+| `ICommand` property (opt-in) | `[Parameter] public EventCallback OnXxx { get; set; }` |
 
 The classification can be overridden per-property using attributes (see [Attribute Reference](#attribute-reference) below).
 
@@ -29,7 +30,7 @@ The classification can be overridden per-property using attributes (see [Attribu
 
 When a MAUI type exposes an `ItemsSource` property (and has no `[ContentProperty]` attribute), the generator automatically makes the component generic (`MyComponent<T>`), so `ItemsSource` becomes `IList<T>` and `ItemTemplate` becomes `RenderFragment<T>`. This heuristic can be overridden with `MakeItemsGeneric = false`.
 
-Individual properties can also be promoted to a generic type parameter using `GenericProperties`, which supports optional constraints (`"PropertyName:Fully.Qualified.ConstraintType"`).
+Individual properties can also be promoted to a generic type parameter using `GenericProperties`, which supports optional constraints (`"PropertyName:Fully.Qualified.ConstraintType"`). This works for **both value properties and events**: when an event's argument type is `object` and the event's generated callback name (e.g. `OnItemTapped`) is listed in `GenericProperties`, the generated parameter becomes `EventCallback<T>` and the handler casts the argument to `T`.
 
 ---
 
@@ -98,10 +99,11 @@ Generates a single Blazor wrapper component for the specified MAUI type.
 | `ContentProperties` | `string[]` | Properties to treat as `RenderFragment` child content even if not auto-detected as such. |
 | `NonContentProperties` | `string[]` | Properties to treat as plain value parameters even if they would be detected as child content. |
 | `PropertyChangedEvents` | `string[]` | Properties for which an `EventCallback<T> PropChanged` should be synthesised by subscribing to `INotifyPropertyChanged.PropertyChanged`. |
-| `GenericProperties` | `string[]` | Properties to expose as the generic type parameter `T`. Format: `"PropName"` or `"PropName:Constraint.Type"`. |
+| `GenericProperties` | `string[]` | Value properties **or event callback names** to expose as generic type parameter `T`. Format: `"Name"` or `"Name:Constraint.Type"`. For events, the callback name (e.g. `"OnItemTapped"`) is used and the event arg must be `object`. |
 | `Aliases` | `string[]` | Rename generated parameters or the component itself. Format: `"MauiName:GeneratedName"`. Also accepts the type's own name as key to rename the component class. |
 | `IsGeneric` | `bool` | Force the component to be generic (`MyComponent<T>`) even with no `GenericProperties`. |
 | `MakeItemsGeneric` | `bool` | Override the automatic heuristic that makes collection-oriented components generic. |
+| `CommandEvents` | `string[]` | Map `ICommand` properties to `EventCallback` parameters. Format: `"CommandPropName:EventCallbackName"`. The generator wires a `new Command(...)` that invokes the callback; the command property is automatically excluded from value parameters. |
 
 **Examples**
 
@@ -128,6 +130,22 @@ Generates a single Blazor wrapper component for the specified MAUI type.
 
 // Opt out of automatic generic items
 [assembly: GenerateComponent(typeof(SfTabView), MakeItemsGeneric = false)]
+
+// Map an ICommand to an EventCallback
+[assembly: GenerateComponent(typeof(VirtualizeListView),
+	Exclude = [nameof(VirtualizeListView.LayoutManager)],
+	CommandEvents = [$"{nameof(VirtualizeListView.ThresholdCommand)}:OnThreshold"])]
+// Generates: [Parameter] public EventCallback OnThreshold { get; set; }
+// Sets:      NativeControl.ThresholdCommand = new Command(() => InvokeEventCallback(OnThreshold));
+
+// Make object-typed event args generic
+[assembly: GenerateComponent(typeof(VirtualizeListView),
+	GenericProperties = [
+		nameof(VirtualizeListView.OnItemTapped),
+		nameof(VirtualizeListView.OnItemAppearing),
+		nameof(VirtualizeListView.OnItemDisappearing)])]
+// Generates: [Parameter] public EventCallback<T> OnItemTapped { get; set; }
+// Handler:   void NativeControlItemTapped(object sender, object e) => InvokeEventCallback(OnItemTapped, (T)e);
 ```
 
 ---
