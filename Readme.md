@@ -7,7 +7,7 @@
 
 Check out the documentation for how to build your first app: https://dreamescaper.github.io/MobileBlazorBindingsDocs
 
-If you are using BlazorBindings.Maui in your own project, see [AGENTS.md](AGENTS.md) for project guidance intended for AI coding assistants and contributors working with BlazorBindings.Maui apps.
+If you are using BlazorBindings.Maui in your own project, see [AGENTS.md](AGENTS.md) for project guidance intended for AI coding assistants and contributors working with BlazorBindings.Maui apps. For third-party MAUI control libraries, use the reusable [`$blazorbindings-maui-third-party`](.agents/skills/blazorbindings-maui-third-party/SKILL.md) skill.
 
 ## What is it?
 
