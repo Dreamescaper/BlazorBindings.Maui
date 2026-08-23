@@ -1,0 +1,16 @@
+﻿@using BlazorBindings.Maui.Elements.Nalu
+@using ThirdPartyControlsSample.NaluIntegration
+@using ThirdPartyControlsSample.Pages
+
+<Scaffold InitialRootPageType="@typeof(RazorComponentPage<NaluSharedElementsView>)">
+    <ScaffoldTabBar>
+        <ScaffoldRoot Title="Nalu" PageType="@typeof(RazorComponentPage<NaluSharedElementsView>)" />
+        <ScaffoldRoot Title="Toolkit" PageType="@typeof(RazorComponentPage<CommunityToolkitPage>)" />
+        <ScaffoldRoot Title="Behaviors" PageType="@typeof(RazorComponentPage<CommunityToolkitBehaviors>)" />
+        <ScaffoldRoot Title="Calendar" PageType="@typeof(RazorComponentPage<XCalendarPage>)" />
+        <ScaffoldRoot Title="Skia" PageType="@typeof(RazorComponentPage<SkiaCanvasPage>)" />
+        <ScaffoldRoot Title="Syncfusion" PageType="@typeof(RazorComponentPage<SyncfusionToolkitPage>)" />
+        <ScaffoldRoot Title="Material" PageType="@typeof(RazorComponentPage<MaterialComponentsPage>)" />
+        <ScaffoldRoot Title="Sheet" PageType="@typeof(RazorComponentPage<BottomSheetPage>)" />
+    </ScaffoldTabBar>
+</Scaffold>

@@ -1,0 +1,39 @@
+﻿@using ThirdPartyControlsSample.NaluIntegration
+@using Nalu
+
+<ContentPage Title="Shared element details"
+             Scaffold.TabBarVisibility="@ScaffoldTabBarVisibility.Hidden">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Border BackgroundColor="Colors.AliceBlue"
+                    CornerRadius="8"
+                    Padding="12"
+                    StrokeColor="Colors.LightBlue">
+                <Image Source="@botImage"
+                       Aspect="Aspect.AspectFit"
+                       HeightRequest="360"
+                       Scaffold.TransitionName="nalu-bot-image" />
+            </Border>
+
+            <Label Text="Razor-powered shared element"
+                   FontAttributes="FontAttributes.Bold"
+                   FontSize="30"
+                   HorizontalOptions="LayoutOptions.Start"
+                   Scaffold.TransitionName="nalu-bot-title" />
+            <Label Text="The same transition names are attached to native MAUI views on both Razor components. Nalu animates their visible geometry and reverses the flight when this page is popped." />
+
+            <Button Text="Back" OnClick="GoBack" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
+@code {
+    [Inject] Nalu.INavigationService NaluNavigation { get; set; }
+
+    ImageSource botImage = "dotnet_bot.svg";
+
+    async Task GoBack()
+    {
+        await NaluNavigation.GoToAsync(Nalu.Navigation.Relative().Pop());
+    }
+}

@@ -1,0 +1,44 @@
+﻿@using ThirdPartyControlsSample.NaluIntegration
+
+<ContentPage Title="Nalu Scaffold">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+            <Label Text="Nalu Scaffold"
+                   FontAttributes="FontAttributes.Bold"
+                   FontSize="28" />
+            <Label Text="The image and title below are Razor elements. Nalu moves them into the detail page during push and pop navigation." />
+
+            <Border BackgroundColor="Colors.AliceBlue"
+                    CornerRadius="24"
+                    Padding="18"
+                    StrokeColor="Colors.LightBlue">
+                <VerticalStackLayout Spacing="12">
+                    <Image Source="@botImage"
+                           Aspect="Aspect.AspectFit"
+                           HeightRequest="220"
+                           Scaffold.TransitionName="nalu-bot-image" />
+                    <Label Text="Razor-powered shared element"
+                           FontAttributes="FontAttributes.Bold"
+                           FontSize="20"
+                           HorizontalOptions="LayoutOptions.Start"
+                           Scaffold.TransitionName="nalu-bot-title" />
+                    <Label Text="Tap the button to watch Nalu match the transition names on both pages." />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Open shared-element details" OnClick="OpenDetails" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
+
+@code {
+    [Inject] Nalu.INavigationService NaluNavigation { get; set; }
+
+    ImageSource botImage = "dotnet_bot.svg";
+
+    async Task OpenDetails()
+    {
+        await NaluNavigation.GoToAsync(
+            Nalu.Navigation.Relative().Push<RazorComponentPage<NaluSharedElementDetailsView>>());
+    }
+}

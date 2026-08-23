@@ -1,5 +1,6 @@
 ﻿using BlazorBindings.Maui.ComponentGenerator;
 using MPowerKit.VirtualizeListView;
+using Nalu;
 using SkiaSharp.Views.Maui.Controls;
 using The49.Maui.BottomSheet;
 using XCalendar.Maui.Views;
@@ -41,3 +42,8 @@ using XCalendar.Maui.Views;
         nameof(VirtualizeListView.OnItemAppearing), 
         nameof(VirtualizeListView.OnItemDisappearing)],
     CommandEvents = [$"{nameof(VirtualizeListView.ThresholdCommand)}:OnThreshold"])]
+
+// Nalu Scaffold
+[assembly: GenerateComponent(typeof(Scaffold))]
+[assembly: GenerateComponent(typeof(ScaffoldTabBar))]
+[assembly: GenerateComponent(typeof(ScaffoldRoot))]

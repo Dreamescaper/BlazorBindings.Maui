@@ -10,14 +10,14 @@ public static class NavigationExtensions
     public static async Task<TResult> ShowCommunityToolkitPopupAsync<TPopup, TResult>(this INavigation navigation)
     {
         var popup = await ((Navigation)navigation).BuildElement<CommunityToolkit.Maui.Views.Popup<TResult>>(typeof(TPopup), null);
-        var result = await Application.Current.MainPage.ShowPopupAsync<TResult>(popup);
+        var result = await CurrentPage.ShowPopupAsync<TResult>(popup);
         return result.Result;
     }
 
     public static async Task<object> ShowMDPopupAsync<T>(this INavigation navigation)
     {
         var popup = await ((Navigation)navigation).BuildElement<Material.Components.Maui.Popup>(typeof(T), null);
-        return await popup.ShowAtAsync(Application.Current.MainPage);
+        return await popup.ShowAtAsync(CurrentPage);
     }
 
     public static async Task ShowBottomSheet<T>(this INavigation navigation)
@@ -25,4 +25,7 @@ public static class NavigationExtensions
         var bottomSheet = await ((Navigation)navigation).BuildElement<BottomSheet>(typeof(T), null);
         await bottomSheet.ShowAsync();
     }
+
+    private static Page CurrentPage => Application.Current.Windows.FirstOrDefault()?.Page
+        ?? throw new InvalidOperationException("The application does not have an active page.");
 }
