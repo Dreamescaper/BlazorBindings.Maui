@@ -1,8 +1,24 @@
 ﻿@using Microsoft.Maui.Controls.Internals;
+@using BlazorBindings.UnitTests.Components;
 
 @inherits ElementTestBase
 
 @code {
+[Test]
+public async Task SyncTemplateCanCreateContentWhileMainRenderBatchIsApplyingEdits()
+{
+    var templateOwner = await Render<EagerTemplateOwner>(
+    @<EagerSyncTemplateControl>
+        <Template>
+            <Label Text="Created during property set" />
+        </Template>
+    </EagerSyncTemplateControl>);
+
+    var label = (MC.Label)templateOwner.CreatedContent;
+
+    Assert.That(label.Text, Is.EqualTo("Created during property set"));
+}
+
 [Test]
 public async Task CreateContentFromDataTemplate()
 {
