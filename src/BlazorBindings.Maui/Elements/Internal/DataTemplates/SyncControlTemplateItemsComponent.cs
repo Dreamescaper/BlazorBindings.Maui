@@ -35,10 +35,21 @@ internal class SyncControlTemplateItemsComponent<T> : NativeControlComponentBase
     private RootContainerComponent _lastRootContainer;
     private int _count;
 
+    [Inject] private MauiBlazorBindingsRenderer Renderer { get; set; }
+
     private Microsoft.Maui.IView AddTemplateRoot()
     {
-        _count++;
-        StateHasChanged();
+        void RequestRoot()
+        {
+            _count++;
+            StateHasChanged();
+        }
+
+        // StateHasChanged only queues the render when a batch is already in progress, which is the
+        // case when MAUI realizes the template while we are attaching it. Requesting the render from
+        // inside TryRenderSynchronously gets it applied before we need the element.
+        if (!Renderer.TryRenderSynchronously(RequestRoot))
+            RequestRoot();
 
         var rootElement = _lastRootContainer?.Elements?.FirstOrDefault()
             ?? throw new InvalidOperationException("Template root control is supposed to be rendered at this point.");

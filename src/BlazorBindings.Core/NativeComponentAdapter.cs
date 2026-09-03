@@ -38,6 +38,12 @@ internal sealed class NativeComponentAdapter(
 
     public int DeepLevel { get; init; }
 
+    /// <summary>
+    /// Set once this adapter's component has been included in an applied render batch.
+    /// Used to verify that a synchronous render actually materialized.
+    /// </summary>
+    internal bool HasRendered { get; set; }
+
     public NativeComponentAdapter Parent { get; private set; }
     public List<NativeComponentAdapter> Children { get; } = [];
 
