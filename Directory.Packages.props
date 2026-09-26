@@ -28,16 +28,16 @@
 
 	<ItemGroup>
 		<!-- Blazor -->
-		<PackageVersion Include="Microsoft.AspNetCore.Components" Version="10.0.12" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components" Version="11.0.0-rc.1.26425.128" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<!-- MAUI -->
 		<!-- Be careful with updating, as it might cause issues with the version available in workloads via $(MauiVersion) -->
-		<PackageVersion Include="Microsoft.Maui.Controls" Version="10.0.110" />
-		<PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.110" />
-		<PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="10.0.12" />
-		<PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.12" />
+		<PackageVersion Include="Microsoft.Maui.Controls" Version="11.0.0-rc.1.26451.6" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="11.0.0-rc.1.26451.6" />
+		<PackageVersion Include="Microsoft.Extensions.Logging.Debug" Version="11.0.0-rc.1.26425.128" />
+		<PackageVersion Include="Microsoft.Extensions.Http" Version="11.0.0-rc.1.26425.128" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -8,6 +8,7 @@
 using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.Maui;
 using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
@@ -40,6 +41,23 @@ namespace BlazorBindings.Maui.Elements
         /// The corner radius for the box view.
         /// </value>
         [Parameter] public CornerRadius? CornerRadius { get; set; }
+        /// <summary>
+        /// Gets or sets the brush that fills the interior of the BoxView.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> object that describes how the BoxView's interior is painted. The default value is <see langword="null" />.
+        /// </value>
+        [Parameter] public Color FillColor { get; set; }
+        /// <summary>
+        /// Gets or sets the brush that fills the interior of the BoxView.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Controls.Brush" /> object that describes how the BoxView's interior is painted. The default value is <see langword="null" />.
+        /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
+        [Parameter] public RenderFragment Fill { get; set; }
 
         public new MC.BoxView NativeControl => (MC.BoxView)((BindableObject)this).NativeControl;
 
@@ -63,11 +81,27 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.CornerRadius = CornerRadius ?? (CornerRadius)MC.BoxView.CornerRadiusProperty.DefaultValue;
                     }
                     break;
+                case nameof(FillColor):
+                    if (!Equals(FillColor, value))
+                    {
+                        FillColor = CastParameter<Color>(value, name);
+                        NativeControl.Fill = FillColor;
+                    }
+                    break;
+                case nameof(Fill):
+                    Fill = CastParameter<RenderFragment>(value, name);
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
                     break;
             }
+        }
+
+        protected override void RenderAdditionalElementContent(RenderTreeBuilder builder, ref int sequence)
+        {
+            base.RenderAdditionalElementContent(builder, ref sequence);
+            RenderTreeBuilderHelper.AddContentProperty<MC.BoxView>(builder, sequence++, Fill, (x, value) => x.Fill = (MC.Brush)value);
         }
 
         static partial void RegisterAdditionalHandlers();

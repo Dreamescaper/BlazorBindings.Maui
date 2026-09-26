@@ -26,12 +26,23 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
+        /// Gets or sets an encoded query string supplied to this content's page when the content is selected.
+        /// </summary>
+        [Parameter] public string QueryString { get; set; }
+        /// <summary>
         /// Gets the collection of menu items associated with this content.
         /// </summary>
         /// <remarks>
         /// Accepts one or more MenuItem elements.
         /// </remarks>
         [Parameter] public RenderFragment MenuItems { get; set; }
+        /// <summary>
+        /// Gets the query parameters supplied to this content's page when the content is selected.
+        /// </summary>
+        /// <remarks>
+        /// Accepts one or more ShellContentQueryParameter elements.
+        /// </remarks>
+        [Parameter] public RenderFragment QueryParameters { get; set; }
 
         public new MC.ShellContent NativeControl => (MC.ShellContent)((BindableObject)this).NativeControl;
 
@@ -41,8 +52,18 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(QueryString):
+                    if (!Equals(QueryString, value))
+                    {
+                        QueryString = CastParameter<string>(value, name);
+                        NativeControl.QueryString = QueryString;
+                    }
+                    break;
                 case nameof(MenuItems):
                     MenuItems = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(QueryParameters):
+                    QueryParameters = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:
@@ -55,6 +76,7 @@ namespace BlazorBindings.Maui.Elements
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddListContentProperty<MC.ShellContent, MC.MenuItem>(builder, sequence++, MenuItems, x => x.MenuItems);
+            RenderTreeBuilderHelper.AddListContentProperty<MC.ShellContent, MC.ShellContentQueryParameter>(builder, sequence++, QueryParameters, x => x.QueryParameters);
         }
 
         static partial void RegisterAdditionalHandlers();

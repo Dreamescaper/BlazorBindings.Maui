@@ -8,6 +8,7 @@
 using BlazorBindings.Core;
 using MC = Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Maui.Graphics;
 using System.Threading.Tasks;
 
 #pragma warning disable MBB001
@@ -25,6 +26,18 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
+        /// Gets or sets the background color of the badge displayed on this toolbar item. When set to <see langword="null" />, the platform default badge color is used.
+        /// </summary>
+        [Parameter] public Color BadgeColor { get; set; }
+        /// <summary>
+        /// Gets or sets the badge text displayed on this toolbar item. Set to a non-empty string to show a text/count badge, an empty string to show a dot indicator, or <see langword="null" /> to hide the badge.
+        /// </summary>
+        [Parameter] public string BadgeText { get; set; }
+        /// <summary>
+        /// Gets or sets the foreground (text) color of the badge displayed on this toolbar item. When set to <see langword="null" />, the platform default text color is used (typically white).
+        /// </summary>
+        [Parameter] public Color BadgeTextColor { get; set; }
+        /// <summary>
         /// Gets or sets a value that indicates on which of the primary, secondary, or default toolbar surfaces to display this ToolbarItem element.
         /// </summary>
         [Parameter] public MC.ToolbarItemOrder? Order { get; set; }
@@ -41,6 +54,27 @@ namespace BlazorBindings.Maui.Elements
         {
             switch (name)
             {
+                case nameof(BadgeColor):
+                    if (!Equals(BadgeColor, value))
+                    {
+                        BadgeColor = CastParameter<Color>(value, name);
+                        NativeControl.BadgeColor = BadgeColor;
+                    }
+                    break;
+                case nameof(BadgeText):
+                    if (!Equals(BadgeText, value))
+                    {
+                        BadgeText = CastParameter<string>(value, name);
+                        NativeControl.BadgeText = BadgeText;
+                    }
+                    break;
+                case nameof(BadgeTextColor):
+                    if (!Equals(BadgeTextColor, value))
+                    {
+                        BadgeTextColor = CastParameter<Color>(value, name);
+                        NativeControl.BadgeTextColor = BadgeTextColor;
+                    }
+                    break;
                 case nameof(Order):
                     if (!Equals(Order, value))
                     {

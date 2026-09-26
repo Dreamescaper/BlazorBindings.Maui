@@ -38,6 +38,10 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public double? MaximumWidth { get; set; }
         [Parameter] public double? MinimumHeight { get; set; }
         [Parameter] public double? MinimumWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the theme for the status bar area on mobile platforms. Controls whether OS-drawn icons (clock, battery, signal) are light or dark. Default automatically follows the current app theme. No-op on desktop platforms.
+        /// </summary>
+        [Parameter] public StatusBarTheme? StatusBarTheme { get; set; }
         [Parameter] public string Title { get; set; }
         [Parameter] public double? Width { get; set; }
         [Parameter] public double? X { get; set; }
@@ -127,6 +131,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         MinimumWidth = CastParameter<double?>(value, name);
                         NativeControl.MinimumWidth = MinimumWidth ?? (double)MC.Window.MinimumWidthProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(StatusBarTheme):
+                    if (!Equals(StatusBarTheme, value))
+                    {
+                        StatusBarTheme = CastParameter<StatusBarTheme?>(value, name);
+                        NativeControl.StatusBarTheme = StatusBarTheme ?? (StatusBarTheme)MC.Window.StatusBarThemeProperty.DefaultValue;
                     }
                     break;
                 case nameof(Title):

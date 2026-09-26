@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net10.0</TargetFrameworks>
+		<TargetFrameworks>net11.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<Description>Dotnet tool which generate BlazorBindings.Maui components for MAUI elements.</Description>

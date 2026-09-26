@@ -43,7 +43,7 @@ namespace BlazorBindings.Maui.Elements
         [Parameter] public ScrollOrientation? Orientation { get; set; }
         [Parameter] public new Thickness? Padding { get; set; }
         /// <summary>
-        /// Gets or sets the safe area edges to obey for this scroll view. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// Gets or sets the safe area edges to obey for this scroll view. The default value is SafeAreaEdges.Default (platform-specific).
         /// </summary>
         [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>

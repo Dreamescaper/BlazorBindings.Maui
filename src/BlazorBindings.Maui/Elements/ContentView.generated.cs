@@ -27,7 +27,7 @@ namespace BlazorBindings.Maui.Elements
         }
 
         /// <summary>
-        /// Gets or sets the safe area edges to obey for this content view. The default value is SafeAreaEdges.Default (None - edge to edge).
+        /// Gets or sets the safe area edges to obey for this content view. The default value is SafeAreaEdges.None (edge-to-edge).
         /// </summary>
         [Parameter] public SafeAreaEdges? SafeAreaEdges { get; set; }
         /// <summary>

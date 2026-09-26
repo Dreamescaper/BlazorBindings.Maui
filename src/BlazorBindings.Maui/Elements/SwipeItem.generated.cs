@@ -31,9 +31,17 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public Color BackgroundColor { get; set; }
         /// <summary>
+        /// Gets or sets the color used to tint <see cref="P:Microsoft.Maui.Controls.MenuItem.IconImageSource" />.
+        /// </summary>
+        [Parameter] public Color IconColor { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether this swipe item is visible.
         /// </summary>
         [Parameter] public bool? IsVisible { get; set; }
+        /// <summary>
+        /// Gets or sets the color used for the swipe item's label text.
+        /// </summary>
+        [Parameter] public Color TextColor { get; set; }
         [Parameter] public EventCallback OnInvoked { get; set; }
 
         public new MC.SwipeItem NativeControl => (MC.SwipeItem)((BindableObject)this).NativeControl;
@@ -51,11 +59,25 @@ namespace BlazorBindings.Maui.Elements
                         NativeControl.BackgroundColor = BackgroundColor;
                     }
                     break;
+                case nameof(IconColor):
+                    if (!Equals(IconColor, value))
+                    {
+                        IconColor = CastParameter<Color>(value, name);
+                        NativeControl.IconColor = IconColor;
+                    }
+                    break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
                         IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)MC.SwipeItem.IsVisibleProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(TextColor):
+                    if (!Equals(TextColor, value))
+                    {
+                        TextColor = CastParameter<Color>(value, name);
+                        NativeControl.TextColor = TextColor;
                     }
                     break;
                 case nameof(OnInvoked):

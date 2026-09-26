@@ -44,6 +44,10 @@ namespace BlazorBindings.Maui.Elements
         /// </summary>
         [Parameter] public string Title { get; set; }
         /// <summary>
+        /// Gets or sets the <see cref="T:Microsoft.Maui.Controls.FontAttributes" /> applied to the title text. Defaults to <see cref="F:Microsoft.Maui.Controls.FontAttributes.None" />.
+        /// </summary>
+        [Parameter] public MC.FontAttributes? TitleFontAttributes { get; set; }
+        /// <summary>
         /// Gets or sets a <see cref="T:Microsoft.Maui.Controls.View" /> control that represents the content.<br /><br /> This content is centered in the title bar, and is allocated the remaining space between the leading and trailing content.<br /><br /><br /> Views set here will block all input to the title bar region and handle input directly.
         /// </summary>
         /// <remarks>
@@ -103,6 +107,13 @@ namespace BlazorBindings.Maui.Elements
                     {
                         Title = CastParameter<string>(value, name);
                         NativeControl.Title = Title;
+                    }
+                    break;
+                case nameof(TitleFontAttributes):
+                    if (!Equals(TitleFontAttributes, value))
+                    {
+                        TitleFontAttributes = CastParameter<MC.FontAttributes?>(value, name);
+                        NativeControl.TitleFontAttributes = TitleFontAttributes ?? (MC.FontAttributes)MC.TitleBar.TitleFontAttributesProperty.DefaultValue;
                     }
                     break;
                 case nameof(Content):
