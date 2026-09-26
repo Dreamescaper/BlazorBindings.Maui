@@ -20,8 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<!-- Be careful with updating, as it might cause issues with the version avaible in workloads via $(MauiVersion) -->
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
+		<PackageReference Include="Microsoft.Maui.Controls" />
 	</ItemGroup>
 	
 </Project>

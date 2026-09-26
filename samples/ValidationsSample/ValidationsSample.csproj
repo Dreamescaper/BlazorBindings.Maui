@@ -52,9 +52,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
+		<PackageReference Include="Blazored.FluentValidation" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" />
+		<PackageReference Include="Microsoft.Maui.Controls" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,7 +62,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.41" />
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" />
 	</ItemGroup>
 
 </Project>
