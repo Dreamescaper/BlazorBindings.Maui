@@ -72,12 +72,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </value>
         [Parameter] public Thickness? Margin { get; set; }
         /// <summary>
+        /// Gets or sets the brush value to customize the tooltip border color.
+        /// </summary>
+        /// <value>
+        /// It accepts the <see cref="T:Microsoft.Maui.Controls.Brush" /> value and the default value is Transparent. The tooltip border is only rendered when both <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.Stroke" /> is set and <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.StrokeWidth" /> is greater than 0.
+        /// </value>
+        [Parameter] public Color StrokeColor { get; set; }
+        /// <summary>
+        /// Gets or sets a value to specify the tooltip border thickness.
+        /// </summary>
+        /// <value>
+        /// It accepts the float values and the default value is 0. The tooltip border is only rendered when both <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.Stroke" /> is set and <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.StrokeWidth" /> is greater than 0.
+        /// </value>
+        [Parameter] public double? StrokeWidth { get; set; }
+        /// <summary>
         /// Gets or sets the color value to customize the text color of the tooltip label.
         /// </summary>
         /// <value>
         /// It accepts the <see cref="T:Microsoft.Maui.Graphics.Color" /> values and the default value is White.
         /// </value>
         [Parameter] public Color TextColor { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the tooltip background matches the associated series fill color.
+        /// </summary>
+        /// <value>
+        /// It accepts bool values and the default value is <c>false</c>. When set to <c>true</c>, the tooltip background uses the series fill color; otherwise, it uses the <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.Background" /> property.
+        /// </value>
+        [Parameter] public bool? UseSeriesFillColor { get; set; }
         /// <summary>
         /// Gets or sets the brush value to customize the tooltip background.
         /// </summary>
@@ -88,6 +109,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// Accepts single Brush element.
         /// </remarks>
         [Parameter] public RenderFragment Background { get; set; }
+        /// <summary>
+        /// Gets or sets the brush value to customize the tooltip border color.
+        /// </summary>
+        /// <value>
+        /// It accepts the <see cref="T:Microsoft.Maui.Controls.Brush" /> value and the default value is Transparent. The tooltip border is only rendered when both <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.Stroke" /> is set and <see cref="P:Syncfusion.Maui.Toolkit.Charts.ChartTooltipBehavior.StrokeWidth" /> is greater than 0.
+        /// </value>
+        /// <remarks>
+        /// Accepts single Brush element.
+        /// </remarks>
+        [Parameter] public RenderFragment Stroke { get; set; }
 
         public new SMTC.ChartTooltipBehavior NativeControl => (SMTC.ChartTooltipBehavior)((BindableObject)this).NativeControl;
 
@@ -139,6 +170,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                         NativeControl.Margin = Margin ?? (Thickness)SMTC.ChartTooltipBehavior.MarginProperty.DefaultValue;
                     }
                     break;
+                case nameof(StrokeColor):
+                    if (!Equals(StrokeColor, value))
+                    {
+                        StrokeColor = CastParameter<Color>(value, name);
+                        NativeControl.Stroke = StrokeColor;
+                    }
+                    break;
+                case nameof(StrokeWidth):
+                    if (!Equals(StrokeWidth, value))
+                    {
+                        StrokeWidth = CastParameter<double?>(value, name);
+                        NativeControl.StrokeWidth = StrokeWidth ?? (double)SMTC.ChartTooltipBehavior.StrokeWidthProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(TextColor):
                     if (!Equals(TextColor, value))
                     {
@@ -146,8 +191,18 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                         NativeControl.TextColor = TextColor;
                     }
                     break;
+                case nameof(UseSeriesFillColor):
+                    if (!Equals(UseSeriesFillColor, value))
+                    {
+                        UseSeriesFillColor = CastParameter<bool?>(value, name);
+                        NativeControl.UseSeriesFillColor = UseSeriesFillColor ?? (bool)SMTC.ChartTooltipBehavior.UseSeriesFillColorProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(Background):
                     Background = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(Stroke):
+                    Stroke = CastParameter<RenderFragment>(value, name);
                     break;
 
                 default:
@@ -160,6 +215,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.ChartTooltipBehavior>(builder, sequence++, Background, (x, value) => x.Background = (MC.Brush)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTC.ChartTooltipBehavior>(builder, sequence++, Stroke, (x, value) => x.Stroke = (MC.Brush)value);
         }
 
         static partial void RegisterAdditionalHandlers();

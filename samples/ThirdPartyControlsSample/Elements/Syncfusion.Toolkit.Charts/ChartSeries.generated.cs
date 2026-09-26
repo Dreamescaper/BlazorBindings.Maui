@@ -97,6 +97,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </value>
         [Parameter] public double? Opacity { get; set; }
         /// <summary>
+        /// Gets or sets a path value on the source object to serve a brush value to the series for each data point.
+        /// </summary>
+        /// <value>
+        /// The string that represents the property name for the color to apply per segment, and its default value is null.
+        /// </value>
+        [Parameter] public string PointColorPath { get; set; }
+        /// <summary>
         /// Gets or sets a value that indicates to enable the data labels for the series..
         /// </summary>
         /// <value>
@@ -230,6 +237,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         Opacity = CastParameter<double?>(value, name);
                         NativeControl.Opacity = Opacity ?? (double)SMTC.ChartSeries.OpacityProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(PointColorPath):
+                    if (!Equals(PointColorPath, value))
+                    {
+                        PointColorPath = CastParameter<string>(value, name);
+                        NativeControl.PointColorPath = PointColorPath;
                     }
                     break;
                 case nameof(ShowDataLabels):

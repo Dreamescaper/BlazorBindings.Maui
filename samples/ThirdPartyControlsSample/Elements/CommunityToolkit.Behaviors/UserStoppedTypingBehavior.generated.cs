@@ -31,7 +31,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
         /// </summary>
         [Parameter] public int? MinimumLengthThreshold { get; set; }
         /// <summary>
-        /// Indicates whether or not the keyboard should be dismissed automatically after the user stopped typing.
+        /// Indicates whether the keyboard should be dismissed automatically after the user stopped typing.
         /// </summary>
         [Parameter] public bool? ShouldDismissKeyboardAutomatically { get; set; }
         /// <summary>

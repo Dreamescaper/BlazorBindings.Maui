@@ -30,6 +30,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         }
 
         /// <summary>
+        /// Gets or sets the currently active tab selection (Date or Time) in the DateTimePicker.
+        /// </summary>
+        [Parameter] public SMTP.DateTimePickerView? ActiveView { get; set; }
+        /// <summary>
         /// Gets or sets the BlackoutDateTimes in SfDateTimePicker.
         /// </summary>
         [Parameter] public ObservableCollection<DateTime> BlackoutDateTimes { get; set; }
@@ -144,6 +148,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         {
             switch (name)
             {
+                case nameof(ActiveView):
+                    if (!Equals(ActiveView, value))
+                    {
+                        ActiveView = CastParameter<SMTP.DateTimePickerView?>(value, name);
+                        NativeControl.ActiveView = ActiveView ?? (SMTP.DateTimePickerView)SMTP.SfDateTimePicker.ActiveViewProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(BlackoutDateTimes):
                     if (!Equals(BlackoutDateTimes, value))
                     {

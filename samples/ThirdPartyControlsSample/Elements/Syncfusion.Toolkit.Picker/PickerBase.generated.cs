@@ -31,6 +31,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         }
 
         /// <summary>
+        /// Gets or sets the icon that should be rendered inside the picker close button.
+        /// </summary>
+        [Parameter] public MC.ImageSource CloseButtonIcon { get; set; }
+        /// <summary>
         /// Gets or sets the value of column divider color in SfPicker. This property can be used to customize the column divider color in Picker.
         /// </summary>
         /// <value>
@@ -38,9 +42,17 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public Color ColumnDividerColor { get; set; }
         /// <summary>
+        /// Gets or sets the width for picker day column.
+        /// </summary>
+        [Parameter] public double? DayColumnWidth { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether the picker can perform looping.
         /// </summary>
         [Parameter] public bool? EnableLooping { get; set; }
+        /// <summary>
+        /// Gets or sets the width for picker hour column.
+        /// </summary>
+        [Parameter] public double? HourColumnWidth { get; set; }
         /// <summary>
         /// Gets or sets a value indicating whether the picker is open or not.
         /// </summary>
@@ -49,6 +61,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public bool? IsOpen { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether the user must explicitly confirm the selection made in the picker when it is displayed in a dialog or relative dialog mode. When this property is set to <c>false</c>, the picker requires an explicit confirmation action such as tapping an OK button before the selected value is committed. When this property is set to <c>true</c>, the selection is committed immediately as the user interacts with the picker (for example, when scrolling or tapping items). This property has no effect when the picker is displayed in default mode.
+        /// </summary>
+        [Parameter] public bool? IsSelectionImmediate { get; set; }
+        /// <summary>
         /// Gets or sets the value to specify the item height of picker view on Picker.
         /// </summary>
         /// <value>
@@ -56,12 +72,28 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public double? ItemHeight { get; set; }
         /// <summary>
+        /// Gets or sets the width for picker meridiem column.
+        /// </summary>
+        [Parameter] public double? MeridiemColumnWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the width for picker milli second column.
+        /// </summary>
+        [Parameter] public double? MilliSecondColumnWidth { get; set; }
+        /// <summary>
+        /// Gets or sets the width for picker minute column.
+        /// </summary>
+        [Parameter] public double? MinuteColumnWidth { get; set; }
+        /// <summary>
         /// Gets or sets the mode of the picker.
         /// </summary>
         /// <value>
         /// The default value of <see cref="P:Syncfusion.Maui.Toolkit.Picker.PickerBase.Mode" /> is <see cref="F:Syncfusion.Maui.Toolkit.Picker.PickerMode.Default" />.
         /// </value>
         [Parameter] public SMTP.PickerMode? Mode { get; set; }
+        /// <summary>
+        /// Gets or sets the width for picker month column.
+        /// </summary>
+        [Parameter] public double? MonthColumnWidth { get; set; }
         /// <summary>
         /// Gets or sets the height of the popup in the picker.
         /// </summary>
@@ -78,9 +110,17 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public SMTP.PickerRelativePosition? RelativePosition { get; set; }
         /// <summary>
+        /// Gets or sets the width for picker second column.
+        /// </summary>
+        [Parameter] public double? SecondColumnWidth { get; set; }
+        /// <summary>
         /// Gets or sets the picker selected text style in Picker.
         /// </summary>
         [Parameter] public SMTP.PickerTextStyle SelectedTextStyle { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether the close button should be shown in the picker header. This is not supported by <see cref="T:Syncfusion.Maui.Toolkit.Picker.SfDateTimePicker" />.
+        /// </summary>
+        [Parameter] public bool? ShowCloseButton { get; set; }
         /// <summary>
         /// Gets or sets the text display mode of the picker.
         /// </summary>
@@ -89,9 +129,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </value>
         [Parameter] public SMTP.PickerTextDisplayMode? TextDisplayMode { get; set; }
         /// <summary>
+        /// Gets or sets the width for picker year column.
+        /// </summary>
+        [Parameter] public double? YearColumnWidth { get; set; }
+        /// <summary>
         /// Gets or sets the column header template or template selector for picker column header.
         /// </summary>
         [Parameter] public RenderFragment ColumnHeaderTemplate { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker day column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment DayColumnTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the footer template or template selector for picker footer.
         /// </summary>
@@ -108,12 +159,54 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// </summary>
         [Parameter] public RenderFragment HeaderTemplate { get; set; }
         /// <summary>
+        /// Gets or sets the text style for picker hour column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment HourColumnTextStyle { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker meridiem column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment MeridiemColumnTextStyle { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker milli seconds column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment MilliSecondColumnTextStyle { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker minute column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment MinuteColumnTextStyle { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker month column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment MonthColumnTextStyle { get; set; }
+        /// <summary>
         /// Gets or sets the view relative to which the picker dialog should be displayed based on the RelativePosition. <seealso cref="P:Syncfusion.Maui.Toolkit.Picker.PickerBase.RelativePosition" />
         /// </summary>
         /// <remarks>
         /// Accepts single View element.
         /// </remarks>
         [Parameter] public RenderFragment RelativeView { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker seconds column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment SecondColumnTextStyle { get; set; }
         /// <summary>
         /// Gets or sets the value of selection view. This property can be used to customize the selection in Picker.
         /// </summary>
@@ -128,6 +221,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         /// Accepts single PickerTextStyle element.
         /// </remarks>
         [Parameter] public RenderFragment TextStyle { get; set; }
+        /// <summary>
+        /// Gets or sets the text style for picker year column.
+        /// </summary>
+        /// <remarks>
+        /// Accepts single PickerTextStyle element.
+        /// </remarks>
+        [Parameter] public RenderFragment YearColumnTextStyle { get; set; }
         /// <summary>
         /// Occurs after the ok button clicked on SfPicker. This event is not applicable for while the footer view is not visible and the ok button is not visible.
         /// </summary>
@@ -156,11 +256,25 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         {
             switch (name)
             {
+                case nameof(CloseButtonIcon):
+                    if (!Equals(CloseButtonIcon, value))
+                    {
+                        CloseButtonIcon = CastParameter<MC.ImageSource>(value, name);
+                        NativeControl.CloseButtonIcon = CloseButtonIcon;
+                    }
+                    break;
                 case nameof(ColumnDividerColor):
                     if (!Equals(ColumnDividerColor, value))
                     {
                         ColumnDividerColor = CastParameter<Color>(value, name);
                         NativeControl.ColumnDividerColor = ColumnDividerColor;
+                    }
+                    break;
+                case nameof(DayColumnWidth):
+                    if (!Equals(DayColumnWidth, value))
+                    {
+                        DayColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.DayColumnWidth = DayColumnWidth ?? (double)SMTP.PickerBase.DayColumnWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableLooping):
@@ -170,11 +284,25 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                         NativeControl.EnableLooping = EnableLooping ?? (bool)SMTP.PickerBase.EnableLoopingProperty.DefaultValue;
                     }
                     break;
+                case nameof(HourColumnWidth):
+                    if (!Equals(HourColumnWidth, value))
+                    {
+                        HourColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.HourColumnWidth = HourColumnWidth ?? (double)SMTP.PickerBase.HourColumnWidthProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(IsOpen):
                     if (!Equals(IsOpen, value))
                     {
                         IsOpen = CastParameter<bool?>(value, name);
                         NativeControl.IsOpen = IsOpen ?? (bool)SMTP.PickerBase.IsOpenProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(IsSelectionImmediate):
+                    if (!Equals(IsSelectionImmediate, value))
+                    {
+                        IsSelectionImmediate = CastParameter<bool?>(value, name);
+                        NativeControl.IsSelectionImmediate = IsSelectionImmediate ?? (bool)SMTP.PickerBase.IsSelectionImmediateProperty.DefaultValue;
                     }
                     break;
                 case nameof(ItemHeight):
@@ -184,11 +312,39 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                         NativeControl.ItemHeight = ItemHeight ?? (double)SMTP.PickerBase.ItemHeightProperty.DefaultValue;
                     }
                     break;
+                case nameof(MeridiemColumnWidth):
+                    if (!Equals(MeridiemColumnWidth, value))
+                    {
+                        MeridiemColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.MeridiemColumnWidth = MeridiemColumnWidth ?? (double)SMTP.PickerBase.MeridiemColumnWidthProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(MilliSecondColumnWidth):
+                    if (!Equals(MilliSecondColumnWidth, value))
+                    {
+                        MilliSecondColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.MilliSecondColumnWidth = MilliSecondColumnWidth ?? (double)SMTP.PickerBase.MilliSecondColumnWidthProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(MinuteColumnWidth):
+                    if (!Equals(MinuteColumnWidth, value))
+                    {
+                        MinuteColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.MinuteColumnWidth = MinuteColumnWidth ?? (double)SMTP.PickerBase.MinuteColumnWidthProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(Mode):
                     if (!Equals(Mode, value))
                     {
                         Mode = CastParameter<SMTP.PickerMode?>(value, name);
                         NativeControl.Mode = Mode ?? (SMTP.PickerMode)SMTP.PickerBase.ModeProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(MonthColumnWidth):
+                    if (!Equals(MonthColumnWidth, value))
+                    {
+                        MonthColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.MonthColumnWidth = MonthColumnWidth ?? (double)SMTP.PickerBase.MonthColumnWidthProperty.DefaultValue;
                     }
                     break;
                 case nameof(PopupHeight):
@@ -212,11 +368,25 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                         NativeControl.RelativePosition = RelativePosition ?? (SMTP.PickerRelativePosition)SMTP.PickerBase.RelativePositionProperty.DefaultValue;
                     }
                     break;
+                case nameof(SecondColumnWidth):
+                    if (!Equals(SecondColumnWidth, value))
+                    {
+                        SecondColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.SecondColumnWidth = SecondColumnWidth ?? (double)SMTP.PickerBase.SecondColumnWidthProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(SelectedTextStyle):
                     if (!Equals(SelectedTextStyle, value))
                     {
                         SelectedTextStyle = CastParameter<SMTP.PickerTextStyle>(value, name);
                         NativeControl.SelectedTextStyle = SelectedTextStyle;
+                    }
+                    break;
+                case nameof(ShowCloseButton):
+                    if (!Equals(ShowCloseButton, value))
+                    {
+                        ShowCloseButton = CastParameter<bool?>(value, name);
+                        NativeControl.ShowCloseButton = ShowCloseButton ?? (bool)SMTP.PickerBase.ShowCloseButtonProperty.DefaultValue;
                     }
                     break;
                 case nameof(TextDisplayMode):
@@ -226,8 +396,18 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                         NativeControl.TextDisplayMode = TextDisplayMode ?? (SMTP.PickerTextDisplayMode)SMTP.PickerBase.TextDisplayModeProperty.DefaultValue;
                     }
                     break;
+                case nameof(YearColumnWidth):
+                    if (!Equals(YearColumnWidth, value))
+                    {
+                        YearColumnWidth = CastParameter<double?>(value, name);
+                        NativeControl.YearColumnWidth = YearColumnWidth ?? (double)SMTP.PickerBase.YearColumnWidthProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(ColumnHeaderTemplate):
                     ColumnHeaderTemplate = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(DayColumnTextStyle):
+                    DayColumnTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(FooterTemplate):
                     FooterTemplate = CastParameter<RenderFragment>(value, name);
@@ -238,14 +418,35 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
                 case nameof(HeaderTemplate):
                     HeaderTemplate = CastParameter<RenderFragment>(value, name);
                     break;
+                case nameof(HourColumnTextStyle):
+                    HourColumnTextStyle = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(MeridiemColumnTextStyle):
+                    MeridiemColumnTextStyle = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(MilliSecondColumnTextStyle):
+                    MilliSecondColumnTextStyle = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(MinuteColumnTextStyle):
+                    MinuteColumnTextStyle = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(MonthColumnTextStyle):
+                    MonthColumnTextStyle = CastParameter<RenderFragment>(value, name);
+                    break;
                 case nameof(RelativeView):
                     RelativeView = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(SecondColumnTextStyle):
+                    SecondColumnTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(SelectionView):
                     SelectionView = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(TextStyle):
                     TextStyle = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(YearColumnTextStyle):
+                    YearColumnTextStyle = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(OnOkButtonClicked):
                     if (!Equals(OnOkButtonClicked, value))
@@ -308,12 +509,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Picker
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTP.PickerBase>(builder, sequence++, ColumnHeaderTemplate, (x, template) => x.ColumnHeaderTemplate = template);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, DayColumnTextStyle, (x, value) => x.DayColumnTextStyle = (SMTP.PickerTextStyle)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTP.PickerBase>(builder, sequence++, FooterTemplate, (x, template) => x.FooterTemplate = template);
             RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, FooterView, (x, value) => x.FooterView = (SMTP.PickerFooterView)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTP.PickerBase>(builder, sequence++, HeaderTemplate, (x, template) => x.HeaderTemplate = template);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, HourColumnTextStyle, (x, value) => x.HourColumnTextStyle = (SMTP.PickerTextStyle)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, MeridiemColumnTextStyle, (x, value) => x.MeridiemColumnTextStyle = (SMTP.PickerTextStyle)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, MilliSecondColumnTextStyle, (x, value) => x.MilliSecondColumnTextStyle = (SMTP.PickerTextStyle)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, MinuteColumnTextStyle, (x, value) => x.MinuteColumnTextStyle = (SMTP.PickerTextStyle)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, MonthColumnTextStyle, (x, value) => x.MonthColumnTextStyle = (SMTP.PickerTextStyle)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, RelativeView, (x, value) => x.RelativeView = (MC.View)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, SecondColumnTextStyle, (x, value) => x.SecondColumnTextStyle = (SMTP.PickerTextStyle)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, SelectionView, (x, value) => x.SelectionView = (SMTP.PickerSelectionView)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, TextStyle, (x, value) => x.TextStyle = (SMTP.PickerTextStyle)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTP.PickerBase>(builder, sequence++, YearColumnTextStyle, (x, value) => x.YearColumnTextStyle = (SMTP.PickerTextStyle)value);
         }
 
         static partial void RegisterAdditionalHandlers();

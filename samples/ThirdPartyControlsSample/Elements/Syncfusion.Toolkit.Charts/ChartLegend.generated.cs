@@ -29,12 +29,33 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the legend floats over the chart's plot area.
+        /// </summary>
+        /// <value>
+        /// It accepts bool values and the default value is <c>False</c>.
+        /// </value>
+        [Parameter] public bool? IsFloating { get; set; }
+        /// <summary>
         /// Gets or sets a value that indicates whether the legend is visible or not.
         /// </summary>
         /// <value>
         /// It accepts bool values and the default value is <c>True</c>
         /// </value>
         [Parameter] public bool? IsVisible { get; set; }
+        /// <summary>
+        /// Gets or sets the horizontal offset, in device-independent units, applied when the legend is floating.
+        /// </summary>
+        /// <value>
+        /// It accepts <c>double</c> values and the default value is <c>0</c>.
+        /// </value>
+        [Parameter] public double? OffsetX { get; set; }
+        /// <summary>
+        /// Gets or sets the vertical offset, in device-independent units, applied when the legend is floating.
+        /// </summary>
+        /// <value>
+        /// It accepts <c>double</c> values and the default value is <c>0</c>.
+        /// </value>
+        [Parameter] public double? OffsetY { get; set; }
         /// <summary>
         /// Gets or sets the placement for the legend in a chart.
         /// </summary>
@@ -89,11 +110,32 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         {
             switch (name)
             {
+                case nameof(IsFloating):
+                    if (!Equals(IsFloating, value))
+                    {
+                        IsFloating = CastParameter<bool?>(value, name);
+                        NativeControl.IsFloating = IsFloating ?? (bool)SMTC.ChartLegend.IsFloatingProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(IsVisible):
                     if (!Equals(IsVisible, value))
                     {
                         IsVisible = CastParameter<bool?>(value, name);
                         NativeControl.IsVisible = IsVisible ?? (bool)SMTC.ChartLegend.IsVisibleProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(OffsetX):
+                    if (!Equals(OffsetX, value))
+                    {
+                        OffsetX = CastParameter<double?>(value, name);
+                        NativeControl.OffsetX = OffsetX ?? (double)SMTC.ChartLegend.OffsetXProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(OffsetY):
+                    if (!Equals(OffsetY, value))
+                    {
+                        OffsetY = CastParameter<double?>(value, name);
+                        NativeControl.OffsetY = OffsetY ?? (double)SMTC.ChartLegend.OffsetYProperty.DefaultValue;
                     }
                     break;
                 case nameof(Placement):

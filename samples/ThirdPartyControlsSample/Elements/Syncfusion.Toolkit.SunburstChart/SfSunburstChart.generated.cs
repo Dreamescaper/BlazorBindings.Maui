@@ -41,6 +41,10 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
         /// </value>
         [Parameter] public bool? EnableAnimation { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether to enable the drill-down settings.
+        /// </summary>
+        [Parameter] public bool? EnableDrillDown { get; set; }
+        /// <summary>
         /// Gets or sets a value indicating whether the tooltip is visible when mouse hovers or taps on the segment.
         /// </summary>
         /// <value>
@@ -179,6 +183,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
         /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
         /// <summary>
+        /// Gets or sets the toolbar settings for the chart.
+        /// </summary>
+        /// <value>
+        /// This property takes a <see cref="P:Syncfusion.Maui.Toolkit.SunburstChart.SfSunburstChart.ToolbarSettings" /> instance as value and its default value is null.
+        /// </value>
+        /// <remarks>
+        /// Accepts single SunburstToolbarSettings element.
+        /// </remarks>
+        [Parameter] public RenderFragment ToolbarSettings { get; set; }
+        /// <summary>
         /// Gets or sets the tooltip settings property, used to customize the tooltip.
         /// </summary>
         /// <value>
@@ -224,6 +238,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                     {
                         EnableAnimation = CastParameter<bool?>(value, name);
                         NativeControl.EnableAnimation = EnableAnimation ?? (bool)SMTS.SfSunburstChart.EnableAnimationProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(EnableDrillDown):
+                    if (!Equals(EnableDrillDown, value))
+                    {
+                        EnableDrillDown = CastParameter<bool?>(value, name);
+                        NativeControl.EnableDrillDown = EnableDrillDown ?? (bool)SMTS.SfSunburstChart.EnableDrillDownProperty.DefaultValue;
                     }
                     break;
                 case nameof(EnableTooltip):
@@ -324,6 +345,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
                 case nameof(Stroke):
                     Stroke = CastParameter<RenderFragment>(value, name);
                     break;
+                case nameof(ToolbarSettings):
+                    ToolbarSettings = CastParameter<RenderFragment>(value, name);
+                    break;
                 case nameof(TooltipSettings):
                     TooltipSettings = CastParameter<RenderFragment>(value, name);
                     break;
@@ -367,6 +391,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SunburstChart
             RenderTreeBuilderHelper.AddListContentProperty<SMTS.SfSunburstChart, MC.Brush>(builder, sequence++, PaletteBrushes, x => x.PaletteBrushes);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSunburstChart>(builder, sequence++, SelectionSettings, (x, value) => x.SelectionSettings = (SMTS.SunburstSelectionSettings)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSunburstChart>(builder, sequence++, Stroke, (x, value) => x.Stroke = (MC.Brush)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSunburstChart>(builder, sequence++, ToolbarSettings, (x, value) => x.ToolbarSettings = (SMTS.SunburstToolbarSettings)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSunburstChart>(builder, sequence++, TooltipSettings, (x, value) => x.TooltipSettings = (SMTS.SunburstTooltipSettings)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTS.SfSunburstChart>(builder, sequence++, TooltipTemplate, (x, template) => x.TooltipTemplate = template);
         }

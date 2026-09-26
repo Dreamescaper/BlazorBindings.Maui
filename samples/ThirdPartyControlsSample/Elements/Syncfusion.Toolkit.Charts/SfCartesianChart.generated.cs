@@ -52,6 +52,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </remarks>
         [Parameter] public RenderFragment Annotations { get; set; }
         /// <summary>
+        /// Gets or sets a value for initiating crosshair, which displays the crosshair line and labels for the precise value inspection when you interact on the chart plot area.
+        /// </summary>
+        /// <value>
+        /// This property takes a <see cref="T:Syncfusion.Maui.Toolkit.Charts.ChartCrosshairBehavior" /> instance as a value, and its default value is null.
+        /// </value>
+        /// <remarks>
+        /// Accepts single ChartCrosshairBehavior element.
+        /// </remarks>
+        [Parameter] public RenderFragment CrosshairBehavior { get; set; }
+        /// <summary>
         /// Gets or sets the palette brushes for chart.
         /// </summary>
         /// <value>
@@ -157,6 +167,18 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// This event is triggered when reset the chart.
         /// </summary>
         [Parameter] public EventCallback<SMTC.ChartResetZoomEventArgs> OnResetZoom { get; set; }
+        /// <summary>
+        /// This event is triggered when an axis label is tapped.
+        /// </summary>
+        [Parameter] public EventCallback<SMTC.AxisLabelTappedEventArgs> OnAxisLabelTapped { get; set; }
+        /// <summary>
+        /// This event is triggered when a data label is tapped.
+        /// </summary>
+        [Parameter] public EventCallback<SMTC.DataLabelTappedEventArgs> OnDataLabelTapped { get; set; }
+        /// <summary>
+        /// This event is triggered when an annotation is tapped.
+        /// </summary>
+        [Parameter] public EventCallback<SMTC.AnnotationTappedEventArgs> OnAnnotationTapped { get; set; }
 
         public new SMTC.SfCartesianChart NativeControl => (SMTC.SfCartesianChart)((BindableObject)this).NativeControl;
 
@@ -182,6 +204,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     break;
                 case nameof(Annotations):
                     Annotations = CastParameter<RenderFragment>(value, name);
+                    break;
+                case nameof(CrosshairBehavior):
+                    CrosshairBehavior = CastParameter<RenderFragment>(value, name);
                     break;
                 case nameof(PaletteBrushes):
                     PaletteBrushes = CastParameter<RenderFragment>(value, name);
@@ -294,6 +319,36 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                         NativeControl.ResetZoom += NativeControlResetZoom;
                     }
                     break;
+                case nameof(OnAxisLabelTapped):
+                    if (!Equals(OnAxisLabelTapped, value))
+                    {
+                        void NativeControlAxisLabelTapped(object sender, SMTC.AxisLabelTappedEventArgs e) => InvokeEventCallback(OnAxisLabelTapped, e);
+
+                        OnAxisLabelTapped = CastParameter<EventCallback<SMTC.AxisLabelTappedEventArgs>>(value, name);
+                        NativeControl.AxisLabelTapped -= NativeControlAxisLabelTapped;
+                        NativeControl.AxisLabelTapped += NativeControlAxisLabelTapped;
+                    }
+                    break;
+                case nameof(OnDataLabelTapped):
+                    if (!Equals(OnDataLabelTapped, value))
+                    {
+                        void NativeControlDataLabelTapped(object sender, SMTC.DataLabelTappedEventArgs e) => InvokeEventCallback(OnDataLabelTapped, e);
+
+                        OnDataLabelTapped = CastParameter<EventCallback<SMTC.DataLabelTappedEventArgs>>(value, name);
+                        NativeControl.DataLabelTapped -= NativeControlDataLabelTapped;
+                        NativeControl.DataLabelTapped += NativeControlDataLabelTapped;
+                    }
+                    break;
+                case nameof(OnAnnotationTapped):
+                    if (!Equals(OnAnnotationTapped, value))
+                    {
+                        void NativeControlAnnotationTapped(object sender, SMTC.AnnotationTappedEventArgs e) => InvokeEventCallback(OnAnnotationTapped, e);
+
+                        OnAnnotationTapped = CastParameter<EventCallback<SMTC.AnnotationTappedEventArgs>>(value, name);
+                        NativeControl.AnnotationTapped -= NativeControlAnnotationTapped;
+                        NativeControl.AnnotationTapped += NativeControlAnnotationTapped;
+                    }
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
@@ -305,6 +360,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         {
             base.RenderAdditionalElementContent(builder, ref sequence);
             RenderTreeBuilderHelper.AddListContentProperty<SMTC.SfCartesianChart, SMTC.ChartAnnotation>(builder, sequence++, Annotations, x => x.Annotations);
+            RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCartesianChart>(builder, sequence++, CrosshairBehavior, (x, value) => x.CrosshairBehavior = (SMTC.ChartCrosshairBehavior)value);
             RenderTreeBuilderHelper.AddListContentProperty<SMTC.SfCartesianChart, MC.Brush>(builder, sequence++, PaletteBrushes, x => x.PaletteBrushes);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.SfCartesianChart>(builder, sequence++, SelectionBehavior, (x, value) => x.SelectionBehavior = (SMTC.SeriesSelectionBehavior)value);
             RenderTreeBuilderHelper.AddListContentProperty<SMTC.SfCartesianChart, SMTC.ChartSeries>(builder, sequence++, ChildContent, x => x.Series);

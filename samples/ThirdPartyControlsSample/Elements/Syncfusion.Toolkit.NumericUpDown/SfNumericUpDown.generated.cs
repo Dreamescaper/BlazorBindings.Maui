@@ -64,6 +64,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericUpDown
         /// </value>
         [Parameter] public Color UpDownButtonColor { get; set; }
         /// <summary>
+        /// Gets or sets the size of the up-down buttons size in the <see cref="T:Syncfusion.Maui.Toolkit.NumericUpDown.SfNumericUpDown" /> control.
+        /// </summary>
+        /// <value>
+        /// The default value is 28d.
+        /// </value>
+        [Parameter] public double? UpDownButtonSize { get; set; }
+        /// <summary>
         /// Gets or sets a value that indicates the placement of buttons used to increment or decrement the <see cref="P:Syncfusion.Maui.Toolkit.NumericEntry.SfNumericEntry.Value" /> property.
         /// </summary>
         /// <value>
@@ -126,6 +133,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.NumericUpDown
                     {
                         UpDownButtonColor = CastParameter<Color>(value, name);
                         NativeControl.UpDownButtonColor = UpDownButtonColor;
+                    }
+                    break;
+                case nameof(UpDownButtonSize):
+                    if (!Equals(UpDownButtonSize, value))
+                    {
+                        UpDownButtonSize = CastParameter<double?>(value, name);
+                        NativeControl.UpDownButtonSize = UpDownButtonSize ?? (double)SMTN.SfNumericUpDown.UpDownButtonSizeProperty.DefaultValue;
                     }
                     break;
                 case nameof(UpDownPlacementMode):

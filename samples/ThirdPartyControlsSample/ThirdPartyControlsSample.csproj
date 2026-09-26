@@ -49,7 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" VersionOverride="10.0.60" />
+		<PackageReference Include="Microsoft.Maui.Controls" />
 		<PackageReference Include="CommunityToolkit.Maui" />
 		<PackageReference Include="Material.Components.Maui" />
 		<PackageReference Include="MPowerKit.VirtualizeListView" />
@@ -64,7 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" VersionOverride="10.0.60" />
+	  <PackageReference Update="Microsoft.AspNetCore.Components.WebView.Maui" />
 	</ItemGroup>
 
 </Project>

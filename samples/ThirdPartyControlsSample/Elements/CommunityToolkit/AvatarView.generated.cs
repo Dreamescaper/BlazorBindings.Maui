@@ -45,7 +45,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public MC.FontAttributes? FontAttributes { get; set; }
         /// <summary>
-        /// Gets or sets a value indicating whether control font auto scaling enabled property.
+        /// Gets or sets a value indicating whether control font auto-scaling enabled property.
         /// </summary>
         [Parameter] public bool? FontAutoScalingEnabled { get; set; }
         /// <summary>
@@ -68,6 +68,9 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// Gets or sets a value of the control text colour property.
         /// </summary>
         [Parameter] public Color TextColor { get; set; }
+        /// <summary>
+        /// Gets or sets a value of the control text transform property.
+        /// </summary>
         [Parameter] public TextTransform? TextTransform { get; set; }
 
         public new CMV.AvatarView NativeControl => (CMV.AvatarView)((BindableObject)this).NativeControl;
@@ -96,7 +99,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     if (!Equals(CharacterSpacing, value))
                     {
                         CharacterSpacing = CastParameter<double?>(value, name);
-                        NativeControl.CharacterSpacing = CharacterSpacing ?? default;
+                        NativeControl.CharacterSpacing = CharacterSpacing ?? (double)CMV.AvatarView.CharacterSpacingProperty.DefaultValue;
                     }
                     break;
                 case nameof(FontAttributes):

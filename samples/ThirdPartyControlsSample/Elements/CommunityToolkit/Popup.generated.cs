@@ -30,19 +30,19 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
 
         [Parameter] public bool? CanBeDismissedByTappingOutsideOfPopup { get; set; }
         /// <summary>
-        /// Sets the horizontal position of the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> when displayed on screen
+        /// Gets or sets the horizontal position of the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> when displayed on screen.
         /// </summary>
         [Parameter] public new MC.LayoutOptions? HorizontalOptions { get; set; }
         /// <summary>
-        /// Sets the margin between the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> and the edge of the window
+        /// Gets or sets the margin between the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> and the edge of the window.
         /// </summary>
         [Parameter] public new Thickness? Margin { get; set; }
         /// <summary>
-        /// Sets the padding between the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> border and the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> content
+        /// Gets or sets the padding between the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> border and the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> content.
         /// </summary>
         [Parameter] public new Thickness? Padding { get; set; }
         /// <summary>
-        /// Sets the vertical position of the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> when displayed on screen
+        /// Gets or sets the vertical position of the <see cref="T:CommunityToolkit.Maui.Views.Popup" /> when displayed on screen.
         /// </summary>
         [Parameter] public new MC.LayoutOptions? VerticalOptions { get; set; }
         /// <summary>
@@ -87,7 +87,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
                     if (!Equals(Padding, value))
                     {
                         Padding = CastParameter<Thickness?>(value, name);
-                        NativeControl.Padding = Padding ?? (Thickness)CMV.Popup.PaddingProperty.DefaultValue;
+                        NativeControl.Padding = Padding ?? default;
                     }
                     break;
                 case nameof(VerticalOptions):

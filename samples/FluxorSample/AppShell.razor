@@ -17,6 +17,7 @@
 
 protected async override Task OnInitializedAsync()
 {
+    await base.OnInitializedAsync();
     await Store.InitializeAsync();
 }
 }

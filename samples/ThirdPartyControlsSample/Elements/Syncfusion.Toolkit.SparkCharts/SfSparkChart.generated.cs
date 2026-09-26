@@ -115,6 +115,16 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
         /// Accepts single Brush element.
         /// </remarks>
         [Parameter] public RenderFragment Stroke { get; set; }
+        /// <summary>
+        /// Gets or sets the trackball behavior for the spark chart.
+        /// </summary>
+        /// <value>
+        /// The <see cref="T:Syncfusion.Maui.Toolkit.SparkCharts.SparkChartTrackballBehavior" /> instance that enables trackball functionality.
+        /// </value>
+        /// <remarks>
+        /// Accepts single SparkChartTrackballBehavior element.
+        /// </remarks>
+        [Parameter] public RenderFragment TrackballBehavior { get; set; }
 
         public new SMTS.SfSparkChart NativeControl => (SMTS.SfSparkChart)((BindableObject)this).NativeControl;
 
@@ -223,6 +233,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
                 case nameof(Stroke):
                     Stroke = CastParameter<RenderFragment>(value, name);
                     break;
+                case nameof(TrackballBehavior):
+                    TrackballBehavior = CastParameter<RenderFragment>(value, name);
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
@@ -236,6 +249,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.SparkCharts
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, AxisLineStyle, (x, value) => x.AxisLineStyle = (SMTS.SparkChartLineStyle)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, RangeBandFill, (x, value) => x.RangeBandFill = (MC.Brush)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, Stroke, (x, value) => x.Stroke = (MC.Brush)value);
+            RenderTreeBuilderHelper.AddContentProperty<SMTS.SfSparkChart>(builder, sequence++, TrackballBehavior, (x, value) => x.TrackballBehavior = (SMTS.SparkChartTrackballBehavior)value);
         }
 
         static partial void RegisterAdditionalHandlers();

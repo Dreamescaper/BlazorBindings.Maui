@@ -31,11 +31,11 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         }
 
         /// <summary>
-        /// Allows drawing on the <see cref="T:CommunityToolkit.Maui.Core.IDrawingView" />.
+        /// Gets or sets the action that allows drawing on the <see cref="T:CommunityToolkit.Maui.Core.IDrawingView" />.
         /// </summary>
         [Parameter] public Action<ICanvas, RectF> DrawAction { get; set; }
         /// <summary>
-        /// Toggles multi-line mode. When true, multiple lines can be drawn on the <see cref="T:CommunityToolkit.Maui.Views.DrawingView" /> while the tap/click is released in-between lines. Note: when <see cref="P:CommunityToolkit.Maui.Views.DrawingView.ShouldClearOnFinish" /> is also enabled, the lines are cleared after the tap/click is released. Additionally, <see cref="P:CommunityToolkit.Maui.Views.DrawingView.DrawingLineCompletedCommand" /> will be fired after each line that is drawn.
+        /// Gets or sets a value indicating whether multi-line mode is enabled.
         /// </summary>
         [Parameter] public bool? IsMultiLineModeEnabled { get; set; }
         /// <summary>
@@ -43,7 +43,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public Color LineColor { get; set; }
         /// <summary>
-        /// The collection of lines that are currently on the <see cref="T:CommunityToolkit.Maui.Views.DrawingView" />.
+        /// Gets or sets the collection of lines that are currently on the <see cref="T:CommunityToolkit.Maui.Views.DrawingView" />.
         /// </summary>
         [Parameter] public ObservableCollection<CM.Core.IDrawingLine> Lines { get; set; }
         /// <summary>
@@ -51,7 +51,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit
         /// </summary>
         [Parameter] public float? LineWidth { get; set; }
         /// <summary>
-        /// Indicates whether the <see cref="T:CommunityToolkit.Maui.Views.DrawingView" /> is cleared after releasing the tap/click and a line is drawn. Note: when <see cref="P:CommunityToolkit.Maui.Views.DrawingView.IsMultiLineModeEnabled" /> is also enabled, this might cause unexpected behavior.
+        /// Gets or sets a value indicating whether the drawing surface should be cleared when the drawing operation finishes.
         /// </summary>
         [Parameter] public bool? ShouldClearOnFinish { get; set; }
         /// <summary>

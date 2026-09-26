@@ -31,7 +31,7 @@ namespace BlazorBindings.Maui.Elements.CommunityToolkit.Behaviors
         /// </summary>
         [Parameter] public string Mask { get; set; }
         /// <summary>
-        /// Gets or sets which character in the <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> property that will be visible and entered by a user. Defaults to 'X'. <br /> By default the 'X' character will be unmasked therefore a <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> of "XX XX XX" would display "12 34 56". If you wish to include 'X' in your <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> then you could set this <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.UnmaskedCharacter" /> to something else e.g. '0' and then use a <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> of "00X00X00" which would then display "12X34X56".
+        /// Gets or sets which character in the <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> property that will be visible and entered by a user. Defaults to 'X'. <br /> By default, the 'X' character will be unmasked therefore a <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> of "XX XX XX" would display "12 34 56". If you wish to include 'X' in your <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> then you could set this <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.UnmaskedCharacter" /> to something else e.g. '0' and then use a <see cref="P:CommunityToolkit.Maui.Behaviors.MaskedBehavior.Mask" /> of "00X00X00" which would then display "12X34X56".
         /// </summary>
         [Parameter] public char? UnmaskedCharacter { get; set; }
 

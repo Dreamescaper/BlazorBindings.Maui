@@ -89,6 +89,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// It accepts the <see cref="T:Microsoft.Maui.Controls.DataTemplate" />value and its default value is null.
         /// </value>
         [Parameter] public RenderFragment TrackballLabelTemplate { get; set; }
+        /// <summary>
+        /// Gets or sets the collection of trendlines for this series.
+        /// </summary>
+        /// <remarks>
+        /// Accepts one or more ChartTrendline elements.
+        /// </remarks>
+        [Parameter] public RenderFragment Trendlines { get; set; }
 
         public new SMTC.CartesianSeries NativeControl => (SMTC.CartesianSeries)((BindableObject)this).NativeControl;
 
@@ -141,6 +148,9 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                 case nameof(TrackballLabelTemplate):
                     TrackballLabelTemplate = CastParameter<RenderFragment>(value, name);
                     break;
+                case nameof(Trendlines):
+                    Trendlines = CastParameter<RenderFragment>(value, name);
+                    break;
 
                 default:
                     base.HandleParameter(name, value);
@@ -154,6 +164,7 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
             RenderTreeBuilderHelper.AddContentProperty<SMTC.CartesianSeries>(builder, sequence++, DataLabelSettings, (x, value) => x.DataLabelSettings = (SMTC.CartesianDataLabelSettings)value);
             RenderTreeBuilderHelper.AddContentProperty<SMTC.CartesianSeries>(builder, sequence++, EmptyPointSettings, (x, value) => x.EmptyPointSettings = (SMTC.EmptyPointSettings)value);
             RenderTreeBuilderHelper.AddDataTemplateProperty<SMTC.CartesianSeries>(builder, sequence++, TrackballLabelTemplate, (x, template) => x.TrackballLabelTemplate = template);
+            RenderTreeBuilderHelper.AddListContentProperty<SMTC.CartesianSeries, SMTC.ChartTrendline>(builder, sequence++, Trendlines, x => x.Trendlines);
         }
 
         static partial void RegisterAdditionalHandlers();

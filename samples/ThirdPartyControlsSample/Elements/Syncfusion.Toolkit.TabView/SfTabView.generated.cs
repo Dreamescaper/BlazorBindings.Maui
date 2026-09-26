@@ -179,12 +179,40 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
         /// </value>
         [Parameter] public int? SelectedIndex { get; set; }
         /// <summary>
+        /// Gets or sets the swipe sensitivity for navigating between tabs in the Tab View content area.
+        /// </summary>
+        /// <value>
+        /// It accepts double values and the default value is 5.
+        /// </value>
+        [Parameter] public double? SwipingSensitivity { get; set; }
+        /// <summary>
         /// Gets or sets the background color of the tab bar.
         /// </summary>
         /// <value>
         /// The background color of the tab bar. The default value is null.
         /// </value>
         [Parameter] public Color TabBarBackgroundColor { get; set; }
+        /// <summary>
+        /// Gets or sets the color used to paint the border around the TabBar in SfTabView.
+        /// </summary>
+        /// <value>
+        /// The color applied to the TabBar border. The default value is <c>null</c> (no explicit border color).
+        /// </value>
+        [Parameter] public Color TabBarBorderColor { get; set; }
+        /// <summary>
+        /// Gets or sets the thickness of the border around the TabBar in SfTabView.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.Thickness" /> that specifies the border width for each side of the TabBar. The default value is <c>new Thickness(0)</c>, which results in no visible border.
+        /// </value>
+        [Parameter] public Thickness? TabBarBorderThickness { get; set; }
+        /// <summary>
+        /// Gets or sets the corner radius of the TabBar border in SfTabView.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:Microsoft.Maui.CornerRadius" /> that specifies the radius of the TabBar border's corners. The default value is <c>new CornerRadius(0)</c>.
+        /// </value>
+        [Parameter] public CornerRadius? TabBarCornerRadius { get; set; }
         /// <summary>
         /// Gets or sets the height of the tab header.
         /// </summary>
@@ -456,11 +484,39 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.TabView
                         NativeControl.SelectedIndex = SelectedIndex ?? (int)SMTT.SfTabView.SelectedIndexProperty.DefaultValue;
                     }
                     break;
+                case nameof(SwipingSensitivity):
+                    if (!Equals(SwipingSensitivity, value))
+                    {
+                        SwipingSensitivity = CastParameter<double?>(value, name);
+                        NativeControl.SwipingSensitivity = SwipingSensitivity ?? (double)SMTT.SfTabView.SwipingSensitivityProperty.DefaultValue;
+                    }
+                    break;
                 case nameof(TabBarBackgroundColor):
                     if (!Equals(TabBarBackgroundColor, value))
                     {
                         TabBarBackgroundColor = CastParameter<Color>(value, name);
                         NativeControl.TabBarBackground = TabBarBackgroundColor;
+                    }
+                    break;
+                case nameof(TabBarBorderColor):
+                    if (!Equals(TabBarBorderColor, value))
+                    {
+                        TabBarBorderColor = CastParameter<Color>(value, name);
+                        NativeControl.TabBarBorderColor = TabBarBorderColor;
+                    }
+                    break;
+                case nameof(TabBarBorderThickness):
+                    if (!Equals(TabBarBorderThickness, value))
+                    {
+                        TabBarBorderThickness = CastParameter<Thickness?>(value, name);
+                        NativeControl.TabBarBorderThickness = TabBarBorderThickness ?? (Thickness)SMTT.SfTabView.TabBarBorderThicknessProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(TabBarCornerRadius):
+                    if (!Equals(TabBarCornerRadius, value))
+                    {
+                        TabBarCornerRadius = CastParameter<CornerRadius?>(value, name);
+                        NativeControl.TabBarCornerRadius = TabBarCornerRadius ?? (CornerRadius)SMTT.SfTabView.TabBarCornerRadiusProperty.DefaultValue;
                     }
                     break;
                 case nameof(TabBarHeight):

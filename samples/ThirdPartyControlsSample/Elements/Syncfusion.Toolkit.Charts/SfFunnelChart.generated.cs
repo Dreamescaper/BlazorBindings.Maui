@@ -58,6 +58,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
         /// </value>
         [Parameter] public SMTC.ChartLegendIconType? LegendIcon { get; set; }
         /// <summary>
+        /// Gets or sets the orientation of the funnel chart.
+        /// </summary>
+        /// <value>
+        /// An enum value specifying the orientation. The default value is <see cref="F:Syncfusion.Maui.Toolkit.Charts.ChartOrientation.Vertical" />.
+        /// </value>
+        [Parameter] public SMTC.ChartOrientation? Orientation { get; set; }
+        /// <summary>
+        /// Gets or sets a path value on the source object to serve a brush value to the chart for each data point.
+        /// </summary>
+        /// <value>
+        /// The string that represents the property name for the color to apply per segment, and its default value is null.
+        /// </value>
+        [Parameter] public string PointColorPath { get; set; }
+        /// <summary>
         /// Gets or sets a value that indicates to enable the data labels for the chart.
         /// </summary>
         /// <value>
@@ -181,6 +195,20 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.Charts
                     {
                         LegendIcon = CastParameter<SMTC.ChartLegendIconType?>(value, name);
                         NativeControl.LegendIcon = LegendIcon ?? (SMTC.ChartLegendIconType)SMTC.SfFunnelChart.LegendIconProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(Orientation):
+                    if (!Equals(Orientation, value))
+                    {
+                        Orientation = CastParameter<SMTC.ChartOrientation?>(value, name);
+                        NativeControl.Orientation = Orientation ?? (SMTC.ChartOrientation)SMTC.SfFunnelChart.OrientationProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(PointColorPath):
+                    if (!Equals(PointColorPath, value))
+                    {
+                        PointColorPath = CastParameter<string>(value, name);
+                        NativeControl.PointColorPath = PointColorPath;
                     }
                     break;
                 case nameof(ShowDataLabels):

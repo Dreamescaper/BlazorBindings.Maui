@@ -167,6 +167,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
         /// </value>
         [Parameter] public SMTB.BottomSheetState? State { get; set; }
         /// <summary>
+        /// Gets or sets a value indicating whether swipe gestures are restricted to the Header/Grabber area only.
+        /// </summary>
+        /// <value>
+        /// A <see cref="T:System.Boolean" /> value. The default value is <c>false</c>.
+        /// </value>
+        [Parameter] public bool? SwipeFromHeaderOnly { get; set; }
+        /// <summary>
         /// Gets or sets the background of the SfBottomSheet.
         /// </summary>
         /// <value>
@@ -357,6 +364,13 @@ namespace BlazorBindings.Maui.Elements.Syncfusion.Toolkit.BottomSheet
                     {
                         State = CastParameter<SMTB.BottomSheetState?>(value, name);
                         NativeControl.State = State ?? (SMTB.BottomSheetState)SMTB.SfBottomSheet.StateProperty.DefaultValue;
+                    }
+                    break;
+                case nameof(SwipeFromHeaderOnly):
+                    if (!Equals(SwipeFromHeaderOnly, value))
+                    {
+                        SwipeFromHeaderOnly = CastParameter<bool?>(value, name);
+                        NativeControl.SwipeFromHeaderOnly = SwipeFromHeaderOnly ?? (bool)SMTB.SfBottomSheet.SwipeFromHeaderOnlyProperty.DefaultValue;
                     }
                     break;
                 case nameof(Background):
