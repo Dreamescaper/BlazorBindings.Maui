@@ -1,5 +1,4 @@
-﻿@using System.Reflection;
-@inherits ElementTestBase
+﻿@inherits ElementTestBase
 
 @code {
 [Test]
@@ -90,15 +89,13 @@ public async Task OnPanUpdateInvokesCallback()
 private void SingleTap(MC.View view)
 {
     var gestureRecognizer = view.GestureRecognizers.OfType<MC.TapGestureRecognizer>().First(g => g.NumberOfTapsRequired == 1);
-    var method = typeof(MC.TapGestureRecognizer).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First(m => m.Name == "SendTapped");
-    method.Invoke(gestureRecognizer, new[] { view, null });
+    gestureRecognizer.SendTapped(view);
 }
 
 private void DoubleTap(MC.View view)
 {
     var gestureRecognizer = view.GestureRecognizers.OfType<MC.TapGestureRecognizer>().First(g => g.NumberOfTapsRequired == 2);
-    var method = typeof(MC.TapGestureRecognizer).GetMethods(BindingFlags.Instance | BindingFlags.NonPublic).First(m => m.Name == "SendTapped");
-    method.Invoke(gestureRecognizer, new[] { view, null });
+    gestureRecognizer.SendTapped(view);
 }
 
 private void Swipe(MC.View view, SwipeDirection direction)
