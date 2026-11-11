@@ -110,11 +110,48 @@ internal sealed class NativeComponentAdapter(
     // b) If elements are replaced, we want to have a single edit instead of two separate ones (remove+add) - it's more efficient, and 
     // the only way in some cases (when elements don't support empty content).
     // Therefore we store all add/remove actions, and apply them (rearranged) after other edits.
+    /// <summary>
+    /// True while this adapter's pending edits are being applied to the native tree. Adding further
+    /// edits during that window would corrupt the in-flight application, which iterates the list by
+    /// index and clears it at the end.
+    /// </summary>
+    private bool _isApplyingPendingEdits;
+
     public void ApplyPendingEdits()
     {
         if (_pendingEdits == null)
             return;
 
+        _isApplyingPendingEdits = true;
+        try
+        {
+            ApplyPendingEditsCore();
+        }
+        finally
+        {
+            _isApplyingPendingEdits = false;
+        }
+    }
+
+    /// <summary>
+    /// Guards against a nested render adding edits to an adapter whose edits are already being
+    /// applied. Doing so would replay edits the outer application has already made and discard the
+    /// ones it has not reached yet, duplicating or losing children. Failing here is deliberate: it
+    /// turns that corruption into a deterministic error at the point the rule is broken.
+    /// </summary>
+    private void AssertNotApplyingPendingEdits()
+    {
+        if (!_isApplyingPendingEdits)
+            return;
+
+        throw new InvalidOperationException(
+            $"Cannot render into {GetDebugTypeName() ?? "this element"} while its pending changes are being applied "
+            + "to the native tree. A synchronous render may not modify the element that is currently being updated; "
+            + "render into a different parent, or use AddComponent and await it instead.");
+    }
+
+    private void ApplyPendingEditsCore()
+    {
         var pendingRange = new PendingEditRange();
         var replacementRangeNewChildren = new ValueListBuilder<object>();
 
@@ -235,6 +272,8 @@ internal sealed class NativeComponentAdapter(
 
     private void AddPendingRemoval(NativeComponentAdapter childToRemove, int index, HashSet<NativeComponentAdapter> adaptersWithPendingEdits)
     {
+        PhysicalTarget.AssertNotApplyingPendingEdits();
+
         var targetEdits = PhysicalTarget._pendingEdits ??= [];
         adaptersWithPendingEdits.Add(PhysicalTarget);
 
@@ -297,6 +336,8 @@ internal sealed class NativeComponentAdapter(
 
         To avoid such behavior, we attempt to re-order Add operations by index - to add Page1 with index 0, then Page2 with index1.
         */
+
+        PhysicalTarget.AssertNotApplyingPendingEdits();
 
         var targetEdits = PhysicalTarget._pendingEdits ??= [];
 

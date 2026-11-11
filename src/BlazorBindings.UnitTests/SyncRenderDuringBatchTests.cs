@@ -273,6 +273,124 @@ public class SyncRenderDuringBatchTests
         });
     }
 
+    [Test]
+    public void RenderRefusedInReadPhaseDoesNotLeakARootComponent()
+    {
+        var leakTarget = new RootContainerHandler();
+        Exception caught = null;
+
+        RenderWithNonPhysicalProbe(() =>
+        {
+            try
+            {
+                Render(leakTarget, Single<TestContainerComponent>());
+            }
+            catch (Exception ex)
+            {
+                caught = ex;
+            }
+        });
+
+        // The outer batch has finished by now, including any renders queued behind it.
+        TestContext.Out.WriteLine($"threw={caught?.GetType().Name}  leaked elements={leakTarget.Elements.Count}");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(caught, Is.InstanceOf<InvalidOperationException>());
+            Assert.That(leakTarget.Elements, Is.Empty,
+                "Render reported failure but its component still rendered into the container afterwards.");
+        });
+    }
+
+    [Test]
+    public void NestedRenderIntoTheContainerBeingAppliedDoesNotCorruptIt()
+    {
+        ProbingContainerHandler shared = null;
+        Exception caught = null;
+
+        shared = new ProbingContainerHandler(Once(_ =>
+        {
+            try
+            {
+                Render(shared, RecordingFragment(99));
+            }
+            catch (Exception ex)
+            {
+                caught = ex;
+            }
+        }));
+
+        Render(shared, RecordingFragment(1, 2, 3));
+
+        var contents = shared.Elements
+            .Select(e => e is RecordingContainerComponent.RecordingContainerTarget t
+                ? string.Join("+", t.Children.Select(c => c.Id))
+                : e.GetType().Name)
+            .ToArray();
+
+        TestContext.Out.WriteLine($"caught={caught?.Message}");
+        TestContext.Out.WriteLine($"shared got {shared.Elements.Count} element(s): [{string.Join(" | ", contents)}]");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(caught, Is.Null, $"Nested render into the same container failed: {caught}");
+            Assert.That(contents, Is.EqualTo(new[] { "1+2+3", "99" }).Or.EqualTo(new[] { "99", "1+2+3" }),
+                "Each render's children must stay with their own container element.");
+        });
+    }
+
+    /// <summary>
+    /// The nested render re-renders an existing component whose physical parent is the very adapter
+    /// the outer batch is applying, so both batches append to that adapter's pending edit list.
+    /// </summary>
+    [Test]
+    public void NestedRerenderOfAComponentSharingTheAppliedAdapter()
+    {
+        Exception caught = null;
+
+        var container = new ProbingContainerHandler(Once(_ =>
+        {
+            try
+            {
+                _renderer.TryRenderSynchronously(() => RerenderableGroup.Instance.AddOne());
+            }
+            catch (Exception ex)
+            {
+                caught = ex;
+            }
+        }));
+
+        Render(container, builder =>
+        {
+            builder.OpenComponent<RecordingChildComponent>(0);
+            builder.AddAttribute(1, "Id", 1);
+            builder.CloseComponent();
+
+            // A plain ComponentBase has no element of its own, so its children attach to the
+            // container's adapter - the same adapter whose pending edits are being applied.
+            builder.OpenComponent<RerenderableGroup>(2);
+            builder.CloseComponent();
+
+            builder.OpenComponent<RecordingChildComponent>(3);
+            builder.AddAttribute(4, "Id", 2);
+            builder.CloseComponent();
+        });
+
+        var ids = container.Elements.Cast<RecordingChildTarget>().Select(c => c.Id).ToArray();
+
+        // This cannot be made to work: the outer application iterates the pending edits by index
+        // and clears them at the end, so appending to that list mid-flight duplicates the edits it
+        // has already made and discards the rest. It must fail deterministically rather than
+        // silently corrupt the tree - before the guard this produced [1,100,2,100,101,2,1].
+        Assert.Multiple(() =>
+        {
+            Assert.That(caught, Is.InstanceOf<InvalidOperationException>(),
+                "Expected a deterministic error rather than a corrupted child list.");
+            Assert.That(caught?.Message, Does.Contain("pending changes are being applied"));
+            Assert.That(ids, Is.Unique, "A child was added more than once.");
+        });
+    }
+
     // ------------------------------------------------------------------ borrowed buffers
 
     /// <summary>
@@ -631,6 +749,35 @@ public class SyncRenderDuringBatchTests
         public object TargetElement { get; } = new TestContainerComponent.TestTargetElement();
 
         public void Dispose() => Probe.Disposals++;
+    }
+
+    /// <summary>
+    /// A plain ComponentBase, so its adapter has no element of its own and its children attach to
+    /// the nearest physical ancestor's adapter.
+    /// </summary>
+    private class RerenderableGroup : ComponentBase
+    {
+        private int _count = 1;
+
+        public static RerenderableGroup Instance { get; private set; }
+
+        public RerenderableGroup() => Instance = this;
+
+        public void AddOne()
+        {
+            _count++;
+            StateHasChanged();
+        }
+
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            for (var i = 0; i < _count; i++)
+            {
+                builder.OpenComponent<RecordingChildComponent>(i * 2);
+                builder.AddAttribute(i * 2 + 1, "Id", 100 + i);
+                builder.CloseComponent();
+            }
+        }
     }
 
     private class AfterRenderProbe : ComponentBase

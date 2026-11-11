@@ -119,8 +119,12 @@ public abstract class NativeComponentRenderer
         // RenderRootComponentAsync waits for quiescence immediately after setting parameters, so if the
         // render were still queued at that point the component's async lifecycle would not be tracked
         // and the returned quiescence task would complete before the component ever rendered.
+        //
+        // Nothing is registered until we know the render can proceed. A root component created here
+        // and then abandoned would still render when the outer batch drains its queue, attaching an
+        // element the caller was told had failed and holds no reference to remove.
         if (!TryRunOutsideCurrentBatch(Start))
-            Start();
+            throw NotMaterializedSynchronously(componentType);
 
         // If the first render failed, surface that failure rather than the barrier error it causes.
         if (quiescence.IsFaulted)
@@ -128,18 +132,19 @@ public abstract class NativeComponentRenderer
             ExceptionDispatchInfo.Throw(quiescence.Exception.InnerException ?? quiescence.Exception);
         }
 
+        // The render ran but produced nothing - e.g. a component that never calls StateHasChanged.
         if (!adapter.HasRendered)
-        {
-            throw new InvalidOperationException(
-                $"Component {componentType.FullName} did not render synchronously, so its native element is not available yet. "
-                + (IsProcessingBatch
-                    ? "This happened because Render was called while a render batch was being processed - for example from an element "
-                      + "handler, a component's Dispose, or OnAfterRender. Use AddComponent and await it instead."
-                    : "Use AddComponent and await it instead."));
-        }
+            throw NotMaterializedSynchronously(componentType);
 
         return (component, quiescence);
     }
+
+    private InvalidOperationException NotMaterializedSynchronously(Type componentType)
+        => new($"Component {componentType.FullName} did not render synchronously, so its native element is not available yet. "
+            + (IsProcessingBatch
+                ? "This happened because Render was called while a render batch was being processed - for example from an element "
+                  + "handler, a component's Dispose, or OnAfterRender. Use AddComponent and await it instead."
+                : "Use AddComponent and await it instead."));
 
     private (IComponent Component, NativeComponentAdapter Adapter, Task Quiescence) StartRootComponentRender(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
