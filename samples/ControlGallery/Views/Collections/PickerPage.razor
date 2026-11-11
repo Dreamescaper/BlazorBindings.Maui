@@ -46,6 +46,15 @@
 
             <BoxView HeightRequest="2" Color="Colors.Gray" HorizontalOptions="LayoutOptions.Fill" />
 
+            <Label FontAttributes="FontAttributes.Bold" Text="Picker with nullable items" />
+            <Picker @bind-SelectedItem="SelectedNullableModel"
+                    Title="Select a model"
+                    ItemDisplayBinding="NullableItemDisplay"
+                    ItemsSource="NullableModels" />
+            <Label Text="@("Selected model: " + (SelectedNullableModel?.Name ?? "(all)"))"></Label>
+
+            <BoxView HeightRequest="2" Color="Colors.Gray" HorizontalOptions="LayoutOptions.Fill" />
+
             <Label FontAttributes="FontAttributes.Bold" Text="Index Based Picker" />
             <Picker ItemsSource="Models"
                     Title="Select a model and the index will bind"
@@ -100,8 +109,22 @@
         SelectedIndex = -1;
     }
 
+    public PickerModel SelectedNullableModel { get; set; }
+
+    public List<PickerModel> NullableModels { get; set; } =
+    [
+        null,
+        new PickerModel { Name = "Model 1" },
+        new PickerModel { Name = "Model 2" },
+    ];
+
     public string ItemDisplay(PickerModel model)
     {
         return $"❤️{model.Name}❤️";
+    }
+
+    public string NullableItemDisplay(PickerModel model)
+    {
+        return model?.Name ?? "(all)";
     }
 }
