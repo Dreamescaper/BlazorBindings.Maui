@@ -364,11 +364,23 @@ public abstract class NativeComponentRenderer
             "Microsoft.AspNetCore.Components.Rendering.RenderBatchBuilder, Microsoft.AspNetCore.Components";
 
         // Trim/AOT-safe: the type is a literal, so the trimmer resolves the field statically and
-        // preserves it. Reading and writing it through FieldInfo needs no annotations.
-        // UnsafeAccessor cannot replace this one - its field accessors must return byref, and
-        // UnsafeAccessorType is rejected on a byref return, so the inaccessible field type cannot
-        // be named. Constructing that type does work through UnsafeAccessor, below, which avoids
-        // the Activator.CreateInstance(Type) call that trimming does warn about.
+        // preserves it. Reading and writing it through FieldInfo needs no annotations, and a Native
+        // AOT build of this path produces no trim warnings from this assembly.
+        //
+        // UnsafeAccessor cannot replace this one. Its field accessors must return byref, and
+        // UnsafeAccessorType is rejected there - a writable "ref object" into a field of another
+        // reference type would be a type hole - so the inaccessible field type cannot be named.
+        // That is deliberate, and tracked by dotnet/runtime#119664; it waits on a usable
+        // TypedReference (dotnet/runtime#26186). The documented alternatives are to know the field
+        // type or to reach it through a property/method, and Renderer offers neither. Revisit if
+        // that issue is implemented.
+        //
+        // Note this field is declared readonly, so the write below relies on reflection's ability
+        // to set a readonly *instance* field. The swap and the restore both complete within the
+        // nested render, so the outer ProcessRenderQueue observes only the original value.
+        //
+        // Constructing the builder does work through UnsafeAccessor, below, which is what avoids
+        // the one Activator.CreateInstance(Type) call that trimming warns about (IL2072).
         private static readonly System.Reflection.FieldInfo BatchBuilderField =
             typeof(Renderer).GetField("_batchBuilder", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
 
