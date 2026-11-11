@@ -1,6 +1,5 @@
 ﻿using BlazorBindings.Maui.Elements.Handlers;
 using Microsoft.Maui.Controls;
-using System.Runtime.ExceptionServices;
 
 namespace BlazorBindings.Maui;
 
@@ -32,15 +31,12 @@ public class BlazorBindingsApplication<[DynamicallyAccessedMembers(DynamicallyAc
 
 
         var handler = new ApplicationWindowHandler();
-        var addComponentTask = renderer.AddComponent(componentType, handler, parameters);
 
-        if (addComponentTask.Exception != null)
-        {
-            // If exception was thrown during the sync execution - throw it straight away.
-            ExceptionDispatchInfo.Throw(addComponentTask.Exception.InnerException);
-        }
+        // CreateWindow must return a Window synchronously, so the component's first render has to
+        // have been applied by the time we read TargetElement. Render guarantees that, or throws.
+        var render = renderer.Render(componentType, handler, parameters);
 
-        AwaitVoid(handler.WaitForWindowAsync());
+        AwaitVoid(render.Quiescence);
         return handler.TargetElement;
 
         // async void is used here to crash the application if rendering fails.
