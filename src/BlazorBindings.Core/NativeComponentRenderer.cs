@@ -360,8 +360,21 @@ public abstract class NativeComponentRenderer
     /// </summary>
     private sealed class SwappedBatchBuilder
     {
+        private const string RenderBatchBuilderType =
+            "Microsoft.AspNetCore.Components.Rendering.RenderBatchBuilder, Microsoft.AspNetCore.Components";
+
+        // Trim/AOT-safe: the type is a literal, so the trimmer resolves the field statically and
+        // preserves it. Reading and writing it through FieldInfo needs no annotations.
+        // UnsafeAccessor cannot replace this one - its field accessors must return byref, and
+        // UnsafeAccessorType is rejected on a byref return, so the inaccessible field type cannot
+        // be named. Constructing that type does work through UnsafeAccessor, below, which avoids
+        // the Activator.CreateInstance(Type) call that trimming does warn about.
         private static readonly System.Reflection.FieldInfo BatchBuilderField =
             typeof(Renderer).GetField("_batchBuilder", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+        [UnsafeAccessor(UnsafeAccessorKind.Constructor)]
+        [return: UnsafeAccessorType(RenderBatchBuilderType)]
+        private static extern object CreateBatchBuilder();
 
         private readonly Renderer _renderer;
         private readonly object _original;
@@ -377,7 +390,7 @@ public abstract class NativeComponentRenderer
         public static SwappedBatchBuilder Swap(Renderer renderer)
         {
             var original = BatchBuilderField.GetValue(renderer);
-            var temporary = Activator.CreateInstance(BatchBuilderField.FieldType);
+            var temporary = CreateBatchBuilder();
 
             BatchBuilderField.SetValue(renderer, temporary);
             return new SwappedBatchBuilder(renderer, original, temporary);
