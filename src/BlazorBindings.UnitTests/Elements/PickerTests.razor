@@ -51,4 +51,16 @@
 
         Assert.That(picker.Items, Is.EqualTo(new[] { "All", "2", "3" }));
     }
+
+    [Test]
+    public async Task SetDisplayBindingWhichDoesNotHandleNullItems()
+    {
+        // The function is not required to handle null items - such items fall back to the default value.
+        var items = new string[] { null, "b", "c" };
+        var picker = await Render<MC.Picker>(
+            @<Picker ItemsSource="items" ItemDisplayBinding=@(i => $"-{i.ToUpper()}-") />
+        );
+
+        Assert.That(picker.Items, Is.EqualTo(new[] { null, "-B-", "-C-" }));
+    }
 }
