@@ -6,41 +6,42 @@ using MC = Microsoft.Maui.Controls;
 namespace BlazorBindings.Maui.Elements.Internal.DataTemplates;
 
 /// <summary>
-/// Unlike <see cref="DataTemplateItemsComponent{TControl, TItem}"/>, this DataTemplate component does not use a wrapping element. 
+/// Unlike the regular typed data-template component, this DataTemplate component does not use a wrapping element. 
 /// This makes it possible to use when returning a View from template is not an option.
-/// However, it requires a DataTemplate to render synchronously, which does not always work with Blazor.
+/// It acts as a main-renderer holder while template roots are rendered by child renderers, because Blazor
+/// defers renders requested during an active render batch.
 /// </summary>
-internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild
+internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlComponentBase, IContainerElementHandler, INonPhysicalChild, IDisposable
 {
-    protected override RenderFragment GetChildContent() => builder =>
-    {
-        foreach (var item in _initialItems)
-        {
-            builder.OpenComponent<SyncDataTemplateItemComponent<TItem>>(1);
-            builder.AddAttribute(2, nameof(SyncDataTemplateItemComponent<TItem>.Template), Template);
-            builder.AddAttribute(3, nameof(SyncDataTemplateItemComponent<TItem>.InitialItem), item);
-            builder.AddComponentReferenceCapture(4, c => _lastAddedItem = (SyncDataTemplateItemComponent<TItem>)c);
-            builder.CloseComponent();
-        }
-    };
-
     [Parameter] public Action<TControl, MC.DataTemplate> SetDataTemplateAction { get; set; }
     [Parameter] public RenderFragment<TItem> Template { get; set; }
+    [Inject] public ISyncTemplateRendererFactory TemplateRendererFactory { get; set; }
 
-    private readonly List<TItem> _initialItems = [];
+    private readonly List<ISyncTemplateRootHandle<RenderFragment<TItem>>> _templateRoots = [];
+    private bool _disposed;
 
-    private SyncDataTemplateItemComponent<TItem> _lastAddedItem;
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        var oldTemplate = Template;
+        var task = base.SetParametersAsync(parameters);
+
+        if (!ReferenceEquals(oldTemplate, Template))
+        {
+            foreach (var templateRoot in _templateRoots)
+            {
+                templateRoot.UpdateTemplate(Template);
+            }
+        }
+
+        return task;
+    }
 
     public MC.BindableObject AddTemplateRoot(TItem initialItem)
     {
-        _initialItems.Add(initialItem);
-        StateHasChanged();
+        var templateRoot = TemplateRendererFactory.Render(Template, initialItem);
+        _templateRoots.Add(templateRoot);
 
-        var rootElement = _lastAddedItem?.RootControl
-            ?? throw new InvalidOperationException("Template root control is supposed to be rendered at this point.");
-        _lastAddedItem = null;
-
-        return rootElement;
+        return (MC.BindableObject)templateRoot.RootElement;
     }
 
     void INonPhysicalChild.SetParent(object parentElement)
@@ -50,16 +51,30 @@ internal class SyncDataTemplateItemsComponent<TControl, TItem> : NativeControlCo
         SetDataTemplateAction(parent, dataTemplate);
     }
 
-    void INonPhysicalChild.RemoveFromParent(object parentElement) { }
+    void INonPhysicalChild.RemoveFromParent(object parentElement) => Dispose();
     object IElementHandler.TargetElement => null;
     void IContainerElementHandler.AddChild(object child, int physicalSiblingIndex) { }
     void IContainerElementHandler.RemoveChild(int physicalSiblingIndex) { }
+
+    public void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        _disposed = true;
+        foreach (var templateRoot in _templateRoots)
+        {
+            templateRoot.Dispose();
+        }
+        _templateRoots.Clear();
+    }
 }
 
-// In order to be able to render the item synchronously, we need to have an item upfront, before the render.
-// Unfortunately, regular DataTemplate does not have an access to the item, it is set set BindingContext afterwards.
-// In order to workaround this issue, we use a DataTemplateSelector, which returns the same DataTemplate. But we're able
-// to store the item from OnSelectTemplate method, which is used to render the item in DataTemplate.
+/// <summary>
+/// Captures the selected item before MAUI invokes the shared DataTemplate factory.
+/// </summary>
 file class DataTemplateSelector<TItem> : MC.DataTemplateSelector
 {
     private readonly MC.DataTemplate _dataTemplate;
