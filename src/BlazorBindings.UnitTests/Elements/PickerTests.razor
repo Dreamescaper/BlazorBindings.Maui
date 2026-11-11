@@ -29,4 +29,36 @@
 
         Assert.That(picker.Items, Is.EqualTo(new[] { "-A-", "-B-", "-C-" }));
     }
+
+    [Test]
+    public async Task SetDisplayBindingWithNullItems()
+    {
+        var items = new string[] { null, "b", "c" };
+        var picker = await Render<MC.Picker>(
+            @<Picker ItemsSource="items" ItemDisplayBinding=@(i => i is null ? "All" : $"-{i.ToUpper()}-") />
+        );
+
+        Assert.That(picker.Items, Is.EqualTo(new[] { "All", "-B-", "-C-" }));
+    }
+
+    [Test]
+    public async Task SetDisplayBindingWithNullableStructItems()
+    {
+        var items = new int?[] { null, 2, 3 };
+        var picker = await Render<MC.Picker>(
+            @<Picker ItemsSource="items" ItemDisplayBinding=@(i => i?.ToString() ?? "All") />
+        );
+
+        Assert.That(picker.Items, Is.EqualTo(new[] { "All", "2", "3" }));
+    }
+
+    [Test]
+    public void SetDisplayBindingWhichDoesNotHandleNullItems()
+    {
+        // The function is invoked for null items as well, therefore it is expected to handle them.
+        var items = new string[] { null, "b", "c" };
+        RenderFragment fragment = @<Picker ItemsSource="items" ItemDisplayBinding=@(i => $"-{i.ToUpper()}-") />;
+
+        Assert.ThrowsAsync<NullReferenceException>(() => Render<MC.Picker>(fragment));
+    }
 }
