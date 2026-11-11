@@ -70,6 +70,64 @@ public class SyncControlTemplateTests
         });
     }
 
+    /// <summary>
+    /// What the documented opt-out actually costs. With the switch set, a template realized
+    /// mid-batch throws again exactly as it did before this support existed.
+    /// </summary>
+    [Test]
+    public async Task TemplateRealizedDuringBatchThrowsAgainWhenNestedRenderIsDisabled()
+    {
+        AppContext.SetSwitch(NativeComponentRenderer.DisableSynchronousNestedRenderSwitch, true);
+
+        try
+        {
+            Exception caught = null;
+
+            var container = new ProbingContainerHandler(child =>
+            {
+                try
+                {
+                    var shellContent = ((MC.Shell)child).CurrentItem.Items[0].Items[0];
+                    ((MC.IShellContentController)shellContent).GetOrCreateContent();
+                }
+                catch (Exception ex)
+                {
+                    caught = ex;
+                }
+            });
+
+            await _renderer.AddComponent<ShellWithTemplateComponent>(container);
+
+            Assert.That(caught?.Message,
+                Is.EqualTo("Template root control is supposed to be rendered at this point."));
+        }
+        finally
+        {
+            AppContext.SetSwitch(NativeComponentRenderer.DisableSynchronousNestedRenderSwitch, false);
+        }
+    }
+
+    /// <summary>Realizing it outside a batch keeps working with the opt-out set.</summary>
+    [Test]
+    public async Task TemplateRealizedOutsideBatchStillWorksWhenNestedRenderIsDisabled()
+    {
+        AppContext.SetSwitch(NativeComponentRenderer.DisableSynchronousNestedRenderSwitch, true);
+
+        try
+        {
+            var container = new RootContainerHandler();
+            await _renderer.AddComponent<ShellWithTemplateComponent>(container);
+
+            var shellContent = ShellContentOf(container);
+
+            Assert.That(((MC.IShellContentController)shellContent).GetOrCreateContent(), Is.Not.Null);
+        }
+        finally
+        {
+            AppContext.SetSwitch(NativeComponentRenderer.DisableSynchronousNestedRenderSwitch, false);
+        }
+    }
+
     [Test]
     public async Task TemplateIsNotRenderedUntilItIsRequested()
     {

@@ -225,12 +225,65 @@ public abstract class NativeComponentRenderer
     }
 
     /// <summary>
+    /// Name of the <see cref="AppContext"/> switch that turns the nested synchronous render off.
+    /// <para>
+    /// Rendering while a batch is in progress is not something <c>Renderer</c> supports, so it is
+    /// reached through two of its internals: the <c>_isBatchInProgress</c> field and the
+    /// <c>_batchBuilder</c> field. Neither carries a compatibility guarantee. A future framework
+    /// version could rename or reshape them, which would surface either as a hard failure on the
+    /// first nested render (a missing field or type), or - worse - as a behavioural change if the
+    /// surrounding logic moves while the names stay.
+    /// </para>
+    /// <para>
+    /// Set this switch to <see langword="true"/> to fall back to the behaviour from before that
+    /// support existed, without downgrading the package:
+    /// </para>
+    /// <code>
+    /// AppContext.SetSwitch("BlazorBindings.DisableSynchronousNestedRender", true);
+    /// </code>
+    /// <para>
+    /// or in <c>runtimeconfig.template.json</c>:
+    /// </para>
+    /// <code>
+    /// { "configProperties": { "BlazorBindings.DisableSynchronousNestedRender": true } }
+    /// </code>
+    /// <para>
+    /// With it set, neither framework internal is touched at all - the opt-out is checked before
+    /// either is read, so it still works when one of them has been renamed away. What is given up
+    /// is only the ability to render <em>while a batch is being applied</em>:
+    /// <see cref="Render{TComponent}(IElementHandler, Dictionary{string, object})"/> and
+    /// <see cref="TryRenderSynchronously(Action)"/> keep working everywhere else, and a MAUI
+    /// template realized mid-batch throws again as it did before - for
+    /// <c>ShellContent.ContentTemplate</c>, "Template root control is supposed to be rendered at
+    /// this point." Nothing else changes.
+    /// </para>
+    /// <para>See <c>docs/synchronous-render.md</c> for the full rationale and failure modes.</para>
+    /// </summary>
+    public const string DisableSynchronousNestedRenderSwitch = "BlazorBindings.DisableSynchronousNestedRender";
+
+    // Read per call rather than cached, so the switch can be flipped at runtime (and in tests).
+    private static bool SynchronousNestedRenderDisabled
+        => AppContext.TryGetSwitch(DisableSynchronousNestedRenderSwitch, out var disabled) && disabled;
+
+    /// <summary>
     /// Runs <paramref name="action"/> as though no render batch were in progress, so that renders it
     /// queues are processed immediately. Returns false - without running anything - when that cannot
     /// be done safely.
     /// </summary>
     private bool TryRunOutsideCurrentBatch(Action action)
     {
+        // Opted out: behave as though the nested-render support did not exist, and reach for no
+        // framework internal at all - IsProcessingBatch is our own depth counter. That keeps this
+        // a usable escape hatch even when an internal has been renamed out from under us.
+        if (SynchronousNestedRenderDisabled)
+        {
+            if (IsProcessingBatch || _phase != RenderPhase.Idle)
+                return false;
+
+            action();
+            return true;
+        }
+
         // Not in a batch: renders already process immediately.
         if (_phase == RenderPhase.Idle && !BatchInProgressFlag(this))
         {
