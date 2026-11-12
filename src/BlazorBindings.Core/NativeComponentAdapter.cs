@@ -55,6 +55,13 @@ internal sealed class NativeComponentAdapter(
 
     private List<PendingEdit> _pendingEdits;
 
+    /// <summary>
+    /// True while this adapter's pending edits are being applied to the native tree. Adding further
+    /// edits during that window would corrupt the in-flight application, which iterates the list by
+    /// index and clears it at the end.
+    /// </summary>
+    private bool _isApplyingPendingEdits;
+
     internal void ApplyEdits(
         int componentId,
         ArrayBuilderSegment<RenderTreeEdit> edits,
@@ -110,13 +117,6 @@ internal sealed class NativeComponentAdapter(
     // b) If elements are replaced, we want to have a single edit instead of two separate ones (remove+add) - it's more efficient, and 
     // the only way in some cases (when elements don't support empty content).
     // Therefore we store all add/remove actions, and apply them (rearranged) after other edits.
-    /// <summary>
-    /// True while this adapter's pending edits are being applied to the native tree. Adding further
-    /// edits during that window would corrupt the in-flight application, which iterates the list by
-    /// index and clears it at the end.
-    /// </summary>
-    private bool _isApplyingPendingEdits;
-
     public void ApplyPendingEdits()
     {
         if (_pendingEdits == null)

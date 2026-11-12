@@ -33,13 +33,14 @@ public class BlazorBindingsApplication<[DynamicallyAccessedMembers(DynamicallyAc
         var handler = new ApplicationWindowHandler();
 
         // CreateWindow must return a Window synchronously, so the component's first render has to
-        // have been applied by the time we read TargetElement. Render guarantees that, or throws.
+        // have been applied by the time we read TargetElement - which is what Render guarantees.
+        // It does not guarantee that the render produced anything native, though: a root whose
+        // content is, say, only a CascadingValue renders without creating an element. Hence the
+        // check below rather than handing MAUI a null.
         var render = renderer.Render(componentType, handler, parameters);
 
         AwaitVoid(render.Quiescence);
 
-        // Render guarantees the first batch was applied, not that it produced a window - a root
-        // whose content is, say, only a CascadingValue renders without creating any native element.
         return handler.TargetElement
             ?? throw new InvalidOperationException(
                 $"The root component {componentType.FullName} did not produce a Window or a Page. "

@@ -78,15 +78,16 @@ public class SyncRenderDuringBatchTests
     }
 
     [Test]
-    public void RenderDuringReadPhaseThrowsDeterministically()
+    public void RenderDuringReadPhaseThrowsAndLeavesNothingBehind()
     {
+        var target = new RootContainerHandler();
         Exception caught = null;
 
         RenderWithNonPhysicalProbe(() =>
         {
             try
             {
-                Render(new RootContainerHandler(), Single<TestContainerComponent>());
+                Render(target, Single<TestContainerComponent>());
             }
             catch (Exception ex)
             {
@@ -94,11 +95,15 @@ public class SyncRenderDuringBatchTests
             }
         });
 
+        // By now the outer batch has finished, including anything queued behind it - so a root
+        // registered before the throw would have attached its element by this point.
         Assert.Multiple(() =>
         {
             Assert.That(caught, Is.InstanceOf<InvalidOperationException>());
             Assert.That(caught?.Message, Does.Contain("did not render synchronously"));
             Assert.That(caught?.Message, Does.Contain("render batch was being processed"));
+            Assert.That(target.Elements, Is.Empty,
+                "Render reported failure but its component still rendered into the container afterwards.");
         });
     }
 
@@ -273,34 +278,6 @@ public class SyncRenderDuringBatchTests
         });
     }
 
-    [Test]
-    public void RenderRefusedInReadPhaseDoesNotLeakARootComponent()
-    {
-        var leakTarget = new RootContainerHandler();
-        Exception caught = null;
-
-        RenderWithNonPhysicalProbe(() =>
-        {
-            try
-            {
-                Render(leakTarget, Single<TestContainerComponent>());
-            }
-            catch (Exception ex)
-            {
-                caught = ex;
-            }
-        });
-
-        // The outer batch has finished by now, including any renders queued behind it.
-        TestContext.Out.WriteLine($"threw={caught?.GetType().Name}  leaked elements={leakTarget.Elements.Count}");
-
-        Assert.Multiple(() =>
-        {
-            Assert.That(caught, Is.InstanceOf<InvalidOperationException>());
-            Assert.That(leakTarget.Elements, Is.Empty,
-                "Render reported failure but its component still rendered into the container afterwards.");
-        });
-    }
 
     [Test]
     public void NestedRenderIntoTheContainerBeingAppliedDoesNotCorruptIt()

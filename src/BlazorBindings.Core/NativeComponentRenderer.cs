@@ -17,6 +17,12 @@ public abstract class NativeComponentRenderer
     private readonly Dictionary<int, NativeComponentAdapter> _componentIdToAdapter = [];
     private readonly List<(int Id, IComponent Component)> _rootComponents = [];
     private ElementManager _elementManager;
+
+    // Two trackers, deliberately. _phase says which part of applying a batch we are in, which is what
+    // decides whether a nested render is safe. _batchDepth answers the coarser "is a batch running at
+    // all" without reading Renderer._isBatchInProgress - that keeps the check available to code paths
+    // that must not depend on framework internals, including the reduced form of
+    // TryRunOutsideCurrentBatch in docs/synchronous-render.md.
     private int _batchDepth;
     private RenderPhase _phase = RenderPhase.Idle;
 
@@ -133,9 +139,8 @@ public abstract class NativeComponentRenderer
         // render were still queued at that point the component's async lifecycle would not be tracked
         // and the returned quiescence task would complete before the component ever rendered.
         //
-        // Nothing is registered until we know the render can proceed. A root component created here
-        // and then abandoned would still render when the outer batch drains its queue, attaching an
-        // element the caller was told had failed and holds no reference to remove.
+        // When that cannot be done, nothing has been registered - Start never ran - so there is no
+        // root left behind to attach an element after this throws.
         if (!TryRunOutsideCurrentBatch(Start))
             throw NotMaterializedSynchronously(componentType);
 
@@ -209,7 +214,7 @@ public abstract class NativeComponentRenderer
     /// True while a render batch is being processed, i.e. while the render tree is being diffed or
     /// applied to the native tree.
     /// </summary>
-    protected bool IsProcessingBatch => _batchDepth > 0;
+    private bool IsProcessingBatch => _batchDepth > 0;
 
     /// <summary>
     /// Runs <paramref name="requestRender"/> and applies the renders it triggers before returning,
@@ -317,9 +322,12 @@ public abstract class NativeComponentRenderer
         }
 
         // Copy out the last thing we still need from the shared buffers, so that from here on we only
-        // touch state that we own and a nested render becomes safe.
-        var disposedComponentIds = new int[renderBatch.DisposedComponentIDs.Count];
-        renderBatch.DisposedComponentIDs.Array.AsSpan(0, disposedComponentIds.Length).CopyTo(disposedComponentIds);
+        // touch state that we own and a nested render becomes safe. Most batches dispose nothing, so
+        // this usually allocates nothing either.
+        var disposedCount = renderBatch.DisposedComponentIDs.Count;
+        var disposedComponentIds = disposedCount == 0
+            ? []
+            : renderBatch.DisposedComponentIDs.Array.AsSpan(0, disposedCount).ToArray();
 
         try
         {
@@ -408,30 +416,26 @@ public abstract class NativeComponentRenderer
 
         private readonly Renderer _renderer;
         private readonly object _original;
-        private readonly object _temporary;
 
-        private SwappedBatchBuilder(Renderer renderer, object original, object temporary)
+        private SwappedBatchBuilder(Renderer renderer, object original)
         {
             _renderer = renderer;
             _original = original;
-            _temporary = temporary;
         }
 
         public static SwappedBatchBuilder Swap(Renderer renderer)
         {
             var original = BatchBuilderField.GetValue(renderer);
-            var temporary = CreateBatchBuilder();
 
-            BatchBuilderField.SetValue(renderer, temporary);
-            return new SwappedBatchBuilder(renderer, original, temporary);
+            BatchBuilderField.SetValue(renderer, CreateBatchBuilder());
+            return new SwappedBatchBuilder(renderer, original);
         }
 
-        public void Restore()
-        {
-            BatchBuilderField.SetValue(_renderer, _original);
-
-            // Hand the temporary builder's own rented arrays back.
-            (_temporary as IDisposable)?.Dispose();
-        }
+        // The temporary builder is deliberately dropped rather than disposed. The nested batch's own
+        // ProcessRenderQueue already returned its arrays to the pool when it cleared it, so disposing
+        // would at best do nothing - and would risk returning an array twice, handing the same buffer
+        // to two renters, if clearing ever stopped replacing it. Letting it be collected costs only
+        // the chance to reuse a few pooled arrays.
+        public void Restore() => BatchBuilderField.SetValue(_renderer, _original);
     }
 }
