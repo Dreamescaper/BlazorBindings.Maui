@@ -69,43 +69,55 @@ regardless of how the internals are shaped — the outer batch's tree and remova
 Note that this repository does not set `TreatWarningsAsErrors`, so a trim/AOT regression would
 appear in the CI log without failing the build.
 
-## Turning it off
+## How to back it out
 
-There is no need to downgrade. Set the documented switch:
+If the internals change and adapting them is not worth it, the nested-render support can be removed
+without giving up the rest. It is deliberately confined to one seam — `TryRunOutsideCurrentBatch` in
+`NativeComponentRenderer` — so reverting is a local edit, not an unpick.
 
-```csharp
-AppContext.SetSwitch("BlazorBindings.DisableSynchronousNestedRender", true);
-```
+1. In `NativeComponentRenderer.TryRunOutsideCurrentBatch`, drop everything after the "not in a
+   batch" case so the method becomes:
 
-or, declaratively, in `runtimeconfig.template.json`:
+   ```csharp
+   private bool TryRunOutsideCurrentBatch(Action action)
+   {
+       if (_phase == RenderPhase.Idle && !IsProcessingBatch)
+       {
+           action();
+           return true;
+       }
 
-```json
-{
-  "configProperties": {
-    "BlazorBindings.DisableSynchronousNestedRender": true
-  }
-}
-```
+       return false;
+   }
+   ```
 
-The name is also available as
-`NativeComponentRenderer.DisableSynchronousNestedRenderSwitch`.
+   Note `IsProcessingBatch` — our own depth counter — in place of `BatchInProgressFlag`, so no
+   framework internal is read at all.
 
-With the switch set, **neither framework internal is touched at all** — the opt-out is checked
-before either is read, so it still works when one of them has been renamed away.
+2. Delete what only that path used: `SwappedBatchBuilder`, `BatchInProgressFlag`,
+   `CreateBatchBuilder`, and the `System.Runtime.CompilerServices` using if nothing else needs it.
+3. Delete `SyncRenderFrameworkInternalsTests`, and from `SyncRenderDuringBatchTests` the tests that
+   assert a nested render *succeeds* mid-batch. Keep the ones asserting it is refused.
+4. In `SyncControlTemplateTests`, `TemplateRealizedDuringBatchSucceeds` becomes the opposite
+   assertion — it should throw again.
+
+**Everything else stays and keeps working**, because none of it touches internals:
+
+- `Render<T>()`, `NativeRender<T>` and the first-materialization guarantee;
+- the `CreateWindow` path, which only needs a render outside a batch;
+- `TryRenderSynchronously`, which simply returns `false` more often;
+- `AddComponent`, untouched throughout.
 
 ### What you give up
 
-Only the ability to render *while a batch is being applied*. Specifically:
-
-- `Render<T>()` and `TryRenderSynchronously` keep working everywhere else, including the
-  `CreateWindow` path and inside event callbacks.
-- `AddComponent` is unaffected.
-- A MAUI template realized mid-batch throws again, as it did before this support existed. For
-  `ShellContent.ContentTemplate` that is
-  `"Template root control is supposed to be rendered at this point."`
+Only rendering *while a batch is being applied*. A MAUI template realized mid-batch throws again, as
+it did before this support existed — for `ShellContent.ContentTemplate` that is
+`"Template root control is supposed to be rendered at this point."`
 
 In practice MAUI usually realizes templates outside our batches — on navigation or layout — so most
-apps never hit that path. The switch returns you to exactly the earlier behaviour, no worse.
+apps never hit that path. Backing out returns the library to exactly its earlier behaviour, no
+worse. Note that this is a source-level revert, so mitigating a future break means shipping a patch
+release; there is no runtime switch.
 
 ## Known limitation
 
