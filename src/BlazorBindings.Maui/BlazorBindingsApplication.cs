@@ -37,7 +37,13 @@ public class BlazorBindingsApplication<[DynamicallyAccessedMembers(DynamicallyAc
         var render = renderer.Render(componentType, handler, parameters);
 
         AwaitVoid(render.Quiescence);
-        return handler.TargetElement;
+
+        // Render guarantees the first batch was applied, not that it produced a window - a root
+        // whose content is, say, only a CascadingValue renders without creating any native element.
+        return handler.TargetElement
+            ?? throw new InvalidOperationException(
+                $"The root component {componentType.FullName} did not produce a Window or a Page. "
+                + "The application's root component must render one of them.");
 
         // async void is used here to crash the application if rendering fails.
         static async void AwaitVoid(Task task) => await task;

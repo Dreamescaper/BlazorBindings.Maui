@@ -391,6 +391,100 @@ public class SyncRenderDuringBatchTests
         });
     }
 
+    [Test]
+    public void OuterRootKeepsItsPendingLifecycleAcrossANestedRender()
+    {
+        var container = new ProbingContainerHandler(Once(_ =>
+            Render(new RootContainerHandler(), Single<TestContainerComponent>())));
+
+        var outer = Render(container, Single<GatedAsyncInitComponent>());
+
+        TestContext.Out.WriteLine($"outer quiescence = {outer.Quiescence.Status}, inits completed = {Probe.AsyncInitsCompleted}");
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(Probe.AsyncInitsCompleted, Is.Zero, "the outer initialization is still blocked");
+            Assert.That(outer.Quiescence.IsCompleted, Is.False,
+                "The nested render cleared the outer root's pending-task tracking, so its quiescence "
+                + "completed while OnInitializedAsync was still blocked.");
+        });
+
+        GatedAsyncInitComponent.Release();
+    }
+
+    [Test]
+    public void RefusedNestedUpdateLeavesTheComponentTreeUsable()
+    {
+        Exception refusal = null;
+
+        var container = new ProbingContainerHandler(Once(_ =>
+        {
+            try
+            {
+                _renderer.TryRenderSynchronously(() => RerenderableGroup.Instance.AddOne());
+            }
+            catch (Exception ex)
+            {
+                refusal = ex;
+            }
+        }));
+
+        var render = Render(container, builder =>
+        {
+            builder.OpenComponent<RecordingChildComponent>(0);
+            builder.AddAttribute(1, "Id", 1);
+            builder.CloseComponent();
+
+            builder.OpenComponent<RerenderableGroup>(2);
+            builder.CloseComponent();
+        });
+
+        Assert.That(refusal, Is.Not.Null, "expected the nested update to be refused");
+
+        // An ordinary update afterwards must not trip over a child that never reached the native tree.
+        Assert.DoesNotThrow(() => RerenderableGroup.Instance.AddOne(),
+            "A later ordinary update failed, so the refusal left the component tree inconsistent.");
+
+        TestContext.Out.WriteLine(
+            $"container children = [{string.Join(",", container.Elements.Cast<RecordingChildTarget>().Select(c => c.Id))}]");
+    }
+
+    [Test]
+    public void FailedMaterializationDoesNotLeaveTheRootAttachingLater()
+    {
+        var container = new RootContainerHandler();
+
+        Assert.That(() => _renderer.Render<DeferredRenderComponent>(container),
+            Throws.InvalidOperationException.With.Message.Contains("did not render synchronously"));
+
+        // The component was told it failed; releasing its await must not attach anything now.
+        DeferredRenderComponent.Release();
+
+        TestContext.Out.WriteLine($"elements after release = {container.Elements.Count}");
+
+        Assert.That(container.Elements, Is.Empty,
+            "A render that reported failure still attached its element once its await completed.");
+    }
+
+    /// <summary>
+    /// HasRendered means the batch was applied, not that anything native came of it - a root whose
+    /// content is only a CascadingValue renders without producing an element. Render does not treat
+    /// that as failure, so callers that need an element must check for one; CreateWindow does.
+    /// </summary>
+    [Test]
+    public void RenderSucceedsButProducesNothingForAComponentWithoutNativeContent()
+    {
+        var container = new RootContainerHandler();
+
+        var render = _renderer.Render<NoNativeContentComponent>(container);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(render.Component, Is.Not.Null);
+            Assert.That(container.Elements, Is.Empty);
+        });
+    }
+
     // ------------------------------------------------------------------ borrowed buffers
 
     /// <summary>
@@ -840,6 +934,42 @@ public class SyncRenderDuringBatchTests
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             builder.OpenComponent<TestContainerComponent>(0);
+            builder.CloseComponent();
+        }
+    }
+
+    /// <summary>Does not render until its await is released.</summary>
+    private class DeferredRenderComponent : IComponent
+    {
+        private static TaskCompletionSource _gate = new();
+        private RenderHandle _handle;
+
+        public DeferredRenderComponent() => _gate = new TaskCompletionSource();
+
+        public static void Release() => _gate.TrySetResult();
+
+        public void Attach(RenderHandle renderHandle) => _handle = renderHandle;
+
+        public async Task SetParametersAsync(ParameterView parameters)
+        {
+            await _gate.Task;
+
+            _handle.Render(builder =>
+            {
+                builder.OpenComponent<TestContainerComponent>(0);
+                builder.CloseComponent();
+            });
+        }
+    }
+
+    /// <summary>Renders, so its diff carries edits, but produces no native element.</summary>
+    private class NoNativeContentComponent : ComponentBase
+    {
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            builder.OpenComponent<CascadingValue<string>>(0);
+            builder.AddAttribute(1, "Value", "nothing native here");
+            builder.AddAttribute(2, "ChildContent", (RenderFragment)(_ => { }));
             builder.CloseComponent();
         }
     }

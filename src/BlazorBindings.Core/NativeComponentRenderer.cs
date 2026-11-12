@@ -113,7 +113,20 @@ public abstract class NativeComponentRenderer
         NativeComponentAdapter adapter = null;
         Task quiescence = null;
 
-        void Start() => (component, adapter, quiescence) = StartRootComponentRender(componentType, parent, parameters);
+        void Start()
+        {
+            (component, adapter, quiescence) = StartRootComponentRender(componentType, parent, parameters);
+
+            if (quiescence.IsFaulted || adapter.HasRendered)
+                return;
+
+            // Nothing materialized - the component never rendered, or deferred its first render
+            // past this point. Undo the registration here, while we are still outside the batch,
+            // so it cannot attach an element later, after the caller has been told it failed and
+            // given no component with which to remove it.
+            RemoveRootComponent(component);
+            component = null;
+        }
 
         // The root render has to happen outside the current batch, not merely be flushed afterwards:
         // RenderRootComponentAsync waits for quiescence immediately after setting parameters, so if the
@@ -132,8 +145,8 @@ public abstract class NativeComponentRenderer
             ExceptionDispatchInfo.Throw(quiescence.Exception.InnerException ?? quiescence.Exception);
         }
 
-        // The render ran but produced nothing - e.g. a component that never calls StateHasChanged.
-        if (!adapter.HasRendered)
+        // The render ran but produced nothing - Start has already removed the root in that case.
+        if (component is null)
             throw NotMaterializedSynchronously(componentType);
 
         return (component, quiescence);
