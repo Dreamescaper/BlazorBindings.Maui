@@ -6,8 +6,6 @@ namespace BlazorBindings.Maui.Elements.Handlers;
 // We allow root component to be either a window, or a page. Therefore, this handler supports both.
 internal class ApplicationWindowHandler : IContainerElementHandler
 {
-    private TaskCompletionSource<object> _taskCompletionSource;
-
     public void AddChild(object child, int physicalSiblingIndex)
     {
         TargetElement = child switch
@@ -26,17 +24,6 @@ internal class ApplicationWindowHandler : IContainerElementHandler
     public void RemoveChild(int physicalSiblingIndex)
     {
         TargetElement.Page = null;
-    }
-
-    public Task WaitForWindowAsync()
-    {
-        if (TargetElement is not null)
-        {
-            return Task.CompletedTask;
-        }
-
-        _taskCompletionSource ??= new();
-        return _taskCompletionSource.Task;
     }
 
     public MC.Window TargetElement { get; private set; }

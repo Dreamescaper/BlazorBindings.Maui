@@ -1,6 +1,5 @@
 ﻿using BlazorBindings.Maui.Elements.Handlers;
 using Microsoft.Maui.Controls;
-using System.Runtime.ExceptionServices;
 
 namespace BlazorBindings.Maui;
 
@@ -32,16 +31,20 @@ public class BlazorBindingsApplication<[DynamicallyAccessedMembers(DynamicallyAc
 
 
         var handler = new ApplicationWindowHandler();
-        var addComponentTask = renderer.AddComponent(componentType, handler, parameters);
 
-        if (addComponentTask.Exception != null)
-        {
-            // If exception was thrown during the sync execution - throw it straight away.
-            ExceptionDispatchInfo.Throw(addComponentTask.Exception.InnerException);
-        }
+        // CreateWindow must return a Window synchronously, so the component's first render has to
+        // have been applied by the time we read TargetElement - which is what Render guarantees.
+        // It does not guarantee that the render produced anything native, though: a root whose
+        // content is, say, only a CascadingValue renders without creating an element. Hence the
+        // check below rather than handing MAUI a null.
+        var render = renderer.Render(componentType, handler, parameters);
 
-        AwaitVoid(handler.WaitForWindowAsync());
-        return handler.TargetElement;
+        AwaitVoid(render.Quiescence);
+
+        return handler.TargetElement
+            ?? throw new InvalidOperationException(
+                $"The root component {componentType.FullName} did not produce a Window or a Page. "
+                + "The application's root component must render one of them.");
 
         // async void is used here to crash the application if rendering fails.
         static async void AwaitVoid(Task task) => await task;

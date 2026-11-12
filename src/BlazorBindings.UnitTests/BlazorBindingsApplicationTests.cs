@@ -53,6 +53,29 @@ public class BlazorBindingsApplicationTests
             Throws.InvalidOperationException.With.Message.EqualTo("Should fail here."));
     }
 
+    /// <summary>
+    /// The root component rendering successfully is not the same as it producing a Window: one
+    /// whose content is only a CascadingValue renders without creating any native element.
+    /// CreateWindow must say so rather than hand MAUI a null.
+    /// </summary>
+    [Test]
+    public void ShouldThrowIfRootComponentProducesNoWindow()
+    {
+        Assert.That(CreateApplication<ComponentWithoutNativeContent>,
+            Throws.InvalidOperationException.With.Message.Contains("did not produce a Window or a Page"));
+    }
+
+    private class ComponentWithoutNativeContent : ComponentBase
+    {
+        protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder)
+        {
+            builder.OpenComponent<CascadingValue<string>>(0);
+            builder.AddAttribute(1, "Value", "nothing native here");
+            builder.AddAttribute(2, "ChildContent", (RenderFragment)(_ => { }));
+            builder.CloseComponent();
+        }
+    }
+
     private static Application CreateApplication<T>() where T : IComponent
     {
         var application = TestApplication.Create<BlazorBindingsApplication<T>>(createWindow: false);
