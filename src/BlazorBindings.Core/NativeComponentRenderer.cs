@@ -89,6 +89,7 @@ public abstract class NativeComponentRenderer
     /// called while a render batch was already being processed.
     /// </exception>
     /// <remarks>Experimental API, subject to change.</remarks>
+    [Experimental("MBB001")]
     public NativeRender<TComponent> Render<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>
         (IElementHandler parent, Dictionary<string, object> parameters = null)
         where TComponent : IComponent
@@ -99,6 +100,7 @@ public abstract class NativeComponentRenderer
 
     /// <inheritdoc cref="Render{TComponent}(IElementHandler, Dictionary{string, object})"/>
     /// <remarks>Experimental API, subject to change.</remarks>
+    [Experimental("MBB001")]
     public NativeRender<IComponent> Render(
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
         IElementHandler parent,
@@ -227,6 +229,7 @@ public abstract class NativeComponentRenderer
     /// </para>
     /// </summary>
     /// <remarks>Experimental API, subject to change.</remarks>
+    [Experimental("MBB001")]
     public bool TryRenderSynchronously(Action requestRender)
     {
         ArgumentNullException.ThrowIfNull(requestRender);
